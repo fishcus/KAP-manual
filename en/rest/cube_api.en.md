@@ -33,6 +33,8 @@
 * exactMatch - `optional` `boolean`, default true, specify whether matching exactly based on cubeName.
 * modelName - `optional` `string` returned model name is the keyword's Cube.
 * projectName - `optional` `string`, specify the returned Cube under the project.
+* sortBy - `optional` `string`, default "update_time", specify the sort field.
+* reverse - `optional` `boolean`, default:true.
 
 #### Response Example
 ```sh

@@ -35,6 +35,8 @@
 * exactMatch - `可选` `boolean` 默认true, 是否根据cubeName完全匹配 
 * modelName - `可选` `string` 返回对应模型名称等于该关键字的Cube
 * projectName - `可选` `string` 指定返回该项目下Cube
+* sortBy - `可选` `string` 指定排序字段，默认"update_time"
+* reverse - `可选` `boolean` 是否倒序，默认true
 
 #### 响应示例
 ```json
