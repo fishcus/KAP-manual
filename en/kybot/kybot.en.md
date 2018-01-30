@@ -38,17 +38,25 @@ kap.external.http.proxy.port // http proxy port
 
 3.Click "One click to sync diagnostic package to KyBot". If your KAP does not have access to Internet, you can also download the diagnostic package to local with clicking "Download diagnostic package" and manually upload to KyBot. (Check following steps for uploading)
 
+```
+If the generation of diagnostic packages is too long, you may use the following commands:
+#generate system diagnostic package
+$KYLIN_HOME/kybot/kybot.sh
+#generate job diagnostic package
+$KYLIN_HOME/kybot/kybot.sh -jobId <job_id>
+```
+
+> - Notes：if there is a warning named *Invalid option*, please go to [KyBot](https://kybot.io) and download the lastest KyBot Client.
+
 4.Until uploading succeeds, you can navigate to [KyBot](https://kybot.io) to see the results.
 
 5.If you have multiple KAP nodes, you need to upload diagnostics packages for each nodes.
 
 **Kylin Users**
 
-① Download KyBot Client (support Apache Kylin1.5.0 and following version as well as all KAP versions) in advance, download path：Log on [KyBot official website](https://kybot.io), click "upload" on the first page then click "packing tool": KyBot Client 1.0.1" is available for download.
-
-② Extract to $KYLIN\_HOME/kybot directory of each Kylin node. 
-
-③ Run $KYLIN_HOME/kybot/kybot.sh on each Kylin node to generate a diagnostic package.
+1. Download KyBot Client (support Apache Kylin1.5.0 and following version as well as all KAP versions) in advance, download path：Log on [KyBot official website](https://kybot.io), click "upload" on the first page then click "packing tool": KyBot Client" is available for download.
+2. Extract to $KYLIN\_HOME/kybot directory of each Kylin node. 
+3. Run $KYLIN_HOME/kybot/kybot.sh on each Kylin node to generate a diagnostic package.
 
 ![](images/Picture3.png)
 

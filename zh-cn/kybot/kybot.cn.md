@@ -41,17 +41,27 @@ kap.external.http.proxy.port // http代理服务器端口
 
 3.单击“生成诊断包并上传至KyBot”；如果您的KAP节点无法访问外网，也可以单击“下载诊断包”将诊断包下载到本地，然后手动上传到KyBot。（上传步骤见下文）
 
+```
+如生成诊断包时间过长，可通过如下命令行操作：
+#生成系统诊断包
+$KYLIN_HOME/kybot/kybot.sh
+#生成任务诊断包
+$KYLIN_HOME/kybot/kybot.sh -jobId <job_id>
+```
+
+   >* 提示：如您遇到**Invalid option**提示，请您尝试前往[KyBot官网](https://kybot.io)，下载最新的KyBot Client。
+
 4.稍等片刻，待诊断包上传成功，访问[KyBot网站](https://kybot.io)即可查看 
 
-5.如果您的KAP时集群部署方式，需要对每个KAP节点分别上传诊断包
+5.如果您的KAP是集群部署方式，需要对每个KAP节点分别上传诊断包
 
 **Kylin 用户**
 
-① 下载KyBot Client (支持Apache Kylin1.5.0以上及KAP全部版本)下载路径：登录[KyBot官网](https://kybot.io)，在首页点击上传，然后点击"打包工具: KyBot Client 1.0.1"即可下载。
+1.下载KyBot Client (支持Apache Kylin1.5.0以上及KAP全部版本)下载路径：登录[KyBot官网](https://kybot.io)，在首页点击上传，然后点击"打包工具: KyBot Client"即可下载。
 
-② 解压到每个Kylin节点的$KYLIN\_HOME/kybot目录
+2.解压到每个Kylin节点的$KYLIN\_HOME/kybot目录
 
-③ 在每个Kylin节点运行$KYLIN\_HOME/kybot/kybot.sh来生成诊断包
+3.在每个Kylin节点运行$KYLIN\_HOME/kybot/kybot.sh来生成诊断包
 
 ![](images/Picture3.png)
 
