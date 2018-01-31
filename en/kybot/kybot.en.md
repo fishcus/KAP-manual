@@ -42,6 +42,10 @@ kap.external.http.proxy.port // http proxy port
 If the generation of diagnostic packages is too long, you may use the following commands:
 #generate system diagnostic package
 $KYLIN_HOME/kybot/kybot.sh
+
+#generate system diagnostic package without temporary data, such as temporary Hive table. This configuration is used by default since KAP 2.5.5. 
+$KYLIN_HOME/kybot/kybot.sh -includeGarbage false
+
 #generate job diagnostic package
 $KYLIN_HOME/kybot/kybot.sh -jobId <job_id>
 ```

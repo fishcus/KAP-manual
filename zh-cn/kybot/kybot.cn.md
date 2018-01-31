@@ -45,6 +45,10 @@ kap.external.http.proxy.port // http代理服务器端口
 如生成诊断包时间过长，可通过如下命令行操作：
 #生成系统诊断包
 $KYLIN_HOME/kybot/kybot.sh
+
+#跳过垃圾信息生成系统诊断包（如Hive临时表等），KAP2.5.5以上版本默认开启
+$KYLIN_HOME/kybot/kybot.sh -includeGarbage false
+
 #生成任务诊断包
 $KYLIN_HOME/kybot/kybot.sh -jobId <job_id>
 ```
