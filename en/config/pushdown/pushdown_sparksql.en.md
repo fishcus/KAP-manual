@@ -4,6 +4,7 @@ Spark is a fast and general engine for big data processing, with built-in module
 
 Spark Thrift support Hive JDBC driver, through which applications with JDBC interface can access Spark to query data.
 
+If you need pushdown to 3rd Party SparkSQL, you must have a Spark Thrift Server.
 ####Download Hive JDBC Driver
 
 1. According to the hive version of hadoop cluster download [hive-jdbc-version.jar](hive-jdbc.jarhttps://mvnrepository.com/artifact/org.apache.hive/hive-jdbc). Be sure to use the JDBC version not to be higher than the hive version of the cluster.
@@ -24,6 +25,7 @@ Modify `$KAP_HOME/conf/kylin.properties`, add Hive JDBC configuration.
 ``kylin.query.pushdown.jdbc.driver=org.apache.hive.jdbc.HiveDriver``
 
 - Configure JDBC URL
+  - With JDBC Url, spark_hs2_port is Spark Thrift port and spark_host is Spark Thrift hostname
 
   - Access Spark Thrift without kerberos security certification: ``kylin.query.pushdown.jdbc.url=jdbc:hive2://spark_host:spark_hs2_port/default``
 
@@ -42,11 +44,11 @@ Modify `$KAP_HOME/conf/kylin.properties`, add Hive JDBC configuration.
 
 ####Verify Thrift
 
-Start ``${SPARK_HOME} or ${HIVE_HOME}/bin/beeline``
+ - Start beeline: ``${HIVE_HOME}/bin/beeline or ${SPARK_HOME}/bin/beeline``
 
-Enter ``!connect ${kylin.query.pushdown.jdbc.url}``
+ - Enter ``!connect ${kylin.query.pushdown.jdbc.url}``
 
-Test some SQL to ensure its works fine
+ - Test some SQL to ensure its works fine
 
 ####Verify Query Pushdown
 

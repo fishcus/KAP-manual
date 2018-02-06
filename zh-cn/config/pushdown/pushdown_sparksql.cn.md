@@ -4,6 +4,8 @@ Spark 是用于大数据处理的快速通用引擎，具有用于流计算，SP
 
 Spark Thrift 使用 Hive JDBC 接口，支持 JDBC 接口的应用可以通过Hive JDBC 访问 Spark 进行数据查询。
 
+使用外部sparkSQL查询下压,需要环境中提供可使用的 Spark Thrift.
+
 ####下载 Hive JDBC Driver
 
 1. 根据自己 Hadoop 集群 Hive 的版本下载对应版本的[hive-jdbc-version.jar](hive-jdbc.jarhttps://mvnrepository.com/artifact/org.apache.hive/hive-jdbc)，请确保使用的 JDBC 版本不要高于集群的hive版本。
@@ -24,8 +26,9 @@ Spark Thrift 使用 Hive JDBC 接口，支持 JDBC 接口的应用可以通过Hi
 ``kylin.query.pushdown.jdbc.driver=org.apache.hive.jdbc.HiveDriver``
 
 - 配置 JDBC URL
-  - 访问没有 kerberos 安全认证的 Spark Thrift 集群，例如(访问default库):``kylin.query.pushdown.jdbc.url=jdbc:hive2://spark_host:spark_hs2_port/default``
-  - 访问带有 kerberos 安全认证的 Spark Thrift 集群: 访问带有 kerberos 认证 Spark Thrift 需要 JDBC Client 端包含 Spark Thrift(principal=<Spark-Kerberos-Principal>)principal 在 JDBC url中，例如(访问 default 库):``kylin.query.pushdown.jdbc.url=jdbc:hive2://spark_host:spark_hs2_port/default;principal=Spark-Kerberos-Principal``
+  - 以下配置中spark_host为 Spark Thrift 所在的机器,spark_hs2_port 是 Spark Thrift 的端口.
+  - 访问没有 kerberos 安全认证的 Spark Thrift，例如(访问default库):``kylin.query.pushdown.jdbc.url=jdbc:hive2://spark_host:spark_hs2_port/default``
+  - 访问带有 kerberos 安全认证的 Spark Thrift: 访问带有 kerberos 认证 Spark Thrift 需要 JDBC Client 端包含 Spark Thrift(principal=<Spark-Kerberos-Principal>)principal 在 JDBC url中，例如(访问 default 库):``kylin.query.pushdown.jdbc.url=jdbc:hive2://spark_host:spark_hs2_port/default;principal=Spark-Kerberos-Principal``
       - 请确保 KAP 能都读取到的 hive-site.xml 中打开了 hive-server2 的 kerberos 认证:
 
           ```xml
@@ -52,11 +55,11 @@ kylin.query.pushdown.jdbc.password
 
 ####验证 Thrift server
 
-启动 beeline ``${SPARK_HOME} or ${HIVE_HOME}/bin/beeline``
+- 在以下位置中寻找beeline并启动:``${HIVE_HOME}/bin/beeline 或者 ${SPARK_HOME}/bin/beeline``
 
-使用 beeline 连接 Spark Thrift ``!connect  ${kylin.query.pushdown.jdbc.url}``
+- 使用 beeline 连接 Spark Thrift ``!connect  ${kylin.query.pushdown.jdbc.url}``
 
-使用简单SQL测试可用。
+- 使用简单SQL测试可用。
 
 #### 验证 Query Pushdown
 

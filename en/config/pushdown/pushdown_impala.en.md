@@ -4,6 +4,8 @@ Impala raises the bar for SQL query performance on Apache Hadoop while retaining
 
 Impala supports Hive JDBC driver, through which applications with JDBC interface can access Impala to query data.
 
+If you need pushdown to Impala, you must have a Impala Thrift Server.
+
 #### Download Hive JDBC Driver
 
 1. According to the Hive version of Hadoop cluster download [hive-jdbc-version.jar](hive-jdbc.jarhttps://mvnrepository.com/artifact/org.apache.hive/hive-jdbc). Be sure the JDBC version is not higher than the Hive version of the cluster.
@@ -26,8 +28,9 @@ Modify `$KAP_HOME/conf/kylin.properties`, add Hive JDBC configuration
 
 
 - Configure JDBC Url
+  - With JDBC Url, impala_hs2_port is Impala Thrift port and impala_host is Impala Thrift hostname
 
-  - Access Spark Thrift without kerberos security certification:
+  - Access Impala Thrift without kerberos security certification:
 
     ```properties
     kylin.query.pushdown.jdbc.url=jdbc:hive2://impala_host:impala_hs2_port/default;auth=noSasl
@@ -52,11 +55,9 @@ Modify `$KAP_HOME/conf/kylin.properties`, add Hive JDBC configuration
 
 ####Verify thrift
 
-- Start `${SPARK_HOME} or ${HIVE_HOME}/bin/beeline`
+ - Start beeline:  ``${HIVE_HOME}/bin/beeline or ${SPARK_HOME}/bin/beeline``
 
-
-- Enter ``!connect ${kylin.query.pushdown.jdbc.url}``
-
+ - Enter ``!connect ${kylin.query.pushdown.jdbc.url}``
 
 - Test some SQL queries and ensure they work correctly
 

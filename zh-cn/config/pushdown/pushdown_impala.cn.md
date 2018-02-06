@@ -6,6 +6,8 @@ Impala 提高了 Apache Hadoop 上的SQL查询性能，同时保留了熟悉的�
 
 Impala 使用 Hive JDBC接口，支持 JDBC 接口的应用可以通过 Hive JDBC 访问 Impala 进行数据查询。
 
+使用外部Impala查询下压,需要环境中提供可使用的 Impala Thrift.
+
 #### 下载Hive JDBC Driver
 
 1. 根据自己 Hadoop 集群 Hive 的版本下载对应版本的[hive-jdbc-version.jar](hive-jdbc.jarhttps://mvnrepository.com/artifact/org.apache.hive/hive-jdbc)，请确保使用的 JDBC 版本不要高于集群的Hive版本。
@@ -28,13 +30,14 @@ Impala 使用 Hive JDBC接口，支持 JDBC 接口的应用可以通过 Hive JDB
 
 
 - 配置 JDBC URL
-  - 访问没有 kerberos 安全认证的 Impala 集群，例如(访问default库):
+  - 以下配置中impalak_host为 Impala Thrift 所在的机器,impala_hs2_port 是 Impala Thrift 的端口.
+  - 访问没有 kerberos 安全认证的 Impala Thrift，例如(访问default库):
 
     ```properties
     kylin.query.pushdown.jdbc.url=jdbc:hive2://impala_host:impala_hs2_port/default;principal=Impala-Kerberos-Principal
     ```
 
-    - 访问带有 kerberos 安全认证的 Impala: 访问带有kerberos认证的Impala集群需要JDBC Client端包含 Impala(principal=<Impala-Kerberos-Principal>)principal 在 jdbc url 中，例如(访问default库): 
+    - 访问带有 kerberos 安全认证的 Impala Thrift: 访问带有kerberos认证的Impala集群需要JDBC Client端包含 Impala(principal=<Impala-Kerberos-Principal>)principal 在 jdbc url 中，例如(访问default库):
 
       ```properties
       kylin.query.pushdown.jdbc.url=jdbc:hive2://impala_host:impala_hs2_port/default;principal=Impala-Kerberos-Principal
@@ -55,8 +58,7 @@ Impala 使用 Hive JDBC接口，支持 JDBC 接口的应用可以通过 Hive JDB
 
 #### 验证 Thrift server
 
-- 启动 beeline ```${SPARK_HOME} or ${HIVE_HOME}/bin/beeline```
-
+- 在以下位置中寻找beeline并启动:``${HIVE_HOME}/bin/beeline 或者 ${SPARK_HOME}/bin/beeline``
 
 
 - 使用 beeline 连接 Spark Thrift ```!connect  ${kylin.query.pushdown.jdbc.url}```
