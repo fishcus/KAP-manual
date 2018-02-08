@@ -34,11 +34,12 @@ Next, we will take Windows 7 as an example to introduce ODBC driver's installati
 
 2. Switch to **System DSN** tab, click **Add** and select **KyligenceODBCDriver** in the pop-up driver selection box, then click **Finish**.
 
-![Add Kyligence ODBC Driver](images/kyligence_odbc_02_en.png)
+   ![Add Kyligence ODBC Driver](images/kyligence_odbc_02_en.png)
+
 
 3. In the pop-up window, input the KAP server information, as shown in the figure: 
 
-![DSN setting](images/kyligence_odbc_03_en.png)
+   ![DSN setting](images/kyligence_odbc_03_en.png)
 
 Where, the parameters are described as below: 
 
@@ -53,8 +54,8 @@ Where, the parameters are described as below:
 
    Once it connects to the data source successfully, the following dialog will appear.
 
+   ![Connect Successfully](images/kyligence_odbc_04_en.png)
 
-![Connect Successfully](images/kyligence_odbc_04_en.png)
 
 ## ODBC Connection String
 
