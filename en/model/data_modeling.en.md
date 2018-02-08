@@ -26,7 +26,7 @@ Data model is created based on data source. In this section, we take the dataset
 **Step 3**: Set dimensions and measures (DM). Since KAP V2.5.4, you may not only make single selection or batch selections for dimensions and measures, but also use suggestions by the system. In this example, we use the dimensions and measures suggested by the system. The steps are as below. For more operations, please refer to [Instructions and Tips](instructions-and-tips) at the end of this article. 
 
 1. Click the icon `DM` at the upper left corner to expand DM setting toolbar. In this tooltar, the icon `D` is for dimension, `M` for measure, `—`  for disable and `A` indicates dimensions and measures suggested by KAP.
-2. Select the checkbox at the rightmost of the toolbar to check all columns, and set them as dimension `D` or measure `M`, or select `A` to use suggested dimensions and measures. You may also select and set the columns one by one. In this example, we select the checkbox and choose `A` .
+2. Select the checkbox at the leftmost of the toolbar to check all columns, and set them as dimension `D` or measure `M`, or select `A` to use suggested dimensions and measures. You may also select and set the columns one by one. In this example, we select the checkbox and choose `A` .
 
 ![](images/model_design_update_en_3.png)
 

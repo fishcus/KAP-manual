@@ -38,7 +38,7 @@ KAP在Cube构建过程中，默认应用Hive来做部分预计算。SparkSQL在H
 
 ### 其他说明 ###
 
-请不要对于一些在SprakSQL配置中关于Hive客户端的设置（将在下方列出）感到疑惑，这些设置是用来访问Hive元数据和检索Hive表结构等。尽管看起来很相似，但所用目的并不相同。
+SprakSQL配置中，关于Hive客户端的设置如下。这些设置是用来访问Hive元数据和检索Hive表结构等。尽管看起来很相似，但所用目的并不相同。
 
  ```
 # Hive client, valid value [cli, beeline]
