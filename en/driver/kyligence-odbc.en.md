@@ -30,10 +30,9 @@ Next, we will take Windows 7 as an example to introduce ODBC driver's installati
 
    64-bit ODBC driver: select **Control Panel -> Administrative Tools** to open **ODBC Data Source Administrator**
 
-![ODBC Data Source Administrator](images/kyligence_odbc_01_en.png)
+   ![ODBC Data Source Administrator](images/kyligence_odbc_01_en.png)
 
 2. Switch to **System DSN** tab, click **Add** and select **KyligenceODBCDriver** in the pop-up driver selection box, then click **Finish**.
-
 
 ![Add Kyligence ODBC Driver](images/kyligence_odbc_02_en.png)
 
