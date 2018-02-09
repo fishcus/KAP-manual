@@ -101,7 +101,7 @@
 * [Integrate with the 3rd party](integration/README.md)
     * [Driver](driver/README.md)
         * [JDBC driver](driver/jdbc.en.md)
-        * [Kyligence ODBC Driver](driver/kyligence-odbc.en.md)
+        * [Kyligence ODBC Driver](driver/kyligence_odbc.en.md)
     * [Integration with the 3rd party applications](integration/README.md)
         * [Tableau](integration/tableau_10.en.md)
         * [Power BI](integration/powerbi.en.md)

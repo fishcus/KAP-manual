@@ -6,4 +6,4 @@ Continue reading:
 
 [JDBC Driver](jdbc.en.md)
 
-[Kyligence ODBC Driver](kyligence-odbc.en.md)
+[Kyligence ODBC Driver](kyligence_odbc.en.md)
