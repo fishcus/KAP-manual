@@ -26,7 +26,7 @@ Spark Thrift 使用 Hive JDBC 接口，支持 JDBC 接口的应用可以通过Hi
 ``kylin.query.pushdown.jdbc.driver=org.apache.hive.jdbc.HiveDriver``
 
 - 配置 JDBC URL
-  - 以下配置中spark_host为 Spark Thrift 所在的机器,spark_hs2_port 是 Spark Thrift 的端口.
+  - 以下配置中spark_host为 Spark Thrift 所在节点的hostname,spark_hs2_port 是 Spark Thrift 的端口.
   - 访问没有 kerberos 安全认证的 Spark Thrift，例如(访问default库):``kylin.query.pushdown.jdbc.url=jdbc:hive2://spark_host:spark_hs2_port/default``
   - 访问带有 kerberos 安全认证的 Spark Thrift: 访问带有 kerberos 认证 Spark Thrift 需要 JDBC Client 端包含 Spark Thrift(principal=<Spark-Kerberos-Principal>)principal 在 JDBC url中，例如(访问 default 库):``kylin.query.pushdown.jdbc.url=jdbc:hive2://spark_host:spark_hs2_port/default;principal=Spark-Kerberos-Principal``
       - 请确保 KAP 能都读取到的 hive-site.xml 中打开了 hive-server2 的 kerberos 认证:

@@ -28,7 +28,7 @@ Modify `$KAP_HOME/conf/kylin.properties`, add Hive JDBC configuration
 
 
 - Configure JDBC Url
-  - With JDBC Url, impala_hs2_port is Impala Thrift port and impala_host is Impala Thrift hostname
+  - With JDBC Url, impala_hs2_port is Impala Thrift port(default thrift port is 21050) and impala_host is Impala Thrift hostname(the hostname where Impala Daemon component node)
 
   - Access Impala Thrift without kerberos security certification:
 

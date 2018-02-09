@@ -30,11 +30,11 @@ Impala 使用 Hive JDBC接口，支持 JDBC 接口的应用可以通过 Hive JDB
 
 
 - 配置 JDBC URL
-  - 以下配置中impalak_host为 Impala Thrift 所在的机器,impala_hs2_port 是 Impala Thrift 的端口.
+  - 以下配置中impala_host为 Impala Daemon 组件所在节点的 hostname, impala_hs2_port 是 Impala Thrift 的端口(默认为21050端口).
   - 访问没有 kerberos 安全认证的 Impala Thrift，例如(访问default库):
 
     ```properties
-    kylin.query.pushdown.jdbc.url=jdbc:hive2://impala_host:impala_hs2_port/default;principal=Impala-Kerberos-Principal
+    kylin.query.pushdown.jdbc.url=jdbc:hive2://impala_host:impala_hs2_port/default;auth=noSasl
     ```
 
     - 访问带有 kerberos 安全认证的 Impala Thrift: 访问带有kerberos认证的Impala集群需要JDBC Client端包含 Impala(principal=<Impala-Kerberos-Principal>)principal 在 jdbc url 中，例如(访问default库):
