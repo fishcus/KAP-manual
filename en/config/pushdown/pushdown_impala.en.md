@@ -11,7 +11,7 @@ If you need pushdown to Impala, you must have a Impala Thrift Server.
 1. According to the Hive version of Hadoop cluster download [hive-jdbc-version.jar](hive-jdbc.jarhttps://mvnrepository.com/artifact/org.apache.hive/hive-jdbc). Be sure the JDBC version is not higher than the Hive version of the cluster.
 2. Download [httpclient-version.jar](https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient) and [httpcore-version.jar](https://mvnrepository.com/artifact/org.apache.httpcomponents/httpcore)
 
-####Install Hive JDBC
+#### Install Hive JDBC
 
 Put the downloaded jar package into `$KAP_HOME/ext`, so that KAP can be loaded at startup JDBC Driver
 
@@ -53,7 +53,7 @@ Modify `$KAP_HOME/conf/kylin.properties`, add Hive JDBC configuration
 
       The **KAP must have a valid Kerberos ticket before you initiate a connection to HiveServer2** (use kinit).
 
-####Verify thrift
+#### Verify thrift
 
  - Start beeline:  ``${HIVE_HOME}/bin/beeline or ${SPARK_HOME}/bin/beeline``
 
@@ -61,13 +61,13 @@ Modify `$KAP_HOME/conf/kylin.properties`, add Hive JDBC configuration
 
 - Test some SQL queries and ensure they work correctly
 
-####Verify Query Pushdown
+#### Verify Query Pushdown
 
 - Start KAP to query loaded tables in the insight page
 
 
 - If queries working track can be found in the Impala web page, it means KAP has been integrated with Impala normally
-- ![](images/query_pushdown_impala.png)
+-  ![](images/query_pushdown_impala.png)
 
 
 

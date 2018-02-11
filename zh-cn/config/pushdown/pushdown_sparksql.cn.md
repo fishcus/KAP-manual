@@ -6,16 +6,16 @@ Spark Thrift 使用 Hive JDBC 接口，支持 JDBC 接口的应用可以通过Hi
 
 使用外部sparkSQL查询下压,需要环境中提供可使用的 Spark Thrift.
 
-####下载 Hive JDBC Driver
+#### 下载 Hive JDBC Driver
 
 1. 根据自己 Hadoop 集群 Hive 的版本下载对应版本的[hive-jdbc-version.jar](hive-jdbc.jarhttps://mvnrepository.com/artifact/org.apache.hive/hive-jdbc)，请确保使用的 JDBC 版本不要高于集群的hive版本。
 2. 下载[httpclient-version.jar](https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient)和[httpcore-version.jar](https://mvnrepository.com/artifact/org.apache.httpcomponents/httpcore)。
 
-####安装 JDBC
+#### 安装 JDBC
 
 把下载好的 jar 包放到 `KAP_HOME/ext` 下面，以便让 KAP 在启动时可以加载 JDBC Driver 。
 
-####修改kylin.properties
+#### 修改kylin.properties
 
 修改 `$KAP_HOME/conf/kylin.properties` ，添加以下配置：
 
@@ -53,7 +53,7 @@ kylin.query.pushdown.jdbc.password
 
 
 
-####验证 Thrift server
+#### 验证 Thrift server
 
 - 在以下位置中寻找beeline并启动:``${HIVE_HOME}/bin/beeline 或者 ${SPARK_HOME}/bin/beeline``
 
