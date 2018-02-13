@@ -22,15 +22,15 @@ HDInsight 的应用程序平台提供了一种简便办法，让第三方应用�
 
 如今 KAP 已经在微软 Azure 云（包括 Azure 海外以及由世纪互联运营的 Azure 中国）全面上线。一些客户已经开始使用 HDInsight + KAP 方案。Kyligence 自身也积极地在各项业务（如开发、测试、培训、在线演示、概念验证等）中使用这套组合。要启用它，您只需要按下面几个步骤执行：
 
-1) 选择一个 ”HBase” 类型的集群，可以是新集群，也可以是一个已存在的集群。
+1) 选择一个 ”Hadoop” 类型的集群，可以是新集群，也可以是一个已存在的集群。
 
-![图 2. 选择 “HBase” 作为集群类型](images/hbase_cluster.png)
+![图 2. 选择 “HBase” 作为集群类型](images/hadoop_cluster.png)
 
-2) 如果是新建集群，需要点击 ”Custom”，在第三步 “Applications” 页面选择 “Kyligence Analytics Platform” ，如下图所示：
+2) 如果是新建集群，需要点击 ”Custom”，在第三步 “Applications” 页面选择 “Kyligence Analytics Platform Plus” ，如下图所示：
 
 ![图 3. 选择 KAP 进行安装](images/kap_install.png)
 
-如果是已经存在的 HBase 集群，点击 “Applications”，然后点击 “Add”，在应用程序列表中，选择 “Kyligence Analytics Platform” 进行安装。点击 ”Purchase” 按钮表示您已经阅读并同意相关条款。这里不会产生针对 KAP 的额外费用。安装的 KAP 带有一个月的试用许可，试用期内免费，试用结束后请联系 Kyligence 公司购买正式许可。
+如果是已经存在的 Hadoop 集群，点击 “Applications”，然后点击 “Add”，在应用程序列表中，选择 “Kyligence Analytics Platform Plus” 进行安装。点击 ”Purchase” 按钮表示您已经阅读并同意相关条款。这里不会产生针对 KAP 的额外费用。安装后可在KAP界面上申请2个月的试用许可，试用期内免费，试用结束后请联系 Kyligence 公司购买正式许可。
 
 ![图 4. KAP 出现在 HDInsight Applications 中](images/kap_in_hdinsight.png)
 
@@ -47,6 +47,10 @@ HDInsight 的应用程序平台提供了一种简便办法，让第三方应用�
 KAP 默认管理员账号的用户名是 “ADMIN”，默认密码是 ”KYLIN”。初次登录后会提示修改密码，为了确保服务安全性，请更改密码并将其记录在安全的地方，供后面使用。
 
 KyAnalyzer 与 KAP 共享用户信息，所以您只需要在 KAP 中管理用户，之后便可以在 KyAnalyzer 中使用。
+
+### 切换元数据存储(可选)
+
+在HDInsight中通过增加Application的方式部署Kyligence Analytics Platform Plus，默认会把KAP的元数据存储在一个安装在边缘节点的MySQL服务中。如果是生产环境中，这个MySQL服务可能不利于优化和运维。建议生产环境的用户配置使用MySQL on Azure或SQL Server on Azure的云服务来保存KAP元数据。有关元数据存储配置，请参考：[基于关系型数据库的 Metastore 配置](../../config/metadata_jdbc.cn.html)
 
 ### **玩转样例 Cube**
 

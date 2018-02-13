@@ -20,15 +20,15 @@ Advanced users expect to optimize Hadoop and KAP to have better performance. Wit
 
 KAP is now available on Microsoft Azure. Our customers have already started to use KAP for their business. We, Kyligence Inc., are also using it in development, testing, training, live demo, prof of concept and other scenarios. To enable it, you just need a couple of steps:
 
-1) You need to prepare a HDInsight cluster with the type of “HBase”. It can be an existing cluster or a new cluster.
+1) You need to prepare a HDInsight cluster with the type of “Hadoop”. It can be an existing cluster or a new cluster.
 
-![Figure 2. Select HBase as cluster type](images/hbase_cluster.png)
+![Figure 2. Select HBase as cluster type](images/hadoop_cluster.png)
 
-2) If it is a new cluster, you need to switch to the “Custom” wizard, select “Kyligence Analytics Platform 2.5” in the third step, as below:
+2) If it is a new cluster, you need to switch to the “Custom” wizard, select “Kyligence Analytics Platform Plus 2.5” in the third step, as below:
 
 ![Figure 3. Select KAP to install](images/kap_install.png)
 
-If it is an existing HBase cluster, you need to click the “Applications” icon, and then click “Add” button. In the application list, select “Kyligence Analytics Platform” to install. Clicking “Purchase” button means you agree with the terms to install. It won’t cause additional charge for KAP. You only need to pay for the Azure resources that you’re using.
+If it is an existing Hadoop cluster, you need to click the “Applications” icon, and then click “Add” button. In the application list, select “Kyligence Analytics Platform Plus” to install. Clicking “Purchase” button means you agree with the terms to install. It won’t cause additional charge for KAP. You only need to pay for the Azure resources that you’re using.
 
 ![Figure 4. KAP in HDInsight Applications](images/kap_in_hdinsight.png)
 
@@ -45,6 +45,10 @@ On the first time visiting, KAP will ask for a license. If you don’t have a li
 The initial administrator username is ”ADMIN“ and the password is ”KYLIN“. Enter it and then click ”Submit“ to login. At the first login, KAP will ask you to update the password to a stronger one. Please remember the new password for future login.
 
 KyAnalyzer integrates with KAP for user authentication, so you just need to update the user in KAP once, and then use the same in KyAnalyzer.
+
+### Switch Metastore (Optional)
+
+If you've installed Kyligence Analytics Platform Plus from HDInsight Applications, the metadata of KAP will be stored in the MySQL database installed on the edge node. But this MySQL has not tuned for production use. So recommand to switch KAP metastore to MySQL on Azure or SQL Server on Azure for better optimization and maintanence. About how to configure metastore, please refer to: [Use jdbc to connect other database as metastore](../../config/metadata_jdbc.en.html)
 
 ### **Play with Sample Cube**
 
