@@ -14,7 +14,7 @@ The Linux account running KAP must have required access permissions to Hadoop cl
 
 
 ### Compatible Hadoop Versions
-* Hadoop: 2.4 - 2.7
+* Hadoop: 2.7+
 * Hive: 0.13+
 * HBase: 0.98/0.99, 1.x
 * JDK: 1.7+

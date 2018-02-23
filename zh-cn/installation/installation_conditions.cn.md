@@ -42,7 +42,7 @@ KAP 需要一个状态良好的 Hadoop 集群作为其运行环境，以便为�
 
 KAP 兼容的 Hadoop 集群上各个组件及 JDK 的版本如下：
 
-+ Hadoop: 2.x
++ Hadoop: 2.7+
 + Hive: 0.13+
 + HBase: 0.98 / 0.99 或 1.x
 + JDK: 1.7+
