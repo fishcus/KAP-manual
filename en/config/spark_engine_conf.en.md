@@ -1,4 +1,4 @@
-## Configure Spark Build Engine 
+## Configure Spark Build Engine
 There are two build engines available in KAP to build a cube. They are: MapReduce and Spark. By default, KAP uses MapReduce to build a cube. But you may also switch the engine to Spark manually. In this section, we will introduce how to configure Spark build engine.
 
 ###Prerequisites
@@ -60,6 +60,7 @@ Besides, in order to avoid repeatedly uploading Spark jars to Yarn, you can manu
 ```
 jar cv0f spark-libs.jar -C $KYLIN_HOME/spark/jars/ .
 hadoop fs -mkdir -p /kylin/spark/
+hadoop fs -mkdir -p /kylin/spark-history
 hadoop fs -put spark-libs.jar /kylin/spark/
 ```
 
@@ -86,4 +87,4 @@ After the above configurations done, we build a cube with spark in KAP to valida
 
 And then click **Next -> Save**. Switch to Cube page and click **Build**. Click **Progress/Status** bar, you will see the cube build engine is Spark as below:
 
-![Spark cubing engine](images/spark2.en.png) 
+![Spark cubing engine](images/spark2.en.png)
