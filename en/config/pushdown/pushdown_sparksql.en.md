@@ -7,12 +7,12 @@ Spark Thrift support Hive JDBC driver, through which applications with JDBC inte
 If you need pushdown to 3rd Party SparkSQL, you must have a Spark Thrift Server.
 ####Download Hive JDBC Driver
 
-1. According to the hive version of hadoop cluster download [hive-jdbc-version.jar](hive-jdbc.jarhttps://mvnrepository.com/artifact/org.apache.hive/hive-jdbc). Be sure to use the JDBC version not to be higher than the hive version of the cluster.
+1. According to the hive version of hadoop cluster download [hive-jdbc-version.jar](hive-jdbc.jarhttps://mvnrepository.com/artifact/org.apache.hive/hive-jdbc). Be sure to use the JDBC version not to be higher than the hive version of the cluster. Using the same version as Hadoop and Hive is recommended.
 2. Download [httpclient-version.jar](https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient) and [httpcore-version.jar](https://mvnrepository.com/artifact/org.apache.httpcomponents/httpcore) .
 
 ####Install Hive JDBC
 
-Put the downloaded jar package into `$KAP_HOME/ext`, so that KAP can load the JDBC driver at startup.
+Put all the downloaded jar package into `$KAP_HOME/ext`, so that KAP can load the JDBC driver at startup.
 
 #### Modify Kylin.properties
 
@@ -44,7 +44,7 @@ Modify `$KAP_HOME/conf/kylin.properties`, add Hive JDBC configuration.
 
 ####Verify Thrift
 
- - Start beeline: ``${HIVE_HOME}/bin/beeline or ${SPARK_HOME}/bin/beeline``
+ - Start beeline: ``${HIVE_HOME}/bin/beeline or ${SPARK_HOME}/bin/beeline`` .The `${HIVE_HOME}` and `${SPARK_HOME}` are the envrionment variable path.
 
  - Enter ``!connect ${kylin.query.pushdown.jdbc.url}``
 

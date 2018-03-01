@@ -21,7 +21,7 @@
         * [服务发现及任务引擎高可用](installation/advancing_installation/advancing_installation_ha.cn.md)
     * [云端部署](installation/installation_on_cloud/README.md)
         * [在 Microsoft Azure HDInsight 上部署](installation/installation_on_cloud/deploy_on_microsoft_azure_hdinsight.cn.md)
-    * [许可证申请](installation/license_application.cn.md)
+    * [许可证申请及更新](installation/license_application.cn.md)
     * [安装验证](installation/installation_validation.cn.md)
     * [卸载](installation/uninstallation.cn.md)
 * [配置](config/README.md)

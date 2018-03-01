@@ -20,7 +20,7 @@
         * [High Availability Deployment](install/adv_install_ha.en.md)
     * [Cloud Deployment](install/installation_on_cloud/README.md)
         * [Deploy on Azure HDInsight](install/installation_on_cloud/deploy_on_microsoft_azure_hdinsight.en.md)
-    * [License Application](install/license_application.en.md)
+    * [License Application and Update](install/license_application.en.md)
     * [Install Validation](install/install_validate.en.md)
     * [Uninstall](install/uninstall.en.md)
 * [Configuration](config/README.md)
