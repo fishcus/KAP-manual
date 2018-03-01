@@ -1,4 +1,4 @@
-## 配置 Spark 构建引擎 
+## 配置 Spark 构建引擎
 KAP 中提供两种构建引擎用于构建 Cube。它们分别是：MapReduce 和 Spark。默认情况下，KAP 使用 MapReduce 来构建 Cube，但是您也可以选择 Spark 作为构建引擎。本文介绍如何配置 Spark 构建引擎。
 
 ### 前提条件
@@ -11,11 +11,11 @@ KAP 中提供两种构建引擎用于构建 Cube。它们分别是：MapReduce �
 
 ```
 mkdir $KYLIN_HOME/hadoop-conf
-ln -s /etc/hadoop/conf/core-site.xml $KYLIN_HOME/hadoop-conf/core-site.xml 
-ln -s /etc/hadoop/conf/hdfs-site.xml $KYLIN_HOME/hadoop-conf/hdfs-site.xml 
-ln -s /etc/hadoop/conf/yarn-site.xml $KYLIN_HOME/hadoop-conf/yarn-site.xml 
-ln -s /etc/hbase/2.4.0.0-169/0/hbase-site.xml $KYLIN_HOME/hadoop-conf/hbase-site.xml 
-cp /etc/hive/2.4.0.0-169/0/hive-site.xml $KYLIN_HOME/hadoop-conf/hive-site.xml 
+ln -s /etc/hadoop/conf/core-site.xml $KYLIN_HOME/hadoop-conf/core-site.xml
+ln -s /etc/hadoop/conf/hdfs-site.xml $KYLIN_HOME/hadoop-conf/hdfs-site.xml
+ln -s /etc/hadoop/conf/yarn-site.xml $KYLIN_HOME/hadoop-conf/yarn-site.xml
+ln -s /etc/hbase/2.4.0.0-169/0/hbase-site.xml $KYLIN_HOME/hadoop-conf/hbase-site.xml
+cp /etc/hive/2.4.0.0-169/0/hive-site.xml $KYLIN_HOME/hadoop-conf/hive-site.xml
 vi $KYLIN_HOME/hadoop-conf/hive-site.xml (change "hive.execution.engine" value from "tez" to "mr")
 ```
 
@@ -59,6 +59,7 @@ kylin.engine.spark-conf.spark.history.fs.logDirectory=hdfs\:///kylin/spark-histo
 ```
 jar cv0f spark-libs.jar -C $KYLIN_HOME/spark/jars/ .
 hadoop fs -mkdir -p /kylin/spark/
+hadoop fs -mkdir -p /kylin/spark-history
 hadoop fs -put spark-libs.jar /kylin/spark/
 ```
 
