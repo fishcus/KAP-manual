@@ -1,8 +1,8 @@
-## Integration with the 3rd party BI tools
+## Connect with BI Tools
 
-This chapter includes multiple methods of integration between KAP and the 3rd party BI tools.
+This chapter includes integration between KAP and 3rd party BI tools.
 
-Continue Read:
+Following BI tools are covered:
 
 [Tableau](tableau_10.en.md)
 
