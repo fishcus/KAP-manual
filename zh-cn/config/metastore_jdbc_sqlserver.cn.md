@@ -11,13 +11,13 @@ Kylin 使用 HBase 作为 Metastore 存储数据库，KAP 2.4+ 版本可以支�
 
    配置项的含义如下，其中`url`，`username`和`password`为必须配置项，其余项若不配置将使用默认配置项：
 
-     *url*：jdbc的url；
+     *url*：JDBC 的url；
 
-     *username*：jdbc的用户名；
+     *username*：JDBC 的用户名；
 
-     *password*：jdbc的密码；
+     *password*：JDBC 的密码；
 
-     *driverClassName*：jdbc 的 driver 类名，默认值为 `com.mysql.jdbc.Driver`；
+     *driverClassName*：JDBC 的 driver 类名，默认值为 `com.mysql.jdbc.Driver`；
 
      *maxActive*：最大数据库连接数，默认值为 `5`；
 
@@ -29,7 +29,7 @@ Kylin 使用 HBase 作为 Metastore 存储数据库，KAP 2.4+ 版本可以支�
 
      *removeAbandonedTimeout*：超时时间秒数，默认为 `300`；
 
-4. 核对运行环境 Java 版本，并将相对应的 SQL Server JDBC 驱动程序的 Jar 包拷贝至 `$KYLIN_HOME/ext`  目录下。
+4. 核对运行环境 Java 版本，准备相对应的 JDBC 驱动程序, 如：对应 JRE7 的SQL Server JDBC 驱动程序为 `sqljdbc41.jar` ， 并将相对应的 SQL Server JDBC 驱动程序的 Jar 包拷贝至 `$KYLIN_HOME/ext`  目录下。
 
 5. 由于 metadata 不依赖于 Hbase，所以需要在配置文件 `$KYLIN_HOME/conf/kylin.properties` 中添加 zookeeper 的连接项 `kylin.env.zookeeper-connect-string`，若部署 KAP 的 server 同时部署有zookeeper，可配置为 `kylin.env.zookeeper-connect-string=localhost:2181` 。
 
