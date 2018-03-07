@@ -9,7 +9,7 @@ Steps below are with the case of SQL Server:
 1. Create database  `kylin` in SQL Server.
 
 2. In KAP's installation directory, set configuration item `kylin.metadata.url` of configuration file `$KYLIN_HOME/conf/kylin.properties`  to`{metadata_name}@jdbc`,
-   replace `{metadata_name}` as user's metadata name, for example,  `kylin_default_instance@jdbc` .
+   replace `{metadata_name}` as user's metadata name, for example,`kylin_default_instance@jdbc` .
 
 3. Set configuration items for JDBC, for example: `kylin.metadata.jdbc.dialect=sqlserver` `kylin.metadata.url=kylin_default_instance@jdbc,url=jdbc:sqlserver://localhost:1433;database=kylin,username=sa,password=sa,driverClassName=com.microsoft.sqlserver.jdbc.SQLServerDriver,maxActive=10,maxIdle=10` .
 
@@ -39,3 +39,10 @@ Steps below are with the case of SQL Server:
 
 6. Start KAP.
 
+
+### How to migrate metadata from hbase to JDBC
+
+1. Set configuration item `kylin.metadata.url` of configuration file `$KYLIN_HOME/conf/kylin.properties` to the hbase metadata to be migrated .
+2. Run `$KYLIN_HOME/bin/metastore.sh backup` to backup metadata, and get the backup path .
+3. Set the metadata's settings to JDBC .
+4. Run `$KYLIN_HOME/bin/metastore.sh restore /path/to/backup` to restore metadata, for example `metastore.sh restore meta_backups/meta_2016_06_10_20_24_50` .
