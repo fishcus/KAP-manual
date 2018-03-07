@@ -1,11 +1,17 @@
-## Use jdbc to connect other database as metastore
-KAP Plus uses KyStorage to store cube data, therefor hbase only works as a storage for metadata. From KAP 2.4.x, KAP supports storing metadata to other databases with jdbc
+## Use JDBC to connect other database as metastore
+KAP Plus uses KyStorage to store cube data, therefor hbase only works as a storage for metadata. From KAP 2.4.x, KAP supports storing metadata to other databases with JDBC
+### Prepare JDBC Driver
+1. KAP has 5.4.1 version of MySQL JDBC driver that drives in the `$KYLIN_HOME/ext ` directory.
 
-### Config metadata in the form of jdbc
+2. If you are using another relational database , prepare the corresponding JDBC driver and place it in the `$KYLIN_HOME/ext` directory.
 
-Steps below are with the case of mysql:
+3. If you are using a different version of the MySQL JDBC driver, replace the `$KYLIN_HOME/ext/mysql-connector-java-5.1.41.jar`.
+
+### Config metadata in the form of JDBC
+
+Steps below are with the case of MYSQL:
 1. Install KAP Plus
-2. Create database `kylin` in mysql 
+2. Create database `kylin` in MYSQL
 3. In KAP's installation directory, set configuration item `kylin.metadata.url` of configuration file `$KYLIN_HOME/conf/kylin.properties` to `{metadata_name}@jdbc`,
   replace `{metadata_name}` as user's metadata name, for example, `{metadata_name}@jdbc`. 
 4. Set configuration items for jdbc, for example: `kylin.metadata.url=kylin_default_instance@jdbc,url=jdbc:mysql://localhost:3306/kylin,username=root,password=,maxActive=10,maxIdle=10`. 
@@ -35,8 +41,8 @@ Steps below are with the case of mysql:
 
 7. Start KAP
 
-### How to migrate metadata from hbase to jdbc
+### How to migrate metadata from hbase to JDBC
 1. Set configuration item `kylin.metadata.url` of configuration file `$KYLIN_HOME/conf/kylin.properties` to the hbase metadata to be migrated
 2. Run `$KYLIN_HOME/bin/metastore.sh backup` to backup metadata, and get the backup path
-3. Set the metadata's settings to jdbc
+3. Set the metadata's settings to JDBC
 4. Run `$KYLIN_HOME/bin/metastore.sh restore /path/to/backup` to restore metadata, for example `metastore.sh restore meta_backups/meta_2016_06_10_20_24_50`
