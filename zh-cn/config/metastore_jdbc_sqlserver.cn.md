@@ -1,7 +1,9 @@
 ##基于关系型数据库（SQL Server）的Metastore配置
-Kylin 使用 HBase 作为 Metastore 存储数据库，KAP 2.4+ 版本可以支持关系型数据库作为 Metastore 存储，使用标准 JDBC Driver 连接 Metastore 数据库。
+
+
 
 ###配置方法
+
 以下为以 SQL Server 作为 Metastore 的配置步骤：
 1. 在 SQL Server 数据库中新建名为 `kylin` 的数据库。
 
@@ -35,9 +37,9 @@ Kylin 使用 HBase 作为 Metastore 存储数据库，KAP 2.4+ 版本可以支�
 
 6. 启动KAP。
 
-### 如何将 metadata 从 hbase 迁移至 JDBC
+### 如何将 metadata 从 HBase 迁移至 JDBC
 
-1. 将 `$KYLIN_HOME/conf/kylin.properties` 的 metadata 配置项 `kylin.metadata.url` 修改为待迁移的 hbase metadata 配置，如：`kylin_default_instance@hbase` 。
+1. 将 `$KYLIN_HOME/conf/kylin.properties` 的 metadata 配置项 `kylin.metadata.url` 修改为待迁移的 HBase metadata 配置，如：`kylin_default_instance@hbase` 。
 2. 运行 `$KYLIN_HOME/bin/metastore.sh backup` 命令备份 metadata，获取备份地址 。
 3. 将 metadata 配置改为 JDBC 配置 。
 4. 运行 `$KYLIN_HOME/bin/metastore.sh restore /path/to/backup` 的 restore 命令实现 metadata 的迁移，如 `metastore.sh restore meta_backups/meta_2016_06_10_20_24_50` 。
