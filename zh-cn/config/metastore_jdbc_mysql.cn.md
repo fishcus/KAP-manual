@@ -34,13 +34,17 @@
      *removeAbandoned*：是否自动回收超时连接，默认值为 `true`；
 
      *removeAbandonedTimeout*：超时时间秒数，默认为 `300`；
+     
+     *passwordEncrypted*: 是否对JDBC密码进行了加密，默认为 `false`；
+     
+4. 对JDBC的密码进行加密方法为：在`$KYLIN_HOME/tomcat/webapps/kylin/WEB-INF/lib`目录下运行`java -classpath kap.jar:spring-beans-4.3.10.RELEASE.jar:spring-core-4.3.10.RELEASE.jar:commons-codec-1.7.jar org.apache.kylin.rest.security.PasswordPlaceholderConfigurer AES <your_password>`
 
-4. 将 JDBC 的 connector jar 包拷贝至 $KYLIN_HOME/ext
+5. 将 JDBC 的 connector jar 包拷贝至 $KYLIN_HOME/ext
 
-5. 由于 metadata 不依赖于 hbase，所以需要在配置文件 `$KYLIN_HOME/conf/kylin.properties` 中添加 zookeeper 的连接项 `kylin.env.zookeeper-connect-string`，若部署 kap 的 server 同时部署有
+6. 由于 metadata 不依赖于 hbase，所以需要在配置文件 `$KYLIN_HOME/conf/kylin.properties` 中添加 zookeeper 的连接项 `kylin.env.zookeeper-connect-string`，若部署 kap 的 server 同时部署有
    zookeeper，可配置为 `kylin.env.zookeeper-connect-string=localhost:2181`
 
-6. 启动 KAP
+7. 启动 KAP
 
 ###  如何将 metadata 从 HBase 迁移至 JDBC
 1. 将 `$KYLIN_HOME/conf/kylin.properties` 的 metadata 配置项 `kylin.metadata.url` 修改为待迁移的 HBase metadata 配置，如：`kylin_default_instance@hbase`

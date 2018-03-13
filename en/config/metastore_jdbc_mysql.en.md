@@ -39,12 +39,16 @@ Steps below are with the case of MYSQL:
      *removeAbandoned*: whether remove timeout connection automatically, default value is `true`;
 
      *removeAbandonedTimeout*: timeout milliseconds, default value is `300`;
+     
+     *passwordEncrypted*: whether JDBC's password is encrypted，default value is `false`；
+     
+5. Under directory `$KYLIN_HOME/tomcat/webapps/kylin/WEB-INF/lib`, run command `java -classpath kap.jar:spring-beans-4.3.10.RELEASE.jar:spring-core-4.3.10.RELEASE.jar:commons-codec-1.7.jar org.apache.kylin.rest.security.PasswordPlaceholderConfigurer AES <your_password>` to get the encrypted value
 
-5. Copy the JDBC connector jar to $KYLIN_HOME/ext
+6. Copy the JDBC connector jar to $KYLIN_HOME/ext
 
-6. For metadta doesn't depend on HBase, user is required to add configuration item `kylin.env.zookeeper-connect-string` of configuration file `$KYLIN_HOME/conf/kylin.properties` to zookeeper's url and port. If the server of KAP installs zookeeper as well, it can be set as `kylin.env.zookeeper-connect-string=localhost:2181`
+7. For metadta doesn't depend on HBase, user is required to add configuration item `kylin.env.zookeeper-connect-string` of configuration file `$KYLIN_HOME/conf/kylin.properties` to zookeeper's url and port. If the server of KAP installs zookeeper as well, it can be set as `kylin.env.zookeeper-connect-string=localhost:2181`
 
-7. Start KAP
+8. Start KAP
 
 ### How to migrate metadata from HBase to JDBC
 
