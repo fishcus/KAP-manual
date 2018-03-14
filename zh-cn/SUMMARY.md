@@ -111,7 +111,7 @@
     * [保存并共享结果](kyanalyzer/save_and_share.cn.md)
     * [常用配置项](kyanalyzer/configuration.cn.md)
     * [多节点部署](kyanalyzer/multi-nodes_deploy.cn.md)
-* [与BI工具集成](integration/README.md)
+* 与BI工具集成
     * [驱动程序](driver/README.md)
         * [JDBC驱动](driver/jdbc.cn.md)
         * [Kyligence ODBC驱动](driver/kyligence_odbc.cn.md)

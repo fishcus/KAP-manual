@@ -14,7 +14,7 @@ HDInsight 的应用程序平台提供了一种简便办法，让第三方应用�
 
 ![图 1. KAP + Azure HDInsight](images/kap_with_hdinsight.png)
 
-通过参考 Azure 的 [Iaas-Applications](https://github.com/hdinsight/Iaas-Applications) 项目示例，我们开发了为 KAP 定制的 ARM 模版，并成功在 HDInsight 上部署启动了 KAP。此后，我们持续改进模版和脚本以丰富更多功能。如今，KAP 及敏捷 BI 工具 KyAnalyzer 都做为 HDInsight 的应用程序一起安装，并发布到 Azure 全球平台；用户可以在很短的时间内获得一个云上的大数据分析平台和 BI 工具。
+通过参考 Azure 的 [Iaas-Applications](https://github.com/hdinsight/Iaas-Applications) 项目示例，我们开发了为 KAP 定制的 ARM 模版，并成功在 HDInsight 上部署启动了 KAP。此后，我们持续改进模版和脚本以丰富更多功能。如今，KAP 及敏捷 BI 工具 KyAnalyzer 都作为 HDInsight 的应用程序一起安装，并发布到 Azure 全球平台；用户可以在很短的时间内获得一个云上的大数据分析平台和 BI 工具。
 
 高级用户可能期望对 Hadoop 和 KAP 进行深入调优以获得更好的性能。HDInsight 内置 Apache Ambari 作为配置管理及监控工具，用户可以通过 Ambari 的 web 界面或 API 对 Hadoop 各项服务的参数进行配置优化，Ambari 会自动将配置更新到每个节点，包括 KAP 所运行的节点。对于 KAP 的相关配置，可以通过 SSH 的方式登录到节点上进行配置，也是很容易可以做到的。
 

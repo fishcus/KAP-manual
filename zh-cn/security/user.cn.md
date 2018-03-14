@@ -99,7 +99,7 @@ KAP默认会初始化三个用户，对应帐号信息为 ADMIN(系统管理员)
 
 ![启用 LDAP 后的用户管理](images/users/user_8.cn.png)
 
-有关 LDAP 的更多信息，参见本章 [LDAP 验证](security/ldap.cn.md)。
+有关 LDAP 的更多信息，参见本章 [LDAP 验证](ldap.cn.md)。
 
 
 

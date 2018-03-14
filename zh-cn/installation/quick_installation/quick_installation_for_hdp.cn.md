@@ -1,4 +1,4 @@
-## 在 HDP 沙箱中快速安装 HDP
+## 在 HDP 沙箱中快速安装 KAP
 
 为使您可以尽快体验到 KAP 的强大功能，我们推荐您将 KAP 与 All-in-one sandbox VM 等沙箱软件一起配合使用。在本节中，我们将引导您在 HDP 沙箱中快速安装 KAP。
 
