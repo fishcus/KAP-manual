@@ -2,6 +2,20 @@
 
 在本文中，我们将向您介绍如何在安装和配置Kyligence ODBC驱动（Linux版本）。
 
+### 安装库的依赖
+
+我们建议您使用unixODBC(http://www.unixodbc.org/) 来管理ODBC连接信息。
+
+对于64位系统：
+
+1.  在Redhat和CentOS上安装unixODBC
+
+   `sudo yum install unixODBC-devel -y` 
+
+2. 如果是Ubuntu，请使用如下命令行安装
+
+   `sudo apt-get install unixODBC-devel`
+
 ### 安装Kyligence ODBC驱动
 
 1. 在 [Kyligence Account 页面](http://account.kyligence.io)申请下载 Kyligence ODBC (Linux版本）驱动程序
@@ -74,15 +88,7 @@
 
 我们建议您使用unixODBC(http://www.unixodbc.org/) 来管理ODBC连接信息。
 
-1. 在Redhat和CentOS上安装unixODBC
-
-   `sudo yum install unixODBC-devel -y` 
-
-   对于Ubuntu，请使用如下命令行安装
-
-   `sudo apt-get install unixODBC-devel`
-
-2. 将Kyligence ODBC添加入配置文件
+1. 将Kyligence ODBC添加入配置文件
 
    **ODBC驱动配置文件** – /etc/odbcinst.ini (或者 /usr/local/etc/odbcinst.ini)
 
@@ -136,11 +142,11 @@
 
    > *注：请确认odbc.ini 文件中的 DSN 名称和 BI桌面环境下配置的DSN名称完全一致，保证BI应用由桌面客户端发布至服务器端时连接正常*
 
-3. 使用命令行工具"isql DSN [UID '[PWD]']测试连接
+2. 使用命令行工具"isql DSN [UID '[PWD]']测试连接
 
    `isql KyligenceDataSource ADMIN 'KYLIN'`
 
-4. 发送查询测试 
+3. 发送查询测试 
 
    `SQL> select count(*) from kylin_sales;`
    如果连接成功，则会返回如下结果

@@ -2,6 +2,20 @@
 
 In this section, we will introduce how to install Kyligence ODBC driver (linux version) and configure DSN. 
 
+### Install Dependency
+
+We suggest using unixODBC(http://www.unixodbc.org/) to manage ODBC connection info.
+
+For 64-bits
+
+1. Install unixODBC for Redhat and CentOS
+
+   `sudo yum install unixODBC-devel -y` 
+
+2. For Ubuntu, install with below scripts
+
+   `sudo apt-get install unixODBC-devel`
+
 ### Install ODBC Driver
 
 1. Download Kyligence ODBC driver (Linux version) from [Kyligence Account Center](http://account.kyligence.io).
@@ -72,17 +86,9 @@ In this section, we will introduce how to install Kyligence ODBC driver (linux v
 
 ### Create DSN (Linux 64bit) using unixODBC
 
-We suggest to use unixODBC(http://www.unixodbc.org/) to manage ODBC connection info.
+We suggest using unixODBC(http://www.unixodbc.org/) to manage ODBC connection info.
 
-1. Install unixODBC for Redhat and CentOS
-
-   `sudo yum install unixODBC-devel -y` 
-
-   For Ubuntu, install with below scripts
-
-   `sudo apt-get install unixODBC-devel`
-
-2. Add Kyligence ODBC to config files
+1. Add Kyligence ODBC to config files
 
    **Driver configuration** – /etc/odbcinst.ini (or /usr/local/etc/odbcinst.ini)
 
@@ -136,11 +142,11 @@ We suggest to use unixODBC(http://www.unixodbc.org/) to manage ODBC connection i
 
    > *Note: please ensure DSN name in odbc.ini is consistent with DSN name in BI client tools, otherwise BI reports/applications cannot connect to data source when it's published to BI server.*
 
-3. Test connection with cmd tool "isql DSN [UID '[PWD]']
+2. Test connection with cmd tool "isql DSN [UID '[PWD]']
 
    `isql KyligenceDataSource ADMIN 'KYLIN'`
 
-4. Send a query to test 
+3. Send a query to test 
 
    `SQL> select count(*) from kylin_sales;`
    expect the results
