@@ -34,7 +34,7 @@
 
 2. 切换至**系统 DSN** 选项卡，单击**添加**，在弹出的驱动程序选择框中选择 **KyligenceODBCDriver**，然后单击**完成**按钮。
 
-![添加 Kyligence ODBC 驱动程序](images/kyligence_odbc_02.png)
+![dbc](images/odbc2.png)
 
 3. 在弹出的对话框中输入 KAP 服务器信息，如图所示：
 

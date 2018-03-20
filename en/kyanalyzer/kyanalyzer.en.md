@@ -187,3 +187,42 @@ In KyAnalyzer, when you synchronize a Cube, you also synchronize the hierarchy i
 
 
 
+## Hide Parents and **Non-empty**
+
+### Hide Parents
+
+The button ofHide Parents is next to the one of Automatic Execution, the default status ofwhich is on. At the moment, the measures of the parents node do not display separatelyand we can only check the measures of child node, which can only show after thefunction is turned off.
+
+As shown below, themeasures of the parents node do not display.
+
+![nodedisplay](images/node_en_1.png)
+
+After the button is shut off, we can run query again, then the measures of parents node can be observed.
+
+![nodedisplay](images/node_en_2.png)
+
+### Non-empty
+
+The button of Non-empty is next to the one of Hide Parents, the default status of which is on, and only the dimensions with non-empty measure emerge.
+As shown below.
+
+![null](images/null_en_1.png)
+
+Shut off the button and run query again, the measures which contain both empty and non-empty ones can all be observed.
+
+![nulldisplay](images/null_en_2.png)
+
+
+
+## KAP Permissions Inherit
+
+Once project-level access permission has been set for a user/group, access permission on data source, model and Cube will be inherited based on the access permission role defined on project-level. For more details, please refer to [Manage Permissions](../security/acl.en.md).
+
+KyAnalyzer inherits the permissions set in KAP ,see table below.
+
+| The range of limits of authority | KAP                                     | KyAnalyzer                                                 |
+| -------------------------------- | --------------------------------------- | ---------------------------------------------------------- |
+| Row                              | Only data of the row limited            | Only data of the row limited observed                      |
+| Column                           | Incapable of data of the column limited | Incapable of data of the column limited                    |
+| Table                            | Incapable of data of the table limited  | Incapable of all the Cubes which contain the table limited |
+
