@@ -116,7 +116,7 @@ To confirm KAP is running, check the process by `ps -ef | grep kylin`.
 
 After starting KAP, open browser and visit KAP website `http://<host_name>:7070/kylin`. KAP login page shows if everything is good.
 
-Please replace `host_name` to machine name, ip address or domain name. The default KAP website port is 7070.
+Please replace `host_name` to machine name, ip address or domain name. The default KAP website port is 7070 and default username/password is ADMIN/KYLIN.
 
 Once login to KAP successfully, you can validate the installation by building a sample cube. Please continue to [Install Validation](install_validate.en.md).
 
