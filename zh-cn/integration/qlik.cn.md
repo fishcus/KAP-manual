@@ -141,7 +141,7 @@ on (KYLIN_COUNTRY.COUNTRY=KYLIN_ACCOUNT.ACCOUNT_COUNTRY)
 
 ### 与 Qlik Sense Hub 连接 
 
-**----将Qlik Sense Desktop 中的应用上传到 Qlik Sense Hub**
+#### 将Qlik Sense Desktop 中的应用上传到 Qlik Sense Hub
 
 1.从浏览器进入 **Qlik Managerment Console(QMC)**，选择**License and tokens**模块。
 
@@ -172,7 +172,7 @@ on (KYLIN_COUNTRY.COUNTRY=KYLIN_ACCOUNT.ACCOUNT_COUNTRY)
 ![查看图表](images/qlik/07_hub_qlik.PNG)
  
 
-**----直接在Qlik Sense Hub 中连接 KAP**
+#### 直接在Qlik Sense Hub 中连接 KAP
 
 1.通过浏览器在**Qlik Sense Hub**中新建应用，连接到KAP数据源，连接方法同在**Qlik Sense Desktop**中连接KAP。
 
