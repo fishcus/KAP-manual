@@ -20,9 +20,7 @@ This function will mainly focus on these aspects：
 
 ### Using Command Line to Diagnose Separately
 
-You can run the following command lines in `$KYLIN_HOME/bin`
-
-`./kylin.sh io.kyligence.kap.canary.CanaryCommander <canaries-to-test>`
+You can run the following command line `./kylin.sh io.kyligence.kap.canary.CanaryCommander <canaries-to-test>` in `$KYLIN_HOME/bin`. The output will be shown as the following picture.
 
 > <canaries-to-test> could be replaced as the following parameters :
 >
