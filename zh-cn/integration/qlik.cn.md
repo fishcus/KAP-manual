@@ -1,6 +1,7 @@
 ## 与 Qlik Sense 集成
 
-Qlik Sense 是新一代自助式数据可视化工具。它是一款完整的商业分析软件，便于开发人员和分析人员快速构建和部署强大的分析应用。近年来，该工具成为全球增长率最快的 BI 产品。它可以与 Hadoop Database（Hive 和 Impala）集成。现在也可与 KAP 集成。本文将分步介绍 KAP 与 Qlik Sense 的连接。
+Qlik Sense 
+是新一代自助式数据可视化工具。它是一款完整的商业分析软件，便于开发人员和分析人员快速构建和部署强大的分析应用。近年来，该工具成为全球增长率最快的 BI 产品。它可以与 Hadoop Database（Hive 和 Impala）集成。现在也可与 KAP 集成。本文将分步介绍 KAP 与 Qlik Sense 的连接。
 
 ### 安装 Kyligence ODBC 驱动程序
 
@@ -141,50 +142,51 @@ on (KYLIN_COUNTRY.COUNTRY=KYLIN_ACCOUNT.ACCOUNT_COUNTRY)
 
 ### 与 Qlik Sense Hub 连接 
 
+
 #### 将Qlik Sense Desktop 中的应用上传到 Qlik Sense Hub
 
 1.从浏览器进入 **Qlik Managerment Console(QMC)**，选择**License and tokens**模块。
 
-![进入QMC](images/qlik/01-licenses.PNG)
+![进入QMC](images/Qlik/01-licenses.PNG)
 
 2.在**QMC -> License and tokens -> User access allocations** 中选择**Allocate**，增加当前用户，开启**Qlik Sense Hub**的使用权限。
 
-![开启qlik hub](images/qlik/02-user_access.PNG)
+![开启qlik hub](images/Qlik/02-user_access.PNG)
 
 3.在QMC中选择**Apps**模块
 
-![选择APPS](images/qlik/03-apps.PNG)
+![选择APPS](images/Qlik/03-apps.PNG)
 
 4.在QMC中选择Apps模块，选择**Import**,从本地导入由**Qlik Sense Desktop**所创建的应用。
 
-![导入APP](images/qlik/04-add_apps.PNG)
+![导入APP](images/Qlik/04-add_apps.PNG)
 
 5. 选择**Publish**,可以发布刚才导入或之前已经存在的应用。
 
-![发布APP](images/qlik/05-publish_app.PNG)
+![发布APP](images/Qlik/05-publish_app.PNG)
 
 6.进入**Qlik Sense Hub**,在**Streams**模块中即可发现刚才发布的应用，如果只是导入而没有发布的话，应用则存在于**Personal**模块中。
 
-![进入APP](images/qlik/06_hub_app.PNG)
+![进入APP](images/Qlik/06_hub_app.PNG)
 
 7.进入刚才发布的KAP_QLIK应用，可以查看在**Qlik Sense Desktop**中所创建的图表。
 
-![查看图表](images/qlik/07_hub_qlik.PNG)
+![查看图表](images/Qlik/07_hub_qlik.PNG)
  
 
 #### 直接在Qlik Sense Hub 中连接 KAP
 
 1.通过浏览器在**Qlik Sense Hub**中新建应用，连接到KAP数据源，连接方法同在**Qlik Sense Desktop**中连接KAP。
 
-![新建应用](images/qlik/08_hub_create.PNG)
+![新建应用](images/Qlik/08_hub_create.PNG)
 
 2.编辑刚才创建的应用，自由使用KAP中的数据。
 
-![编辑应用](images/qlik/09_hub_table.PNG)
+![编辑应用](images/Qlik/09_hub_table.PNG)
 
 3.编辑图表，制作方法和在**Qlik Sense Desktop**中一样。
 
-![编辑图表](images/qlik/10_hub_complete.PNG)
+![编辑图表](images/Qlik/10_hub_complete.PNG)
 
 
 
