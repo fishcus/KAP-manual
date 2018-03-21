@@ -1,6 +1,7 @@
 ## 与 Qlik Sense 集成
 
-Qlik Sense 是新一代自助式数据可视化工具。它是一款完整的商业分析软件，便于开发人员和分析人员快速构建和部署强大的分析应用。近年来，该工具成为全球增长率最快的 BI 产品。它可以与 Hadoop Database（Hive 和 Impala）集成。现在也可与 KAP 集成。本文将分步介绍 KAP 与 Qlik Sense 的连接。
+Qlik Sense 
+是新一代自助式数据可视化工具。它是一款完整的商业分析软件，便于开发人员和分析人员快速构建和部署强大的分析应用。近年来，该工具成为全球增长率最快的 BI 产品。它可以与 Hadoop Database（Hive 和 Impala）集成。现在也可与 KAP 集成。本文将分步介绍 KAP 与 Qlik Sense 的连接。
 
 ### 安装 Kyligence ODBC 驱动程序
 
@@ -140,6 +141,7 @@ on (KYLIN_COUNTRY.COUNTRY=KYLIN_ACCOUNT.ACCOUNT_COUNTRY)
 ![创建可击中 Cube 的度量](images/qlik/measure.cn.png)
 
 ### 与 Qlik Sense Hub 连接 
+
 
 #### 将Qlik Sense Desktop 中的应用上传到 Qlik Sense Hub
 
