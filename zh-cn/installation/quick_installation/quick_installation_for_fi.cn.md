@@ -14,6 +14,8 @@ KAP 支持在版本为 V100R002C60U20 的 FusionInsight 环境中运行。该版
 
 如果您需要在 FusionInsight 的环境下运行 KAP，请选择 HBase 1.x 对应的发行版。
 
+若发现FusionInsight上已经配置了kerberos，应该在FI管理员界面中配置下用户名`kylin`，配置为机机类型，并勾选所有的权限，将其从FI管理员界面上下载得到 `user.keytab` 及 `krb5.conf`，再将这两个文件上传至`${KYLIN_HOME}/conf`,然后执行命令`kinit -kt /${KYLIN_HOME}/conf/user.keytab kylin`
+
 执行下述命令以创建运行 KAP 的 Kerberos 用户并初始化环境：
 
 ```shell
@@ -69,7 +71,9 @@ source /opt/hadoopclient/bigdata_env
 
    > 如果您运行的是 KAP Enterprise 而非 KAP Plus，请您将 HBase 客户端的`hbase-site.xml`文件中的所有配置项拷贝至`$KYLIN_HOME/conf/kylin_job_conf.xml`文件中。
 
-6. 在 FI Manager 页面中，依次点击 **Hive** - **配置（全部配置）**- **安全** - **白名单**，将`$KYLIN_HOME/conf/kylin_hive_conf.xml`文件中的所有 Hive 配置项的 key（如`dfs.replication`）添加至 FI Hive 配置的白名单中。此外，对于 KAP Plus 2.2 及以上版本，还需要额外将`mapreduce.job.reduces`配置项添加至白名单中。
+6. 在 FI Manager 页面中，依次点击 **Hive** - **配置（全部配置）**- **安全** - **白名单**，
+
+   该白名单的配置项名称为：`hive-security-authorization.sqlstd.confwhitelist`，再将`$KYLIN_HOME/conf/kylin_hive_conf.xml`文件中的所有 Hive 配置项的 key（如`dfs.replication`）添加至 FI Hive 配置的白名单中。此外，对于 KAP Plus 2.2 及以上版本，还需要额外将`mapreduce.job.reduces`配置项添加至白名单中。
 
 7. 请您在 FI 客户端中输入 **beeline**，并复制 **Connect to** 后面的内容：**jdbc:hive2://…HADOOP.COM**，并且在`$KYLIN_HOME/conf/kylin.properties`中进行如下配置：
 
@@ -77,6 +81,76 @@ source /opt/hadoopclient/bigdata_env
    kylin.source.hive.client=beeline
    kylin.source.hive.beeline-params=-n root -u 'jdbc:hive2://…HADOOP.COM'
    ```
+
+   > kylin.source.hive.beeline-params 参数中需要配置的usr.keytab项应为具体的路径名，如 user.keytab\= /${KYLIN_HOME}/conf/user.keytab;
+
+### 替换Spark jar文件
+
+由于Fusioninght C70中，Hadoop版本有升级，所以发布的KAP hbase 1.x版本中部分Jar包不兼容。需要获取Hadoop环境中的Jar包替换spark中jar包。
+
+具体的替换步骤如下：
+
+1. 拷贝FI环境中的 distcp jar 到 ${KYLIN_HOME}/lib 下
+
+
+```bash
+find /opt/hadoop_client/ | grep distcp
+cp . ${KYLIN_HOME}/lib
+```
+
+2. 拷贝 hadoop 开头相关jar，替换 ${KYLIN_HOME}/spark/jars 下相同jar包
+
+- 查找FI环境中的 Hadoop 相关的jar
+
+   `find /opt/hadoop_client/Hbase/hbase | grep hadoop`
+
+- 查看 ${KYLIN_HOME}/spark/jars 相关的 jars 
+
+   `ls {KYLIN_HOME}/spark | grep hadoop`
+
+- 备份 {KYLIN_HOME}/spark/jars 包并替换 ${SPARK_HOME}/jars下的包
+
+  需要拷贝或替换的jar包有：
+
+  - hadoop-auth-2.6.4.jar
+
+  - hadoop-client-2.6.4.jar
+
+  - hadoop-common-2.6.4.jar
+
+  - hadoop-hdfs-2.6.4.jar
+
+  - hadoop-mapreduce-client-app-2.6.4.jar
+
+  - hadoop-mapreduce-client-common-2.6.4.jar
+
+  - hadoop-mapreduce-client-core-2.6.4.jar
+
+  - hadoop-mapreduce-client-jobclient-2.6.4.jar
+
+  - hadoop-mapreduce-client-shuffle-2.6.4.jar
+
+  - hadoop-yarn-api-2.6.4.jar
+
+  - hadoop-yarn-client-2.6.4.jar
+
+  - hadoop-yarn-common-2.6.4.jar
+
+  - hadoop-yarn-server-common-2.6.4.jar
+
+  - hadoop-yarn-server-web-proxy-2.6.4.jar
+
+    - > 此包需要拷贝到spark/jars中
+
+  - hadoop-hdfs-client-2.7.2.jar
+
+    - > 此包需要拷贝到spark/jars中
+
+  - htrace-core-3.1.0-incubating.jar
+
+    - > 此包需要拷贝到spark/jars中
+
+​
 
 ### 检查运行环境
 
@@ -86,7 +160,6 @@ source /opt/hadoopclient/bigdata_env
 
 ```properties
 export HIVE_CONF=HIVE_CLIENT_CONF //hive客户端的配置文件路径,不是hive路径
-export HIVE_LIB=HIVE_CLIENT_LIB //hive客户端的lib路径
 export HCAT_HOME=HCATALOG_DIR
 export SPARK_HOME=$KYLIN_HOME/spark //对于 KAP Plus 2.2 以上版本
 ```
