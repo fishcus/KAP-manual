@@ -76,11 +76,11 @@ Client{
 
 1. 配置kylin.properties,在beeline的连接字符串添加user.principal(对应kap.kerberos.principal参数)以及user.keytab(对应kap.kerberos.keytab参数)
 
-   > 注：user.keytab 应为具体的文件路径名， 如 /${KYLIN_HOME}/conf/user.keytab
+   > 注：user.keytab 应为具体的文件路径名， 如 ${KYLIN_HOME}/conf/user.keytab
 
 2. 配置kylin.properties,添加kylin.engine.spark-conf.spark.yarn.principal(对kap.kerberos.principal参数)以及kylin.engine.spark-conf.spark.yarn.keytab(对应kap.kerberos.keytab参数)
 
-   > 注：user.keytab 应为具体的文件路径名，如 /${KYLIN_HOME}/conf/user.keytab
+   > 注：user.keytab 应为具体的文件路径名，如 ${KYLIN_HOME}/conf/user.keytab
 
 3. 新建jaas.conf文件，并放置`$KYLIN_HOME/conf` 目录下。
 

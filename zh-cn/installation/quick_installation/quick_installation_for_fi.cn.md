@@ -14,8 +14,6 @@ KAP 支持在版本为 V100R002C60U20 的 FusionInsight 环境中运行。该版
 
 如果您需要在 FusionInsight 的环境下运行 KAP，请选择 HBase 1.x 对应的发行版。
 
-若发现FusionInsight上已经配置了kerberos，应该在FI管理员界面中配置下用户名`kylin`，配置为机机类型，并勾选所有的权限，将其从FI管理员界面上下载得到 `user.keytab` 及 `krb5.conf`，再将这两个文件上传至`${KYLIN_HOME}/conf`,然后执行命令`kinit -kt /${KYLIN_HOME}/conf/user.keytab kylin`
-
 执行下述命令以创建运行 KAP 的 Kerberos 用户并初始化环境：
 
 ```shell
@@ -82,21 +80,17 @@ source /opt/hadoopclient/bigdata_env
    kylin.source.hive.beeline-params=-n root -u 'jdbc:hive2://…HADOOP.COM'
    ```
 
-   > kylin.source.hive.beeline-params 参数中需要配置的usr.keytab项应为具体的路径名，如 user.keytab\= /${KYLIN_HOME}/conf/user.keytab;
+   > kylin.source.hive.beeline-params 参数中需要配置的usr.keytab项应为具体的路径名，如 user.keytab\= ${KYLIN_HOME}/conf/user.keytab;
 
 ### 替换Spark jar文件
 
-由于Fusioninght C70中，Hadoop版本有升级，所以发布的KAP hbase 1.x版本中部分Jar包不兼容。需要获取Hadoop环境中的Jar包替换spark中jar包。
+由于**Fusioninght C70** 中，Hadoop版本有升级，所以发布的KAP HBase 1.x版本中部分Jar包不兼容。需要获取Hadoop环境中的Jar包替换Spark中jar包。
 
 具体的替换步骤如下：
 
 1. 拷贝FI环境中的 distcp jar 到 ${KYLIN_HOME}/lib 下
 
-
-```bash
-find /opt/hadoop_client/ | grep distcp
-cp . ${KYLIN_HOME}/lib
-```
+   `find /opt/hadoop_client/ | grep distcp`
 
 2. 拷贝 hadoop 开头相关jar，替换 ${KYLIN_HOME}/spark/jars 下相同jar包
 
@@ -108,7 +102,7 @@ cp . ${KYLIN_HOME}/lib
 
    `ls {KYLIN_HOME}/spark | grep hadoop`
 
-- 备份 {KYLIN_HOME}/spark/jars 包并替换 ${SPARK_HOME}/jars下的包
+- 备份 {KYLIN_HOME}/spark/jars 包并替换 ${KYLIN_HOME}/spark/jars下的包
 
   需要拷贝或替换的jar包有：
 
