@@ -3,7 +3,7 @@
 While KAP running for a period of time, there are tons of data becoming useless, yet they still occupied a lot of HDFS/HBase source, accumulation of useless data would influence performance of cluster at some degree.  The garbage data mainly including: 
 
 - Original Cube data of purged Cube
-- Original Cube Segment data of merged Cube
+- Original Segment data of merged Segment
 - Temporary files are not cleaned properly in the jobs
 - Cube build logs and job history occured long time ago
 

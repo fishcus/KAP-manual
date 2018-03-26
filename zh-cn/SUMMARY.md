@@ -35,7 +35,7 @@
 
     * [JDBC Metastore配置](config/metastore_jdbc_settings.cn.md)
 
-        * [基于MYSQL的Metastore配置](config/metastore_jdbc_mysql.cn.md)
+        * [基于MySQL的Metastore配置](config/metastore_jdbc_mysql.cn.md)
         * [基于SQLServer的Metastore配置](config/metastore_jdbc_sqlserver.cn.md)
 
     * [Spark资源动态配置](config/spark_dynamic_allocation.cn.md)
@@ -72,7 +72,7 @@
     * [设计Cube](model/cube/README.md)
         * [设计Cube](model/cube/create_cube.cn.md)
         * [维度聚合组](model/cube/aggregation_group.cn.md)
-        * [基于最大维度组合数的Cube剪枝](model/cube/cuboid_pruning.cn.md)
+        * [基于最大维度组合数的Cuboid剪枝](model/cube/cuboid_pruning.cn.md)
         * [Cube优化器](model/cube/cube_suggestion.cn.md)
         * [度量设计-TopN](model/cube/topN.cn.md)
         * [度量设计-近似Distinct Count](model/cube/count_distinct.cn.md)

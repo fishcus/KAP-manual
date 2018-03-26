@@ -46,7 +46,13 @@ KAP默认会初始化三个用户，对应帐号信息为 ADMIN(系统管理员)
 
 ![系统管理员修改密码](images/users/user_4.cn.png)
 
-初始的ADMIN账户密码在首次登陆后，需要被修改。如需恢复初始密码，在"KYLIN_HOME/"使用重置密码命令（kylin.sh admin-password-reset），将ADMIN账户密码恢复为初始密码，其他账户密码将保持不变。
+初始的ADMIN账户密码在首次登陆后，需要被修改。如需恢复初始密码，在"KYLIN_HOME/"使用重置密码命令（kylin.sh admin-password-reset）
+
+```
+$KYLIN_HOME/bin/kylin.sh admin-password-reset
+```
+
+将ADMIN账户密码恢复为初始密码，其他账户密码将保持不变。
 
 ### 删除用户
 

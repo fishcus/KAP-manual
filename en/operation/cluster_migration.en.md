@@ -1,6 +1,6 @@
 ## **KAP Across-Hadoop-Cluster Migration**
 
-Please notice that this guide is only available for **KAP Enterprise Plus**. It includes whole KAP instance migration and single Cube migration.
+Please notice that this guide is only available for **KAP Plus**. It includes whole KAP instance migration and single Cube migration.
 
 **The whole KAP instance migration job contains two tasks:**
 

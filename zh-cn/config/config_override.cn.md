@@ -1,6 +1,6 @@
 ## 配置重写
 
-`KAP_HOME/conf/`下的部分配置项可以在KAP GUI中重写。配置重写有两个作用域，分别是project级别和cube级别。Project级别的配置继承于全局配置文件，cube级别的配置继承于project；而配置的覆盖优先级关系是：cube级别配置项 > project级别配置项 > 配置文件（kylin.properties）。
+`$KAP_HOME/conf/`下的部分配置项可以在KAP GUI中重写。配置重写有两个作用域，分别是project级别和cube级别。Project级别的配置继承于全局配置文件，cube级别的配置继承于project；而配置的覆盖优先级关系是：cube级别配置项 > project级别配置项 > 配置文件（kylin.properties）。
 
 ### 项目配置重写
 
@@ -54,7 +54,7 @@ kylin.query.disable-cube-noagg-sql 可在 Cube 级别重写。
 
 ### 覆盖kylin_hive_conf.xml中参数
 
-KAP支持通过KAP GUI覆盖kylin_hive_conf.xml中的参数，以Key/Value的形式，按照如下格式替换：
+KAP支持通过KAP GUI覆盖kylin_hive_conf.xml中的参数，以Key-Value的形式，按照如下格式替换：
 
 kylin.hive.config.override.*key* = *value*
 

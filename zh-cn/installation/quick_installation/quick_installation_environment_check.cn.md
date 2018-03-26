@@ -27,7 +27,7 @@ bin/check-env.sh
 
 检查当前用户是否有权限访问`hbase.rootdir`。
 
-**Checking Hive Classpath** `check-hdfs-working-dir.sh`
+**Checking HDFS Working Dir** `check-hdfs-working-dir.sh`
 
 检查当前用户是否对hdfs有操作权限。具体来说，KAP需要创建hdfs目录`kylin.env.hdfs-working-dir`，并进行文件读写操作。
 

@@ -20,7 +20,7 @@ This section introduces the basic concepts used in KAP.
 
 * __Derived__ - Derived dimensions are dimensions on lookup table. They can be derived at runtime by searching lookup table using primary key, thus do not have to be stored in cube.
 
-* __Count Distinct(HyperLogLog)__ - Precise count distinct on big data is known to be difficult and inefficient. [HyperLogLog](https://en.wikipedia.org/wiki/HyperLogLog) is an approximate algorithm for count distinct. With very small error and memory footprint, it can calculate count distinct on huge data set efficiently.
+* __Count Distinct(HyperLogLog)__ - Precise count distinct on big data is known to be difficult and inefficient. [HyperLogLog](https://en.wikipedia.org/wiki/HyperLogLog) is an approximate algorithm for COUNT DISTINCT. With very small error and memory footprint, it can calculate COUNT DISTINCT on huge data set efficiently.
 
 * __Count Distinct(Bitmap)__ - Precise count distinct based on bitmap. It is much more memory consuming than HyperLogLog, but gives precise result. Currently only integer type (or other types that can converts to integer by a dictionary) is supported.
 

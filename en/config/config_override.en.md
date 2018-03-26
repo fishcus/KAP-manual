@@ -1,6 +1,6 @@
 ## Configuration overriding
 
-Some of the configuration properties in `KAP_HOME/conf/` could be overridden through KAP GUI. Configuration overriding has two scopes: project level and cube level. The priority order can be stated as: cube level configurations > project level configurations > configuration files.  
+Some of the configuration properties in `$KAP_HOME/conf/` could be overridden through KAP GUI. Configuration overriding has two scopes: project level and cube level. The priority order can be stated as: cube level configurations > project level configurations > configuration files.  
 
 ### Project level configuration overriding
 
@@ -48,7 +48,7 @@ The configuration of kylin.query.disable-cube-noagg-sql can be overridden at Cub
 
 ### Overriding properties in kylin_hive_conf.xml
 
-KAP allows overriding properties in kylin_hive_conf.xml through KAP GUI. Replace original values by the following Key/Value format：
+KAP allows overriding properties in kylin_hive_conf.xml through KAP GUI. Replace original values by the following Key-Value format：
 
 kylin.hive.config.override.*key* = *value*
 

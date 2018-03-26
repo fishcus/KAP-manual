@@ -55,7 +55,7 @@ A：参见第一个问题的回答
 
 A：Derived维度相对于Normal来说，他并不参与维度的组合计算，他的FK参与维度组合计算，从而降低维度组合数，在查询时，对Dervied维度的查询会首先转换为对FK维度的查询，因此会牺牲少数性能。
 
-**Q：Hierachy Dimension有顺序关系吗？**
+**Q：Hierarchy Dimension有顺序关系吗？**
 
 A：有关系，要从大到小的顺序声明
 

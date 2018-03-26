@@ -6,6 +6,5 @@ Kyligence will help customer install, configure, optimize, and run KAP, help cus
 
 If  you are Kyligence registed user, you could
 
-- Send mail to support@kyligence.io for support
 - Request ticket on [KyBot portal](https://kybot.io/home). For the information on how to submit a ticket, please see the section of [KyBot](kybot/kybot.en.md).
 

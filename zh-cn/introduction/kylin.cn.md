@@ -2,7 +2,7 @@
 
 Apache Kylin是一个开源的分布式分析引擎，提供Hadoop之上超大规模数据的SQL查询接口及多维分析（OLAP）能力。Apache Kylin于2015年11月正式毕业成为Apache基金会(ASF) 顶级项目，是第一个由中国团队完整贡献到Apache的顶级项目。
 
-Apache Kyiln构建在Hadoop等分布式计算平台之上，充分利用了MapReduce的并行处理能力和可扩展基础设施，高效地处理超大规模数据，可根据数据的规模实现架构的可伸缩。Apache Kylin作为OLAP引擎包含了从数据源（Hive／Kafka等）获取源数据，基于MapReduce构建多维立方体(Cube)，并充分利用HBase的列式特性来分布式的存储立方体数据，提供标准SQL解析与查询优化，以及ODBC／JDBC驱动及REST API等多个模块。可插拔的灵活架构，允许支持更多的数据源接入Kylin，也支持采用其它技术作为存储引擎。Apache Kylin包含以下核心组件：
+Apache Kylin构建在Hadoop等分布式计算平台之上，充分利用了MapReduce的并行处理能力和可扩展基础设施，高效地处理超大规模数据，可根据数据的规模实现架构的可伸缩。Apache Kylin作为OLAP引擎包含了从数据源（Hive／Kafka等）获取源数据，基于MapReduce构建多维立方体(Cube)，并充分利用HBase的列式特性来分布式的存储立方体数据，提供标准SQL解析与查询优化，以及ODBC／JDBC驱动及REST API等多个模块。可插拔的灵活架构，允许支持更多的数据源接入Kylin，也支持采用其它技术作为存储引擎。Apache Kylin包含以下核心组件：
 
 1. **元数据管理**：包含模型设计，Cube设计，表结构同步，数据采样分析等。支持层级维度、联合维度、可推导维度等维度降维优化技术，避免Cube数据膨胀。支持多种字典编码算法，实现数据高效压缩存储。
 

@@ -29,7 +29,7 @@ Test current user if it possesses enough permission to operate HBase table(hTabl
 
 Have a test whether current user possesses permission to read`hbase.rootdir` or not.
 
-**Checking Hive Classpath** `check-hdfs-working-dir.sh`
+**Checking HDFS Working Dir** `check-hdfs-working-dir.sh`
 
 Have a check if current user possesses enough permission to operate hdfs. Specifically, KAP needs to create HDFS dir according to `kylin.env.hdfs-working-dir` defined in kylin.properties as well as create/delete files on this dir.
 

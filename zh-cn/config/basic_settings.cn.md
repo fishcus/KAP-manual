@@ -33,10 +33,10 @@ kylin.source.hive.beeline.params=-n root -u 'jdbc:hive2://localhost:10000' -f ab
 该参数指定KAP部署的用途，可以是*DEV*、*PROD*、*QA*。出厂默认值为*PROD*。在*DEV*模式下一些开发者功能将被启用。
 
 ### kylin.query.force-limit
-BI工具往往会发送类似“select \* from fact\_table”的查询语句，对于表格数据特别多的表格，数据返回时间较长，造成BI工具的长时间卡顿。该参数通过为“select \*”语句强制添加LIMIT分句，达到缩短数据返回时间的目的。启动该功能的方法为将该设置的值设置为正整数，如1000，该值会被用在LIMIT分句，查询语句最终会被转化成“select \* from fact\_table limit 1000”。该参数可在**项目**级别重写。
+BI工具往往会发送类似`select * from fact_table`的查询语句，对于表格数据特别多的表格，数据返回时间较长，造成BI工具的长时间卡顿。该参数通过为“select \*”语句强制添加LIMIT分句，达到缩短数据返回时间的目的。启动该功能的方法为将该设置的值设置为正整数，如1000，该值会被用在LIMIT分句，查询语句最终会被转化成“select \* from fact\_table limit 1000”。该参数可在**项目**级别重写。
 
 ### kylin.query.disable-cube-noagg-sql
-Cube中存储的是经过预处理的数据，这些数据在大多数情况下和原数据存在差异，例如聚合操作合并了一些数据行。这导致非聚合查询从Cube拿到的数据不准确。该参数被用来解决该问题，如果它被设置成 true ，Cube则不能被用于回答非聚合查询，一个典型的例子为“select \* from fact\_table limit 1000”。其他符合条件的Table Index 和 Query Pushdown 会代替Cube回答此类查询。该参数可在 Cube 级别重写。
+Cube中存储的是经过预处理的数据，这些数据在大多数情况下和原数据存在差异，例如聚合操作合并了一些数据行。这导致非聚合查询从Cube拿到的数据不准确。该参数被用来解决该问题，如果它被设置成 true ，Cube则不能被用于回答非聚合查询，一个典型的例子为`select * from fact_table limit 1000`。其他符合条件的Table Index 和 Query Pushdown 会代替Cube回答此类查询。该参数可在 Cube 级别重写。
 
 ### kylin.query.convert-create-table-to-with (Beta)
 有一些BI工具会在查询中创建临时表获中间表。将该配置为true可以将查询中创建表的语句转成with语句，当后续查询需要使用到该临时表获中间表时，会被转化成包含With的查询语句。修改这个配置后，创建中间表获临时表的查询可以击中可匹配的Cube。

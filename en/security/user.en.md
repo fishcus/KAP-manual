@@ -51,6 +51,10 @@ System admin needs to type in the new password twice to reset the password.
 
 User will be prompted to change password at first login. If you want to reset password to the default for user ADMIN, please execute command (kylin.sh admin-password-reset) in the KYLIN_HOME.
 
+```
+$KYLIN_HOME/bin/kylin.sh admin-password-reset
+```
+
 #### Drop User
 
 Under user management page, click `…` under `Action`, and choose `Drop`.

@@ -42,11 +42,11 @@ kylin.source.hive.beeline.params=-n root -u 'jdbc:hive2://localhost:10000'
 The usage of the KAP instance is specified by this property. Optional values include *DEV*, *PROD* and *QA*, among them *PROD* is the default one. In *DEV* mode some developer functions are enabled. 
 
 ### kylin.query.force-limit
-Some BI tools always send query like "select \* from fact\_table", but the process may stuck if the table size is extremely large. LIMIT clause helps in this case, and setting the value of this property to a positive integer make KAP append LIMIT clause if there's no one. For instance the value is 1000, query "select \* from fact\_table" will be transformed to "select \* from fact\_table limit 1000". This configuration can be overridden at **project** level.
+Some BI tools always send query like `select * from fact_table`, but the process may stuck if the table size is extremely large. LIMIT clause helps in this case, and setting the value of this property to a positive integer make KAP append LIMIT clause if there's no one. For instance the value is 1000, query "select \* from fact\_table" will be transformed to "select \* from fact\_table limit 1000". This configuration can be overridden at **project** level.
 
 ### kylin.query.disable-cube-noagg-sql
 Cube stores the pre-processed data, which is different from original data in most cases. It results in inaccurate answer from Cube if the query has no aggregation function. 
-This configuration is used to address the issue. If it's set to *true*, Cube is forbidden to answer queries that contain no aggregation functions, such as query "select \* from fact\_table limit 1000". Table Index or Query Pushdown will answer the query instead of Cube in this case. This configuration can be overridden at **Cube** level.
+This configuration is used to address the issue. If it's set to *true*, Cube is forbidden to answer queries that contain no aggregation functions, such as query `select * from fact_table limit 1000`, Table Index or Query Pushdown will answer the query instead of Cube in this case. This configuration can be overridden at **Cube** level.
 
 ### kylin.query.convert-create-table-to-with (Beta)
 

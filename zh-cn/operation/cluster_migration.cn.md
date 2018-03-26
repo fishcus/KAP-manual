@@ -1,6 +1,6 @@
 ## KAP跨Hadoop集群迁移
 
-目前跨集群迁移只支持**KAP Enterprise Plus**，包括：KAP整体的迁移及针对单个Cube的迁移。
+目前跨集群迁移只支持**KAP Plus**，包括：KAP整体的迁移及针对单个Cube的迁移。
 
 **KAP整体跨集群迁移包括两个子任务:**
 
@@ -33,7 +33,7 @@
 
 
 
-**单个Cube跨集群迁移也包括两个子任务:****
+**单个Cube跨集群迁移也包括两个子任务:**
 
 - 从SHC备份Cube的元数据及其构建数据并上传到HDFS上的/tmp目录下
 - 利用HDFS的Distcp命令将KAP在SHC的HDFS工作目录拷贝到DHC的HDFS上

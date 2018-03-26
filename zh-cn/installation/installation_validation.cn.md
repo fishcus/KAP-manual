@@ -25,11 +25,11 @@ Restart Kylin Server or click Web UI => System Tab => Reload Metadata to take ef
 
 ### 首次构建 Cube
 
-进入**模型**页面，点击 **Cubes** 标签，您将看到名为`kylin_sales_cube`的样例 Cube，如图所示：
+进入**模型**页面，点击 **Cubes**标签，您将看到名为`kylin_sales_cube`的样例 Cube，如图所示：
 
 ![](installation_images/installation_show_cube_cn.png)
 
-点击**操作** -> **构建**，选择一个晚于`2014-01-01`的结束日期，以包含全部10000条数据，然后点击**提交**，如图所示：
+点击**操作** -> **构建**，选择一个晚于`2012-01-01`的结束日期，包含全部10000条数据，然后点击**提交**，如图所示：
 
 ![](installation_images/installation_build_cube_cn.png)
 

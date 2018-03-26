@@ -78,7 +78,7 @@ https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF#LanguageManu
 
 ### 使用案例
 
-有关可计算列函数的具体使用案例，请参考 Kyilgence 官网的技术博客：
+有关可计算列函数的具体使用案例，请参考 Kyligence 官网的技术博客：
 
 http://cn.kyligence.io/2017/07/17/kap-2-4-computed-column/
 

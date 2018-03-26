@@ -17,6 +17,8 @@ KAP 在使用 Hadoop 集群进行 Cube 构建等任务的同时，使用 HBase �
 
 3. 在您需要运行 KAP 的服务器上安装和配置 HBase 集群的 HBase 客户端，并确认`hbase`命令可以正常使用，且 HBase 集群上的服务和资源能够正常访问；
 
+   > 提示：直接使用`$KYLIN_HOME/bin/check-env.sh `即可进行检测。
+
 4. 确认 Hadoop 集群和 HBase 集群的网络可以在无须额外验证的情况下互相连通；
 
    > 提示：您可以尝试重 Hadoop 集群的任一节点上拷贝文件至 HBase 集群的任一节点，以验证两个集群之间的网络连通状况。

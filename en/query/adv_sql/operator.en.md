@@ -45,4 +45,7 @@ The following are operators applicable to SQL query.
 
 ### String Operator
 
-![](images/operator.png)
+| Opeartor | Decription       | Syntax | Example                 |
+| -------- | ---------------- | ------ | ----------------------- |
+| \|\|     | String\|\|string | A\|\|B | First_name\|\|Last_name |
+

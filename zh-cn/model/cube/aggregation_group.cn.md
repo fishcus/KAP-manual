@@ -9,13 +9,13 @@ Kylin通过预计算Cubes提高了查询的性能，而Cube则包含了所有维
 
 ![图1](images/AGG-1.png)
 
-为了缓解 Cube 的构建压力，Apache Kylin 引入了一系列的高级设置，帮助用户筛选出真正需要的 Cuboid。这些高级设置包括**聚合组**（Aggregation Group）、**联合维度**（Joint Dimension）、**层级维度**（Hierachy Dimension）和**必要维度**（Mandatory Dimension）。
+为了缓解 Cube 的构建压力，Apache Kylin 引入了一系列的高级设置，帮助用户筛选出真正需要的 Cuboid。这些高级设置包括**聚合组**（Aggregation Group）、**联合维度**（Joint Dimension）、**层级维度**（Hierarchy Dimension）和**必要维度**（Mandatory Dimension）。
 
 在设计Cube的维度页面，用户可以从已选择的维度中选取部分维度放入一个聚合组中，即在界面中的包含的维度处，选择放入聚合组的维度。
 
 ![](images/agg-group-1.png)
 
-随后用户可以在该聚合组中设置 `必须维度 `、` 层级维度`、 `联合维度 `. 这三个设置中的维度必须是已放入包含的维度中的维度。 所有聚合组的优化设置都设置完毕后，聚合组的页面右上角会显示预估的Cuboid数量。这可以帮助用户了解当前Cube构建的复杂度。
+随后用户可以在该聚合组中设置 `必要维度 `、` 层级维度`、 `联合维度 `. 这三个设置中的维度必须是已放入包含的维度中的维度。 所有聚合组的优化设置都设置完毕后，聚合组的页面右上角会显示预估的Cuboid数量。这可以帮助用户了解当前Cube构建的复杂度。
 
 ![](images/agg-group-1.png)
 
@@ -93,12 +93,9 @@ Case2：如果有一条不常用的查询：SELECT cal_dt, city, count(*) FROM t
 用户选择的维度中常常会出现具有层级关系的维度。例如对于国家（country）、省份（province）和城市（city）这三个维度，从上而下来说国家／省份／城市之间分别是一对多的关系。也就是说，用户对于这三个维度的查询可以归类为以下三类:
 
 1.    group by country
-
-
-2.    group by country, province（等同于groupby province）
-
-
+2.    group by country, province（等同于group by province）
 3.    group by country, province, city（等同于group by country, city 或者group by city）
+
 
 以图7所示的Cube为例，假设维度A代表国家，维度B代表省份，维度C代表城市，那么ABC三个维度可以被设置为层级维度，生成的Cube如图7所示。例如，Cuboid[A,C,D]=Cuboid[A, B, C, D]，Cuboid[B, D]=Cuboid[A, B, D]，因而Cuboid[A,C, D]和Cuboid[B,D]就不必重复存储。 图8展示了Kylin按照前文的方法将冗余的Cuboid剪枝从而形成图8的Cube结构，Cuboid数目从16减小到8。
 

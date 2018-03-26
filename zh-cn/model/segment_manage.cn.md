@@ -8,7 +8,7 @@
 
   ​
 
-- Disable（禁用）：已经设计好但尚未构建因而无法查询的cube。当cube经过构建自动转成ready状态后，才能查询。
+- Disabled（禁用）：已经设计好但尚未构建因而无法查询的cube。当cube经过构建自动转成ready状态后，才能查询。
 
   - 最多可执行的操作有：验证SQL、删除、编辑、构建、启用（将具有segment的cube转化为ready状态）、清理（清空cube下所有segment数据）、克隆（复制cube，但不复制segment数据）、查看cube(查看cube描述信息)、备份（备份cube元数据）、编辑cube详细信息（查看或编辑cube的json信息）。
 
