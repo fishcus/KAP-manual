@@ -15,15 +15,19 @@ Smartbi Insight 通过JDBC连接 KAP，所以首先需要在Smartbi Insight 上�
 
 请参考 [Kyligence JDBC 驱动程序说明](http://docs.kyligence.io/books/v2.5/zh-cn/driver/jdbc.cn.html)
 
-2.2 删除 Smartbi Insight 自带的 JDBC 驱动程序：**_JDBC_kylin-jdbc-1.5.0-SNAPSHOT.jar** 
+2.2 向 Smartbi Insight 增加 JDBC 驱动程序：
 
-*Linux*环境下默认目录为： smartbi/WEB-INF/lib/
+具体步骤如下：
 
-*Windows*环境下默认目录为：C:\Users\smartbi\Desktop\
+(1)停止tomcat，删除war包（**安装目录\Tomcat\webapps\smartbi.war**）中的jar包 **_JDBC_kylin-jdbc-1.5.0-SNAPSHOT.jar** 
 
-2.3 向 Smartbi Insight 中添加 KAP 的 JDBC 驱动：
+注：此处可以直接使用 WinRAR 删除、添加文件，而无需解压缩再压缩
 
-请参考 [如何向Smartbi中添加数据库驱动或JAVA类jar说明](http://wiki.smartbi.com.cn/pages/viewpage.action?pageId=29854476)
+(2)修改后，需要删除 (**安装目录\Tomcat\webapps\smartbi**) 文件夹 ，清空（**安装目录\Tomcat\temp**）文件夹和（**安装目录\Tomcat\work**）文件夹
+
+(3)添加新的jar包到war包并保存war包
+
+(4)重启tomcat
 
 ### 3. 建立 KAP 数据源连接 
 
@@ -35,7 +39,7 @@ Smartbi Insight 通过JDBC连接 KAP，所以首先需要在Smartbi Insight 上�
 
 #### 3.2 新建数据源：
 
-选择**Kylin**驱动程序类型，将服务器IP地址等信息填写到连接字符串（字符串格式为:**jdbc:kylin://<hostname>:<port>/<project_name>**) ，然后**保存**数据源连接。
+选择**Kylin**驱动程序类型，将服务器IP地址等信息填写到连接字符串（字符串格式为:**jdbc:kylin://<hostname>:<port>/<project_name>**) ,然后**保存**数据源连接。
 
 这里默认选择用户验证类型为**静态验证**，输入KAP的用户名和密码进行连接。
 
@@ -71,12 +75,12 @@ Smartbi Insight 通过JDBC连接 KAP，所以首先需要在Smartbi Insight 上�
 
 5.1 首先设置用户的扩展属性
 
-![制作图表2](images/smartbi/05.PNG)
+![设置拓展属性](images/smartbi/05.PNG)
 
 5.2 创建新用户
 
-![制作图表2](images/smartbi/06.PNG)
+![创建新用户](images/smartbi/06.PNG)
 
 5.3 在建立数据源连接时选用动态验证方式，将左侧菜单栏中的**用户名**及**密码**字符串拖动过来即可。
 
-![制作图表2](images/smartbi/07.PNG)
+![登录](images/smartbi/07.PNG)
