@@ -100,7 +100,7 @@
     * [Save and Share Results](kyanalyzer/save_and_share.en.md)
     * [Configurations](kyanalyzer/configuration.en.md)
     * [Multi-node Deployment](kyanalyzer/multi-nodes_deploy.en.md)
-* [Integration with BI tools](integration/README.md)
+* [Integration with BI tools](integration/BI.en.md)
     * [Driver](driver/README.md)
         * [JDBC driver](driver/jdbc.en.md)
         * [Kyligence ODBC Driver](driver/kyligence_odbc.en.md)

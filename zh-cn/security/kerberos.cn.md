@@ -93,6 +93,3 @@ Client{
 	debug=false;
 };
 ```
-
-
-

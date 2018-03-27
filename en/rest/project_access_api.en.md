@@ -168,7 +168,7 @@
 * sid - `required` `string`, user name
 
 #### Request Example
-`Request Path:http://host:port/kylin/api/access/ProjectInstance/2fbca32a-a33e-4b69-83dd-0bb8b1f8c91b?accessEntryId=1&sid=MODELER`
+`Request Path:http://host:port/kylin/api/access/ProjectInstance/2fbca32a-a33e-4b69-83dd-0bb8b1f8c91b`
 
 `Request Body:{permission: "READ", principal: true, sid: "MODELER"}`
 

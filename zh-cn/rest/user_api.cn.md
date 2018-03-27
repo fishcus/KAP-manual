@@ -14,7 +14,7 @@
 ### 获取所有用户
 `请求方式 GET`
 
-`访问路径 http://host:port/kylin/api/kap/users`
+`访问路径 http://host:port/kylin/api/kap/users/user`
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 

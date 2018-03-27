@@ -1,6 +1,6 @@
 ## Driver Support
 
-This chapter will introduce several drivers supported by both KAP and kylin. 
+This chapter will introduce several drivers supported by KAP.
 
 Continue reading:
 

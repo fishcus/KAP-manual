@@ -13,7 +13,7 @@
 ### Get All Users
 `Request Mode GET`
 
-`Access Path http://host:port/kylin/api/kap/users`
+`Access Path http://host:port/kylin/api/kap/users/user`
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 

@@ -169,7 +169,7 @@
 * sid - `必选` `string`，用户名
 
 #### 请求示例
-`请求路径:http://host:port/kylin/api/access/ProjectInstance/2fbca32a-a33e-4b69-83dd-0bb8b1f8c91b?accessEntryId=1&sid=MODELER`
+`请求路径:http://host:port/kylin/api/access/ProjectInstance/2fbca32a-a33e-4b69-83dd-0bb8b1f8c91b`
 
 `请求主体:{permission: "READ", principal: true, sid: "MODELER"}`
 

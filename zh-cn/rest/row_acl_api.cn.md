@@ -100,7 +100,7 @@
 * condsWithColumn - `必选` `map` 列与conditions的键值对，详见下面请求示例中的请求主体
 
 #### 请求示例
-`请求路径:http://host:port/kylin/api/acl/row/learn_kylin/DEFAULT.KYLIN_SALES/ADMIN`
+`请求路径:http://host:port/kylin/api/acl/row/learn_kylin/user/DEFAULT.KYLIN_SALES/ADMIN`
 
 ```
 请求主体:代表 TRANS_ID 的取值为1,2,3.(TRANS_ID=1 OR TRANS_ID=2 OR TRANS_ID=3)

@@ -99,7 +99,7 @@
 * condsWithColumn - `required` `map`, key-value pairs of column and conditions. For details, see the request body in the following request example.
 
 #### Request Example
-`Request Path:http://host:port/kylin/api/acl/row/learn_kylin/DEFAULT.KYLIN_SALES/ADMIN`
+`Request Path:http://host:port/kylin/api/acl/row/learn_kylin/user/DEFAULT.KYLIN_SALES/ADMIN`
 
 ```
 Request Body:TRANS_ID's values:1,2,3.(TRANS_ID=1 OR TRANS_ID=2 OR TRANS_ID=3)
