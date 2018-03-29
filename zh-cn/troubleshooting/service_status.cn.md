@@ -10,12 +10,12 @@ KAP还提供了命令行工具来进行每个环境依赖检测，方便自行�
 
 环境依赖检测主要从以下几个方面进行：
 
-* MetaStore活性检查：检查元数据储存的可连通性，读写正确性，和响应速度
-* Hive连通性检查：检查Hive/Beeline的可连通性，kerberos ticket可用
-* Metadata完整性检查：检查元数据一致性、是否损坏
-* Metadata同步检查：检查元数据同步异常，并自动重载元数据
-* Spark context活性检查：检查pushdown spark cluster活性
-* Zookeeper活性检查：检查zookeeper的可连通性，加锁操作，和响应速度
+* MetaStore活性检查：检查元数据储存的可连通性、读写正确性和响应速度
+* Hive连通性检查：检查Hive/Beeline的可连通性
+* Metadata完整性检查：检查元数据的一致性及判断元数据是否损坏
+* Metadata同步检查：检查元数据同步是否异常，异常时尝试重载元数据
+* Spark context活性检查：检查Spark的可用性
+* Zookeeper活性检查：检查zookeeper的可连通性、加锁操作和响应速度
 * 任务执行引擎活性检查：检查任务执行引擎的活性
 
 
@@ -24,7 +24,7 @@ KAP还提供了命令行工具来进行每个环境依赖检测，方便自行�
 
 运行方法如下：
 
-在`$KYLIN_HOME/bin` 目录下执行`./kylin.sh io.kyligence.kap.canary.CanaryCommander <canaries-to-test>`，检测结果如下图所示：
+在`$KYLIN_HOME/bin/kylin.sh io.kyligence.kap.canary.CanaryCommander <canaries-to-test>`，检测结果如下图所示：
 
 > <canaries-to-test>可替换为对应的检测命令参数：
 >
@@ -66,33 +66,33 @@ KAP还提供了命令行工具来进行每个环境依赖检测，方便自行�
 
 WARNING和ERROR的检测标准主要如下：
 + MetaStoreCanary
-  - 做metadata读写删超过300毫秒，WARNING
-  - 做metadata读写删超过1000毫秒，ERROR
-  - 写完metadata后，未能读取新写的数据，ERROR(msg: Metadata store failed to read a newly created resource.)
+  - **WARNING**：执行metadata读、写、删操作超过300毫秒。
+  - **ERROR**：执行metadata读、写、删操作超过1000毫秒。
+  - **ERROR**：对metadata执行写操作后，未能读取到新写的数据。 (msg: Metadata store failed to read a newly created resource.)
 
 + HiveCanary
-  - 查询hive所有database超过20秒，WARNING
-  - 查询hive所有database超过30秒，ERROR
+  - **WARNING**：查询hive所有database超过20秒。
+  - **ERROR**：查询hive所有database超过30秒。
 
 + MetadataCanary
-  - 验证metadata完整性超过10秒，WARNING
-  - 验证metadata完整性超过30秒，ERROR
-  - Metadata完整性存在错误，ERROR(msg: Metadata {entities} corrupt, with rule --{rule})
+  - **WARNING**：验证metadata完整性超过10秒。
+  - **ERROR**：验证metadata完整性超过30秒。
+  - **ERROR**：Metadata完整性存在错误。 (msg: Metadata {entities} corrupt, with rule --{rule})
 
 + MetaSyncErrorCanary
-  - Metastore同步失败，WARNING(msg: Metadata synchronization error detected (from {node1} to {node2}). Network was unstable or overloaded? Auto recovery attempted.)
+  - **WARNING**：Metastore同步失败。 (msg: Metadata synchronization error detected (from {node1} to {node2}). Network was unstable or overloaded? Auto recovery attempted.)
 
 + ZookeeperCanary
-  - 查看ZooKeeper活性、加锁、解锁超过3秒，WARNING
-  - 查看ZooKeeper活性、加锁、解锁超过10秒，ERROR
-  - ZooKeeper非活跃状态，ERROR(msg: Zookeeper with connection {url} is not alive.)
-  - 加锁失败，ERROR(msg: Failed to require zookeeper lock.)
-  - 解锁失败，ERROR(msg: Failed to release zookeeper lock.)
+  - **WARNING**：查看ZooKeeper活性、加锁、解锁超过3秒。
+  - **ERROR**：查看ZooKeeper活性、加锁、解锁超过10秒。
+  - **ERROR**：ZooKeeper非活跃状态。(msg: Zookeeper with connection {url} is not alive.)
+  - **ERROR**：加锁失败。 (msg: Failed to require zookeeper lock.)
+  - **ERROR**：解锁失败。 (msg: Failed to release zookeeper lock.)
 
 + JobEngineCanary
-  - 有KAP节点未能返回job engine状态，ERROR(msg: Node {node} failed to report job engine status)
-  - 没有活跃状态的任务构建引擎节点，ERROR(msg: No active job node found.)
+  - **ERROR**：有KAP节点未能返回job engine状态。(msg: Node {node} failed to report job engine status)
+  - **ERROR**：没有活跃状态的任务构建引擎节点。 (msg: No active job node found.)
 
 + SparkSqlContextCanary
-  - 使用spark context进行一次整数连加操作超过10秒，WARNING
-  - 使用spark context进行一次整数连加操作超过30秒，ERROR
+  - **WARNING**：使用spark context进行一次整数连加操作超过10秒
+  - **ERROR**：使用spark context进行一次整数连加操作超过30秒。
