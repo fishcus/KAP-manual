@@ -485,7 +485,7 @@
 ### 构建Cube-日期分区
 `请求方式 PUT`
 
-`访问路径 http://host:port/kylin/api/cubes/{cubeName}/rebuild`
+`访问路径 http://host:port/kylin/api/cubes/{cubeName}/segments/build`
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
@@ -495,7 +495,7 @@
 #### 请求主体
 * startTime - `必选` `long` 要计算的数据对应起始时间的时间戳，应为GMT格式的时间戳 , e.g. 1388534400000 for 2014-01-01，可使用 https://www.epochconverter.com/ 网页进行转换。
 * endTime - `必选` `long` 要计算的数据对应终止时间的时间戳，应为GMT格式的时间戳
-* buildType - `必选` `string` 支持的计算类型: 'BUILD'
+* buildType - `必选` `string` 支持的计算类型: `BUILD`
 * mpValues - `可选` `string` 对应model的more partition 字段值
 
 #### 响应示例
@@ -543,7 +543,7 @@
 ### 构建Cube-非日期分区
 `请求方式 PUT`
 
-`访问路径 http://host:port/kylin/api/cubes/{cubeName}/build_by_offset`
+`访问路径 http://host:port/kylin/api/cubes/{cubeName}/segments/build_by_offset`
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
@@ -553,7 +553,7 @@
 #### 请求主体
 * sourceOffsetStart - `必选` `long` 开始值
 * sourceOffsetEnd - `必选` `long` 结束值
-* buildType - `必选` `string` 支持的计算类型: 'BUILD'
+* buildType - `必选` `string` 支持的计算类型: `BUILD`
 * mpValues - `可选` `string` 对应model的more partition 字段值
 
 
@@ -561,7 +561,7 @@
 
 `请求方式 PUT`
 
-`访问路径 <http://host:port/kylin/api/cubes/{cubeName}/rebuild`>
+`访问路径 <http://host:port/kylin/api/cubes/{cubeName}/segments/build`>
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
@@ -573,7 +573,7 @@
 
 * startTime - `必选` `long` , 0
 * endTime - `必选` `long`, 0
-* buildType - `必选` `string`, 支持的计算类型: 'BUILD'
+* buildType - `必选` `string`, 支持的计算类型: `BUILD`
 
 ### 克隆Cube
 `请求方式 PUT`
