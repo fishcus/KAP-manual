@@ -13,6 +13,7 @@
 * [构建 Cube-日期分区](#构建cube-日期分区)
 * [构建 Cube-非日期分区](#构建cube-非日期分区)
 * [构建Cube-无分区](#构建cube-无分区)
+* [构建Cube-批量构建](#构建cube-批量构建)
 * [克隆 Cube](#克隆cube)
 * [启用 Cube](#启用cube)
 * [禁用 Cube](#禁用cube)
@@ -495,7 +496,7 @@
 #### 请求主体
 * startTime - `必选` `long` 要计算的数据对应起始时间的时间戳，应为GMT格式的时间戳 , e.g. 1388534400000 for 2014-01-01，可使用 https://www.epochconverter.com/ 网页进行转换。
 * endTime - `必选` `long` 要计算的数据对应终止时间的时间戳，应为GMT格式的时间戳
-* buildType - `必选` `string` 支持的计算类型: `BUILD`
+* buildType - `必选` `string` 支持的计算类型: 'BUILD'
 * mpValues - `可选` `string` 对应model的more partition 字段值
 
 #### 响应示例
@@ -553,7 +554,7 @@
 #### 请求主体
 * sourceOffsetStart - `必选` `long` 开始值
 * sourceOffsetEnd - `必选` `long` 结束值
-* buildType - `必选` `string` 支持的计算类型: `BUILD`
+* buildType - `必选` `string` 支持的计算类型: 'BUILD'
 * mpValues - `可选` `string` 对应model的more partition 字段值
 
 
@@ -573,7 +574,60 @@
 
 * startTime - `必选` `long` , 0
 * endTime - `必选` `long`, 0
-* buildType - `必选` `string`, 支持的计算类型: `BUILD`
+* buildType - `必选` `string`, 支持的计算类型: 'BUILD'
+
+### 构建Cube-批量构建
+
+`请求方式 PUT`
+
+`访问路径 <http://host:port/kylin/api/cubes/{cubeName}/batch_sync`>
+
+`Content-Type: application/vnd.apache.kylin-v2+json`
+
+#### 路径变量
+
+* cubeName - `必选` `string` Cube 名称
+
+#### 请求主体
+* pointList - `可选` `string` 对应model的partition 字段值 结构：List<Long>
+* rangeList - `可选` `string` 对应model的partition 字段值 结构：List<Long[]>
+* mpValues - `可选` `string` 对应model的more partition 字段值
+
+#### 请求示例
+```json
+{
+        "mpValues": "300",
+        "pointList": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"
+        ],
+        "rangeList": [["50","70"],["90","110"]]
+    },
+    {
+        "mpValues": "301",
+        "pointList": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"
+        ],
+        "rangeList": [["20","30"],["30","40"]]
+    }
+```
 
 ### 克隆Cube
 `请求方式 PUT`
