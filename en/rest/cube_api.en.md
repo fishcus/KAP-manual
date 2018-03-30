@@ -485,7 +485,7 @@ fact tables, dimension tables and etc.
 ### Build Cube - Date Partition
 `Request Mode PUT`
 
-`Access Path http://host:port/kylin/api/cubes/{cubeName}/rebuild`
+`Access Path http://host:port/kylin/api/cubes/{cubeName}/segments/build`
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
@@ -495,7 +495,7 @@ fact tables, dimension tables and etc.
 #### Request Mode
 * startTime - `required` `long`, the timestamp refers to start time corresponding to the data to be calculated, it should be a GMT form timestamp, e.g. 1388534400000 for 2014-01-01. You may visit https://www.epochconverter.com/ to convert.
 * endTime - `required` `long`, the timestamp refers to end time corresponding to the data to be calculated, it should be a GMT form timestamp.
-* buildType - `required` `string`, supported calculation types: 'BUILD'.
+* buildType - `required` `string`, supported calculation types: `BUILD`
 * mpValues - `optional` `string`, the value of field "more partition" corresponding to model.
 
 #### Response Example
@@ -544,7 +544,7 @@ fact tables, dimension tables and etc.
 
 `Request Mode PUT`
 
-`Access Path http://host:port/kylin/api/cubes/{cubeName}/build_by_offset`
+`Access Path http://host:port/kylin/api/cubes/{cubeName}/segments/build_by_offset`
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
@@ -556,7 +556,7 @@ fact tables, dimension tables and etc.
 
 - sourceOffsetStart - `required` `long` , start value
 - sourceOffsetEnd - `required` `long`, end value
-- buildType - `required` `string`, supported computing type: 'BUILD'
+- buildType - `required` `string`, supported computing type: `BUILD`
 - mpValues - `optional` `string`, the value of more partition field for the corresponding model
 
 Build Cube - No Partition
@@ -565,7 +565,7 @@ Build Cube - No Partition
 
 ` Request Mode PUT`
 
-`Access Path <http://host:port/kylin/api/cubes/{cubeName}/rebuild`>
+`Access Path http://host:port/kylin/api/cubes/{cubeName}/segments/build`
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
@@ -577,7 +577,7 @@ Build Cube - No Partition
 
 - startTime - `required` `long` , 0
 - endTime - `required` `long`,  0
-- buildType - `required` `string`, supported computing type: 'BUILD'
+- buildType - `required` `string`, supported computing type: `BUILD`
 
 ### Clone Cube
 
