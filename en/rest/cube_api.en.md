@@ -9,9 +9,10 @@
 * [Get Cube](#get-cube)
 * [Get Cube Descriptor](#get-cube-descriptor)
 * [Get Data Model](#get-data-model)
-* [Build Cube - Date Partition](#build-cube-date-partition)
-* [Build Cube - Non Date Partition](#build-cube-non-date-partition)
-* [Build Cube - No Partition](#build-cube-no-partition)
+* [Build Cube - Date Partition](#build-cube - date-partition)
+* [Build Cube - Non Date Partition](#build-cube - non-date-partition)
+* [Build Cube - No Partition](#build-cube - no-partition)
+* [Build Cube - Batch](#build-cube - batch)
 * [Clone Cube](#clone-cube)
 * [Enable Cube](#enable-cube)
 * [Disable Cube](#disable-cube)
@@ -495,7 +496,7 @@ fact tables, dimension tables and etc.
 #### Request Mode
 * startTime - `required` `long`, the timestamp refers to start time corresponding to the data to be calculated, it should be a GMT form timestamp, e.g. 1388534400000 for 2014-01-01. You may visit https://www.epochconverter.com/ to convert.
 * endTime - `required` `long`, the timestamp refers to end time corresponding to the data to be calculated, it should be a GMT form timestamp.
-* buildType - `required` `string`, supported calculation types: `BUILD`
+* buildType - `required` `string`, supported calculation types: 'BUILD'
 * mpValues - `optional` `string`, the value of field "more partition" corresponding to model.
 
 #### Response Example
@@ -556,7 +557,7 @@ fact tables, dimension tables and etc.
 
 - sourceOffsetStart - `required` `long` , start value
 - sourceOffsetEnd - `required` `long`, end value
-- buildType - `required` `string`, supported computing type: `BUILD`
+- buildType - `required` `string`, supported computing type: 'BUILD'
 - mpValues - `optional` `string`, the value of more partition field for the corresponding model
 
 Build Cube - No Partition
@@ -577,7 +578,62 @@ Build Cube - No Partition
 
 - startTime - `required` `long` , 0
 - endTime - `required` `long`,  0
-- buildType - `required` `string`, supported computing type: `BUILD`
+- buildType - `required` `string`, supported computing type: 'BUILD'
+
+### Build Cube - Batch
+
+` Request Mode PUT`
+
+`Access Path http://host:port/kylin/api/cubes/{cubeName}/batch_sync`
+
+`Content-Type: application/vnd.apache.kylin-v2+json`
+
+#### Path Variable
+
+* cubeName - `required` `string` Cube's name
+
+#### Request Body
+
+* pointList - `optional` `string` the value of partition field for the corresponding model  structure:List<Long>
+* rangeList - `optional` `string` the value of partition field for the corresponding model  structure:List<Long[]>
+* mpValues - `optional` `string` the value of partition field for the corresponding model
+
+#### Request Example
+
+```
+{
+        "mpValues": "300",
+        "pointList": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"
+        ],
+        "rangeList": [["50","70"],["90","110"]]
+    },
+    {
+        "mpValues": "301",
+        "pointList": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"
+        ],
+        "rangeList": [["20","30"],["30","40"]]
+    }
+```
 
 ### Clone Cube
 
