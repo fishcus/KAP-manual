@@ -40,7 +40,7 @@ If users access dataset built by KAP, mainly there are two API, one is querying 
 
 #### Detailed Information
 
-The results of this interface will be returned based on the specification of ResultSetMetaData and the types of columns are returned by the ResultSetMetaData.getXXXX method.
+The number, types and properties of a `ResultSet` object's columns are provided by the `ResultSetMetaData` object returned by the `ResultSet.getXXX` method.	
 
 Reference: <https://docs.oracle.com/javase/7/docs/api/java/sql/ResultSet.html#getMetaData()>         <https://docs.oracle.com/javase/7/docs/api/java/sql/ResultSetMetaData.html>
 
@@ -146,7 +146,10 @@ curl -X POST -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/j
 
 #### Detailed Information
 
-* The table architecture of kylin is returned by this interface which is based on the specification of  JDBC API DatabaseMetaData.getColumns() method. For more information, please refer to <https://docs.oracle.com/javase/7/docs/api/java/sql/DatabaseMetaData.html#getColumns(java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String)> 
+* The structure of kylin table is returned by interface DatabaseMetadate, which is based on the specification of  JDBC API DatabaseMetaData.getColumns() method. 
+
+  Reference:<https://docs.oracle.com/javase/7/docs/api/java/sql/DatabaseMetaData.html#getColumns(java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String)> 
+
 * The definition of column
   1. TABLE_CAT String => table catalog (may be null)
   2. TABLE_SCHEM String => table schema (may be null)

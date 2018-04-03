@@ -9,10 +9,10 @@
 * [Get Cube](#get-cube)
 * [Get Cube Descriptor](#get-cube-descriptor)
 * [Get Data Model](#get-data-model)
-* [Build Cube - Date Partition](#build-cube - date-partition)
-* [Build Cube - Non Date Partition](#build-cube - non-date-partition)
-* [Build Cube - No Partition](#build-cube - no-partition)
-* [Build Cube - Batch](#build-cube - batch)
+* [Build Cube - Date Partition](#build-cube-date-partition)
+* [Build Cube - Non Date Partition](#build-cube-non-date-partition)
+* [Build Cube - No Partition](#build-cube-no-partition)
+* [Build Cube - Batch](#build-cube-batch)
 * [Clone Cube](#clone-cube)
 * [Enable Cube](#enable-cube)
 * [Disable Cube](#disable-cube)
@@ -483,7 +483,7 @@ fact tables, dimension tables and etc.
 }
 ```
 
-### Build Cube - Date Partition
+### Build Cube-Date Partition
 `Request Mode PUT`
 
 `Access Path http://host:port/kylin/api/cubes/{cubeName}/segments/build`
@@ -541,7 +541,7 @@ fact tables, dimension tables and etc.
 }
 ```
 
-### Build Cube - Non Date Partition
+### Build Cube-Non Date Partition
 
 `Request Mode PUT`
 
@@ -562,7 +562,7 @@ fact tables, dimension tables and etc.
 
 Build Cube - No Partition
 
-### Build Cube - No Partition
+### Build Cube-No Partition
 
 ` Request Mode PUT`
 
@@ -580,7 +580,7 @@ Build Cube - No Partition
 - endTime - `required` `long`,  0
 - buildType - `required` `string`, supported computing type: 'BUILD'
 
-### Build Cube - Batch
+### Build Cube-In a Batch
 
 ` Request Mode PUT`
 
