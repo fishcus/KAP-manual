@@ -22,7 +22,7 @@ Each engine could be turned on or off independently. For example, in many cases,
 
 Each engine has its own capability definition (dimensions, measures, and columns). If the capability could not meet the query condition, the query will be routed to the next engine. 
 
-**How compression settings positively impact KAP during building Cube? **
+**How compression settings positively impact KAP during building Cube?**
 
 With the increasing number of data volume, dealing with those data may suffer more restricts of network I/O. Enabling compression settings could help dealing with more data for each I/O operation, which could also improve the performance of network transmission. Although CPU may spend some time to compress and uncompress data, it still less than the time of I/O and network I/O when compression is disabled. Therefore,  the MR job could finish faster.
 

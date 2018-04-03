@@ -126,7 +126,7 @@
         * [Cognos](integration/cognos.cn.md)
         * [Qlik Sense](integration/qlik.cn.md)
         * [Smartbi](integration/smartbi.cn.md)
-        * [Fineruan](integration/fineruan.cn.md)
+        * [Fanruan](integration/fanruan.cn.md)
 * [REST API](rest/README.md)
     * [访问及安全验证](rest/authentication.cn.md)
     * [查询 API](rest/query_api.cn.md)
