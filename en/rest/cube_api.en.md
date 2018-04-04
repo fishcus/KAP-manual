@@ -12,7 +12,7 @@
 * [Build Cube - Date Partition](#build-cube-date-partition)
 * [Build Cube - Non Date Partition](#build-cube-non-date-partition)
 * [Build Cube - No Partition](#build-cube-no-partition)
-* [Build Cube - Batch](#build-cube-batch)
+* [Build Cube - Batch](#build-cube-in-batch)
 * [Clone Cube](#clone-cube)
 * [Enable Cube](#enable-cube)
 * [Disable Cube](#disable-cube)
@@ -580,7 +580,7 @@ Build Cube - No Partition
 - endTime - `required` `long`,  0
 - buildType - `required` `string`, supported computing type: 'BUILD'
 
-### Build Cube-In a Batch
+### Build Cube-In Batch
 
 ` Request Mode PUT`
 
