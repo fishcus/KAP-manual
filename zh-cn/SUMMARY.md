@@ -119,7 +119,7 @@
           * [Linux](/driver/kyligence_odbc_linux.cn.md)
     * [与BI工具连接](integration/README.md)
         * [Tableau](integration/tableau_10.cn.md)
-        * [Excel ](integration/excel_2016.cn.md)
+        * [Excel ](integration/excel_2018.cn.md)
         * [Power BI](integration/powerbi.cn.md)
         * [Apache Zeppelin](integration/zeppelin.cn.md)
         * [MicroStrategy](integration/microstrategy_10_4.cn.md)
