@@ -4,8 +4,6 @@ Since KAP V2.5.6, the service status will be checked every 15 minutes. ADMIN use
 
 Services status turns green for being good, yellow for warnings  and red for error. Users could also click to get more detailed information.
 
-Command lines are also supported to check the individual service status manually. Meanwhile, the results will be stored in a log file named *canary.log* (`$KYLIN_HOME/logs/canary.log`), which will also be included in the KyBot diagnostic package.
-
 ![service status](images/service_status.en.png)
 
 This function will mainly focus on these aspects：
@@ -19,6 +17,8 @@ This function will mainly focus on these aspects：
 - Job Engine: to check the availability of job engine
 
 ### Using Command Line to  Check Manually
+
+Command lines are also supported to check the individual service status manually. Meanwhile, the results will be stored in a log file named *canary.log* (`$KYLIN_HOME/logs/canary.log`), which will also be included in the KyBot diagnostic package.
 
 You can run the following command line `$KYLIN_HOME/bin/kylin.sh io.kyligence.kap.canary.CanaryCommander <canaries-to-test>`. 
 
@@ -45,50 +45,42 @@ You can run the following command line `$KYLIN_HOME/bin/kylin.sh io.kyligence.ka
 The status is mainly shown as following:
 
 - GOOD: The service status is healthy
-- WARNING: There are some problems which may impact KAP performance. For example,
+- WARNING: There are some problems which may impact KAP performance. 
 
-> MetaStoreCanary WARNING [WARNING: Creating metadata (40 bytes) is slow and it may impact KAP performance and availability.]
 
-- ERROR: There is something wrong with the dependency service. For example,
+- ERROR: There is something wrong with the dependency service. You may need to check the dependency services or cluster information.
 
-> ERROR [JobEngineCanary-191152] canary: No active job node found.
 
 - CRASH: The service throws the exception. For example,
 
-> 2018-03-19 12:07:30,218 INFO  [SparkSqlContextCanary-191207] canary : Completed > SparkSqlContextCanary CRASH [CRASH: Cannot call methods on a stopped SparkContext.
-> This stopped SparkContext was created at:
-> org.apache.spark.sql.SparderFunc.init(SourceFile)
-> io.kyligence.kap.rest.init.KapInitialTaskManager.checkAndInitSpark(SourceFile:69)
-> io.kyligence.kap.rest.init.KapInitialTaskManager.afterPropertiesSet(SourceFile:44)
-> org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethod
->  s(AbstractAutowireCapableBeanFactory.java:1687)
-> org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1624)
-> (No active SparkContext.)
+> There is serious exception in {canary name}. Please check canary.log for more details.
+>
+>  {canary name}'s response time exceeds threshold limit. Please check the dependency service.
 
-There are different criteria used for different status:
+There are more details about the criterias, especially for *ERROR* and *WARNING*.
 
 - MetaStoreCanary
   - *WARNING* : The operations including writing, reading and deleting on metadata take more than 300 milliseconds. 
   - *ERROR*: The operations including writing, reading and deleting on metadata take more than 1000 milliseconds.
-  - *ERROR*: Metastore failed to read a newly created resource. (msg: Metadata store failed to read a newly created resource.)
+  - *ERROR*: Metastore failed to read a newly created resource.
 - HiveCanary
   - *WARNING*: Listing Hive databases exceeds 20 seconds.
   - *ERROR*: Listing Hive databases exceeds 30 seconds.
 - MetadataCanary
   - *WARNING*: Verifying the consistency of metadata exceeds 10 seconds. 
   - *ERROR*: Verifying the consistency of metadata exceeds 30 seconds. 
-  - *ERROR*: Broken metadata exists. (msg: Metadata {entities} corrupt, with rule --{rule})
+  - *ERROR*: Broken metadata exists.
 - MetaSyncErrorCanary
-  - *WARNING*: Metastore synchronize failed. (msg: Metadata synchronization error detected (from {node1} to {node2}). Network was unstable or overloaded? Auto recovery attempted.)
+  - *WARNING*: Metastore synchronize failed. 
 - ZookeeperCanary
   - *WARNING*: The operation of checking zookeeper's availability / locking / unlocking exceeds 3 seconds. 
   - *ERROR*: he operation of checking zookeeper's availability / locking / unlocking exceeds 10 seconds. 
-  - *ERROR*: ZooKeeper is not alive. (msg: Zookeeper with connection {url} is not alive.)
-  - *ERROR*: Failed to require zookeeper lock. (msg: Failed to require zookeeper lock.)
-  - *ERROR*: Failed to release zookeeper lock. (msg: Failed to release zookeeper lock.)
+  - *ERROR*: ZooKeeper is not alive.
+  - *ERROR*: Failed to require zookeeper lock. 
+  - *ERROR*: Failed to release zookeeper lock. 
 - JobEngineCanary
-  - *ERROR*: One of the KAP nodes failed to report job engine status. (msg: Node {node} failed to report job engine status)
-  - *ERROR*: There is no active job engine node found. (msg: No active job node found.)
+  - *ERROR*: One of the KAP nodes failed to report job engine status. 
+  - *ERROR*: There is no active job engine node found. 
 - SparkSqlContextCanary
   - *WARNING*: The time of calculating the sum from 0 to 100 exceeds 10 seconds.
   - *ERROR*: The time of calculating the sum from 0 to 100 exceeds 30 seconds.

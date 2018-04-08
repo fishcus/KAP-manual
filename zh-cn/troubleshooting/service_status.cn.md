@@ -1,10 +1,8 @@
 ## 环境依赖服务检测
 
-从KAP V2.5.6开始，KAP会每15分钟进行环境依赖服务检测。对于ADMIN权限用户，可以在界面上清晰地看到相关信息与分级的警示提醒，方便用户了解到KAP所依赖服务的状态，具体展示界面如下。
+KAP从v 2.5.6版本开始增加了环境依赖服务检测的功能，每15分钟进行环境检测。对于ADMIN权限用户，可以在界面上清晰地看到相关信息与分级的警示提醒，帮助管理员诊断问题。
 
-环境依赖的服务状态（以下简称为服务状态）检测使用绿色、黄色和红色分别表示健康、警告和错误三种状态。当出现非正常状态时，您还可以通过移动鼠标到检测项来查看二级信息。
-
-KAP还提供了命令行工具来进行每个环境依赖检测，方便自行检查和排除错误。同时，检测结果将被保留在单独的日志文件里（`$KYLIN_HOME/logs/canary.log`），并包括在KyBot诊断包中。
+环境依赖的服务状态（以下简称为服务状态）检测使用绿色、黄色和红色分别表示正常、警告和错误三种状态。当出现非正常状态时，您还可以通过移动鼠标到检测项来查看二级信息。
 
 ![服务状态检测](images/service_status.cn.png)
 
@@ -19,8 +17,9 @@ KAP还提供了命令行工具来进行每个环境依赖检测，方便自行�
 * 任务执行引擎活性检查：检查任务执行引擎的活性
 
 
-
 ### 使用命令行进行单独诊断
+
+KAP还提供了命令行工具来进行每个服务状态检测，方便进行及时检查和排除错误。同时，检测结果将被保留在单独的日志文件里（`$KYLIN_HOME/logs/canary.log`），并包括在KyBot诊断包中。
 
 运行方法如下：
 
@@ -49,26 +48,22 @@ KAP还提供了命令行工具来进行每个环境依赖检测，方便自行�
 服务状态分为以下四种：
 
 + GOOD：正常
-+ WARNING：警告，如检测时间超过警告时限等，例如：
-> MetaStoreCanary WARNING [WARNING: Creating metadata (40 bytes) is slow and it may impact KAP performance and availability.]
-+ ERROR：错误，如检测时间超过错误时限等，例如：
-> ERROR [JobEngineCanary-191152] canary : No active job node found.
-+ CRASH：崩溃，如服务运行时抛异常等，例如：
-> 2018-03-19 12:07:30,218 INFO  [SparkSqlContextCanary-191207] canary : Completed > SparkSqlContextCanary CRASH [CRASH: Cannot call methods on a stopped SparkContext.
-> This stopped SparkContext was created at:
-> org.apache.spark.sql.SparderFunc.init(SourceFile)
-> io.kyligence.kap.rest.init.KapInitialTaskManager.checkAndInitSpark(SourceFile:69)
-> io.kyligence.kap.rest.init.KapInitialTaskManager.afterPropertiesSet(SourceFile:44)
-> org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethod
->  s(AbstractAutowireCapableBeanFactory.java:1687)
-> org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1624)
-> (No active SparkContext.)
++ WARNING：警告，如检测时间超过警告时限。此时KAP的性能可能会受到一定影响。
 
-WARNING和ERROR的检测标准主要如下：
+
++ ERROR：错误，如检测时间超过错误时限等。您需要检查相关环境依赖或集群状态，具体信息请参考报错信息。
+
+
++ CRASH：崩溃，服务运行时抛异常或Canary检测超时，例如：
+>  {canary name}存在严重异常，请查看canary.log获取详情
+>
+>  {canary name}响应时间超过临界阈值，请您检查相关环境依赖
+
+各项服务状态的检测标准（WARNING和ERROR）主要如下：
 + MetaStoreCanary
   - **WARNING**：执行metadata读、写、删操作超过300毫秒。
   - **ERROR**：执行metadata读、写、删操作超过1000毫秒。
-  - **ERROR**：对metadata执行写操作后，未能读取到新写的数据。 (msg: Metadata store failed to read a newly created resource.)
+  - **ERROR**：对metadata执行写操作后，未能读取到新写的数据。
 
 + HiveCanary
   - **WARNING**：查询hive所有database超过20秒。
@@ -77,21 +72,21 @@ WARNING和ERROR的检测标准主要如下：
 + MetadataCanary
   - **WARNING**：验证metadata完整性超过10秒。
   - **ERROR**：验证metadata完整性超过30秒。
-  - **ERROR**：Metadata完整性存在错误。 (msg: Metadata {entities} corrupt, with rule --{rule})
+  - **ERROR**：Metadata完整性存在错误。
 
 + MetaSyncErrorCanary
-  - **WARNING**：Metastore同步失败。 (msg: Metadata synchronization error detected (from {node1} to {node2}). Network was unstable or overloaded? Auto recovery attempted.)
+  - **WARNING**：Metastore同步失败。
 
 + ZookeeperCanary
   - **WARNING**：查看ZooKeeper活性、加锁、解锁超过3秒。
   - **ERROR**：查看ZooKeeper活性、加锁、解锁超过10秒。
-  - **ERROR**：ZooKeeper非活跃状态。(msg: Zookeeper with connection {url} is not alive.)
-  - **ERROR**：加锁失败。 (msg: Failed to require zookeeper lock.)
-  - **ERROR**：解锁失败。 (msg: Failed to release zookeeper lock.)
+  - **ERROR**：ZooKeeper非活跃状态。
+  - **ERROR**：加锁失败。
+  - **ERROR**：解锁失败。
 
 + JobEngineCanary
-  - **ERROR**：有KAP节点未能返回job engine状态。(msg: Node {node} failed to report job engine status)
-  - **ERROR**：没有活跃状态的任务构建引擎节点。 (msg: No active job node found.)
+  - **ERROR**：有KAP节点未能返回job engine状态。
+  - **ERROR**：没有活跃状态的任务构建引擎节点。
 
 + SparkSqlContextCanary
   - **WARNING**：使用spark context进行一次整数连加操作超过10秒
