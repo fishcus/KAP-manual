@@ -5,7 +5,7 @@ Qlik Sense
 
 ### 安装 Kyligence ODBC 驱动程序
 
-有关安装信息，参考页面 [Kyligence ODBC 驱动程序教程](../driver/kyligence-odbc.cn.md)。
+有关安装信息，参考页面 [Kyligence ODBC 驱动程序教程](../driver/kyligence_odbc.cn.md)。
 
 ### 安装 Qlik Sense
 
@@ -172,7 +172,7 @@ on (KYLIN_COUNTRY.COUNTRY=KYLIN_ACCOUNT.ACCOUNT_COUNTRY)
 7.进入刚才发布的KAP_QLIK应用，可以查看在**Qlik Sense Desktop**中所创建的图表。
 
 ![查看图表](images/Qlik/07_hub_qlik.PNG)
- 
+
 
 #### 直接在Qlik Sense Hub 中连接 KAP
 

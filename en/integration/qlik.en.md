@@ -4,7 +4,7 @@ Qlik Sense delivers intuitive platform solutions for self-service data visualiza
 
 ### Install Kyligence ODBC Driver
 
-For the installation information, please refer to [Kyligence ODBC Driver tutorial](../driver/kyligence-odbc.en.md).
+For the installation information, please refer to [Kyligence ODBC Driver tutorial](../driver/kyligence_odbc.en.md).
 
 #### Install Qlik Sense
 

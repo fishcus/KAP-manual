@@ -3,7 +3,7 @@
 Microsoft Power BI Desktop 是由微软推出的一款商业智能的专业分析工具，为用户提供简单而丰富的数据可视化及分析功能。
 
 ### 安装 Kyligence ODBC 驱动程序
-有关安装信息，参考页面 [Kyligence ODBC 驱动程序教程](../driver/kyligence-odbc.cn.md)。
+有关安装信息，参考页面 [Kyligence ODBC 驱动程序教程](../driver/kyligence_odbc.cn.md)。
 
 ### 安装 Power BI DirectQuery 插件
 

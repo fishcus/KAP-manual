@@ -2,7 +2,7 @@
 
 ### Install Kyligence ODBC Driver
 
-For the installation information, please refer to [Kyligence ODBC Driver tutorial](../driver/kyligence-odbc.en.md).
+For the installation information, please refer to [Kyligence ODBC Driver tutorial](../driver/kyligence_odbc.en.md).
 
 The Kyligence ODBC Driver needs to be installed in the machine or virtual environment where your Microstrategy Intelligenec Server is installed. 
 

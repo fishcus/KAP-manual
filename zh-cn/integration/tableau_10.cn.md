@@ -2,7 +2,7 @@
 
 ### 安装 Kyligence ODBC 驱动程序
 
-有关安装信息，参考页面 [Kyligence ODBC 驱动程序教程](../driver/kyligence-odbc.cn.md)。
+有关安装信息，参考页面 [Kyligence ODBC 驱动程序教程](../driver/kyligence_odbc.cn.md)。
 
 ### 连接 KAP Server
 在Tableau 10.X创建新的数据连接，单击左侧面板中的`其他数据库(ODBC)`，并在弹出窗口中选择`Kyligence ODBC Driver` 

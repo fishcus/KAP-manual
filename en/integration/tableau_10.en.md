@@ -2,7 +2,7 @@
 
 ### Install Kyligence ODBC Driver
 
-For the installation information, please refer to [Kyligence ODBC Driver tutorial](../driver/kyligence-odbc.en.md).
+For the installation information, please refer to [Kyligence ODBC Driver tutorial](../driver/kyligence_odbc.en.md).
 
 ### Connect to Kylin Server
 Connect Using Driver: Start Tableau 10.1 desktop, click `Other Database(ODBC)` in the left panel and choose `Kyligence ODBC Driver` in the pop-up window. 
