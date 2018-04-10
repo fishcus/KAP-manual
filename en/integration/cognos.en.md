@@ -2,7 +2,7 @@
 
 ### Install Kyligence ODBC Driver
 
-Please refer to this guide [Kyligence ODBC Driver Tutorial](../driver/kyligence-odbc.en.md) for installation.
+Please refer to this guide [Kyligence ODBC Driver Tutorial](../driver/kyligence_odbc.en.md) for installation.
 
 The Kyligence ODBC driver needs to be installed in the machine or virtual environment where your Cognos Server is installed.
 

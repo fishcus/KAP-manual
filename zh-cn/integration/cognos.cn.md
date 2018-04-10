@@ -2,7 +2,7 @@
 
 ### 安装 Kyligence ODBC 驱动程序
 
-有关安装信息，参考页面 [Kyligence ODBC 驱动程序教程](../driver/kyligence-odbc.cn.md)。
+有关安装信息，参考页面 [Kyligence ODBC 驱动程序教程](../driver/kyligence_odbc.cn.md)。
 
 Kyligence ODBC Driver需要安装在Cognos Server所在的服务器上。
 
