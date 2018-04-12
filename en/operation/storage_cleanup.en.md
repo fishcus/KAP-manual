@@ -1,36 +1,31 @@
-## Clean Garbage
+## Garbage Cleanup
 
-While KAP running for a period of time, there are tons of data becoming useless, yet they still occupied a lot of HDFS/HBase source, accumulation of useless data would influence performance of cluster at some degree.  The garbage data mainly including: 
+After KAP running for a period of time, there could be garbage data leftover. Garbage data occupies disk and metadata spaces and could downgrade overall system performance to some extent.  The garbage data mainly includes: 
 
-- Original Cube data of purged Cube
-- Original Segment data of merged Segment
-- Temporary files are not cleaned properly in the jobs
-- Cube build logs and job history occured long time ago
+- Leftover cube data after cube is purged
+- Leftover segment data after segment is merged
+- Temporary job files from error jobs
+- Cube build logs and job history that no need to keep forever
 
-KAP provides two common tools to clean garbage data. 
+> **Notice:** Data cannot be restored once deleted. It is essential to back up metadata and check the target resources carefully before deletion.
 
-```
-Please be noticed that data cannot be restored once removed. So it is essential to back up metadata and check the target resources carefully before using the tools. 
-```
+### Garbage Cleanup Command Tool
 
-### Clean Metadata
-The first one is a metadata tool, it has a delete parameter, which defaults to be false. When delete parameter turns to be true, this tool would start to delete metadata. The executing method is shown as below:
+KAP provides a command line tool to clean garbage data.
 
-```$KYLIN_HOME/bin/metastore.sh clean [--delete true]```
+```$KYLIN_HOME/bin/kylin.sh  io.kyligence.kap.tool.storage.KapGarbageCleanupCLI  [--delete true] [--force true]```
 
-During the first implementation of the tool, it is recommended to omit the delete parameter, which means only list all the resources need to be cleaned up for users to check, rather than actually start delete operation. After users confirm all listed resources are meant to be cleaned, then add the delete parameter and execute command. By default, the target resource list would be as following: 
+The tool searches and prints below garbage in the system, and optional delete them.
 
-- Invalid lookup table mirror, dictionary, Cube statistics
-- Action information and output of Cube build job had finished 30 days ago
+- Unused cube data files on HDFS
+- Hive intermediate tables, HDFS temporary files which were created during cube build but were not cleaned properly
+- Unused dictionary, lookup table mirror, and cube statistics
+- Cube build logs and job history
 
-### Clean Storage
-The second tool is storage cleaning tool. As its name, this tool aims to clean HBase and HDFS to release more resource. Similarly, this tool has a delete parameter as well, which defaults to be false. Only when it becomes true, the tool would start to delete resource from storage devices. The executing method is as below: 
+Parameters:
 
-```$KYLIN_HOME/bin/kylin.sh io.kyligence.kap.tool.storage.KapStorageCleanupCLI [--delete true] [--force true]```
+- `--delete true`: By default, the tool only does a dry run and prints out garbage resources without delete them. Specify this option for real deletion.
+- `--force true`: Delete all Hive intermediate tables including those possibly used by running jobs.
 
-During the first implementation of the tool, it is recommended to omit the delete parameter, which means only list all the resources need to be cleaned up for users to check, rather than actually start delete operation. After users confirm all listed resources are meant to be cleaned, then add the delete parameter and execute command. By default, the target resource list would be as following: 
+It is recommended to always dry run this tool first, without the `--delete true` parameter, to list all garbage resources. Verify the list before actual deletion. Also perform a metadata backup before running this tool is a good practice.
 
-- Invalid HTable created 2 days ago
-- The Hive intermediate table, HDFS temporary file which were created in the Cube building period but were not cleaned properly
-
-If the force parameter is true, then all Hive tables are deleted.
