@@ -52,6 +52,10 @@ This configuration is used to address the issue. If it's set to *true*, Cube is 
 
 Some BI software will send Create Table statement to create a permanent or temporary table in the data source. If this setting is set to true, the create table statement in the query will be converted to a with statement, when a later query utilizes the table that the query created in the previous step, the create table statement will be converted into a subquery, which can hit on a Cube if there is one to serve the query. 
 
+### kap.smart.conf.model.cc.enabled
+
+Using SQL statements to generate model, the calculated columns will be needed if SQL statements may contain expressions. If this setting is set to true, KAP will automatically generate the calculated columns and those calculated columns will be set as dimension.
+
 ## JVM Configuration Setting
 
 In `$KYLIN_HOME/conf/setenv.sh` (for version lower than 2.4, `$KYLIN_HOME/bin/setenv.sh`), two sample settings for `KYLIN_JVM_SETTINGS` environment variable are given. The default setting use relatively less memory. You can comment it and then uncomment the next line to allocate more memory for KAP. The default configuration is: 
