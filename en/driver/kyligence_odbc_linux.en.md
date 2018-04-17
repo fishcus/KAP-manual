@@ -26,9 +26,10 @@ For 64-bits
 
    > *Note：please donot uncompress Kyligence ODBC Driver under root folder, otherwise BI servers might not be able to access necessary files because of authoriztaion.*
 
-2. Setup environment param of third-party libs
+3. Setup environment param of third-party libs
 
    `cd ODBC_DRIVER/`
+
    `source setenv.sh`
 
 4. Check library dependency

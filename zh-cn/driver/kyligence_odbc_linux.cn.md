@@ -29,6 +29,7 @@
 3. 设置第三方库的环境变量
 
    `cd ODBC_DRIVER/`
+
    `source setenv.sh`
 
 4. 检查库的依赖

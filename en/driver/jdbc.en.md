@@ -1,4 +1,4 @@
-## JDBC Driver
+## Kyligence JDBC Driver
 KAP provides JDBC driver, through which applications with JDBC interface can access KAP to query data.  
 
 Under KAP's installation directory's subdirectory "lib", users would find a jar package named as kylin-jdbc-kap-*.jar, which is the JDBC driver of KAP.

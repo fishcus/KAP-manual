@@ -36,10 +36,10 @@ In this section, we will take Windows 7 as an example to introduce how to instal
 
    ![Add Kyligence ODBC Driver](images/odbc_02_en.png)
 
+3. In the pop-up window, input the KAP server information, as shown in the figure: 
 
-1. In the pop-up window, input the KAP server information, as shown in the figure: 
 
-   ![DSN setting](images/odbc_03_en.png)
+![DSN setting](images/odbc_03_en.png)
 
 Where, the parameters are described as below: 
 
@@ -50,11 +50,13 @@ Where, the parameters are described as below:
 - Password: password to login KAP 
 - Project: the name of the KAP project to use for the query
 
-1. Click **Test**
+
+
+4. Click **Test**
 
    Once it connects to the data source successfully, the following dialog will appear.
 
-   ![Connect Successfully](images/odbc_04_en.png)
+![Connect Successfully](images/odbc_04_en.png)
 
 ## ODBC Connection String
 

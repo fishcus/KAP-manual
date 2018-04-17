@@ -26,7 +26,7 @@ For the installation information, please refer to [Kyligence ODBC Driver tutoria
 
 2.  In the pop-up window, type the required database information, and select **DirectQuery** as Data Connectivity mode.
 
-     > Note: do not input http:// in the server. You may need to add port number 443 and https:// in the server, if the KAP is deployed on Azure.
+     > Note: If your KAP is deployed on Azure, please add **https://** in server url and input 443 as PORT number
 
      ![Data Connectivity mode: DirectQuery](images/powerbi/Picture6.png)
 

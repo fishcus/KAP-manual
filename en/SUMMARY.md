@@ -102,7 +102,7 @@
     * [Multi-node Deployment](kyanalyzer/multi-nodes_deploy.en.md)
 * [Integration with BI tools](integration/BI.en.md)
     * [Driver](driver/README.md)
-        * [JDBC driver](driver/jdbc.en.md)
+        * [Kyligence JDBC driver](driver/jdbc.en.md)
         * [Kyligence ODBC Driver](driver/kyligence_odbc.en.md)
           * [Windows](driver/kyligence_odbc_win.en.md)
           * [Linux](driver/kyligence_odbc_linux.en.md)

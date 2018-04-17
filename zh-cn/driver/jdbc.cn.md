@@ -1,4 +1,4 @@
-## JDBC 驱动程序
+## Kyligence JDBC 驱动程序
 KAP提供了JDBC驱动程序，支持JDBC接口的应用可以通过该驱动程序访问KAP进行数据查询。
 
 用户可以在KAP安装目录的lib子目录下，找到名称为kylin-jdbc-kap-*.jar的jar包，这就是KAP的JDBC驱动。
