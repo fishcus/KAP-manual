@@ -112,7 +112,9 @@
         * [Power BI](integration/powerbi.en.md)
         * [Apache Zeppelin](integration/zeppelin.en.md)
         * [Cognos](integration/cognos.en.md)
-        * [MicroStrategy](integration/microstrategy_10_4.en.md)
+        * MicroStrategy
+          * [MicroStrategy Secure Enterprise](integration/microstrategy_enterprise.en.md)
+          * [MicroStrategy Workstation/Desktop](microstrategy_desktop.en.md)
         * [Cognos](integration/cognos.en.md)
         * [Qlik Sense](integration/qlik.en.md)
 * [REST API](rest/README.md)

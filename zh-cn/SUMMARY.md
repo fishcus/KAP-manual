@@ -122,7 +122,9 @@
         * [Excel ](integration/excel_2018.cn.md)
         * [Power BI](integration/powerbi.cn.md)
         * [Apache Zeppelin](integration/zeppelin.cn.md)
-        * [MicroStrategy](integration/microstrategy_10_4.cn.md)
+        * MicroStrategy
+          * [MicroStrategy Secure Enterprise](integration/microstrategy_enterprise.cn.md)
+          * [MicroStrategy Workstation/Desktop](microstrategy_desktop.cn.md)
         * [Cognos](integration/cognos.cn.md)
         * [Qlik Sense](integration/qlik.cn.md)
         * [Smartbi](integration/smartbi.cn.md)
