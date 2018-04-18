@@ -1,16 +1,16 @@
-## 在 MapR cluster 中快速安装 KAP
+## 在 MapR Cluster 中快速安装 KAP
 
 MapR cluster相比于MapR sandbox环境提供了更多的计算存储资源,但是同时环境上也存在一些差异。
 
 ### 准备运行环境
 
-1. 准备MapR cluster环境，本文使用的是AWS marketplace中的 MapR Converged Community Edition 6.0a1，模板链接https://aws.amazon.com/marketplace/pp/B010GJS5WO?qid=1522845995210&sr=0-4&ref_=srh_res_product_title。
+1. 准备MapR cluster环境，本文使用的是AWS marketplace中的 MapR Converged Community Edition 6.0a1，可以点击如下[链接](https://aws.amazon.com/marketplace/pp/B010GJS5WO?qid=1522845995210&sr=0-4&ref_=srh_res_product_title)获取相关信息。
 
 2. 在安装MapR cluster时，推荐给每个节点分配公网ip。安装完成后，需要在安全组开放一些常用的端口，如7070（kylin）、8090(RM)等。
 
-3. MapR cluster Node不能直接通过ssh访问，需要以MapR installer节点当做跳板机，再通过ssh连接访问，ssh秘钥保存在installer节点的 /opt/mapr/installer/data目录中。
+3. MapR cluster Node不能直接通过ssh访问，需要以MapR installer节点当做跳板机，再通过ssh连接访问，ssh秘钥保存在installer节点的 `/opt/mapr/installer/data`目录中。
 
-4. 在Mapr Cluster Node中访问MapR cluster资源，需要生成mapr_ticket。生成指令为maprlogin password，如果不清楚当前账户密码，请用 passwd {user}设置密码。
+4. 在Mapr Cluster Node中访问MapR cluster资源，需要生成mapr_ticket。生成指令为`maprlogin password`，如果不清楚当前账户密码，请用 `passwd {user}`设置密码。
 
 ### 下载安装 KAP
 
@@ -63,9 +63,8 @@ export SPARK_HOME=/opt/mapr/spark/spark-2.1.0
 #command -v hdfs                         || quit "ERROR: Command 'hdfs' is not accessible. Please check Hadoop client setup."
 ```
 
-**如果 HBase 不可用或者出现 HBase shell 可以用，但是启动 KAP 会发生无法找到 metadata 的情况，则改用 MySQL 作为 metadata 源，详情参考：[基于关系型数据库的 Metastore 配置](http://docs.kyligence.io/v2.5/zh-cn/config/metadata_jdbc.cn.html)**。
-
-**如果出现 Hadoop 报 ArrayIndexOutOfBounds 的错误，可以考虑将 /opt/mapr/hadoop/hadoop-2.7.0/etc/hadoop/yarn-site.xml 中的 true 改为 false**。
+* 如果 HBase 不可用或者出现 HBase shell 可以用，但是启动 KAP 会发生无法找到 metadata 的情况，则改用 MySQL 作为 metadata 源，详情参考：[基于关系型数据库的 Metastore 配置](http://docs.kyligence.io/v2.5/zh-cn/config/metadata_jdbc.cn.html)。
+* 如果出现 Hadoop 报 ArrayIndexOutOfBounds 的错误，可以考虑将 `/opt/mapr/hadoop/hadoop-2.7.0/etc/hadoop/yarn-site.xml` 中的 true 改为 false。
 
 > 提示：您可以在任何时候手动检查运行环境。运行下述命令：
 >
@@ -73,7 +72,8 @@ export SPARK_HOME=/opt/mapr/spark/spark-2.1.0
 > $KYLIN_HOME/bin/check-env.sh
 > ```
 
-**如果启动时yarn上提交的spark-context任务执行失败，出现 requestedVirtualCores > maxVirtualCores，可以考虑修改yarn-site.xml的yarn.scheduler.maximum-allocation-vcores配置**
+* 如果启动时yarn上提交的spark-context任务执行失败，出现 `requestedVirtualCores > maxVirtualCores`，可以考虑修改`yarn-site.xml`的`yarn.scheduler.maximum-allocation-vcores`配置
+
 ``` shell
 vi {hadoop_conf_dir}/yarn-site.xml
 ```
@@ -83,12 +83,14 @@ vi {hadoop_conf_dir}/yarn-site.xml
 	<value>24</value>
 </property>
 ```
-或者将kap profile设置成min_profile
+​	或者将`kap profile`设置成`min_profile`
+
 ```shell
 rm -f $KYLIN_HOME/conf/profile
 ln -sfn $KYLIN_HOME/conf/profile_min $KYLIN_HOME/conf/profile
 ```
-**如果使用了kafka，请检查环境中的zookeeper端口，一般来说mapr开放的zk端口为5181，而kafka中默认连接zk的端口为2181。**
+* 如果使用了kafka，请检查环境中的zookeeper端口，一般来说mapr开放的zk端口为5181，而kafka中默认连接zk的端口为2181。
+
 ```shell
 netstat -ntl | grep 5181(2181)
 ```

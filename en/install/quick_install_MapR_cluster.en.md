@@ -1,4 +1,4 @@
-## KAP Quick Start on MapR cluster
+## KAP Quick Start on MapR Cluster
 
 MapR cluster provides more calculation and storage resources than MapR sandbox. In the meantime, there are some differences in configuration. 
 
@@ -10,7 +10,7 @@ We suggest you to assign public IP for every node in MapR cluster when you insta
 
 To access a MapR cluster Node, you nedd to ssh login into a MapR installer node as stepping stones first. And the ssh private keys of MapR cluster nodes is saved in /opt/mapr/installer/data.
 
-To access MapRFS in MapR cluster node, you need to use command [maprlogin password] to generate a MapR ticket. If you don't know the password of linux user, you can type [passwd {user}] to reset password.
+To access MapRFS in MapR cluster node, you need to use command `maprlogin password`to generate a MapR ticket. If you don't know the password of linux user, you can type `passwd {user}` to reset password.
 
 ### Install KAP
 
@@ -51,7 +51,7 @@ export HIVE_CONF=/opt/mapr/hive/hive-2.1/conf
 export SPARK_HOME=/opt/mapr/spark/spark-2.1.0
 ```
 
-**Note：in MapR, the file operating command is`hadoop fs`，not`hdfs`，this may block the environment check. You need to modify the shell file`$KYLIN_HOME/bin/check-os-command.sh`and comment out this line：**
+*Note：in MapR, the file operating command is`hadoop fs`，not`hdfs`，this may block the environment check. You need to modify the shell file`$KYLIN_HOME/bin/check-os-command.sh`and comment out this line:*
 
 ```shell
 #command -v hdfs                         || quit "ERROR: Command 'hdfs' is not accessible. Please check Hadoop client setup."
@@ -59,9 +59,9 @@ export SPARK_HOME=/opt/mapr/spark/spark-2.1.0
 
 ``bin/check-env.sh`` will check if all environment meet the KAP requirements.
 
-**If HBase shell is not available to create table, you can change MySQL as metadata storage, refer to [use jdbc source as KAP metadata storage](http://docs.kyligence.io/v2.5/zh-cn/config/metadata_jdbc.cn.html)**
+* If HBase shell is not available to create table, you can change MySQL as metadata storage, refer to [use jdbc source as KAP metadata storage](http://docs.kyligence.io/v2.5/zh-cn/config/metadata_jdbc.cn.html)
+* If spark-context job in yarn runs failed with error message `requestedVirtualCores > maxVirtualCores` when starting KAP, you can change `yarn.scheduler.maximum-allocation-vcores` in yarn-site.xml. 
 
-**If spark-context job in yarn runs failed with error message [requestedVirtualCores > maxVirtualCores] when starting KAP, you can change [yarn.scheduler.maximum-allocation-vcores] in yarn-site.xml 
 ``` shell
 vi {hadoop_conf_dir}/yarn-site.xml
 ```
@@ -71,12 +71,13 @@ vi {hadoop_conf_dir}/yarn-site.xml
 	<value>24</value>
 </property>
 ```
-or you can change current profile to min profile
+​	or you can change current profile to min profile
 ```shell
 rm -f $KYLIN_HOME/conf/profile
 ln -sfn $KYLIN_HOME/conf/profile_min $KYLIN_HOME/conf/profile
 ```
-**If kafka is used, please check the zookeeper port. Generally, port 5181 is used as default zookeeper port in MapR cluster, but port 2181 is used in kafka.  
+* If kafka is used, please check the zookeeper port. Generally, port 5181 is used as default zookeeper port in MapR cluster, but port 2181 is used in kafka.  
+
 ```shell
 netstat -ntl | grep 5181(2181)
 ```
