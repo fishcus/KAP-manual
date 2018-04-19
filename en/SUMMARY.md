@@ -115,7 +115,7 @@
         * [Cognos](integration/cognos.en.md)
         * MicroStrategy
           * [MicroStrategy Secure Enterprise](integration/microstrategy_enterprise.en.md)
-          * [MicroStrategy Workstation/Desktop](microstrategy_desktop.en.md)
+          * [MicroStrategy Workstation/Desktop](integration/microstrategy_desktop.en.md)
         * [Cognos](integration/cognos.en.md)
         * [Qlik Sense](integration/qlik.en.md)
 * [REST API](rest/README.md)

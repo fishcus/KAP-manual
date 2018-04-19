@@ -125,7 +125,7 @@
         * [Apache Zeppelin](integration/zeppelin.cn.md)
         * MicroStrategy
           * [MicroStrategy Secure Enterprise](integration/microstrategy_enterprise.cn.md)
-          * [MicroStrategy Workstation/Desktop](microstrategy_desktop.cn.md)
+          * [MicroStrategy Workstation/Desktop](integration/microstrategy_desktop.cn.md)
         * [Cognos](integration/cognos.cn.md)
         * [Qlik Sense](integration/qlik.cn.md)
         * [Smartbi](integration/smartbi.cn.md)
