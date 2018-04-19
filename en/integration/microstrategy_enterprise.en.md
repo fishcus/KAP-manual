@@ -21,7 +21,7 @@ Kyligence currently support MicroStrategy Secure Enterprise 10.8 or above on Win
 
 #### Update Database object
 
-1. Download and copy the connector file onto the machine where MicroStrategy Intelligence Server is installed. The connector file can be found on https://community.microstrategy.com/s/article/Kyligence-Cloud .
+1. Download and copy the connector file onto the machine where MicroStrategy Intelligence Server is installed. The connector file can be found [here](https://community.microstrategy.com/s/article/Kyligence-Analytic-Platform).
 
 2. Extract the zip file to its own directory, separating from the existing MicroStrategy installation directory.
 
@@ -100,7 +100,7 @@ Next, you will need to finish below configurations in all MicrStrategy Web machi
 
         ![](images/microstrategy_10_8/default_icon.png)
 
-      * To customize your own icon, put the below image found in the KyligenceConnectorFiles.zip to in the location <MSTR_WEB_SERVER>\javascript\mojo\css\images\DI\connectors\
+      * To customize your own icon, put the below image found in the KyligenceConnectorFiles.zip to in the location `<MSTR_WEB_SERVER>\javascript\mojo\css\images\DI\connectors\`
 
         ![](images/microstrategy_10_8/ky_icon.png)
 
