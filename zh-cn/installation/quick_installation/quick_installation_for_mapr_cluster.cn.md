@@ -63,7 +63,7 @@ export SPARK_HOME=/opt/mapr/spark/spark-2.1.0
 #command -v hdfs                         || quit "ERROR: Command 'hdfs' is not accessible. Please check Hadoop client setup."
 ```
 
-* 如果 HBase 不可用或者出现 HBase shell 可以用，但是启动 KAP 会发生无法找到 metadata 的情况，则改用 MySQL 作为 metadata 源，详情参考：[基于关系型数据库的 Metastore 配置](http://docs.kyligence.io/v2.5/zh-cn/config/metadata_jdbc.cn.html)。
+* 如果 HBase 不可用或者出现 HBase shell 可以用，但是启动 KAP 会发生无法找到 metadata 的情况，则改用 MySQL 作为 metadata 源，详情参考：[基于关系型数据库的 Metastore 配置](../../config/metastore_jdbc_mysql.cn.md)。
 * 如果出现 Hadoop 报 ArrayIndexOutOfBounds 的错误，可以考虑将 `/opt/mapr/hadoop/hadoop-2.7.0/etc/hadoop/yarn-site.xml` 中的 true 改为 false。
 
 > 提示：您可以在任何时候手动检查运行环境。运行下述命令：
@@ -119,7 +119,7 @@ ps -ef | grep kylin
 
 当 KAP 顺利启动后，您可以打开 web 浏览器，访问`http://<host_name>:7070/kylin/`。请将其中`<host_name>`替换为具体的 host 名、IP 地址或域名。默认端口值为`7070`。默认用户名和密码分别为`ADMIN`和`KYLIN`。
 
-当您成功从 KAP GUI 登录后，可以通过构建 Sample Cube 以验证 KAP 的功能。请参阅[安装验证](install_validate.cn.md)。
+当您成功从 KAP GUI 登录后，可以通过构建 Sample Cube 以验证 KAP 的功能。请参阅[安装验证](../installation_validation.cn.md)。
 
 ### 停止 KAP
 

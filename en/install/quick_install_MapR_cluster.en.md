@@ -14,7 +14,7 @@ To access MapRFS in MapR cluster node, you need to use command `maprlogin passwo
 
 ### Install KAP
 
-To obtain KAP package, please refer to [KAP release notes]((../release/README.md)). Note that KAP and KAP Plus are different on storage, yet you don't need to worry about installation difference of them.
+To obtain KAP package, please refer to [KAP release notes](../release/README.md). Note that KAP and KAP Plus are different on storage, yet you don't need to worry about installation difference of them.
 
 Copy KAP binary package into the server mentioned above, and decompress it to `/usr/local`.
 
@@ -59,7 +59,7 @@ export SPARK_HOME=/opt/mapr/spark/spark-2.1.0
 
 ``bin/check-env.sh`` will check if all environment meet the KAP requirements.
 
-* If HBase shell is not available to create table, you can change MySQL as metadata storage, refer to [use jdbc source as KAP metadata storage](http://docs.kyligence.io/v2.5/zh-cn/config/metadata_jdbc.cn.html)
+* If HBase shell is not available to create table, you can change MySQL as metadata storage, refer to [use jdbc source as KAP metadata storage](../config/metastore_jdbc_mysql.en.md)
 * If spark-context job in yarn runs failed with error message `requestedVirtualCores > maxVirtualCores` when starting KAP, you can change `yarn.scheduler.maximum-allocation-vcores` in yarn-site.xml. 
 
 ``` shell
