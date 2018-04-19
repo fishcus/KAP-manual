@@ -43,22 +43,11 @@
 
    ![](images/microstrategy_10_8/desktop_3.png)
 
-3. 接着，您可以任意选择 DSN 数据源或 DSN-less 数据源。如果使用 DSN 数据源的话则首先需要在 ODBC Manager 中先配置DSN。选择数据类型为 Kyligence。
+3. 接着，您可以任意选择 DSN 数据源或 DSN-less 数据源。如果使用 DSN 数据源的话则首先需要在 ODBC Manager 中先配置DSN。选择数据类型为 Kyligence。![](images/microstrategy_10_8/desktop_4.png)![](images/microstrategy_10_8/desktop_5.png)
 
-   ![](images/microstrategy_10_8/desktop_4.png)
+4. 成功创建数据源后即可选择表、表连接关系及定义维度和度量，以匹配 Kyligence中的数据模型。![](images/microstrategy_10_8/desktop_6.png)
 
-   ![](images/microstrategy_10_8/desktop_5.png)
+5. 为了完全发挥经过预计算的cube的能力，请选用 Connect Live 方式进行连接，而无需将数据导入内存。![](images/microstrategy_10_8/desktop_7.png)
 
-
-4. 成功创建数据源后即可选择表、表连接关系及定义维度和度量，以匹配 Kyligence中的数据模型。
-
-  ![](images/microstrategy_10_8/desktop_6.png)
-
-5. 为了完全发挥经过预计算的cube的能力，请选用 Connect Live 方式进行连接，而无需将数据导入内存。 
-
-  ![](images/microstrategy_10_8/desktop_7.png)
-
-6. 连接数据之后就可以自由地在 MicrStrategy Desktop中使用 Kyligence中的数据源了。
-
-  ![](images/microstrategy_10_8/desktop_8.png)
+6. 连接数据之后就可以自由地在 MicrStrategy Desktop中使用 Kyligence中的数据源了。![](images/microstrategy_10_8/desktop_8.png)
 

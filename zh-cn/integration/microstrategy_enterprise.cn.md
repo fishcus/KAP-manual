@@ -47,22 +47,16 @@ Kyligence目前支持 MicroStrategy Secure Enterprise 10.8及更高版本。
 #### 更新Intelligence Server上的数据类型映射
 
 1. 将 DTMAPPING.xslt 和 AddConnector.jar 复制到需要安装连接器的机器。
+
 2. 查找安装Intelligence Server的机器上的DTMAPPING.pds文件的位置
 
-> 在Windows上，默认位置是C：\ Program Files（x86）\ Common Files \ MicroStrategy，也指向环境变量$ MSTR_CLASSPATH
+   > 在Windows上，默认位置是C：\ Program Files（x86）\ Common Files \ MicroStrategy，也指向环境变量$ MSTR_CLASSPATH
 
 3. 用 DTMAPPING.pds 所在的文件夹替换 <location> 并运行以下命令。
 
-```
-java -jar AddConnector.jar --target <location>\DTMAPPING.pds --file DTMAPPING.xslt
-```
+   ``` java -jar AddConnector.jar --target <location>\DTMAPPING.pds --file DTMAPPING.xslt```
 
-> 注：
->
-> 运行该命令需要具有复制和修改现有 DTMAPPING.pds文件的权限。
->
-> 该命令将在 <location> 中创建原始 DTMAPPING.pds文件的备份。
->
+   > 注：运行该命令需要具有复制和修改现有 DTMAPPING.pds文件的权限。该命令将在 <location> 中创建原始 DTMAPPING.pds文件的备份。
 
 4. 重启 Intelligence Server.
 

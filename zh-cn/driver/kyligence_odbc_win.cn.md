@@ -28,34 +28,24 @@
 
    32 位 ODBC 驱动：单击**开始 -> 运行**，并打开 C:\Windows\SysWOW64\odbcad32.exe
 
-   64 位 ODBC 驱动：单击**控制面板 ->管理工具**，找到并打开**数据源(ODBC)**
+   64 位 ODBC 驱动：单击**控制面板 ->管理工具**，找到并打开**数据源(ODBC)**![ODBC 数据源管理器](images/kyligence_odbc_01.png)
 
-![ODBC 数据源管理器](images/kyligence_odbc_01.png)
+2. 切换至**系统 DSN** 选项卡，单击**添加**，在弹出的驱动程序选择框中选择 **KyligenceODBCDriver**，然后单击**完成**按钮。![dbc](images/odbc2.png)
 
-2. 切换至**系统 DSN** 选项卡，单击**添加**，在弹出的驱动程序选择框中选择 **KyligenceODBCDriver**，然后单击**完成**按钮。
+3. 在弹出的对话框中输入 KAP 服务器信息，如图所示：![DSN 设置](images/kyligence_odbc_03.png)
 
-![dbc](images/odbc2.png)
+   其中，各项参数介绍如下：
 
-3. 在弹出的对话框中输入 KAP 服务器信息，如图所示：
-
-![DSN 设置](images/kyligence_odbc_03.png)
-
-其中，各项参数介绍如下：
-
-- Data Source Name：数据源名称
-- Host：KAP 服务器地址
-- Port：KAP 服务器端口号
-- Username：KAP 服务登录用户名
-- Password：KAP 服务登录密码
-- Project：查询所使用的 KAP 项目名称
-
-
+   * Data Source Name：数据源名称
+   * Host：KAP 服务器地址
+   * Port：KAP 服务器端口号
+   * Username：KAP 服务登录用户名
+   * Password：KAP 服务登录密码
+   * Project：查询所使用的 KAP 项目名称
 
 4. 单击 **Test** 按钮
 
-   连接成功后，将显示如下对话框。
-
-![连接成功](images/kyligence_odbc_04.png)
+   连接成功后，将显示如下对话框。![连接成功](images/kyligence_odbc_04.png)
 
 ## 连接字符串
 
