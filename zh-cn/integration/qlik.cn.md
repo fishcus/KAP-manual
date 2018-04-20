@@ -18,23 +18,23 @@ Qlik Sense
 
 2. 输入 Qlik 用户名和密码，接着系统将弹出以下对话框。单击**创建新应用程序**。
 
-![创建新应用程序](images/qlik/welcome_to_qlik_desktop.png)
+![创建新应用程序](images/qlik/welcome_to_qlik_desktop.cn.png)
 
 为新建的应用程序指定名称，该名称不得与现有的应用程序相同。创建完成后，打开此应用程序。在本例中，我们将此应用程序命名为“Kylinfortesting”。
 
-![为新的应用程序命名](images/qlik/create_new_application.png)
+![为新的应用程序命名](images/qlik/create_new_application.cn.png)
 
 3. 应用程序视图中有两个选项，选择下方的**脚本编辑器**。
 
-![选择脚本编辑器](images/qlik/script_editor.png)
+![选择脚本编辑器](images/qlik/script_editor.cn.png)
 
 此时会显示数据加载编辑器窗口。单击页面右上方的**创建新连接**。
 
-![创建数据连接](images/qlik/create_data_connection.png)
+![创建数据连接](images/qlik/create_data_connection.cn.png)
 
 然后选择创建的 **DSN**，不需要填写帐户信息，单击**创建**即可。
 
-![ODBC 连接](images/qlik/odbc_connection.png)
+![ODBC 连接](images/qlik/odbc_connection.cn.png)
 
 4. 将 "TimeFormat"、"DateFormat" 和 "TimestampFormat" 的默认脚本更改为：
 
@@ -130,7 +130,7 @@ on (KYLIN_COUNTRY.COUNTRY=KYLIN_ACCOUNT.ACCOUNT_COUNTRY)
 
 选择所需的图表类型，并根据需要添加维度和度量项。
 
-![选择所需图表类型、维度和度量](images/qlik/add_dimension.png)
+![选择所需图表类型、维度和度量](images/qlik/add_dimension.cn.png)
 
 这样，新的工作表创建完成，KAP 与 Qlik Sense 相连。现在您可以在 Qlik Sense 中查看 KAP 数据。
 
