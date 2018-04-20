@@ -43,9 +43,9 @@
    * Password：KAP 服务登录密码
    * Project：查询所使用的 KAP 项目名称
 
-4. 单击 **Test** 按钮
+4. 单击 **Test** 按钮，连接成功后，将显示如下对话框。
 
-   连接成功后，将显示如下对话框。![连接成功](images/kyligence_odbc_04.png)
+   ![连接成功](images/kyligence_odbc_04.png)
 
 ## 连接字符串
 
