@@ -61,4 +61,7 @@ SortBy列表中的第1列编码必须为“integer”，“date”或“time”�
 ![](images/table_index/table_index_index.png)
 
 1. “discrete”索引是默认索引。该索引可以支持快速匹配相等查询，在大于或小于查询时，会退化为全表查询。
+
 2. “fuzzy”索引是服务于含有like过滤的查询的。如果某一列可能应用like过滤，请将其设置为“fuzzy”。不建议将过多的列设置为“fuzzy”，因为该类型索引会增加存储开销。
+
+   > 使用明细查询时，如果like过滤的列并未设置为fuzzy属性，可能会导致查询时间增加。

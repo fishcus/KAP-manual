@@ -56,7 +56,9 @@ Some BI software will send Create Table statement to create a permanent or tempo
 
 Using SQL statements to generate model, the calculated columns will be needed if SQL statements may contain expressions. If this setting is set to true, KAP will automatically generate the calculated columns and those calculated columns will be set as dimension.
 
-### kylin.cube.is-automerge-enabled=false
+> Only these functions are currently supported : SUM({EXPR}), AVG({EXPR}), array[{INDEX}], CASE .. WHEN ..
+
+### kylin.cube.is-automerge-enabled
 
 The auto merge function is enabled by default. If this setting is set to false, the function will be closed. Although the auto merge thresholds were setted, the merge job would not be built.
 

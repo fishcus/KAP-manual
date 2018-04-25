@@ -62,4 +62,7 @@ You can click *Index* drop down list of each column in table index configuration
 ![](images/table_index/table_index_index.png)
 
 1. "discrete" index is the default index. It supports fast match of equal condition, but will degrade to table scan when processing ">" or "<" condition. 
+
 2. "fuzzy" index is for query with like filter. If query with like filter will be applied to one column, please set the index as "fuzzy". It is not suggested to set index of too many columns as "fuzzy", which will increase storage overhead. 
+
+   > If query with the like filter applied to the columns which are not set as "fuzzy", it may spend more time when using table index.

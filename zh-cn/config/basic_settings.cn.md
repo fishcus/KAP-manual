@@ -1,4 +1,5 @@
-## 重要参数配置 
+## 重要参数配置
+
 *kylin.properties* 在 KAP 的配置文件中占据重要位置。本节内容将对一些常用的配置项进行详细介绍。
 
 用户可以将个性化配置写在 *kylin.properties.override* 文件中，这个文件中的配置项将会覆盖*kylin.properties*中的默认值。在系统升级中，用户仅需复制*kylin.properties.override*到新版本的conf路径，即可实现配置升级。
@@ -45,7 +46,9 @@ Cube中存储的是经过预处理的数据，这些数据在大多数情况下�
 
 通过SQL语句自动补全建模中，当SQL语句中含有表达式时，需要创建可计算列。将该参数设置为true时，KAP会根据SQL语句自动创建相应的可计算列，需要注意的是可计算列会被自动设置为维度。
 
-### kylin.cube.is-automerge-enabled=false
+> 当前仅支持以下函数：SUM({EXPR})，AVG({EXPR})，array[{INDEX}]，CASE .. WHEN ..
+
+### kylin.cube.is-automerge-enabled
 
 默认状态下，segment自动合并功能为开启状态。将该参数设置为false时，自动合并功能会被关闭。即使cube更新设置中，添加了自动合并阈值也不会触发合并任务。
 
