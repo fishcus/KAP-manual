@@ -11,6 +11,7 @@ The Linux account running KAP must have required access permissions to Hadoop cl
 ### Certificated and Tested Commercial Hadoop Distributions
 * Cloudera CDH 5.7+
 * Hortonworks HDP 2.2+
+* MapR 5.2+
 
 
 ### Compatible Hadoop Versions

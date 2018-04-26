@@ -35,6 +35,7 @@ KAP 需要一个状态良好的 Hadoop 集群作为其运行环境，以便为�
 
 + Cloudera CDH 5.7+
 + Hortonworks HDP 2.2+
++ MapR 5.2+
 + 华为 FusionInsight C60+
 
 
