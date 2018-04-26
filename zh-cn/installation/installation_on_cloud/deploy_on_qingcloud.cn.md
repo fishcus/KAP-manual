@@ -4,13 +4,41 @@
 
 青云 AppCenter 是青云提供的云上企业级应用交付平台，包含了一系列云上大数据生态应用，如Hadoop、Zookeeper等，可以显著降低云端应用开发、部署及运维的复杂度。
 
-在青云AppCenter中，KAP是一个独立的应用程序，允许用户一键部署一个全新的包含Hadoop、Hive、KAP的完整集群；同时，KAP也是青云Hadoop服务（QingMR）中的一部分，允许用户在部署QingMR服务时通过勾选安装KAP到Hadoop集群当中。
+在青云AppCenter中，Kyligence Analytics Platform是一个独立的应用程序，允许用户一键部署一个全新的包含Hadoop、Hive、KAP的完整集群；同时，KAP也是青云Hadoop服务（QingMR）中的一部分，允许用户在部署QingMR服务时通过勾选安装KAP到Hadoop集群当中。
 
-### 安装 KAP
+### 安装 Kyligence Enterprise
 
-#### 通过 KAP 应用安装
+#### 前置条件：Zookeeper，网络配置
 
-安装前置条件：正常运行的Zookeeper服务
+1）由于Kyligecne Analytics Platform需要依赖ZooKeeper进行集群状态的管理，需要首先部署ZooKeeper集群。如果已有ZooKeeper集群，这步可以忽略。
+
+2）创建ZooKeeper集群：选择“大数据平台”->"ZooKeeper"
+
+![QingCloud ZooKeeper](images/qingcloud_zk1.png)
+
+3) 网络配置，在创建Kyligence集群或者ZooKeeper集群时，都会提示创建私有网络，按照提示可以顺利创建所需要的“路由器”，“私有网络”，并绑定“私有网络”到“路由器”上。
+
+![QingCloud Network](images/qingcloud_network.png)
+
+4) 创建公网IP
+
+![image-20180426155523420](images/qingcloud_IP.png)
+
+创建好“公网IP”之后，需要绑定到之前创建的“路由器”上。
+
+![image-20180426155728943](images/qingcloud_IP_bind.png)
+
+5）配置VPN，进入“路由器”，选择“VPN服务”，这里推荐大家使用“Open VPN”服务。更多配置VPN的方式请参考：[VPN配置参考](https://docs.qingcloud.com/product/network/vpn)
+
+![image-20180426161953631](images/qingcloud_vpn.png)
+
+6) 配置防火墙，打开OpenVPN服务需要的1194端口。
+
+![image-20180426162053072](images/qingcloud_fw.png)
+
+7）我们推荐使用 [Tunnelblick](https://tunnelblick.net/)作为VPN服务的客户端
+
+#### 在应用市场安装Kyligence Enterprise
 
 1) 打开KAP应用页面：[Kyligence Enterprise](https://appcenter.qingcloud.com/apps/app-oi15yp53/Kyligence%20Enterprise)，单击右侧“部署到QingCloud”按钮。
 
@@ -27,6 +55,8 @@
 4) 根据性能需求和集群规模，配置环境参数。有关参数的介绍，请参考：[生产环境推荐配置](../../config/recommend_settings.cn.md)
 
 5) 同意《用户协议》后，单击“提交”按钮。若干分钟之后，您的KAP服务就创建好了。
+
+创建好KAP服务之后，您可以首先通过VPN接入创建的私有网络，然后通过KAP服务器的内网IP访问KAP服务，如http://<内网IP>:7070/kylin
 
 #### 在QingMR中安装KAP
 
@@ -77,3 +107,4 @@ KAP 能够很快返回查询结果。您可以拷贝这条 SQL 到 Hive 命令�
 ### SSH登陆服务器
 
 想要通过SSH方式登陆KAP节点，需要配置一个VPN，然后通过内网IP访问KAP节点。配置VPN的方式请参考：[VPN配置参考](https://docs.qingcloud.com/product/network/vpn)
+默认的SSH登陆认证信息参考：[Kylin 使用指南](https://docs.qingcloud.com/product/big_data/QingMR/README.html#5-kylin-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97)
