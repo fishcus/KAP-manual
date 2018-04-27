@@ -58,9 +58,45 @@ Using SQL statements to generate model, the calculated columns will be needed if
 
 > Only these functions are currently supported : SUM({EXPR}), AVG({EXPR}), array[{INDEX}], CASE .. WHEN ..
 
+### kylin.query.pushdown.update-enabled
+
+This property specifies whether opending the update function in pushdown query. The default value is false.  If this setting is set to true, the function will be opened. 
+
+### kylin.query.pushdown.cache-enabled
+
+This property specifies the function of cache enabled. The default value is true. If this setting is set to false, the function will be closed. 
+
 ### kylin.cube.is-automerge-enabled
 
 The auto merge function is enabled by default. If this setting is set to false, the function will be closed. Although the auto merge thresholds were setted, the merge job would not be built.
+
+### kap.storage.columnar.start-own-spark
+
+This property specifies whether starting the spark query cluster. The default value is true. If this setting is set to false, the function will be closed. In Read/Write Deployment, the property is recommended set as false in job cluster.
+
+### kap.storage.init-spark-at-starting
+
+This property specifies that spark query cluster will be started together when KAP is started. The default value is true. If this setting is set to false, the function will be closed. 
+
+### kap.storage.columnar.spark-conf.spark.yarn.queue
+
+This property specifies the yarn queue which is used by spark query cluster.
+
+### kylin.source.hive.default-varchar-precision
+
+The string datatype is not supported in KAP. Therefore, the string column will transform into varchar automatically.  This property specifies the maximum length of the transformed filed and the default value is 256.
+
+### kylin.metadata.hbase-client-scanner-timeout-period
+
+This property specifies the timeout threshold of scanning operation and the default value is 10000 ms.
+
+### kylin.metadata.hbase-rpc-timeout
+
+This property specifies the timeout threshold of rpc operation and the default value is 5000 ms.
+
+### kylin.metadata.hbase-client-retries-number
+
+This property specifies the retry times of HBase and the default value is 1.
 
 ## JVM Configuration Setting
 

@@ -42,6 +42,14 @@ Cube中存储的是经过预处理的数据，这些数据在大多数情况下�
 ### kylin.query.convert-create-table-to-with (Beta)
 有一些BI工具会在查询中创建临时表获中间表。将该参数设置为true可以将查询中创建表的语句转成with语句，当后续查询需要使用到该临时表获中间表时，会被转化成包含With的查询语句。修改这个配置后，创建中间表获临时表的查询可以击中可匹配的Cube。
 
+### kylin.query.pushdown.update-enabled
+
+该参数指定了是否在查询下压中开启update。默认状态下为false，将该参数设置为true时，开启该功能。
+
+### kylin.query.pushdown.cache-enabled
+
+通过KAP进行下压查询时，可以开启缓存来提高相同sql语句的查询效率。该参数默认为开启状态，将该参数设置为false时，关闭该功能。
+
 ### kap.smart.conf.model.cc.enabled
 
 通过SQL语句自动补全建模中，当SQL语句中含有表达式时，需要创建可计算列。将该参数设置为true时，KAP会根据SQL语句自动创建相应的可计算列，需要注意的是可计算列会被自动设置为维度。
@@ -50,7 +58,37 @@ Cube中存储的是经过预处理的数据，这些数据在大多数情况下�
 
 ### kylin.cube.is-automerge-enabled
 
-默认状态下，segment自动合并功能为开启状态。将该参数设置为false时，自动合并功能会被关闭。即使cube更新设置中，添加了自动合并阈值也不会触发合并任务。
+该参数指定了segment自动合并功能。默认状态下为开启状态。将该参数设置为false时，自动合并功能会被关闭。即使cube更新设置中，添加了自动合并阈值也不会触发合并任务。
+
+### kap.storage.columnar.start-own-spark
+
+该参数指定了是否启动Spark查询集群。默认状态下为true，将该参数设置为false时，关闭该功能。读写分离中，构建集群推荐关闭该功能。
+
+### kap.storage.init-spark-at-starting
+
+在KAP启动时，同时启动Spark查询集群。默认状态下为true，将该参数设置为false时，关闭该功能。
+
+### kap.storage.columnar.spark-conf.spark.yarn.queue
+
+通过配置该参数，将指定Spark查询集群所使用的yarn queue。
+
+### kylin.source.hive.default-varchar-precision
+
+当前KAP版本暂时不支持string类型，当string类型的字段导入KAP时，会自动转化为varchar。该参数指定了转化后varchar字段的最大长度，默认值为256。
+
+### kylin.metadata.hbase-client-scanner-timeout-period
+
+该参数指定了HBase扫描数据的超时时间，默认值为10000毫秒。
+
+### kylin.metadata.hbase-rpc-timeout
+
+该参数指定了执行RPC操作的超时时间，默认值为5000毫秒。
+
+### kylin.metadata.hbase-client-retries-number
+
+该参数指定了HBase重试次数，默认值为1次。
+
+
 
 ## JVM参数
 
