@@ -8,19 +8,20 @@ Services status turns green for being good, yellow for warnings  and red for err
 
 This function will mainly focus on these aspects：
 
-- Metastore availability: to check the metastore’s connectivity, functionality and response time 
-- Hive connectivity: to check the connectivity and speed of Hive
-- Metadata consistency: to check the consistency of metadata
-- Metadata synchronization: to check the synchronous exception of metadata and reload metadata automatically
-- Spark context availability: to check the availability of  Spark session
+- Hive availability: to check the connectivity and speed of Hive
+- Metadata store availability: to check the metastore’s connectivity, functionality and response time 
+- Metadata integrity: to check the consistency of metadata
 - Zookeeper availability: to check the availability and speed of zookeeper
+- Spark cluster availability: to check the availability of  Spark session
+- Garbage cleanup: to check the size of garbage
+- Metadata synchronization: to check the synchronous exception of metadata and reload metadata automatically
 - Job Engine: to check the availability of job engine
 
 ### Using Command Line to  Check Manually
 
 Command lines are also supported to check the individual service status manually. Meanwhile, the results will be stored in a log file named *canary.log* (`$KYLIN_HOME/logs/canary.log`), which will also be included in the KyBot diagnostic package.
 
-You can run the following command line `$KYLIN_HOME/bin/kylin.sh io.kyligence.kap.canary.CanaryCommander <canaries-to-test>`. 
+You can run the following command line `$KYLIN_HOME/bin/kylin.sh io.kyligence.kap.canary.CanaryCLI <canaries-to-test>`. 
 
 > <canaries-to-test> could be replaced as the following parameters :
 >
@@ -44,18 +45,12 @@ You can run the following command line `$KYLIN_HOME/bin/kylin.sh io.kyligence.ka
 
 The status is mainly shown as following:
 
-- GOOD: The service status is healthy
-- WARNING: There are some problems which may impact KAP performance. 
+- Green: Good, the service status is healthy
+- Yellow: Warning, there are some problems which may impact KAP performance. 
 
 
-- ERROR: There is something wrong with the dependency service. You may need to check the dependency services or cluster information.
+- Red: Error or crash, there is something wrong with the dependency service or the service throws the exception. The dependency services or cluster information need to be checked.
 
-
-- CRASH: The service throws the exception. For example,
-
-> There is serious exception in {canary name}. Please check canary.log for more details.
->
->  {canary name}'s response time exceeds threshold limit. Please check the dependency service.
 
 There are more details about the criterias, especially for *ERROR* and *WARNING*.
 

@@ -8,12 +8,15 @@ KAP从v 2.5.6版本开始增加了环境依赖服务检测的功能，每15分�
 
 环境依赖检测主要从以下几个方面进行：
 
-* MetaStore活性检查：检查元数据储存的可连通性、读写正确性和响应速度
-* Hive连通性检查：检查Hive/Beeline的可连通性
-* Metadata完整性检查：检查元数据的一致性及判断元数据是否损坏
-* Metadata同步检查：检查元数据同步是否异常，异常时尝试重载元数据
-* Spark context活性检查：检查Spark的可用性
+* Hive可用性检查：检查Hive/Beeline的可连通性
+
+
+* 元数据库活性检查：检查元数据储存的可连通性、读写正确性和响应速度
+* 元数据完整性检查：检查元数据的一致性及判断元数据是否损坏
 * Zookeeper活性检查：检查zookeeper的可连通性、加锁操作和响应速度
+* Spark集群可用性：检查Spark的可用性
+* 垃圾清理：检查垃圾文件大小
+* 元数据同步检查：检查元数据同步是否异常，异常时尝试重载元数据
 * 任务执行引擎活性检查：检查任务执行引擎的活性
 
 
@@ -23,7 +26,7 @@ KAP还提供了命令行工具来进行每个服务状态检测，方便进行�
 
 运行方法如下：
 
-在`$KYLIN_HOME/bin/kylin.sh io.kyligence.kap.canary.CanaryCommander <canaries-to-test>`，检测结果如下图所示：
+在`$KYLIN_HOME/bin/kylin.sh io.kyligence.kap.canary.CanaryCLI <canaries-to-test>`，检测结果如下图所示：
 
 > <canaries-to-test>可替换为对应的检测命令参数：
 >
@@ -47,17 +50,14 @@ KAP还提供了命令行工具来进行每个服务状态检测，方便进行�
 
 服务状态分为以下四种：
 
-+ GOOD：正常
-+ WARNING：警告，如检测时间超过警告时限。此时KAP的性能可能会受到一定影响。
++ 绿色：正常，表示该项服务状态检测正常。
++ 黄色：警告，某项服务状态的检测时间超过警告时限，可能会影响Kyligence Enterprise的性能，但是并不影响使用。
 
 
-+ ERROR：错误，如检测时间超过错误时限等。您需要检查相关环境依赖或集群状态，具体信息请参考报错信息。
++ 红色：错误，某项依赖服务的检测存在异常或者检测时间超过错误时限
 
+  > 例如，MetaStore服务状态为错误时，将提示MetaStore活性检查时间超过错误阈值，请您检查相关环境依赖。MetaStore存在异常时，将提示MetaStoreCanary存在严重异常，请查看canary.log获取详情。
 
-+ CRASH：崩溃，服务运行时抛异常或Canary检测超时，例如：
->  {canary name}存在严重异常，请查看canary.log获取详情
->
->  {canary name}响应时间超过临界阈值，请您检查相关环境依赖
 
 各项服务状态的检测标准（WARNING和ERROR）主要如下：
 + MetaStoreCanary
