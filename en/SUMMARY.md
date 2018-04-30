@@ -1,11 +1,13 @@
 # Summary
 
 * [KAP Manual](README.md)
+
 * [Introduction](introduction/README.md)
     * [KAP Overview](introduction/overview.en.md)
     * [Apache Kylin Overview](introduction/kylin.en.md)
     * [Basic Concepts](introduction/concepts.en.md)
     * [Get Support](introduction/get_support.en.md)
+
 * [Installation](install/README.md)
     * [Requirement](install/hadoop_env.en.md)
     * Quick Start
@@ -25,6 +27,7 @@
     * [License Application and Update](install/license_application.en.md)
     * [Install Validation](install/install_validate.en.md)
     * [Uninstall](install/uninstall.en.md)
+
 * [Configuration](config/README.md)
     * [Basic Configuration](config/basic_settings.en.md)
     * [Recommended Configuration](config/recommend_settings.en.md)
@@ -42,11 +45,13 @@
         * [3rd Party SparkSQL Integration](config/pushdown/pushdown_sparksql.en.md)
         * [Impala Integration](config/pushdown/pushdown_impala.en.md)
         * [Hive Integration](config/pushdown/pushdown_hive.en.md)
+
 * [Upgrade](upgrade/README.md)
     * [Upgrading from Apache Kylin](upgrade/upgrade_kylin.en.md)
     * [Upgrading from KAP](upgrade/upgrade_kap.en.md)
     * [Upgrading from KAP Plus](upgrade/upgrade_kapp.en.md)
     * [Failure Rollback](upgrade/rollback.en.md)
+
 * [Modeling](model/README.md)
     * [Sample Data Set](model/sample_dataset.en.md)
     * [Data Import](model/data_import/README.md)
@@ -75,7 +80,20 @@
     * [Build Cube](model/build_cube.en.md)
     * [Cube and Segment Management](model/segment_manage.en.md)
     * [Streaming Cube](model/streaming_cube.en.md)
+
+* [Auto Modeling](auto_modeling/README.md)
+
+    - [Query Input](auto_modeling/query_input.en.md)
+    - [Pattern Recognition](auto_modeling/pattern_recognition.en.md)
+
+
+    - [Auto Modeling](auto_modeling/auto_modeling.en.md)
+
+
+    - [Query Accelerator](auto_modeling/query_accelerator.en.md)
+
 * [SQL Query](query/README.md)
+
     * [Basic Query](query/basic_query.en.md)
     * [Insight](query/insight.en.md)
     * [SQL Specification](query/sql_spec.en.md)
@@ -93,6 +111,7 @@
           * [Grouping Function](query/adv_sql/grouping_sets.en.md)
           * [Intersect Function](query/adv_sql/intersect_count.en.md)
           * [Aggregate Function](query/adv_sql/aggregate_function.en.md)
+
 * [KyAnalyzer: BI Tool](kyanalyzer/README.md)
     * [KyAnalyzer Overview](kyanalyzer/kyanalyzer.en.md)
     * [Filtering, sorting, ranking and totaling](kyanalyzer/analysis.en.md)
@@ -102,6 +121,7 @@
     * [Save and Share Results](kyanalyzer/save_and_share.en.md)
     * [Configurations](kyanalyzer/configuration.en.md)
     * [Multi-node Deployment](kyanalyzer/multi-nodes_deploy.en.md)
+
 * [Integration with BI tools](integration/BI.en.md)
     * [Driver](driver/README.md)
         * [Kyligence JDBC driver](driver/jdbc.en.md)
@@ -119,6 +139,7 @@
           * [MicroStrategy Workstation/Desktop](integration/microstrategy_desktop.en.md)
         * [Cognos](integration/cognos.en.md)
         * [Qlik Sense](integration/qlik.en.md)
+
 * [REST API](rest/README.md)
     * [Access and Authentication](rest/authentication.en.md)
     * [Query API](rest/query_api.en.md)
@@ -134,6 +155,7 @@
       - [Project ACL API](rest/project_access_api.en.md)
       - [User Management API](rest/user_api.en.md)
       - [User Group Management ACL API](rest/user_group_api.en.md)
+
 * [Security Control](security/README.md)
     * [User Management](security/user.en.md)
     * [User Group Management](security/group.en.md)
@@ -145,6 +167,7 @@
       * [Table-level Access Control](security/table.en.md)
       * [Row-level Access Control](security/row.en.md)
       * [Column-level Access Control](security/column.en.md)
+
 * [Trouble Shooting](troubleshooting/README.md)
     * [Logging](troubleshooting/logging.en.md)
     * [Service Status](troubleshooting/service_status.en.md)
@@ -153,6 +176,7 @@
     * [KyBot: Online Diagnostic and Tuning Service](kybot/README.md)
         * [KyBot Quick Start](kybot/kybot.en.md)
         * [KyBot Case Analysis](kybot/case.en.md)
+
 * [Daily Operation](operation/README.md)
     * [Basic Operation](operation/basic_ops.en.md)
     * [Metadata Backup](operation/metadata_backup.en.md)
@@ -162,6 +186,7 @@
     * [Storage Clean Up](operation/storage_cleanup.en.md)
     * [Cross Hadoop Cluster Migration](operation/cluster_migration.en.md)
     * [Hadoop Queue Configuration](operation/hadoop_queue.en.md)
+
 * [KAP Release Notes](release/README.md)
     * [KAP 2.5 Release Notes](release/KAP_2_5_notes.en.md)
     * [KAP 2.4 Release Notes](release/KAP_2_4_notes.en.md)
@@ -169,6 +194,8 @@
     * [KAP 2.2 Release Notes](release/KAP_2_2_notes.en.md)
     * [KAP 2.1 Release Notes](release/KAP_2_1_notes.en.md)
     * [KAP 2.0 Release Notes](release/KAP_2_0_notes.en.md)
+
 * [FAQ](faq/README.md)
+
 * [Contacts](contact/README.md)
 

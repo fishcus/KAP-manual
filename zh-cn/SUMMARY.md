@@ -1,11 +1,13 @@
 # 目录
 
 * [KAP 手册](README.md)
+
 * [简介](introduction/README.md)
     * [KAP概览](introduction/overview.cn.md)
     * [Apache Kylin简介](introduction/kylin.cn.md)
     * [基础概念](introduction/concepts.cn.md)
     * [获取支持](introduction/get_support.cn.md)
+
 * [安装](installation/installation.cn.md)
     * [安装前置条件](installation/installation_conditions.cn.md)
     * [快速安装](installation/installation_quick_installation.cn.md)
@@ -26,6 +28,7 @@
     * [许可证申请及更新](installation/license_application.cn.md)
     * [安装验证](installation/installation_validation.cn.md)
     * [卸载](installation/uninstallation.cn.md)
+
 * [配置](config/README.md)
     * [基本配置参数](config/basic_settings.cn.md)
 
@@ -53,11 +56,13 @@
         * [外部Spark SQL集成](config/pushdown/pushdown_sparksql.cn.md)
         * [Impala集成](config/pushdown/pushdown_impala.cn.md)
         * [Hive集成](config/pushdown/pushdown_hive.cn.md)
+
 * [升级](upgrade/README.md)
     * [从Apache Kylin升级](upgrade/upgrade_kylin.cn.md)
     * [从KAP升级](upgrade/upgrade_kap.cn.md)
     * [从KAP Plus升级](upgrade/upgrade_kapp.cn.md)
     * [升级失败的处理](upgrade/rollback.cn.md)
+
 * [数据建模](model/README.md)
     * [样例数据集](model/sample_dataset.cn.md)
     * [数据导入](model/data_import/README.md)
@@ -86,7 +91,18 @@
     * [构建Cube](model/build_cube.cn.md)
     * [Cube与Segment管理](model/segment_manage.cn.md)
     * [流式Cube](model/streaming_cube.cn.md)
+
+* [自动建模](auto_modeling/README.md)
+
+    - [选择查询](auto_modeling/query_input.cn.md)
+    - [模式识别](auto_modeling/pattern_recognition.cn.md)
+    - [自动建模](auto_modeling/auto_modeling.cn.md)
+
+
+    - [加速查询](auto_modeling/query_accelerator.cn.md)
+
 * [SQL查询](query/README.md)
+
     * [基本Query](query/basic_query.cn.md)
     * [在Insight页面查询](query/insight.cn.md)
     * [SQL规范参考](query/sql_spec.cn.md)
@@ -104,6 +120,7 @@
           * [分组函数](query/adv_sql/grouping_sets.cn.md)
           * [交集函数](query/adv_sql/intersect_count.cn.md)
           * [聚合函数](query/adv_sql/aggregate_function.cn.md)
+
 * [自助式敏捷 BI 工具 KyAnalyzer](kyanalyzer/README.md)
     * [KyAnalyzer 简介](kyanalyzer/kyanalyzer.cn.md)
     * [数据过滤、排序、排名及汇总计算](kyanalyzer/analysis.cn.md)
@@ -113,6 +130,7 @@
     * [保存并共享结果](kyanalyzer/save_and_share.cn.md)
     * [常用配置项](kyanalyzer/configuration.cn.md)
     * [多节点部署](kyanalyzer/multi-nodes_deploy.cn.md)
+
 * [与BI工具集成](integration/BI.cn.md)
     * [驱动程序](driver/README.md)
         * [Kyligence JDBC驱动](driver/jdbc.cn.md)
@@ -131,6 +149,7 @@
         * [Qlik Sense](integration/qlik.cn.md)
         * [Smartbi](integration/smartbi.cn.md)
         * [Fanruan](integration/fanruan.cn.md)
+
 * [REST API](rest/README.md)
     * [访问及安全验证](rest/authentication.cn.md)
     * [查询 API](rest/query_api.cn.md)
@@ -148,6 +167,7 @@
       - [项目级访问权限 API](rest/project_access_api.cn.md)
       - [用户管理 API](rest/user_api.cn.md)
       - [用户组管理 API](rest/user_group_api.cn.md)
+
 * [安全控制](security/README.md)
     * [管理用户](security/user.cn.md)
     * [管理用户组](security/group.cn.md)
@@ -159,6 +179,7 @@
       *  [表级访问权限](security/table.cn.md)
       *  [行级访问权限](security/row.cn.md)
       *  [列级访问权限](security/column.cn.md)
+
 * [监控和诊断](troubleshooting/README.md)
     * [日志](troubleshooting/logging.cn.md)
     * [环境依赖检测](troubleshooting/service_status.cn.md)
@@ -167,6 +188,7 @@
     * [自助式诊断与优化服务KyBot](kybot/README.md)
         * [KyBot快速入门](kybot/kybot.cn.md)
         * [KyBot案例分析](kybot/case.cn.md)
+
 * [日常维护](operation/README.md)
     * [基本运维](operation/basic_ops.cn.md)
     * [元数据备份](operation/metadata_backup.cn.md)
@@ -176,6 +198,7 @@
     * [服务器状态](operation/server_status.cn.md)
     * [跨集群迁移](operation/cluster_migration.cn.md)
     * [配置Hadoop队列](operation/hadoop_queue.cn.md)
+
 * [KAP发行说明](release/README.md)
     * [KAP 2.5 发行说明](release/KAP_2_5_notes.cn.md)
     * [KAP 2.4 发行说明](release/KAP_2_4_notes.cn.md)
@@ -183,8 +206,11 @@
     * [KAP 2.2 发行说明](release/KAP_2_2_notes.cn.md)
     * [KAP 2.1 发行说明](release/KAP_2_1_notes.cn.md)
     * [KAP 2.0 发行说明](release/KAP_2_0_notes.cn.md)
+
 * [常见问题](faq/README.md)
     * [Kylin常见问题](faq/kylin_faq.cn.md)
     * [KAP常见问题](faq/kap_faq.cn.md)
+
 * [KAP词汇表](GLOSSARY.cn.md)
+
 * [联系我们](contact/README.md)
