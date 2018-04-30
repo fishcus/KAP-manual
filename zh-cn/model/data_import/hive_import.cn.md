@@ -60,10 +60,11 @@ Time taken: 24.966 seconds, Fetched: 1 row(s)
 
 
 
-在弹出的对话框中展开default数据库，并选择需要的五张表，如图所示
+在弹出的对话框中展开default数据库，并选择需要的五张表，如图所示：
 ![](images/dataimport_4.png)
 
 
 
 导入后系统会自动计算各表各列的维数，以掌握数据的基本情况。稍等几分钟后，我们可以通过数据源表的详情页查看这些信息。
+
 ![](images/dataimport_5.png)
