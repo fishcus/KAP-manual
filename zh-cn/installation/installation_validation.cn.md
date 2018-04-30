@@ -29,11 +29,13 @@ Restart Kylin Server or click Web UI => System Tab => Reload Metadata to take ef
 
 ![](installation_images/installation_show_cube_cn.png)
 
-点击**操作** -> **构建**，选择一个晚于`2012-01-01`的结束日期，包含全部10000条数据，然后点击**提交**，如图所示：
+点击**操作** -> **构建**，选择一个晚于`2012-01-01`的结束日期，然后点击**提交**，如图所示：
 
 ![](installation_images/installation_build_cube_cn.png)
 
 进入**监控**页面，可以看到正在构建的 Cube 任务，等待任务进度达到100%。
+
+![](installation_images/insight.png)
 
 ### 执行 SQL
 
@@ -47,7 +49,7 @@ where part_dt = Date '2012-01-02' or part_dt= Date '2012-01-03' group by part_dt
 
 您将在页面下方看到 KAP 为您呈现出的查询结果，如图所示：
 
-![](installation_images/installation_query_result.jpg)
+![](installation_images/installation_query_result.png)
 
 您也可以使用同样的 SQL 语句在 Hive 上查询，以对比验证查询的结果和响应的速度。
 

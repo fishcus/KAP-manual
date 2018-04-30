@@ -11,4 +11,3 @@ Continue reading:
 [Impala Integration](pushdown_impala.en.md)
 
 [Hive Integration](pushdown_hive.en.md)
-

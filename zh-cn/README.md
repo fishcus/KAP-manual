@@ -10,7 +10,7 @@ KyBot是基于Kyligence团队对Apache Kylin 运行机制的深刻理解及多�
 
 
 
-本手册可以在[Gitbook](https://www.gitbook.com/book/kyligence/kap-manual)浏览或下载。
+本手册可以在[Kyligence Document](http://docs.kyligence.io/)浏览或下载。
 
 上海跬智信息技术有限公司
 

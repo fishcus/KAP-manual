@@ -12,7 +12,7 @@ The configuration of kylin.query.force-limit can be overridden at project level.
 
 ### Cube level configuration overriding
 
-At the `Configuration Overwrites` phase in cube design, user could rewrite property values to override those in project level and configuration files, as the figure below shown: ![override](images/override_cube.en.png)
+At the `Advanced Setting` phase in cube design, user could rewrite property values to override those in project level and configuration files, as the figure below shown: ![override](images/override_cube.en.png)
 
 The configuration of kylin.query.disable-cube-noagg-sql can be overridden at Cube level.
 
@@ -46,22 +46,20 @@ The configuration of kylin.query.disable-cube-noagg-sql can be overridden at Cub
 
 *kylin.table.snapshot.max-mb*, default is 300
 
+[RDBMS properties in project level](../model/data_import/rdbms_import.en.md)
+
 ### Overriding properties in kylin_hive_conf.xml
 
 KAP allows overriding properties in kylin_hive_conf.xml through KAP GUI. Replace original values by the following Key-Value format：
 
-kylin.hive.config.override.*key* = *value*
+kylin.hive.config.override *key* = *value*
 
-**Attention: it's necessary to prefix the name of properties with *kylin.hive.config.override*. **
+![override_cube](images/override_hive.en.png)
 
 ### Overriding properties in kylin_job_conf.xml and kylin_job_conf_inmem.xml
 
 KAP allows overriding kylin_job_conf.xml and kylin_job_conf_inmem.xml through KAP GUI. Replace original values by the following Key/Value format：
 
-kylin.job.mr.config.override.*key* = *value*
+kylin.job.mr.config.override *key* = *value*
 
-**Attention: it's necessary to prefix the name of properties with *kylin.job.mr.config.override*,  **as the figure below shown: 
-
-![override_cube](images/override.en.png)
-
-The red rectangle marked the prefix, while the blue rectangle marked the name of the property, with a "." used to concatenate them. 
+![override_cube](images/override_job.en.png)

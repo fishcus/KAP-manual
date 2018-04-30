@@ -20,7 +20,7 @@ Restart Kylin Server or click Web UI => System Tab => Reload Metadata to take ef
 
 ### Reload Metadata
 
-On KAP web, under the **System** page, click `Reload Metadata` to refresh the sample project and cubes just created.
+On KAP web, under the *System* page, click `Reload Metadata` to refresh the sample project and cubes just created.
 
 ### Build Cube
 
@@ -28,22 +28,23 @@ On KAP web, select project *learn_kylin* in the project dropdown list (left uppe
 
 ![](images/kap_learn_kylin.png)
 
-At the **Model** page, select the sample Cube *kylin_sales_cube*, click **Action -> Build**, pick up a end date later than **2014-01-01**(to cover all 10000 sample records), and submit the build job.
+At the *Model* page, select the sample Cube *kylin_sales_cube*, click *Action -> Build*, pick up a end date later than *2012-01-01*, and submit the build job.
 
 ![](images/kap_build_cube.png)
 
-At the **Monitor** page, click *Refresh* to check the build progress, until 100%.
+At the *Monitor* page, click *Refresh* to check the build progress, until 100%.
+
+![](images/insight.png)
 
 ### Execute SQL
 
-When the cube is built successfully, at the **Insight** page, three sample hive tables would be shown at the left panel. User could input query statements against these tables. For example: 
+When the cube is built successfully, at the *Insight* page, three sample hive tables would be shown at the left panel. User could input query statements against these tables. For example: 
 
 ```sql
 select part_dt, sum(price) as total_selled, count(distinct seller_id) as sellers from kylin_sales
-
 where part_dt = Date '2012-01-02' or part_dt= Date '2012-01-03' group by part_dt order by part_dt
 ```
 
-The query result will be displayed at the **Insight** page also. User could check the query results between KAP and Hive, including accuracy and response time. 
+The query result will be displayed at the *Insight* page also. User could check the query results between KAP and Hive, including accuracy and response time. 
 
 ![](images/kap_query_result.png)

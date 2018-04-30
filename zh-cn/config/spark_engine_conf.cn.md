@@ -29,7 +29,7 @@ kylin.env.hadoop-conf-dir=/usr/local/apache-kylin-2.1.0-bin-hbase1x/hadoop-conf
 
 ### 检查 Spark 配置
 
-KAP 将 Spark 二进制包存放在 $KYLIN_HOME/spark 中，所有 Spark 配置在 $KYLIN_HOME/conf/kylin.properties 中被托管，其前缀为“kylin.engine.spark-conf.”。 在运行提交 Spark 的任务时，这些属性将被提取出来使用，例如，如果配置 “kylin.engine.spark-conf.spark.executor.memory=4G”，在执行“spark-submit”时，KAP 将使用“–conf spark.executor.memory=4G”作为参数。
+KAP 将 Spark 二进制包存放在 `$KYLIN_HOME/spark` 中，所有 Spark 配置在`$KYLIN_HOME/conf/kylin.properties` 中被托管，其前缀为“kylin.engine.spark-conf.”。 在运行提交 Spark 的任务时，这些属性将被提取出来使用，例如，如果配置 “kylin.engine.spark-conf.spark.executor.memory=4G”，在执行“spark-submit”时，KAP 将使用“–conf spark.executor.memory=4G”作为参数。
 
 在运行 Spark cube 构建之前，建议查看这些配置，并根据集群需要进行定制。下面是默认配置，也是用于 sandbox 的最小配置（1 个 executor 占用 1GB 内存）。通常，在一般集群中，需要更多 executor，每个至少占用 4GB 内存和 2 个 core：
 
@@ -81,6 +81,10 @@ kylin.engine.spark-conf.spark.executor.extraJavaOptions=-Dhdp.version=current
 ![选择 Spark(Beta) 作为构建引擎](images/spark1.cn.png)
 
 点击 Cube 默认配置旁的 + 号，添加以下配置：
+
+kylin.engine.spark.rdd-partition-cut-mb 100
+
+kylin.cube.aggrgroup.is-mandatory-only-valid true
 
 ![添加配置](images/spark3.cn.png)
 
