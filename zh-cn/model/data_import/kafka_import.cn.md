@@ -49,13 +49,13 @@ bin/kafka-console-consumer.sh --bootstrap-server 127.0.0.1:9092 --topic kylindem
 ### 从流式数据中定义事实表
 
 
-1.启动KAP, 登录KAP web GUI, 新建一个project或者选择一个已有的project。点击**建模 -> 数据源**，点击 **Kafka** 按钮。
-![导入 Kafka 数据源](images/s1.png)
+1.启动KAP, 登录KAP web GUI, 新建一个项目。起名为Kafka，选择数据源为Kafka。
+![导入 Kafka 数据源](images/import_kafka.png)
 
 2.输入Broker集群信息，注意：这里Host要填写实际IP地址，是YARN集群上运行的Job可以访问的地址。
-![输入 Broker 集群信息](images/k2.cn.png)
+![输入 Broker 集群信息](images/kafka_setting.png)
 
-3.点击 √ 确认Broker后，点击**获取该集群信息 -> sandbox -> kylindemo**, Kafka的采样消息会出现在右边，点击 **Convert**。
+3.点击 √ 确认Broker后，点击**获取该集群信息 ->kylindemo**, Kafka的采样消息会出现在右边，点击 **Convert**。
 ![获取 Broker 集群信息](images/k3.cn.png)
 
 4.接着，您需要为流式数据源定义一个表名。定义的表名会用于后续的 SQL 查询。 假设我们将表命名为 "KAFKA_TABLE_1" 。

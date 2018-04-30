@@ -7,7 +7,7 @@
   - [选择维度及度量](#选择维度及度量)
 
 ### 创建步骤
-第一步，打开KAP的Web UI，在左上角项目列表中选择刚刚创建的*learn_kylin*项目，然后进入“模型”页面，并创建一个模型。
+第一步，打开KAP的Web UI，在左上角项目列表中选择刚刚创建的**learn_kylin**项目，然后进入“模型”页面，并创建一个模型。
 ![创建模型](images/model_design_update_cn_1.png)
 
 
@@ -33,7 +33,7 @@
 
 
 
-第四步，建立表连接关系。在KAP2.5系列中，表与表关系的建立可以通过拖拽表上的列完成。当你希望建立一个表连接（join），从事实表（外键所在表）指向维度表（主键所在表），比如，“KYLIN_SALES *Inner Join* KYLIN\_CAL\_DT on KYLIN\_SALES.PART_DT=KYLIN\_CAL\_DT.CAL\_DT”, 则将`PART_DT`从`KYLIN_SALES`拖至`KYLIN\_CAL\_DT`，如下图所示的窗口将会弹出。
+第四步，建立表连接关系。在KAP2.5系列中，表与表关系的建立可以通过拖拽表上的列完成。当你希望建立一个表连接（join），从事实表（外键所在表）指向维度表（主键所在表），比如，“KYLIN_SALES *Inner Join* KYLIN\_CAL\_DT on KYLIN\_SALES.PART_DT=KYLIN\_CAL\_DT.CAL\_DT”, 则将`PART_DT`从`KYLIN_SALES`拖至`KYLIN_CAL_DT`，如下图所示的窗口将会弹出。
 
 ![添加表连接](images/model_design_update_cn_4.png)
 
