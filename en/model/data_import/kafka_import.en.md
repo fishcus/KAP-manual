@@ -3,7 +3,7 @@ This section introduces how to import Kafka data source and define a table from 
 
 ### Preparation
 
-Before starting this tutorial, please make sure that you have already prepared a Hadoop environment which has installed **KAP 2.3** or above and **Kafka v2.10-0.10.1.0** or above. In this tutorial, we use Hortonworks HDP 2.4 Sandbox VM as the Hadoop environment.
+Before starting this tutorial, please make sure that you have already prepared a Hadoop environment which has installed *KAP 2.3* or above and *Kafka v2.10-0.10.1.0* or above. In this tutorial, we use Hortonworks HDP 2.4 Sandbox VM as the Hadoop environment.
 
 It is unnecessary to deploy Kafka Broker and KAP in the same node. If Kafka Broker has not been deployed in KAP node, it is recommemded that you copy the Kafka binary package with the same version and extract it to any path of KAP's start node (such as: /usr/local/kafka_2.10-0.10.1.0), and set KAFKA_HOME to point to this path, thus ensuring there is a Kafka client library under the directory KAFKA_HOME/libs.
 
@@ -51,14 +51,15 @@ bin/kafka-console-consumer.sh --bootstrap-server 127.0.0.1:9092 --topic kylindem
 
 ### Define a table from streaming
 
-1. Start KAP server, login KAP web GUI, select or create a project. Click **Studio -> Data Source**, then click the icon **Kafka**.
+1. Please create a new project and select *Kafka* as the data source.
 
    ![Import Kafka Data Source](images/a.png)
 
-2.Input your broker info. Under the field **Host**, please fill in your own IP address which the Jobs run in YARN cluster can access.
+2. Input your broker info. Under the field *Host*, please fill in your own IP address which the Jobs run in YARN cluster can access.
+
    ![Input Broker Information](images/k2.en.png)
 
-3.Click √ to confirm your broker info, then click **Get Cluster Info -> sandbox -> kylindemo**, the kafka sample message would appear in the right box, click **Convert**.
+3.Click √ to confirm your broker info, then click *Get Cluster Info* to select the topic kylindemo.  The kafka sample message would appear in the right box, when *Convert* button was clicked.
    ![Get Cluster Information](images/k3.en.png)
 
 4.You need to give a logic table name for this streaming data source. The name will be used for SQL query later. Here please enter "KAFKA_TABLE_1" in the **Table Name** field.
