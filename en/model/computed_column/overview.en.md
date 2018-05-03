@@ -29,7 +29,7 @@ You can create computed columns by clicking the icon as the arrow points to:
 
 The following information is required:
 
-![](images/computed_column_en.2.kap244.png)
+![](images/computed_column.en.png)
 
 - **Column**: Display the name of the created computed column.
 - **Expression**: Definition of the computed column. Columns in the expression can refer to any table in current model, however you have to make sure the column reference complies to **Table.Column**.

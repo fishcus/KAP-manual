@@ -98,8 +98,6 @@
     - [选择查询](auto_modeling/query_input.cn.md)
     - [模式识别](auto_modeling/pattern_recognition.cn.md)
     - [自动建模](auto_modeling/auto_modeling.cn.md)
-
-
     - [加速查询](auto_modeling/query_accelerator.cn.md)
 
 * [SQL查询](query/README.md)

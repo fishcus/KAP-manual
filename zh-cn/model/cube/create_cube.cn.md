@@ -3,7 +3,7 @@
 本文将以KAP自带的样例数据(learn_kylin)为例，介绍Cube的创建过程。
 
 
-打开KAP的Web UI，首先选择learn_kylin项目，跳转到模型页面，然后按照下图所示创建一个Cube。
+打开KAP的Web UI，首先选择learn_kylin项目，这里我们创建一个新的cube命名为kylin_sales_cube_1。
 
 ![](images/createcube_1.png)
 
@@ -11,7 +11,7 @@
 
 ### 基本信息
 
-在kylin_sales_model模型右上角操作中的**添加cube**，输入新建Cube的名称kylin_sales_cube_1，单击提交。然后你会看到界面上方出现创建一个cube的全部流程。
+单击提交后，您将会在界面上方，看到创建一个cube的全部流程。
 
 ![](images/createcube_2.1.png)
 
@@ -81,7 +81,7 @@ ORDER BY SUM(PRICE)
 
 ### 更新设置
 
-**触发自动合并的时间阈值(Auto Merge Thresholds)**：一般的，一个销售统计的SQL查询往往会按周、月进行过滤和聚合，所以我们可以设置Cube自动按周、月进行自动合并，即每7天进行一次合并，每4周（28天）进行一次合并，设置**触发自动合并的时间阈值(Auto Merge Thresholds)**如下所示：
+**触发自动合并的时间阈值(Auto Merge Thresholds)**：一般的，一个销售统计的SQL查询往往会按周、月进行过滤和聚合，所以我们可以设置Cube自动按周或月进行自动合并，设置**触发自动合并的时间阈值(Auto Merge Thresholds)**如下所示：
 
 ![](images/createcube_8.png)
 
