@@ -86,12 +86,8 @@
 
     - [Query Input](auto_modeling/query_input.en.md)
     - [Pattern Recognition](auto_modeling/pattern_recognition.en.md)
-
-
     - [Auto Modeling](auto_modeling/auto_modeling.en.md)
-
-
-    - [Query Accelerator](auto_modeling/query_accelerator.en.md)
+    -  [Query Accelerator](auto_modeling/query_accelerator.en.md)
 
 * [SQL Query](query/README.md)
 
