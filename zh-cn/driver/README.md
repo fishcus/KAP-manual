@@ -4,6 +4,6 @@
 
 继续阅读：
 
-[JDBC驱动](jdbc.cn.md)
+[Kyligence JDBC驱动](jdbc.cn.md)
 
 [Kyligence ODBC驱动](kyligence-odbc.cn.md)

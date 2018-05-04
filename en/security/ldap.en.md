@@ -253,11 +253,11 @@ In conf/kylin.properties, set "kylin.security.profile=ldap"，and then restart K
 
 If we login with jenny which belongs to group `admin`, `System` menu will be displayed in the top bar:
 
-![Login as user in Admin group](images/ldap/ldap_1.en.png)
+![Login as user in Admin group](images/ldap/w_1.png)
 
 Otherwise, if we login with johnny which belongs to group `itpeople`, `System` menu won't be displayed in the top bar since the group `itpoeple` isn't admin group.
 
-![Login as user in Normal User group](images/ldap/ldap_2.en.png)
+![Login as user in Normal User group](images/ldap/w_2.png)
 
 Once LDAP is enabled, the user/group is read-only and cannot be added, edited, dropped, modified or grouped.
 

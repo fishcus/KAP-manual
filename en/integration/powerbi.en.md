@@ -41,7 +41,5 @@ For the installation information, please refer to [Kyligence ODBC Driver tutoria
 
      ![Model the tables to be connected](images/powerbi/Picture9.png)
 
-6.  Return to the report page and start visualization analysis.
+6.  Return to the report page and start visualization analysis.![Model the tables to be connected](images/powerbi/Picture10.png)
 
-
-![Model the tables to be connected](images/powerbi/Picture10.png)

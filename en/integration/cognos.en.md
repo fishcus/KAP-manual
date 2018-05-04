@@ -10,39 +10,19 @@ The Kyligence ODBC driver needs to be installed in the machine or virtual enviro
 
 Depending on your business scenario, you may need to create a new project or simply use an existing project to create the data source for KAP. In the example, we will start with a new project. 
 
-1. Create a new project.
+1. Create a new project.![](images/cognos/1.png)
 
-![](images/cognos/1.png)
+2. Use `Metadata Wizard` create a new `Data Source`.![](images/cognos/2.png)
 
-2. Use `Metadata Wizard` create a new `Data Source`.
+3. In the `New Data Source Wizard`, first fill in data source name, this could be any name you prefer.![](images/cognos/3.png)
 
-![](images/cognos/2.png)
+4. Choose `ODBC` as the connection type. For Isolation Level, choose `Use the default object gateway` ![](images/cognos/4.png)
 
-3. In the `New Data Source Wizard`, first fill in data source name, this could be any name you prefer.
+5. In ODBC data source, fill in the DSN name that you created in the previous step. Check `Unicode ODBC`. For Signon `choose no authorization`. Then Click `Test the connection`.![](images/cognos/5.png)![](images/cognos/6.png)If everything set up properly, test the connection will finish successfully.![](images/cognos/7.png)![](images/cognos/8.png)
 
-![](images/cognos/3.png)
+   Now you have the data source created.
 
-4. Choose `ODBC` as the connection type. For Isolation Level, choose `Use the default object gateway`  
-
-![](images/cognos/4.png)
-
-5. In ODBC data source, fill in the DSN name that you created in the previous step. Check `Unicode ODBC`. For Signon `choose no authorization`. Then Click `Test the connection`.
-
-![](images/cognos/5.png)
-
-![](images/cognos/6.png)
-
-If everything set up properly, test the connection will finish successfully.
-
-![](images/cognos/7.png)
-
-![](images/cognos/8.png)
-
-Now you have the data source created.
-
-6. Click `Next`, you may test the connection in the`Metadata Wizard`.
-
-![](images/cognos/9.png)
+6. Click `Next`, you may test the connection in the`Metadata Wizard`.![](images/cognos/9.png)
 
 
 

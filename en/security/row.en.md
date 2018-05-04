@@ -28,17 +28,17 @@ Follow below steps to add restrictions at table-level:
 7. (Optional) Click on `+` to add another column to filter. 
 8. Click `Save`.
 
-![Row-level access control](images/row/row_en1.png)
+![Row-level access control](images/row/w_1.png)
 
-![Add restriction](images/row/row_en2.png)
+![Add restriction](images/row/w_2.png)
 
 The row-level restriction will transform into a where clause that append on user/group's query. If there are multiple values/groups filtered for the same column, the logical operator between these values are `OR`.  You may also set multiple row-level restriction at the same time for a user/group, the logical operator between row-level restriction on two columns will be `AND`.
 
-![Add restrictions](images/row/3.png)
+![Add restrictions](images/row/w_3.png)
 
 You may preview the where clause for row-level restriction by clicking on the `Preview` hyperlink on the pop-up window. 
 
- ![Preview SQL](images/row/4.png)
+ ![Preview SQL](images/row/w_4.png)
 
 #### Modify Access
 
@@ -68,6 +68,6 @@ Login as user `joanna`, go to `Insight` page, and try to query row `OPS_REGION` 
 
 As shown in the screenshot below,  user `joanna` can only view records in `Kylin_sales` with `OPS_REGION` of 'Shanghai'.
 
-![Validation 1](images/row/5.png)
+![Validation 1](images/row/w_5.png)
 
-![Validation 2](images/row/6.png)
+![Validation 2](images/row/w_6.png)

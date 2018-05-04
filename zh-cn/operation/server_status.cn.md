@@ -2,7 +2,7 @@
 
 在KAP V2.5.5版本中，用户可以在系统页面下的服务器列表看到所用服务器状态，如下图所示：
 
-![服务器状态页面](images/server_status/server_status.cn.png)
+![服务器状态页面](images/server_status/server_status_1.cn.png)
 
 ### 服务器类型 ###
 

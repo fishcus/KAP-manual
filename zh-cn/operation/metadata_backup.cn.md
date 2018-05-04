@@ -66,20 +66,20 @@ more kylin_sales_cube.json
 
 进入页面左侧系统页面后，点击备份按钮进行系统元数据备份，元数据文件会备份在KAP安装目录下的meta\_backups文件夹中（如图中的/root/kap-plus-2.5-hbase1.x-236/kap-plus-2.5.5-alpha3.1-hbase1.x/meta\_backups）。文件命名为meta\_当前备份时间（如meta_2018_01_11_07_00_25）。
 
-![系统元数据备份](images/instance_backup_cn.png)
+![系统元数据备份](images/instance_backup_1_cn.png)
 
 * **项目元数据保存**
 
 点击页面上方项目展开按键后，选择需要备份的项目点击操作按键后进行备份，项目元数据文件会备份在KAP安装目录下的meta\_backups文件夹中。文件命名为project\_备份项目名\_当前时间（如project_learn_kylin_2018_01_11_19_02_23）。
 
-![项目页面](images/project_page_cn.png)
+![项目页面](images/project_page_1_cn.png)
 
-![项目元数据备份](images/project_backup_cn.png)
+![项目元数据备份](images/project_backup_1_cn.png)
 
 * **Cube元数据保存**
 
 点击页面左侧建模按键后，选择Cube界面，选择需要备份的Cube点击操作按键后进行备份，Cube元数据文件会备份在KAP安装目录下的meta\_backups文件夹中。文件命名为cube\_备份Cube名\_当前时间（如cube_corr_2018_01_11_19_04_47）。
 
-![建模页面](images/studio_page_cn.png)
+![建模页面](images/studio_page_1_cn.png)
 
-![Cube元数据备份](images/Cube_backup_cn.png)
+![Cube元数据备份](images/Cube_backup_1_cn.png)

@@ -2,7 +2,7 @@
 
 Since KAP V2.5.5, users can check the servers status among the server list in the system page, which is shown in the following figure:
 
-![servers status](images/server_status/server_status.en.png)
+![servers status](images/server_status/server_status_1.en.png)
 
 ### Server Type ###
 

@@ -25,27 +25,27 @@ Once a user is created, the system admin can add, manage, delete and group users
 
 Except for System Admin, Other users need to be granted access permission on project-level in order to use any functionality in KAP. Creating user alone will not grant users any access permission. 
 
-![Manage user](images/user/user_en1.png)
+![Manage user](images/user/user_w1.png)
 
 
 #### Add User
 Under user management page, click `+ User` button to create a new user, type in a user name and input new password twice, and then set whether this user is the system admin. Click on `Yes` to create the new user. 
 
-![Add user](images/user/user_2.en.png)
+![Add user](images/user/user_w2.png)
 
 #### Edit User
 Under user management page, click `…` under `Action`, and choose `Edit User`. 
 
 System admin will be prompted to set or unset this user to be system admin on this page. 
 
-![Edit user](images/user/user_3.en.png)
+![Edit user](images/user/user_w3.png)
 
 #### Reset Password
 Under user management page, click `…` under `Action`, and choose `reset password`.
 
 System admin needs to type in the new password twice to reset the password. 
 
-![Reset password for system admin](images/user/user_4.en.png)
+![Reset password for system admin](images/user/user_w4.png)
 
 
 
@@ -71,7 +71,7 @@ System admin could enable or disable users and disabled users cannot login to th
 #### Change Password as Normal Users
 Click the `User Name` on the top right corner of the navigation bar, then users could choose the `Settings` option and be prompted to reset password. User needs to provide the old password and enter a new password twice to reset the password.
 
-![Change password as normal users](images/user/user_5.en.png)
+![Change password as normal users](images/user/user_w5.png)
 
 #### Group Users
 
@@ -82,7 +82,7 @@ To add a user to a specific group, do the following:
 3. Select a group to assign the user to under `Group to be selected`, and then click the right arrow. The group will enter `Checked Group`.
 4. Click `Save` and the user will be in the selected group.
 
-![Group users](images/user/user_6.en.png)
+![Group users](images/user/user_w6.png)
 
 
 
@@ -95,7 +95,7 @@ To modify user's group, do the following:
 3. Select the group to be modified under `Checked Group`, and then click the left arrow. The group will enter into `Group to be selected`.
 4. Click `Save` and the user's group will be modified.
 
-![Modify user's group](images/user/user_7.en.png)
+![Modify user's group](images/user/user_w7.png)
 
 
 
@@ -103,6 +103,6 @@ To modify user's group, do the following:
 
 Once LDAP is enabled, user is read-only and cannot be added, edited, dropped, modified or grouped.
 
-![User management when LDAP enabled](images/user/user_8.en.png)
+![User management when LDAP enabled](images/user/user_w8.png)
 
 For more information on LDAP, please see [LDAP Authentication](security/ldap.en.md) in this chapter.

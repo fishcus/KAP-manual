@@ -28,9 +28,9 @@
 
 
 
-![列级权限](images/column/column1_cn.png)
+![列级权限](images/column/w_1.png)
 
-![添加约束](images/column/column2_cn.png)
+![添加约束](images/column/w_2.png)
 
 #### 修改约束
 
@@ -54,10 +54,10 @@
 
 ### 验证列级访问权限
 
-在本例中，以用户为例来验证列级访问权限，组访问权限的验证方法与此类似。用户`joanna` 是一个有项目 `learn_kylin `访问权限的用户，并且被限制了对列 `LSTG_FORMA_NAME`的访问。
+在本例中，以用户为例来验证列级访问权限，组访问权限的验证方法与此类似。用户`joanna` 是一个有项目 `learn_kylin `访问权限的用户，并且被限制了对列 `LSTG_FORMAT_NAME`的访问。
 
-登录用户`joanna`来到查询页面使用列 `LSTG_FORMA_NAME`进行查询以验证列级访问权限约束是否生效了。
+登录用户`joanna`来到查询页面使用列 `LSTG_FORMAT_NAME`进行查询以验证列级访问权限约束是否生效了。
 
-如截图所示用户`joanna`试图查询列 `LSTG_FORMA_NAME`访问请求被被拒绝了。
+如截图所示用户`joanna`试图查询列 `LSTG_FORMAT_NAME`访问请求被被拒绝了。
 
-![验证列级访问权限](images/column/3.png)
+![验证列级访问权限](images/column/w_3.png)

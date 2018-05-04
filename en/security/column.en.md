@@ -26,9 +26,9 @@ Follow below steps to add restrictions at column-level:
 6. Multipe-select columns and then click the right arrow to move the column to be restricted. 
 7. Click `Save`.
 
-![Column-level access control](images/column/1.png)
+![Column-level access control](images/column/w_1.png)
 
-![Add restriction](images/column/2.png)
+![Add restriction](images/column/w_2.png)
 
 #### Modify Access
 
@@ -52,10 +52,10 @@ Follow below steps to modify access at column-level:
 
 #### Validate Column-level Access Control
 
-In this example, we take the user `joanna` as an example to validate the column-level access control. The validation of column-level access control for a group is the similar. User `joanna` is a user who has access to `learn_kylin ` project and has been restricted access to column `LSTG_FORMA_NAME` from `Kylin_sales`table.
+In this example, we take the user `joanna` as an example to validate the column-level access control. The validation of column-level access control for a group is the similar. User `joanna` is a user who has access to `learn_kylin ` project and has been restricted access to column `LSTG_FORMAT_NAME` from `Kylin_sales`table.
 
-Login as user `joanna`, go to insight page, and try to query column `LSTG_FORMA_NAME` to validate whether column-level access control has been effective.
+Login as user `joanna`, go to insight page, and try to query column `LSTG_FORMAT_NAME` to validate whether column-level access control has been effective.
 
-As shown in the screenshot below, access is denied when user `joanna` try to query column `LSTG_FORMA_NAME`.
+As shown in the screenshot below, access is denied when user `joanna` try to query column `LSTG_FORMAT_NAME`.
 
-![Validation](images/column/3.png)
+![Validation](images/column/w_3.png)

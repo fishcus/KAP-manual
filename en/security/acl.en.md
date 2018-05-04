@@ -51,16 +51,16 @@ Additionally, when Query Pushdown is enabled, QUERY access permission on a proje
 
 #### Grant Access 
 
-![Grant access](images/acl/1.png)
+![Grant access](images/acl/w_1.png)
 
 Follow below steps to grant access at project-level: 
 
 1. Click on project icon on the right side of project list on the navigation bar.
 2. Expand a project on the project list.
 3. Click `Access` menu  and then click `+Grant` menu to grant access for a user/group.
-4. Fill in a user name/group name, access permission and click `save`. 
+4. Fill in a user name/group name, access permission and click `Submit`. 
 
-![Grant access for a user/group](images/acl/2.png)
+![Grant access for a user/group](images/acl/w_2.png)
 
 #### Modify Access
 
@@ -69,7 +69,7 @@ Follow below steps to modify access at project-level:
 1. Click on project icon on the right side of project list on the navigation bar.
 2. Expand a project on the project list.
 3. Click `Access` menu and click `Edit` 
-4. Modify user/group's access permission and click `save`. 
+4. Modify user/group's access permission and click `Submit`. 
 
 ####Revoke Access
 

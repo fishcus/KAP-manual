@@ -22,9 +22,9 @@
 4. 点击`+授权`。
 5. 在弹出窗口中，选择用户／组并保存。
 
-![表级权限](images/table/table1_cn.png)
+![表级权限](images/table/w_table1_cn.png)
 
-![授权](images/table/table2_cn.png)
+![授权](images/table/w_table2_cn.png)
 
 #### 删除权限
 
@@ -43,4 +43,4 @@
 
 如截图所示用户`joanna`试图查询表`Kylin_sales`访问请求被被拒绝了。
 
-![验证表级访问权限](images/table/3.png)
+![验证表级访问权限](images/table/w_3.png)

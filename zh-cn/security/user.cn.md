@@ -25,26 +25,26 @@ KAP默认会初始化三个用户，对应帐号信息为 ADMIN(系统管理员)
 
 除系统管理员以外，其他用户需要在项目级别被赋予访问权限才能使用项目上的功能。除系统管理员以外，仅仅创建用户并不能让用户获得任何项目上的访问权限。
 
-![管理用户](images/users/user_cn1.png)
+![管理用户](images/users/user_w1.png)
 
 ### 添加用户
 在系统->用户管理页面，系统管理员可以点击`+用户`按钮来增加新用户。在添加新用户弹窗中，输入用户名，密码，确认密码，再选择用是系统管理员还是普通用户。
 
-![添加用户](images/users/user_2.cn.png)
+![添加用户](images/users/user_w2.png)
 
 ### 编辑用户
 在系统->用户管理页面，点击`操作`下的`...`，并选择编辑用户。
 
 在弹窗中系统管理员可以选择修改用户是否为系统管理员的设定。
 
-![编辑角色](images/users/user_3.cn.png)
+![编辑角色](images/users/user_w3.png)
 
 ### 更改密码
 在`系统`->`用户`管理页面，点击`操作`下的`...`并选择`重置密码`。
 
 系统管理员可以更改密码信息，需重复输入两次新密码。
 
-![系统管理员修改密码](images/users/user_4.cn.png)
+![系统管理员修改密码](images/users/user_w4.png)
 
 初始的ADMIN账户密码在首次登陆后，需要被修改。如需恢复初始密码，在"KYLIN_HOME/"使用重置密码命令（kylin.sh admin-password-reset）
 
@@ -73,7 +73,7 @@ $KYLIN_HOME/bin/kylin.sh admin-password-reset
 
 点击导航栏最右侧的欢迎标签，可以看到'设置'选项，点击进入个人更改密码页面。
 
-![普通用户修改密码](images/users/user_5.cn.png)
+![普通用户修改密码](images/users/user_w5.png)
 
 ### 对用户分组
 
@@ -84,7 +84,7 @@ $KYLIN_HOME/bin/kylin.sh admin-password-reset
 3. 在`待选择组`中勾选需要将用户分配到的组，点击向右箭头，该组将进入`已选择组`。
 4. 点击`保存`。用户将进入选定的组中。
 
-![对用户分组](images/users/user_6.cn.png)
+![对用户分组](images/users/user_w6.png)
 
 ### 修改用户所在的组
 
@@ -95,7 +95,7 @@ $KYLIN_HOME/bin/kylin.sh admin-password-reset
 3. 在`已选择组`中勾选需要修改的分组，点击向左箭头，该组将进入`待选择组`。
 4. 点击`保存`，用户将从选定的组中移出。
 
-![修改用户所在的组](images/users/user_7.cn.png)
+![修改用户所在的组](images/users/user_w7.png)
 
 
 
@@ -103,7 +103,7 @@ $KYLIN_HOME/bin/kylin.sh admin-password-reset
 
 在启用 LDAP 后，用户只能为只读，不可添加、编辑、删除、修改用户或对用户分组。
 
-![启用 LDAP 后的用户管理](images/users/user_8.cn.png)
+![启用 LDAP 后的用户管理](images/users/user_w8.png)
 
 有关 LDAP 的更多信息，参见本章 [LDAP 验证](ldap.cn.md)。
 

@@ -44,13 +44,13 @@ Login to KAP and click `System ` button on the navigation bar. The system manage
 
 Once a user group is created, the system admin can add, delete, modify and assign users on the group management page. 
 
-![User group page](images/group/group_en1.png)
+![User group page](images/group/group_w1.png)
 
 
 #### Create User Group
 Under group management page, click `+ Group` button to create a new group. In the pop-up window, type in a group name and click `Save`. 
 
-![Create user group](images/group/group_en2.png)
+![Create user group](images/group/group_w2.png)
 
 #### Assign User to User Group
 
@@ -61,7 +61,7 @@ To assign a user to a user group, do the following:
 3. Select a user to assign to the group under `Unassigned Users`, and then click the right arrow. The user will enter `Assigned Users`. 
 4. Click `Save` and the user will be assigned to the group.
 
-![Assign user to user group](images/group/group_en3.png)
+![Assign user to user group](images/group/group_w3.png)
 
 #### Modify User's Group
 
@@ -75,6 +75,6 @@ Please refer to [Manage Access Permission](security/acl.cn.md) in this chapter.
 
 Once LDAP is enabled, user group is read-only and cannot be added, edited, dropped, modified.
 
-![User group management when LDAP enabled](images/user/user_8.en.png)
+![User group management when LDAP enabled](images/group/group_w4.png)
 
 For more information on LDAP, please see [LDAP Authentication](security/ldap.en.md) in this chapter.

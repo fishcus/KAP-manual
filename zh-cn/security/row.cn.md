@@ -29,17 +29,17 @@
 
 
 
-![行级权限](images/row/row_cn1.png)
+![行级权限](images/row/w_1.png)
 
-![添加单个约束](images/row/row_cn2.png)
+![添加单个约束](images/row/w_2.png)
 
 如果对同一个列过滤多个值，每个值之间的逻辑运算符为`或`。 当为同一个用户／组设置多列的过滤的值时，不同列之间的逻辑运算符为`与`。
 
-![添加多个约束](images/row/row_cn3.png)
+![添加多个约束](images/row/w_3.png)
 
 在设置行级权限的弹窗中点击`预览`你可以预览行级权限将会生成的Where语句。
 
-![预览 SQL](images/row/row_cn4.png)
+![预览 SQL](images/row/w_4.png)
 
 #### 修改约束
 
@@ -69,6 +69,6 @@
 
 如截图所示用户`joanna`仅能看到`OPS_REGION`值为‘Shanghai’的行。
 
-![验证行级访问权限 1](images/row/5.png)
+![验证行级访问权限 1](images/row/w_5.png)
 
-![验证行级访问权限 2](images/row/6.png)
+![验证行级访问权限 2](images/row/w_6.png)

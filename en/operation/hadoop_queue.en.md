@@ -11,21 +11,25 @@ In the screenshot below, a new queue *learn_kylin* has been setup.
 1. In KAP, go to project setting page, you may choose the project you are intended to switch the queue.
 2. Edit the page and click `+property` to add key value pair as shown below. 
 
-![](images/hadoop_queue/2.png)
+![](images/hadoop_queue/2_1.png)
 
 
 
 
 
-`Kylin.engine.mr.config-override.mapreduce.job.queuename = YOUR_QUEUE_NAME`
+`kylin.engine.spark-conf.spark.yarn.queue = YOUR_QUEUE_NAME`
 
-`Kylin.source.hive.config-override.mapreduce.job.queuename = YOUR_QUEUE_NAME`
+`kylin.engine.mr.config-override.mapreduce.job.queuename = YOUR_QUEUE_NAME`
+
+`kylin.source.hive.config-override.tez.queue.name = YOUR_QUEUE_NAME `
+
+`kylin.source.hive.config-override.mapreduce.job.queuename = YOUR_QUEUE_NAME`
 
 You will need to change the YOUR_QUEUE_NAME to your queue name. 
 
 In this example, queue for project learn_kylin has been changed to *learn_kylin* as shown in the above screenshot, let's test out if this change has been effective by triggering a cube building job in project learn_kylin.
 
-![](images/hadoop_queue/3.png)
+![](images/hadoop_queue/3_1.png)
 
 Now, go to Hadoop Resource Manager on the cluster, you may observe that this job has goes under queue *Learn_kylin*. 
 

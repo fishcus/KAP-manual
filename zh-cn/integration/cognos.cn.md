@@ -10,39 +10,23 @@ Kyligence ODBC Driver需要安装在Cognos Server所在的服务器上。
 
 在安装完 Kyligence ODBC Driver 并配置好 DSN 后，打开一个已有Cognos项目或者创建一个新项目。在本例中我们将创建一个新项目。
 
-1. 创建新项目
+1. 创建新项目![](images/cognos/1.png)
 
-![](images/cognos/1.png)
+2. 使用`元数据向导`创建新`数据源`。![](images/cognos/2.png)
 
-2. 使用`元数据向导`创建新`数据源`。
+3. 在`新建数据源向导`第一步中输入数据源名称。![](images/cognos/3.png)
 
-![](images/cognos/2.png)
-
-3. 在`新建数据源向导`第一步中输入数据源名称。
-
-![](images/cognos/3.png)
-
-4. 选择`ODBC`作为连接类型。在`隔离级别`中，选择`使用默认对象Gateway`。
-
-![](images/cognos/4.png)
+4. 选择`ODBC`作为连接类型。在`隔离级别`中，选择`使用默认对象Gateway`。![](images/cognos/4.png)
 
 5. 在ODBC数据源中填入上一步创建的DSN的名称。勾选`Unicode ODBC`。在`登陆`项中勾选`无身份验证`。
 
-随后点击`测试连接`。
+   随后点击`测试连接`。![](images/cognos/6.png)
 
-![](images/cognos/6.png)
+   如果一切配置正确的话，测试连接会顺利通过。![](images/cognos/7.png)![](images/cognos/8.png)
 
-如果一切配置正确的话，测试连接会顺利通过。
+   这样数据源就创建成功了。
 
-![](images/cognos/7.png)
-
-![](images/cognos/8.png)
-
-这样数据源就创建成功了。
-
-6. 点击`下一步`你可以继续在`元数据向导`中测试表的连接。
-
-![](images/cognos/9.png)
+6. 点击`下一步`你可以继续在`元数据向导`中测试表的连接。![](images/cognos/9.png)
 
 
 

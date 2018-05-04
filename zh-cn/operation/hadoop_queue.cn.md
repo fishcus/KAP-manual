@@ -11,19 +11,23 @@
 1. 在KAP中进入项目配置页面，选择需要配置队列的项目。
 2. 点击编辑项目，然后点击`+property`添加key value如下。
 
-![](images/hadoop_queue/2.png)
+![](images/hadoop_queue/2_1.png)
 
 
 
-`Kylin.engine.mr.config-override.mapreduce.job.queuename = YOUR_QUEUE_NAME`
+`kylin.engine.spark-conf.spark.yarn.queue = YOUR_QUEUE_NAME`
 
-`Kylin.source.hive.config-override.mapreduce.job.queuename = YOUR_QUEUE_NAME`
+`kylin.engine.mr.config-override.mapreduce.job.queuename = YOUR_QUEUE_NAME`
+
+`kylin.source.hive.config-override.tez.queue.name = YOUR_QUEUE_NAME `
+
+`kylin.source.hive.config-override.mapreduce.job.queuename = YOUR_QUEUE_NAME`
 
 将YOUR_QUEUE_NAME修改为你的队列名称。
 
 如上图所示在本例中项目learn_kylin的Hadoop队列被改为*learn_kylin*。我们可以在learn_kylin项目中出发一个任务测试一下项目的队列是否已被修改。
 
-![](images/hadoop_queue/3.png)
+![](images/hadoop_queue/3_1.png)
 
 在Hadoop资源管理器中，可以看到刚才触发的任务已经进入到*Learn_kylin*队列中。
 

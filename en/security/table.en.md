@@ -23,9 +23,9 @@ Follow below steps to grant access at table-level:
 4. Click `+Grant` to grant table access to user/group. 
 5. On the pop-up window, choose the user/group and save. 
 
-![Table-level access control](images/table/1.png)
+![Table-level access control](images/table/w_table1_en.png)
 
-![Grant access](images/table/2.png)
+![Grant access](images/table/w_table2_en.png)
 
 #### Revoke Access
 
@@ -45,5 +45,5 @@ Login as user `joanna`, go to insight page, and try to query `kylin_sales` table
 
 As shown in the screenshot below, access is denied when user `joanna` try to query table `Kylie_sales`
 
-![Validation](images/table/3.png)
+![Validation](images/table/w_3.png)
 
