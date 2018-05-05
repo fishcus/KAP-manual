@@ -38,6 +38,6 @@ Common executable actions: refresh (rebuild the segment), merge (merge several s
   ![build cube](images/cube_segment_manage/merge_en.png)
 
 
-Clicking a segment ID (e.g. 2edfee35 in the figure above) will guide you to the Monitor page and you will see the task of Merge Cube, as shown in the figure below.
+Clicking a segment ID will guide you to the Monitor page and you will see the task of Merge Cube, as shown in the figure below.
 
 ![build cube](images/cube_segment_manage/merge_job_en.png)
