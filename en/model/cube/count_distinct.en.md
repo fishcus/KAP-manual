@@ -22,23 +22,19 @@ Next, choose the column desired from `Param Value` and COUNT_DISTINCT from `Expr
 
 ![](images/cd_measures_add.2.png)
 
+### Multiple Columns Count Distinct
+
+Multiple columns count distinct has been supported by [HyperLogLog](https://hal.inria.fr/hal-00406166/document) algorithm since KAP v2.4. The sql statements and detailed settings are shown below.
+
+```sql
+SELECT COUNT (DISTINCT P_LINEORDER.LO_SHIPPRIORITY, PART.P_SIZE, CUSTOMER.C_REGION) FROM P_LINEORDER 
+INNER JOIN PART on XXX=XX
+INNER JOIN CUSTOMER on XXXX=XX
+```
+
+![](images/cd_measures_add.3.png)
+
 Follow the [Create Cube](create_cube.en.md) introduction for rest steps, the Cube would be ready after you setting segments on the [Build Cube](../build_cube.en.md) section.
-
-
-
-## Example
-
-Select a default **Data Source** named as `learn_kylin`, then the table structure would present below: there are one fact table (`KYLIN_SALES`) and two lookup tables (`KYLIN_CAL_DT` and `KYLIN_CATEGORY_GROUPINGS`). Take a minute to check the `KYLIN_SALES` as well as its sample data, and we'll use it later.
-
-![](images/wd_datasample.png)
-
-
-
-For instance, input `select count(distinct LSTG_FORMAT_NAME) as num from kylin_sales where part_dt = DATE '2012-01-02'` query in **Insight** dashboard, then result returned in 0.18sec.  
-
-![](images/cd_measures_add.9.png)
-
-
 
 Not only this result but also other testified results are right, which prove that approximate count distinct query works well. More information about precise count distinct function, please refer to [Precise Count Distinct](count_distinct_precise.en.md) Introduction.
 

@@ -4,11 +4,7 @@
 
 ### 创建表索引
 
-表索引的创建流程嵌套在Cube创建流程内。如图所示，点击创建Cube的按钮，进入一般Cube创建流程：
-
-![](images/table_index/table_index_create_cube.png)
-
-进入Cube创建向导的第5步（以2.4以上版本为准）——表索引，可以观察到配置表索引的选项，默认状态下未被勾选：
+表索引的创建流程嵌套在Cube创建流程内。如图所示，点击创建Cube的按钮，进入Cube创建向导的第5步（以2.4以上版本为准）——表索引，可以观察到配置表索引的选项，默认状态下未被勾选：
 
 ![](images/table_index/table_index_disable.png)
 

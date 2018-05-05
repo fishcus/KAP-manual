@@ -1,6 +1,6 @@
 ## Cube Optimizer
 
-Start from V2.5, KAP provides a ***multi-preference based Cube Optimizer*** to suggest cube designs, which helps reduce cube expansion and improve ***Query/Build*** performance.
+Start from V2.5, KAP provides a *multi-preference based Cube Optimizer* to suggest cube designs, which helps reduce cube expansion and improve *Query/Build* performance.
 
 In the second step of Cube creation, you may find this function.
 
@@ -12,24 +12,19 @@ In the second step of Cube creation, you may find this function.
 
 According to the best pratices of Cube tuning, Optimizer analyzes statistics of source data and SQL patterns, and suggests a optimized Cube design, which includes:
 
-- ***Optimization Strategy***: 
+![](images/Cube_optimizer/updated_en_2.png)
 
+- ***Optimization Strategy***: 
   - Data Oriented: Optimizer would mainly digest source data feature to suggest one aggregate group, which optimizes all dimensions from a model. Cubes which follows data-oriented strategy are suitable to serve flexible queries.
 
-    ![Data Oriented](images/Cube_optimizer/updated_en_2.png)
+  - Business Oriented: Optimizer would only digest SQL patterns input in *Optimizer Inputs* to suggest multiple aggregate groups consisting of mandatory dimensions. Cubes which follows business-oriented strategy are designed to answer known queries.
 
-  - Business Oriented: Optimizer would only digest SQL patterns input in **Optimizer Inputs** to suggest multiple aggregate groups consisting of mandatory dimensions. Cubes which follows business-oriented strategy are designed to answer known queries.
+  - Default: If you do not specify any strategy, KAP will suggest the aggregation groups and Rowkeys based on the contents in *Optimizer Inputs*.
 
-    ![Business Oriented](images/Cube_optimizer/updated_en_3.png)
-
-  - Default: If you do not specify any strategy, KAP will suggest the aggregation groups and Rowkeys based on the contents in **Optimizer Inputs**.
-
-    ![Default](images/Cube_optimizer/updated_en_1.png)
-
-- ***Dimensions***: dimension and the type of dimension, such as ***Normal*** or ***Derived.***
-- ***Measures***: suggest common aggregation mostly in entered SQL patterns as measures.
-- ***Aggregation Groups***: Optimizer will suggest select rules for each group, such as Joint, Hierarchy, Max dimension combination(MDX) etc.
-- ***Rowkey***: Optimizer will suggest order and configuration for each Rowkeys, such as Encoding.
+- *Dimensions*: dimension and the type of dimension, such as *Normal* or *Derived.*
+- *Measures*: suggest common aggregation mostly in entered SQL patterns as measures.
+- *Aggregation Groups*: Optimizer will suggest select rules for each group, such as Joint, Hierarchy, Max dimension combination(MDX) etc.
+- *Rowkey*: Optimizer will suggest order and configuration for each Rowkeys, such as Encoding.
 
 
 
@@ -53,7 +48,7 @@ Step 2, To create a cube with this model, and click "Collect SQL patterns" under
 
 
 
-Step 3, Click "+ Dimensions" button on "Dimensions" tabpage and then the dimension window will pop up. You can select ***SQL output*** to get suggested dimensions from ***SQL patterns***, or select dimensions manually. All default dinmension type(normal/derived) are suggested by Cube Optimzier. 
+Step 3, Click "+ Dimensions" button on "Dimensions" tabpage and then the dimension window will pop up. You can select *SQL output* to get suggested dimensions from *SQL patterns*, or select dimensions manually. All default dinmension type(normal/derived) are suggested by Cube Optimzier. 
 
 ![](images/Cube_optimizer/dimension.png)
 

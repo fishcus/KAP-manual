@@ -30,15 +30,13 @@ select count(*) from table group by column_mandatory, column_joint1, column_join
 
 该剪枝工具位于Cube维度设计页的维度优化中，如下图所示。默认值为0，意思为关闭MDC剪枝。在输入框中输入一个正整数再点击Apply即可开启MDC剪枝功能。该正整数为一个Cuboid能够包含的最多的维度数。
 
-![](images/cuboid_pruning_1.jpg)
+![](images/cuboid_pruning_1.png)
 
-<p align="center">图1</p>
+该例子中维度数目从161下降为141，除了Base Cuboid，包含多余4个维度的Cuboid都被剪裁掉了。
 
-该例子中维度数目从161下降为20，除了Base Cuboid，包含多余4个维度的Cuboid都被剪裁掉了。
+![](images/cuboid_pruning_2.png)
 
-![](images/cuboid_pruning_2.jpg)
 
-<p align="center">图2</p>
 
 ### 注意事项 ###
 

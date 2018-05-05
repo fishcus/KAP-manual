@@ -18,7 +18,7 @@ User can pick from dimensions in the cube into one or many aggregation group, by
 
 ![](images/agg-group-1.png)
 
-User can then set `Mandatory Dimension`, `Hierarchy Dimension` and `Hierarchy Dimension`. Dimensions under these three settings has to be included into  `Includes`  under this aggregation group first. Once set properly, on the top right corner of aggragation group, estimated Cuboid number will be calculated and displayed. This can help you understand the complexity of the cube build. 
+User can then set `Mandatory Dimension`, `Hierarchy Dimension` and `Hierarchy Dimension`. Dimensions under these three settings has to be included into  `Includes`  under this aggregation group first. Once set properly, on the top left corner of aggragation group, estimated Cuboid number will be calculated and displayed. This can help you understand the complexity of the cube build. 
 
 ![](images/agg-group-2.png)
 

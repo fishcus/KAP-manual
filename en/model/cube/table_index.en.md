@@ -4,11 +4,7 @@ KAP provides table index to support querying on raw data. For customized queries
 
 ### Create table index
 
-The procedure of creating table index is embed in the procedure of create Cube. As the graph shows, click *+Cube* button to start a general Cube creation procedure: 
-
-![](images/table_index/table_index_create_cube.png)
-
-When you getting the 5th step of Cube creation wizard (in versions higher than 2.4): *Table Index*, you can find a check box of *Config Table Index*, which is unchecked by default: 
+The procedure of creating table index is embed in the procedure of create Cube. As the graph shows, click *+Cube* button to start a general Cube creation procedure. When you getting the 5th step of Cube creation wizard (in versions higher than 2.4): *Table Index*, you can find a check box of *Config Table Index*, which is unchecked by default: 
 
 ![](images/table_index/table_index_disable.png)
 
