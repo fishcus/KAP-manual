@@ -29,8 +29,8 @@ KAP从3.0开始支持RDBMS作为默认的输入数据源。链接RDBMS数据源�
 2. 在`kylin.properties`中添加以下设置：
 
 ```
-kylin.source.jdbc.driver=org.postgresql.Driver
-kylin.source.jdbc.connection-url=jdbc:postgresql://<host>:<ip>/<schema>
+kylin.source.jdbc.driver=com.pivotal.jdbc.GreenplumDriver
+kylin.source.jdbc.connection-url=jdbc:pivotal:greenplum://<HOST>:<PORT>;DatabaseName=<DATABASE_NAME>
 kylin.source.jdbc.user=<username>
 kylin.source.jdbc.pass=<password>
 kylin.query.pushdown.runner-class-name=io.kyligence.kap.query.pushdown.PushdownRunnerSDKImpl
@@ -59,4 +59,3 @@ kylin.source.jdbc.sqoop-home=/usr/hdp/current/sqoop-client/bin
 ![加载表并采样](images/rdbm_import4.cn.png)
 
 勾选采样，导入后系统会自动计算各表各列的维数，以掌握数据的基本情况。稍等几分钟后，我们可以通过数据源表的详情页查看这些信息。
-

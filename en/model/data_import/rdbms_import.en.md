@@ -1,8 +1,8 @@
 ##Import RDBMS Data Source
 
-RDBMS is supported as the default data source since KAP 3.0. In order to load the RDBMS tables, JDBC Driver Jar package is needed to put in  `$KYLIN_HOME/ext`.  The jar package is also needed to copy to `<sqoop_installation_directory>/lib`, because **sqoop** is used in the process of cube building,
+RDBMS is supported as the default data source since KAP 3.0. In order to load the RDBMS tables, JDBC Driver Jar package is needed to put in  `$KYLIN_HOME/ext`.  The jar package is also needed to copy to `<sqoop_installation_directory>/lib`, because *sqoop* is used in the process of cube building,
 
-Then, please set the following configurations in **kylin.properties**:
+Then, please set the following configurations in *kylin.properties*:
 
 | Parameter                        | Description                                                  |
 | -------------------------------- | ------------------------------------------------------------ |
@@ -29,8 +29,8 @@ Using Greenplum as an example, we connect Greenplum data source with PostgreSQL 
 2. Set following configuration in kylin.properties file:
 
 ```
-kylin.source.jdbc.driver=org.postgresql.Driver
-kylin.source.jdbc.connection-url=jdbc:postgresql://<host>:<ip>/<schema>
+kylin.source.jdbc.driver=com.pivotal.jdbc.GreenplumDriver
+kylin.source.jdbc.connection-url=jdbc:pivotal:greenplum://<HOST>:<PORT>;DatabaseName=<DATABASE_NAME>
 kylin.source.jdbc.user=<username>
 kylin.source.jdbc.pass=<password>
 kylin.query.pushdown.runner-class-name=io.kyligence.kap.query.pushdown.PushdownRunnerSDKImpl
