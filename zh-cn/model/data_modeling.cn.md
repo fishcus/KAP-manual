@@ -80,7 +80,7 @@
 下图是设置好之后的界面（单击连接中的标志（join），可以展开连接具体内容）：
 ![建立表连接](images/model_design_update_cn_5.png)
 
-
+KAP还支持添加可计算列，充分利用了 KAP 的预计算能力，进一步提升查询性能，更多设置详情请参考[可计算列章节](../model/computed_column/README.cn.md)
 
 第五步，单击“保存”并设置日期类型的时间分段。一般来说，销售数据都是与日俱增的，每天都会有新数据通过ETL到达Hive中，需要选择增量构建方式构建Cube，所以需要选择用于分段的时间字段DEFAULT.KYLIN_SALES.PART_DT。根据样例数据可以看到，这一列时间的格式是yyyy-MM-dd，所以选择对应的日期格式。此外，我们既不需要设置单独的分区时间列，也不需要添加固定的过滤条件。设置效果如下图所示。
 ![保存模型](images/model_design_update_cn_7.png)

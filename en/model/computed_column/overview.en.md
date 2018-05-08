@@ -1,6 +1,6 @@
 ## Computed Column
 
-**Computed Column** allows you to pre-define actions like data extraction/ transformation/ redefinition in modes, and thus enhance the data semantic abstraction. By replacing runtime calculation with offline cube construction, KAP's pre-calculation capability is fully utilized. As a result, query performance could improve significantly. It's allowed to use Hive UDF in computed column, so that existing business codes can be reused.
+*Computed Column* allows you to pre-define actions like data extraction/ transformation/ redefinition in modes, and thus enhance the data semantic abstraction. By replacing runtime calculation with offline cube construction, KAP's pre-calculation capability is fully utilized. As a result, query performance could improve significantly. It's allowed to use Hive UDF in computed column, so that existing business codes can be reused.
 
 ### Basic Concept and Rules
 

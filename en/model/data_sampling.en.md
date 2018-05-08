@@ -2,7 +2,7 @@
 
 Table's statistics include column cardinality, sample data and other statistics, which are helpful in Data Model and Cube design. This chapter will introduce how to collect table's statistics in KAP.
 
-Open KAP Web UI, select project `learn_kylin`, click `Studio` tab on the left and click `Data Source` in the Overview tab. Select the the table you want to collect statistics via "Sampling", here we select table `KYLIN_SALES`. Click button `Sampling` on the right side.
+Open KAP Web UI, select project `learn_kylin`, click `Data Source` in the Overview tab. Select the the table you want to collect statistics via "Sampling", here we select table `KYLIN_SALES`. Click button `Sampling` on the right side.
 
 ![](images/collect_statistics.1.png)
 

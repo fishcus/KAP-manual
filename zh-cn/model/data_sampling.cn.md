@@ -4,7 +4,7 @@
 
 ### 单表采样
 
-打开KAP GUI，选取项目**learn_kylin**, 点击左侧导航栏中的**建模**，再点击对应模型页中的**数据源**，最后选择需要收集统计信息的表`KYLIN_SALES`后点击右上角的**采样**。
+打开KAP GUI，选取项目**learn_kylin**, 点击对应模型页中的**数据源**，最后选择需要收集统计信息的表`KYLIN_SALES`后点击右上角的**采样**。
 
 ![](images/tablesampling_cn.png)
 

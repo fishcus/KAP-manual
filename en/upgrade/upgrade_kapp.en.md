@@ -51,9 +51,10 @@ Please follow the steps below:
 
 7. Confirm the License:
 
-   Confirm the license file in the new directory of KAP. 
+   Confirm the license file in the new directory of KAP.
+8. Please ensure the JDK version is *1.8*.
 
-8. Start the KAP Plus instance: 
+9. Start the KAP Plus instance:
 
    If you are upgrading from KAP Plus <3.0, the project dictionary will be upgraded and metadata will backup automatically in the upgrade process.
 
