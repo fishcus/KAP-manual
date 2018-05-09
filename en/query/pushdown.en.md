@@ -21,27 +21,3 @@ After you turn on the query pushdown, all source tables you have synchronized wi
 
 ![pushdown](images/pushdown/pushdown.en.png)
 
-### Basic Actions
-
-The basic actions of the query pushdown are as below:
-
-#### Copy a single query by oneclick
-
-If you want to select a single query, simply click one button, and you will copy the whole information of this query. The actions are as below: click the arrow next to your Server name, the following window will appear. Clicking **Copy** will copy the whole data of this item.
-
-![copy query](images/pushdown/one_click_copy.en.png)
-
-#### Batch export by multi selections
-
-If you want to export in batch, you may click the checkboxs in the first row to select all query results to export; or click the checkboxs in front of the query items based on your requirements, to select multi queries to export.
-
-![batch export](images/pushdown/multi_check_export.en.png)
-
-#### Sorting by clicking
-
-You may sort a column by clicking the up arrow/down arrow next to the corresponding column title. 
-
-![sorting](images/pushdown/sorting.en.png)
-
-
-
