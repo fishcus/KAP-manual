@@ -37,9 +37,9 @@ You can run the following command line `$KYLIN_HOME/bin/kylin.sh io.kyligence.ka
 >
 > •Job engine availability: JobEngineCanary
 >
+> •Garbage cleanup: GarbageCanary
+>
 > The command line is not currently supported to diagnose Spark context availability.
-
-![command line](images/canary.png)
 
 ### The Description of Service Status
 
@@ -51,32 +51,16 @@ The status is mainly shown as following:
 
 - Red: Error or crash, there is something wrong with the dependency service or the service throws the exception. The dependency services or cluster information need to be checked.
 
+There are more details about the criterias.
 
-There are more details about the criterias, especially for *ERROR* and *WARNING*.
-
-- MetaStoreCanary
-  - *WARNING* : The operations including writing, reading and deleting on metadata take more than 300 milliseconds. 
-  - *ERROR*: The operations including writing, reading and deleting on metadata take more than 1000 milliseconds.
-  - *ERROR*: Metastore failed to read a newly created resource.
-- HiveCanary
-  - *WARNING*: Listing Hive databases exceeds 20 seconds.
-  - *ERROR*: Listing Hive databases exceeds 30 seconds.
-- MetadataCanary
-  - *WARNING*: Verifying the consistency of metadata exceeds 10 seconds. 
-  - *ERROR*: Verifying the consistency of metadata exceeds 30 seconds. 
-  - *ERROR*: Broken metadata exists.
-- MetaSyncErrorCanary
-  - *WARNING*: Metastore synchronize failed. 
-- ZookeeperCanary
-  - *WARNING*: The operation of checking zookeeper's availability / locking / unlocking exceeds 3 seconds. 
-  - *ERROR*: he operation of checking zookeeper's availability / locking / unlocking exceeds 10 seconds. 
-  - *ERROR*: ZooKeeper is not alive.
-  - *ERROR*: Failed to require zookeeper lock. 
-  - *ERROR*: Failed to release zookeeper lock. 
-- JobEngineCanary
-  - *ERROR*: One of the KAP nodes failed to report job engine status. 
-  - *ERROR*: There is no active job engine node found. 
-- SparkSqlContextCanary
-  - *WARNING*: The time of calculating the sum from 0 to 100 exceeds 10 seconds.
-  - *ERROR*: The time of calculating the sum from 0 to 100 exceeds 30 seconds.
+| Canary Items          | Status: Yellow                                               | Status: Red                                                  |
+| --------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| MetaStoreCanary       | The operations including writing, reading and deleting on metadata take more than 300 milliseconds. | 1.The operations including writing, reading and deleting on metadata take more than 1000 milliseconds <br>2.Metastore failed to read a newly created resource |
+| HiveCanary            | Listing Hive databases exceeds 20 seconds                    | Listing Hive databases exceeds 30 seconds                    |
+| MetadataCanary        | Verifying the consistency of metadata exceeds 10 seconds     | 1.Verifying the consistency of metadata exceeds 30 seconds<br>2.Broken metadata exists |
+| MetaSyncErrorCanary   | Metastore synchronize failed                                 |                                                              |
+| ZookeeperCanary       | The operation of checking zookeeper's availability / locking / unlocking exceeds 3 seconds | 1.The operation of checking zookeeper's availability / locking / unlocking exceeds 10 seconds <br>2.ZooKeeper is not alive <br>3.Failed to require/release zookeeper lock |
+| JobEngineCanary       |                                                              | 1.One of the KAP nodes failed to report job engine status<br>2.There is no active job engine node found |
+| SparkSqlContextCanary | The time of calculating the sum from 0 to 100 exceeds 10 seconds | The time of calculating the sum from 0 to 100 exceeds 30 seconds |
+| GarbageCanary         | 1. The number of metadata garbage is larger than 50 <br>2. The number of garbage files produced by cube is larger than 50<br>3. The amount of garbage is larger  than 5G |                                                              |
 

@@ -82,6 +82,10 @@ This property specifies that spark query cluster will be started together when K
 
 This property specifies the yarn queue which is used by spark query cluster.
 
+### kap.storage.columnar.spark-conf.spark.master
+
+Spark deployment is normally divided into *Spark on YARN*, *Spark on Mesos*, and *standalone*. We usually use Spark on Yarn as default. This property enables KAP to use standalone deployment, which could submit jobs to the specific spark-master-url.
+
 ### kylin.source.hive.default-varchar-precision
 
 The string datatype is not supported in KAP. Therefore, the string column will transform into varchar automatically.  This property specifies the maximum length of the transformed filed and the default value is 256.
