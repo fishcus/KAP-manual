@@ -78,7 +78,9 @@
 
 查询历史显示了您做过的所有查询的历史，您可以查看查询内容，查询延迟，开始时间和类型，并可以根据类型进行筛选。
 
-查询类型分为 Slow和Pushdown。默认查询延迟≥90s的查询会被归入慢查询，该参数可以在`$KYLIN_HOME/conf/kylin.properties` 配置文件中的`kylin.query.badquery-alerting-seconds`里更改。
+查询类型分为 Slow和Pushdown。默认查询延迟≥90s的查询会被归入慢查询，该参数可以在`$KYLIN_HOME/conf/kylin.properties` 配置文件中，添加`kylin.query.badquery-alerting-seconds`更改。
+
+当前查询历史默认最多存储500条去重查询，该参数可以在在`$KYLIN_HOME/conf/kylin.properties` 配置文件中，添加`ylin.query.badquery-history-number`更改。如果查询语句数量大于该值，新的查询语句将会替换最早保存的查询语句。
 
 ![查询历史](images/query_history/query_history.cn.png)
 

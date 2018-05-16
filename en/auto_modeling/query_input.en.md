@@ -82,6 +82,8 @@ The Query History includes all SQL statements you have submitted in Insight page
 
 The type includes Slow and Pushdown. The default latency time is 90s, so the query will be classfied as Slow if it responded over 90s. This parameter can be changed in `kylin.query.badquery-alerting-seconds` in file `$KYLIN_HOME/conf/kylin.properties`.
 
+KAP is able to store  500 unique sql statements. It could be changed by setting the value of `ylin.query.badquery-history-number` in `$KYLIN_HOME/conf/kylin.properties`. If the number of sql statements in query history is more than the setting, the oldest sql statement will be replaced by the new one automatically.
+
 ![Query History](images/query_history/query_history.en.png)
 
 You can choose SQL statements and click *Export*, which can export SQLs as txt file.
