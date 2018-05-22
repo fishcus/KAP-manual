@@ -91,7 +91,7 @@
 
 * [SQL Query](query/README.md)
 
-    * [Basic Query](query/basic_query.en.md)
+    * [Sample Query](query/basic_query.en.md)
     * [Insight](query/insight.en.md)
     * [SQL Specification](query/sql_spec.en.md)
     * [Async Query](query/async_query.en.md)

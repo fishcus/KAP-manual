@@ -71,7 +71,7 @@ source /opt/hadoopclient/bigdata_env
 
 6. 在 FI Manager 页面中，依次点击 **Hive** - **配置（全部配置）**- **安全** - **白名单**，
 
-   该白名单的配置项名称为：`hive-security-authorization.sqlstd.confwhitelist`，再将`$KYLIN_HOME/conf/kylin_hive_conf.xml`文件中的所有 Hive 配置项的 key（如`dfs.replication`）添加至 FI Hive 配置的白名单中。此外，对于 KAP Plus 2.2 及以上版本，还需要额外将`mapreduce.job.reduces`配置项添加至白名单中。
+   该白名单的配置项名称为：`hive.security.authorization.sqlstd.confwhitelist`，再将`$KYLIN_HOME/conf/kylin_hive_conf.xml`文件中的所有 Hive 配置项的 key（如`dfs.replication`）添加至 FI Hive 配置的白名单中。此外，对于 KAP Plus 2.2 及以上版本，还需要额外将`mapreduce.job.reduces`配置项添加至白名单中。
 
 7. 请您在 FI 客户端中输入 **beeline**，并复制 **Connect to** 后面的内容：**jdbc:hive2://…HADOOP.COM**，并且在`$KYLIN_HOME/conf/kylin.properties`中进行如下配置：
 
@@ -88,15 +88,15 @@ source /opt/hadoopclient/bigdata_env
 
 具体的替换步骤如下：
 
-1. 拷贝FI环境中的 distcp jar 到 ${KYLIN_HOME}/lib 下
+1. 拷贝FI环境中的 distcp jar 到 `${KYLIN_HOME}/lib` 下
 
    `find /opt/hadoop_client/ | grep distcp`
 
-2. 拷贝 hadoop 开头相关jar，替换 ${KYLIN_HOME}/spark/jars 下相同jar包
+2. 拷贝FI环境中的 Hadoop 相关jar包，替换 `${KYLIN_HOME}/spark/jars` 下相同的jar包
 
 - 查找FI环境中的 Hadoop 相关的jar
 
-   `find /opt/hadoop_client/Hbase/hbase | grep hadoop`
+   `find /opt/hadoop_client/HBase/hbase | grep hadoop`
 
 - 查看 ${KYLIN_HOME}/spark/jars 相关的 jars 
 

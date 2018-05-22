@@ -102,7 +102,7 @@
 
 * [SQL查询](query/README.md)
 
-    * [基本Query](query/basic_query.cn.md)
+    * [查询样例](query/basic_query.cn.md)
     * [在Insight页面查询](query/insight.cn.md)
     * [SQL规范参考](query/sql_spec.cn.md)
     * [异步查询](query/async_query.cn.md)

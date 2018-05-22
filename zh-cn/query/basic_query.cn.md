@@ -1,4 +1,4 @@
-## SQL查询
+## 查询样例
 当Cube构建任务完成，系统一般会自动把Cube的状态切换为就绪（Ready）。我们以KAP样例数据为例介绍SQL查询方式。首先切换到Insight页面，在Web UI上选择本案例所用的Kylin_Sample_1项目。然后根据数据模型的设计，在查询输入框中输入SQL语句，然后单击Submit按钮。下面给出一下SQL查询的例子和相应的结果介绍。
 ### 单表行数统计
 ```sql
@@ -56,3 +56,13 @@ SELECT * FROM KYLIN_SALES
 ```
 
 默认的，KAP并不对原始数据的明细进行保存，因此并不支持类似的不带GROUP BY的查询。但是，用户经常希望通过执行`SELECT *`获取部分样例数据；因此KAP对这种SQL会返回不精确的查询结果（通过隐式地GROUP BY所有维度）。如果用户希望KAP支持原始数据的保存和查询，可以在Cube中定义RAW类型的度量。
+
+### 展示查询计划
+
+KAP可以在查询的前面添加`explain plan for`以获得执行计划，例如:
+
+```sql
+explain plan for select count(*) from KYLIN_SALES
+```
+
+但是执行计划的结果的展示并没有被优化，可以通过前端的导出结果功能查看。
