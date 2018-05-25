@@ -17,7 +17,7 @@ KAP从3.0开始支持RDBMS作为默认的输入数据源。链接RDBMS数据源�
 
 `kylin.query.pushdown.runner-class-name=io.kyligence.kap.query.pushdown.PushdownRunnerSDKImpl`
 
-> 注：以上配置项均支持在项目级别覆盖配置。您可以在项目配置中，重现定义以上配置。
+> 注：以上配置除项除kylin.source.jdbc.sqoop-home外，均支持在项目级别覆盖配置。您可以在项目配置中，重新定义以上配置。
 
 配置完以上参数之后，启动KAP，即可通过KAP界面连接RDBMS数据源。
 

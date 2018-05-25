@@ -14,19 +14,19 @@ metadata store backed up to /usr/local/kylin/meta_backups/meta_2016_06_10_20_24_
 ```
 在上面的例子里，这个命令会把KAP用到的所有元数据以文件形式下载到本地目录当中（如/usr/local/kylin/meta_backups/meta_2016_06_10_20_24_50）。目录结构如下表所示：
 
-| 目录名             | 介绍                                 |
-| :-------------- | :--------------------------------- |
-| project         | 包含了项目的基本信息，项目所包含其它元数据类型的声明         |
-| model_desc      | 包含了描述数据模型基本信息、结构的定义                |
-| cube_desc       | 包含了描述Cube模型基本信息、结构的定义              |
-| cube            | 包含了Cube实例的基本信息，以及下属Cube Segment的信息 |
-| cube_statistics | 包含了Cube实例的统计信息包含了Cube实例的统计信息       |
-| table           | 包含了表的基本信息，如Hive信息                  |
-| table_exd       | 包含了表的扩展信息，如维度                      |
-| table_snapshot  | 包含了Lookup表的镜像                      |
-| dict            | 包含了使用字典列的字典                        |
-| execute         | 包含了Cube构建任务的步骤信息                   |
-| execute_output  | 包含了Cube构建任务的步骤输出                   |
+| 目录名          | 介绍                                                 |
+| :-------------- | :--------------------------------------------------- |
+| project         | 包含了项目的基本信息，项目所包含其它元数据类型的声明 |
+| model_desc      | 包含了描述数据模型基本信息、结构的定义               |
+| cube_desc       | 包含了描述Cube模型基本信息、结构的定义               |
+| cube            | 包含了Cube实例的基本信息                             |
+| cube_statistics | 包含了Cube实例的统计信息包含了Cube实例的统计信息     |
+| table           | 包含了表的基本信息，如Hive信息                       |
+| table_exd       | 包含了表的扩展信息，如维度                           |
+| table_snapshot  | 包含了Lookup表的镜像                                 |
+| dict            | 包含了使用字典列的字典                               |
+| execute         | 包含了Cube构建任务的步骤信息                         |
+| execute_output  | 包含了Cube构建任务的步骤输出                         |
 进入到每个目录，可见json格式的元数据文件，例如：
 ```shell
 ls -l /usr/local/kylin/meta_backups/meta_2016_06_10_20_24_50/cube

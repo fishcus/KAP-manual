@@ -17,7 +17,7 @@ To enable query pushdown, following configration is required:
 
 `kylin.query.pushdown.runner-class-name=io.kyligence.kap.query.pushdown.PushdownRunnerSDKImpl`
 
-> Tips: All these configruations can be overriden in project-level
+> Tips: All these configruations except `kylin.source.jdbc.sqoop-home` can be overriden in project-level.
 
 After the configuration finished, start KAP, users can access RDBMS Data Source on Web UI now.
 
