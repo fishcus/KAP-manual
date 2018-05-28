@@ -14,3 +14,5 @@
 
 
 - [加速查询](query_accelerator.cn.md)
+
+> 注：自动建模不支持Kafka数据源。

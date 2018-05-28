@@ -10,7 +10,9 @@ If you have Auto-Modeling history, you will access the *Task List* page. Click *
 
 ![Task List](images/task_list.en.png)
 
-If you do not have records of auto-modeling, you will access the *Guide* page. This page will lead you to import source table, including Hive, RDBMS and Kafka.
+If you do not have records of auto-modeling, you will access the *Guide* page. This page will lead you to import source table, including Hive, RDBMS.
+
+> Notice: Kafka is not available in Auto-Modeling.
 
 ![No Source Table](images/no_source_table.en.png)
 

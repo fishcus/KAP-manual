@@ -2,6 +2,8 @@
 
 *Computed Column* allows you to pre-define actions like data extraction/ transformation/ redefinition in modes, and thus enhance the data semantic abstraction. By replacing runtime calculation with offline cube construction, KAP's pre-calculation capability is fully utilized. As a result, query performance could improve significantly. It's allowed to use Hive UDF in computed column, so that existing business codes can be reused.
 
+> Notice: Computed column is not available when the data source is Kafka.
+
 ### Basic Concept and Rules
 
 - Expression：calculating logic. Expression of computed column supports across a fact table or a lookup table. Plus, it support cross use columns from different tables.

@@ -16,6 +16,8 @@ Click `Monitor` on the left side, you can view a job for table sampling and plea
 
 ![](images/collect_statistics.5.png)
 
+> Notice: If the data source is Kafka, the job for table sampling will not show in Monitor while KAP will still finish collecting table statistics.
+
 Return to `Data Source` tab and select table `KYLIN_SALES`. You can see the table statistics information by clicking tabs `Columns`, `Extend Information`, `Statistics` and `Sample Data`.
 
 ![](images/collect_statistics.6.png)

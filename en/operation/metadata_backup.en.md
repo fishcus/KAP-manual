@@ -58,6 +58,12 @@ more kylin_sales_cube.json
 
 In addition, metadata backup is also a tool for troubleshooting; when the system got error, the administrator can dump metadata and then check it easily.
 
+> Notice: The deleting and revising of data can be restored to the backup version while the new creation of model or Cube cannot.
+>
+> - If the metadata has been backuped and the model or Cube is deleted or revised, restore metadata then the change of model or Cube will be covered.
+> - If a new model or Cube is built, restore metadata then the change will still be reserved.
+> - If you want to eliminate all the changes, you can delete the whole project then restore it.
+
 ### Metadata Backup in User Interface
 
 Besides using the command line to backup metadata, KAP also supports to backup metadata in the user interface.

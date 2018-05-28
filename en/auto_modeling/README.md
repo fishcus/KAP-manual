@@ -13,3 +13,5 @@ It takes four steps to accomplish Auto-Modeling:
 
 - [Query Accelerator](query_accelerator.en.md)
 
+
+> Notice: Kafka is not available in Auto-Modeling.
