@@ -58,9 +58,9 @@ Please follow the steps below:
 
    If you are upgrading from KAP Plus <3.0, the project dictionary will be upgraded and metadata will backup automatically in the upgrade process.
 
-   > Please ensured that there is no running segment before you upgrade.
+   > Please ensure that there is no running job before you upgrade, which include running, pending, error, stopped.
 
-   The upgrade will be automatically started when you start KAP. Meanwhile, all the cube json files will backup. If the upgrade succeeded, it would notice that “Migrate project dictionary successfully”. Otherwise, it would notice “Run Project Dictionary Migration failed. Please run cmd `bin/kylin.sh io.kyligence.kap.tool.migration.ProjectDictionaryMigrationCLI FIX` to fix it”.
+   The upgrade will be automatically started when you start KAP. Meanwhile, all the cube json files will backup. If the upgrade succeeded, it would notice that “Segments have been upgraded successfully." Otherwise, it would notice “Upgrade failed. Please try to run `bin/kylin.sh io.kyligence.kap.tool.migration.ProjectDictionaryMigrationCLI FIX` to fix. ”.
 
    If there is something wrong in the upgrade process, please run the following command line to fix `bin/kylin.sh io.kyligence.kap.tool.migration.ProjectDictionaryMigrationCLI FIX` . If the fix command did not work, please contact Kyligence Support.
 

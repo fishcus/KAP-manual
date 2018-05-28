@@ -59,13 +59,13 @@ KAP Plus 2.X各版本之间兼容元数据。因此在从KAP Plus 2.X升级至�
 
     如果是从<3.0的版本升级到最新版本，KAP第一次启动的时候会进行元数据备份和字典升级。
 
-    > 注意事项：在升级之前请确保没有处于**构建状态**的segment。
+    > 注意事项：在升级之前请确保没有处于**构建状态**的segment，构建状态包括等待、运行、错误和暂停 。
 
-    升级过程会在KAP启动时自动进行，同时cube文件夹下面所有的cube json文件将会被自动备份。升级成功后将会提示“Migrate project dictionary successfully”，失败则会提示“Run Project Dictionary Migration failed. Please run cmd `bin/kylin.sh io.kyligence.kap.tool.migration.ProjectDictionaryMigrationCLI FIX` to fix it”。
+    升级过程会在KAP启动时自动进行，同时cube文件夹下面所有的cube json文件将会被自动备份。升级成功后将会提示 “Segments have been upgraded successfully.”，失败则会提示“Upgrade failed. Please try to run `bin/kylin.sh io.kyligence.kap.tool.migration.ProjectDictionaryMigrationCLI FIX` to fix. ”。
 
-    如果升级过程出错，例如字典升级失败等，请运行`bin/kylin.sh io.kyligence.kap.tool.migration.ProjectDictionaryMigrationCLI FIX` 进行修复。修复成功后，将会看到“Migrate project dictionary successfully”提示。如修复失败，请您联系Kyligence Support。
+    如果升级过程出错，例如字典升级失败等，请运行`bin/kylin.sh io.kyligence.kap.tool.migration.ProjectDictionaryMigrationCLI FIX` 进行修复。修复成功后，将会看到“Segments have been upgraded successfully”提示。如修复失败，请您联系Kyligence Support。
 
     ``` shell
-     $KYLIN_HOME/bin/kylin.sh start
+    $KYLIN_HOME/bin/kylin.sh start
     ```
 
