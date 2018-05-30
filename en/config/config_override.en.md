@@ -44,7 +44,7 @@ The configuration of kylin.query.disable-cube-noagg-sql can be overridden at Cub
 
 > Note：**DO NOT** set this parameter over 10000. Otherwise it will consume a lot of CPU and memory resources when calculating the dimension combination, may lead to browser unstable or KAP crash. If there are a number of dimensions in the Cube, it is recommended to set multiple Aggregation Groups (AGG). 
 
-*kylin.table.snapshot.max-mb*, default is 300
+*kylin.snapshot.max-mb*, default is 300
 
 [RDBMS properties in project level](../model/data_import/rdbms_import.en.md)
 

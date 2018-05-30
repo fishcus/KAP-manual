@@ -69,6 +69,7 @@
         * [导入 Hive 数据源](model/data_import/hive_import.cn.md)
         * [导入 Kafka 数据源](model/data_import/kafka_import.cn.md)
         * [导入 RDBMS 数据源](model/data_import/rdbms_import.cn.md)
+        * [导入 Greenplum 数据源](model/data_import/gp_import.cn.md)
     * [数据采样](model/data_sampling.cn.md)
     * [设计模型](model/data_modeling.cn.md)
     * [多级分区模型](model/multi_partition.cn.md)

@@ -13,7 +13,7 @@ KAP从3.0开始支持RDBMS作为数据源。连接RDBMS数据源，首先需要�
 | kylin.source.jdbc.user           | JDBC连接用户名                                   |
 | kylin.source.jdbc.pass           | JDBC连接密码                                     |
 | kylin.source.jdbc.dialect        | JDBC方言（目前仅支持default、greenplum两种方言） |
-| kylin.source.default             | JDBC使用的数据源种类（使用SDK拓展时为16）        |
+| kylin.source.default             | JDBC使用的数据源种类（RDBMS和Greenplum为16）     |
 | kylin.source.jdbc.adaptor        | JDBC连接的数据源对应的适配器                     |
 
 如果需要开启查询下压，还需要配置以下参数：

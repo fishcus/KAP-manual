@@ -11,7 +11,7 @@ Then, please set the following configurations in *kylin.properties* or *project 
 | kylin.source.jdbc.user           | JDBC Connection Username                                     |
 | kylin.source.jdbc.pass           | JDBC Connection Password                                     |
 | kylin.source.jdbc.dialect        | Dialect to the data source (Currently only support greenplum and default) |
-| kylin.source.default             | Type of Data Source (16 for greenplum)                       |
+| kylin.source.default             | Type of Data Source (16 for Greenplum and RDBMS)             |
 | kylin.source.jdbc.adaptor        | JDBC Data Source Adaptor                                     |
 
 To enable query pushdown, following configration is required:
