@@ -1,10 +1,8 @@
-##RDBMS数据源配置
+##Greenplum数据源配置
 
-KAP从3.0开始支持RDBMS作为数据源。连接RDBMS数据源，首先需要下载JDBC驱动程序jar包和SDK jar包，并把jar包放置在`$KYLIN_HOME/ext`目录下。此外，因为Cube构建过程需要使用**sqoop**，还需要把jar包拷贝到sqoop安装目录的lib目录下。
+KAP从3.0开始支持Greenplum作为默认的数据源。首先需要下载Greenplum驱动程序jar包，并把jar包放置在`$KYLIN_HOME/ext`目录下。此外，因为Cube构建过程需要使用**sqoop**，还需要把jar包拷贝到sqoop安装目录的lib目录下。
 
-> 如您需要下载SDK jar包，请联系Kyligence Support。
-
-以下参数需要您配置在需要连接RDBMS数据源的**项目配置**或`kylin.properties`中：
+以下参数需要您配置在连接RDBMS数据源的**项目配置**或`kylin.properties`中：
 
 | 参数名                           | 解释                                             |
 | -------------------------------- | ------------------------------------------------ |
@@ -13,8 +11,7 @@ KAP从3.0开始支持RDBMS作为数据源。连接RDBMS数据源，首先需要�
 | kylin.source.jdbc.user           | JDBC连接用户名                                   |
 | kylin.source.jdbc.pass           | JDBC连接密码                                     |
 | kylin.source.jdbc.dialect        | JDBC方言（目前仅支持default、greenplum两种方言） |
-| kylin.source.default             | JDBC使用的数据源种类（使用SDK拓展时为16）        |
-| kylin.source.jdbc.adaptor        | JDBC连接的数据源对应的适配器                     |
+| kylin.source.default             | 使用的数据源种类（greenplum为16）                |
 
 如果需要开启查询下压，还需要配置以下参数：
 
@@ -24,34 +21,36 @@ KAP从3.0开始支持RDBMS作为数据源。连接RDBMS数据源，首先需要�
 
 ### 创建项目
 
-以SQL Server数据源为例，我们使用PostgreSQL JDBC Driver来连接SQL Server数据源，步骤如下：
+以Greenplum数据源为例，我们使用PostgreSQL JDBC Driver来连接Greenplum数据源，步骤如下：
 
-1. 下载PostgreSQL JDBC Driver和SDK的jar包，放置在`$KYLIN_HOME/ext`和sqoop安装目录的lib目录下。
+1. 下载Greenplum Driver的jar包，放置在`$KYLIN_HOME/ext`和sqoop安装目录的lib目录下。
+
 2. 打开KAP的Web UI，在主界面的顶端是项目的管理工具栏，点击“＋”即可如下图所示创建一个新的项目（Project），例如命名该项目为KAP_Sample。 
 
 ![新建项目](images/rdbm_import.cn.png)
 
 3. 在Web UI的左上角选择刚刚创建的项目，表示我们接下来的全部操作都在这个项目中，在当前项目的操作不会对其他项目产生影响。 
 
+> 当前版本使用Greenplum数据源时，需要选择RDBMS数据源
+
 ![选择RDBMS数据源](images/rdbms_import2.cn.png)
 
 4. 在项目配置中添加以下配置：
 
 ```
-kylin.source.jdbc.driver=com.microsoft.sqlserver.jdbc.SQLServerDriver
-kylin.source.jdbc.connection-url=jdbc:sqlserver://<HOST>:<PORT>;database=<DATABASE_NAME>
+kylin.source.jdbc.driver=com.pivotal.jdbc.GreenplumDriver
+kylin.source.jdbc.connection-url=jdbc:pivotal:greenplum://<HOST>:<PORT>;DatabaseName=<DATABASE_NAME>
 kylin.source.jdbc.user=<username>
 kylin.source.jdbc.pass=<password>
 kylin.query.pushdown.runner-class-name=io.kyligence.kap.query.pushdown.PushdownRunnerSDKImpl
-kylin.source.jdbc.dialect=mssql
+kylin.source.jdbc.dialect=greenplum
 kylin.source.default=16
 kylin.source.jdbc.sqoop-home=/usr/hdp/current/sqoop-client/bin
-kylin.source.jdbc.adaptor=io.kyligence.kap.sdk.datasource.adaptor.MssqlAdapter
 ```
 
-5. 配置完成之后，就可以通过KAP界面连接SQL Server数据源了。
+5. 配置完成之后，就可以通过KAP界面连接Greenplum数据源了。
 
-### 同步RDBMS表
+### 同步Greenplum表
 
 选择数据源为RDBMS后，通过点击“Table”来加载我们所需要的表，如下图所示：![加载表元数据](images/rdbm_import3.cn.png)
 
