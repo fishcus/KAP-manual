@@ -11,3 +11,6 @@
 [KAP Plus升级](upgrade_kapp.cn.md)
 
 [升级失败的处理](rollback.cn.md)
+
+[从补丁包升级](upgrade_patch.cn.md)
+

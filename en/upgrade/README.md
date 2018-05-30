@@ -11,3 +11,5 @@ Continue reading:
 [Upgrading from KAP Plus](upgrade_kapp.en.md)
 
 [Rollback in case of upgrading failure](rollback.en.md)
+
+[Upgrading from Patch](upgrade_patch.en.md)
