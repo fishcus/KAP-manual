@@ -50,7 +50,7 @@
     * [Upgrading from Apache Kylin](upgrade/upgrade_kylin.en.md)
     * [Upgrading from KAP](upgrade/upgrade_kap.en.md)
     * [Upgrading from KAP Plus](upgrade/upgrade_kapp.en.md)
-    * [Installing Upgrade Patch](upgrade/upgrade_patch.en.md)
+    * [Installing Hotfix Patch](upgrade/upgrade_patch.en.md)
     * [Failure Rollback](upgrade/rollback.en.md)
 
 * [Modeling](model/README.md)

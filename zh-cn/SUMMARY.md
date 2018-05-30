@@ -61,7 +61,7 @@
     * [从Apache Kylin升级](upgrade/upgrade_kylin.cn.md)
     * [从KAP升级](upgrade/upgrade_kap.cn.md)
     * [从KAP Plus升级](upgrade/upgrade_kapp.cn.md)
-    * [从补丁包升级](upgrade/upgrade_patch.cn.md)
+    * [补丁包修复](upgrade/upgrade_patch.cn.md)
     * [升级失败的处理](upgrade/rollback.cn.md)
 
 * [数据建模](model/README.md)

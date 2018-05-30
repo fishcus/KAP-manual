@@ -10,6 +10,6 @@ Continue reading:
 
 [Upgrading from KAP Plus](upgrade_kapp.en.md)
 
-[Installing Upgrade Patch](upgrade_patch.en.md)
+[Installing Hotfix Patch](upgrade_patch.en.md)
 
 [Rollback in case of upgrading failure](rollback.en.md)
