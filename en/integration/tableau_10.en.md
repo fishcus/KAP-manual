@@ -47,3 +47,15 @@ You can drill down from aggregated data to detail data in Tableau. First, click 
 Click on the Full Data tab and then you can view the drill-down detail data.
 
 ![](images/tableau_10/step16.PNG)
+
+### Sync model from KAP to Tableau
+
+select a `READY` cube, click `Export TDS` in `more actions` to download a tds file
+#### Export TDS from KAP
+![](images/tableau_10/step17.PNG)
+
+#### Connect Kiligence Datasource Using TDS file
+double click tds file on where has installed tableau, type authorization information in dialog, and then you can see the data source info
+
+![](images/tableau_10/step18.PNG)
+![](images/tableau_10/step19.PNG)

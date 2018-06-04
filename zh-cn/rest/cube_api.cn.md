@@ -20,6 +20,7 @@
 * [清理 Cube](#清理cube)
 * [管理 Segment](#管理segment)
 * [删除 Segment](#删除segment)
+* [导出 TDS](#导出tds)
 
 ### 返回多个Cube
 
@@ -763,3 +764,13 @@ curl -u ADMIN:KYLIN -H "Accept: application/vnd.apache.kylin-v2+json" -H "Conten
 #### 路径变量
 * cubeName - `必选` `string` Cube 名称
 * segmentName - `必选` `string` segment name 数组
+
+### 导出TDS
+`请求方式 GET`
+
+`访问路径 http://host:port/kylin/api/cubes/{cubeName}/export/tds`
+
+`Content-Type: application/vnd.apache.kylin-v2+json`
+
+#### 路径变量
+* cubeName - `必选` `string` Cube 名称

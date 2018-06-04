@@ -19,6 +19,7 @@
 * [Purge Cube](#purge-cube)
 * [Manage Segment](#manage-segment)
 * [Delete Segment](#delete-segment)
+* [Export TDS](#export-tds)
 
 ### List Cubes 
 `Request Mode GET`
@@ -774,3 +775,13 @@ curl -u ADMIN:KYLIN -H "Accept: application/vnd.apache.kylin-v2+json" -H "Conten
 #### Path Variable
 - cubeName - `required` `string`,  Cube's name.
 - segmentName - `required` `string`,  segment name‘s array.
+
+### Export TDS
+`Request Mode GET`
+
+`Access Path http://host:port/kylin/api/cubes/{cubeName}/export/tds`
+
+`Content-Type: application/vnd.apache.kylin-v2+json`
+
+#### Path Variable
+- cubeName - `required` `string`,  Cube's name.
