@@ -59,15 +59,15 @@ Tableau 10.1中有两种数据源连接类型，选择 `连接`选项以确保�
 ![](images/tableau_10/step16.PNG)
 
 ### 从KAP同步模型至Tableau
-#### 在KAP中导出TDS
+#### 在KAP中导出TDS文件
 
-选择一个Ready的Cube, 在更多操作中选择导出TDS，即可下载tds文件
+选择一个Ready状态的Cube, 在更多操作中选择导出TDS，即可下载TDS文件。
 
-![](images/tableau_10/step17.PNG)
+![](images/tableau_10/step17.png)
 
 #### 用TDS文件连接Kyligence数据源
-在安装了tableau的环境上，双击TDS文件，填写认证信息，即可连接kiligence数据源
+在安装了tableau的环境上，双击TDS文件，填写认证信息，即可连接Kyligence数据源
 
-![](images/tableau_10/step18.PNG)
+![](images/tableau_10/step18.png)
 
-![](images/tableau_10/step19.PNG)
+![](images/tableau_10/step19.png)

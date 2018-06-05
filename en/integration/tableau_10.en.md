@@ -48,14 +48,16 @@ Click on the Full Data tab and then you can view the drill-down detail data.
 
 ![](images/tableau_10/step16.PNG)
 
-### Sync model from KAP to Tableau
+### Sync Model from KAP to Tableau
 
-select a `READY` cube, click `Export TDS` in `more actions` to download a tds file
-#### Export TDS from KAP
-![](images/tableau_10/step17.PNG)
+#### **Export TDS from KAP**
+
+If you want to download a tds file, please select a `READY` cube and click `Export TDS` in `more actions` to download a tds file.
+
+![](images/tableau_10/step17.png)
 
 #### Connect Kiligence Datasource Using TDS file
-double click tds file on where has installed tableau, type authorization information in dialog, and then you can see the data source info
+To see the data source information, you can double click tds file on where has installed tableau, type authorization information in dialog.
 
-![](images/tableau_10/step18.PNG)
-![](images/tableau_10/step19.PNG)
+![](images/tableau_10/step18.png)
+![](images/tableau_10/step19.png)
