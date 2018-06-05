@@ -33,7 +33,11 @@ Please follow the steps below:
 
    > kylin.server.init-tasks needs to be deleted or annotated
 
-   Otherwise if you're upgrading from <2.4.0, you need to: 1. manually re-apply all changes in old version's `$KYLIN_HOME/conf` to new version's `$KYLIN_HOME/conf`. 2. manually re-apply all changes in old version's `$KYLIN_HOME/bin/setenv.sh` to new version's `$KYLIN_HOME/conf/setenv.sh`. 3. manually delete kylin.server.init-tasks in `$KYLIN_HOME/conf/kylin.properties`.
+   Otherwise if you're upgrading from <2.4.0, you need to:
+
+   1. manually re-apply all changes in old version's `$KYLIN_HOME/conf` to new version's `$KYLIN_HOME/conf`.
+   2. manually re-apply all changes in old version's `$KYLIN_HOME/bin/setenv.sh` to new version's `$KYLIN_HOME/conf/setenv.sh`. 
+   3. manually delete kylin.server.init-tasks in `$KYLIN_HOME/conf/kylin.properties`.
 
    > Watch out: 1. the folder for setenv.sh has changed. 2. Direct file copy-and-replace is not allowed.
 
@@ -52,13 +56,36 @@ Please follow the steps below:
 7. Confirm the License:
 
    Confirm the license file in the new directory of KAP.
+
 8. Please ensure the JDK version is *1.8*.
+
+   If there is only one node upgraded to JDK 1.8, please put the jdk file to the other nodes, such as `/usr/java/jdk1.8`. In addition to this, please add the following configurations.
+
+   * Add the following properties in `$KYLIN_HOME/conf/kylin.properties`.
+
+   ```shell
+   kap.storage.columnar.spark-conf.spark.executorEnv.JAVA_HOME=/usr/java/jdk1.8
+   kap.storage.columnar.spark-conf.spark.yarn.appMasterEnv.JAVA_HOME=/usr/java/jdk1.8
+   ```
+
+   * Add the following configurations in `$KYLIN_HOME/conf/kylin_job_conf.xml` and `kylin_job_conf_inmem.xml`.
+
+   ```xml
+    <property>
+           <name>mapred.child.env</name>
+           <value>JAVA_HOME=/usr/java/jdk1.8</value>
+       </property>
+       <property>
+           <name>yarn.app.mapreduce.am.env</name>
+           <value>JAVA_HOME=/usr/java/jdk1.8</value>
+       </property>
+   ```
 
 9. Start the KAP Plus instance:
 
    If you are upgrading from KAP Plus <3.0, the project dictionary will be upgraded and metadata will backup automatically in the upgrade process.
 
-   > Please ensure that there is no running job before you upgrade, which include running, pending, error, stopped.
+   Please ensure that there is no *running job* before you upgrade, which include running, pending, error, stopped.
 
    The upgrade will be automatically started when you start KAP. Meanwhile, all the cube json files will backup. If the upgrade succeeded, it would notice that “Segments have been upgraded successfully." Otherwise, it would notice “Upgrade failed. Please try to run `bin/kylin.sh io.kyligence.kap.tool.migration.ProjectDictionaryMigrationCLI FIX` to fix. ”.
 

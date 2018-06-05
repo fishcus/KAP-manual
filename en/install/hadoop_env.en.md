@@ -15,10 +15,15 @@ The Linux account running KAP must have required access permissions to Hadoop cl
 
 
 ### Compatible Hadoop Versions
-* Hadoop: 2.7+
+* Hadoop: 2.6+
+
 * Hive: 0.13+
+
 * HBase: 0.98/0.99, 1.x
+
 * JDK: 1.7+
+
+  > JDK 1.8 is required for KAP 3.x
 
 ### Configuration of YARN and MapReduce
 KAP requires Hadoop resource to run distributed computation jobs. Especially, memory resource is critical for KAP jobs to run smoothly. The Yarn configuration of least requirement is listed bellow.

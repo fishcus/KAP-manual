@@ -33,7 +33,13 @@ KAP Plus 2.X各版本之间兼容元数据。因此在从KAP Plus 2.X升级至�
 
    > 需要注意的是`$KYLIN_HOME/conf/kylin.properties`中，kylin.server.init-tasks这一行需要被删除或注释。
 
-   如果是从<2.4.0的版本升级到更新的版本，需要： 1. 手动地把在老版本`$KYLIN_HOME/conf`中的改动重新在新版本的`$KYLIN_HOME/conf`重做一遍 2. 手动地把在老版本中`$KYLIN_HOME/bin/setenv.sh`中的改动再新版本中的`$KYLIN_HOME/conf/setenv.sh`重新做一遍。 3. 在`$KYLIN_HOME/conf/kylin.properties`中删除或注释kylin.server.init-tasks这一行。 
+   如果是从<2.4.0的版本升级到更新的版本，需要： 
+
+   1.手动地把在老版本`$KYLIN_HOME/conf`中的改动重新在新版本的`$KYLIN_HOME/conf`重做一遍 
+
+   2.手动地把在老版本中`$KYLIN_HOME/bin/setenv.sh`中的改动在新版本中的`$KYLIN_HOME/conf/setenv.sh`重新做一遍。 
+
+   3.在`$KYLIN_HOME/conf/kylin.properties`中删除或注释kylin.server.init-tasks这一行。 
 
    > 注意：1. setenv.sh的目录发生了改变 2. 不允许直接拷贝-替换配置文件
 
@@ -51,15 +57,37 @@ KAP Plus 2.X各版本之间兼容元数据。因此在从KAP Plus 2.X升级至�
 
 7. 确认License：
 
-   在新版本的KAP Plus安装目录下确认License。
+   在新版本的KAP Plus安装目录下`$KYLIN_HOME`确认License。
 
 8. 如果是从<3.0的KAP Plus版本进行升级，请确保您的JDK的版本是**1.8**。
+
+    对于集群内**单节点**升级JDK1.8，需要将每个节点放置一个jdk1.8的目录（如`/usr/java/jdk1.8`）同时需要进行以下操作：
+
+    * 在`$KYLIN_HOME/conf/kylin.properties`中添加以下配置
+
+    ```shell
+    kap.storage.columnar.spark-conf.spark.executorEnv.JAVA_HOME=/usr/java/jdk1.8
+    kap.storage.columnar.spark-conf.spark.yarn.appMasterEnv.JAVA_HOME=/usr/java/jdk1.8
+    ```
+
+    * 在`$KYLIN_HOME/conf`目录下`kylin_job_conf.xml`以及`kylin_job_conf_inmem.xml`添加以下配置
+
+     ```xml
+      <property>
+            <name>mapred.child.env</name>
+            <value>JAVA_HOME=/usr/java/jdk1.8</value>
+        </property>
+        <property>
+            <name>yarn.app.mapreduce.am.env</name>
+            <value>JAVA_HOME=/usr/java/jdk1.8</value>
+        </property>
+     ```
 
 9. 启动KAP Plus实例：
 
     如果是从<3.0的版本升级到最新版本，KAP第一次启动的时候会进行元数据备份和字典升级。
 
-    > 注意事项：在升级之前请确保没有处于**构建状态**的segment，构建状态包括等待、运行、错误和暂停 。
+    注意事项：在升级之前请确保没有处于**构建状态**的segment，构建状态包括等待、运行、错误和暂停 。
 
     升级过程会在KAP启动时自动进行，同时cube文件夹下面所有的cube json文件将会被自动备份。升级成功后将会提示 “Segments have been upgraded successfully.”，失败则会提示“Upgrade failed. Please try to run `bin/kylin.sh io.kyligence.kap.tool.migration.ProjectDictionaryMigrationCLI FIX` to fix. ”。
 
