@@ -124,6 +124,8 @@ KAP Plus的查询需要使用Spark，如果环境中配置了Kerberos或者已�
   >
   > 另外一种解决方案：将`hive-site.xml`文件拷贝到`KAP_DIR/spark/conf`目录下，KAP启动后请检查`KAP_DIR/spark_clinet.out`日志，如果遇到类似HDFS目录，比如：`/tmp/hive-scratch`没有写权限的错误，通过执行`hadoop fs -chmod -R 777 /tmp/hive-scratch`。
 
+  有关集成Kerberos相关问题可以查看手册中[集成Kerboros](zh-cn/security/kerberos.cn.md)章节。
+
   **Example:**
 
   vi编辑打开`kylin.properties`，找到如下配置项，并添加kerberos配置：
