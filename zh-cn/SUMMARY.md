@@ -150,6 +150,8 @@
         * [Qlik Sense](integration/qlik.cn.md)
         * [Smartbi](integration/smartbi.cn.md)
         * [Fanruan](integration/fanruan.cn.md)
+        * [SAP BO](integration/sap_bo.cn.md)
+        * [OBIEE](integration/obiee.cn.md)
 
 * [REST API](rest/README.md)
     * [访问及安全验证](rest/authentication.cn.md)

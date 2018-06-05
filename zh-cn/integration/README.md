@@ -19,3 +19,9 @@
 [Qlik Sense](qlik.cn.md)
 
 [Smartbi](smartbi.cn.md)
+
+[Fanruan](fanruan.cn.md)
+
+[SAP BO](sap_bo.cn.md)
+
+[OBIEE](obiee.cn.md)
