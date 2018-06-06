@@ -4,7 +4,7 @@
 
 QingCloud AppCenter is an enterprise applications delivery platform provided by QingCloud, including a series of applications in big data ecosystem, such as Hadoop, Zookeeper etc, and can reduce the efforts and complexity of development, deployment and maintanence in the cloud.
 
-In QingCloud AppCentern, KAP presents as a standard application, which allows users to provision a new cluster including Hadoop, Hive, KAP in one click. In the meantime, KAP also acts as a part of QingCloud's Hadoop service (QingMR), where users can select to install KAP as an application while deploying the QingMR service.
+In QingCloud AppCenter, KAP presents as a standard application, which allows users to provision a new cluster including Hadoop, Hive, KAP in one click. In the meantime, KAP also acts as a part of QingCloud's Hadoop service (QingMR), where users can select to install KAP as an application while deploying the QingMR service.
 
 ### Install KAP
 
