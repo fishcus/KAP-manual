@@ -78,6 +78,8 @@ export SPARK_HOME=/opt/mapr/spark/spark-2.1.0
 > $KYLIN_HOME/bin/check-env.sh
 > ```
 
+如果您需要部署Kerberos，请参看[集成Kerberos](../../security/kerberos.cn.md)章节。
+
 ### 启动 KAP
 
 运行下述命令以启动 KAP：

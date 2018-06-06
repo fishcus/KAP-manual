@@ -86,6 +86,8 @@ export HCAT_HOME=/usr/lib/hive-hcatalog
 
 ``bin/check-env.sh`` will check if all environment meets the KAP requirements.
 
+If you want to deploy Kerberos, please refer to [Kerberos](../security/kerberos.en.md).
+
 ### Start KAP
 
 Execute command `bin/kylin.sh start`, KAP will start in background. You can track starting progress by watching file `logs/kylin.log` with `tail` command.

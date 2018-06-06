@@ -68,6 +68,8 @@ export HCAT_HOME=/usr/lib/hive-hcatalog
 > $KYLIN_HOME/bin/check-env.sh
 > ```
 
+如果您需要部署Kerberos，请参看[集成Kerberos](../../security/kerberos.cn.md)章节。
+
 ### 启动 KAP
 
 运行下述命令以启动 KAP：

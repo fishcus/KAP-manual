@@ -182,6 +182,8 @@ kylin.storage.hbase.compression-codec=none
 kylin.source.hive.table-dir-create-first=true
 ```
 
+如果您需要部署Kerberos，请参看[集成Kerberos](../../security/kerberos.cn.md)章节。
+
 ### 启动 KAP
 
 运行下述命令以启动 KAP：

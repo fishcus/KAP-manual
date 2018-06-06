@@ -86,6 +86,7 @@ export HIVE_CONF=/etc/hive/conf
 export HCAT_HOME=/usr/lib/hive-hcatalog
 ```
 
+If you want to deploy Kerberos, please refer to [Kerberos](../security/kerberos.en.md).
 
 ### Start KAP
 

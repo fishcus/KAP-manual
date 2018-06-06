@@ -82,6 +82,8 @@ ln -sfn $KYLIN_HOME/conf/profile_min $KYLIN_HOME/conf/profile
 netstat -ntl | grep 5181(2181)
 ```
 
+- If you want to deploy Kerberos, please refer to [Kerberos](../security/kerberos.en.md).
+
 ## Import Sample Data and Cube
 
 Run`$KYLIN_HOME/bin/sample.sh`, it will create three hive tables as a sample and import sample data to KAP. Then the sample project metadata will be imported as well, which includes model and cube definiton. 

@@ -67,6 +67,8 @@ export SPARK_HOME=/opt/mapr/spark/spark-2.1.0
 
 ``bin/check-env.sh`` will check if all environment meet the KAP requirements.
 
+If you want to deploy Kerberos, please refer to [Kerberos](../security/kerberos.en.md).
+
 ## Import Sample Data and Cube
 
 Run`$KYLIN_HOME/bin/sample.sh`, it will create three hive tables as a sample and import sample data to KAP. Then the sample project metadata will be imported as well, which includes model and cube definiton. 
