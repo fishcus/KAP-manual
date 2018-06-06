@@ -34,3 +34,5 @@ In KAP login page, click **Help -> Upload License**, you will see **Upload Licen
 In addition, you may copy it to KAP's installation directory to start KAP. 
 
 If you need to update the license, you can use the above methods to update. It should be noted that if you copy the new license in the KAP's install directory to replace, KAP may need to restart.
+
+> Note: You cannot login KAP if the license has expired.
