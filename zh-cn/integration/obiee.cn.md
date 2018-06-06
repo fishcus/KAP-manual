@@ -1,6 +1,8 @@
 ## 与OBIEE集成
 
-自从KAP3.0版本开始，支持与OBIEE 11G进行集成。
+OBIEE是Oracle旗下的BI产品，可提供完整的 BI 功能，包括交互式信息板、完全即席的主动式智能和警报、企业和财务报表、实时预测智能以及离线分析等。本文将分步介绍使用OBIEE11g连接KAP的方法。
+
+前置条件：**KAP 版本 >=3.0，KyligenceODBC 版本 >=2.2**
 
 ### 配置ODBC及DSN
 
@@ -18,7 +20,7 @@
 
    在client端和server端都需要安装Kylignece ODBC并配置DSN，且两端的DSN名称应**保持一致**。
 
-   有关Windows下Kyligence ODBC的配置，请参考[Windows下安装与配置Kyligence ODBC驱动](http://docs.kyligence.io/v2.5/zh-cn/driver/kyligence_odbc_win.cn.html)。
+   有关Windows下Kyligence ODBC的配置，请参考[Windows下安装与配置Kyligence ODBC驱动](http://docs.kyligence.io/v3.0/zh-cn/driver/kyligence_odbc_win.cn.html)。
 
    有关Linux下配置Kyligence ODBC的配置，请参考[Linux下安装与配置Kyligence ODBC驱动](https://docs.oracle.com/middleware/11119/biee/BIEMG/deploy_rpd.htm#CHDFEEHC)中的Configuring Database Connections Using Native ODBC Drivers部分。
 
@@ -40,20 +42,17 @@
    PWD = ADMIN
    ```
 
-
-> 注：ODBC版本至少为2.2版本。
-
 ### 创建数据模型
 
-1. 在BI Administrator tool中点击**增加数据源**。
+1. 在BI Administrator tool中点击**导入元数据**来增加数据源。
 
    ![增加数据源](images/OBIEE/add_data.png)
 
-2. 选择OBDC2.0，将KAP中的表导入。
+2. 选择ODBC2.0，将KAP中的表导入。
 
    ![导入KAP中的表](images/OBIEE/add_table.png)
 
-3. 导入成功后，在物理模型里找到KAP数据源，复选需要建模的表右键进行建模。
+3. 导入成功后，在物理模型里找到KAP数据源，复选需要建模的表右键，选择**物理图表**进行建模。
 
    ![进行建模](images/OBIEE/start_model.png)
 
@@ -67,7 +66,7 @@
 
 6. 保存物理模型后新建业务模型，然后将刚才增加的物理模型拖动到业务模型，并保存到业务模型。
 
-   然后将刚才增加的逻辑模型拖动到表示层，并保存到表示。
+   然后将刚才增加的逻辑模型拖动到表示层，并保存到表示层。
 
    点击BI Administrator tool中左上角的**文件-保存**，保存整个模型。
 
@@ -107,7 +106,7 @@
 
   2. 选择在client端创建的数据源的连接池名进行连接，输入查询SQL进行分析。
 
-     连接池名称格式：`dsn_name"."connect_pool_nam`
+     连接池名称格式：`"dsn_name"."connect_pool_name"`
 
      ![连接数据库](images/OBIEE/data_pool.png)
 
