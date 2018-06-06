@@ -4,6 +4,8 @@ KAP supports Query Pushdown since 2.4. If the query is Cube incapable, KAP will 
 
 #### Turn on Query Pushdown
 
+The precondition for query pushdown is that there exists at least one table which has been loaded.
+
 KAP Plus has embedded Spark engine, no 3rd party dependency needed for query pushdown.
 
 Query pushdown is turned off by default. To turn on it, remove the comment character # ahead of the configuration item `kylin.query.pushdown.runner-class-name=io.kyligence.kap.storage.parquet.adhoc.PushDownRunnerSparkImpl` in file `kylin.properties` to bring it into  effect. 

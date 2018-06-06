@@ -3,6 +3,8 @@
 
 ### 启用查询下压
 
+查询下压可用的前提条件是有已加载完成的表。
+
 默认情况下，查询下压功能未开启。如果要开启查询下压，需要执行以下两步：
 
 - 在 `kylin.properties` 文件中删除 `kylin.query.pushdown.runner-class-name=io.kyligence.kap.storage.parquet.adhoc.PushDownRunnerSparkImpl` 这一配置项前的注释符号，使其生效。

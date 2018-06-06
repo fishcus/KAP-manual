@@ -4,6 +4,8 @@ KAP supports query pushdown from KAP 2.4. If there are queries which cannot be f
 
 #### Enable Query Pushdown
 
+The precondition for query pushdown is that there exists at least one table which has been loaded.
+
 Query pushdown is turned off by default. To turn it on, do the following:
 
 - Remove the Comment symbol in front of the configuration item `kylin.query.pushdown.runner-class-name=io.kyligence.kap.storage.parquet.adhoc.PushDownRunnerSparkImp` in the file `kylin.properties` to bring it into effect. 
