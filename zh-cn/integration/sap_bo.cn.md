@@ -1,10 +1,11 @@
 ## 与SAP BO集成
 
-自从KAP3.0版本开始，支持与SAP BO Web Intelligence 4.1进行集成。
+SAP BusinessObjects（SAP BO）是SAP公司旗下的商务智能产品，自KAP3.0版本开始，支持与SAP BO 进行集成。
+本文将分步介绍SAP BO Web Intelligence 4.1与KAP连接的方法。
 
 ### 配置ODBC及DSN
 
-有关Kyligence ODBC的配置，请参考[Windows下安装与配置Kyligence ODBC驱动](http://docs.kyligence.io/v2.5/zh-cn/driver/kyligence_odbc_win.cn.html)。
+有关Kyligence ODBC的配置，请参考[Windows下安装与配置Kyligence ODBC驱动](http://docs.kyligence.io/v3.0/zh-cn/driver/kyligence_odbc_win.cn.html)。
 
 ### 使用Universe设计工具进行建模
 
@@ -57,6 +58,60 @@
    > 注：此处如果需要outer join，需要在参数里设置**ANSI92=Yes**。
    >
    > ![修改参数](images/SAP_BO/universe_model_ansi92.jpg)
+
+### 在Rich client中创建报表
+
+   选择Universe为数据源，使用新建的Universe即可。把需要分析的字段拖动到右侧，点击运行查询
+
+   ![运行查询](images/SAP_BO/3.1_query.png)
+
+   即可得到查询结果
+
+   ![运行查询](images/SAP_BO/3.2_queryend.png)
+
+### 替换数据源的方法
+   
+   ***方法一 在报表内修改***
+
+   首先创建kyligence的universe，然后在报表设计页面点击数据访问-更改源
+   
+   ![运行查询](images/SAP_BO/4.1.png)
+
+   选择其他universe
+   
+   ![运行查询](images/SAP_BO/4.2.png)
+
+   字段映射完毕后点击完成即可
+
+   ![运行查询](images/SAP_BO/4.2.png)
+
+   字段映射完毕后点击完成即可
+
+   ![运行查询](images/SAP_BO/4.3.png)
+
+   在查询界面点击运行查询即可还原报表
+
+   ![运行查询](images/SAP_BO/4.4.png)
+
+   ***方法二 在universe上修改***
+   
+   在universe里编辑Conenction
+ 
+   ![运行查询](images/SAP_BO/4.5.png)
+
+   修改DSN为需要的DSN，然后保存即可。
+
+### 一些注意事项
+
+BO发出的查询都会带上schema,包括default database，而default在KAP查询中是一个关键字不能使用default.table的形式的查询语句。
+-->解决方式：在**kylin.properties**中把**kylin.query.escape-default-keyword**设为true，KAP会自动为default转为"DEFAULT"。
+
+
+    
+
+
+    
+
 
 
 
