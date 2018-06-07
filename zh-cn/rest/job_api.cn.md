@@ -149,6 +149,8 @@
 ### 返回Job信息
 `GET /jobs/{jobId}`
 
+`Content-Type: application/vnd.apache.kylin-v2+json`
+
 #### 路径变量
 * jobId - `必选` `string` Job id.
 
@@ -157,6 +159,8 @@
 
 ### 返回Job每步输出
 `GET /{jobId}/steps/{stepId}/output`
+
+`Content-Type: application/vnd.apache.kylin-v2+json`
 
 #### 路径变量
 * jobId - `必选` `string` Job id.
@@ -174,6 +178,8 @@
 ### 返回 Job 列表
 
 `GET /kylin/api/jobs`
+
+`Content-Type: application/vnd.apache.kylin-v2+json`
 
 #### 路径变量
 
