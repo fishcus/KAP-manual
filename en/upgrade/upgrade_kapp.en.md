@@ -66,6 +66,9 @@ Please follow the steps below:
    ```shell
    kap.storage.columnar.spark-conf.spark.executorEnv.JAVA_HOME=/usr/java/jdk1.8
    kap.storage.columnar.spark-conf.spark.yarn.appMasterEnv.JAVA_HOME=/usr/java/jdk1.8
+   #If you need to use Spark building engine, please add the following properties
+   kylin.engine.spark-conf.spark.executorEnv.JAVA_HOME=/usr/java/jdk1.8
+   kylin.engine.spark-conf.spark.yarn.appMasterEnv.JAVA_HOME=/usr/java/jdk1.8
    ```
 
    * Add the following configurations in `$KYLIN_HOME/conf/kylin_job_conf.xml` and `kylin_job_conf_inmem.xml`.
@@ -85,7 +88,7 @@ Please follow the steps below:
 
    If you are upgrading from KAP Plus <3.0, the project dictionary will be upgraded and metadata will backup automatically in the upgrade process.
 
-   Please ensure that there is no *running job* before you upgrade, which include running, pending, error, stopped.
+   *Please ensure that there is no running job before you upgrade, which include running, pending, error, stopped*
 
    The upgrade will be automatically started when you start KAP. Meanwhile, all the cube json files will backup. If the upgrade succeeded, it would notice that “Segments have been upgraded successfully." Otherwise, it would notice “Upgrade failed. Please try to run `bin/kylin.sh io.kyligence.kap.tool.migration.ProjectDictionaryMigrationCLI FIX` to fix. ”.
 

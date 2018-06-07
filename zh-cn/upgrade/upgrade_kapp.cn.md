@@ -68,6 +68,9 @@ KAP Plus 2.X各版本之间兼容元数据。因此在从KAP Plus 2.X升级至�
     ```shell
     kap.storage.columnar.spark-conf.spark.executorEnv.JAVA_HOME=/usr/java/jdk1.8
     kap.storage.columnar.spark-conf.spark.yarn.appMasterEnv.JAVA_HOME=/usr/java/jdk1.8
+    #如果您需要使用Spark构建引擎，请添加以下配置
+    kylin.engine.spark-conf.spark.executorEnv.JAVA_HOME=/usr/java/jdk1.8
+    kylin.engine.spark-conf.spark.yarn.appMasterEnv.JAVA_HOME=/usr/java/jdk1.8
     ```
 
     * 在`$KYLIN_HOME/conf`目录下`kylin_job_conf.xml`以及`kylin_job_conf_inmem.xml`添加以下配置
@@ -87,7 +90,7 @@ KAP Plus 2.X各版本之间兼容元数据。因此在从KAP Plus 2.X升级至�
 
     如果是从<3.0的版本升级到最新版本，KAP第一次启动的时候会进行元数据备份和字典升级。
 
-    注意事项：在升级之前请确保没有处于**构建状态**的segment，构建状态包括等待、运行、错误和暂停 。
+    **注意事项：在升级之前请确保没有处于构建状态的segment，构建状态包括等待、运行、错误和暂停。 **
 
     升级过程会在KAP启动时自动进行，同时cube文件夹下面所有的cube json文件将会被自动备份。升级成功后将会提示 “Segments have been upgraded successfully.”，失败则会提示“Upgrade failed. Please try to run `bin/kylin.sh io.kyligence.kap.tool.migration.ProjectDictionaryMigrationCLI FIX` to fix. ”。
 

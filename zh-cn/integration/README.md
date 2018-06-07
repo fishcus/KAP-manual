@@ -2,6 +2,8 @@
 
 本章将介绍如何使用第三方BI工具与KAP连接。
 
+当您连接BI工具时，部分BI工具会发送一条查询语句如 `select * from fact_table ` 。当您的数据量较大时，建议您根据自身需求在项目配置中添加`kylin.query.force-limit `，防止数据返回时间较长。
+
 继续阅读：
 
 [Tableau](tableau_10.cn.md)

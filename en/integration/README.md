@@ -4,7 +4,11 @@ This chapter includes integration between KAP and 3rd party BI tools.
 
 Following BI tools are covered:
 
+When you connected with BI tools, some tools will send a query like `select * from fact_table `. Using the project configuration `kylin.query.force-limit ` is highly recommended if your data is extremely large.
+
 [Tableau](tableau_10.en.md)
+
+[Excel](excel_2018.en.md)
 
 [Power BI](powerbi.en.md)
 
@@ -12,6 +16,10 @@ Following BI tools are covered:
 
 [Cognos](cognos.en.md)
 
-[MicroStrategy](microstrategy_10_4.en.md)
+MicroStrategy
+
+* [MicroStrategy Secure Enterprise](microstrategy_enterprise.en.md)
+* [MicroStrategy Workstation / Desktop](microstrategy_desktop.en.md)
 
 [Qlik Sense](qlik.en.md)
+
