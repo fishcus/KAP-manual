@@ -149,6 +149,8 @@
 ### Get Job Status
 `GET /jobs/{jobId}`
 
+`Content-Type: application/vnd.apache.kylin-v2+json`
+
 #### Path Variable
 * jobId - `required` `string` job id.
 
@@ -157,6 +159,8 @@
 
 ### Get Job Step Output
 `GET /{jobId}/steps/{stepId}/output`
+
+`Content-Type: application/vnd.apache.kylin-v2+json`
 
 #### Path Variable
 * jobId - `required` `string` job id.
@@ -173,6 +177,8 @@
 ### Get Job List
 
 `GET /kylin/api/jobs`
+
+`Content-Type: application/vnd.apache.kylin-v2+json`
 
 #### Path Variable
 
