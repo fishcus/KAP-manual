@@ -13,7 +13,7 @@ After KAP running for a period of time, there could be garbage data leftover. Ga
 
 KAP provides a command line tool to clean garbage data.
 
-```$KYLIN_HOME/bin/kylin.sh  io.kyligence.kap.tool.storage.KapGarbageCleanupCLI  [--delete true] [--force true]```
+```$KYLIN_HOME/bin/kylin.sh  io.kyligence.kap.tool.storage.KapGarbageCleanupCLI  [--delete true] ```
 
 The tool searches and prints below garbage in the system, and optional delete them.
 
@@ -25,7 +25,6 @@ The tool searches and prints below garbage in the system, and optional delete th
 Parameters:
 
 - `--delete true`: By default, the tool only does a dry run and prints out garbage resources without delete them. Specify this option for real deletion.
-- `--force true`: Delete all Hive intermediate tables including those possibly used by running jobs.
 
 It is recommended to always dry run this tool first, without the `--delete true` parameter, to list all garbage resources. Verify the list before actual deletion. Also perform a metadata backup before running this tool is a good practice.
 

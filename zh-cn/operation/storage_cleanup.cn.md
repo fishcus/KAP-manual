@@ -14,7 +14,7 @@
 ### 垃圾清理工具
 KAP 提供了一个命令行工具清理系统垃圾。
 
-```$KYLIN_HOME/bin/kylin.sh  io.kyligence.kap.tool.storage.KapGarbageCleanupCLI  [--delete true] [--force true]```
+```$KYLIN_HOME/bin/kylin.sh  io.kyligence.kap.tool.storage.KapGarbageCleanupCLI  [--delete true] ```
 
 这个命令寻找并打印出系统中的垃圾数据，并可选择地删除这些垃圾。
 
@@ -26,7 +26,8 @@ KAP 提供了一个命令行工具清理系统垃圾。
 参数:
 
 - `--delete true`: 默认这个命令行只会打印出一个垃圾清单，但不会真的删除垃圾数据。指定这个参数来执行真正的数据删除。
-- `--force true`: 删除所有的 Hive 中间表，包括那些可能被进行中的任务使用的。
+
+  
 
 第一次执行该工具时建议省去`--delete true`参数，这样会只列出所有可以被清理的资源供用户核对，而并不实际进行删除操作。当用户确认无误后，再添加 delete 参数执行删除。另外建议总是在在清理垃圾前备份元数据，以备不时之需。
 
