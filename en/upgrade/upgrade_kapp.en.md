@@ -41,23 +41,17 @@ Please follow the steps below:
 
    > Watch out: 1. the folder for setenv.sh has changed. 2. Direct file copy-and-replace is not allowed.
 
-5. Upgrade and redeploy coprocessors: 
-
-   ```shell
-   $KYLIN_HOME/bin/kylin.sh org.apache.kylin.storage.hbase.util.DeployCoprocessorCLI default all
-   ```
-
-6. If you are upgrading from KAP Plus <2.4.0, you are required to migrate ACL data. Run commands below: 
+5. If you are upgrading from KAP Plus <2.4.0, you are required to migrate ACL data. Run commands below: 
 
    ```shell
    $KYLIN_HOME/bin/kylin.sh org.apache.kylin.tool.AclTableMigrationCLI MIGRATE
    ```
 
-7. Confirm the License:
+6. Confirm the License:
 
    Confirm the license file in the new directory of KAP.
 
-8. Please ensure the JDK version is *1.8*.
+7. Please ensure the JDK version is *1.8*.
 
    If there is only one node upgraded to JDK 1.8, please put the jdk file to the other nodes, such as `/usr/java/jdk1.8`. In addition to this, please add the following configurations.
 
@@ -84,7 +78,7 @@ Please follow the steps below:
        </property>
    ```
 
-9. Start the KAP Plus instance:
+8. Start the KAP Plus instance:
 
    If you are upgrading from KAP Plus <3.0, the project dictionary will be upgraded and metadata will backup automatically in the upgrade process.
 
