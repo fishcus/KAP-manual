@@ -25,7 +25,7 @@
 * sql - `必选` `string` 查询的sql.
 * separator - `可选` `string` 默认",",指定导出结果的分隔符
 * limit - `可选` `int ` 加上limit参数后会从offset开始返回对应的行数，不足limt以实际行数为准
-* projectName - `必选` `string`  默认为 ‘DEFAULT’，在实际使用时，如果对应查询的项目不是“DEFAULT”，需要设置为自己的项目
+* project - `必选` `string`  默认为 ‘DEFAULT’，在实际使用时，如果对应查询的项目不是“DEFAULT”，需要设置为自己的项目
 
 #### 请求示例
 ```json

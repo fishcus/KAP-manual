@@ -28,7 +28,7 @@
         {
             "uuid": "e286e39e-40d7-44c2-8fa2-41b365632882",
             "last_modified": 1507690958000,
-            "version": "2.3.0.20500",
+            "version": "3.0.0.1",
             "name": "TEST_COUNTRY",
             "columns": [
                 {
@@ -94,7 +94,7 @@
     "data": {
         "uuid": "e286e39e-40d7-44c2-8fa2-41b365522771",
         "last_modified": 1508819599000,
-        "version": "2.3.0.20500",
+        "version": "3.0.0.1",
         "name": "TEST_KYLIN_FACT",
         "columns": [
             {

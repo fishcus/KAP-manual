@@ -46,10 +46,11 @@
    {
         "uuid": "8372c3b7-a33e-4b69-83dd-0bb8b1f8117e",
         "last_modified": 1508487909245,
-        "version": "2.3.0.20500",
+        "version": "3.0.0.1",
         "name": "ci_inner_join_cube",
         "owner": null,
         "descriptor": "ci_inner_join_cube",
+        "display_name": null,
         "cost": 50,
         "status": "DISABLED",
         "segments": [],
@@ -62,6 +63,7 @@
         "is_streaming": false,
         "partitionDateColumn": "TEST_KYLIN_FACT.CAL_DT",
         "partitionDateStart": 0,
+        "isStandardPartitioned": true,
         "size_kb": 0,
         "input_records_count": 0,
         "input_records_size": 0,
@@ -102,7 +104,7 @@
         "cube": {
             "uuid": "3819ad72-3929-4dff-b59d-cd89a01238af",
             "last_modified": 1508487309851,
-            "version": "2.3.0.20500",
+            "version": "3.0.0.1",
             "name": "ci_inner_join_cube",
             "is_draft": false,
             "model_name": "ci_inner_join_model",
@@ -332,6 +334,7 @@
             "partition_date_start": 0,
             "partition_date_end": 3153600000000,
             "auto_merge_time_ranges": null,
+            "volatile_range": 0,
             "retention_range": 0,
             "engine_type": 100,
             "storage_type": 99,
@@ -340,7 +343,8 @@
                 "kylin.storage.hbase.owner-tag": "kylin@kylin.apache.org"
             },
             "cuboid_black_list": [],
-            "parent_forward": 3
+            "parent_forward": 3,
+            "mandatory_dimension_set_list": []
         }
     },
     "msg": ""
@@ -367,7 +371,7 @@
         "model": {
             "uuid": "72ab4ee2-2cdb-4b07-b39e-4c298563ae27",
             "last_modified": 1507691058000,
-            "version": "2.3.0.20500",
+            "version": "3.0.0.1",
             "name": "ci_inner_join_model",
             "owner": null,
             "is_draft": false,
@@ -507,11 +511,12 @@
     "data": {
         "uuid": "3e38d217-0c31-4d9b-9e52-57d10b1e7190",
         "last_modified": 1508837365452,
-        "version": "2.3.0.20500",
+        "version": "3.0.0.1",
         "name": "BUILD CUBE - mppp_clone1_4142494e - 20171024172711_20171024172711 - GMT+08:00 2017-10-24 17:29:25",
         "type": "BUILD",
         "duration": 0,
         "related_cube": "mppp_clone1_4142494e",
+        "display_cube_name": "mppp_clone1_4142494e",
         "related_segment": "889049e8-5a57-41d8-abcd-3a356d57eea0",
         "exec_start_time": 0,
         "exec_end_time": 0,
@@ -596,7 +601,7 @@
 
 #### 请求示例
 ```json
-{
+[	{
         "mpValues": "300",
         "pointList": [
             "1",
@@ -628,6 +633,7 @@
         ],
         "rangeList": [["20","30"],["30","40"]]
     }
+]
 ```
 
 ### 克隆Cube
@@ -667,20 +673,28 @@
    "owner":null,
    "version":null,
    "descriptor":"test_kylin_cube_with_slr_desc",
+   "display_name":null,
    "cost":50,
    "status":"ACTIVE",
    "segments":[  
-      {  
+      {
+         "uuid":"4d0200ed-6858-49e3-ae98-bb401387b23f",
          "name":"19700101000000_20140531160000",
          "storage_location_identifier":"KYLIN-CUBE-TEST_KYLIN_CUBE_WITH_SLR_READY-19700101000000_20140531160000_BF043D2D-9A4A-45E9-AA59-5A17D3F34A50",
          "date_range_start":0,
          "date_range_end":1401552000000,
+         "source_offset_start":0,
+         "source_offset_end":0,
          "status":"READY",
          "size_kb":4758,
-         "source_records":6000,
-         "source_records_size":620356,
+         "input_records":6000,
+         "input_records_size":620356,
          "last_build_time":1407832663227,
          "last_build_job_id":"2c7a2b63-b052-4a51-8b09-0c24b5792cda",
+         "create_time_utc":1528713225709,
+         "cuboid_shard_nums":{},
+         "total_shards":0,
+         "blackout_cuboids":[],
          "binary_signature":null,
          "dictionaries":{  
             "TEST_CATEGORY_GROUPINGS/CATEG_LVL2_NAME":"/dict/TEST_CATEGORY_GROUPINGS/CATEG_LVL2_NAME/16d8185c-ee6b-4f8c-a919-756d9809f937.dict",
@@ -699,10 +713,22 @@
          }
       }
    ],
-   "create_time":null,
-   "source_records_count":6000,
-   "source_records_size":0,
-   "size_kb":4758
+   "create_time_utc":0,
+   "cuboid_bytes":null,
+   "cuboid_bytes_recommend":null,
+   "cuboid_last_optimized":0,
+   "project":"default",
+   "model":"ci_left_join_model",
+   "is_streaming":false,
+   "partitionDateColumn":"TEST_KYLIN_FACT.CAL_DT",
+   "partitionDateStart":0,
+   "isStandardPartitioned":true,
+   "size_kb":0,
+   "input_records_count":0,
+   "input_records_size":0,
+   "is_draft":false,
+   "multilevel_partition_cols":[],
+   "total_storage_size_kb":0
 }
 ```
 

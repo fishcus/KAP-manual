@@ -86,13 +86,14 @@
 
 ### 修改用户不能访问的列
 `请求方式 PUT`
+
 `访问路径 http://host:port/kylin/api/acl/column/{project}/{type}/{table}/{username}`
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
 #### 路径变量
 * project - `必选` `string`，项目名称
-* Type - `必选` `string`，用来表示操作是用户操作还是用户组操作，取值：user/group
+* type - `必选` `string`，用来表示操作是用户操作还是用户组操作，取值：user/group
 * table - `必选` `string`，表名称
 * username - `必选` `string`，用户名
 
@@ -120,7 +121,7 @@
 
 #### 路径变量
 * project - `必选` `string`，项目名称
-* Type - `必选` `string`，用来表示操作是用户操作还是用户组操作，取值：user/group
+* type - `必选` `string`，用来表示操作是用户操作还是用户组操作，取值：user/group
 * table - `必选` `string`，表名称
 * username - `必选` `string`，用户名
 

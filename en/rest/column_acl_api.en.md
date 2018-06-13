@@ -85,6 +85,7 @@
 
 ### Modify Column ACL
 `Request Mode PUT`
+
 `Access Path http://host:port/kylin/api/acl/column/{project}/{type}/{table}/{username}`
 
 `Content-Type: application/vnd.apache.kylin-v2+json`

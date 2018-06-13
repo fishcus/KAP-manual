@@ -152,7 +152,7 @@
                 "wrongTime": 1,
                 "uuid": null,
                 "last_modified": 1511179915000,
-                "version": "2.3.0.20500"
+                "version": "3.0.0.1"
             },
             {
                 "username": "ANALYST",
@@ -169,7 +169,7 @@
                 "wrongTime": 0,
                 "uuid": null,
                 "last_modified": 1511073720000,
-                "version": "2.3.0.20500"
+                "version": "3.0.0.1"
             },
             {
                 "username": "MODELER",
@@ -186,7 +186,7 @@
                 "wrongTime": 0,
                 "uuid": null,
                 "last_modified": 1511073720000,
-                "version": "2.3.0.20500"
+                "version": "3.0.0.1"
             }
         ],
         "size": 3

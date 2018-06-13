@@ -24,8 +24,8 @@
 #### Request Example
 `Request Path:http://host:port/kylin/api/acl/row/learn_kylin/DEFAULT.KYLIN_SALES`
 
-#### Request Information
-- Type - the value can only be CLOSED currently, indicating equal =
+#### Response Information
+- type - the value can only be CLOSED currently, indicating equal =
 - leftExpr - value to be restricted
 - rightExpr - value to be restricted, rightExpr shall be equal to leftExpr
 
@@ -134,6 +134,7 @@ Request Body:TRANS_ID's values:1,2,3.(TRANS_ID=1 OR TRANS_ID=2 OR TRANS_ID=3)
 
 ### Modify Row ACL
 `Request Mode PUT`
+
 `Access Path http://host:port/kylin/api/acl/row/{project}/{type}/{table}/{username}`
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
@@ -178,7 +179,7 @@ Request Body:TRANS_ID's values:1,2,3.(TRANS_ID=1 OR TRANS_ID=2 OR TRANS_ID=3)
 
 #### Response Example
 ```json
-{"code":"000","data":"","msg":"update user's black column list"}
+{"code":"000","data":"","msg":"update user's row cond list"}
 ```
 
 ### Delete Row ACL

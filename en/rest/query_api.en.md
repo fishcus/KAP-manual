@@ -62,13 +62,13 @@ Reference: <https://docs.oracle.com/javase/7/docs/api/java/sql/ResultSet.html#ge
 * cube - the Cube corresponding to query.
 * affectedRowCount -  the total number of rows related to this query. 
 * isException - whether the query result is exceptional.
-* ExceptionMessage - turned corresponding exception information.
+* exceptionMessage - turned corresponding exception information.
 * totalScanCount - total counts.
 * totalScanBytes - total bytes.
 * hitExceptionCache - whether from the result cache which executes failed.
 * storageCacheUsed - whether from the result cache which executes successfully.
-* Duration - query consumed time.
-* Partial - whether query results are partial return depends on acceptPartial is true or false.
+* duration - query consumed time.
+* partial - whether query results are partial return depends on acceptPartial is true or false.
 * pushDown - whether enable the action of push down.
 
 #### Response Example
@@ -121,6 +121,10 @@ Reference: <https://docs.oracle.com/javase/7/docs/api/java/sql/ResultSet.html#ge
         "totalScanBytes":30210,
         "hitExceptionCache":false,
         "storageCacheUsed":false,
+        "traceUrl": null,
+        "timeout": false,
+        "lateDecodeEnabled": false,
+        "sparderEnabled": true,
         "partial":false,
         "pushDown":false
     },

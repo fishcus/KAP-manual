@@ -79,7 +79,7 @@ second: 表示是用户还是用户组
 
 #### 路径变量
 * project - `必选` `string`，项目名称
-* Type - `必选` `string`，用来表示操作是用户操作还是用户组操作，取值：user/group
+* type - `必选` `string`，用来表示操作是用户操作还是用户组操作，取值：user/group
 * table - `必选` `string`，表名称
 * name - `必选` `string`，用户名
 

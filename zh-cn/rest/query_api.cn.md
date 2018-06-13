@@ -52,13 +52,13 @@
 * cube - 这个查询对应使用的CUBE.
 * affectedRowCount - 这个查询关系到的总行数.
 * isException - 这个查询返回是否是异常.
-* ExceptionMessage - 返回异常对应的内容.
+* exceptionMessage - 返回异常对应的内容.
 * totalScanCount - 总记录数
 * totalScanBytes - 总字节数
 * hitExceptionCache - 是否来自执行失败的结果缓存
 * storageCacheUsed - 是否来自执行成功的结果缓存
-* Duration - 查询消耗时间
-* Partial - 这个查询结果是否为部分返回，这个取决于请求参数中的 acceptPartial 为true或者false.
+* duration - 查询消耗时间
+* partial - 这个查询结果是否为部分返回，这个取决于请求参数中的 acceptPartial 为true或者false.
 * pushDown - 是否启用查询下压
 
 #### 响应示例
@@ -111,6 +111,10 @@
         "totalScanBytes":30210,
         "hitExceptionCache":false,
         "storageCacheUsed":false,
+        "traceUrl": null,
+        "timeout": false,
+        "lateDecodeEnabled": false,
+        "sparderEnabled": true,
         "partial":false,
         "pushDown":false
     },

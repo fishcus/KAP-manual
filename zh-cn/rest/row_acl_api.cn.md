@@ -25,9 +25,9 @@
 #### 请求示例
 `请求路径:http://host:port/kylin/api/acl/row/learn_kylin/DEFAULT.KYLIN_SALES`
 
-#### 请求信息
+#### 响应信息
 
-- Type - 目前只有值：CLOSED，表示等号 =
+- type - 目前只有值：CLOSED，表示等号 =
 - leftExpr - 需要限定的值
 - rightExpr - 需要限定的值，rightExpr 必须与 leftExpr 相等
 
@@ -135,6 +135,7 @@
 
 ### 修改用户的行级ACL
 `请求方式 PUT`
+
 `访问路径 http://host:port/kylin/api/acl/row/{project}/{type}/{table}/{username}`
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
@@ -181,7 +182,7 @@
 #### 响应示例
 
 ```json
-{"code":"000","data":"","msg":"update user's black column list"}
+{"code":"000","data":"","msg":"update user's row cond list"}
 ```
 
 ### 删除用户的行级ACL
