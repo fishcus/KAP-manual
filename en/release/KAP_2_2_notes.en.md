@@ -30,7 +30,7 @@ KAP is based on core engine of the Apache Kylin, thus is totally compatible with
 
 The highlight features including:
 
-1. Scalable streaming cubing, supports Kafka as data source
+1. Scalable streaming cubing, supports Kafka as data source.
 2. TopN measure optimisization
 3. Support build/refresh/merge cube concurrently
 

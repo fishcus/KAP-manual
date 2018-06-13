@@ -48,7 +48,7 @@ KyAnalyzer无需单独提供许可证，可直接读取KAP的许可证
 
   产品认证：
 
-  	Cloudera CDH 5.7+
+  	Cloudera CDH 5.7/5.8/5.9/5.11/5.12
   	
   	MapR 5.2.1
 
@@ -56,13 +56,13 @@ KyAnalyzer无需单独提供许可证，可直接读取KAP的许可证
 
   	Apache Hadoop 2.2+，HBase 0.98+，Hive 0.14+
 
-  	Hortonworks HDP 2.2+
+  	Hortonworks HDP 2.2/2.4
 
   	Azure HDInsight 3.4~3.6 
 
   	AWS EMR 5.1~5.7
 
-  	华为 FusionInsight C50/C60+
+  	华为 FusionInsight C60/C70
 
 
 

@@ -40,7 +40,7 @@ KyAnalyzer reads the KAP license directly and does not require a separate licens
 
   Certificated distributions：
 
-  	Cloudera CDH 5.7+
+  	Cloudera CDH 5.7/5.8/5.9/5.11/5.12
   	
   	MapR 5.2.1
 
@@ -48,13 +48,13 @@ KyAnalyzer reads the KAP license directly and does not require a separate licens
 
   	Apache Hadoop 2.2+，HBase 0.98+，Hive 0.14+
 
-  	Hortonworks HDP 2.2+
+  	Hortonworks HDP 2.2/2.4
 
   	Azure HDInsight 3.4~3.6 
 
   	AWS EMR 5.1~5.7
 
-  	Huawei FusionInsight C50/C60+
+  	Huawei FusionInsight C60/C70
 
 ### Download
 

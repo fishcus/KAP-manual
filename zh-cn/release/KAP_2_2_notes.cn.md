@@ -28,7 +28,7 @@
 
 KAP基于Apache Kylin内核引擎，与Apache Kylin完全兼容，本次发布基于1.6.0版本，完整发布公告参见[链接](https://kylin.apache.org/docs16/release_notes.html)。主要新功能如下：
 
-1. 支持可伸缩的流式Cube构建，支持Kafka数据源
+1. 支持可伸缩的流式Cube构建，支持Kafka数据源。
 2. TopN性能增强
 3. 支持多Segments并行构建／合并／刷新
 
