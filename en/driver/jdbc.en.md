@@ -21,21 +21,23 @@ Besides, users need to specify username, password and whether SSL would be true 
 
 Here lists an example of Connection: 
 
-```
+```java
 Driver driver = (Driver) Class.forName("org.apache.kylin.jdbc.Driver").newInstance();
 Properties info = new Properties();
 info.put("user", "ADMIN");
 info.put("password", "KYLIN");
+//info.put("ssl","true");
 Connection conn = driver.connect("jdbc:kylin://localhost:7070/kylin_project_name", info);
 ```
 
 #### Query based on Statement 
 Here lists an example of Query based on Statement：
-```
+```java
 Driver driver = (Driver) Class.forName("org.apache.kylin.jdbc.Driver").newInstance();
 Properties info = new Properties();
 info.put("user", "ADMIN");
 info.put("password", "KYLIN");
+//info.put("ssl","true");
 Connection conn = driver.connect("jdbc:kylin://localhost:7070/kylin_project_name", info);
 Statement state = conn.createStatement();
 ResultSet resultSet = state.executeQuery("select * from test_table");
@@ -50,11 +52,12 @@ while (resultSet.next()) {
 #### Query based on Prepared Statement 
 Here lists an example of Query based on Prepared Statement： 
 
-```
+```java
 Driver driver = (Driver) Class.forName("org.apache.kylin.jdbc.Driver").newInstance();
 Properties info = new Properties();
 info.put("user", "ADMIN");
 info.put("password", "KYLIN");
+//info.put("ssl","true");
 Connection conn = driver.connect("jdbc:kylin://localhost:7070/kylin_project_name", info);
 PreparedStatement state = conn.prepareStatement("select * from test_table where id=?");
 state.setInt(1, 10);

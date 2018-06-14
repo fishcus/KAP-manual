@@ -25,6 +25,7 @@ Driver driver = (Driver) Class.forName("org.apache.kylin.jdbc.Driver").newInstan
 Properties info = new Properties();
 info.put("user", "ADMIN");
 info.put("password", "KYLIN");
+//info.put("ssl","true");
 Connection conn = driver.connect("jdbc:kylin://localhost:7070/kylin_project_name", info);
 ```
 
@@ -35,6 +36,7 @@ Driver driver = (Driver) Class.forName("org.apache.kylin.jdbc.Driver").newInstan
 Properties info = new Properties();
 info.put("user", "ADMIN");
 info.put("password", "KYLIN");
+//info.put("ssl","true");
 Connection conn = driver.connect("jdbc:kylin://localhost:7070/kylin_project_name", info);
 Statement state = conn.createStatement();
 ResultSet resultSet = state.executeQuery("select * from test_table");
@@ -54,6 +56,7 @@ Driver driver = (Driver) Class.forName("org.apache.kylin.jdbc.Driver").newInstan
 Properties info = new Properties();
 info.put("user", "ADMIN");
 info.put("password", "KYLIN");
+//info.put("ssl","true");
 Connection conn = driver.connect("jdbc:kylin://localhost:7070/kylin_project_name", info);
 PreparedStatement state = conn.prepareStatement("select * from test_table where id=?");
 state.setInt(1, 10);
