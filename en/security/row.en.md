@@ -1,6 +1,6 @@
 ##Row-level Access Control
 
-**Row-level Access Control** restrict a user/group's access to a table without having access to all rows on that table. This type of access control is typically applied to tables that hold sensitive data. For example, you might want sales manager to be able to view sales data in their region, but not for other regions. You would give sales manager in North East Region access to Sales table but would restrict row-level access control so that they would only see rows where region is North East. 
+**Row-level Access Control** restricts a user/group's access to a table without having access to all rows on that table. This type of access control is typically applied to tables that hold sensitive data. For example, you might want sales manager to be able to view sales data in their region, but not for other regions. You would give sales manager in North East Region access to Sales table but would restrict row-level access control so that they would only see rows where region is North East. 
 
 If a user/group has restricted access to a row in a table, this user/group will only be able to view rows that applied in the Row-level Access Control, regardless of querying through Cube, Table Index or Query Push Down. If the user/group does not use the restricted row in the query, then row-level access control will not be applied in the query. 
 
@@ -62,11 +62,11 @@ Follow below steps to revoke access at row-level:
 
 ####Validate Row-level Access Control
 
-In this example, we take the user `joanna` as an example to validate the row-level access control. The validation of row-level access control for a group is the similar.  User `joanna` is a user who has access to `learn_kylin ` project and can only access to data with `OPS_REGION` is 'Shanghai'.
+In this example, we take the user `joanna` as an example to validate the row-level access control. The validation of row-level access control for a group is the similar.  User `joanna` is a user who has access to `learn_kylin` project and can only access to data with `OPS_REGION` is 'Shanghai'.
 
 Login as user `joanna`, go to `Insight` page, and try to query row `OPS_REGION` to validate whether row-level access control has been effective.
 
-As shown in the screenshot below,  user `joanna` can only view records in `Kylin_sales` with `OPS_REGION` of 'Shanghai'.
+As shown in the screenshot below,  user `joanna` can only view records in `kylin_sales` with `OPS_REGION` of 'Shanghai'.
 
 ![Validation 1](images/row/w_5.png)
 

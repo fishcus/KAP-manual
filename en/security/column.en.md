@@ -1,6 +1,6 @@
 ## Column-level Access Control
 
-**Column-level Access Control** restrict user/group's access to a table without having access to a specific column. If a user/group's access to a column on a table is revoked, this user/group will not be able to query against this column, regardless through Cube, Table Index or Query Push Down. The user/group can still query against the cube that contains the forbidden column as long as the forbidden column is not explicitly used in the query. 
+**Column-level Access Control** restricts user/group's access to a table without having access to a specific column. If a user/group's access to a column on a table is revoked, this user/group will not be able to query against this column, regardless through Cube, Table Index or Query Push Down. The user/group can still query against the cube that contains the forbidden column as long as the forbidden column is not explicitly used in the query. 
 
 When a user/group sends `Select * from table` query on the table that contains forbidden column, the query will still run and return the result without the forbidden column. 
 
@@ -52,7 +52,7 @@ Follow below steps to modify access at column-level:
 
 #### Validate Column-level Access Control
 
-In this example, we take the user `joanna` as an example to validate the column-level access control. The validation of column-level access control for a group is the similar. User `joanna` is a user who has access to `learn_kylin ` project and has been restricted access to column `LSTG_FORMAT_NAME` from `Kylin_sales`table.
+In this example, we take the user `joanna` as an example to validate the column-level access control. The validation of column-level access control for a group is the similar. User `joanna` is a user who has access to `learn_kylin` project and has been restricted access to column `LSTG_FORMAT_NAME` from `kylin_sales` table.
 
 Login as user `joanna`, go to insight page, and try to query column `LSTG_FORMAT_NAME` to validate whether column-level access control has been effective.
 

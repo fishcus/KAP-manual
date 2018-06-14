@@ -1,37 +1,35 @@
 ## Kerberos ##
 
-Kerberos is a computer network authentication protocol that works on the basis of tickets. If the platform which installed KAP enable the protocol, some configurations need to be changed to support that.
+Kerberos is a computer network authentication protocol that works on the basis of tickets. If the Hadoop platform where KAP is installed enables this protocol, some configurations need to be changed to support that. This mainly includes two parts: KAP configurations & Hadoop platform configurations.
 
-### KAP Configurations ###
+### KAP configurations ###
 
-In the properties file：`$KYLIN_HOME/conf/kylin.properties`, there are some parameters about kerberos which need to be noticed.
+There are some parameters about Kerberos worth mentioning in `$KYLIN_HOME/conf/kylin.properties` file.
 
 Mandatory parameters：
 
-   - kap.kerberos.enabled: enabled kerberos protocol. The value could be true or false (default).
-   - kap.kerberos.platform: certification platform. The default value is Standard.
-   - kap.kerberos.principal:  the name of principal
-   - kap.kerberos.keytab:  the file name of keytab
+   - kap.kerberos.enabled: whether Kerberos needs to be implemented from KAP end. The value can be set to ßeither `true` or `false` (`false` as default)
+   - kap.kerberos.platform: kind of Hadoop platform KAP is installed on. The value can be set to either `Standard` or `FI` (`Standard` as default)
+   - kap.kerberos.principal: the principal to be used
+   - kap.kerberos.keytab: the name of keytab file
 
 Optional parameters：
 
-   - kap.kerberos.ticket.refresh.interval.minutes: the refresh interval of tickets. The unit is minute and the default value is 720 minutes.
-   - kap.kerberos.krb5.conf: the config file name of kerbero. Default value is krb5.conf
-   - kap.kerberos.cache: the name of ticket cache file. Default value is kap_kerberos.cache.
+   - kap.kerberos.ticket.refresh.interval.minutes: the refresh interval of tickets. The unit is minute and the default value is 720 minutes
+   - kap.kerberos.krb5.conf: the config file name of Kerberos. Default value is `krb5.conf`
+   - kap.kerberos.cache: the name of ticket cache file. Default value is `kap_kerberos.cache`
 
-### Standard Configuration ###
+### Hadoop platform configurations
 
-1. In the node (installed yarn) of NodeManager, the user which corresponds kerberos need to be added.
+#### Cloudera/Hortonworks Hadoop distribution configuration
 
-   For example:
+1. On the node where YARN NodeManager is installed, the OS user which Kerberos uses needs to be created. For example, if Kerberos user `kylin` needs to be used to run KAP, this user should exist in the OS of YARN NodeManager node
 
-   The kerberos user(kylin) also need to exist in the operation system of NodeManager.
+2. Copy the keytab file to `$KYLIN_HOME/conf` directory
 
-2. Parameters about kerberos configuration:
+3. Configure below parameters about Kerberos:
 
    - kap.kerberos.enabled=true
    - kap.kerberos.platform=Standard
    - kap.kerberos.principal={your principal name}
-   - kap.kerberos.keytab={your keytab name}
-
-3. Move the keytab file into`$KYLIN_HOME/conf`.  
+   - kap.kerberos.keytab={your keytab name} 

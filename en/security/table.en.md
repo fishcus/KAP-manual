@@ -39,11 +39,11 @@ Follow below steps to revoke access at table-level:
 
 ### Validate Table-level Access Control
 
-In this example, we take the user `joanna` as an example to validate the table-level access control. The validation of table-level access control for a group is the similar. User `joanna` is a user who has access to `learn_kylin ` project and has been revoked access of table `Kylin_sales` . 
+In this example, we take the user `joanna` as an example to validate the table-level access control. The validation of table-level access control for a group is the similar. User `joanna` is a user who has access to `learn_kylin` project and has been revoked access of table `kylin_sales` . 
 
 Login as user `joanna`, go to insight page, and try to query `kylin_sales` table to validate whether table-level access control has been effective. 
 
-As shown in the screenshot below, access is denied when user `joanna` try to query table `Kylie_sales`
+As shown in the screenshot below, access is denied when user `joanna` try to query table `kylin_sales`
 
 ![Validation](images/table/w_3.png)
 

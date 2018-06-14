@@ -3,23 +3,27 @@
 KAP supports integration with LDAP servers for user authentication. This validation is achieved through the Spring Security framework, so it has a good versatility. Before enabling LDAP authentication, please contact your LDAP administrator for required information.
 
 ### Setup LDAP server
-Before enabling LDAP authentication, you need an running LDAP service. If you already have it, contact the LDAP administrator to get the necessary information including connectivity inforamtion, organization structure, etc.
 
-If you don't have LDAP server, you need install one for KAP. The recommended server tool is OpenLDAP Server 2.4, as it is an open source implementation (under OpenLDAP Public License) and is the most popular LDAP server. It has been packaged in some Linux distributions like Red Hat Enterprise Linux; it can also be downloaded from http://www.openldap.org/
+Before enabling LDAP authentication, you need a running LDAP service. If you already have it, contact your LDAP administrator to get the necessary information including connectivity inforamtion, organization structure, etc..
+
+If you don't have a LDAP server, you need to install one for KAP. The recommended LDAP server tool is OpenLDAP Server 2.4, as it is an open source implementation under OpenLDAP Public License and is one of the most popular LDAP server implementations. It has been packaged in some Linux distributions like Red Hat Enterprise Linux. Tt can also be downloaded from http://www.openldap.org/
 
 The installation may vary with different platforms. You may need check different documents or tutorials. Here we take CentOS 6.4 as an example:  
 
 * Check installation
+
 ```shell
 sudo find / -name openldap*
 ```
 
-If not installed, install with yum:
+If it is not installed, install with yum command:
+
 ```shell
 sudo yum install -y openldap openldap-servers openldap-clients
 ```
 
 * Configure after installation
+
 ```shell
 cp /usr/share/openldap-servers/slapd.conf.obsolete /etc/openldap/slapd.conf
 cp /usr/share/openldap-servers/DB_CONFIG.example /var/lib/ldap/DB_CONFIG
@@ -31,44 +35,50 @@ Edit slapd.conf, take *example.com* as example, as follows：
 1．Set the directory suffix
 
 Find this line:
+
 ```
 suffix "dc=my-domain,dc=com"
 ```
 
 Change it to:
+
 ```
 suffix "dc=example,dc=com"
 ```
 
 2．Set DN for LDAP Administrator:
 
-Find line：
+Find this line:
+
 ```
 rootdn "cn=Manager,dc=my-domain,dc=com"
 ```
 
-Change it to：
+Change it to:
+
 ```
 rootdn "cn=Manager,dc=example,dc=com"
 ```
 
 3．Set password for LDAP administrator
 
-Find line：
+Find this line:
 
 ```
 rootpw secret
 ```
 
-Replacing the default value with an encrypted password string. To create an encrypted password string, type the following command:
+Replace the default value with an encrypted password string. To create an encrypted password string, type the following command:
+
 
 ```
 slappasswd
 ```
 
-When prompted, type and then re-type a password. The program prints the resulting encrypted password to the shell prompt.
+When prompted, type and then re-type a password. The program prints the calculated encrypted password to the shell prompt.
 
-Next, copy the newly created encrypted password into the /etc/openldap/slapd.conf on one of the rootpw lines and remove the hash mark (#). When finished, the line should look similar to the following example:
+Next, copy the newly created encrypted password into `/etc/openldap/slapd.conf` on one of the rootpw lines and remove the hash mark (#). When finished, the line should look similar to the following example:
+
 ```
 rootpw {SSHA}vv2y+i6V6esazrIv70xSSnNAJE18bb2u
 ```
@@ -80,12 +90,14 @@ chown ldap.ldap /etc/openldap/*
 chown ldap.ldap /var/lib/ldap/*
 ```
 
-5．Make new directory:
+5．Create a new directory:
+
 ```shell
 mkdir /etc/openldap/cacerts
 ```
 
 6．Reboot the system, and then start the service:
+
 ```shell
 sudo service slapd start
 ```
@@ -93,6 +105,7 @@ sudo service slapd start
 After the service is started, you can import some sample data.
 
 7．Create new file example.ldif (three users and two groups are listed in this file)
+
 ```properties
 # example.com
 dn: dc=example,dc=com
@@ -177,9 +190,9 @@ objectClass: top
 /usr/bin/ldapadd -x -W -D "cn=Manager,dc=example,dc=com" -f example.ldif
 ```
 
-When prompt the password, enter the password of LDAP administrator. Then the import is succeed.
+When prompted a password, enter the password of LDAP administrator. Then the import will succeed.
 
-9．Change passwd
+9．Change password
 
 ```shell
 For example:
@@ -194,13 +207,14 @@ LDAP Administrator password
 
 ### Configure LDAP Information in KAP
 
-First, in `conf/kylin.properties`, configure the URL of the LDAP server, the necessary username and password (if the LDAP server is not anonymous). For security reason, the password here need be encrypted with AES, you can run code below to get the encrypted password:
+First, in `conf/kylin.properties`, configure the URL of the LDAP server and the username and password (if the LDAP server is not anonymous). For security reason, the password here need be encrypted with AES, you can run the below command to get the encrypted password:
+
 ```shell
 ${KYLIN_HOME}/bin/kylin.sh io.kyligence.kap.tool.general.CryptTool AES *your_password*
 # ${crypted_password}
 ```
 
-Then fill in kylin.properties:
+Then update `kylin.properties`:
 
 ```properties
 # kylin.security.ldap.connection-server=ldap://<your_ldap_host>:<port>
@@ -212,7 +226,7 @@ kylin.security.ldap.connection-username=cn=Manager,dc=example,dc=com
 kylin.security.ldap.connection-password=${crypted_password}
 ```
 
-Second, provide user retrieval pattern, such as starting organization unit, filtering conditions etc; The following is an example for reference:
+Second, provide user retrieval pattern, such as starting organization unit, filtering conditions etc.. The following is an example for reference:
 
 ```properties
 #Define the range of user to sync to KAP
@@ -230,7 +244,8 @@ kylin.security.ldap.group-search-filter=(|(objectClass=groupOfNames)(objectClass
 kylin.security.ldap.group-member-search-filter=(&(cn={0})(objectClass=groupOfNames))
 ```
 
-If you need service accounts (for system integration) to access KAP, follow the example above to configure `ldap.service. *`, Otherwise leave them blank.
+If you need service accounts (for system integration) to access KAP, follow the example below to configure `ldap.service. *`, otherwise leave them blank.
+
 ```properties
 # LDAP service account directory
 kylin.security.ldap.service-search-base=ou=People,dc=example,dc=com
@@ -240,22 +255,23 @@ kylin.security.ldap.service-group-search-base=ou=Groups,dc=example,dc=com
 
 ### Configure Administrator Groups and Default Roles
 
-KAP allows mapping an LDAP group to the administrator role: In kylin.properties, set "kylin.security.acl.admin-role" to the LDAP group name (the uppercase and lowercase of LDAP name shall keep original). In this example, use the group "admin" to manage all KAP administrators, then this property should be set to:
+KAP allows mapping an LDAP group to the administrator role: In kylin.properties, set "kylin.security.acl.admin-role" to the LDAP group name (case sensitive). In this example, you would like to use the group "admin" to manage all KAP administrators, then this property should be set as:
 
 ```
 kylin.security.acl.admin-role=admin
 ```
-When upgrading from 2.5.4 ealier version to 2.5.4 or later, please remove the ROLE_ in this setting that required in the 2.5.4 earlier version and the LDAP group name is now case sensitive and shall not be all capital any more.
+
+When upgrading from KAP 2.5.4 or prior to 2.5.4 or later, please remove the `ROLE_` in this setting that is required in the 2.5.4 or prior versions and the LDAP group name is now case sensitive and shall not be all capitalized any more.
 
 ### Enable LDAP
 
-In conf/kylin.properties, set "kylin.security.profile=ldap"，and then restart KAP.
+In 	`conf/kylin.properties`, set "kylin.security.profile=ldap"，and then restart KAP.
 
-If we login with jenny which belongs to group `admin`, `System` menu will be displayed in the top bar:
+If we login KAP with `jenny` who belongs to group `admin`, `System` menu will be displayed in the navigation bar:
 
 ![Login as user in Admin group](images/ldap/w_1.png)
 
-Otherwise, if we login with johnny which belongs to group `itpeople`, `System` menu won't be displayed in the top bar since the group `itpoeple` isn't admin group.
+Otherwise, if `johnny` who belongs to group `itpeople`, `System` menu won't be displayed in the navigation bar since the group `itpoeple` is not an admin group.
 
 ![Login as user in Normal User group](images/ldap/w_2.png)
 

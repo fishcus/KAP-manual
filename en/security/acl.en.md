@@ -1,19 +1,19 @@
 ## Manage Access Permission
 
-When a user/group uses KAP, whether the user/group can access a project and use some functionalities within the project is determined by project-level access control, there are four types of access permission role set at the project-level in KAP. They are *ADMIN*, *MANAGEMENT*, *OPERATION* and *QUERY*. Each role defines a list of functions user/group may perform in KAP system. 
+When a user/group uses KAP, whether the user/group can access a project and use some functionalities within the project is determined by project-level access control, there are four types of access permission roles set at the project-level in KAP. They are *Admin*, *Management*, *Operation* and *Query*. Each role defines a list of functions user/group may perform in KAP system. 
 
-- *QUERY*: designed to be used by analysts who only need access permission to query tables/cubes in the project.
-- *OPERATION*: designed to be used by operation team in a corporate/organization who need permission to maintain the Cube. OPERATION access permission includes QUERY.
-- *MANAGEMENT*: designed to be used by Modeler or Designer who is fully knowledgeable of business meaning of the data/model, Cube will be in charge of Model and Cube design. MANAGEMENT access permission includes OPERATION, and QUERY.
-- *ADMIN*: Designed to fully manage the project. ADMIN access permission includes MANAGEMENT, OPERATION and QUERY.
+- *Query*: designed to be used by analysts who only need access permission to query tables/cubes in the project.
+- *Operation*: designed to be used by operation team in a corporate/organization who need permission to maintain the Cube. *Operation* access permission includes *Query*.
+- *Management*: designed to be used by Modeler or Designer who is fully knowledgeable of business meaning of the data/model, Cube and will be in charge of Model and Cube design. *Management* access permission includes *Operation*, and *Query*.
+- *Admin*: Designed to fully manage the project. *Admin* access permission includes *Management*, *Operation* and *Query*.
 
 Access permissions are independent between different projects. 
 
-###How Access Permission is Determined
+### How Access Permission is Determined
 
 Once project-level access permission has been set for a user/group, access permission on data source, model and Cube will be inherited based on the access permission role defined on project-level. For detailed functionalities, each access permission role can have access to, see table below. 
 
-| Functionality                            | SYSTEM ADMIN | PROJECT ADMIN | MANAGEMENT | OPERATION | QUERY |
+| Functionality                            | SYSTEM ADMIN | PROJECT Admin | Management | Operation | Query |
 | ---------------------------------------- | ------------ | ------------- | ---------- | --------- | ----- |
 | Add/Delete  project                      | Yes          | No            | No         | No        | No    |
 | Edit/Back up  project                    | Yes          | Yes           | No         | No        | No    |
@@ -45,7 +45,7 @@ Once project-level access permission has been set for a user/group, access permi
 
 
 
-Additionally, when Query Pushdown is enabled, QUERY access permission on a project allows users/groups to issue push down queries on all tables in the project even though no cube could serve them. It's impossible if a user/group is not yet granted QUERY permission at project-level.
+Additionally, when Query Pushdown is enabled, *Query* access permission on a project allows users/groups to issue push down queries on all tables in the project even though no cube could answer these queries. It's impossible if a user/group is not yet granted *Query* permission at project-level.
 
 ### Manage Access Permission at Project-level
 

@@ -1,6 +1,6 @@
 ## Manage Data Access
 
-In this version, we introduced several new features to enhance different granularity of data access control. They are Table-level Access Control, Row-level Access Control, and Column-level Access Control.
+KAP can manage data access control at different granularity. They are Table-level Access Control, Row-level Access Control, and Column-level Access Control.
 
 Click on each section below to read more details:
 

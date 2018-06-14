@@ -2,22 +2,23 @@
 
 This section provides an overview of what a user is and how a user can be managed. 
 
-###About User
+### About User
 
 To use KAP, a user must log in to the system using a login ID and password. Users are defined in the KAP metadata and exist across projects. You do not have to define users for every project you create in a single metadata. 
 
-User **ADMIN** is a built in default user with system admin access permission created with a new KAP metadata. **System admin** user has all access permission for all projects. 
+User **ADMIN** is a built-in default user with system admin access permission created with a new KAP metadata. **System admin** user has all access permission for all projects. 
 
-###Access Control List
+### Access Control List
+
 The **Access Control List (ACL)** is a list of user and access permission that user has in a project. Except for system admin, ACL needs to be granted on a project basis. 
 
-There are fours types of access permission on a project in KAP. They are PROJECT ADMIN, MANAGEMENT, OPERATION, and QUERY. Each access permission defines a list of functionality user may perform in KAP system. 
+There are fours types of access permission on a project in KAP. They are PROJECT Admin, Management, Operation, and Query. Each access permission defines a list of functionality user may perform in KAP system.
 
-For details on project-level access control and how to grant access on project, please refer to [Manage Access Permission](acl.en.md) 
+For details on project-level access control and how to grant access on projects, please refer to [Manage Access Permission](acl.en.md) 
 
-###Manage User
+### Manage User
 
-Login to KAP and click `system ` button on the navigation bar. The system management page will then show. Next, click `User` bar on the left side to enter user management page. Only system admin could get access to the user management page. 
+Login to KAP and click `System` button on the navigation bar. The system management page will then show. Next, click `User` bar on the left side to enter user management page. Only system admin could get access to the user management page. 
 
 There are three default users in KAP: ADMIN (system admin), MODELER and ANALYST.
 
@@ -64,11 +65,13 @@ System admin could delete users within the page. Please be noted that dropped us
 When use is dropped from KAP instance entirely, all user's access permission on all projects will be dropped subsequently. This may include project-level, table-level, row-level and column-level access permission if there is any. 
 
 #### Enable/Disable Users
+
 Under user management page, click `…` under `Action`, and choose `Disable` or `Enable`.
 
 System admin could enable or disable users and disabled users cannot login to the system. 
 
 #### Change Password as Normal Users
+ß
 Click the `User Name` on the top right corner of the navigation bar, then users could choose the `Settings` option and be prompted to reset password. User needs to provide the old password and enter a new password twice to reset the password.
 
 ![Change password as normal users](images/user/user_w5.png)
