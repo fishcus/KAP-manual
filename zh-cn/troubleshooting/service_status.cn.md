@@ -1,6 +1,5 @@
 ## 环境依赖服务检测
-
-KAP从v 2.5.6版本开始增加了环境依赖服务检测的功能，每15分钟进行环境检测。对于ADMIN权限用户，可以在界面上清晰地看到相关信息与分级的警示提醒，帮助管理员诊断问题。
+KAP从v2.5.6版本开始，增加了环境依赖服务检测的功能，每15分钟进行环境检测。ADMIN权限用户可以在界面上清晰地看到相关信息与分级的警示提醒，帮助管理员诊断环境问题。
 
 环境依赖的服务状态（以下简称为服务状态）检测使用绿色、黄色和红色分别表示正常、警告和错误三种状态。当出现非正常状态时，您还可以通过移动鼠标到检测项来查看二级信息。
 
@@ -9,66 +8,49 @@ KAP从v 2.5.6版本开始增加了环境依赖服务检测的功能，每15分�
 环境依赖检测主要从以下几个方面进行：
 
 * Hive可用性检查：检查Hive/Beeline的可连通性
-
-
-* 元数据库活性检查：检查元数据储存的可连通性、读写正确性和响应速度
+* 元数据库可用性检查：检查元数据储存的可连通性、读写正确性和响应速度
 * 元数据完整性检查：检查元数据的一致性及判断元数据是否损坏
-* Zookeeper活性检查：检查zookeeper的可连通性、加锁操作和响应速度
-* Spark集群可用性：检查Spark的可用性
-* 垃圾清理：检查垃圾文件大小
+* Zookeeper可用性检查：检查Zookeeper的可连通性、加锁操作和响应速度
+* Spark集群可用性检查：检查Spark的可用性
+* 垃圾清理检查：检查垃圾文件大小
 * 元数据同步检查：检查元数据同步是否异常，异常时尝试重载元数据
 * 任务执行引擎活性检查：检查任务执行引擎的活性
 
 
 ### 使用命令行进行单独诊断
+KAP还提供了命令行工具来执行对每个服务状态检测，方便进行实时检查和排除错误。同时，检测结果将被保留在单独的日志文件（`$KYLIN_HOME/logs/canary.log`）里。</p>
 
-KAP还提供了命令行工具来进行每个服务状态检测，方便进行及时检查和排除错误。同时，检测结果将被保留在单独的日志文件里（`$KYLIN_HOME/logs/canary.log`），并包括在KyBot诊断包中。
-
-运行方法如下：
-
-在`$KYLIN_HOME/bin/kylin.sh io.kyligence.kap.canary.CanaryCLI <canaries-to-test>`，检测结果如下图所示：
-
-> <canaries-to-test>可替换为对应的检测命令参数：
->
-> •元数库存活性：MetaStoreCanary 
->
-> •Hive可用性：HiveCanary
->
-> •元数据完整性：MetadataCanary
->
-> •元数据同步：MetaSyncErrorCanary
->
-> •垃圾清理：GarbageCanary
->
-> •Zookeeper活性：ZookeeperCanary
->
-> •任务执行引擎活性：JobEngineCanary
->
-> Spark集群相关检测目前暂时无法使用命令行来进行单独检测。
+执行`$KYLIN_HOME/bin/kylin.sh io.kyligence.kap.canary.CanaryCLI <canaries-to-test>`<br />
+其中 <code>canaries-to-test</code>可替换的对应的检测参数如下：
+ 
+ * Hive可用性：<code>HiveCanary</code>
+ * 元数据库可用性：<code>MetaStoreCanary</code>
+ * 元数据完整性：<code>MetadataCanary</code>
+ * Zookeeper可用性：<code>ZookeeperCanary</code>
+ * Spark集群可用性：暂时无法使用命令行来进行单独检测
+ * 垃圾清理：<code>GarbageCanary</code>
+ * 元数据同步：<code>MetaSyncErrorCanary</code>
+ * 任务执行引擎可用性：<code>JobEngineCanary</code>
+ 
 
 
 
 ### 服务状态检测说明
+#### 服务状态分为以下三种：
 
-服务状态分为以下四种：
++ **绿色**：正常，表示该项服务状态检测正常。
++ **黄色**：警告，表示某项服务状态的检测时间超过警告时限，可能会影响KAP性能，但是并不影响使用。
++ **红色**：错误，表示某项服务的检测存在异常或者检测时间超过错误时限。
 
-+ 绿色：正常，表示该项服务状态检测正常。
-+ 黄色：警告，某项服务状态的检测时间超过警告时限，可能会影响Kyligence Enterprise的性能，但是并不影响使用。
-
-
-+ 红色：错误，某项依赖服务的检测存在异常或者检测时间超过错误时限
-
-  > 例如，MetaStore服务状态为错误时，将提示MetaStore活性检查时间超过错误阈值，请您检查相关环境依赖。MetaStore存在异常时，将提示MetaStoreCanary存在严重异常，请查看canary.log获取详情。
-
-各项服务状态的检测标准（黄色和红色）主要如下：
+#### 各项服务状态的检测标准（黄色和红色）主要如下：
 
 | 检测项目              | 服务状态：黄色                                               | 服务状态：红色                                               |
 | --------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| MetaStoreCanary       | 执行元数据读、写、删操作超过300毫秒                          | 1.执行元数据读、写、删操作超过1000毫秒 <br>2.对元数据执行写操作后，未能读取到新写的数据 |
-| HiveCanary            | 查询Hive所有数据库超过20秒                                   | 查询Hive所有数据库超过30秒                                   |
-| MetadataCanary        | 验证元数据完整性超过10秒                                     | 1.验证metadata完整性超过30秒<br>2.Metadata完整性存在错误     |
-| MetaSyncErrorCanary   | Metastore同步失败                                            |                                                              |
-| ZookeeperCanary       | 查看ZooKeeper活性、加锁、解锁超过3秒                         | 1.查看ZooKeeper活性、加锁、解锁超过10秒<br>2.ZooKeeper非活跃状态<br>3.加锁／解锁失败 |
-| JobEngineCanary       |                                                              | 1.有KAP节点未能返回job engine状态 <br>2.没有活跃状态的任务构建引擎节点 |
-| SparkSqlContextCanary | 使用spark context进行一次整数连加操作超过10秒                | 使用spark context进行一次整数连加操作超过30秒                |
-| GarbageCanary         | 1.元数据垃圾文件数超过50个及以上 <br>2.cube构建产生的垃圾文件数超过50个及以上<br>3.垃圾数据的数据量达到5G及以上 |                                                              |
+| HiveCanary            | 在Hive中执行列出所有数据库超过20秒                                   | 在Hive中执行列出所有数据库超过30秒                                   |
+| MetaStoreCanary       | 执行元数据读、写、删操作超过300毫秒                          | 1. 执行元数据读、写、删操作超过1000毫秒 <br />2. 对元数据执行写操作后，未能读取到新写的数据 |
+| MetadataCanary        | 验证元数据完整性超过10秒                                     | 1. 验证元数据完整性超过30秒 <br />2. 元数据完整性存在错误     |
+| ZookeeperCanary       | 查看 ZooKeeper 活性、加锁、解锁超过3秒                         | 1. 查看 ZooKeeper 活性、加锁、解锁超过10秒<br />2. ZooKeeper 处于非活跃状态<br />3. ZooKeeper 加锁／解锁失败 |
+| SparkSqlContextCanary | 使用 Spark Context 进行一次整数连加操作超过10秒                | 使用Spark Context进行一次整数连加操作超过30秒                |
+| GarbageCanary         | 1. 元数据垃圾文件数超过50个及以上 <br>2. Cube 构建产生的垃圾文件数超过50个及以上<br>3. 垃圾数据的数据量达到5G及以上 |                                                              |
+| MetaSyncErrorCanary   | Metastore 同步失败                                            |                                                              |
+| JobEngineCanary       |                                                              | 1. 有 KAP 节点未能返回 Job Engine 状态 <br />2. 没有活跃状态的任务构建引擎节点 |
