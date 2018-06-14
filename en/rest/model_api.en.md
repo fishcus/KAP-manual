@@ -116,7 +116,7 @@
 ### Drop Model 
 `Request Mode DELETE`
 
-`Access Path http://host:port/kylin/api/model/{projectName}/{modelName}`
+`Access Path http://host:port/kylin/api/models/{projectName}/{modelName}`
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 

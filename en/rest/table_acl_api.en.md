@@ -12,7 +12,7 @@
 ### Get Table ACL
 `Request Mode GET`
 
-`Access Path http://host:port/kylin/api/acl/table/{project}/{table}`
+`Access Path http://host:port/kylin/api/acl/table/paged/{project}/{table}`
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
@@ -20,30 +20,26 @@
 * project - `required` `string`, project name
 * table - `required` `string`, table name
 
+#### Request Body
+* pageSize - `optional` `int`, default 10, how many lines would be included in each returned page.
+* pageOffset - `optional` `int`, default 0, get data start subscript.
+
 #### Request Example
-`Request Path:http://host:port/kylin/api/acl/table/learn_kylin/DEFAULT.KYLIN_SALES`
+`Request Path:http://host:port/kylin/api/acl/table/paged/learn_kylin/DEFAULT.KYLIN_SALES`
 
 #### Response Example
-first: user name/group name
-second: indicate it is user or user group
-
 ```json
 {
   "code": "000",
-  "data": [
-    {
-      "first": "ADMIN",
-      "second": "u",
-      "value": "u",
-      "key": "ADMIN"
-    },
-    {
-      "first": "ROLE_ADMIN",
-      "second": "g",
-      "value": "g",
-      "key": "ROLE_ADMIN"
-    }
-  ],
+  "data": {
+    "size": 2,
+    "user": [
+      "ROLE_ADMIN"
+    ],
+    group: [
+      "ADMIN"
+    ]
+  },
   "msg": "get table acl"
 }
 ```

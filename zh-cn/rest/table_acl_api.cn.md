@@ -13,7 +13,7 @@
 ### 获取用户表级查询权限
 `请求方式 GET`
 
-`访问路径 http://host:port/kylin/api/acl/table/{project}/{table}`
+`访问路径 http://host:port/kylin/api/acl/table/paged/{project}/{table}`
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
@@ -21,30 +21,28 @@
 * project - `必选` `string`，项目名称
 * table - `必选` `string`，表名称
 
+
+#### 请求主体
+* pageSize - `可选` `int`, 默认为10 分页返回每页返回的条数
+* pageOffset - `可选` `int`, 默认为0 返回数据的起始下标
+
 #### 请求示例
-`请求路径:http://host:port/kylin/api/acl/table/learn_kylin/DEFAULT.KYLIN_SALES`
+`请求路径:http://host:port/kylin/api/acl/table/paged/learn_kylin/DEFAULT.KYLIN_SALES`
 
 #### 响应示例
-first: 用户名/用户组名
-second: 表示是用户还是用户组
 
 ```json
 {
   "code": "000",
-  "data": [
-    {
-      "first": "ADMIN",
-      "second": "u",
-      "value": "u",
-      "key": "ADMIN"
-    },
-    {
-      "first": "ROLE_ADMIN",
-      "second": "g",
-      "value": "g",
-      "key": "ROLE_ADMIN"
-    }
-  ],
+  "data": {
+    "size": 2,
+    "user": [
+      "ROLE_ADMIN"
+    ],
+    group: [
+      "ADMIN"
+    ]
+  },
   "msg": "get table acl"
 }
 ```

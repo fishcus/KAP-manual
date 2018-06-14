@@ -14,7 +14,7 @@
 
 `Request Mode GET`
 
-`Access Path http://host:port/kylin/api/acl/column/{project}/{table}`
+`Access Path http://host:port/kylin/api/acl/column/paged/{project}/{table}`
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
@@ -22,36 +22,31 @@
 * project - `required` `string`, project name
 * table - `required` `string`, table name
 
+#### Request Body
+* pageSize - `optional` `int`, default 10, how many lines would be included in each returned page.
+* pageOffset - `optional` `int`, default 0, get data start subscript.
+
 #### Request Example
-`Request Path:http://host:port/kylin/api/acl/column/learn_kylin/DEFAULT.KYLIN_SALES`
+`Request Path:http://host:port/kylin/api/acl/column/paged/learn_kylin/DEFAULT.KYLIN_SALES`
 
 #### Response Example
 ```json
 {
   "code": "000",
+  "size": 2,
   "data": {
-    "{a,u}": [
-      "TRANS_ID"
-    ],
-    "{ADMIN,u}": [
-      "TRANS_ID"
-    ],
-    "{ANALYST,u}": [
-      "BUYER_ID",
-      "OPS_REGION",
-      "OPS_USER_ID",
-      "SELLER_ID",
-      "TRANS_ID"
-    ],
-    "{g1,g}": [
-      "LSTG_FORMAT_NAME",
-      "PART_DT",
-      "TRANS_ID"
-    ],
-    "{u1,u}": [
-      "c1",
-      "c2"
-    ]
+    "user": [{
+    	"admin": [
+    	  "BUYER_ID",
+    	  "SELLER_ID"
+    	]
+    }],
+    "group": [{
+    	"ADMIN": [
+    	  "BUYER_ID",
+    	  "SELLER_ID"
+    	]
+    }]
   },
   "msg": "get column acl"
 }

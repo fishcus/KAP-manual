@@ -116,7 +116,7 @@
 ### 删除数据模型
 `请求方式 DELETE`
 
-`访问路径 http://host:port/kylin/api/model/{projectName}/{modelName}`
+`访问路径 http://host:port/kylin/api/models/{projectName}/{modelName}`
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
