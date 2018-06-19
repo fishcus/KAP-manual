@@ -1,6 +1,6 @@
 ## Drill-down and Roll-up
 
-In the project of *Learn_kylin*, the cube *kylin_sales_cube* contains the hierarchy as below. We will demonstrate how to perform the actions of drill-down and roll-up by taking the *kylin_sales_cube* as an example.
+In the project of *learn_kylin*, the cube *kylin_sales_cube* contains the hierarchy as below. We will demonstrate how to perform the actions of drill-down and roll-up by taking the *kylin_sales_cube* as an example.
 
 ![Hierarchy](images/hierarchy_en.png)
 
