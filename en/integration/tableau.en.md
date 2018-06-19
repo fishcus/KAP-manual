@@ -1,4 +1,4 @@
-## Integration with Tableau 10.x
+## Integration with Tableau 
 
 ### Install Kyligence ODBC Driver
 
@@ -25,12 +25,10 @@ In left panel, select `defaultCatalog` as Database, click `Search` button in Tab
 
 There are two types of Connection in Tableau 10.1, choose the Live option to make sure using Connect Live mode.
 
-### Custom SQL
-To use customized SQL, click `New Custom SQL` in left panel and type SQL statement in pop-up dialog.
 
 ### Visualization
 
-Now you can start to enjou analyzing with Tableau 10.1.
+Now you can start to enjou analyzing with Tableau .
 ![](images/tableau_10/step13.PNG)
 
 ### Publish to Tableau Server

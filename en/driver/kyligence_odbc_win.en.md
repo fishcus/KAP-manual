@@ -30,31 +30,36 @@ In this section, we will take Windows 7 as an example to introduce how to instal
 
    64-bit ODBC driver: select **Control Panel -> Administrative Tools** to open **ODBC Data Source Administrator**
 
-   ![ODBC Data Source Administrator](images/odbc_01_en.png)
-
 2. Switch to **System DSN** tab, click **Add** and select **KyligenceODBCDriver** in the pop-up driver selection box, then click **Finish**.
 
-   ![Add Kyligence ODBC Driver](images/odbc_02_en.png)
+   ![Add Kyligence ODBC Driver](images/01.png)
 
 3. In the pop-up window, input the KAP server information, as shown in the figure:
 
-    ![DSN setting](images/odbc_03_en.png)
+    ![DSN setting](images/02.png)
 
    Where, the parameters are described as below: 
 
    * Data Source Name: name of data source
+   * Description：Description of data source
    * Host: KAP server address
    * Port: KAP server port number
    * Username: username to login KAP
    * Password: password to login KAP 
    * Project: the name of the KAP project to use for the query
+   * Disable catalog：Whether to disable the catalog layer, the default is **enable** state, If you choose to disable catalog, check this option.
 
 4. Click **Test**
 
    Once it connects to the data source successfully, the following dialog will appear.
 
+   ![Connect Successfully](images/03.png)
 
-![Connect Successfully](images/odbc_04_en.png)
+## Enabling the catalog layer
+
+   the BI tool which need to **diable** the catalog layer：Cognos
+
+   the BI tool which need to **Enable** the catalog layer：OBIEE
 
 ## ODBC Connection String
 

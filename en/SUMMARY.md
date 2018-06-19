@@ -128,7 +128,7 @@
           * [Windows](driver/kyligence_odbc_win.en.md)
           * [Linux](driver/kyligence_odbc_linux.en.md)
     * [Connect with BI tools](integration/README.md)
-        * [Tableau](integration/tableau_10.en.md)
+        * [Tableau](integration/tableau.en.md)
         * [Excel](integration/excel_2018.en.md)
         * [Power BI](integration/powerbi.en.md)
         * [Apache Zeppelin](integration/zeppelin.en.md)

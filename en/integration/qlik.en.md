@@ -13,17 +13,17 @@ For the installation of Qlik Sense, please visit [Qlik Sense Desktop download](h
 ### Connection with Qlik Sense
 After configuring your Local DSN and installing Qlik Sense successfully, you may go through the following steps to connect KAP with Qlik Sense.
 
-1. From Windows Desktop Shortcut or click **Start -> All Applications -> Qlik Sense -> Qlik Sense Desktop** to open the application **Qlik Sense Desktop**.
+1. From Windows Desktop Shortcut or click `Start` -> `All Applications` -> `Qlik Sense` -> `Qlik Sense Desktop` to open the application `Qlik Sense Desktop`.
 
-2. Input your Qlik account to login, then the following dialog will pop up. Click **Create A New App**.![Create New Application](images/qlik/welcome_to_qlik_desktop.png)
+2. Input your Qlik account to login, then the following dialog will pop up. Click `Create A New App`.![Create New Application](images/qlik/welcome_to_qlik_desktop.png)
 
    You may specify any name different from existing applications and then open this application. In this example, we name it as “Kylinfortesting".![Specify a unique name](images/qlik/create_new_application.png)
 
-3. There are two choices in the Application View. Please select the bottom **Script Editor**.![Select Script Editor](images/qlik/script_editor.png)
+3. There are two choices in the Application View. Please select the bottom `Script Editor`.![Select Script Editor](images/qlik/script_editor.png)
 
-   The Data Load Editor window shows. Click **Create New Connection** in the upper right of this page.![Create New Data Connection](images/qlik/create_data_connection.png)
+   The Data Load Editor window shows. Click `Create New Connection` in the upper right of this page.![Create New Data Connection](images/qlik/create_data_connection.png)
 
-   Select **DSN** you have created, ignore the account information, and then click **Create**. ![ODBC Connection](images/qlik/odbc_connection.png)
+   Select `DSN` you have created, ignore the account information, and then click `Create`. ![ODBC Connection](images/qlik/odbc_connection.png)
 
 4. Change the default scripts of "TimeFormat", "DateFormat" and "TimestampFormat" to:
 
@@ -70,10 +70,7 @@ After configuring your Local DSN and installing Qlik Sense successfully, you may
    SET LongMonthNames='January;February;March;April;May;June;July;August;September;October;November;December';
    SET DayNames='Mon;Tue;Wed;Thu;Fri;Sat;Sun';
    SET LongDayNames='Monday;Tuesday;Wednesday;Thursday;Friday;Saturday;Sunday';
-
    LIB CONNECT TO 'kylin';
-
-
    DIRECT QUERY
    DIMENSION 
      TRANS_ID,
@@ -107,8 +104,6 @@ After configuring your Local DSN and installing Qlik Sense successfully, you may
    on (KYLIN_COUNTRY.COUNTRY=KYLIN_ACCOUNT.ACCOUNT_COUNTRY)
    ```
 
-   ​
-
    Click **Load Data** on the upper right of the window, Qlik Sense will then send out inspection query to test the connection based on the script.![Load Data](images/qlik/load_data.png)
 
 6. Create a new report
@@ -124,3 +119,53 @@ After configuring your Local DSN and installing Qlik Sense successfully, you may
    Please note that if you want the report to hit on Cube, you need to create the measure exactly as those are defined in the Cube. For the case of *Kylin_sales_cube* in Learn_kylin project, we use sum(price) as an example. 
 
 ![Create Measure that can hit on Cube](images/qlik/measure.png)
+
+### Connection with Qlik Sense Hub 
+
+
+#### Upload apps from Qlik Sense Desktop to Qlik Sense Hub
+
+1. From the browser, go to `Qlik Managerment Console (QMC)` and select the `License and tokens` module.
+
+![进入QMC](images/Qlik/01-licenses.PNG)
+
+2. Select `QMC` -> `License and tokens` -> `User access allocations` -> `Allocate` to add the current user and enable the use of `Qlik Sense Hub`.
+
+![开启qlik hub](images/Qlik/02-user_access.PNG)
+
+3. Select the `Apps` module in QMC
+
+![选择APPS](images/Qlik/03-apps.PNG)
+
+4. Select the Apps module in QMC and select `Import` to import the application created by `Qlik Sense Desktop` locally.
+
+![导入APP](images/Qlik/04-add_apps.PNG)
+
+5. Select `Publish` to publish applications that have just been imported or previously existed.
+
+![发布APP](images/Qlik/05-publish_app.PNG)
+
+6. Enter `Qlik Sense Hub`, you can find the application just released in the `Streams` module. If you just import it and not publish it, the application exists in the `Personal` module.
+
+![进入APP](images/Qlik/06_hub_app.PNG)
+
+7. Go to the KAP_QLIK application just released to view the charts created in `Qlik Sense Desktop`.
+
+![查看图表](images/Qlik/07_hub_qlik.PNG)
+
+#### Connect KAP directly in Qlik Sense Hub
+
+1. Create a new application in the `Qlik Sense Hub` through a browser and connect to a KAP data source. The connection method is the same as connecting KAP in `Qlik Sense Desktop`.
+
+![新建应用](images/Qlik/08_hub_create.PNG)
+
+2. Edit the application you just created and use the data in KAP freely.
+
+![编辑应用](images/Qlik/09_hub_table.PNG)
+
+3. Edit the chart and make it the same way as in `Qlik Sense Desktop`.
+
+![编辑图表](images/Qlik/10_hub_complete.PNG)
+
+
+

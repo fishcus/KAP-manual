@@ -12,11 +12,10 @@ Kyligence currently support MicroStrategy Secure Enterprise 10.8 or above on Win
 
 3. JDK 1.8 or above is installed on the machine where MicroStrategy Intelligence Server is installed.
 
-4. Kyligence ODBC Driver 64 bit is installed on the machine where MicroStrategy Intelligence Server is installed. For details on how to download and configure Kyligence ODBC Driver please refer to [Kyligence ODBC Driver tutorial](http://docs.kyligence.io/books/v2.5/en/driver/kyligence_odbc.en.html).
+4. Kyligence ODBC Driver 64 bit is installed on the machine where MicroStrategy Intelligence Server is installed. 
+For details on how to download and configure Kyligence ODBC Driver please refer to [Kyligence ODBC Driver tutorial](../driver/kyligence_odbc.en.md)
 
-  ​
-
-
+  
 ### Install Kyligence Connector for MicroStrategy Intelligence Server
 
 #### Update Database object
