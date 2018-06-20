@@ -11,20 +11,28 @@ KAP 所有的 API 都是基于 [basic authentication](http://en.wikipedia.org/wi
 * 在 HTTP 头添加 `Authorization` 信息
 * 或者可以通过 `POST http://localhost:7070/kylin/api/user/authentication` 进行认证，一旦认证通过，接下来对 API 请求基于 cookies 在 HTTP 头中免去 `Authorization `信息
 
-```
-POST http://localhost:7070/kylin/api/user/authentication 
-Authorization:Basic xxxxJD124xxxGFxxxSDF
-Content-Type: application/json;charset=UTF-8
-```
+`请求方式 POST`
+
+`访问路径 http://host:port/kylin/api/user/authentication `
+
+`Authorization:Basic xxxxJD124xxxGFxxxSDF`
+
+`Content-Type: application/vnd.apache.kylin-v2+json;charset=UTF-8`
+
+`Accept: application/vnd.apache.kylin-v2+json`
 
 这里以 javascript 和 curl 为例介绍在访问 API 时如何添加认证信息。
 ### Query API 示例
 ```javascript
 $.ajaxSetup({
-      headers: { 'Authorization': "Basic eWFu**********X***ZA==", 'Content-Type': 'application/json;charset=utf-8' } // use your own authorization code here
+      headers: { 
+        'Authorization': 'Basic eWFu**********X***ZA==', 
+        'Content-Type': 'application/vnd.apache.kylin-v2+json;charset=UTF-8',
+        'Accept': 'application/vnd.apache.kylin-v2+json'
+      } // use your own authorization code here
     });
     var request = $.ajax({
-       url: "http://hostname/kylin/api/query",
+       url: "http://host:port/kylin/api/query",
        type: "POST",
        data: '{"sql":"select count(*) from SUMMARY;","offset":0,"limit":50000,"acceptPartial":true,"project":"test"}',
        dataType: "json"
@@ -45,21 +53,23 @@ var authorizationCode = $.base64('encode', 'NT_USERNAME' + ":" + 'NT_PASSWORD');
 $.ajaxSetup({
    headers: { 
     'Authorization': "Basic " + authorizationCode, 
-    'Content-Type': 'application/json;charset=utf-8' 
+    'Content-Type': 'application/vnd.apache.kylin-v2+json;charset=UTF-8',
+    'Accept': 'application/vnd.apache.kylin-v2+json'
    }
 });
 ```
 
-
 ### Curl 示例
 
-```
-curl -c /path/to/cookiefile.txt -X POST -H "Authorization: Basic XXXXXXXXX" -H 'Content-Type: application/json' http://<host>:<port>/kylin/api/user/authentication
-```
-
-访问成功后 JSESSIONID 会存在 cookie 文件中，在接下来的访问中添加上 cookie 信息：
+通过curl进行认证
 
 ```
-curl -b /path/to/cookiefile.txt -X PUT -H 'Content-Type: application/json' -d '{"startTime":'1423526400000', "endTime":'1423526400', "buildType":"BUILD"}' http://<host>:<port>/kylin/api/cubes/your_cube/rebuild
+curl -X POST -H 'Authorization: Basic XXXXXXXXX' -H 'Content-Type: application/vnd.apache.kylin-v2+json;charset=UTF-8' -H  'Accept: application/vnd.apache.kylin-v2+json' http://host:port/kylin/api/user/authentication
+```
+
+通过API访问时添加认证信息
+
+```
+curl -X PUT -H 'Authorization: Basic XXXXXXXXX' -H 'Content-Type: application/vnd.apache.kylin-v2+json;charset=UTF-8' -H 'Accept: application/vnd.apache.kylin-v2+json' -d '{"startTime":'1423526400000', "endTime":'1423626400000', "buildType":"BUILD", "mpValues":""}' http://host:port/kylin/api/cubes/your_cube/segments/build
 ```
 

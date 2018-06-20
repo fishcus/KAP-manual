@@ -9,7 +9,6 @@
 * [返回多个Cube](#返回多个cube)
 * [返回指定Cube](#返回指定cube)
 * [返回Cube描述信息](#返回cube描述信息)
-* [返回数据模型](#返回数据模型)
 * [构建 Cube-日期分区](#构建cube-日期分区)
 * [构建 Cube-非日期分区](#构建cube-非日期分区)
 * [构建Cube-无分区](#构建cube-无分区)
@@ -30,6 +29,8 @@
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
+`Accepe: application/vnd.apache.kylin-v2+json`
+
 #### 请求主体
 * pageOffset - `可选` `int` 默认0，返回数据起始下标
 * pageSize - `可选` `int ` 默认10，分页返回对应每页返回多少
@@ -40,51 +41,119 @@
 * sortBy - `可选` `string` 指定排序字段，默认"update_time"
 * reverse - `可选` `boolean` 是否倒序，默认true
 
+#### 请求示例
+
+`请求路径: http://host:port/kylin/api/cubes?pageOffset=0&pageSize=10&projectName=your_project&cubeName=&sortBy=update_time&reverse=true&exactMatch=false`
+
 #### 响应示例
 ```json
-[  
-   {
-        "uuid": "8372c3b7-a33e-4b69-83dd-0bb8b1f8117e",
-        "last_modified": 1508487909245,
-        "version": "3.0.0.1",
-        "name": "ci_inner_join_cube",
-        "owner": null,
-        "descriptor": "ci_inner_join_cube",
-        "display_name": null,
-        "cost": 50,
-        "status": "DISABLED",
-        "segments": [],
-        "create_time_utc": 0,
-        "cuboid_bytes": null,
-        "cuboid_bytes_recommend": null,
-        "cuboid_last_optimized": 0,
-        "project": "default",
-        "model": "ci_inner_join_model",
-        "is_streaming": false,
-        "partitionDateColumn": "TEST_KYLIN_FACT.CAL_DT",
-        "partitionDateStart": 0,
-        "isStandardPartitioned": true,
-        "size_kb": 0,
-        "input_records_count": 0,
-        "input_records_size": 0,
-        "is_draft": false,
-        "multilevel_partition_cols": [],
-        "total_storage_size_kb": 0
-    }
-]
+{
+    "code": "000",
+    "data":
+        "cubes": [  
+            {
+            "uuid": "8372c3b7-a33e-4b69-83dd-0bb8b1f8117e",
+            "last_modified": 1508487909245,
+            "version": "3.0.0.1",
+            "name": "ci_inner_join_cube",
+            "owner": null,
+            "descriptor": "ci_inner_join_cube",
+            "display_name": null,
+            "cost": 50,
+            "status": "DISABLED",
+            "segments": [],
+            "create_time_utc": 0,
+            "cuboid_bytes": null,
+            "cuboid_bytes_recommend": null,
+            "cuboid_last_optimized": 0,
+            "project": "default",
+            "model": "ci_inner_join_model",
+            "is_streaming": false,
+            "partitionDateColumn": "TEST_KYLIN_FACT.CAL_DT",
+            "partitionDateStart": 0,
+            "isStandardPartitioned": true,
+            "size_kb": 0,
+            "input_records_count": 0,
+            "input_records_size": 0,
+            "is_draft": false,
+            "multilevel_partition_cols": [],
+            "total_storage_size_kb": 0
+            }
+        ],
+        size: 1
+    },
+    msg: ""
+}
+```
+
+#### Curl 访问示例
+
+```
+curl -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json' http://host:port/kylin/api/cubes?pageOffset=0&pageSize=10&projectName=your_project&cubeName=&sortBy=update_time&reverse=true&exactMatch=false
 ```
 
 ### 返回指定Cube
+
 `请求方式 GET`
 
 `访问路径 http://host:port/kylin/api/cubes/{cubeName}`
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
+`Accepe: application/vnd.apache.kylin-v2+json`
+
 #### 路径变量
 * cubeName - `必选` `string` 要获取的Cube 名称.
 
+#### 请求示例
+
+`请求路径: http://host:port/kylin/api/cubes/your_cube`
+
+#### 响应示例
+
+```json
+  {
+    "code": "000",
+    "data":{
+      "uuid": "8372c3b7-a33e-4b69-83dd-0bb8b1f8117e",
+      "last_modified": 1508487909245,
+      "version": "3.0.0.1",
+      "name": "ci_inner_join_cube",
+      "owner": null,
+      "descriptor": "ci_inner_join_cube",
+      "display_name": null,
+      "cost": 50,
+      "status": "DISABLED",
+      "segments": [],
+      "create_time_utc": 0,
+      "cuboid_bytes": null,
+      "cuboid_bytes_recommend": null,
+      "cuboid_last_optimized": 0,
+      "project": "default",
+      "model": "ci_inner_join_model",
+      "is_streaming": false,
+      "partitionDateColumn": "TEST_KYLIN_FACT.CAL_DT",
+      "partitionDateStart": 0,
+      "isStandardPartitioned": true,
+      "size_kb": 0,
+      "input_records_count": 0,
+      "input_records_size": 0,
+      "is_draft": false,
+      "multilevel_partition_cols": [],
+      "total_storage_size_kb": 0
+    },
+    msg: ""
+}
+```
+
+#### Curl 访问示例
+
+```
+curl -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json' http://host:port/kylin/api/cubes/your_cube
+```
+
 ### 返回Cube描述信息
+
  维度, 度量，等
 `请求方式 GET`
 
@@ -92,13 +161,19 @@
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
+`Accepe: application/vnd.apache.kylin-v2+json`
+
 #### 路径变量
 * projectName - `必选` `string` 项目名称.
 * cubeName - `必选` `string` Cube 名称.
 
+#### 请求示例
+
+`请求路径: http://host:port/kylin/api/cube_desc/your_project/your_cube`
+
 #### 响应示例
 ```json
-    {
+ {
     "code": "000",
     "data": {
         "cube": {
@@ -329,11 +404,11 @@
                 }
             ],
             "signature": "kNACGfzr3/ozZvEsWLNNtg==",
-            "notify_list": null,
+            "notify_list": [],
             "status_need_notify": [],
             "partition_date_start": 0,
             "partition_date_end": 3153600000000,
-            "auto_merge_time_ranges": null,
+            "auto_merge_time_ranges": [],
             "volatile_range": 0,
             "retention_range": 0,
             "engine_type": 100,
@@ -351,149 +426,21 @@
 }
 ```
 
-### 返回数据模型
- 事实表及维度表等信息
-`请求方式 GET`
+#### Curl 访问示例
 
-`访问路径 http://host:port/kylin/api/model_desc/{projectName}/{modelName}`
-
-`Content-Type: application/vnd.apache.kylin-v2+json`
-
-#### 路径变量
-* projectName - `必选` `string` 返回该项目下的model. 
-* modelName - `必选` `string` 数据模型名称.
-
-#### 响应示例
-```sh
-{
-    "code": "000",
-    "data": {
-        "model": {
-            "uuid": "72ab4ee2-2cdb-4b07-b39e-4c298563ae27",
-            "last_modified": 1507691058000,
-            "version": "3.0.0.1",
-            "name": "ci_inner_join_model",
-            "owner": null,
-            "is_draft": false,
-            "description": null,
-            "fact_table": "DEFAULT.TEST_KYLIN_FACT",
-            "lookups": [
-                {
-                    "table": "DEFAULT.TEST_ORDER",
-                    "kind": "FACT",
-                    "alias": "TEST_ORDER",
-                    "join": {
-                        "type": "INNER",
-                        "primary_key": [
-                            "TEST_ORDER.ORDER_ID"
-                        ],
-                        "foreign_key": [
-                            "TEST_KYLIN_FACT.ORDER_ID"
-                        ]
-                    }
-                }
-            ],
-            "dimensions": [
-                {
-                    "table": "TEST_KYLIN_FACT",
-                    "columns": [
-                        "TRANS_ID",
-                        "ORDER_ID",
-                        "CAL_DT",
-                        "LSTG_FORMAT_NAME",
-                        "LSTG_SITE_ID",
-                        "LEAF_CATEG_ID",
-                        "SLR_SEGMENT_CD",
-                        "SELLER_ID",
-                        "TEST_COUNT_DISTINCT_BITMAP",
-                        "DEAL_YEAR",
-                        "SELLER_COUNTRY_ABBR",
-                        "BUYER_COUNTRY_ABBR",
-                        "SELLER_ID_AND_COUNTRY_NAME",
-                        "BUYER_ID_AND_COUNTRY_NAME"
-                    ]
-                }            
-            ],
-            "metrics": [
-                "TEST_KYLIN_FACT.PRICE",
-                "TEST_KYLIN_FACT.ITEM_COUNT",
-                "TEST_KYLIN_FACT.DEAL_AMOUNT"
-            ],
-            "filter_condition": null,
-            "partition_desc": {
-                "partition_date_column": "TEST_KYLIN_FACT.CAL_DT",
-                "partition_time_column": null,
-                "partition_date_start": 0,
-                "partition_date_format": "yyyy-MM-dd",
-                "partition_time_format": "HH:mm:ss",
-                "partition_type": "APPEND",
-                "partition_condition_builder": "org.apache.kylin.metadata.model.PartitionDesc$DefaultPartitionConditionBuilder"
-            },
-            "capacity": "MEDIUM",
-            "multilevel_partition_cols": [],
-            "computed_columns": [
-                {
-                    "tableIdentity": "DEFAULT.TEST_KYLIN_FACT",
-                    "tableAlias": "TEST_KYLIN_FACT",
-                    "columnName": "DEAL_AMOUNT",
-                    "expression": "TEST_KYLIN_FACT.PRICE * TEST_KYLIN_FACT.ITEM_COUNT",
-                    "datatype": "decimal",
-                    "comment": "deal amount of inner join model (with legacy expression format)"
-                },
-                {
-                    "tableIdentity": "DEFAULT.TEST_KYLIN_FACT",
-                    "tableAlias": "TEST_KYLIN_FACT",
-                    "columnName": "DEAL_YEAR",
-                    "expression": "year(TEST_KYLIN_FACT.CAL_DT)",
-                    "datatype": "integer",
-                    "comment": "the year of the deal"
-                },
-                {
-                    "tableIdentity": "DEFAULT.TEST_KYLIN_FACT",
-                    "tableAlias": "TEST_KYLIN_FACT",
-                    "columnName": "BUYER_ID_AND_COUNTRY_NAME",
-                    "expression": "CONCAT(BUYER_ACCOUNT.ACCOUNT_ID, BUYER_COUNTRY.NAME)",
-                    "datatype": "string",
-                    "comment": "synthetically concat buyer's account id and buyer country"
-                },
-                {
-                    "tableIdentity": "DEFAULT.TEST_KYLIN_FACT",
-                    "tableAlias": "TEST_KYLIN_FACT",
-                    "columnName": "SELLER_ID_AND_COUNTRY_NAME",
-                    "expression": "CONCAT(SELLER_ACCOUNT.ACCOUNT_ID, SELLER_COUNTRY.NAME)",
-                    "datatype": "string",
-                    "comment": "synthetically concat seller's account id and seller country"
-                },
-                {
-                    "tableIdentity": "DEFAULT.TEST_KYLIN_FACT",
-                    "tableAlias": "TEST_KYLIN_FACT",
-                    "columnName": "BUYER_COUNTRY_ABBR",
-                    "expression": "SUBSTR(BUYER_ACCOUNT.ACCOUNT_COUNTRY,0,1)",
-                    "datatype": "string",
-                    "comment": "first char of country of buyer account"
-                },
-                {
-                    "tableIdentity": "DEFAULT.TEST_KYLIN_FACT",
-                    "tableAlias": "TEST_KYLIN_FACT",
-                    "columnName": "SELLER_COUNTRY_ABBR",
-                    "expression": "SUBSTR(SELLER_ACCOUNT.ACCOUNT_COUNTRY,0,1)",
-                    "datatype": "string",
-                    "comment": "first char of country of seller account"
-                }
-            ],
-            "project": "default"
-        }
-    },
-    "msg": ""
-}
+```
+curl -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json' http://host:port/kylin/api/cube_desc/your_project/your_cube
 ```
 
 ### 构建Cube-日期分区
+
 `请求方式 PUT`
 
 `访问路径 http://host:port/kylin/api/cubes/{cubeName}/segments/build`
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
+
+`Accepe: application/vnd.apache.kylin-v2+json`
 
 #### 路径变量
 * cubeName - `必选` `string` Cube 名称
@@ -504,6 +451,17 @@
 * buildType - `必选` `string` 支持的计算类型: 'BUILD'
 * mpValues - `可选` `string` 对应model的more partition 字段值
 
+#### 请求示例
+
+```sh
+{  
+  "startTime": 0,
+  "endTime": 1388534400000,
+  "buildType": "BUILD",
+  "mpValues": ""
+}
+```
+
 #### 响应示例
 ```json
 {
@@ -512,11 +470,11 @@
         "uuid": "3e38d217-0c31-4d9b-9e52-57d10b1e7190",
         "last_modified": 1508837365452,
         "version": "3.0.0.1",
-        "name": "BUILD CUBE - mppp_clone1_4142494e - 20171024172711_20171024172711 - GMT+08:00 2017-10-24 17:29:25",
+        "name": "BUILD CUBE - ci_inner_join_cube - 0_1388534400000 - GMT+08:00 2017-10-24 17:29:25",
         "type": "BUILD",
         "duration": 0,
-        "related_cube": "mppp_clone1_4142494e",
-        "display_cube_name": "mppp_clone1_4142494e",
+        "related_cube": "ci_inner_join_cube",
+        "display_cube_name": "ci_inner_join_cube",
         "related_segment": "889049e8-5a57-41d8-abcd-3a356d57eea0",
         "exec_start_time": 0,
         "exec_end_time": 0,
@@ -547,12 +505,21 @@
 }
 ```
 
+#### Curl 访问示例
+
+```
+curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json' -d '{ "startTime": 0,"endTime": 1388534400000,"buildType": "BUILD","mpValues": "" }' http://host:port/kylin/api/cubes/your_cube/segments/build
+```
+
 ### 构建Cube-非日期分区
+
 `请求方式 PUT`
 
 `访问路径 http://host:port/kylin/api/cubes/{cubeName}/segments/build_by_offset`
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
+
+`Accepe: application/vnd.apache.kylin-v2+json`
 
 #### 路径变量
 * cubeName - `必选` `string` Cube 名称
@@ -564,13 +531,36 @@
 * mpValues - `可选` `string` 对应model的more partition 字段值
 
 
+#### 请求示例
+
+```sh
+{  
+  "startTime": 0,
+  "endTime": 138800,
+  "buildType": "BUILD",
+  "mpValues": ""
+}
+```
+
+#### 响应示例
+
+(同 "构建Cube-日期分区")
+
+#### Curl 访问示例
+
+```
+curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json' -d '{ "startTime": 0,"endTime": 138800,"buildType": "BUILD","mpValues": "" }' http://host:port/kylin/api/cubes/your_cube/segments/build_by_offset
+```
+
 ### 构建Cube-无分区
 
 `请求方式 PUT`
 
-`访问路径 <http://host:port/kylin/api/cubes/{cubeName}/segments/build`>
+`访问路径 http://host:port/kylin/api/cubes/{cubeName}/segments/build`
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
+
+`Accepe: application/vnd.apache.kylin-v2+json`
 
 #### 路径变量
 
@@ -582,13 +572,35 @@
 * endTime - `必选` `long`, 0
 * buildType - `必选` `string`, 支持的计算类型: 'BUILD'
 
+#### 请求示例
+
+```sh
+{  
+  "startTime": 0,
+  "endTime": 0,
+  "buildType": "BUILD"
+}
+```
+
+#### 响应示例
+
+(同 "构建Cube-日期分区")
+
+#### Curl 访问示例
+
+```
+curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json' -d '{ "startTime": 0,"endTime": 0,"buildType": "BUILD" }' http://host:port/kylin/api/cubes/your_cube/segments/build
+```
+
 ### 构建Cube-批量构建
 
 `请求方式 PUT`
 
-`访问路径 <http://host:port/kylin/api/cubes/{cubeName}/batch_sync`>
+`访问路径 http://host:port/kylin/api/cubes/{cubeName}/batch_sync`
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
+
+`Accepe: application/vnd.apache.kylin-v2+json`
 
 #### 路径变量
 
@@ -636,12 +648,70 @@
 ]
 ```
 
+#### 响应示例
+
+```json
+{
+    "code":"000",
+    "data":[
+        {
+        "code":"000",
+        "data":{
+            "uuid":"a09442bb-300f-4851-8bd2-2ec0d811dcb6",
+            "last_modified":1529400276349,
+            "version":"3.0.0.1",
+            "name":"BUILD CUBE - TYRRE - 1_2 - GMT+08:00 2018-06-19 17:24:36",
+            "type":"BUILD",
+            "duration":0,
+            "related_cube":"TYRRE",
+            "display_cube_name":"TYRRE",
+            "related_segment":"5ef8d42b-5ed6-4489-b95c-07fe4cf5a2e6",
+            "exec_start_time":0,
+            "exec_end_time":0,
+            "exec_interrupt_time":0,
+            "mr_waiting":0,
+            "steps":[
+              {
+                "interruptCmd": null,
+                "id": "3e38d217-0c31-4d9b-9e52-7e4d3b1e7190-00",
+                "name": "Create Intermediate Flat Hive Table",
+                "sequence_id": 0,
+                "exec_cmd": null,
+                "interrupt_cmd": null,
+                "exec_start_time": 0,
+                "exec_end_time": 0,
+                "exec_wait_time": 0,
+                "step_status": "PENDING",
+                "cmd_type": "SHELL_CMD_HADOOP",
+                "info": {},
+                "run_async": false
+              }
+            ],
+            "submitter":"ADMIN",
+            "job_status":"PENDING",
+            "progress":0.0
+        },
+        "msg":""}
+    ],
+    "msg":""
+}
+```
+
+#### Curl 访问示例
+
+```
+curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json' -d '[{"mpValues": "300","pointList": ["1","2","3","4","5","6","7","8","9","10"],"rangeList": [["50","70"],["90","110"]]},{"mpValues": "301","pointList": ["1","2","3","4","5","6","7","8","9","10"],"rangeList": [["20","30"],["30","40"]]}]' http://host:port/kylin/api/cubes/your_cube/batch_sync
+```
+
 ### 克隆Cube
+
 `请求方式 PUT`
 
 `访问路径 http://host:port/kylin/api/cubes/{cubeName}/clone`
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
+
+`Accepe: application/vnd.apache.kylin-v2+json`
 
 #### 路径变量
 * cubeName - `必选` `string` 被克隆Cube名称.
@@ -651,8 +721,23 @@
 * project - `必选` `string` 新项目名称 
 
 
+#### 请求示例
+
+```Json
+{  
+  "cubeName": "cube_clone",
+  "project": "your_project"
+}
+```
+
 #### 响应示例
-(同 "启用 Cube")
+(同 "返回指定 Cube")
+
+#### Curl 访问示例
+
+```
+curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json' -d '{ "cubeName": "cube_clone","project": "your_project" }' http://host:port/kylin/api/cubes/cube_name/clone
+```
 
 ### 启用Cube
 `请求方式 PUT`
@@ -661,8 +746,14 @@
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
+`Accepe: application/vnd.apache.kylin-v2+json`
+
 #### 路径变量
 * cubeName - `必选` `string` Cube 名称.
+
+#### 请求示例
+
+`请求路径: http://host:port/kylin/api/cubes/your_cube/enable`
 
 #### 响应示例
 ```json
@@ -732,18 +823,37 @@
 }
 ```
 
+#### Curl 访问示例
+
+```
+curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json' http://host:port/kylin/api/cubes/your_cube/enable
+```
+
 ### 禁用Cube
+
 `请求方式 PUT`
 
 `访问路径 http://host:port/kylin/api/cubes/{cubeName}/disable`
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
+`Accepe: application/vnd.apache.kylin-v2+json`
+
 #### 路径变量
 * cubeName - `必选` `string` Cube 名称.
 
+#### 请求示例
+
+`请求路径: http://host:port/kylin/api/cubes/your_cube/disable`
+
 #### 响应示例
 (同 "启用 Cube")
+
+#### Curl 访问示例
+
+```
+curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json' http://host:port/kylin/api/cubes/your_cube/disable
+```
 
 ### 清理Cube
 `请求方式 PUT`
@@ -752,19 +862,40 @@
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
+`Accepe: application/vnd.apache.kylin-v2+json`
+
 #### 路径变量
-* cubeName - `必选` `string` Cube 名称
+* cubeName - `必选` `string` Cube 名称`
+
+#### 请求主体
+
 * mpValues - `可选` `string` Model Primary Partition 值
+
+#### 请求示例
+
+```Json
+{  
+  "mpValues": ""
+}
+```
 
 #### 响应示例
 (同 "启用 Cube")
 
+#### Curl 访问示例
+
+```
+curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json' -d '{ "mpValues": "" }' http://host:port/kylin/api/cubes/your_cube/purge
+```
+
 ### 管理Segment
 `请求方式 PUT`
 
-`访问路径 http://host:port/kylin/api/cubes/<cubeName>/segments`
+`访问路径 http://host:port/kylin/api/cubes/{cubeName}/segments`
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
+
+`Accepe: application/vnd.apache.kylin-v2+json`
 
 #### 路径变量
 * cubeName - `必选` `string` Cube 名称.
@@ -773,23 +904,23 @@
 * buildType - `必选` `string` MERGE, REFRESH, DROP
 * segments - `必选` `string` segment name 数组
 * mpValues - `可选` `string` Model Primary Partition 值
-* force - `可选` `string` true 或 false
+* force - `可选` `boolean` 是否强制进行操作，值为true 或 false
+
+#### 请求示例
+
+```json
+{  
+  "buildType": "REFRESH",
+  "segments": [0_1000],
+  "mpValues": "ABIN",
+  "force": false
+}
+```
 
 #### Curl 示例
 ```
-curl -u ADMIN:KYLIN -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type: application/json;charset=utf-8" -X PUT -d '{ "buildType": "DROP", "mpValues": "ABIN", "segments": ["0_1000"] }' "http://localhost:8080/kylin/api/cubes/mptest/segments"
+curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json' -d '{ "buildType": "REFRESH", "mpValues": "ABIN", "segments": ["0_1000"], "force": false }' http://host:port/kylin/api/cubes/your_cube/segments
 ```
-
-### 删除Segment
-`请求方式 DELETE`
-
-`访问路径 http://host:port/kylin/api/cubes/{cubeName}/segs/{segmentName}`
-
-`Content-Type: application/vnd.apache.kylin-v2+json`
-
-#### 路径变量
-* cubeName - `必选` `string` Cube 名称
-* segmentName - `必选` `string` segment name 数组
 
 ### 导出TDS
 `请求方式 GET`
@@ -798,5 +929,19 @@ curl -u ADMIN:KYLIN -H "Accept: application/vnd.apache.kylin-v2+json" -H "Conten
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
+`Accepe: application/vnd.apache.kylin-v2+json`
+
 #### 路径变量
 * cubeName - `必选` `string` Cube 名称
+
+#### 请求示例
+
+`请求路径: http://host:port/kylin/api/cubes/your_cube/export/tds`
+
+#### Curl 访问示例
+
+```
+curl -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json' http://host:port/kylin/api/cubes/your_cube/export/tds
+```
+
+### 
