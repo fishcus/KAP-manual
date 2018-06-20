@@ -18,6 +18,8 @@ If users access dataset built by KAP, mainly there are two API, one is querying 
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
+`Accepe: application/vnd.apache.kylin-v2+json`
+
 #### Request Body
 * sql - `required` `string` 
 
@@ -134,7 +136,7 @@ Reference: <https://docs.oracle.com/javase/7/docs/api/java/sql/ResultSet.html#ge
 
 #### Curl Access Example
 ```
-curl -X POST -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/json" -d '{ "sql":"select count(*) from TEST_KYLIN_FACT", "project":"learn_kylin" }' http://YOUR_HOST:7070/kylin/api/query
+curl -X POST -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/json" -H 'Accept: application/vnd.apache.kylin-v2+json' -d '{ "sql":"select count(*) from TEST_KYLIN_FACT", "project":"learn_kylin" }' http://host:port/kylin/api/query
 ```
 
 
@@ -145,8 +147,14 @@ curl -X POST -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/j
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
+`Accepe: application/vnd.apache.kylin-v2+json`
+
 #### Request Parameter
 * project - `required` `string`, indicates desired tables are from which project.
+
+#### Request Example
+
+`Request Path: http://host:port/kylin/api/tables_and_columns?project=your_project`
 
 #### Detailed Information
 
@@ -690,3 +698,10 @@ curl -X POST -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/j
 }
 ```
 
+#### Curl Example
+
+```
+curl -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/json" -H 'Accept: application/vnd.apache.kylin-v2+json' http://host:port/kylin/api/tables_and_columns?project=your_project
+```
+
+### 

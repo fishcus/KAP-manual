@@ -19,6 +19,8 @@
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
+`Accepe: application/vnd.apache.kylin-v2+json`
+
 #### 请求主体
 * sql - `必选` `string` 查询的sql.
 * offset - `可选` `int` 查询默认从第一行返回结果，可以设置改参数设置返回数据从哪一行开始往后返回
@@ -124,7 +126,7 @@
 
 #### Curl 访问示例
 ```
-curl -X POST -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/json" -d '{ "sql":"select count(*) from TEST_KYLIN_FACT", "project":"learn_kylin" }' http://YOUR_HOST:7070/kylin/api/query
+curl -X POST -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json' -d '{ "sql":"select count(*) from TEST_KYLIN_FACT", "project":"learn_kylin" }' http://host:port/kylin/api/query
 ```
 
 
@@ -135,8 +137,14 @@ curl -X POST -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/j
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
+`Accepe: application/vnd.apache.kylin-v2+json`
+
 #### 请求参数
 * project - `必选` `string` 说明对应要列出哪个Project下的表 
+
+#### 请求示例
+
+`请求路径: http://host:port/kylin/api/tables_and_columns?project=your_project`
 
 #### 详细说明
 - 该接口返回kylin的table视图结构依照 JDBC API DatabaseMetaData.getColumns()方法定义
@@ -678,3 +686,10 @@ curl -X POST -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/j
 }
 ```
 
+#### Curl 访问示例
+
+```
+curl -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/json" -H 'Accept: application/vnd.apache.kylin-v2+json' http://host:port/kylin/api/tables_and_columns?project=your_project
+```
+
+### 

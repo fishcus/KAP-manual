@@ -13,12 +13,24 @@
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
+`Accepe: application/vnd.apache.kylin-v2+json`
 
-### Path Variable
+#### Path Variable
+
 - entity - `required` `string` 'all', 'project_schema', 'project_data' or 'project_acl'.
 - cacheKey - `required` `string` cache key, such as Project name.
 - event - `required` `string` 'create', 'update' or 'drop'.
 
+
+#### Request Example
+
+`Request Path: http://host:port/kylin/api/cache/announce/project_data/your_project/update`
+
+#### Curl Example
+
+```
+curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json' http://host:port/kylin/api/cache/announce/project_data/your_project/update
+```
 
 ### Purge Single Node Cache
 
@@ -28,8 +40,22 @@
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
-### Path Variable
+`Accepe: application/vnd.apache.kylin-v2+json`
+
+#### Path Variable
 
 - entity - `required` `string`, 'all','project_schema','project_data' or 'project_acl'.
 - cacheKey - `required` `string`, cache key, such as Project name.
 - event - `required` `string`, 'create', 'update' or 'drop'.
+
+#### Request Example
+
+`Request Path: http://host:port/kylin/api/cache/project_data/your_project/update`
+
+#### Curl Example
+
+```
+curl -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json' http://host:port/kylin/api/cache/project_data/your_project/update
+```
+
+### 
