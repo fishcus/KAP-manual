@@ -27,7 +27,7 @@ You may calculate subtotals and grand totals at different dimension levels.
 
 #### Subtotal
 
-1. To calculate the subtotal, first click on the dimension that you may want to calculate its subtotal on row or column. In this example, we click on **CATEG_LEVL2_NAME** to calculate its subtotal.
+1. To calculate the subtotal, first click on the dimension that you may want to calculate its subtotal on row or column. In this example, we click on **META_CATEG_NAME** to calculate its subtotal.
   ![Subtotal 1](images/subtotal_0_en.png)
 
 2. In the pop-up window, in **Sub totals** section, choose the aggregation method you may prefer. In this example, we choose **Sum** as the aggregation method for subtotal.

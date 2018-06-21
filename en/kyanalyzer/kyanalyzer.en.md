@@ -167,7 +167,7 @@ Click the button **New Query** at the navigation bar, click the button **Refresh
 ![Create a New Query](images/cube_refresh.png)
 
 ### Data Visulization
-KyAnalyzer supports many types of data visulization, such as table, bar, stacked bar, line chart, area chart, heat grid, tree map, pie chart, dot chart, and water fall chart. Here we illustrate some examples.
+KyAnalyzer supports many types of data visulization, such as table, bar, stacked bar, line chart, area chart, heat grid, tree map, pie chart, dot chart, and waterfall chart. Here we illustrate some examples.
 
 #### Bar Chart
 ![Bar Chart](images/bar_chart.png)
@@ -191,7 +191,7 @@ In KyAnalyzer, when you synchronize a Cube, you also synchronize the hierarchy i
 
 ### Hide Parents
 
-The button ofHide Parents is next to the one of Automatic Execution, the default status ofwhich is on. At the moment, the measures of the parents node do not display separatelyand we can only check the measures of child node, which can only show after thefunction is turned off.
+The button of Hide Parents is next to the one of Automatic Execution, the default status of which is on. At the moment, the measures of the parents node do not separate display we can only check the measures of child node, which can only show after thefunction is turned off.
 
 As shown below, themeasures of the parents node do not display.
 
