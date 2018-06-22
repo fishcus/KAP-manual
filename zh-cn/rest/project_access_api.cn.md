@@ -16,7 +16,9 @@
 
 `访问路径 http://host:port/kylin/api/access/{type}/{uuid}`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en`
 
 #### 路径变量
 * type - `必选` `string`，目前来说，type 只能是 ProjectInstance
@@ -25,6 +27,15 @@
 #### 请求示例
 `请求路径:http://host:port/kylin/api/access/ProjectInstance/2fbca32a-a33e-4b69-83dd-0bb8b1f8c91b`
 
+
+
+#### Curl 请求示例 
+
+``` 
+
+curl -X GET -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json"  http://host:port/kylin/api/access/ProjectInstance/2fbca32a-a33e-4b69-83dd-0bb8b1f8c91b
+
+```
 #### 响应示例
 ```json
 {
@@ -51,7 +62,9 @@
 
 `访问路径 http://host:port/kylin/api/access/{type}/{uuid}`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en`
 
 #### 路径变量
 * type - `必选` `string`，目前来说，type 只能是 ProjectInstance
@@ -66,6 +79,17 @@
 `请求路径:http://host:port/kylin/api/access/ProjectInstance/2fbca32a-a33e-4b69-83dd-0bb8b1f8c91b`
 
 `请求主体:{permission: "READ", principal: true, sid: "MODELER"}`
+
+
+
+#### Curl 请求示例
+
+```
+curl -X POST -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -d '{ "permission":"READ", "principal":true，“sid”:"MODELER" }' http://host:port/kylin/api/access/ProjectInstance/2fbca32a-a33e-4b69-83dd-0bb8b1f8c91b`
+
+```
+
+
 
 
 #### 响应示例
@@ -105,7 +129,9 @@
 
 `访问路径 http://host:port/kylin/api/access/{type}/{uuid}`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en`
 
 #### 路径变量
 * type - `必选` `string`，目前来说，type 只能是 ProjectInstance
@@ -121,6 +147,15 @@
 
 `请求主体:{permission: "READ", principal: true, sid: "MODELER"}`
 
+
+
+#### Curl 请求示例 
+
+``` 
+
+curl -X PUT -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -d '{ "permission":"READ", "principal":true，“sid”:"MODELER" }' http://host:port/kylin/api/access/ProjectInstance/2fbca32a-a33e-4b69-83dd-0bb8b1f8c91b`
+
+```
 #### 响应示例
 ```json
 {
@@ -158,7 +193,9 @@
 
 `访问路径 http://host:port/kylin/api/access/{type}/{uuid}`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en`
 
 #### 路径变量
 * type - `必选` `string`，目前来说，type 只能是 ProjectInstance
@@ -173,6 +210,12 @@
 
 `请求主体:{permission: "READ", principal: true, sid: "MODELER"}`
 
+
+
+#### Curl 请求示例
+```
+curl -X DELETE -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -d '{ "accessEntryId":"1", "sid":'admin' }' http://host:port/kylin/api/access/ProjectInstance/2fbca32a-a33e-4b69-83dd-0bb8b1f8c91b
+```
 #### 响应示例
 ```json
 {

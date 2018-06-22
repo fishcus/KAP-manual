@@ -18,7 +18,9 @@
 
 `访问路径 http://host:port/kylin/api/user_group/groups`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json` 
+
+`Accept-Language: cn|en` 
 
 #### 请求主体
 * project - `必须` `string`，用来判断当前用户是否有拉取所有用户的权限
@@ -45,7 +47,9 @@
 
 `访问路径 http://host:port/kylin/api/user_group/usersWithGroup`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json` 
+
+`Accept-Language: cn|en` 
 
 #### 请求参数
 * pageOffset - `可选` `int`
@@ -53,6 +57,11 @@
 
 #### 请求示例
 `请求路径:http://host:port/kylin/api/user_group/usersWithGroup?pageSize=9&pageOffset=0`
+
+#### Curl 请求示例
+```
+curl -X GET -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -d '{"pageSize":10，“pageOffset”:0 }' http://host:port/kylin/api/user_group/usersWithGroup?pageSize=9&pageOffset=0
+```
 
 #### 响应示例
 ```json
@@ -94,7 +103,9 @@
 
 `访问路径 http://host:port/kylin/api/user_group/{groupName}`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json` 
+
+`Accept-Language: cn|en` 
 
 #### 路径变量
 * groupName - `必选` `string` 组名
@@ -107,7 +118,9 @@
 
 `访问路径 http://host:port/kylin/api/user_group/{groupName}`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json` 
+
+`Accept-Language: cn|en` 
 
 #### 路径变量
 * groupName - `必选` `string` 组名
@@ -115,18 +128,32 @@
 #### 请求示例
 `请求路径:http://host:port/kylin/api/user_group/g1`
 
+#### Curl 请求示例
+
+```
+curl -X DELETE -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/user_group/g1
+```
+
+
 ### 获取特定用户组下的所有用户
 `请求方式 GET`
 
 `访问路径 http://host:port/kylin/api/user_group/groupMembers/{name}`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json` 
+
+`Accept-Language: cn|en` 
 
 #### 路径变量
 * name - `必选` `string` 组名
 
 #### 请求示例
 `请求路径:http://host:port/kylin/api/user_group/groupMembers/ALL_USERS`
+
+#### Curl 请求示例
+```
+curl -X GET -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/user_group/groupMembers/ALL_USERS
+```
 
 #### 响应示例
 ```json
@@ -200,7 +227,9 @@
 
 `访问路径 http://host:port/kylin/api/user_group/users/{groupName}`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json` 
+
+`Accept-Language: cn|en` 
 
 #### 路径变量
 * groupName - `必选` `string` 组名
@@ -212,3 +241,8 @@
 `请求路径:http://host:port/kylin/api/user_group/users/g1`
 
 `请求主体:["ADMIN","ANALYST","MODELER"]`
+
+#### Curl 请求示例
+```
+curl -X POST -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -d '["ADMIN","ANALYST","MODELER"]' http://host:port/kylin/api/user_group/users/g1
+```

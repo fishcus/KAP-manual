@@ -15,7 +15,9 @@
 
 `Access Path http://host:port/kylin/api/acl/row/paged/{project}/{table}`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en`
 
 #### Path Variable
 * project - `required` `string`, project name
@@ -27,6 +29,11 @@
 
 #### Request Example
 `Request Path:http://host:port/kylin/api/acl/row/paged/learn_kylin/DEFAULT.KYLIN_SALES`
+
+#### Curl Request Example
+```
+curl -X GET -H "Authorization: Basic QURNSU46cXFxMTExLCws" -H “Accept: application/vnd.apache.kylin-v2+json" -d '{"pageSize":10，“pageOffset”:0 }' http://host:port/kylin/api/acl/row/paged/learn_kylin/DEFAULT.KYLIN_SALES
+```
 
 #### Response Information
 - type - the value can only be CLOSED currently, indicating equal =
@@ -64,7 +71,9 @@
 
 `Access Path http://host:port/kylin/api/acl/row/{project}/{type}/{table}/{username}`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en`
 
 #### Path Variable
 * project - `required` `string`, project name
@@ -102,6 +111,11 @@ Request Body:TRANS_ID's values:1,2,3.(TRANS_ID=1 OR TRANS_ID=2 OR TRANS_ID=3)
     ]
   }
 }
+```
+
+#### Curl Request Example
+```
+curl -X POST -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -d '{ "condsWithColumn":[{type: "CLOSED", leftExpr: "1", rightExpr: "1"}]}' http://host:port/kylin/api/acl/row/learn_kylin/user/DEFAULT.KYLIN_SALES/ADMIN
 ```
 
 #### Response Example
@@ -114,7 +128,9 @@ Request Body:TRANS_ID's values:1,2,3.(TRANS_ID=1 OR TRANS_ID=2 OR TRANS_ID=3)
 
 `Access Path http://host:port/kylin/api/acl/row/{project}/{type}/{table}/{username}`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en`
 
 #### Path Variable
 * project - `required` `string`, project name
@@ -154,6 +170,11 @@ Request Body:TRANS_ID's values:1,2,3.(TRANS_ID=1 OR TRANS_ID=2 OR TRANS_ID=3)
 }
 ```
 
+#### Curl Request Example
+```
+curl -X PUT -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -d '{ "condsWithColumn":[{type: "CLOSED", leftExpr: "1", rightExpr: "1"}]}' http://host:port/kylin/api/acl/row/learn_kylin/user/DEFAULT.KYLIN_SALES/ADMIN
+```
+
 #### Response Example
 ```json
 {"code":"000","data":"","msg":"update user's row cond list"}
@@ -164,7 +185,9 @@ Request Body:TRANS_ID's values:1,2,3.(TRANS_ID=1 OR TRANS_ID=2 OR TRANS_ID=3)
 
 `Access Path http://host:port/kylin/api/acl/row/{project}/{type}/{table}/{username}`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en`
 
 #### Path Variable
 * project - `required` `string`, project name
@@ -175,6 +198,12 @@ Request Body:TRANS_ID's values:1,2,3.(TRANS_ID=1 OR TRANS_ID=2 OR TRANS_ID=3)
 #### Request Body
 
 `Request Path:http://host:port/kylin/api/acl/row/learn_kylin/user/DEFAULT.KYLIN_SALES/ADMIN`
+
+
+#### Curl Request Example
+```
+curl -X DELETE -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/acl/row/learn_kylin/user/DEFAULT.KYLIN_SALES/ADMIN
+```
 
 #### Response Example
 ```

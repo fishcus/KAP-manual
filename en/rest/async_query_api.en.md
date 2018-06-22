@@ -1,35 +1,35 @@
-## 异步结果导出 REST API
+## Asyn Query Result Export REST API
 
-> **提示**
+> **Tip**
 >
-> 使用API前请确保已阅读前面的**访问及安全认证**章节，知道如何在API中添加认证信息。
+> Before using API, make sure that you read the previous chapter of access and security authentication, and know how to add authentication information in API.
 >
-* [提交查询](#提交查询)
-* [查询query状态](#查询query状态)
-* [查询query的metadata信息](#查询query的metadata信息)
-* [查询query的结果文件大小](#查询query的结果文件大小)
-* [下载query查询结果](#下载query查询结果)
-* [查询query的hdfs路径](#查询query的hdfs路径)
-* [删除所有查询结果文件](#删除所有查询结果文件)
+* [Asyn Query](#Asyn Query)
+* [Query Status](#Query Status)
+* [Query Metadata Info](#Query Metadata Info)
+* [Query Result File Status](#Query Result File Status)
+* [Download Query Result](#Download Query Result)
+* [Query hdfs Path](#Query hdfs Path)
+* [Delete All Query Result Files](#Delete All Query Result Files)
 
 
-### 提交查询
+### Asyn Query
 
-`请求方式 POST`
+`Request Mode POST`
 
-`访问路径 http://host:port/kylin/api/async_query`
+`Access Path http://host:port/kylin/api/async_query`
 
 `Accept: application/vnd.apache.kylin-v2+json`
 
 `Accept-Language: cn|en`
 
-#### 请求主体
-* sql - `必选` `string` 查询的sql.
-* separator - `可选` `string` 默认",",指定导出结果的分隔符
-* limit - `可选` `int ` 加上limit参数后会从offset开始返回对应的行数，不足limt以实际行数为准
-* project - `必选` `string`  默认为 ‘DEFAULT’，在实际使用时，如果对应查询的项目不是“DEFAULT”，需要设置为自己的项目
+#### Request Body
+- sql - ```required``` ```string``` The text of sql statement.
+- separator - `可选` `string` The spearator of export result. Default value is ",".
+- limit - ```optional``` ```int``` Query limit. If limit is set in sql, limit will be ignored.
+- project - ```optional``` ```string``` Project to perform query. Default value is ‘DEFAULT’.
 
-#### 请求示例
+#### Request Example
 ```json
 [
    {
@@ -40,17 +40,17 @@
 ]
 ```
 
-#### Curl 访问示例
+#### Curl Request Example
 ```
 curl -X POST -H "Authorization: Basic XXXXXX" -H “Accept: application/vnd.apache.kylin-v2+json" -d '{ "sql":"select * from kylin_sales", "separator":","，“project”:"tpch_kap_24" }' http://host:port/kylin/api/async_query
 ```
 
-#### 响应信息
+#### Response Info
 * queryID - async query的queryID.
-* status - sync query提交的状态.该状态分为:FAILED 和 RUNNING
-* info - sync query提交状态的详细信息.
+* status - sync query status. Includes:FAILED and RUNNING
+* info - sync query detail info.
 
-### 响应示例
+### Request Example
 ```json
 [
    {
@@ -65,33 +65,33 @@ curl -X POST -H "Authorization: Basic XXXXXX" -H “Accept: application/vnd.apac
 ]
 ```
 
-### 查询query状态
+### Query Status
 
-`请求方式 GET`
+`Request Mode GET`
 
-`访问路径 http://host:port/kylin/api/async_query/{queryID}/status`
+`Access Path http://host:port/kylin/api/async_query/{queryID}/status`
 
 `Accept: application/vnd.apache.kylin-v2+json`
 
 `Accept-Language: cn|en`
 
-#### 请求示例
-`请求路径:http://host:port/kylin/api/async_query/yourQueryId/status`
+#### Request Example
+`Access Path: http://host:port/kylin/api/async_query/yourQueryId/status`
 
-#### 请求主体
-* queryID - `必选` `string`  async query的queryID.
+#### Request Body
+* queryID - `required` `string`  async query的queryID.
 
-#### Curl 访问示例
+#### Curl Request Example
 ```
 curl -X GET -H "Authorization: Basic XXXXXX" -H “Accept: application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/async_query/your_query_id/status
 ```
 
-#### 响应信息
+#### Response Info
 * queryID - async query的queryID.
-* status - sync query提交的状态.该状态分为:FAILED, MISS(查询不到此查询), SUCCESS 和 RUNNING
-* info - sync query提交状态的详细信息.
+* status - sync query submit status. The status includes FAILED, MISS, SUCCESS and RUNNING
+* info - sync query submit status detail info.
 
-### 响应示例
+### Response Example
 ```json
 [
     {
@@ -106,31 +106,31 @@ curl -X GET -H "Authorization: Basic XXXXXX" -H “Accept: application/vnd.apach
 ]
 ```
 
-### 查询query的metadata信息
+### Query Metadata Info
 
-`请求方式 GET`
+`Request Mode GET`
 
-`访问路径 http://host:port/kylin/api/async_query/{queryID}/metadata`
+`Access Path http://host:port/kylin/api/async_query/{queryID}/metadata`
 
 `Accept: application/vnd.apache.kylin-v2+json`
 
 `Accept-Language: cn|en`
 
-#### 请求主体
-* queryID - `必选` `string`  async query的queryID.
+#### Request Body
+* queryID - `required` `string`  async query的queryID.
 
-#### 请求示例
-`请求路径:http://host:port/kylin/api/async_query/yourQueryId/metadata`
+#### Request Example
+`Access Path: http://host:port/kylin/api/async_query/yourQueryId/metadata`
 
-#### Curl 访问示例
+#### Curl Request Example
 ```
 curl -X GET -H "Authorization: Basic XXXXXX" -H “Accept: application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/async_query/your_query_id/metadata
 ```
 
-#### 响应信息
-* data - data为一个两个list,第一个list为列名,第二个list为对应列的数据类型
+#### Response Info
+* data - data with two lists, The first list is fulled with column Names, The second list is fulled with data type names of columns
 
-### 响应示例
+### Response Example
 ```json
 [
     {
@@ -154,31 +154,31 @@ curl -X GET -H "Authorization: Basic XXXXXX" -H “Accept: application/vnd.apach
 ]
 ```
 
-### 查询query的结果文件大小
+### Query Result File Status
 
-`请求方式 GET`
+`Request Mode GET`
 
-`访问路径 http://host:port/kylin/api/async_query/{queryID}/filestatus`
+`Access Path http://host:port/kylin/api/async_query/{queryID}/filestatus`
 
 `Accept: application/vnd.apache.kylin-v2+json`
 
 `Accept-Language: cn|en`
 
-#### 请求主体
-* queryID - `必选` `string`  async query的queryID.
+#### Request Body
+* queryID - `required` `string`  async query的queryID.
 
-#### 请求示例
-`请求路径:http://host:port/kylin/api/async_query/yourQueryId/filestatus`
+#### Request Example
+`Access Path: http://host:port/kylin/api/async_query/yourQueryId/filestatus`
 
-#### Curl 访问示例
+#### Curl Request Example
 ```
 curl -X GET -H "Authorization: Basic XXXXXX" -H “Accept: application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/async_query/your_query_id/filestatus
 ```
 
-#### 响应信息
-* data - data为保存结果的总大小
+#### Response Info
+* data - data is the total size of save result
 
-### 响应示例
+### Response Example
 ```json
 [
     {
@@ -190,55 +190,55 @@ curl -X GET -H "Authorization: Basic XXXXXX" -H “Accept: application/vnd.apach
 ```
 
 
-### 下载query查询结果
+### Download Query Result
 
-`请求方式 GET`
+`Request Mode GET`
 
-`访问路径 http://host:port/kylin/api/async_query/{queryID}/result_download`
+`Access Path http://host:port/kylin/api/async_query/{queryID}/result_download`
 
 `Accept: application/vnd.apache.kylin-v2+json`
 
 `Accept-Language: cn|en`
 
-#### 请求主体
-* queryID - `必选` `string`  async query的queryID.
+#### Request Body
+* queryID - `required` `string`  async query的queryID.
 
-#### 请求示例
-`请求路径:http://host:port/kylin/api/async_query/yourQueryId/result_download`
+#### Request Example
+`Access Path: http://host:port/kylin/api/async_query/yourQueryId/result_download`
 
-#### Curl 访问示例
+#### Curl Request Example
 ```
 curl -X GET -H "Authorization: Basic XXXXXX" -H “Accept: application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/async_query/your_query_id/result_download
 ```
 
-#### 响应信息
-* 此时返回一个文件下载
+#### Response Info
+* Return a file to download at this time
 
-### 查询query的hdfs路径
+### Query hdfs Path
 
-`请求方式 GET`
+`Request Mode GET`
 
-`访问路径 http://host:port/kylin/api/async_query/{queryID}/result_path`
+`Access Path http://host:port/kylin/api/async_query/{queryID}/result_path`
 
 `Accept: application/vnd.apache.kylin-v2+json`
 
 `Accept-Language: cn|en`
 
-#### 请求主体
-* queryID - `必选` `string`  async query的queryID.
+#### Request Body
+* queryID - `required` `string`  async query的queryID.
 
 #### Request Example
-`请求路径:http://host:port/kylin/api/async_query/yourQueryId/result_path`
+`Request Path: http://host:port/kylin/api/async_query/yourQueryId/result_path`
 
-#### Curl 访问示例
+#### Curl Request Example
 ```
 curl -X GET -H "Authorization: Basic XXXXXX" -H “Accept: application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/async_query/your_query_id/result_path
 ```
 
-#### 响应信息
-* data - data为该查询的hdfs保存路径
+#### Response Info
+* data - data is the HDFS save path for this query
 
-### 响应示例
+### Response Example
 ```json
 [
     {
@@ -249,28 +249,28 @@ curl -X GET -H "Authorization: Basic XXXXXX" -H “Accept: application/vnd.apach
 ]
 ```
 
-### 删除所有查询结果文件
+### Delete All Query Result Files
 
-`请求方式 DELETE`
+`Request Mode DELETE`
 
-`访问路径 http://host:port/kylin/api/async_query`
+`Access Path http://host:port/kylin/api/async_query`
 
 `Accept: application/vnd.apache.kylin-v2+json`
 
 `Accept-Language: cn|en`
 
-#### 请求示例
-`请求路径:http://host:port/kylin/api/async_query`
+#### Request Example
+`Access Path: http://host:port/kylin/api/async_query`
 
-#### Curl 访问示例
+#### Curl Request Example
 ```
 curl -X DELETE -H "Authorization: Basic XXXXXX" -H “Accept: application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/async_query
 ```
 
-#### 响应信息
-* data - data为执行结果
+#### Response Info
+* data - data is the result of query
 
-### 响应示例
+### Response Example
 ```json
 [
     {

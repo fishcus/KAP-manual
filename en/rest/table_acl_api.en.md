@@ -14,7 +14,9 @@
 
 `Access Path http://host:port/kylin/api/acl/table/paged/{project}/{table}`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en`
 
 #### Path Variable
 * project - `required` `string`, project name
@@ -26,6 +28,12 @@
 
 #### Request Example
 `Request Path:http://host:port/kylin/api/acl/table/paged/learn_kylin/DEFAULT.KYLIN_SALES`
+
+
+#### Curl Request Example
+```
+curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -d '{"pageSize":10，“pageOffset”:0 }' http://host:port/kylin/api/acl/table/paged/learn_kylin/DEFAULT.KYLIN_SALES
+```
 
 #### Response Example
 ```json
@@ -49,7 +57,9 @@
 
 `Access Path http://host:port/kylin/api/acl/table/{project}/{type}/{table}/{name}`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en`
 
 #### Path Variable
 * project - `required` `string`, project name
@@ -59,6 +69,11 @@
 
 #### Request Example
 `Request Path:http://host:port/kylin/api/acl/table/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN`
+
+#### Curl Request Example
+```
+curl -X POST -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/acl/table/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN
+```
 
 #### Response Example
 ```json
@@ -70,7 +85,9 @@
 
 `Access Path http://host:port/kylin/api/acl/table/{project}/{type}/{table}/{name}`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en`
 
 #### Path Variable
 * project - `required` `string`, project name
@@ -80,6 +97,11 @@
 
 #### Request Example
 `Request Path:http://host:port/kylin/api/acl/table/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN`
+
+#### Curl Request Example
+```
+curl -X DELETE -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/acl/table/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN
+```
 
 #### Response Example
 ```

@@ -17,13 +17,20 @@
 
 `Access Path http://host:port/kylin/api/user_group/groups`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json` 
+
+`Accept-Language: cn|en` 
 
 #### Request Body
 * project - `required` `string`, determine if the current user has the permission to get all users.
 
 #### Request Example
 `Request Path:http://host:port/kylin/api/user_group/groups?project=a`
+
+#### Curl Request Example
+```
+curl -X GET -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -d '{ "projectName":"test"}' http://host:port/kylin/api/user_group/groups
+```
 
 #### Response Example
 ```json
@@ -44,7 +51,9 @@
 
 `Access Path http://host:port/kylin/api/user_group/usersWithGroup`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json` 
+
+`Accept-Language: cn|en` 
 
 #### Request Parameter
 * pageOffset - `optional` `int`
@@ -52,6 +61,13 @@
 
 #### Request Example
 `Request Path:http://host:port/kylin/api/user_group/usersWithGroup?pageSize=9&pageOffset=0`
+
+#### Curl Request Example
+```
+curl -X GET -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -d '{"pageSize":10，“pageOffset”:0 }' http://host:port/kylin/api/user_group/usersWithGroup?pageSize=9&pageOffset=0
+```
+
+
 
 #### Response Example
 ```json
@@ -93,7 +109,9 @@
 
 `Access Path http://host:port/kylin/api/user_group/{groupName}`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json` 
+
+`Accept-Language: cn|en` 
 
 #### Path Variable
 * groupName - `required` `string`, group name
@@ -106,7 +124,9 @@
 
 `Access Path http://host:port/kylin/api/user_group/{groupName}`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json` 
+
+`Accept-Language: cn|en` 
 
 #### Path Variable
 * groupName - `required` `string` , group name
@@ -114,18 +134,35 @@
 #### Request Example
 `Request Path:http://host:port/kylin/api/user_group/g1`
 
+#### Curl Request Example
+
+```
+curl -X DELETE -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/user_group/g1
+```
+
+#### 
+
+
+
 ### Get All Users under Specified User Group
 `Request Mode GET`
 
 `Access Path http://host:port/kylin/api/user_group/groupMembers/{name}`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json` 
+
+`Accept-Language: cn|en` 
 
 #### Path Variable
 * name - `required` `string` group name
 
 #### Request Example
 `Request Path:http://host:port/kylin/api/user_group/groupMembers/ALL_USERS`
+
+#### Curl Request Example
+```
+curl -X GET -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/user_group/groupMembers/ALL_USERS
+```
 
 #### Response Example
 ```json
@@ -199,7 +236,9 @@
 
 `Access Path http://host:port/kylin/api/user_group/users/{groupName}`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json` 
+
+`Accept-Language: cn|en` 
 
 #### Path Variable
 * groupName - `required` `string`, group name
@@ -211,3 +250,8 @@ User list, please see the request body in the following request example for deta
 `Request Path:http://host:port/kylin/api/user_group/users/g1`
 
 `Request Body:["ADMIN","ANALYST","MODELER"]`
+
+#### Curl Request Example
+```
+curl -X POST -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -d '["ADMIN","ANALYST","MODELER"]' http://host:port/kylin/api/user_group/users/g1
+```

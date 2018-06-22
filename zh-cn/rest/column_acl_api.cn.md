@@ -17,7 +17,9 @@
 
 `访问路径 http://host:port/kylin/api/acl/column/paged/{project}/{table}`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en`
 
 #### 路径变量
 * project - `必选` `string`，项目名称
@@ -29,6 +31,11 @@
 
 #### 请求示例
 `请求路径:http://host:port/kylin/api/acl/column/paged/learn_kylin/DEFAULT.KYLIN_SALES`
+
+#### Curl Request Example
+```
+curl -X GET -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -d '{"pageSize":10，“pageOffset”:0 }' http://host:port/kylin/api/acl/column/paged/learn_kylin/DEFAULT.KYLIN_SALES
+```
 
 #### 响应示例
 ```json
@@ -58,7 +65,9 @@
 
 `访问路径 http://host:port/kylin/api/acl/column/{project}/{type}/{table}/{username}`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en`
 
 #### 路径变量
 * project - `必选` `string`，项目名称
@@ -74,6 +83,11 @@
 
 `请求主体:["CAL_DT", "YEAR_BEG_DT"]`
 
+#### Curl Request Example
+```
+curl -X POST -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -d '["YEAR_BEG_DT", "CAL_DT", "QTR_BEG_DT"]' http://host:port/kylin/api/acl/column/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN
+```
+
 #### 响应示例
 ```json
 {"code":"000","data":"","msg":"add user to column black list."}
@@ -84,7 +98,9 @@
 
 `访问路径 http://host:port/kylin/api/acl/column/{project}/{type}/{table}/{username}`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en`
 
 #### 路径变量
 * project - `必选` `string`，项目名称
@@ -100,7 +116,15 @@
 
 `请求主体:["YEAR_BEG_DT", "CAL_DT", "QTR_BEG_DT"]`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en`
+
+#### Curl Request Example
+```
+curl -X PUT -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -d '["YEAR_BEG_DT", "CAL_DT", "QTR_BEG_DT"]' http://host:port/kylin/api/acl/column/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN
+```
+
 
 #### 响应示例
 ```json
@@ -112,7 +136,9 @@
 
 `访问路径 http://host:port/kylin/api/acl/column/{project}/{type}/{table}/{username}`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en`
 
 #### 路径变量
 * project - `必选` `string`，项目名称
@@ -122,6 +148,11 @@
 
 #### 请求示例
 `请求路径:http://host:port/kylin/api/acl/column/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN`
+
+#### Curl Request Example
+```
+curl -X DELETE -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/acl/column/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN
+```
 
 #### 响应示例
 ```
