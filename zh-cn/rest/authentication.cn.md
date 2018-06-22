@@ -21,6 +21,8 @@ KAP 所有的 API 都是基于 [basic authentication](http://en.wikipedia.org/wi
 
 `Accept: application/vnd.apache.kylin-v2+json`
 
+`Accept-Language: cn|en` 
+
 这里以 javascript 和 curl 为例介绍在访问 API 时如何添加认证信息。
 ### Query API 示例
 ```javascript
@@ -64,12 +66,12 @@ $.ajaxSetup({
 通过curl进行认证
 
 ```
-curl -X POST -H 'Authorization: Basic XXXXXXXXX' -H 'Content-Type: application/vnd.apache.kylin-v2+json;charset=UTF-8' -H  'Accept: application/vnd.apache.kylin-v2+json' http://host:port/kylin/api/user/authentication
+curl -X POST -H 'Authorization: Basic XXXXXXXXX' -H  'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/user/authentication
 ```
 
 通过API访问时添加认证信息
 
 ```
-curl -X PUT -H 'Authorization: Basic XXXXXXXXX' -H 'Content-Type: application/vnd.apache.kylin-v2+json;charset=UTF-8' -H 'Accept: application/vnd.apache.kylin-v2+json' -d '{"startTime":'1423526400000', "endTime":'1423626400000', "buildType":"BUILD", "mpValues":""}' http://host:port/kylin/api/cubes/your_cube/segments/build
+curl -X PUT -H 'Authorization: Basic XXXXXXXXX' -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{"startTime":'1423526400000', "endTime":'1423626400000', "buildType":"BUILD", "mpValues":""}' http://host:port/kylin/api/cubes/your_cube/segments/build
 ```
 

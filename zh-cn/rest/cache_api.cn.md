@@ -12,7 +12,9 @@
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
-`Accepe: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en` 
 
 #### 路径变量
 * entity - `必选` `string` 'all', 'project_schema', 'project_data' 或者 'project_acl'.
@@ -26,7 +28,7 @@
 #### Curl 访问示例
 
 ```
-curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json' http://host:port/kylin/api/cache/announce/project_data/your_project/update
+curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/cache/announce/project_data/your_project/update
 ```
 
 ### 清理单节点缓存
@@ -36,7 +38,9 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vn
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
-`Accepe: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en` 
 
 #### 路径变量
 * entity - `必选` `string` 'all','project_schema','project_data' 或者 'project_acl'
@@ -50,5 +54,5 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vn
 #### Curl 访问示例
 
 ```
-curl -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json' http://host:port/kylin/api/cache/project_data/your_project/update
+curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/cache/project_data/your_project/update
 ```

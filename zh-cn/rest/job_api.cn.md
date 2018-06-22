@@ -21,7 +21,9 @@
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
-`Accepe: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en` 
 
 #### 路径变量
 * jobId - `必选` `string` Job id.
@@ -120,7 +122,7 @@
 #### Curl 示例
 
 ```
-curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json'  http://host:port/kylin/api/jobs/7cba7f9d-7cd3-44e7-905c-9f88ff5ee838/resume
+curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json"  http://host:port/kylin/api/jobs/7cba7f9d-7cd3-44e7-905c-9f88ff5ee838/resume
 ```
 
 ### 终止Job
@@ -131,7 +133,9 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vn
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
-`Accepe: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en` 
 
 #### 路径变量
 * jobId - `必选` `string` Job id.
@@ -146,7 +150,7 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vn
 #### Curl 示例
 
 ```
-curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json'  http://host:port/kylin/api/jobs/7cba7f9d-7cd3-44e7-905c-9f88ff5ee838/cancel
+curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json"  http://host:port/kylin/api/jobs/7cba7f9d-7cd3-44e7-905c-9f88ff5ee838/cancel
 ```
 
 ### 暂停Job
@@ -157,7 +161,9 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vn
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
-`Accepe: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en` 
 
 #### 路径变量
 
@@ -174,7 +180,7 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vn
 #### Curl 示例
 
 ```
-curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json'  http://host:port/kylin/api/jobs/7cba7f9d-7cd3-44e7-905c-9f88ff5ee838/pause
+curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json'  -H "Content-Type:application/vnd.apache.kylin-v2+json"  http://host:port/kylin/api/jobs/7cba7f9d-7cd3-44e7-905c-9f88ff5ee838/pause
 ```
 
 ### 删除Job
@@ -185,7 +191,9 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vn
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
-`Accepe: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en` 
 
 #### 路径变量
 
@@ -202,7 +210,7 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vn
 #### Curl 示例
 
 ```
-curl -X DELETE -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json'  http://host:port/kylin/api/jobs/7cba7f9d-7cd3-44e7-905c-9f88ff5ee838/drop
+curl -X DELETE -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json'  -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/jobs/7cba7f9d-7cd3-44e7-905c-9f88ff5ee838/drop
 ```
 
 ### 返回Job信息
@@ -213,7 +221,9 @@ curl -X DELETE -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
-`Accepe: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en` 
 
 #### 路径变量
 * jobId - `必选` `string` Job id.
@@ -228,7 +238,7 @@ curl -X DELETE -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application
 #### Curl 示例
 
 ```
-curl -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json'  http://host:port/kylin/api/jobs/7cba7f9d-7cd3-44e7-905c-9f88ff5ee838
+curl -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json'  -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/jobs/7cba7f9d-7cd3-44e7-905c-9f88ff5ee838
 ```
 
 ### 返回Job每步输出
@@ -239,7 +249,9 @@ curl -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apach
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
-`Accepe: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en` 
 
 #### 路径变量
 * jobId - `必选` `string` Job id.
@@ -265,7 +277,7 @@ curl -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apach
 #### Curl 示例
 
 ```
-curl -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json'  http://host:port/kylin/api/jobs/fb479e54-837f-49a2-b457-651fc50be110/steps/fb479e54-837f-49a2-b457-651fc50be110-03/output
+curl -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json'  -H "Content-Type:application/vnd.apache.kylin-v2+json"  http://host:port/kylin/api/jobs/fb479e54-837f-49a2-b457-651fc50be110/steps/fb479e54-837f-49a2-b457-651fc50be110-03/output
 ```
 
 ### 返回 Job 列表
@@ -276,7 +288,9 @@ curl -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apach
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
-`Accepe: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en` 
 
 #### 路径变量
 
@@ -360,7 +374,5 @@ curl -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apach
 #### Curl 示例
 
 ```
-curl -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json'  http://host:port/kylin/api/jobs?timeFilter=1&pageOffset=0&pageSize=10&status=&projectName=your_project&jobName=&sortby=last_modify
+curl -X GET -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json'  -H "Content-Type:application/vnd.apache.kylin-v2+json"  http://host:port/kylin/api/jobs?timeFilter=1&pageOffset=0&pageSize=10&status=&projectName=your_project&jobName=&sortby=last_modify
 ```
-
-### 

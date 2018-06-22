@@ -27,7 +27,7 @@
 
 #### Curl 访问示例
 ```
-curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/tables?project=learn_kylin&ext=true
+curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/tables?project=learn_kylin&ext=true
 ```
 
 #### 响应示例
@@ -104,7 +104,7 @@ curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.
 
 #### Curl 访问示例
 ```
-curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/tables/learn_kylin/kylin_cal_dt
+curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/tables/learn_kylin/kylin_cal_dt
 ```
 
 #### 响应示例
@@ -216,7 +216,7 @@ curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.
 
 #### Curl 访问示例
 ```
-curl -X POST -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -d '{ "project":"000", "tables":["KYLIN_CAL_DT"] }' http://host:port/kylin/api/tables/load
+curl -X POST -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "project":"000", "tables":["KYLIN_CAL_DT"] }' http://host:port/kylin/api/tables/load
 ```
 
 #### 响应示例

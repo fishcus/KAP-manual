@@ -33,7 +33,7 @@
 
 #### Curl request Example
 ```
-curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json"  http://host:port/kylin/api/models?projectName=test&pageSize=10&pageOffset=0
+curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json"  http://host:port/kylin/api/models?projectName=test&pageSize=10&pageOffset=0
 ```
 
 #### Response Example
@@ -249,7 +249,7 @@ curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.
 #### Curl Request Example
 
 ```
-curl -H "Authorization: Basic XXXXXXXXX" -H "Accept: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json' http://host:port/kylin/api/model_desc/your_project/your_model
+curl -H "Authorization: Basic XXXXXXXXX" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json' http://host:port/kylin/api/model_desc/your_project/your_model
 ```
 
 
@@ -275,7 +275,7 @@ curl -H "Authorization: Basic XXXXXXXXX" -H "Accept: application/vnd.apache.kyli
 
 #### Curl Request Example
 ```
-curl -X PUT -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json"  http://host:port/kylin/api/models/m2/clone
+curl -X PUT -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json"  http://host:port/kylin/api/models/m2/clone
 ```
 
 #### Response Example
@@ -308,7 +308,7 @@ curl -X PUT -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.
 
 #### Curl Request Example
 ```
-curl -X DELETE -H "Authorization: Basic xxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/models/learn_kylin/m2
+curl -X DELETE -H "Authorization: Basic xxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/models/learn_kylin/m2
 ```
 
 
@@ -330,7 +330,7 @@ curl -X DELETE -H "Authorization: Basic xxxxx" -H "Accept: application/vnd.apach
 
 #### Curl Request Example
 ```
-curl -X GET -H "Authorization: Basic xxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/models/computed_column_usage/your_project_name
+curl -X GET -H "Authorization: Basic xxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/models/computed_column_usage/your_project_name
 ```
 #### Response Example
 ```json

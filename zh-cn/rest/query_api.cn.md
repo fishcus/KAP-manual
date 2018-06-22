@@ -19,7 +19,9 @@
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
-`Accepe: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en` 
 
 #### 请求主体
 * sql - `必选` `string` 查询的sql.
@@ -126,7 +128,7 @@
 
 #### Curl 访问示例
 ```
-curl -X POST -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json' -d '{ "sql":"select count(*) from TEST_KYLIN_FACT", "project":"learn_kylin" }' http://host:port/kylin/api/query
+curl -X POST -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "sql":"select count(*) from TEST_KYLIN_FACT", "project":"learn_kylin" }' http://host:port/kylin/api/query
 ```
 
 
@@ -137,7 +139,9 @@ curl -X POST -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/v
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
-`Accepe: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en` 
 
 #### 请求参数
 * project - `必选` `string` 说明对应要列出哪个Project下的表 
@@ -689,7 +693,7 @@ curl -X POST -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/v
 #### Curl 访问示例
 
 ```
-curl -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/json" -H 'Accept: application/vnd.apache.kylin-v2+json' http://host:port/kylin/api/tables_and_columns?project=your_project
+curl -X GET -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/tables_and_columns?project=your_project
 ```
 
 ### 

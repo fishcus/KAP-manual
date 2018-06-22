@@ -32,7 +32,7 @@
 
 #### Curl 访问示例
 ```
-curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json"  http://host:port/kylin/api/models?projectName=test&pageSize=10&pageOffset=0
+curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json"  http://host:port/kylin/api/models?projectName=test&pageSize=10&pageOffset=0
 ```
 
 #### 响应示例
@@ -248,7 +248,7 @@ curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.
 #### Curl 访问示例
 
 ```
-curl -H "Authorization: Basic XXXXXXXXX" -H "Accept: application/vnd.apache.kylin-v2+json"  http://host:port/kylin/api/model_desc/your_project/your_model
+curl -H "Authorization: Basic XXXXXXXXX" -H "Accept: application/vnd.apache.kylin-v2+json"  -H "Content-Type:application/vnd.apache.kylin-v2+json"  http://host:port/kylin/api/model_desc/your_project/your_model
 ```
 
 
@@ -274,7 +274,7 @@ curl -H "Authorization: Basic XXXXXXXXX" -H "Accept: application/vnd.apache.kyli
 
 #### Curl 访问示例
 ```
-curl -X PUT -H "Authorization: Basic xxxxxx" -H "Content-Type: application/vnd.apache.kylin-v2+json"  http://host:port/kylin/api/models/m2/clone
+curl -X PUT -H "Authorization: Basic xxxxxx" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json"  http://host:port/kylin/api/models/m2/clone
 ```
 
 #### 响应示例
@@ -307,7 +307,7 @@ curl -X PUT -H "Authorization: Basic xxxxxx" -H "Content-Type: application/vnd.a
 
 #### Curl 访问示例
 ```
-curl -X DELETE -H "Authorization: Basic xxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/models/learn_kylin/m2
+curl -X DELETE -H "Authorization: Basic xxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/models/learn_kylin/m2
 ```
 
 ### 获取项目下所有可计算列
@@ -327,7 +327,7 @@ curl -X DELETE -H "Authorization: Basic xxxxx" -H "Accept: application/vnd.apach
 
 #### Curl 访问示例
 ```
-curl -X GET -H "Authorization: Basic xxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/models/computed_column_usage/your_project_name
+curl -X GET -H "Authorization: Basic xxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/models/computed_column_usage/your_project_name
 ```
 #### 响应示例
 ```json

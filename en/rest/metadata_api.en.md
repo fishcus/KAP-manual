@@ -28,7 +28,7 @@
 
 #### Curl Request Example
 ```
-curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/tables?project=learn_kylin&ext=true
+curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json"  -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/tables?project=learn_kylin&ext=true
 ```
 
 #### Response Example
@@ -102,11 +102,11 @@ curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.
 * tableName - `optional` `string`, table name.
 
 #### Request Example
-`请求路径:http://host:port/kylin/api/tables/learn_kylin/kylin_cal_dt`
+`Request Path:http://host:port/kylin/api/tables/learn_kylin/kylin_cal_dt`
 
 #### Curl Request Example
 ```
-curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/tables/learn_kylin/kylin_cal_dt
+curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/tables/learn_kylin/kylin_cal_dt
 ```
 
 #### Response Example
@@ -215,11 +215,11 @@ curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.
 * tables - `required` `string[]`, the hive table name list to be loaded.
 
 #### Request Example
-`请求路径: http://host:port/kylin/api/tables/load`
+`Request Path: http://host:port/kylin/api/tables/load`
 
 #### Curl Request Example
 ```
-curl -X POST -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -d '{ "project":"000", "tables":["KYLIN_CAL_DT"] }' http://host:port/kylin/api/tables/load
+curl -X POST -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "project":"000", "tables":["KYLIN_CAL_DT"] }' http://host:port/kylin/api/tables/load
 ```
 
 #### Response Example

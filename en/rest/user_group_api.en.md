@@ -29,7 +29,7 @@
 
 #### Curl Request Example
 ```
-curl -X GET -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -d '{ "projectName":"test"}' http://host:port/kylin/api/user_group/groups
+curl -X GET -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "projectName":"test"}' http://host:port/kylin/api/user_group/groups
 ```
 
 #### Response Example
@@ -64,7 +64,7 @@ curl -X GET -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apach
 
 #### Curl Request Example
 ```
-curl -X GET -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -d '{"pageSize":10，“pageOffset”:0 }' http://host:port/kylin/api/user_group/usersWithGroup?pageSize=9&pageOffset=0
+curl -X GET -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{"pageSize":10，“pageOffset”:0 }' http://host:port/kylin/api/user_group/usersWithGroup?pageSize=9&pageOffset=0
 ```
 
 
@@ -137,7 +137,7 @@ curl -X GET -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apach
 #### Curl Request Example
 
 ```
-curl -X DELETE -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/user_group/g1
+curl -X DELETE -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/user_group/g1
 ```
 
 #### 
@@ -161,7 +161,7 @@ curl -X DELETE -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.ap
 
 #### Curl Request Example
 ```
-curl -X GET -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/user_group/groupMembers/ALL_USERS
+curl -X GET -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/user_group/groupMembers/ALL_USERS
 ```
 
 #### Response Example
@@ -253,5 +253,5 @@ User list, please see the request body in the following request example for deta
 
 #### Curl Request Example
 ```
-curl -X POST -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -d '["ADMIN","ANALYST","MODELER"]' http://host:port/kylin/api/user_group/users/g1
+curl -X POST -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '["ADMIN","ANALYST","MODELER"]' http://host:port/kylin/api/user_group/users/g1
 ```
