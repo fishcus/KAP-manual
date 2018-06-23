@@ -29,7 +29,9 @@
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
-`Accepe: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en` 
 
 #### 请求主体
 * pageOffset - `可选` `int` 默认0，返回数据起始下标
@@ -89,7 +91,7 @@
 #### Curl 访问示例
 
 ```
-curl -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json' http://host:port/kylin/api/cubes?pageOffset=0&pageSize=10&projectName=your_project&cubeName=&sortBy=update_time&reverse=true&exactMatch=false
+curl -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/cubes?pageOffset=0&pageSize=10&projectName=your_project&cubeName=&sortBy=update_time&reverse=true&exactMatch=false
 ```
 
 ### 返回指定Cube
@@ -100,7 +102,9 @@ curl -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apach
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
-`Accepe: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en` 
 
 #### 路径变量
 * cubeName - `必选` `string` 要获取的Cube 名称.
@@ -149,7 +153,7 @@ curl -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apach
 #### Curl 访问示例
 
 ```
-curl -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json' http://host:port/kylin/api/cubes/your_cube
+curl -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json'  -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/cubes/your_cube
 ```
 
 ### 返回Cube描述信息
@@ -161,7 +165,9 @@ curl -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apach
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
-`Accepe: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en` 
 
 #### 路径变量
 * projectName - `必选` `string` 项目名称.
@@ -429,7 +435,7 @@ curl -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apach
 #### Curl 访问示例
 
 ```
-curl -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json' http://host:port/kylin/api/cube_desc/your_project/your_cube
+curl -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/cube_desc/your_project/your_cube
 ```
 
 ### 构建Cube-日期分区
@@ -440,7 +446,9 @@ curl -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apach
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
-`Accepe: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en` 
 
 #### 路径变量
 * cubeName - `必选` `string` Cube 名称
@@ -508,7 +516,7 @@ curl -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apach
 #### Curl 访问示例
 
 ```
-curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json' -d '{ "startTime": 0,"endTime": 1388534400000,"buildType": "BUILD","mpValues": "" }' http://host:port/kylin/api/cubes/your_cube/segments/build
+curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "startTime": 0,"endTime": 1388534400000,"buildType": "BUILD","mpValues": "" }' http://host:port/kylin/api/cubes/your_cube/segments/build
 ```
 
 ### 构建Cube-非日期分区
@@ -519,7 +527,9 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vn
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
-`Accepe: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en` 
 
 #### 路径变量
 * cubeName - `必选` `string` Cube 名称
@@ -549,7 +559,7 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vn
 #### Curl 访问示例
 
 ```
-curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json' -d '{ "startTime": 0,"endTime": 138800,"buildType": "BUILD","mpValues": "" }' http://host:port/kylin/api/cubes/your_cube/segments/build_by_offset
+curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "startTime": 0,"endTime": 138800,"buildType": "BUILD","mpValues": "" }' http://host:port/kylin/api/cubes/your_cube/segments/build_by_offset
 ```
 
 ### 构建Cube-无分区
@@ -560,7 +570,9 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vn
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
-`Accepe: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en` 
 
 #### 路径变量
 
@@ -589,7 +601,7 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vn
 #### Curl 访问示例
 
 ```
-curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json' -d '{ "startTime": 0,"endTime": 0,"buildType": "BUILD" }' http://host:port/kylin/api/cubes/your_cube/segments/build
+curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "startTime": 0,"endTime": 0,"buildType": "BUILD" }' http://host:port/kylin/api/cubes/your_cube/segments/build
 ```
 
 ### 构建Cube-批量构建
@@ -600,7 +612,9 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vn
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
-`Accepe: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en` 
 
 #### 路径变量
 
@@ -700,7 +714,7 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vn
 #### Curl 访问示例
 
 ```
-curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json' -d '[{"mpValues": "300","pointList": ["1","2","3","4","5","6","7","8","9","10"],"rangeList": [["50","70"],["90","110"]]},{"mpValues": "301","pointList": ["1","2","3","4","5","6","7","8","9","10"],"rangeList": [["20","30"],["30","40"]]}]' http://host:port/kylin/api/cubes/your_cube/batch_sync
+curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '[{"mpValues": "300","pointList": ["1","2","3","4","5","6","7","8","9","10"],"rangeList": [["50","70"],["90","110"]]},{"mpValues": "301","pointList": ["1","2","3","4","5","6","7","8","9","10"],"rangeList": [["20","30"],["30","40"]]}]' http://host:port/kylin/api/cubes/your_cube/batch_sync
 ```
 
 ### 克隆Cube
@@ -711,7 +725,9 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vn
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
-`Accepe: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en` 
 
 #### 路径变量
 * cubeName - `必选` `string` 被克隆Cube名称.
@@ -736,7 +752,7 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vn
 #### Curl 访问示例
 
 ```
-curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json' -d '{ "cubeName": "cube_clone","project": "your_project" }' http://host:port/kylin/api/cubes/cube_name/clone
+curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "cubeName": "cube_clone","project": "your_project" }' http://host:port/kylin/api/cubes/cube_name/clone
 ```
 
 ### 启用Cube
@@ -746,7 +762,9 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vn
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
-`Accepe: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en` 
 
 #### 路径变量
 * cubeName - `必选` `string` Cube 名称.
@@ -826,7 +844,7 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vn
 #### Curl 访问示例
 
 ```
-curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json' http://host:port/kylin/api/cubes/your_cube/enable
+curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/cubes/your_cube/enable
 ```
 
 ### 禁用Cube
@@ -837,7 +855,9 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vn
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
-`Accepe: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en` 
 
 #### 路径变量
 * cubeName - `必选` `string` Cube 名称.
@@ -852,7 +872,7 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vn
 #### Curl 访问示例
 
 ```
-curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json' http://host:port/kylin/api/cubes/your_cube/disable
+curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/cubes/your_cube/disable
 ```
 
 ### 清理Cube
@@ -862,7 +882,9 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vn
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
-`Accepe: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en` 
 
 #### 路径变量
 * cubeName - `必选` `string` Cube 名称`
@@ -885,7 +907,7 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vn
 #### Curl 访问示例
 
 ```
-curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json' -d '{ "mpValues": "" }' http://host:port/kylin/api/cubes/your_cube/purge
+curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "mpValues": "" }' http://host:port/kylin/api/cubes/your_cube/purge
 ```
 
 ### 管理Segment
@@ -895,7 +917,9 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vn
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
-`Accepe: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en` 
 
 #### 路径变量
 * cubeName - `必选` `string` Cube 名称.
@@ -919,7 +943,7 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vn
 
 #### Curl 示例
 ```
-curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json' -d '{ "buildType": "REFRESH", "mpValues": "ABIN", "segments": ["0_1000"], "force": false }' http://host:port/kylin/api/cubes/your_cube/segments
+curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "buildType": "REFRESH", "mpValues": "ABIN", "segments": ["0_1000"], "force": false }' http://host:port/kylin/api/cubes/your_cube/segments
 ```
 
 ### 导出TDS
@@ -929,7 +953,9 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vn
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
-`Accepe: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en` 
 
 #### 路径变量
 * cubeName - `必选` `string` Cube 名称
@@ -941,7 +967,6 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vn
 #### Curl 访问示例
 
 ```
-curl -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json' http://host:port/kylin/api/cubes/your_cube/export/tds
+curl -X GET -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json'  -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/cubes/your_cube/export/tds
 ```
 
-### 

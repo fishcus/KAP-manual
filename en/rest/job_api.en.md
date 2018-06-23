@@ -21,7 +21,9 @@
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
-`Accepe: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en`
 
 #### Path Variable
 * jobId - `required` `string` job id.
@@ -120,7 +122,7 @@
 #### Curl Example
 
 ```
-curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json'  http://host:port/kylin/api/jobs/7cba7f9d-7cd3-44e7-905c-9f88ff5ee838/resume
+curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json"  http://host:port/kylin/api/jobs/7cba7f9d-7cd3-44e7-905c-9f88ff5ee838/resume
 ```
 
 ### Discard Job
@@ -131,7 +133,9 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vn
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
-`Accepe: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en`
 
 #### Path Variable
 * jobId - `required` `string` Job id.
@@ -146,7 +150,7 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vn
 #### Curl Example
 
 ```
-curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json'  http://host:port/kylin/api/jobs/7cba7f9d-7cd3-44e7-905c-9f88ff5ee838/cancel
+curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json'  http://host:port/kylin/api/jobs/7cba7f9d-7cd3-44e7-905c-9f88ff5ee838/cancel
 ```
 
 ### Pause Job
@@ -157,7 +161,9 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vn
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
-`Accepe: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en`
 
 #### Path Variable
 
@@ -174,7 +180,7 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vn
 #### Curl Example
 
 ```
-curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json'  http://host:port/kylin/api/jobs/7cba7f9d-7cd3-44e7-905c-9f88ff5ee838/pause
+curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json"  http://host:port/kylin/api/jobs/7cba7f9d-7cd3-44e7-905c-9f88ff5ee838/pause
 ```
 
 ### Drop Job
@@ -185,7 +191,9 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vn
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
-`Accepe: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en`
 
 #### Path Variable
 
@@ -202,7 +210,7 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vn
 #### Curl Example
 
 ```
-curl -X DELETE -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json'  http://host:port/kylin/api/jobs/7cba7f9d-7cd3-44e7-905c-9f88ff5ee838/drop
+curl -X DELETE -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json"  http://host:port/kylin/api/jobs/7cba7f9d-7cd3-44e7-905c-9f88ff5ee838/drop
 ```
 
 ### Get Job Status
@@ -213,7 +221,9 @@ curl -X DELETE -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
-`Accepe: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en`
 
 #### Path Variable
 * jobId - `required` `string` job id.
@@ -228,7 +238,7 @@ curl -X DELETE -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application
 #### Curl Example
 
 ```
-curl -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json'  http://host:port/kylin/api/jobs/7cba7f9d-7cd3-44e7-905c-9f88ff5ee838
+curl -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json'  -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/jobs/7cba7f9d-7cd3-44e7-905c-9f88ff5ee838
 ```
 
 ### Get Job Step Output
@@ -239,7 +249,9 @@ curl -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apach
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
-`Accepe: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en`
 
 #### Path Variable
 * jobId - `required` `string` job id.
@@ -264,7 +276,7 @@ curl -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apach
 #### Curl Example
 
 ```
-curl -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json'   http://host:port/kylin/api/jobs/fb479e54-837f-49a2-b457-651fc50be110/steps/fb479e54-837f-49a2-b457-651fc50be110-03/output
+curl -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json"   http://host:port/kylin/api/jobs/fb479e54-837f-49a2-b457-651fc50be110/steps/fb479e54-837f-49a2-b457-651fc50be110-03/output
 ```
 
 ### Get Job List
@@ -275,7 +287,9 @@ curl -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apach
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
-`Accepe: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en`
 
 #### Path Variable
 
@@ -359,7 +373,6 @@ curl -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apach
 #### Curl Example
 
 ```
-curl -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json'  http://host:port/kylin/api/jobs?timeFilter=1&pageOffset=0&pageSize=10&status=&projectName=your_project&jobName=&sortby=last_modify
+curl -X GET -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json'  -H "Content-Type:application/vnd.apache.kylin-v2+json"  http://host:port/kylin/api/jobs?timeFilter=1&pageOffset=0&pageSize=10&status=&projectName=your_project&jobName=&sortby=last_modify
 ```
 
-### 

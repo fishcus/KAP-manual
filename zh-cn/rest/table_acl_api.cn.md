@@ -15,7 +15,10 @@
 
 `访问路径 http://host:port/kylin/api/acl/table/paged/{project}/{table}`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en`
+
 
 #### 路径变量
 * project - `必选` `string`，项目名称
@@ -28,6 +31,11 @@
 
 #### 请求示例
 `请求路径:http://host:port/kylin/api/acl/table/paged/learn_kylin/DEFAULT.KYLIN_SALES`
+
+#### Curl 访问示例
+```
+curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{"pageSize":10，“pageOffset”:0 }' http://host:port/kylin/api/acl/table/paged/learn_kylin/DEFAULT.KYLIN_SALES
+```
 
 #### 响应示例
 
@@ -52,7 +60,9 @@
 
 `访问路径 http://host:port/kylin/api/acl/table/{project}/{type}/{table}/{name}`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en`
 
 #### 路径变量
 * project - `必选` `string`，项目名称
@@ -62,6 +72,11 @@
 
 #### 请求示例
 `请求路径:http://host:port/kylin/api/acl/table/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN`
+
+#### Curl 访问示例
+```
+curl -X POST -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/acl/table/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN
+```
 
 #### 响应示例
 ```json
@@ -73,7 +88,9 @@
 
 `访问路径 http://host:port/kylin/api/acl/table/{project}/{type}/{table}/{name}`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en`
 
 #### 路径变量
 * project - `必选` `string`，项目名称
@@ -83,6 +100,11 @@
 
 #### 请求示例
 `请求路径:http://host:port/kylin/api/acl/table/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN`
+
+#### Curl 访问示例
+```
+curl -X DELETE -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json"  -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/acl/table/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN
+```
 
 #### 响应示例
 ```

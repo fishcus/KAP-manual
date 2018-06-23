@@ -10,14 +10,25 @@
 * [加载 Hive 表](#加载hive表)
 
 ### 返回多个hive表
-`请求方式 GET`
+`请求方式：GET`
 
-`访问路径 http://host:port/kylin/api/tables`
+`访问路径：http://host:port/kylin/api/tables`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en`
+
 #### 请求参数
 * project - `必选` `string` 项目名.
 * ext - `可选` `boolean` 是否返回表的扩展信息.
+
+#### 请求示例
+`请求路径:http://host:port/kylin/api/tables?project=learn_kylin&ext=true`
+
+#### Curl 访问示例
+```
+curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/tables?project=learn_kylin&ext=true
+```
 
 #### 响应示例
 ```json
@@ -76,15 +87,25 @@
 ```
 
 ### 返回hive表信息
-`请求方式 GET`
+`请求方式：GET`
 
-`访问路径 http://host:port/kylin/api/tables/{project}/{tableName}`
+`访问路径：http://host:port/kylin/api/tables/{project}/{tableName}`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en`
 
 #### 请求参数
 * project - `可选` `string` 项目名.
 * tableName - `可选` `string` 表名.
+
+#### 请求示例
+`请求路径:http://host:port/kylin/api/tables/learn_kylin/kylin_cal_dt`
+
+#### Curl 访问示例
+```
+curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/tables/learn_kylin/kylin_cal_dt
+```
 
 #### 响应示例
 ```
@@ -182,11 +203,21 @@
 
 `访问路径 http://host:port/kylin/api/tables/load`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en`
 
 #### 请求参数
 * project - `必选` `String`  指定hive表将要加载到哪个项目
 * tables - `必选` `string` 你想要加载的hive表, 用逗号分隔
+
+#### 请求示例
+`请求路径: http://host:port/kylin/api/tables/load`
+
+#### Curl 访问示例
+```
+curl -X POST -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "project":"000", "tables":["KYLIN_CAL_DT"] }' http://host:port/kylin/api/tables/load
+```
 
 #### 响应示例
 ```json

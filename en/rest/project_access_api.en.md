@@ -15,7 +15,9 @@
 
 `Access Path http://host:port/kylin/api/access/{type}/{uuid}`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json` 
+
+`Accept-Language: cn|en` 
 
 #### Path Variable
 * type - `required` `string`, currently, type can only be ProjectInstance
@@ -23,6 +25,17 @@
 
 #### Request Example
 `Request Path:http://host:port/kylin/api/access/ProjectInstance/2fbca32a-a33e-4b69-83dd-0bb8b1f8c91b`
+
+
+
+#### Curl Request Example 
+
+``` 
+
+curl -X GET -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json"  http://host:port/kylin/api/access/ProjectInstance/2fbca32a-a33e-4b69-83dd-0bb8b1f8c91b
+
+```
+
 
 #### Response Example
 ```json
@@ -50,7 +63,9 @@
 
 `Access Path http://host:port/kylin/api/access/{type}/{uuid}`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json` 
+
+`Accept-Language: cn|en` 
 
 #### Path Variable
 * type - `required` `string`, currently, type can only be ProjectInstance
@@ -62,9 +77,20 @@
 * sid - `required` `string`, user name
 
 #### Request Example
-`request path:http://host:port/kylin/api/access/ProjectInstance/2fbca32a-a33e-4b69-83dd-0bb8b1f8c91b`
+`Request path:http://host:port/kylin/api/access/ProjectInstance/2fbca32a-a33e-4b69-83dd-0bb8b1f8c91b`
 
 `request body:{permission: "READ", principal: true, sid: "MODELER"}`
+
+
+
+#### Curl Request Example 
+
+``` 
+
+curl -X POST -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "permission":"READ", "principal":true，“sid”:"MODELER" }' http://host:port/kylin/api/access/ProjectInstance/2fbca32a-a33e-4b69-83dd-0bb8b1f8c91b`
+
+```
+
 
 
 #### Response Example
@@ -104,7 +130,9 @@
 
 `Access Path http://host:port/kylin/api/access/{type}/{uuid}`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json` 
+
+`Accept-Language: cn|en` 
 
 #### Path Variable
 * type - `required` `string`, currently, type can only be ProjectInstance
@@ -119,6 +147,17 @@
 `Request Path:http://host:port/kylin/api/access/ProjectInstance/2fbca32a-a33e-4b69-83dd-0bb8b1f8c91b`
 
 `Request Body:{permission: "READ", principal: true, sid: "MODELER"}`
+
+
+#### Curl Request Example 
+
+``` 
+
+curl -X PUT -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "permission":"READ", "principal":true，“sid”:"MODELER" }' http://host:port/kylin/api/access/ProjectInstance/2fbca32a-a33e-4b69-83dd-0bb8b1f8c91b`
+
+```
+
+
 
 #### Response Example
 ```json
@@ -157,7 +196,9 @@
 
 `Access Path http://host:port/kylin/api/access/{type}/{uuid}`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json` 
+
+`Accept-Language: cn|en` 
 
 #### Path Variable
 * type - `required` `string`, currently, type can only be ProjectInstance
@@ -170,7 +211,12 @@
 #### Request Example
 `Request Path:http://host:port/kylin/api/access/ProjectInstance/2fbca32a-a33e-4b69-83dd-0bb8b1f8c91b`
 
-`Request Body:{permission: "READ", principal: true, sid: "MODELER"}`
+
+#### Curl Request Example
+```
+curl -X DELETE -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "accessEntryId":"1", "sid":'admin' }' http://host:port/kylin/api/access/ProjectInstance/2fbca32a-a33e-4b69-83dd-0bb8b1f8c91b
+```
+
 
 #### Response Example
 ```json

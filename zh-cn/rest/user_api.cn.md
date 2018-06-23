@@ -16,7 +16,9 @@
 
 `访问路径 http://host:port/kylin/api/kap/users/user`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json` 
+
+`Accept-Language: cn|en` 
 
 #### 请求参数
 * project - `可选` `string`，用来判断当前用户是否有拉取所有用户的权限，为空时需要全局 admin 权限才能拉取
@@ -28,6 +30,12 @@
 #### 请求示例
 `请求路径: http://host:port/kylin/api/kap/user/users?pageSize=9&pageOffset=0&project=default`
 
+
+
+#### Curl 请求示例
+```
+curl -X GET -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json"  -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/kap/user/users?pageSize=9&pageOffset=0&project=default
+```
 #### 响应示例
 ```json
 {
@@ -100,7 +108,9 @@
 
 `访问路径 http://host:port/kylin/api/kap/user/{userName}`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json` 
+
+`Accept-Language: cn|en` 
 
 #### 路径变量
 * userName - `必选` `string`，用户名
@@ -116,6 +126,12 @@
 
 `请求主体:{username: "t", password: "1qaz@WSX", disabled: false, authorities: ["ROLE_ADMIN"]}`
 
+
+
+#### Curl 请求示例
+```
+curl -X POST -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "username":"test", "password":"KYLIN"，“disabled”:false，“authorities”:["ROLE_ADMIN"] }' http://host:port/kylin/api/kap/user/t
+```
 #### 响应示例
 ```json
 {
@@ -142,7 +158,9 @@
 
 `访问路径 http://host:port/kylin/api/kap/user/{userName}`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json` 
+
+`Accept-Language: cn|en` 
 
 #### 路径变量
 * userName - `必选` `string`，用户名
@@ -158,6 +176,12 @@
 
 `请求主体:{username: "t", password: "1qaz@WSX", disabled: false, authorities: ["ROLE_ADMIN"]}`
 
+
+
+#### Curl 请求示例
+```
+curl -X PUT -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "username":"test", "password":"KYLIN"，“disabled”:false，“authorities”:["ROLE_ADMIN"] }' http://host:port/kylin/api/kap/user/t
+```
 #### 响应示例
 ```json
 {
@@ -184,10 +208,17 @@
 
 `访问路径 http://host:port/kylin/api/kap/user/{userName}`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json` 
+
+`Accept-Language: cn|en` 
 
 #### 路径变量
 * userName - `必选` `string`，用户名
 
 #### 请求示例
 `请求路径:http://host:port/kylin/api/kap/user/t`
+
+#### Curl 请求示例
+```
+curl -X DELETE -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/kap/user/t
+```

@@ -65,12 +65,12 @@ $.ajaxSetup({
 Using curl to get authorization:
 
 ```
-curl -X POST -H 'Authorization: Basic XXXXXXXXX' -H 'Content-Type: application/vnd.apache.kylin-v2+json;charset=UTF-8' -H  'Accept: application/vnd.apache.kylin-v2+json' http://host:port/kylin/api/user/authentication
+curl -X POST -H 'Authorization: Basic XXXXXXXXX' -H  'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/user/authentication
 ```
 
 Adding authorization information when using api to get access:
 
 ```
-curl -X PUT -H 'Authorization: Basic XXXXXXXXX' -H 'Content-Type: application/vnd.apache.kylin-v2+json;charset=UTF-8' -H 'Accept: application/vnd.apache.kylin-v2+json' -d '{"startTime":'1423526400000', "endTime":'1423626400000', "buildType":"BUILD", "mpValues":""}' http://host:port/kylin/api/cubes/your_cube/segments/build
+curl -X PUT -H 'Authorization: Basic XXXXXXXXX' -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{"startTime":'1423526400000', "endTime":'1423626400000', "buildType":"BUILD", "mpValues":""}' http://host:port/kylin/api/cubes/your_cube/segments/build
 ```
 

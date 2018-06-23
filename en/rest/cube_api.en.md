@@ -28,7 +28,9 @@
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
-`Accepe: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en`
 
 #### Request Body
 * pageOffset - `optional` `int`, default 0, get data start subscript.
@@ -88,7 +90,7 @@
 #### Curl Example
 
 ```
-curl -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json' http://host:port/kylin/api/cubes?pageOffset=0&pageSize=10&projectName=your_project&cubeName=&sortBy=update_time&reverse=true&exactMatch=false
+curl -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/cubes?pageOffset=0&pageSize=10&projectName=your_project&cubeName=&sortBy=update_time&reverse=true&exactMatch=false
 ```
 
 ### Get Cube 
@@ -99,7 +101,9 @@ curl -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apach
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
-`Accepe: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en`
 
 #### Path variable
 * cubeName - `required` `string`, obtained Cube's name.
@@ -148,7 +152,7 @@ curl -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apach
 #### Curl Example
 
 ```
-curl -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json' http://host:port/kylin/api/cubes/your_cube
+curl -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/cubes/your_cube
 ```
 
 ### Get Cube Descriptor
@@ -160,7 +164,9 @@ dimensions, measures and etc.
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
-`Accepe: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en`
 
 #### Path Variable
 * projectName - `required` `string`, project's name.
@@ -428,7 +434,7 @@ dimensions, measures and etc.
 #### Curl Example
 
 ```
-curl -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json' http://host:port/kylin/api/cube_desc/your_project/your_cube
+curl -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/cube_desc/your_project/your_cube
 ```
 
 ### Build Cube-Date Partition
@@ -438,7 +444,9 @@ curl -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apach
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
-`Accepe: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en`
 
 #### Path Variable
 * cubeName - `required` `string`, Cube's name.
@@ -506,7 +514,7 @@ curl -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apach
 #### Curl Example
 
 ```
-curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json' -d '{ "startTime": 0,"endTime": 1388534400000,"buildType": "BUILD","mpValues": "" }' http://host:port/kylin/api/cubes/your_cube/segments/build
+curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "startTime": 0,"endTime": 1388534400000,"buildType": "BUILD","mpValues": "" }' http://host:port/kylin/api/cubes/your_cube/segments/build
 ```
 
 ### Build Cube-Non Date Partition
@@ -517,7 +525,9 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vn
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
-`Accepe: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en`
 
 #### Path Variable
 
@@ -550,7 +560,7 @@ Build Cube - No Partition
 #### Curl Example
 
 ```
-curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json' -d '{ "startTime": 0,"endTime": 138800,"buildType": "BUILD","mpValues": "" }' http://host:port/kylin/api/cubes/your_cube/segments/build_by_offset
+curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "startTime": 0,"endTime": 138800,"buildType": "BUILD","mpValues": "" }' http://host:port/kylin/api/cubes/your_cube/segments/build_by_offset
 ```
 
 ### Build Cube-No Partition
@@ -561,7 +571,9 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vn
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
-`Accepe: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en`
 
 #### Path Variable
 
@@ -590,7 +602,7 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vn
 #### Curl Example
 
 ```
-curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json' -d '{ "startTime": 0,"endTime": 0,"buildType": "BUILD" }' http://host:port/kylin/api/cubes/your_cube/segments/build
+curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "startTime": 0,"endTime": 0,"buildType": "BUILD" }' http://host:port/kylin/api/cubes/your_cube/segments/build
 ```
 
 ### Build Cube-In Batch
@@ -601,7 +613,9 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vn
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
-`Accepe: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en`
 
 #### Path Variable
 
@@ -704,7 +718,7 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vn
 #### Curl Example
 
 ```
-curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json' -d '[{"mpValues": "300","pointList": ["1","2","3","4","5","6","7","8","9","10"],"rangeList": [["50","70"],["90","110"]]},{"mpValues": "301","pointList": ["1","2","3","4","5","6","7","8","9","10"],"rangeList": [["20","30"],["30","40"]]}]' http://host:port/kylin/api/cubes/your_cube/batch_sync
+curl -X PUT -H "Authorization: Basic XXXXXXXXX"  -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '[{"mpValues": "300","pointList": ["1","2","3","4","5","6","7","8","9","10"],"rangeList": [["50","70"],["90","110"]]},{"mpValues": "301","pointList": ["1","2","3","4","5","6","7","8","9","10"],"rangeList": [["20","30"],["30","40"]]}]' http://host:port/kylin/api/cubes/your_cube/batch_sync
 ```
 
 ### Clone Cube
@@ -715,7 +729,9 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vn
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
-`Accepe: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en`
 
 #### Path Variable
 * cubeName - `required` `string`, the name of cloned Cube.
@@ -740,7 +756,7 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vn
 #### Curl Example
 
 ```
-curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json' -d '{ "cubeName": "cube_clone","project": "your_project" }' http://host:port/kylin/api/cubes/cube_name/clone
+curl -X PUT -H "Authorization: Basic XXXXXXXXX"  -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "cubeName": "cube_clone","project": "your_project" }' http://host:port/kylin/api/cubes/cube_name/clone
 ```
 
 ### Enable Cube
@@ -750,7 +766,9 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vn
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
-`Accepe: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en`
 
 #### Path Variable
 * cubeName - `required` `string`, Cube 's name.
@@ -830,7 +848,7 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vn
 #### Curl Example
 
 ```
-curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json' http://host:port/kylin/api/cubes/your_cube/enable
+curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/cubes/your_cube/enable
 ```
 
 ### Disable Cube
@@ -841,7 +859,9 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vn
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
-`Accepe: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en`
 
 #### Path Variable
 * cubeName - `required` `string`, Cube's name.
@@ -856,7 +876,7 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vn
 #### Curl Example
 
 ```
-curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json' http://host:port/kylin/api/cubes/your_cube/disable
+curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/cubes/your_cube/disable
 ```
 
 ### Purge Cube
@@ -866,7 +886,9 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vn
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
-`Accepe: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en`
 
 #### Path Variable
 * cubeName - `required` `string`, Cube's name.
@@ -889,7 +911,7 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vn
 #### Curl Example
 
 ```
-curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json' -d '{ "mpValues": "" }' http://host:port/kylin/api/cubes/your_cube/purge
+curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "mpValues": "" }' http://host:port/kylin/api/cubes/your_cube/purge
 ```
 
 ### Manage Segment
@@ -900,7 +922,9 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vn
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
-`Accepe: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en`
 
 #### Path Variable
 
@@ -927,7 +951,7 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vn
 #### Curl Example
 
 ```
-curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json' -d '{ "buildType": "REFRESH", "mpValues": "ABIN", "segments": ["0_1000"], "force": false }' http://host:port/kylin/api/cubes/your_cube/segments
+curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "buildType": "REFRESH", "mpValues": "ABIN", "segments": ["0_1000"], "force": false }' http://host:port/kylin/api/cubes/your_cube/segments
 ```
 ### Export TDS
 `Request Mode GET`
@@ -936,7 +960,9 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vn
 
 `Content-Type: application/vnd.apache.kylin-v2+json`
 
-`Accepe: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en`
 
 #### Path Variable
 - cubeName - `required` `string`,  Cube's name.
@@ -948,7 +974,6 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vn
 #### Curl Example
 
 ```
-curl -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H 'Accept: application/vnd.apache.kylin-v2+json' http://host:port/kylin/api/cubes/your_cube/export/tds
+curl -X GET -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json' http://host:port/kylin/api/cubes/your_cube/export/tds
 ```
 
-### 

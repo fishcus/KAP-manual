@@ -10,15 +10,26 @@
 * [Load Hive tables](#load-hive-tables)
 
 ### Get multiple Hive tables
-`Request Mode GET`
+`Request Mode：GET`
 
-`Access Path http://host:port/kylin/api/tables`
+`Access Path：http://host:port/kylin/api/tables`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en`
+
 
 #### Request Parameter
 * project - `required` `string`, project name.
 * ext - `optional` `boolean`, specify if table's extension information is returned.
+
+#### Request Example
+`请求路径:http://host:port/kylin/api/tables?project=learn_kylin&ext=true`
+
+#### Curl Request Example
+```
+curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json"  -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/tables?project=learn_kylin&ext=true
+```
 
 #### Response Example
 ```sh
@@ -77,15 +88,26 @@
 ```
 
 ### Get Hive table information
-`Request Mode GET`
+`Request Mode: GET`
 
-`Access Path http://host:port/kylin/api/tables/{project}/{tableName}`
+`Access Path: http://host:port/kylin/api/tables/{project}/{tableName}`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en`
+
 
 #### Request Parameter
 * project - `optional` `string`, project name.
 * tableName - `optional` `string`, table name.
+
+#### Request Example
+`Request Path:http://host:port/kylin/api/tables/learn_kylin/kylin_cal_dt`
+
+#### Curl Request Example
+```
+curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/tables/learn_kylin/kylin_cal_dt
+```
 
 #### Response Example
 ```
@@ -179,15 +201,26 @@
 ```
 
 ### Load Hive tables
-`Request Mode POST`
+`Request Mode: POST`
 
-`Access Path http://host:port/kylin/api/tables/load`
+`Access Path: http://host:port/kylin/api/tables/load`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en`
+
 
 #### Request Parameter
 * project - `required` `string`, specify which project the hive table will be loaded to.
-* table - `required` `string`, the hive table to be loaded, seperated by comma.
+* tables - `required` `string[]`, the hive table name list to be loaded.
+
+#### Request Example
+`Request Path: http://host:port/kylin/api/tables/load`
+
+#### Curl Request Example
+```
+curl -X POST -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "project":"000", "tables":["KYLIN_CAL_DT"] }' http://host:port/kylin/api/tables/load
+```
 
 #### Response Example
 ```sh

@@ -15,7 +15,9 @@
 
 `Access Path http://host:port/kylin/api/kap/users/user`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json` 
+
+`Accept-Language: cn|en` 
 
 #### Request Parameter
 * project - `optional` `string`, determine if the current user has the permission to get all users. If it is blank, the current user shall have Admin permission to get all users.
@@ -26,6 +28,11 @@
 
 #### Request Example
 `Request Path: http://host:port/kylin/api/kap/user/users?pageSize=9&pageOffset=0&project=default`
+
+#### Curl Request Example
+```
+curl -X GET -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/kap/user/users?pageSize=9&pageOffset=0&project=default
+```
 
 #### Response Example
 ```json
@@ -99,7 +106,9 @@
 
 `Access Path http://host:port/kylin/api/kap/user/{userName}`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json` 
+
+`Accept-Language: cn|en` 
 
 #### Path Variable
 * userName - `required` `string`, user name
@@ -114,6 +123,11 @@
 `Request Path:http://host:port/kylin/api/kap/user/t`
 
 `Request Body:{username: "t", password: "1qaz@WSX", disabled: false, authorities: ["ROLE_ADMIN"]}`
+
+#### Curl Request Example
+```
+curl -X POST -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "username":"test", "password":"KYLIN"，“disabled”:false，“authorities”:["ROLE_ADMIN"] }' http://host:port/kylin/api/kap/user/t
+```
 
 #### Response Example
 ```json
@@ -141,7 +155,9 @@
 
 `Access Path http://host:port/kylin/api/kap/user/{userName}`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json` 
+
+`Accept-Language: cn|en` 
 
 #### Path Variable
 * userName - `required` `string`, user name
@@ -156,6 +172,11 @@
 `Request Path:http://host:port/kylin/api/kap/user/t`
 
 `Request Body:{username: "t", password: "1qaz@WSX", disabled: false, authorities: ["ROLE_ADMIN"]}`
+
+#### Curl Request Example
+```
+curl -X PUT -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "username":"test", "password":"KYLIN"，“disabled”:false，“authorities”:["ROLE_ADMIN"] }' http://host:port/kylin/api/kap/user/t
+```
 
 #### Response Example
 ```json
@@ -183,10 +204,17 @@
 
 `Access Path http://host:port/kylin/api/kap/user/{userName}`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+`Accept: application/vnd.apache.kylin-v2+json` 
+
+`Accept-Language: cn|en` 
 
 #### Path Variable
 * userName - `required` `string`, user name
 
 #### Request Example
 `Request Path:http://host:port/kylin/api/kap/user/t`
+
+#### Curl Request Example
+```
+curl -X DELETE -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/kap/user/t
+```
