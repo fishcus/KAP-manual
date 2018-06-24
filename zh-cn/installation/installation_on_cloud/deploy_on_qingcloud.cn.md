@@ -4,7 +4,7 @@
 
 青云 AppCenter 是青云提供的云上企业级应用交付平台，包含了一系列云上大数据生态应用，如Hadoop、Zookeeper等，可以显著降低云端应用开发、部署及运维的复杂度。
 
-在青云AppCenter中，Kyligence Analytics Platform是一个独立的应用程序，允许用户一键部署一个全新的包含Hadoop、Hive、KAP的完整集群；同时，KAP也是青云Hadoop服务（QingMR）中的一部分，允许用户在部署QingMR服务时通过勾选安装KAP到Hadoop集群当中。
+在青云AppCenter中，Kyligence Analytics Platform是一个独立的应用程序，允许用户一键部署一个全新的包含Hadoop、Hive、Kyligence Enterprise的完整集群；同时，Kyligence Enterprise也是青云Hadoop服务（QingMR）中的一部分，允许用户在部署QingMR服务时通过勾选安装Kyligence Enterprise到Hadoop集群当中。
 
 ### 安装 Kyligence Enterprise
 
@@ -38,9 +38,9 @@
 
 7）我们推荐使用 [Tunnelblick](https://tunnelblick.net/)作为VPN服务的客户端
 
-#### 在应用市场安装Kyligence Enterprise
+#### 在应用市场安装 Kyligence Enterprise
 
-1) 打开KAP应用页面：[Kyligence Enterprise](https://appcenter.qingcloud.com/apps/app-oi15yp53/Kyligence%20Enterprise)，单击右侧“部署到QingCloud”按钮。
+1) 打开Kyligence Enterprise应用页面：[Kyligence Enterprise](https://appcenter.qingcloud.com/apps/app-oi15yp53/Kyligence%20Enterprise)，单击右侧“部署到QingCloud”按钮。
 
 2) 输入服务基本信息，如资源配置类型、计费方式等
 
@@ -54,25 +54,25 @@
 
 4) 根据性能需求和集群规模，配置环境参数。有关参数的介绍，请参考：[生产环境推荐配置](../../config/recommend_settings.cn.md)
 
-5) 同意《用户协议》后，单击“提交”按钮。若干分钟之后，您的KAP服务就创建好了。
+5) 同意《用户协议》后，单击“提交”按钮。若干分钟之后，您的Kyligence Enterprise服务就创建好了。
 
-创建好KAP服务之后，您可以首先通过VPN接入创建的私有网络，然后通过KAP服务器的内网IP访问KAP服务，如http://<内网IP>:7070/kylin
+创建好Kyligence Enterprise服务之后，您可以首先通过VPN接入创建的私有网络，然后通过Kyligence Enterprise服务器的内网IP访问Kyligence Enterprise服务，如http://<内网IP>:7070/kylin
 
-#### 在QingMR中安装KAP
+#### 在QingMR中安装Kyligence Enterprise
 
 请按照青云官方文档操作：[官方文档](https://docs.qingcloud.com/product/big_data/QingMR/README.html)
 
 ### **申请试用 License 并登录**
 
-第一次打开时，KAP 检测到没有安装 license，会要求用户提供 license 文件。如果您没有 KAP 的 license，可在这个页面立即申请一个试用 license。点击“申请试用许可”，输入您的 email 地址、公司名称及您的名字，点击”提交“，KAP 会自动下载一个试用 license，随后您就可以继续使用了。两个月免费试用期过后，您可以联系 Kyligence 购买正式 license。
+第一次打开时，Kyligence Enterprise 检测到没有安装 license，会要求用户提供 license 文件。如果您没有 Kyligence Enterprise 的 license，可在这个页面立即申请一个试用 license。点击“申请试用许可”，输入您的 email 地址、公司名称及您的名字，点击”提交“，Kyligence Enterprise 会自动下载一个试用 license，随后您就可以继续使用了。两个月免费试用期过后，您可以联系 Kyligence 购买正式 license。
 
 ![图 6. 申请试用 License](images/trial_license.png)
 
-KAP 默认管理员账号的用户名是 “ADMIN”，默认密码是 ”KYLIN”。初次登录后会提示修改密码，为了确保服务安全性，请更改密码并将其记录在安全的地方，供后面使用。
+Kyligence Enterprise 默认管理员账号的用户名是 “ADMIN”，默认密码是 ”KYLIN”。初次登录后会提示修改密码，为了确保服务安全性，请更改密码并将其记录在安全的地方，供后面使用。
 
 ### **玩转样例 Cube**
 
-KAP 安装时会自动创建一个样例 Cube 以及它所需要的 Hive 表。登录 KAP 后，在左边“建模 -> Cube”页，您会看到此样例 Cube “kylin_sales_cube”。初始时它的状态是”Disabled”，需要构建。点击“操作” -> “构建”，选择结束日期如 ‘2014-01-01’，随后 KAP 会开始构建。
+Kyligence Enterprise 安装时会自动创建一个样例 Cube 以及它所需要的 Hive 表。登录 Kyligence Enterprise 后，在左边“建模 -> Cube”页，您会看到此样例 Cube “kylin_sales_cube”。初始时它的状态是”Disabled”，需要构建。点击“操作” -> “构建”，选择结束日期如 ‘2014-01-01’，随后 Kyligence Enterprise 会开始构建。
 
 ![图 7. 样例 Cube](images/sample_cube.png)
 
@@ -82,15 +82,15 @@ KAP 安装时会自动创建一个样例 Cube 以及它所需要的 Hive 表。�
 select part_dt, sum(price) as total_selled, count(distinct seller_id) as sellers from kylin_sales group by part_dt order by part_dt;
 ```
 
-KAP 能够很快返回查询结果。您可以拷贝这条 SQL 到 Hive 命令行中执行，以感受它们的响应时间差异。
+Kyligence Enterprise 能够很快返回查询结果。您可以拷贝这条 SQL 到 Hive 命令行中执行，以感受它们的响应时间差异。
 
-![图 8. 在 KAP 中执行查询](images/query_in_kap.png)
+![图 8. 在 Kyligence Enterprise 中执行查询](images/query_in_Kyligence Enterprise.png)
 
-至这里您已经体验了如果使用 KAP 来加速查询分析。然而，写 SQL 依然是一件麻烦的事情，您可以使用一些可视化工具（如 KyAnalyzer）通过拖拽选择的方式开展分析。
+至这里您已经体验了如果使用 Kyligence Enterprise 来加速查询分析。然而，写 SQL 依然是一件麻烦的事情，您可以使用一些可视化工具（如 KyAnalyzer）通过拖拽选择的方式开展分析。
 
 ### **使用 KyAnalyzer 敏捷分析**
 
-您可以使用与 KAP 相同的账户登录到 KyAnalyzer ，在 “Admin Console” 页，点击 “Sync Cubes from Kylin”，然后选择 ”kylin_sales_cube” 进行同步，这样这个 Cube 的定义会被导入到 KyAnalyzer。
+您可以使用与 Kyligence Enterprise 相同的账户登录到 KyAnalyzer ，在 “Admin Console” 页，点击 “Sync Cubes from Kylin”，然后选择 ”kylin_sales_cube” 进行同步，这样这个 Cube 的定义会被导入到 KyAnalyzer。
 
 ![图 13. 同步 Cube 到 KyAnalyzer](images/sync_to_kyanalyzer.png)
 
@@ -102,9 +102,9 @@ KAP 能够很快返回查询结果。您可以拷贝这条 SQL 到 Hive 命令�
 
 ![图 15. 生成图形化展示](images/chart_in_kyanalyzer.png)
 
-现在您已经创建了一个 Cube，并通过拖拽的方式生成了第一个图表。如果需要，您还可以将 KAP 跟更高级的 BI 工具如 Tableau、PowerBI、Excel 等进行集成。有关详细信息，参阅手册中的“与可视化工具集成”一章。
+现在您已经创建了一个 Cube，并通过拖拽的方式生成了第一个图表。如果需要，您还可以将 Kyligence Enterprise 跟更高级的 BI 工具如 Tableau、PowerBI、Excel 等进行集成。有关详细信息，参阅手册中的“与可视化工具集成”一章。
 
 ### SSH登陆服务器
 
-想要通过SSH方式登陆KAP节点，需要配置一个VPN，然后通过内网IP访问KAP节点。配置VPN的方式请参考：[VPN配置参考](https://docs.qingcloud.com/product/network/vpn)
+想要通过SSH方式登陆Kyligence Enterprise节点，需要配置一个VPN，然后通过内网IP访问Kyligence Enterprise节点。配置VPN的方式请参考：[VPN配置参考](https://docs.qingcloud.com/product/network/vpn)
 默认的SSH登陆认证信息参考：[Kylin 使用指南](https://docs.qingcloud.com/product/big_data/QingMR/README.html#5-kylin-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97)

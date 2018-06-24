@@ -1,36 +1,42 @@
 ## 许可证申请及更新
 
-许可证是使用 KAP 的必要条件。在安装和部署完 KAP 之后，需要申请许可证，才能使用 KAP。在 KAP 产品中，许可证分为 KAP 许可证、KAP Plus 许可证和 KyBot 许可证。KAP 及 KAP Plus 的许可证有试用许可证（试用期限均为两个月）和正式许可证。KyBot 在线服务分基础版、标准版和专业版三种，标准版是免费的，专业版提供更多的服务和 SLA 支持。KAP 与 KAP Plus 的许可证不同，因此申请流程也稍有差别。下面将详细介绍 KAP 及 KAP Plus 许可证的申请流程及具体操作。
+许可证是使用 Kyligence Enterprise 的必要条件。在安装和部署完之后，需要申请许可证，才能使用 Kyligence Enterprise。Kyligence Enterprise 的许可证有试用许可证（期限为两个月）和正式许可证。下面详细介绍 Kyligence Enterprise 许可证的申请流程及具体操作。
 
-### 申请流程
+### 申请试用许可证
 
-许可证申请流程及具体操作如下：
-
-- 使用帐号信息登录 [Kyligence Account Center](http://account.kyligence.io/)。如果未申请过帐号，需要先注册。如果已经注册，使用注册的帐号信息登录。
-
+1. 使用帐号信息登录 [Kyligence Account Center](http://account.kyligence.io/)。如果未申请过帐号，需要先注册 Kyligence Account。
 ![Kyligence Account Center](images/license_1.cn.png)
 
-- 登录后，选择要申请的许可证 **KAP Plus** 。如果要申请 KAP Plus 试用许可证，需要先填写一张表，申请通过后，您会收到一封包含许可证的通知邮件。
 
+2. 登录后，选择要申请的试用许可证 ，并填写一张申请信息表。我们将对您的申请进行审核，通过后，试用许可证将会通过电子邮件发送给您。
 ![试用许可证申请](images/license_2.cn.png)
 
-- 如果需要购买 KAP Plus 的正式许可证，需要提供**许可证申请文件**。您可以在 KAP Plus中，点击**帮助 -> 关于KAP**。
 
-![正式许可证申请](images/license_3.cn.png)
 
-然后点击**生成许可申请文件**，获取该文件。
 
-![许可证申请文件](images/license_4.cn.png)
+### 申请正式许可证
+
+1. 申请和购买 Kyligence Enterprise 的正式许可证，需要先提供**许可证申请文件**。您可以在 Kyligence Enterprise 中，点击**帮助 -> 关于Kyligence Enterprise**。
+
+   ![正式许可证申请](images/license_3.cn.png)
+
+2. 然后点击**生成许可证申请文件**。
+
+   ![许可证申请文件](images/license_4.cn.png)
+
+3. 联系您的客户经理，并提供上述的**许可证申请文件**。我们的客户经理将协助您完成剩下的正式许可证申请流程。
+
+
+
 
 ### 加载及更新许可证
-在收到许可证文件（试用许可证或正式许可证）并安装完 KAP Plus 之后，需要加载该文件，才能使用KAP Plus。具体操作步骤如下：
 
-在 KAP 登录页面点击**帮助 -> 更新许可证**，将显示**更新许可证**窗口（见下），点击 **Browse** 找到保存 LICENSE 文件的位置，依次点击**打开 -> 提交** ，即可将它上传到 KAP；也可将许可证文件内容直接拷贝到该窗口中。
+在收到许可证文件（试用许可证或正式许可证）之后，需要加载该文件，才能正常使用 Kyligence Enterprise。具体操作步骤如下。
+
+启动 Kyligence Enterprise，在登录页面点击**帮助 -> 更新许可证。**在**更新许可证**窗口中（见下），点击 **Browse** 并上传许可证 LICENSE 文件。或者也可以将许可证文件内的文本直接拷贝到“手动输入”的文本框中，并点击提交。
 
 ![上传许可证文件](images/license_5.cn.png)
 
-除此之外，也可将 LICENSE 文件拷贝到 KAP 的安装目录下。
+如果需要更新许可证，也可以通过上述方法进行。
 
-如果需要更新许可证，可以通过上述两种方法进行更新。需要注意的是如果通过拷贝许可证方法进行更新，需要重新启动KAP才可生效。
-
-> 注：如果许可证过期，您将无法登陆KAP。
+> 注意：如果许可证过期，您将无法登陆 Kyligence Enterprise。需要先更新许可证，然后才能恢复正常使用。
