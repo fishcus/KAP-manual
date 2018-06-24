@@ -186,6 +186,7 @@
     * [Hadoop Queue Configuration](operation/hadoop_queue.en.md)
 
 * [KAP Release Notes](release/README.md)
+    * [KAP 3.0 Release Notes](release/KAP_3_0_notes.en.md)
     * [KAP 2.5 Release Notes](release/KAP_2_5_notes.en.md)
     * [KAP 2.4 Release Notes](release/KAP_2_4_notes.en.md)
     * [KAP 2.3 Release Notes](release/KAP_2_3_notes.en.md)

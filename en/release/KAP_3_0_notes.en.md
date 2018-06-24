@@ -1,16 +1,16 @@
-## KAP 3.0 Release Note
+## Kyligence Enterprise 3.0 Release Note
 
-Today, Kyligence, the leading big data analysis company, launches its next generation enterprise data warehouse product and Kyligence Enterprise 3.0, a solution that has revolutionarily achieved **automated modeling**, with its extraordinary searching feature, and combined both traditional and modern analysis in **a unified platform**. 
+Today, Kyligence, the leading big data analysis company, launches its next generation enterprise data warehouse product and Kyligence Enterprise 3.0, a solution that has revolutionarily achieved *automated modeling*, with its extraordinary searching feature, and combined both traditional and modern analysis in a *unified platform*. 
 
-**Automated Modeling and Turbo Boost**
+### **Automated Modeling and Turbo Boost**
 
 Kyligence Enterprise 3.0 has revolutionary automated modeling ability. It can automatically create matching models according to users searching history, which has significantly simplified data preparation; it saves storage spaces with supporting multiple pre-polymerization optimization strategies; its turbo boost searching enables users to optimize models constantly.
 
-**Race against time for decision making**
+### **Race against time for decision making**
 
 Kyligence Enterprise 3.0 adds high-performance distributed search engine and storage engine, which is three times faster than last generation search engine and saves 50% storage spaces. Compared with other current search products, Kyligence Enterprise 3.0 performances obvious strength in Query completion and Query performance for TPC – H testing.
 
-**Unified Data Analysis Platform**
+### **Unified Data Analysis Platform**
 
 As for product architecture, Kyligence Enterprise 3.0 has adopted High-performance Fusion Architecture, accomplished business-critical sub-second query delay, and supported exploring massive data independently.  Data source can not only dock multiple data engine in Hadoop, a distributed platform, but also dock traditional platform RDBMS. In data type, it can dock real-time data flow and process batch data modeling.
 
@@ -38,4 +38,4 @@ Kyligence Enterprise 3.0 satisfies full-scene analysis needs by simultaneously e
 
 ### Download
 
-KAP V2.5 is available for download. Please visit [KAP Products](http://download.kyligence.io/ ) for more information.
+KAP V3.0 is available for download. Please visit [Kyligence Account](http://download.kyligence.io/ ) for more information.
