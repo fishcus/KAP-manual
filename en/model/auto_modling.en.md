@@ -1,6 +1,6 @@
 ## Model Advisor
 
-Model design is a key part to use KAP. Because the initial version of model design si so engaging business insight from modeler. To lower the learn curve of modeling, enable business professional to generate models directly from SQLs. We features the model advisor to meet this demand: all you need to do is drag one table into the model designer and set it as fact table, the entering SQLs will complete the rest part of model design. 
+Model design is a key part to use KAP. Because the initial version of model design is so engaging business insight from modeler. To lower the learn curve of modeling, enable business professional to generate models directly from SQLs. We feature the model advisor to meet this demand: all you need to do is drag one table into the model designer and set it as fact table, the entering SQLs will complete the rest part of model design. 
 
 ### Apply SQL to generate  a desired model
 
