@@ -1,8 +1,8 @@
 ## 元数据备份
 
-元数据是KAP中最重要的数据之一，备份元数据是运维工作中一个至关重要的环节。只有这样，在由于误操作导致整个KAP服务或某个Cube异常时，才能将KAP快速从备份中恢复出来。
-一般的，在每次进行故障恢复或系统升级之前，对元数据进行备份是一个良好的习惯，这可以保证KAP服务在系统更新失败后依然有回滚的可能，在最坏情况下依然保持系统的鲁棒性。
-KAP提供了一个工具用于备份KAP的元数据，具体用法是：
+元数据是 KAP 中最重要的数据之一，备份元数据是运维工作中一个至关重要的环节。只有这样，在由于误操作导致整个 KAP 服务或某个 Cube 异常时，才能将 KAP 快速从备份中恢复出来。一般来说，在每次进行故障恢复或系统升级之前，对元数据进行备份是一个良好的习惯，这可以保证 KAP 服务在系统更新失败后依然有回滚的可能，在最坏情况下依然保持系统的鲁棒性。
+
+KAP 提供了一个命令行工具用于备份 KAP 的元数据，具体用法是：
 
 ```shell
 $KYLIN_HOME/bin/metastore.sh backup
@@ -12,28 +12,36 @@ $KYLIN_HOME/bin/metastore.sh backup
 ```shell
 metadata store backed up to /usr/local/kylin/meta_backups/meta_2016_06_10_20_24_50
 ```
-在上面的例子里，这个命令会把KAP用到的所有元数据以文件形式下载到本地目录当中（如/usr/local/kylin/meta_backups/meta_2016_06_10_20_24_50）。目录结构如下表所示：
+在上面的例子里，这个命令会把 KAP 用到的所有元数据以文件形式下载到本地目录当中（如/usr/local/kylin/meta_backups/meta_2016_06_10_20_24_50）。目录结构如下表所示：
 
-| 目录名          | 介绍                                                 |
-| :-------------- | :--------------------------------------------------- |
-| project         | 包含了项目的基本信息，项目所包含其它元数据类型的声明 |
-| model_desc      | 包含了描述数据模型基本信息、结构的定义               |
-| cube_desc       | 包含了描述Cube模型基本信息、结构的定义               |
-| cube            | 包含了Cube实例的基本信息                             |
-| cube_statistics | 包含了Cube实例的统计信息包含了Cube实例的统计信息     |
-| table           | 包含了表的基本信息，如Hive信息                       |
-| table_exd       | 包含了表的扩展信息，如维度                           |
-| table_snapshot  | 包含了Lookup表的镜像                                 |
-| dict            | 包含了使用字典列的字典                               |
-| execute         | 包含了Cube构建任务的步骤信息                         |
-| execute_output  | 包含了Cube构建任务的步骤输出                         |
+| 目录名             | 介绍                                                 |
+| :----------------- | :--------------------------------------------------- |
+| project            | 包含了项目的基本信息，项目所包含其它元数据类型的声明 |
+| model_desc         | 包含了描述数据模型基本信息与结构的定义               |
+| cube_desc          | 包含了描述 Cube 模型基本信息与结构的定义             |
+| cube               | 包含了 Cube 实例的基本信息                           |
+| cube_statistics    | 包含了 Cube 实例的统计信息                           |
+| table              | 包含了表的基本信息                                   |
+| table_exd          | 包含了表的扩展信息，如维度                           |
+| table_snapshot     | 包含了 Lookup 表的镜像                               |
+| dict               | 包含了使用字典列的字典                               |
+| execute            | 包含了 Cube 构建任务的步骤信息                       |
+| execute_output     | 包含了 Cube 构建任务的步骤输出                       |
+| raw_table_desc     | 包含了表索引的基本信息与结构的定义                   |
+| raw_table_instance | 包含了表索引实例的基本信息                           |
+| user               | 包含了用户信息                                       |
+| acl                | 包含了数据访问控制信息                               |
+| query              | 包含了保存的历史查询                                 |
+| draft              | 包含了 Model 与 Cube 的草稿                          |
 进入到每个目录，可见json格式的元数据文件，例如：
 ```shell
 ls -l /usr/local/kylin/meta_backups/meta_2016_06_10_20_24_50/cube
+
 -rw-r--r--. 1 root root  2550 Sep 26 07:58 kylin_sales_cube.json
 -rw-r--r--. 1 root root 16602 Sep 29 08:43 tweets_cube1.json
 
 more kylin_sales_cube.json
+
 {
   "uuid" : "2fbca32a-a33e-4b69-83dd-0bb8b1f8c53b",
   "last_modified" : 1474876733314,
@@ -58,33 +66,27 @@ more kylin_sales_cube.json
 
 此外，元数据备份也是故障查找的一个工具，当系统出现故障导致前端频繁报错，通过该工具下载元数据并查看文件，往往能对确定元数据是否存在问题提供帮助。
 
-> 注：元数据的恢复仅对数据的删改有效，对数据的新增无效。
->
-> - 如果对项目进行备份后，再对项目下的模型或Cube进行删除或修改，此时恢复元数据后，备份的数据将覆盖已做的删改。
-> - 如果在项目下新建模型或Cube，此时恢复元数据后，新建的内容将仍被保留。       
-> - 如果希望完全按照备份内容恢复，首先需要删除该项目，再进行恢复。
-
 ### 用户界面下的元数据备份 ###
 
-除了使用命令行进行元数据备份，KAP还支持在用户界面下进行元数据备份。
+除了使用命令行进行元数据备份，KAP 还支持在用户界面下进行元数据备份。
 
 * **系统元数据保存**
 
-进入页面左侧系统页面后，点击备份按钮进行系统元数据备份，元数据文件会备份在KAP安装目录下的meta\_backups文件夹中（如图中的/root/kap-plus-2.5-hbase1.x-236/kap-plus-2.5.5-alpha3.1-hbase1.x/meta\_backups）。文件命名为meta\_当前备份时间（如meta_2018_01_11_07_00_25）。
+进入页面左侧系统页面后，点击备份按钮进行系统元数据备份，元数据文件会备份在 KAP 安装目录下的 meta\_backups 文件夹中（如图中的 `/root/kap-plus-2.5-hbase1.x-236/kap-plus-2.5.5-alpha3.1-hbase1.x/meta\_backups`）。文件命名为 meta\_当前备份时间（如 meta_2018_01_11_07_00_25）。
 
 ![系统元数据备份](images/instance_backup_1_cn.png)
 
 * **项目元数据保存**
 
-点击页面上方项目展开按键后，选择需要备份的项目点击操作按键后进行备份，项目元数据文件会备份在KAP安装目录下的meta\_backups文件夹中。文件命名为project\_备份项目名\_当前时间（如project_learn_kylin_2018_01_11_19_02_23）。
+点击页面上方项目展开按键后，选择需要备份的项目点击操作按键后进行备份，项目元数据文件会备份在KAP安装目录下的 meta\_backups 文件夹中。文件命名为 `project_备份项目名_当前时间`（如 `project_learn_kylin_2018_01_11_19_02_23`）。
 
 ![项目页面](images/project_page_1_cn.png)
 
 ![项目元数据备份](images/project_backup_1_cn.png)
 
-* **Cube元数据保存**
+* **Cube 元数据保存**
 
-点击页面左侧建模按键后，选择Cube界面，选择需要备份的Cube点击操作按键后进行备份，Cube元数据文件会备份在KAP安装目录下的meta\_backups文件夹中。文件命名为cube\_备份Cube名\_当前时间（如cube_corr_2018_01_11_19_04_47）。
+点击页面左侧建模按键后，选择 Cube 界面，选择需要备份的 Cube 点击操作按键后进行备份，Cube 元数据文件会备份在 KAP 安装目录下的 meta\_backups 文件夹中。文件命名为 `cube_备份Cube名_当前时间`（如cube_corr_2018_01_11_19_04_47）。
 
 ![建模页面](images/studio_page_1_cn.png)
 
