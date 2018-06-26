@@ -91,10 +91,8 @@
     * [流式Cube](model/streaming_cube.cn.md)
 * [自动建模](auto_modeling/README.md)
 
-    - [选择查询](auto_modeling/query_input.cn.md)
-    - [模式识别](auto_modeling/pattern_recognition.cn.md)
-    - [自动建模](auto_modeling/auto_modeling.cn.md)
-    - [加速查询](auto_modeling/query_accelerator.cn.md)
+    - [查询历史](auto_modeling/query_history.cn.md)
+    - [自动建模完全说明](auto_modeling/auto_modeling.cn.md)
 * [SQL查询](query/README.md)
 
     * [查询样例](query/basic_query.cn.md)
