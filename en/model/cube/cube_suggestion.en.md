@@ -34,7 +34,7 @@ In order to achieve accurate suggestion, Optimizer need following items as input
 
   > Note: when you choose one preference, the following input content may be the required condition to use cube optimizer later
 
-- Model check: Model check must be completed before Optimize a cube, and the result is required input for Optimizer
+- Model check: Model check must be completed before Optimize a cube, and the result is required input for Data Oriented Optimizer
 
 - SQL patterns: Some history or target SQL statements, which guides the suggestion for Measures, Aggregation Groups and Rowkeys
 
@@ -48,7 +48,7 @@ Step 2, To create a cube with this model, and click "Collect SQL patterns" under
 
 
 
-Step 3, Click "+ Dimensions" button on "Dimensions" tabpage and then the dimension window will pop up. You can select *SQL output* to get suggested dimensions from *SQL patterns*, or select dimensions manually. All default dinmension type(normal/derived) are suggested by Cube Optimzier. 
+Step 3, Click the blue "Dimensions" button on "Dimensions" tabpage and then the dimension window will pop up. You can select *SQL output* to get suggested dimensions from *SQL patterns*, or select dimensions manually. All default dinmension type(normal/derived) are suggested by Cube Optimzier. 
 
 ![](images/Cube_optimizer/dimension.png)
 
