@@ -85,14 +85,6 @@ Step 4: *Refresh settings*. We configure cube's building and maintain. Filter an
 
 Build *Scheduler* is a cube build plan. Check the scheduler box and set a build time to trigger the first build and build cycle is time interval between different build job.
 
-*Scheduler*: Build *Scheduler* is a cube build plan. 
-
-- Check the scheduler box and set a *first build time* to trigger the first build job and *build cycle* is time interval between different build job.
-
-  > Assume that a telecom firm has a cube, they build this cube manually at 8:00 at each morning and this build will cover one day's data imported. For this scenario, is it suggested to set a scheduler: first build time is "2017-08-01 08:00:00" and build cycle is "24 hours".  Then from the point 8am on 1st Aug. of 2017, cube build job will be trigger and continuely building over every 24 hours, each build job will build 24 hours inported data into the cube. 
-
-- Plus, check the scheduler box can enable this scheduler(auto build plan).
-
 Step5: *Table index*. KAP Plus series product include this  feature. Details please refer to [table index section](table_index.en.md).
 
 Step 6: *Advanced Setting*. The configuration added here can override the global ones read from file `kylin.properties`. We suggest don't change any configuration in this case.
