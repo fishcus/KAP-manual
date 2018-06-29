@@ -1,29 +1,63 @@
-## Technical Support and Diagnosis
+## System Diagnosis and Job Diagnosis
+Kyligence Enterprise users may face with many problems during usage, such as failure in creating a Cube or querying. Kyligence Enterprise provides a `Diagnosis` function on WEB UI to pack related information into a zip package to help devops better analyze the root cause.
+Diagnosis function including System Diagnosis and Job Diagnosis.
 
-KAP users may face some hard work such as cube building failed, SQL executing failed, query latency timeout etc. OPS team need to dump related information for trouble shooting. Besides, users have the needs to ask experts for help, in which situation user could leverage Kyligence's online support service -- KyBot, based on exports knowledge base, to diagnose/tune their KAP instances and ask technical support.
-
-### Diagnosis
-KAP provides a function called "Diagnosis" on Web UI, which will extract related system information into a zip package, to help OPS team for trouble shooting.
 
 #### System Diagnosis
-Click 'Diagnosis' button on System page, then package of Kylin instance's information will be genrated.![](images/diagnosis/sys_diag_1.png)
+System Diagnostic Package includes all diagnostic information of a Kyligence Enterprise instance, and users can generate System Diagnosis Package on Web UI following the following steps,
 
-KAP also provides service to auto-uploading system diagnose package. Enable this service by turning on "KyBot Auto Upload" from dropdown list of "Help", and log in with KyAccount info.
+####1. Click the `Diagnosis` button on `System` Page
+
+####2. Select Time Range
+Users can select `last one hour`, `last one day`, `last three days` and `last one month`, or self-defined.
+
+> *Tips:* the selected time range must include the period of incidents.
+
+![](images/diagnosis/sys_diag_timerange.png)
+
+####3. Select Problem Category
+![](images/diagnosis/sys_diag_question.png)
+
+####4. Select Server
+![](images/diagnosis/sys_diag_server.png)
+
+> *Tips:* if Kyligence Enterprise is deployed on multiple nodes, please locate the specific node on which incident happened, and select the right server name when generating Diagnostic Package, otherwise, the generated System Diagnostic Package may not include useful information about the issue.
+
+####5. Select method of dealing with the packages
+Kyligence Enterprise provides two options to dealing with Diagnostic Packages, one is downloading to local, and the other is uploading to KyBot for further analysis.
+
+Click `Only generate` to generate the System Diagnostic Package and download to local.
+
+![](images/diagnosis/sys_diag_download.png)
+
+Click `Generate and sync package with KyBot` to generate the System Diagnostic Package and upload it to KyBot.
+
+![](images/diagnosis/sys_diag_syncwithkybot.png)
+
+> *Tips:* More information about the usage of KyBot, please refer to [KyBot Introduction](../kybot/README.md)
+
+Meanwhile, Kyligence Enterprise supports uploading Diagnostic Packages to KyBot website, users can enable this function by turning on the `KyBot Auto Upload` on the dropdown list of `Help`, which is on the top of the page, and log in with Kyligence Account.
 
 ![](images/diagnosis/auto_diag_1.png)
 
 ![](images/diagnosis/auto_diag_2.png)
 
 #### Job Diagnosis
-Click 'Diagnosis' button under one job on Monitor page, then package of current job will be genrated.
+Job Diagnostic Package includes all diagnostic information of a specific job, and users can generate Job Diagnosis Package on Web UI following the following steps,
+
+####1. Click a certain job on the `Monitor` Page, unfold `Actions` and click `Diagnosis`.
 ![](images/diagnosis/job_diag_1.png)
 
-### Leverage KyBot
-KyBot is an online analyzing, trouble shooting, optimization support service for Apache Kylin, provided by Kyligence. User can generate diagnosis package with KyBot Agent, and upload to KyBot platform, to get insight of KAP healthy, such as performance, storage etc.
+####2. Select Server
+![](images/diagnosis/sys_diag_server.png)
 
-#### User login
-KyBot login: http://kybot.io
+####3. Select method of dealing with the packages
+Kyligence Enterprise provides two options to dealing with Diagnostic Packages, one is downloading to local, and the other is uploading to KyBot for further analysis.
 
-Please register an account before first login, and your company email address is required.
+Click `Only generate` to generate the System Diagnostic Package and download to local.
 
-About how to use KyBot, please refer to: [KyBot Intro and Quick Start](../kybot/kybot.en.html)
+![](images/diagnosis/sys_diag_download.png)
+
+Click `Generate and sync package with KyBot` to generate the System Diagnostic Package and upload it to KyBot.
+
+![](images/diagnosis/sys_diag_syncwithkybot.png)

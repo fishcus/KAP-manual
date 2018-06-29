@@ -1,115 +1,108 @@
 ## KyBot Quick Start
-
-### How does KyBot work?
-
+### How does KyBot work
 ![](images/Picture1.png)
 
-### How to use KyBot?
+### How to register and login KyBot
+KyBot can be accessed through [KyBot Official Website](https://kybot.io), and users can register Kyligence Account following the instructions on the page.
 
-#### 1. Register and login
+### How to obfuscate sensitive information
+Related configuration shall be modified in `$KYLIN_HOME/kybot/kybot-client.properties`
 
-Default access address of KyBot: [https://kybot.io](https://kybot.io). Please complete the registration according to the prompt.
+> *Tips:* Configurations on KyBot Client work for all Diagnostic Packages generated online or through script.
 
-#### 2. How to obscure sensitive information
+- There are two levels of obfuscation, namely, `OBF` equals to obfuscation while `RAW` equals to non-obfuscation.
+- Mail Account is obfuscated by default.
+- Cardinality is not obfuscated by default, and users can enable obfuscation function by setting parameter `kybot.obf.cardinality` as `OBF`
+ - Cardinality Obfuscation Range
+ 	+ `tiny`： <20 
+ 	+ `small`： <100 
+ 	+ `medium`： <1000 
+ 	+ `high`： <10,000 
+ 	+ `very high`： <100,000 
+ 	+ `ultra high`： >=100,000
+- Host Name is not obfuscated by default, and users can enable obfuscation function by setting parameter `kybot.obf.hostname` as `OBF`. Besides, the pattern of the hostname also need to be specified by parameter `kybot.obf.hostname.pattern`, for example, `kybot.obf.hostname.pattern=\*.kybot.io`
 
-- OBF=obfuscate RAW=none obfuscate
-- Mail account is obfuscated by default while cardinality is not (If cardinality OBF set, obfuscated range: tiny: <20; small: <100; medium: <1000; high: <10,000; very high: <100,000; ultra high: >=100,000).
-- If hostname defaults to be OBF, then the mode of hostname needs to be defined: such as kybot.obf.hostname.pattern=\*.kybot.io
+### How to generate Diagnostic Packages
+- Generate Diagnostic Package online
 
-#### 3. Generate diagnostic package
+Since v2.3, Kyligence Enterprise enables uploading Diagnostic Packages online with a single click, and instructions are as followings.
 
-**KAP Users**
-
-If you are using KAP 2.3 or subsequent versions, which supports one-click uploading to KyBot. For current version, check on following steps:
-
-1.Login to KAP Web UI, click "Diagnosis" on System page.
-![](images/picture12_1.png)
-
-2.Set your KyBot username and password in the popup when first use this function:
-
-![](images/picture13_1.png)
-
-If your KAP server needs proxy server to access the Internet, following configurations in kylin.properties are required:
-
+> *Tips:* If users need proxy to visit extranet, following configurations in `$KYLIN_HOME/conf/kylin.properties` are required,
+> 
+> 
 ```
-kap.external.http.proxy.host // http proxy server
+kap.external.http.proxy.host // http proxy address
 kap.external.http.proxy.port // http proxy port
 ```
+Restart Kyligence Enterprise is a must to make modified configurations work.
 
-3.Click "One click to sync diagnostic package to KyBot". If your KAP does not have access to Internet, you can also download the diagnostic package to local with clicking "Download diagnostic package" and manually upload to KyBot. (Check following steps for uploading)
+1.Login Kyligence Enterprise WEB UI, click the `Diagnosis` button on `System` page to generate System Diagnostic Packages; click the `...` to unfold the options and click `Diagnosis` button to generate Job Diagnostic Packages.
 
-```
-If the generation of diagnostic packages is too long, you may use the following commands:
-#generate system diagnostic package
-$KYLIN_HOME/kybot/kybot.sh
+> *Tips:* Username and Password of Kyligence Account is needed at first use.
 
-#generate system diagnostic package without temporary data, such as temporary Hive table. This configuration is used by default since KAP 2.5.5. 
-$KYLIN_HOME/kybot/kybot.sh -includeGarbage false
+2.Click `Generate and sync package to KyBot` button.
+> *Tips:* If your Kyligence Enterprise cannot access the extranet, please click `Only Generate` button to download the package to local and upload to KyBot manually.
 
-#generate job diagnostic package
-$KYLIN_HOME/kybot/kybot.sh -jobId <job_id>
-```
+More information about how to generate System Diagnostic Package and Job Diagnostic Package, please refer to [System Diagnosis and Job Diagnosis](../troubleshooting/diag.en.md).
 
-> - Notes：if there is a warning named *Invalid option*, please go to [KyBot](https://kybot.io) and download the lastest KyBot Client.
+- Generate Diagnostic Package through script
 
-4.Until uploading succeeds, you can navigate to [KyBot](https://kybot.io) to see the results.
+Users can execute `$KYLIN_HOME/kybot/kybot.sh` to generate System Diagnostic Packages; execute `$KYLIN_HOME/kybot/kybot.sh -jobId <job_id>` to generate System Diagnostic Packages.
 
-5.If you have multiple KAP nodes, you need to upload diagnostics packages for each nodes.
+> *Tips:*
+> 
+> 1. the default saving path of generated Diagnostic Packages is `$KYLIN_HOME/kybot_dump/`, and users can specify the path by modifying the  `destDir="$KYLIN_HOME/kybot_dump/"` to `destDir="${Your_directory}"` in `$KYLIN_HOME/kybot/kybot.sh`.
+> 
+> 2. Since v2.5.5, Kyligence Enterprise generates System Diagnosis without useless information, such as Hive temporary table, and users with older versions can append a parameter when executing the script `-includeGarbage false`.
+> 
+> 3. If *Invalid option* is prompted, please visit [KyBot Official Website](https://kybot.io) to download the latest version of KyBot Client.
 
-**Kylin Users**
-
-1. Download KyBot Client (support Apache Kylin1.5.0 and following version as well as all KAP versions) in advance, download path：Log on [KyBot official website](https://kybot.io), click "upload" on the first page then click "packing tool": KyBot Client" is available for download.
-2. Extract to $KYLIN\_HOME/kybot directory of each Kylin node. 
-3. Run $KYLIN_HOME/kybot/kybot.sh on each Kylin node to generate a diagnostic package.
-
-![](images/Picture3.png)
-
-#### 4. Upload diagnose package
-
-Log on KyBot website, click the "Upload" button at the top of the page to access upload page, then Drag and drop or click "browse" button, to upload a desired KyBot diagnostic package. If the diagnose package get uploaded, it will join analysis queue soon. Users could check the analyzing speed on the upload page, and use further functions after analysis completed.
+### How to upload Diagnostic Packages
+Login KyBot website, click the `Upload` button, drag or click the `browse` button to upload Diagnostic Packages. After successfully being uploaded, the Diagnostic Package will be analyzed, and users can view the analyzation process in the uploading page.
 
 ![](images/Picture4.png)
+After Diagnostic Packages being successfully analyzed, users can visually view the basic condition of Kyligence Enterprise performance and optimize the system based on the analysis.
 
-### Dashboard function introduction
 
-#### 1. Dashboard
 
-Get tp know the health status of KAP (or Apache Kylin) clusters
+### Function Introduction
+- Dashboard
 
-- Cube usage statistics
+	Visually presenting the health condition of Kyligence Enterprise clusters
 
-![](images/Picture5.png)
+	- Cube usage statistics
 
-- Query execution statistics
+	![](images/Picture5.png)
 
-![](images/Picture6.png)
+	- Query execution statistics
 
-#### 2. Optimization
+	![](images/Picture6.png)
 
-Optimize Cube and query, find out system bottleneck, provide tuning recommendation
+- Tuning
+	Helping users to optimize Cube and query and find out system bottleneck, proving optimization tips
 
-- ##### Cube details and utilize analysis
+	- Cube details and utilization analysis
 
-![](images/Picture7.png)
+	![](images/Picture7.png)
 
-- #### SQL query parsing and statistical analysis 
+	- SQL parsing and statistical analysis 
 
-![](images/Picture8.png)
+	![](images/Picture8.png)
 
-#### 3. Troubleshooting
+- Incidents
 
-Founded on knowledge base and log analysis, provide effective incident solution
+	Providing effective incident solution based on Knowledge Base and log analysis
 
-- #### Exception statistics
+	- Exception statistics
 
-![](images/Picture9.png)
+	![](images/Picture9.png)
 
-- #### Error tracing
 
-![](images/Picture10.png)
+-  Help Center
+	
+	Users can get technical support by going through Knowledge Base and submitting ticket to Kyligence Support.
 
-#### 4. Technical support
+	- Knowledge Base: Users can search the Knowledge Base with keywords, finding out the solution of some known issues.
 
-Kyligence is capable to provide support from the original Apache Kylin team, so users can submit ticket throught KyBot to get technical support from Kyligence.
-
+	- My Tickets: Enterprise users can submit tickets with question description and uploaded Diagnostic Package, and Kyligence Technical Support will help to locate the root cause and offer a solution.
  ![](images/Picture11.png)

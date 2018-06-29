@@ -171,7 +171,7 @@
       *  [列级访问权限](security/column.cn.md)
 * [监控和诊断](troubleshooting/README.md)
     * [日志](troubleshooting/logging.cn.md)
-    * [环境依赖检测](troubleshooting/service_status.cn.md)
+    * [环境依赖服务检测](troubleshooting/service_status.cn.md)
     * [任务报警](troubleshooting/alerting.cn.md)
     * [系统诊断与任务诊断](troubleshooting/diag.cn.md)
     * [自助式诊断与优化服务KyBot](kybot/README.md)

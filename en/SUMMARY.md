@@ -173,7 +173,7 @@
     * [System Diagnosis and Job Diagnosis](troubleshooting/diag.en.md)
     * [KyBot: Online Diagnostic and Tuning Service](kybot/README.md)
         * [KyBot Quick Start](kybot/kybot.en.md)
-        * [KyBot Case Analysis](kybot/case.en.md)
+        * [Analysis of KyBot Case](kybot/case.en.md)
 
 * [Daily Operation](operation/README.md)
     * [Basic Operation](operation/basic_ops.en.md)

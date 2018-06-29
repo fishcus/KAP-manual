@@ -1,5 +1,4 @@
 ## Monitor and Diagnose
 
-This chapter demonstrates how does KAP get monitered and diagnosed.
-
+This chapter demonstrates how to monitor KAP and its dependencies, and how to diagnose incidents through logs and KyBot.
 
