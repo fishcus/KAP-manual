@@ -1,3 +1,6 @@
 ## 与BI工具集成
 
-本章将介绍几种KAP目前支持的数据驱动方式及如何使用第三方BI工具与KAP连接。
+本章节主要包含以下内容：
+
+- Kyligence Enterprise目前支持的数据驱动方式
+- 第三方BI工具与Kyligence Enterprise连接方式
