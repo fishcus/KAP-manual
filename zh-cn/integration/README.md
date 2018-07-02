@@ -6,7 +6,7 @@
 
 继续阅读：
 
-[Tableau](tableau_10.cn.md)
+[Tableau](tableau.cn.md)
 
 [Excel ](excel_2016.cn.md)
 
