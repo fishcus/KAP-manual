@@ -3,36 +3,38 @@ Kyligence Enterprise users may face with many problems during usage, such as fai
 Diagnosis function including System Diagnosis and Job Diagnosis.
 
 
-#### System Diagnosis
+### System Diagnosis
 System Diagnostic Package includes all diagnostic information of a Kyligence Enterprise instance, and users can generate System Diagnosis Package on Web UI following the following steps,
 
-####1. Click the `Diagnosis` button on `System` Page
+1. Click the `Diagnosis` button on `System` Page
 
-####2. Select Time Range
-Users can select `last one hour`, `last one day`, `last three days` and `last one month`, or self-defined.
+2. Select Time Range
+You can select `last one hour`, `last one day`, `last three days` and `last one month`, or self-defined.
 
 > *Tips:* the selected time range must include the period of incidents.
 
 ![](images/diagnosis/sys_diag_timerange.png)
 
-####3. Select Problem Category
-![](images/diagnosis/sys_diag_question.png)
+3. Select Package Type
 
-####4. Select Server
-![](images/diagnosis/sys_diag_server.png)
+You can choose either `Basic package` or `Full package`.
+
+> `Basic package` contains your log files, metadata and cluster information. `Full package` contains slow query or bad query information, etc. Uploading the `Basic package` is highly recommended. 
+
+![](images/diagnosis/diag_package.png)
+
+ 4. Select Server
+
+<img style="float: right;" src="images/diagnosis/sys_diag_server.png">
 
 > *Tips:* if Kyligence Enterprise is deployed on multiple nodes, please locate the specific node on which incident happened, and select the right server name when generating Diagnostic Package, otherwise, the generated System Diagnostic Package may not include useful information about the issue.
 
-####5. Select method of dealing with the packages
+5. Select method of dealing with the packages
 Kyligence Enterprise provides two options to dealing with Diagnostic Packages, one is downloading to local, and the other is uploading to KyBot for further analysis.
 
 Click `Only generate` to generate the System Diagnostic Package and download to local.
 
-![](images/diagnosis/sys_diag_download.png)
-
 Click `Generate and sync package with KyBot` to generate the System Diagnostic Package and upload it to KyBot.
-
-![](images/diagnosis/sys_diag_syncwithkybot.png)
 
 > *Tips:* More information about the usage of KyBot, please refer to [KyBot Introduction](../kybot/README.md)
 
@@ -42,22 +44,19 @@ Meanwhile, Kyligence Enterprise supports uploading Diagnostic Packages to KyBot 
 
 ![](images/diagnosis/auto_diag_2.png)
 
-#### Job Diagnosis
+### Job Diagnosis
 Job Diagnostic Package includes all diagnostic information of a specific job, and users can generate Job Diagnosis Package on Web UI following the following steps,
 
-####1. Click a certain job on the `Monitor` Page, unfold `Actions` and click `Diagnosis`.
+1. Click a certain job on the `Monitor` Page, unfold `Actions` and click `Diagnosis`.
 ![](images/diagnosis/job_diag_1.png)
 
-####2. Select Server
-![](images/diagnosis/sys_diag_server.png)
+2. Select Server
 
-####3. Select method of dealing with the packages
+<img style="float: right;" src="images/diagnosis/sys_diag_server.png">
+
+3. Select method of dealing with the packages
 Kyligence Enterprise provides two options to dealing with Diagnostic Packages, one is downloading to local, and the other is uploading to KyBot for further analysis.
 
-Click `Only generate` to generate the System Diagnostic Package and download to local.
+- Click `Only generate` to generate the System Diagnostic Package and download to local.
 
-![](images/diagnosis/sys_diag_download.png)
-
-Click `Generate and sync package with KyBot` to generate the System Diagnostic Package and upload it to KyBot.
-
-![](images/diagnosis/sys_diag_syncwithkybot.png)
+- Click `Generate and sync package with KyBot` to generate the System Diagnostic Package and upload it to KyBot.
