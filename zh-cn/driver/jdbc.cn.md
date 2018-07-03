@@ -1,24 +1,39 @@
 ## Kyligence JDBC 驱动程序
-KAP提供了JDBC驱动程序，支持JDBC接口的应用可以通过该驱动程序访问KAP进行数据查询。
+本产品支持JDBC接口，并提供了JDBC驱动程序。该驱动允许如第三方BI应用，SQL 查询工具或其他支持JDBC接口的应用访问本产品实例。
 
-用户可以在KAP安装目录的lib子目录下，找到名称为kylin-jdbc-kap-*.jar的jar包，这就是KAP的JDBC驱动。
 
-#### 连接
-KAP JDBC驱动程序遵循了JDBC标准接口，用户可通过URL指定JDBC所连接的KAP服务，这个URL格式为：
+
+### 如何获取JDBC驱动程序
+
+用户可以在产品安装目录的 `./lib`子目录下，获取相关JAR包文件。
+
+文件名为： **kylin-jdbc-kap-\<version\>.jar**。
+
+### 如何配置JDBC连接
+本产品的 JDBC驱动程序遵循了JDBC标准接口，用户可通过URL指定JDBC方式连接到Kyligence服务。
+
+URL格式为：
+
 ```
 jdbc:kylin://<hostname>:<port>/<project_name>
 ```
-* 如果KAP服务启用了SSL，则端口号应该使用KAP服务的HTTPS端口
-* 如果端口未指定，则JDBC驱动将使用HTTP和HTTPS的默认端口
-* project_name必须指定，用户必须保证该项目在KAP服务中存在
+URL参数说明如下：
 
-此外，用户需要为连接指定登陆的用户名、密码，以及SSL是否开启的标志，这些属性是：
+- **\<hostname\>**:主机名
 
-* user: 登陆KAP服务的用户名
-* password: 登陆KAP服务的密码
-* ssl: true/false. 默认为false，如果是true，所有对KAP的访问都将基于HTTPS
+* **\<port\>**： 端口号，如果本产品部署启用了SSL安全认证服务，则应该使用相关HTTPS端口号
 
-以下给出一个建立Connection的例子：
+* **\<project_name\>**:  必须指定具体项目名称，并且确认该项目在服务中存在
+
+  
+
+其他配置参数如下：
+
+* **\<user\>**: 	登陆服务实例的用户名
+* **\<password\>**: 登陆服务实例的密码
+* **\<ssl\>**: 是否开启SSL， 值为布尔型 true/false. 默认为false，如果是true，所有Kyligence的访问都将基于HTTPS
+
+JAVA配置连接样例：
 
 ```java
 Driver driver = (Driver) Class.forName("org.apache.kylin.jdbc.Driver").newInstance();
@@ -29,8 +44,13 @@ info.put("password", "KYLIN");
 Connection conn = driver.connect("jdbc:kylin://localhost:7070/kylin_project_name", info);
 ```
 
-#### 基于Statement的查询
-这里给出一个直接基于Statement进行查询的例子：
+
+
+下面章节介绍两种JAVA程序调用 JDBC 的访问本产品
+
+#### 方法一：基于Statement的查询
+
+具体直接基于Statement进行查询的代码样例如下：
 ```java
 Driver driver = (Driver) Class.forName("org.apache.kylin.jdbc.Driver").newInstance();
 Properties info = new Properties();
@@ -48,8 +68,22 @@ while (resultSet.next()) {
 ```
 
 
-#### 基于PreparedStatement的查询
-这里给出一个基于Prepared Statement进行查询的例子：
+#### 方法二：基于PreparedStatement的查询
+该方法支持在SQL语句中传入参数， 目前支持如下方法进行参数设置：
+
+- setString
+- setInt
+- setShort
+- setLong
+- setFloat
+- setDouble
+- setBoolean
+- setByte
+- setDate
+- setTime
+- setTimestamp
+
+具体基于Prepared Statement进行查询的代码样例如下：
 
 ```java
 Driver driver = (Driver) Class.forName("org.apache.kylin.jdbc.Driver").newInstance();
@@ -68,16 +102,3 @@ while (resultSet.next()) {
 }
 ```
 
-其中，Prepared Statement支持对以下类型的赋值操作：
-
-* setString
-* setInt
-* setShort
-* setLong
-* setFloat
-* setDouble
-* setBoolean
-* setByte
-* setDate
-* setTime
-* setTimestamp
