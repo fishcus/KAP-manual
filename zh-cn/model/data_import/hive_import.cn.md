@@ -1,70 +1,76 @@
 ## 导入Hive数据源
-目前，KAP支持Hive作为默认的输入数据源。为了使用KAP中自带的样例数据，需要把数据表导入Hive中。在KAP安装目录的bin文件夹中，有一个可执行脚本，可以把样例数据导入Hive：
+Kyligence Enterprise 支持Hive作为默认的输入数据源。
+
+本小节将结合样例数据集介绍Hive数据源使用方式，具体步骤如下：
+
+1. 准备样例数据集
+2. 创建项目
+3. 同步Hive数据源的表
+4. 采样数据
+
+
+
+### 准备样例数据集
+
+用户可通过执行脚本方式，将本产品中自带的样例数据导入至Hive。
+
+该可执行脚本为 **sample.sh** ， 其默认存放路径为系统安装目录下的 **/bin** 目录
 
 ```shell
 $KYLIN_HOME/bin/sample.sh
 ```
 
-> 提示：运行 sample.sh 之后，要在**系统**页面下点击**重载元数据**，否则会导致建模出错。
 
-脚本执行成功之后，在服务器执行Hive命令行，确认这些数据已经导入成功，命令如下：
+
+> 注意：运行 sample.sh 之后， 在本产品的 **系统** 功能页面下点击 **重载元数据**，否则会导致建模出错。
+
+
+
+脚本执行成功之后，可在服务器终端执行 **hive** 命令行，进入hive， 并执行查询语句验证导入正常。
 
 ```shell
 hive
-hive> show tables;
-OK
-kylin_cal_dt
-kylin_category_groupings
-kylin_sales
-Time taken: 0.127 seconds, Fetched: 3 row(s)
-hive> select count(*) from kylin_sales;
-Query ID = root_20160707221515_b040318d-1f08-44ab-b337-d1f858c46d7d
-Total jobs = 1
-Launching Job 1 out of 1
-Number of reduce tasks determined at compile time: 1
-In order to change the average load for a reducer (in bytes):
-  set hive.exec.reducers.bytes.per.reducer=<number>
-In order to limit the maximum number of reducers:
-  set hive.exec.reducers.max=<number>
-In order to set a constant number of reducers:
-  set mapreduce.job.reduces=<number>
-Starting Job = job_1467288198207_0129, Tracking URL = http://sandbox.hortonworks.com:8088/proxy/application_1467288198207_0129/
-Kill Command = /usr/hdp/2.2.4.2-2/hadoop/bin/hadoop job  -kill job_1467288198207_0129
-Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
-2016-07-07 22:15:11,897 Stage-1 map = 0%,  reduce = 0%
-2016-07-07 22:15:17,502 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 1.64 sec
-2016-07-07 22:15:25,039 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 3.37 sec
-MapReduce Total cumulative CPU time: 3 seconds 370 msec
-Ended Job = job_1467288198207_0129
-MapReduce Jobs Launched:
-Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 3.37 sec   HDFS Read: 505033 HDFS Write: 6 SUCCESS
-Total MapReduce CPU Time Spent: 3 seconds 370 msec
-OK
-10000
-Time taken: 24.966 seconds, Fetched: 1 row(s)
 ```
 
-### 创建项目
-打开KAP的Web UI，在主界面的顶端是项目的管理工具栏，点击“＋”即可如下图所示创建一个新的项目（Project），例如命名该项目为KAP_Sample。
-![](images/dataimport_1.png)
+可检查已导入hive的表清单
 
-在Web UI的左上角选择刚刚创建的项目，表示我们接下来的全部操作都在这个项目中，在当前项目的操作不会对其他项目产生影响。
-![](images/dataimport_2.png)
+```shell
+hive> show tables;
+```
 
+可检查导入hive的具体表
 
-
-### 同步Hive表
-
-需要把Hive数据表同步到KAP当中才能使用。为了方便操作，我们通过“加载Hive表”进行同步，如下图所示：
-![](images/dataimport_3.png)
+```
+hive> select count(*) from kylin_sales;
+```
 
 
 
-在弹出的对话框中展开default数据库，并选择需要的五张表，如图所示：
-![](images/dataimport_4.png)
+### 创建基于Hive数据源的项目
 
 
 
-导入后系统会自动计算各表各列的维数，以掌握数据的基本情况。稍等几分钟后，我们可以通过数据源表的详情页查看这些信息。
+1. 登录本产品的Web UI
+
+2. 主界面顶端左侧的项目管理工具栏中，点击加号 **“＋” ** 以新建项目
+
+3. 在弹出的窗口中，输入**项目名称** （必选）和 **项目描述**, 点击 **确定** 按钮，完成项目创建。
+
+4. 进入具体项目**建模** 功能， 选择 **数据源** 选项卡
+
+5. 点击蓝色的**数据源**按钮
+
+6. 在弹出窗口中， 选择 **Hive** 类型作为数据源类型， 如下图所示
+
+   ![](images/dataimport_3.png)
+
+7. 点击 **下一步** 按钮，进入 **加载Hive表元数据** 窗口， 用户可按需在左侧的Hive表清单中， 单击选中需要建模的表。
+
+8. 点击右下方 **同步** 按钮进行加载
+
+   ![](images/dataimport_4.png)
+> 提示：默认不勾选**表采样**， 您可以根据需要自行设置是否采样和采样比例。
+
+9. 同步完成后， 可以在**建模** 中**数据源** 面板中，选中具体加载的表， 查看表的详细信息。
 
 ![](images/dataimport_5.png)

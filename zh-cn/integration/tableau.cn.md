@@ -1,69 +1,64 @@
 
 ## 与 Tableau  集成
 
-### 安装 Kyligence ODBC 驱动程序
+Tableau 是Windows平台上最流行的商业智能工具之一，它操作简介，功能强大，通过简单地拖拽就可以将大量数据体现在可视化图表中。Kyligence Enterprise 提供与Tableau Desktop不同的集成方式。
 
-有关安装信息，参考页面 [Kyligence ODBC 驱动程序教程](../driver/kyligence_odbc.cn.md)。
+本小节将介绍Kyligence Enterprise 与 Tableau Desktop的2种集成方式。
 
-### 连接 KAP 
-在Tableau 中创建新的数据连接，单击左侧面板中的`其他数据库(ODBC)`
+- Kyligence Enterprise 快捷导入导出同步模型方式
+- Kyligence Enterprise 手动映射模型方式
 
-![](images/tableau_10/step1_cn.png)
+### 前置条件
 
-并在弹出窗口中选择`Kyligence ODBC Driver` ，点击连接
+- 安装 Kyligence ODBC 驱动程序
 
-![](images/tableau_10/step2-2_cn.png)
+  > 注：有关安装信息，参考页面 [Kyligence ODBC 驱动程序教程](../driver/kyligence_odbc.cn.md)。
 
-输入服务器地址、端口、项目、用户名和密码，点击`Connect`可获取有权限访问的所有项目列表。或者选择DSN,使用已经保存的DSN直接连接即可。
+- 如果希望进行明细查询，需要在Cube中配置**表索引**或开启**查询下压**。
 
-![](images/tableau_10/kyligence_odbc_03_cn.png)
+  
 
-### 映射数据模型
+### 方式一：Kyligence Enterprise 快捷导入导出同步模型方式
 
-在左侧的列表中，选择数据库`defaultCatalog`并单击”搜索“按钮，将列出所有可查询的表。用鼠标把表拖拽到右侧区域，就可以添加表作为数据源。
+用户在完成 Kyligence Enterprise 建模与创建Cube阶段后，可以通过导出Tableau对应的数据定义文件，
 
-**注意：Tableau 会发送查询"select \* from fact\_table"，如果被查询表格数据量太大，Tableau可能需要等待很长时间拿到返回结果。请参见[配置](../config/basic_settings.cn.md#kylinqueryforce-limit)对KAP进行配置绕过该问题。**
+并在Tableau中一键导入该文件，快速完成模型同步。
 
-![](images/tableau_10/step5_cn.png)
+> 注：Kyligence Enterprise 3.0.1 以上版本支持该方式
 
-根据模型中的表连接关系，创建表与表的连接关系。
+该方式主要步骤如下：
 
-![](images/tableau_10/step12_cn.png)
-
-
-Tableau 中有两种数据源连接类型，选择 `连接`选项以确保使用`实时`模式，以保证实时连接KAP。
-
-![](images/tableau_10/step9_cn.png)
-
-### 可视化
-现在你可以进一步使用Tableau进行可视化分析。
-![](images/tableau_10/step13_cn.png)
-
-### 发布到Tableau服务器
-如果希望发布到Tableau服务器, 点击`服务器`菜单并选择`发布工作簿`。
-![](images/tableau_10/step14_cn.png)
-
-### 查看KAP明细数据
-> 注：查看KAP明细数据需要在KAP Cube中配置了Table Index或KAP开启了查询下压。
-
-如图，当在Tableau中查看聚合数据时，点击需要查看明细的行或列。点击如图所示图标，选择查看数据的图标。
-![](images/tableau_10/step15_cn.png)点击查看完整数据，即可看到对应的数据明细
-
-![](images/tableau_10/step16_cn.png)
+1. Kyligence Enterprise 导出Tableau Data Source(TDS)文件：
+   - 进入**建模**功能下的**Cube**模型清单
+   - 选择Ready状态的的**Cube**
+   - 在 **更多操作** 中选择 **导出TDS** 
+2. 将导出的TDS文件导入至Tableau
+   - 在已部署的Tableau环境中，双击导出的**TDS**文件
+   - 在弹出的认证窗口中，输入连接认证信息
+   - 点击**OK**
+3. 在Tableau中，检查导入的模型内容, 如维度，度量之类。
 
 
-### 从KAP同步模型至Tableau
-#### 在KAP中导出TDS文件
 
-选择一个Ready状态的Cube, 在更多操作中选择导出TDS，即可下载TDS文件。
+### 方式二：Kyligence Enterprise手动映射模型方式 
 
-![](images/tableau_10/step17_cn.png)
+用户可通过ODBC Driver连接Kyligence Enterprise数据源, 并在Tableau中重新建立模型完成映射。
 
+该方式主要步骤如下：
 
-#### 用TDS文件连接Kyligence数据源
-在安装了tableau的环境上，双击TDS文件，填写认证信息，即可连接Kyligence数据源
+1. 启动Tableau，在 **数据**->**新建数据源** 下，选择 **其他数据库(ODBC)**
+2. 在弹出窗口，选择 **KyligenceODBCDriver** ，点击 **连接**
+3. 在**连接属性**中，配置以下信息以创建Kyligence Enterprise数据源连接
+   - 服务器地址
+   - 端口
+   - 项目
+   - 用户名
+   - 密码
+4. （或者）在弹出窗口，选择已配置的 **DSN** 进行连接
+5. 在Tableau中，重建Kyligence Enterprise模型的关联关系，完成模型映射。Tableau建模方式请参考Tableau官方说明。
 
-![](images/tableau_10/step18_cn.png)
+### 其他注意事项
 
-![](images/tableau_10/step19_cn.png)
+如果出现大表查询返回结果集过大的情况，将导致查询时间过长，可以通过修改参数配置来限制返回结果集条数。具体方式参考 **配置** 相关章节。
+
 
