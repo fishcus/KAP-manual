@@ -14,13 +14,13 @@ Tableau 是Windows平台上最流行的商业智能工具之一，它操作简�
 
   > 注：有关安装信息，参考页面 [Kyligence ODBC 驱动程序教程](../driver/kyligence_odbc.cn.md)。
 
-- 如果希望对KyligenceEnterpris数据源进行明细查询，需要在Cube中配置Table Index或开启查询下压。
+- 如果希望进行明细查询，需要在Cube中配置**表索引**或开启**查询下压**。
 
   
 
 ### 方式一：Kyligence Enterprise 快捷导入导出同步模型方式
 
-用户在完成Kyligence Enterprise建模与创建Cube阶段后，可以通过导出Tableau对应的数据定义文件，
+用户在完成 Kyligence Enterprise 建模与创建Cube阶段后，可以通过导出Tableau对应的数据定义文件，
 
 并在Tableau中一键导入该文件，快速完成模型同步。
 
