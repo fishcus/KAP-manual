@@ -1,40 +1,47 @@
 # Linux下安装与配置Kyligence ODBC驱动
 
-在本文中，我们将向您介绍如何在安装和配置Kyligence ODBC驱动（Linux版本）。
+在本文中，我们将向您介绍如何在Linux系统下安装和配置Kyligence ODBC驱动（Linux版本)
 
 ### 安装库的依赖
 
-我们建议您使用unixODBC(http://www.unixodbc.org/) 来管理ODBC连接信息。
+我们建议您使用unixODBC(http://www.unixodbc.org/) 作为驱动管理器来管理ODBC连接信息。
 
-对于64位系统：
+对于不同的Linux系统：
 
-1.  在Redhat和CentOS上安装unixODBC
+1. Redhat和CentOS环境, 可参考如下命令安装
 
-   `sudo yum install unixODBC-devel -y` 
+      `sudo yum install unixODBC-devel -y` 	
 
-2. 如果是Ubuntu，请使用如下命令行安装
+2. Ubuntu环境，可参考如下命令安装
 
    `sudo apt-get install unixODBC-devel`
 
-### 安装Kyligence ODBC驱动
 
-1. 在 [Kyligence Account 页面](http://account.kyligence.io)申请下载 Kyligence ODBC (Linux版本）驱动程序
 
-2. 解压下载的压缩包
+### 下载ODBC驱动程序
 
-   `tar zxf KyligenceODBC_linux.tar.gz`
+用户可以在 [Kyligence Account](http://account.kyligence.io) 申请下载 Kyligence ODBC Driver (Linux版本）安装包
 
-   > *注：请不要将 ODBC 安装文件放在 root 目录下，否则会因为读写权限问题可能导致BI Server访问失败。*
 
-3. 设置第三方库的环境变量
+
+### 安装ODBC驱动程序
+
+1. 解压下载的压缩包
+
+   `tar -zxf KyligenceODBC_linux.tar.gz`
+
+   > 注意：请不要将 ODBC 安装文件放在 root 目录下，否则会因为读写权限问题可能导致BI Server访问失败。
+
+2. 设置第三方库的环境变量
 
    `cd ODBC_DRIVER/`
 
    `source setenv.sh`
 
-4. 检查库的依赖
+3. 检查库的依赖
 
    `ldd libKyligenceODBC64.so`
+
    如果检查成功，您将会看到如下输出：
 
    ```
@@ -83,11 +90,11 @@
    liblzma.so.5 => /lib64/liblzma.so.5 (0x00007f15a34c0000)
    ```
 
-   ​
+   
 
 ### 设置ODBC DSN 
 
-我们建议您使用unixODBC(http://www.unixodbc.org/) 来管理ODBC连接信息。
+
 
 1. 将Kyligence ODBC添加入配置文件
 
@@ -115,7 +122,7 @@
    SERVER = {KapUrl}
    ```
 
-   以下是样例配置： 
+   样例配置： 
 
    **/etc/odbcinst.ini**
 
@@ -143,11 +150,11 @@
 
    > *注：请确认odbc.ini 文件中的 DSN 名称和 BI桌面环境下配置的DSN名称完全一致，保证BI应用由桌面客户端发布至服务器端时连接正常*
 
-2. 使用命令行工具"isql DSN [UID '[PWD]']测试连接
+2. 使用命令行工具"isql DSN [UID '[PWD]']测试连接
 
    `isql KyligenceDataSource ADMIN 'KYLIN'`
 
-3. 发送查询测试 
+3. 发送查询测试 
 
    `SQL> select count(*) from kylin_sales;`
    如果连接成功，则会返回如下结果
@@ -164,7 +171,7 @@
 
 ### 故障排查
 
-1. SQL无法连接错误      
+1. SQL无法连接错误      
 
    a. 检查ODBC配置文件和DSN配置文件是否正确
    b. 确认已执行命令行
@@ -173,11 +180,11 @@
 
 2. (11560) Unable to locate SQLGetPrivateProfileString function.
 
-   此错误可以运行命令行解决：  
+   此错误可以运行命令行解决：  
 
    `export LD_PRELOAD=/usr/lib/libodbcinst.so`
 
-### 附录:
+### 样例:
 
 #### 在MicroStrategy Linux Intelligence Server上创建DSN
 
@@ -219,4 +226,4 @@
 
 5. 现在您就可以在MicroStrategy Linux I-Server上使用该DSN创建新的数据库连接了。
 
-   ![](images/kyligence_odbc_05_cn.PNG)
+   
