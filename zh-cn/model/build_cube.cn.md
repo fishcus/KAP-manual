@@ -1,8 +1,8 @@
 ## 构建Cube
 
-在创建好Cube之后，只有对Cube进行构建，才能利用它执行SQL查询。本文以KAP样例数据为例，介绍Cube构建的过程。
+在创建好Cube之后，只有对Cube进行构建，才能利用它执行SQL查询。本文以本产品自带样例数据为例，介绍Cube构建的过程。
 ####	初次构建
-首先打开KAP的Web UI，并选择learn_kylin项目，然后跳转到建模页面，找到Cube列表。在Cube列表中找到**Kylin_Sales_Cube**。单击右侧的**Action**按钮，在弹出的菜单中选择“**构建**（build）”。
+首先打开本产品的Web UI，并选择learn_kylin项目，然后跳转到建模页面，找到Cube列表。在Cube列表中找到**Kylin_Sales_Cube**。单击右侧的**Action**按钮，在弹出的菜单中选择“**构建**（build）”。
 
 ![](images/buildcube_0.png)
 
