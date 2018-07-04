@@ -4,7 +4,7 @@
 
 ### 查询维度的计算方法 ###
 
-计算cuboid中维度数的方法从版本KAP V2.4.3开始，我们在Cuboid剪枝中将同在一个联合维度组的维度当做一个整体，即为一个维度；同理一个层级维度组也当做一个维度，而将必要维度在cuboid计算中，不算做维度。如下例所示：
+计算cuboid中维度数的方法（产品 V2.4.3版本以上），，我们在Cuboid剪枝中将同在一个联合维度组的维度当做一个整体，即为一个维度；同理一个层级维度组也当做一个维度，而将必要维度在cuboid计算中，不算做维度。如下例所示：
 
 ```sql
 select count(*) from table group by column_mandatory, column_joint1, column_joint2, column_hierarchy1, column_hierarchy2, column_normal
