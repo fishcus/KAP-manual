@@ -3,9 +3,11 @@
 
 ### 环境准备
 
-在开始本教程前，请确保您已准备好Hadoop环境并且已经安装了**KAP 2.3**及以上版本和**Kafka v2.10-0.10.1.0**及以上版本。在本教程中，我们使用Hortonworks HDP 2.4 Sandbox虚拟机作为Hadoop环境。
+在开始本教程前，请确保您已准备好Hadoop环境并且已经安装了**本产品2.3**及以上版本和**Kafka v2.10-0.10.1.0**及以上版本。
 
-Kafka Broker无需与KAP部署在同一个节点上，如果KAP节点上没有部署Kafka Broker，建议将与其他已部署节点相同版本的Kafka二进制包复制并解压在KAP启动节点上的任意路径（如/usr/local/kafka_2.10-0.10.1.0），并设置KAFKA_HOME指向该路径，确保KAFKA_HOME/libs 目录下有Kafka的客户端library。
+在本教程中，我们使用Hortonworks HDP 2.4 Sandbox虚拟机作为Hadoop环境。
+
+Kafka Broker无需与本产品部署在同一个节点上，如果Kyligence Enterprise节点上没有部署Kafka Broker，建议将与其他已部署节点相同版本的Kafka二进制包复制并解压在KAP启动节点上的任意路径（如/usr/local/kafka_2.10-0.10.1.0），并设置KAFKA_HOME指向该路径，确保KAFKA_HOME/libs 目录下有Kafka的客户端library。
 
 以下例子假设用户没有安装过Kafka Broker，包含了Kafka Broker部署到本机，以及启动的过程，对于已经安装过Kafka Broker的用户该步骤可以省略。
 
@@ -15,7 +17,7 @@ cd /usr/local/kafka_2.10-0.10.1.0/
 ./bin/kafka-server-start.sh config/server.properties &
 ```
 
-务必确保KAP启动前，已经将*KAFKA_HOME*变量正确导出。
+务必确保产品实例启动前，已经将**KAFKA_HOME**变量正确导出。
 
 ```shell
 export KAFKA_HOME=/usr/local/kafka_2.10-0.10.1.0
