@@ -38,4 +38,4 @@ Kyligence Enterprise 3.0 satisfies full-scene analysis needs by simultaneously e
 
 ### Download
 
-KAP V3.0 is available for download. Please visit [Kyligence Account](http://download.kyligence.io/ ) for more information.
+Kyligence Enterprise V3.0 is available for download. Please visit [Kyligence Account](http://download.kyligence.io/ ) for more information.

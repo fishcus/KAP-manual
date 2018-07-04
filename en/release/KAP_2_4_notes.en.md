@@ -1,6 +1,6 @@
-## KAP 2.4 Release Notes
+## Kyligence Enterprise 2.4 Release Notes
 
-In this release, KAP has envolved from MOLAP (Multidimensional OLAP) to **HOLAP** (Hybrid OLAP) , which supports popular SQL on Hadoop technologies in multiple analytics scenarios. Furthermore, KAP 2.4 has extended its semantic layer by introducing **Snowflake** schema and **Computed Column**, transferring complex business logic to data model accurately.
+In this release, Kyligence Enterprise has envolved from MOLAP (Multidimensional OLAP) to **HOLAP** (Hybrid OLAP) , which supports popular SQL on Hadoop technologies in multiple analytics scenarios. Furthermore, Kyligence Enterprise 2.4 has extended its semantic layer by introducing **Snowflake** schema and **Computed Column**, transferring complex business logic to data model accurately.
 
 
 
@@ -8,13 +8,13 @@ In this release, KAP has envolved from MOLAP (Multidimensional OLAP) to **HOLAP*
 
 **Query Pushdown** 
 
-Query Pushdown routes the query that can’t be answered by Cube to underlying SQL engine. KAP has embedded Spark SQL and Hive as its pushdown engines, and other SQL on Hadoop engines will be coming in following releases. KAP supports mission-critical and exploratory analytics (Ad-Hoc) by leveraging cube-based sub-second performance query and pushdown-based query respectively.
+Query Pushdown routes the query that can’t be answered by Cube to underlying SQL engine. Kyligence Enterprise has embedded Spark SQL and Hive as its pushdown engines, and other SQL on Hadoop engines will be coming in following releases. Kyligence Enterprise supports mission-critical and exploratory analytics (Ad-Hoc) by leveraging cube-based sub-second performance query and pushdown-based query respectively.
 
 ![Beyond OLAP](images/KAP24/Query_pushdown_EN.png)
 
 **Seamless Integration with SQL on Hadoop** 
 
-KAP seamlessly integrates with existing SQL on Hadoop and reuses existing analytics capability. KAP brings the transparent speedup power to data access layer and empowers the unified query gateway for all BI applications. By taking full advantage of pre-calculation technology, KAP enables BI to analyze massive data interactively and fills the gap between BI and Hadoop.
+Kyligence Enterprise seamlessly integrates with existing SQL on Hadoop and reuses existing analytics capability. Kyligence Enterprise brings the transparent speedup power to data access layer and empowers the unified query gateway for all BI applications. By taking full advantage of pre-calculation technology, Kyligence Enterprise enables BI to analyze massive data interactively and fills the gap between BI and Hadoop.
 
 
 
@@ -38,7 +38,7 @@ Cube Optimizer will first analyze source data characters and inputted SQL patter
 
 **Efficient Cubing**
 
-KAP offers the efficient cubing by following the Max Dimension Combination (the biggest usage of dimension combination number during queries) setting defined by users. The efficient cubing algorithm avoids the rarely-used cube build, reduces the cubing time, and resolves the cube explosion problem. In some real-cases, it saves over 90% storage
+Kyligence Enterprise offers the efficient cubing by following the Max Dimension Combination (the biggest usage of dimension combination number during queries) setting defined by users. The efficient cubing algorithm avoids the rarely-used cube build, reduces the cubing time, and resolves the cube explosion problem. In some real-cases, it saves over 90% storage
 
 
 
@@ -46,13 +46,13 @@ KAP offers the efficient cubing by following the Max Dimension Combination (the 
 
 **Computed Column**
 
-The semantic layer is enriched by introducing computed column technology. KAP allows users to define computed column on the original source table to extract/transform/redefine the original column into a new virtual column. The computed column works like other original column which will be pre-calculated during cubing phase. The computed column enables analysts to do data clean/transform all by themselves without their IT teams. It also improves the query performance by pre-calculated the filter condition. Hive User Defined Function(UDF) is supported on computed column, and this allows users to reuse existing code and libraries. 
+The semantic layer is enriched by introducing computed column technology. Kyligence Enterprise allows users to define computed column on the original source table to extract/transform/redefine the original column into a new virtual column. The computed column works like other original column which will be pre-calculated during cubing phase. The computed column enables analysts to do data clean/transform all by themselves without their IT teams. It also improves the query performance by pre-calculated the filter condition. Hive User Defined Function(UDF) is supported on computed column, and this allows users to reuse existing code and libraries. 
 
 ![Computed Column](images/KAP24/Computed_Column_EN.png)
 
 **Support Snowflake**
 
-With both star schema and snowflake schema supported, KAP provides a hold of complex business logic.
+With both star schema and snowflake schema supported, Kyligence Enterprise provides a hold of complex business logic.
 
 
 
@@ -60,11 +60,11 @@ With both star schema and snowflake schema supported, KAP provides a hold of com
 
 **Installation Environment Inspection**
 
-Full environment check scripts are provided. It inspects the environment dependency, permission, version, and other necessary resources. The inspection result will indicate the potential issues and provide solutions before KAP starts.
+Full environment check scripts are provided. It inspects the environment dependency, permission, version, and other necessary resources. The inspection result will indicate the potential issues and provide solutions before Kyligence Enterprise starts.
 
 **New Metadata Storage**
 
-Relational databases, such as MySQL, can be used as the KAP metadata store. By moving the metadata from HBase to relational database, the database operation strategies are followed. Without HBase, the total operation cost and risks are reduced dramatically.
+Relational databases, such as MySQL, can be used as the Kyligence Enterprise metadata store. By moving the metadata from HBase to relational database, the database operation strategies are followed. Without HBase, the total operation cost and risks are reduced dramatically.
 
 **Cube Building Scheduler**
 
@@ -76,7 +76,7 @@ Cube Building Scheduler enables users to build the cube on schedule. It reduces 
 
 #### Upgrade Apache Kylin to 2.0
 
-KAP is built upon Apache Kylin core and is 100% compatible with Apache Kylin. KAP 2.4 upgrades Apache Kylin to 2.0, and the complete Kylin release notes could be found on the [Kylin website](http://kylin.apache.org/blog/2017/02/25/v2.0.0-beta-ready/). The highlight features including:
+Kyligence Enterprise is built upon Apache Kylin core and is 100% compatible with Apache Kylin. Kyligence Enterprise 2.4 upgrades Apache Kylin to 2.0, and the complete Kylin release notes could be found on the [Kylin website](http://kylin.apache.org/blog/2017/02/25/v2.0.0-beta-ready/). The highlight features including:
 
 KYLIN-2467: Support TPCH queries
 
@@ -108,7 +108,7 @@ Support customized measure precision
 
 Easy to upgrade, all configurations are back-compatible
 
-KyAnalyzer access control is integrated with KAP backend
+KyAnalyzer access control is integrated with Kyligence Enterprise backend
 
 
 
@@ -134,4 +134,4 @@ KyAnalyzer access control is integrated with KAP backend
 
 #### **Download**
 
-The KAP 2.4 is available for download, please visit[ KAP Product ](http://kyligence.io/products/#kap)for more details.
+The Kyligence Enterprise 2.4 is available for download, please visit[ Kyligence Enterprise Product ](http://kyligence.io/products/#kap)for more details.

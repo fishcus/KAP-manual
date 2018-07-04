@@ -1,8 +1,8 @@
-## 	KAP 2.2 发行说明
+## 	Kyligence Enterprise 2.2 发行说明
 
-### KAP 2.2新功能
+### Kyligence Enterprise 2.2新功能
 
-下面的段落将介绍KAP 2.2新引进的功能
+下面的段落将介绍Kyligence Enterprise 2.2新引进的功能
 
 #### Hadoop发行版支持
 
@@ -26,7 +26,7 @@
 
 #### Apache Kylin Core 升级到1.6，支持流式构建Cube
 
-KAP基于Apache Kylin内核引擎，与Apache Kylin完全兼容，本次发布基于1.6.0版本，完整发布公告参见[链接](https://kylin.apache.org/docs16/release_notes.html)。主要新功能如下：
+Kyligence Enterprise基于Apache Kylin内核引擎，与Apache Kylin完全兼容，本次发布基于1.6.0版本，完整发布公告参见[链接](https://kylin.apache.org/docs16/release_notes.html)。主要新功能如下：
 
 1. 支持可伸缩的流式Cube构建，支持Kafka数据源。
 2. TopN性能增强

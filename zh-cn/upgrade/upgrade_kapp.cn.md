@@ -1,8 +1,8 @@
-## 从KAP Plus升级##
+## 从Kyligence Enterprise Plus升级##
 
-### 从KAP Plus 2.X升级至KAP Plus更高版本###
+### 从Kyligence Enterprise Plus 2.X升级至Kyligence Enterprise Plus更高版本###
 
-KAP Plus 2.X各版本之间兼容元数据。因此在从KAP Plus 2.X升级至更高版本时，无需对元数据进行升级，只需要覆盖软件包、更新配置文件并升级HBase协处理器即可。
+Kyligence Enterprise Plus 2.X各版本之间兼容元数据。因此在从Kyligence Enterprise Plus 2.X升级至更高版本时，无需对元数据进行升级，只需要覆盖软件包、更新配置文件并升级HBase协处理器即可。
 
 > 从旧版本升级前，请您务必确认已关闭所有自动执行的metadata clean和Storage cleanup CLI工具，以避免影响升级。
 
@@ -14,16 +14,16 @@ KAP Plus 2.X各版本之间兼容元数据。因此在从KAP Plus 2.X升级至�
    $KYLIN_HOME/bin/metastore.sh backup
    ```
 
-2. 停止正在运行的KAP Plus实例：
+2. 停止正在运行的Kyligence Enterprise Plus实例：
 
    ```shell
    $KYLIN_HOME/bin/kylin.sh stop
    ```
 
-3. 解压缩新版本的KAP Plus安装包。更新KYLIN_HOME环境变量值：
+3. 解压缩新版本的Kyligence Enterprise Plus安装包。更新KYLIN_HOME环境变量值：
 
    ```shell
-   tar -zxvf kap-{version-env}.tar.gz
+   tar -zxvf Kyligence Enterprise-{version-env}.tar.gz
    export KYLIN_HOME=...
    ```
 
@@ -43,7 +43,7 @@ KAP Plus 2.X各版本之间兼容元数据。因此在从KAP Plus 2.X升级至�
 
    > 注意：1. setenv.sh的目录发生了改变 2. 不允许直接拷贝-替换配置文件
 
-5. 如果是从<2.4.0 的KAP Plus版本进行升级，需要对ACL数据进行迁移，执行下述命令：
+5. 如果是从<2.4.0 的Kyligence Enterprise Plus版本进行升级，需要对ACL数据进行迁移，执行下述命令：
 
    ```shell
    $KYLIN_HOME/bin/kylin.sh org.apache.kylin.tool.AclTableMigrationCLI MIGRATE
@@ -51,9 +51,9 @@ KAP Plus 2.X各版本之间兼容元数据。因此在从KAP Plus 2.X升级至�
 
 6. 确认License：
 
-   在新版本的KAP Plus安装目录下`$KYLIN_HOME`确认License。
+   在新版本的Kyligence Enterprise Plus安装目录下`$KYLIN_HOME`确认License。
 
-7. 如果是从<3.0的KAP Plus版本进行升级，请确保您的JDK的版本是**1.8**。
+7. 如果是从<3.0的Kyligence Enterprise Plus版本进行升级，请确保您的JDK的版本是**1.8**。
 
     对于集群内**单节点**升级JDK1.8，需要将每个节点放置一个jdk1.8的目录（如`/usr/java/jdk1.8`）同时需要进行以下操作：
 
@@ -80,13 +80,13 @@ KAP Plus 2.X各版本之间兼容元数据。因此在从KAP Plus 2.X升级至�
         </property>
      ```
 
-8. 启动KAP Plus实例：
+8. 启动Kyligence Enterprise Plus实例：
 
-    如果是从<3.0的版本升级到最新版本，KAP第一次启动的时候会进行元数据备份和字典升级。
+    如果是从<3.0的版本升级到最新版本，Kyligence Enterprise第一次启动的时候会进行元数据备份和字典升级。
 
     **注意事项：在升级之前请确保没有处于构建状态的segment，构建状态包括等待、运行、错误和暂停。 **
 
-    升级过程会在KAP启动时自动进行，同时cube文件夹下面所有的cube json文件将会被自动备份。升级成功后将会提示 “Segments have been upgraded successfully.”，失败则会提示“Upgrade failed. Please try to run `bin/kylin.sh io.kyligence.kap.tool.migration.ProjectDictionaryMigrationCLI FIX` to fix. ”。
+    升级过程会在Kyligence Enterprise启动时自动进行，同时cube文件夹下面所有的cube json文件将会被自动备份。升级成功后将会提示 “Segments have been upgraded successfully.”，失败则会提示“Upgrade failed. Please try to run `bin/kylin.sh io.kyligence.kap.tool.migration.ProjectDictionaryMigrationCLI FIX` to fix. ”。
 
     如果升级过程出错，例如字典升级失败等，请运行`bin/kylin.sh io.kyligence.kap.tool.migration.ProjectDictionaryMigrationCLI FIX` 进行修复。修复成功后，将会看到“Segments have been upgraded successfully”提示。如修复失败，请您联系Kyligence Support。
 

@@ -1,8 +1,8 @@
-## KAP 2.1 Release Notes
+## Kyligence Enterprise 2.1 Release Notes
 
-### KAP 2.1 Highlight Features
+### Kyligence Enterprise 2.1 Highlight Features
 
-The highlight features introduced by KAP 2.1 are as follow:
+The highlight features introduced by Kyligence Enterprise 2.1 are as follow:
 
 #### Hadoop Distribution Support
 
@@ -26,7 +26,7 @@ Compatible distributions:
 
 #### Apache Kylin Core Upgrade
 
-KAP is based on core engine of the Apache Kylin, thus is totally compatible with the Apache Kylin. This release is based on the Apache Kylin 1.5.4.1. Please find the complete release announcement through the [Link](http://kylin.apache.org/docs15/release_notes.html).
+Kyligence Enterprise is based on core engine of the Apache Kylin, thus is totally compatible with the Apache Kylin. This release is based on the Apache Kylin 1.5.4.1. Please find the complete release announcement through the [Link](http://kylin.apache.org/docs15/release_notes.html).
 
 The highlight features including:
 
@@ -50,7 +50,7 @@ KyAnalyzer is a multi-dimension agile BI tool developed by Kyligence.
 
 The main updates including:
 
-1. Realize sync KAP/Kylin data model by one click. The process of metadata synchronization is optimized and there is no need to redefine Data Source.
+1. Realize sync Kyligence Enterprise/Kylin data model by one click. The process of metadata synchronization is optimized and there is no need to redefine Data Source.
 2. Support Distinct Count query／TopN query
 3. Support report sharing and export
 
@@ -58,11 +58,11 @@ The main updates including:
 
 KyBot is an online intelligent diagnosis and optimization service provided by Kyligence, which provides monitoring, cube optimizing, intelligent diagnosis and ticket service. 
 
-KyBot client aims to simplify the operating and maintaining information collection by administrator to reduce operation cost. KAP 2.1 integrated KyBot client.
+KyBot client aims to simplify the operating and maintaining information collection by administrator to reduce operation cost. Kyligence Enterprise 2.1 integrated KyBot client.
 
 #### More Enterprise-Level Features
 
-1. Support cell level access control. KAP 2.1 breaks the limitation that Apache Kylin can only support the project and cube level access control. It provides cell level access control capability, allows integrating with user existing AAA system, thus managing the access rights for rows, columns, and cells.
+1. Support cell level access control. Kyligence Enterprise 2.1 breaks the limitation that Apache Kylin can only support the project and cube level access control. It provides cell level access control capability, allows integrating with user existing AAA system, thus managing the access rights for rows, columns, and cells.
 2. Support Percentile and more advanced analysis functions
 
 ### Download link

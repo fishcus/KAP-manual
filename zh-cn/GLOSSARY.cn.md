@@ -1,8 +1,8 @@
 ## Table 
-表， 是Cube的数据源；在创建Cube之前，KAP需要从数据源（通常为Hive）同步表的元数据，包含表名、列名、列属性等。
+表， 是Cube的数据源；在创建Cube之前，Kyligence Enterprise需要从数据源（通常为Hive）同步表的元数据，包含表名、列名、列属性等。
 
 ## Data Model
-数据模型，定义了由若干张表的一个连接关系。KAP支持[星型模型](https://en.wikipedia.org/wiki/Star_schema)的多维分析；在创建Cube之前，用户需定义这么一个数据模型。
+数据模型，定义了由若干张表的一个连接关系。Kyligence Enterprise支持[星型模型](https://en.wikipedia.org/wiki/Star_schema)的多维分析；在创建Cube之前，用户需定义这么一个数据模型。
 
 ## Cube
 数据立方体，是一种多维分析的技术，通过预计算，将计算结果存储在某多个维度值所映射的空间中；在运行时通过对Cube的再处理而快速获取结果。

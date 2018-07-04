@@ -1,6 +1,6 @@
-## KAP 2.4 Release Notes
+## Kyligence Enterprise 2.4 Release Notes
 
-近期我们发布了KAP v2.4，在该版本中，KAP全面升级为**HOLAP（Hybrid OLAP）**架构，进一步支持主流SQL on Hadoop技术，满足更多分析场景。同时KAP v2.4丰富了语义层的表达能力，支持了**雪花模型（Snowflake）**， 引入了**可计算列（Computed Column）**，以支持用户将复杂的商业逻辑转化为合适的数据模型 。
+近期我们发布了Kyligence Enterprise v2.4，在该版本中，Kyligence Enterprise全面升级为**HOLAP（Hybrid OLAP）**架构，进一步支持主流SQL on Hadoop技术，满足更多分析场景。同时Kyligence Enterprise v2.4丰富了语义层的表达能力，支持了**雪花模型（Snowflake）**， 引入了**可计算列（Computed Column）**，以支持用户将复杂的商业逻辑转化为合适的数据模型 。
 
 
 
@@ -8,13 +8,13 @@
 
 **查询下压**
 
-**查询下压**特性使得KAP能够将Kylin Cube不支持的查询下压到其他SQL引擎，内置支持Spark SQL及Hive，未来将进一步支持其他SQL on Hadoop技术。在KAP可以支持高性能的亚秒级聚合查询的同时，进一步满足了灵活的探索式分析（Ad-Hoc）需求。
+**查询下压**特性使得Kyligence Enterprise能够将Kylin Cube不支持的查询下压到其他SQL引擎，内置支持Spark SQL及Hive，未来将进一步支持其他SQL on Hadoop技术。在Kyligence Enterprise可以支持高性能的亚秒级聚合查询的同时，进一步满足了灵活的探索式分析（Ad-Hoc）需求。
 
 ![Beyond OLAP](images/KAP24/Query_pushdown_CN.png)
 
 **无缝对接SQL on Hadoop技术**
 
-KAP支持与用户原有SQL on Hadoop技术的无缝对接，重用原有技术的分析能力，带来数据访问层的透明加速能力，结合KAP的预计算加速能力，为用户提供海量数据的交互式分析，为BI集成提供统一的查询接口和接入方式。
+Kyligence Enterprise支持与用户原有SQL on Hadoop技术的无缝对接，重用原有技术的分析能力，带来数据访问层的透明加速能力，结合Kyligence Enterprise的预计算加速能力，为用户提供海量数据的交互式分析，为BI集成提供统一的查询接口和接入方式。
 
 
 
@@ -46,7 +46,7 @@ Cube优化器根据源数据特征和用户常用SQL模式，推荐出优化的C
 
 **可计算列**
 
-支持用户自定义可计算列（Computed Column），将数据的抽取／转换／重定义等操作预先定义在模型中，增强数据模型语义层。将自定义计算列预置在模型中提前计算，以充分利用KAP的预计算能力，进一步提升查询效率。可计算列支持Hive UDF，可以重用已有的业务逻辑和代码。
+支持用户自定义可计算列（Computed Column），将数据的抽取／转换／重定义等操作预先定义在模型中，增强数据模型语义层。将自定义计算列预置在模型中提前计算，以充分利用Kyligence Enterprise的预计算能力，进一步提升查询效率。可计算列支持Hive UDF，可以重用已有的业务逻辑和代码。
 
 ![ Computed Column](images/KAP24/Computed_Column_CN.png)
 
@@ -134,4 +134,4 @@ KyAnalyzer集成KAP权限管理机制
 
 #### **产品下载**
 
-KAP已经开放下载试用，更多产品信息请见[KAP产品页面](http://kyligence.io/zh/)。
+Kyligence Enterprise已经开放下载试用，更多产品信息请见[Kyligence Enterprise产品页面](http://kyligence.io/zh/)。

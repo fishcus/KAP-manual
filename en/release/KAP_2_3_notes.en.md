@@ -1,13 +1,13 @@
-## 	KAP 2.3 Release Notes
+## 	Kyligence Enterprise 2.3 Release Notes
 
-### KAP 2.3 Highlight Features
+### Kyligence Enterprise 2.3 Highlight Features
 
-The highlight features introduced by KAP 2.3 are as follow:
+The highlight features introduced by Kyligence Enterprise 2.3 are as follow:
 
 #### Intelligent Modeling Assistant
 
-1. In the modeling phase, KAP could provide users with proper dimension/measure settings according to its resource data structure in order to simplify modeling process and improve system usability. 
-2. Enhance data source statistics collecting efficiency. KAP can offer a lightweight sampling and stats collecting on extra large tables, providing data feature for modeling.
+1. In the modeling phase, Kyligence Enterprise could provide users with proper dimension/measure settings according to its resource data structure in order to simplify modeling process and improve system usability. 
+2. Enhance data source statistics collecting efficiency. Kyligence Enterprise can offer a lightweight sampling and stats collecting on extra large tables, providing data feature for modeling.
 
 #### Fully Optimized Storage Engine KyStorage
 
@@ -22,13 +22,13 @@ Enhance Kafka as a core data source, support one-click load Topic and streaming 
 
 #### Asynchronous Export Massive Result Set
 
-Support asynchronous query request, check query schedule and export 10 million level result set, so that KAP can be applied as data pre-treatment system.
+Support asynchronous query request, check query schedule and export 10 million level result set, so that Kyligence Enterprise can be applied as data pre-treatment system.
 
 
 #### Other updates including
 
 - Optimize diagnostic package generating and support one-click upload KyBot diagnostic package.
-- One-click promoting from Kylin to KAP.
+- One-click promoting from Kylin to Kyligence Enterprise.
 - Better Cube expansion ratio computing method.
 - Integration accessibility to Spark clusters in user environments and desired cluster management.
 - Support various Cloud Hadoop file systems used as Kylin working directory.

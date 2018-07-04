@@ -1,8 +1,8 @@
-## Upgrading from KAP Plus##
+## Upgrading from Kyligence Enterprise Plus##
 
-### Upgrading from KAP Plus 2.X to KAP Plus of higher versions###
+### Upgrading from Kyligence Enterprise Plus 2.X to Kyligence Enterprise Plus of higher versions###
 
-KAP Plus 2.X shares compatible metadata with other KAP Plus 2.X versions. Thus you could upgrade the system from KAP Plus 2.X to KAP Plus of higher versions by overwriting the software package, updating configuration files, and upgrading HBase coprocessors without upgrading the metadata unnecessarily. 
+Kyligence Enterprise Plus 2.X shares compatible metadata with other Kyligence Enterprise Plus 2.X versions. Thus you could upgrade the system from Kyligence Enterprise Plus 2.X to Kyligence Enterprise Plus of higher versions by overwriting the software package, updating configuration files, and upgrading HBase coprocessors without upgrading the metadata unnecessarily. 
 
 > Before upgrading from the older version, please ensure that all automated **metadata clean** and **storage cleanup CLI** tools are turned off to avoid the impact of the upgrade.
 
@@ -20,7 +20,7 @@ Please follow the steps below:
    $KYLIN_HOME/bin/kylin.sh stop
    ```
 
-3. Unzip the KAP Plus package of new version. Update the value of the environment variable KYLIN_HOME: 
+3. Unzip the Kyligence Enterprise Plus package of new version. Update the value of the environment variable KYLIN_HOME: 
 
    ```shell
    tar -zxvf kap-{version-env}.tar.gz
@@ -41,7 +41,7 @@ Please follow the steps below:
 
    > Watch out: 1. the folder for setenv.sh has changed. 2. Direct file copy-and-replace is not allowed.
 
-5. If you are upgrading from KAP Plus <2.4.0, you are required to migrate ACL data. Run commands below: 
+5. If you are upgrading from Kyligence Enterprise Plus <2.4.0, you are required to migrate ACL data. Run commands below: 
 
    ```shell
    $KYLIN_HOME/bin/kylin.sh org.apache.kylin.tool.AclTableMigrationCLI MIGRATE
@@ -49,7 +49,7 @@ Please follow the steps below:
 
 6. Confirm the License:
 
-   Confirm the license file in the new directory of KAP.
+   Confirm the license file in the new directory of Kyligence Enterprise.
 
 7. Please ensure the JDK version is *1.8*.
 
@@ -78,13 +78,13 @@ Please follow the steps below:
        </property>
    ```
 
-8. Start the KAP Plus instance:
+8. Start the Kyligence Enterprise Plus instance:
 
-   If you are upgrading from KAP Plus <3.0, the project dictionary will be upgraded and metadata will backup automatically in the upgrade process.
+   If you are upgrading from Kyligence Enterprise Plus <3.0, the project dictionary will be upgraded and metadata will backup automatically in the upgrade process.
 
    *Please ensure that there is no running job before you upgrade, which include running, pending, error, stopped*
 
-   The upgrade will be automatically started when you start KAP. Meanwhile, all the cube json files will backup. If the upgrade succeeded, it would notice that “Segments have been upgraded successfully." Otherwise, it would notice “Upgrade failed. Please try to run `bin/kylin.sh io.kyligence.kap.tool.migration.ProjectDictionaryMigrationCLI FIX` to fix. ”.
+   The upgrade will be automatically started when you start Kyligence Enterprise. Meanwhile, all the cube json files will backup. If the upgrade succeeded, it would notice that “Segments have been upgraded successfully." Otherwise, it would notice “Upgrade failed. Please try to run `bin/kylin.sh io.kyligence.kap.tool.migration.ProjectDictionaryMigrationCLI FIX` to fix. ”.
 
    If there is something wrong in the upgrade process, please run the following command line to fix `bin/kylin.sh io.kyligence.kap.tool.migration.ProjectDictionaryMigrationCLI FIX` . If the fix command did not work, please contact Kyligence Support.
 

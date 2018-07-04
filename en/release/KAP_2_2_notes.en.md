@@ -1,8 +1,8 @@
-## KAP 2.2 Release Notes
+## Kyligence Enterprise 2.2 Release Notes
 
-### KAP 2.2 Highlight Features
+### Kyligence Enterprise 2.2 Highlight Features
 
-The highlight features introduced by KAP 2.2 are as follow:
+The highlight features introduced by Kyligence Enterprise 2.2 are as follow:
 
 #### Hadoop Distribution Support
 
@@ -26,7 +26,7 @@ Compatible distributions:
 
 #### Apache Kylin Core Upgrade: Support Scalable Streaming Cubing
 
-KAP is based on core engine of the Apache Kylin, thus is totally compatible with the Apache Kylin. This release is based on the Apache Kylin 1.6.0. Please find the complete release announcement through the [Link](https://kylin.apache.org/docs16/release_notes.html).
+Kyligence Enterprise is based on core engine of the Apache Kylin, thus is totally compatible with the Apache Kylin. This release is based on the Apache Kylin 1.6.0. Please find the complete release announcement through the [Link](https://kylin.apache.org/docs16/release_notes.html).
 
 The highlight features including:
 
@@ -36,7 +36,7 @@ The highlight features including:
 
 #### Enhanced Source Statistic
 
-Introduced Source Statistic. KAP collects statistic information from data source, including column cardinality, Null number, min/max value, character value and sample data, and it supports for Hive table and view.
+Introduced Source Statistic. Kyligence Enterprise collects statistic information from data source, including column cardinality, Null number, min/max value, character value and sample data, and it supports for Hive table and view.
 
 #### Enhanced Modeling Assistant
 

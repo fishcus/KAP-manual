@@ -1,8 +1,8 @@
-## KAP 2.0 发行说明
+## Kyligence Enterprise 2.0 发行说明
 
-### KAP 2.0新功能
+### Kyligence Enterprise 2.0新功能
 
-下面的段落将介绍KAP 2.0新引进的功能
+下面的段落将介绍Kyligence Enterprise 2.0新引进的功能
 
 #### Hadoop发行版支持
 
@@ -12,7 +12,7 @@
 
 #### Apache Kylin Core 升级
 
-KAP基于Apache Kylin内核引擎，与Apache Kylin完全兼容，本次发布基于1.5.3版本，完整发布公告参见[链接](http://kylin.apache.org/docs15/release_notes.html)。
+Kyligence Enterprise基于Apache Kylin内核引擎，与Apache Kylin完全兼容，本次发布基于1.5.3版本，完整发布公告参见[链接](http://kylin.apache.org/docs15/release_notes.html)。
 
 主要新功能如下：
 
@@ -37,10 +37,10 @@ KyAnalyzer是Kyligence研发的敏捷BI自助多维分析工具。
 
 主要新功能如下：
 
-1. 支持导入KAP中的Cube定义
+1. 支持导入Kyligence Enterprise中的Cube定义
 2. 提供元数据编辑器，允许在线编辑所导入的Cube定义
-3. 发布KAP兼容的kylin-mondrian插件
-4. 集成了KAP访问认证系统
+3. 发布Kyligence Enterprise兼容的kylin-mondrian插件
+4. 集成了Kyligence Enterprise访问认证系统
 5. 支持MDX语法
 
 #### 更多企业级功能更新

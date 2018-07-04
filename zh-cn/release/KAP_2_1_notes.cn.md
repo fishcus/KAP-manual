@@ -1,8 +1,8 @@
-## 	KAP 2.1 发行说明
+## 	Kyligence Enterprise 2.1 发行说明
 
-### KAP 2.1新功能
+### Kyligence Enterprise 2.1新功能
 
-下面的段落将介绍KAP 2.1新引进的功能
+下面的段落将介绍Kyligence Enterprise 2.1新引进的功能
 
 #### Hadoop发行版支持
 
@@ -26,7 +26,7 @@
 
 #### Apache Kylin Core 升级
 
-KAP基于Apache Kylin内核引擎，与Apache Kylin完全兼容，本次发布基于1.5.4.1版本，完整发布公告参见[链接](http://kylin.apache.org/docs15/release_notes.html)。主要新功能如下：
+Kyligence Enterprise基于Apache Kylin内核引擎，与Apache Kylin完全兼容，本次发布基于1.5.4.1版本，完整发布公告参见[链接](http://kylin.apache.org/docs15/release_notes.html)。主要新功能如下：
 
 1. 支持SQL Window操作
 2. 支持SQL Grouping Sets操作
@@ -54,9 +54,9 @@ KyAnalyzer是Kyligence研发的敏捷BI自助多维分析工具。
 
 #### KyBot客户端整合
 
-KyBot是Kyligence提供的在线智能诊断和优化服务，为Apache Kylin和KAP系统提供监控、性能优化、智能诊断服务。
+KyBot是Kyligence提供的在线智能诊断和优化服务，为Apache Kylin和Kyligence Enterprise系统提供监控、性能优化、智能诊断服务。
 
-KyBot客户端简化运维人员收集运行状态信息，降低运维成本。KAP 2.1集成了KyBot客户端。
+KyBot客户端简化运维人员收集运行状态信息，降低运维成本。Kyligence Enterprise 2.1集成了KyBot客户端。
 
 #### 更多企业级功能更新
 

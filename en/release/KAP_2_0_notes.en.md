@@ -1,8 +1,8 @@
-## KAP 2.0 Release Notes
+## Kyligence Enterprise 2.0 Release Notes
 
-### KAP 2.0 Highlight Features
+### Kyligence Enterprise 2.0 Highlight Features
 
-The highlight features introduced by KAP 2.0 are as follows:
+The highlight features introduced by Kyligence Enterprise 2.0 are as follows:
 
 #### Hadoop Distribution Certification Support
 
@@ -22,7 +22,7 @@ Compatible distributions:
 
 #### Apache Kylin Core Upgrade
 
-KAP is based on core engine of Apache Kylin, thus is totally compatible with the Apache Kylin. This release is based on the Apache Kylin 1.5.3. Please find the complete release announcement through the [link](http://kylin.apache.org/docs15/release_notes.html).
+Kyligence Enterprise is based on core engine of Apache Kylin, thus is totally compatible with the Apache Kylin. This release is based on the Apache Kylin 1.5.3. Please find the complete release announcement through the [link](http://kylin.apache.org/docs15/release_notes.html).
 
 The highlight features including:
 
@@ -39,7 +39,7 @@ KyStorage is a columnar storage engine based on HDFS and developed by Kyligence 
 
 The main updates including:
 
-1. Compared with Apache Kylin, KAP improves query performance from 3 to 40 times and reduces over 50%  storage space.
+1. Compared with Apache Kylin, Kyligence Enterprise improves query performance from 3 to 40 times and reduces over 50%  storage space.
 2. It supports multiplexed indexes, specially optimizes for ultra-high cardinality dimensions and complex filtering conditions.
 
 #### KyAnalyzer: Agile Self-serve OLAP BI Tool
@@ -48,10 +48,10 @@ KyAnalyzer is a self-serve agile BI tool developed by Kyligence.
 
 The main updates including:
 
-1. Sync Cube's definition from KAP/Apache Kylin
+1. Sync Cube's definition from Kyligence Enterprise/Apache Kylin
 2. Online metadata editor 
-3. Kylin-mondrian component designed for KAP/Apache Kylin
-4. Integrate authentication with KAP/Apache Kylin
+3. Kylin-mondrian component designed for Kyligence Enterprise/Apache Kylin
+4. Integrate authentication with Kyligence Enterprise/Apache Kylin
 5. Support MDX syntax
 
 #### More Enterprise Level Features

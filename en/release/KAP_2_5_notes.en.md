@@ -1,12 +1,12 @@
-## KAP 2.5 Release Note
+## Kyligence Enterprise 2.5 Release Note
 
-KAP v2.5 is general available recently. This release introduces **multi-level access control and fine granularity**, which enhance enterprises security entirely and satisfie the requirements of enterprise customers and group customers for fine granularity access control and user permissions. Meanwhile, KAP v2.5 enriches intelligent modeling assistance, enables to generate models automatically through SQL patterns, and supports **various storage optimization strategies**. In addition,  introducing a new highlight, **SQL validation**, enable the quick response to the varied business analysis demand.
+Kyligence Enterprise v2.5 is general available recently. This release introduces **multi-level access control and fine granularity**, which enhance enterprises security entirely and satisfie the requirements of enterprise customers and group customers for fine granularity access control and user permissions. Meanwhile, Kyligence Enterprise v2.5 enriches intelligent modeling assistance, enables to generate models automatically through SQL patterns, and supports **various storage optimization strategies**. In addition,  introducing a new highlight, **SQL validation**, enable the quick response to the varied business analysis demand.
 
 ### Enhanced Enterprise-level Security
 
 **Multi-level Access Control**
 
-KAP v2.5 provides a comprehensive access control system. Control your data access on different granularity as project level, table level, column level and row level.
+Kyligence Enterprise v2.5 provides a comprehensive access control system. Control your data access on different granularity as project level, table level, column level and row level.
 
 **Project-level and Table-level Access Control**
 
@@ -24,7 +24,7 @@ The new release supports automatic model generation through SQL. Once a source t
 
 **Rapid SQL Validation**
 
-Without buliding, KAP V2.5 can rapidly validate if a model meets the needs of business query SQL after modeling, thus responding to the changing business analysis requirements fastly. 
+Without buliding, Kyligence Enterprise V2.5 can rapidly validate if a model meets the needs of business query SQL after modeling, thus responding to the changing business analysis requirements fastly. 
 
 **Various Cube Optimization Strategies**
 
@@ -34,7 +34,7 @@ Cube optimizer offers various strategies. Priority Strategy takes full advantage
 
 The new release also provides much richer sample data and streaming data model, facilitating to rapidly validate the integration with streaming datasource. 
 
-KyAnalyzer reads the KAP license directly and does not require a separate license file.
+KyAnalyzer reads the Kyligence Enterprise license directly and does not require a separate license file.
 
 ### Hadoop Distribution Support
 
@@ -58,4 +58,4 @@ KyAnalyzer reads the KAP license directly and does not require a separate licens
 
 ### Download
 
-KAP V2.5 is available for download. Please visit [KAP Products](http://en.kyligence.io/assets/views/products) for more information.
+Kyligence Enterprise V2.5 is available for download. Please visit [Kyligence Enterprise Products](http://en.kyligence.io/assets/views/products) for more information.
