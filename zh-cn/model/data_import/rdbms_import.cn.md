@@ -1,10 +1,25 @@
-##RDBMS数据源配置
+### RDBMS数据源配置
 
-KAP从3.0开始支持RDBMS作为数据源。连接RDBMS数据源，首先需要下载JDBC驱动程序jar包和SDK jar包，并把jar包放置在`$KYLIN_HOME/ext`目录下。此外，因为Cube构建过程需要使用**sqoop**，还需要把jar包拷贝到sqoop安装目录的lib目录下。
+本产品从3.0版本开始支持RDBMS作为数据源。
 
-> 如您需要下载SDK jar包，请联系Kyligence Support。
+### 准备工作
 
-以下参数需要您配置在需要连接RDBMS数据源的**项目配置**或`kylin.properties`中：
+连接RDBMS数据源，需要先完成相关驱动程序下载准备工作
+
+- 下载各RDBMS官方JDBC驱动程序jar包
+- 下载Kyligence特定的SDK jar包（如果有特殊RDBMS支持，需要下载SDK jar包，请联系Kyligence Support）
+- 拷贝相关jar包放置在`$KYLIN_HOME/ext`目录下
+- 拷贝相关jar包放置sqoop安装目录的lib目录下
+
+> 注释：因为Cube构建过程需要使用**sqoop**，所以需要自行配置JDBC至sqoop安装路径/lib目录下。
+
+
+
+### 连接参数配置
+
+用户通过**项目配置**或**全局配置** 进行参数设置：
+
+> 说明：全局配置文件默认在安装路径下/conf目录的`kylin.properties`配置文件
 
 | 参数名                           | 解释                                             |
 | -------------------------------- | ------------------------------------------------ |
@@ -13,7 +28,7 @@ KAP从3.0开始支持RDBMS作为数据源。连接RDBMS数据源，首先需要�
 | kylin.source.jdbc.user           | JDBC连接用户名                                   |
 | kylin.source.jdbc.pass           | JDBC连接密码                                     |
 | kylin.source.jdbc.dialect        | JDBC方言（目前仅支持default、greenplum两种方言） |
-| kylin.source.default             | JDBC使用的数据源种类（RDBMS和Greenplum为16）     |
+| kylin.source.default             | JDBC使用的数据源种类（RDBMS种类代码为16）        |
 | kylin.source.jdbc.adaptor        | JDBC连接的数据源对应的适配器                     |
 
 如果需要开启查询下压，还需要配置以下参数：
@@ -22,23 +37,23 @@ KAP从3.0开始支持RDBMS作为数据源。连接RDBMS数据源，首先需要�
 
 > 注：除以上项目配置项外，还需要在`kylin.properties`中添加kylin.source.jdbc.sqoop-home=<sqoop_path>，其中sqoop_path为sqoop命令所在的文件。
 
-### 创建项目
+### 创建基于RDBMS数据源的项目
 
-以SQL Server数据源为例，我们使用PostgreSQL JDBC Driver来连接SQL Server数据源，步骤如下：
+以Greenplum数据源为例，我们使用 JDBC Driver来连接，步骤如下：
 
-1. 下载PostgreSQL JDBC Driver和SDK的jar包，放置在`$KYLIN_HOME/ext`和sqoop安装目录的lib目录下。
-2. 打开KAP的Web UI，在主界面的顶端是项目的管理工具栏，点击“＋”即可如下图所示创建一个新的项目（Project），例如命名该项目为KAP_Sample。 
-
-![新建项目](images/rdbm_import.cn.png)
-
-3. 在Web UI的左上角选择刚刚创建的项目，表示我们接下来的全部操作都在这个项目中，在当前项目的操作不会对其他项目产生影响。 
+1. 登录本产品的Web UI
+2. 主界面顶端左侧的项目管理工具栏中，点击加号 **“＋” ** 以新建项目
+3. 在弹出的窗口中，输入**项目名称** （必选）和 **项目描述**, 点击 **确定** 按钮，完成项目创建。
+4. 进入具体项目**建模** 功能， 选择 **数据源** 选项卡
+5. 点击蓝色的**数据源**按钮
+6. 在弹出窗口中， 选择 **RDBMS**类型作为数据源类型， 如下图所示
 
 ![选择RDBMS数据源](images/rdbms_import2.cn.png)
 
 4. 在项目配置中添加以下配置：
 
 ```
-kylin.source.jdbc.driver=com.microsoft.sqlserver.jdbc.SQLServerDriver
+kylin.source.jdbc.driver=com.pivotal.jdbc.GreenplumDriver
 kylin.source.jdbc.connection-url=jdbc:sqlserver://<HOST>:<PORT>;database=<DATABASE_NAME>
 kylin.source.jdbc.user=<username>
 kylin.source.jdbc.pass=<password>
@@ -49,14 +64,6 @@ kylin.source.jdbc.sqoop-home=/usr/hdp/current/sqoop-client/bin
 kylin.source.jdbc.adaptor=io.kyligence.kap.sdk.datasource.adaptor.MssqlAdapter
 ```
 
-5. 配置完成之后，就可以通过KAP界面连接SQL Server数据源了。
+5. 点击 **下一步** 按钮，进入 **加载表元数据** 窗口， 用户可按需在左侧表清单中， 单击选中需要建模的表。
+6. 点击右下方 **同步** 按钮进行加载
 
-### 同步RDBMS表
-
-选择数据源为RDBMS后，通过点击“Table”来加载我们所需要的表，如下图所示：![加载表元数据](images/rdbm_import3.cn.png)
-
-在弹出的对话框中展开ssb数据集，并选择需要的表，如图所示：
-
-![加载表并采样](images/rdbm_import4.cn.png)
-
-勾选采样，导入后系统会自动计算各表各列的维数，以掌握数据的基本情况。稍等几分钟后，我们可以通过数据源表的详情页查看这些信息。
