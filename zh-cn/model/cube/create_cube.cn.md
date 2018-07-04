@@ -1,9 +1,9 @@
 ## 创建 Cube
 
-本文将以KAP自带的样例数据(learn_kylin)为例，介绍Cube的创建过程。
+本文将产品自带的样例数据(learn_kylin)为例，介绍Cube的创建过程。
 
 
-打开KAP的Web UI，首先选择learn_kylin项目，这里我们创建一个新的cube命名为kylin_sales_cube_1。
+打开产品的Web UI，首先选择learn_kylin项目，这里我们创建一个新的cube命名为kylin_sales_cube_1。
 
 ![](images/createcube_1.png)
 
