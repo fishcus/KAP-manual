@@ -59,7 +59,6 @@
         * [Import Hive Data Source](model/data_import/hive_import.en.md)
         * [Import Kafka Data Source](model/data_import/kafka_import.en.md)
         * [Import RDBMS Data Source](model/data_import/rdbms_import.en.md)
-        * [Import Greenplum Data Source](model/data_import/gp_import.en.md)
     * [Data Sampling](model/data_sampling.en.md)
     * [Model Design](model/data_modeling.en.md)
     * [Multi-partition Model](model/multi_partition.en.md)
