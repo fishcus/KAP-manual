@@ -19,19 +19,19 @@ jdbc:kylin://<hostname>:<port>/<project_name>
 ```
 URL参数说明如下：
 
-- **\<hostname\>**:主机名
+- &lt;hostname&gt;:主机名
 
-* **\<port\>**： 端口号，如果本产品部署启用了SSL安全认证服务，则应该使用相关HTTPS端口号
+* &lt;port&gt;： 端口号，如果本产品部署启用了SSL安全认证服务，则应该使用相关HTTPS端口号
 
-* **\<project_name\>**:  必须指定具体项目名称，并且确认该项目在服务中存在
+* &lt;project_name&gt;:  必须指定具体项目名称，并且确认该项目在服务中存在
 
   
 
 其他配置参数如下：
 
-* **\<user\>**: 	登陆服务实例的用户名
-* **\<password\>**: 登陆服务实例的密码
-* **\<ssl\>**: 是否开启SSL， 值为布尔型 true/false. 默认为false，如果是true，所有Kyligence的访问都将基于HTTPS
+* &lt;user&gt;: 	登陆服务实例的用户名
+* &lt;password&gt;: 登陆服务实例的密码
+* &lt;ssl&gt;: 是否开启SSL， 值为布尔型 true/false. 默认为false，如果是true，所有Kyligence的访问都将基于HTTPS
 
 JAVA配置连接样例：
 

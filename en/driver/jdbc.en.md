@@ -9,15 +9,15 @@ KAP JDBC driver follows the JDBC standard interface, users can specify the KAP s
 ```
 jdbc:kylin://<hostname>:<port>/<project_name>
 ```
-* If KAP service start SSL, then JDBC should use the HTTPS port of the KAP service 
-* If port has not been specified, then JDBC driver would use default port of HTTP and HTTPS 
-* project_name is required, users have to ensure the project exist in KAP service 
+* &lt;hostname&gt; : If KAP service start SSL, then JDBC should use the HTTPS port of the KAP service 
+* &lt;port&gt;: If port has not been specified, then JDBC driver would use default port of HTTP and HTTPS 
+* &lt;project_name&gt; : Required. users have to ensure the project exist in KAP service 
 
 Besides, users need to specify username, password and whether SSL would be true for connection, these properties are as follow: 
 
-* user: username to login KAP service
-* password: password to login KAP service
-* ssl: true/false. Default is false, if it is true, all accesses to KAP are based on HTTPS
+* &lt;user&gt;: username to login KAP service
+* &lt;password&gt;: password to login KAP service
+* &lt;ssl&gt;: true/false. Default is false, if it is true, all accesses to KAP are based on HTTPS
 
 Here lists an example of Connection: 
 
