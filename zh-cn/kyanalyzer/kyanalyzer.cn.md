@@ -22,8 +22,8 @@ KyAnalyzer 无缝集成 KAP (Kylin)，便于用户以最简单、快捷的方式
 
 3. KyAnalyzer 依赖于 mondrian 的 jar 包，为了符合其开源协议，需要单独下载并拷贝。
    * 对于 KyAnalyzer V2.1.3 及之前的版本，需要单独下载[ mondrian-kylin-1.2.jar ]( https://github.com/Kyligence/kylin-mondrian/blob/master/build/mondrian-kylin-1.2.jar )包，并拷贝至 kyanalyzer-server-{version}/tomcat/webapps/saiku/WEB-INF/lib 下
-   * 对于 KyAnalyzer V2.1.3 以上的版本，启动脚本会自动下载所需的 mondrian 包并将它拷贝至 tomcat 下
-   * 在无网络环境下安装 KyAnalyzer V2.5.0-2.5.1 版本时，可通过访问链接 [mondrian-kylin-2.0.jar](https://github.com/Kyligence/kylin-mondrian/blob/master/build/mondrian-kylin-2.0.jar) 下载 jar 包，并将它拷贝至 kyanalyzer-server-{version}/tomcat/webapps/saiku/WEB-INF/lib 下。安装 KyAnalyzer V2.5.4 及以上版本时，可通过访问链接 [mondrian-kylin-2.1.jar](https://github.com/Kyligence/kylin-mondrian/blob/master/build/mondrian-kylin-2.1.jar)
+   * 对于 KyAnalyzer V2.1.3 以上的版本，在Linux环境下，启动脚本会自动下载所需的 mondrian 包并将它拷贝至 tomcat 下
+   * 在无网络环境或Windows下安装 KyAnalyzer V2.5.0-2.5.1 版本时，可通过访问链接 [mondrian-kylin-2.0.jar](https://github.com/Kyligence/kylin-mondrian/blob/master/build/mondrian-kylin-2.0.jar) 下载 jar 包，并将它拷贝至 kyanalyzer-server-{version}/tomcat/webapps/saiku/WEB-INF/lib 下。安装 KyAnalyzer V2.5.4 及以上版本时，可通过访问链接 [mondrian-kylin-2.1.jar](https://github.com/Kyligence/kylin-mondrian/blob/master/build/mondrian-kylin-2.1.jar)
    * ) 下载 jar 包，并将它拷贝至 kyanalyzer-server-{version}/tomcat/webapps/saiku/WEB-INF/lib 下
 
 4. 在 kyanalyzer-server-{version}/conf 目录下有个配置文件kyanalyzer.properties，需要在该文件中配置好 KAP 的 IP 及端口信息。kap.host 为 KAP 的 IP，默认为 localhost，kap.port 为 KAP REST API 的端口，默认为 7070。有关 mondrian 的所有配置，可以参考 conf/mondrian.properties.template，配置到 mondrian.properties 中（注：在 KAP V2.2 之后，我们将 kap.host 及 kap.port 配置移到 kyanalyzer.properties 中，同时在 conf 下引入了mondrian.properties）。
