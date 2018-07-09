@@ -1,56 +1,58 @@
 ## Import Hive Data Source
 
-Currently, Hive is the default input data source of KAP. In order to use the sample data, it needs to be imported as Hive tables. In the `bin` folder of KAP installation directory, there is an executable script, run it to import the sample data into Hive：```$KYLIN_HOME/bin/sample.sh``` 
+Kyligence Enterprise supports accessing *Hive* tables. 
 
-> Tips: After sample.sh is run, it is necessary to click **Reload Metadata** under the **System** page. Otherwise, errors will occur during data modeling. 
+This charpter will introduce how to access hive tables as data source. Following are the intructions.
 
-Once the script is executed successfully, try some commands in Hive shell to confirm the tables are loaded.
+### Prepare Sample Datasets
+
+You can import the sample data Kyligence Enterprise provided into Hive using executable scripts.
+
+The script is `sample.sh.`. Its default storage path is the bin directory under system installation.
+
+```shell
+$KYLIN_HOME/bin/sample.sh
+```
+
+> Tips: After sample.sh is run, it is required to choose **Reload Metadata** under the **System** page. Otherwise, there will be errors in data modeling. 
+
+Once the script is finished, excuate commands in Hive shell to confirm the tables are imported successfully.
 
 ```hive
 hive
-hive> show tables;
-OK
-kylin_cal_dt
-kylin_category_groupings
-kylin_sales
-Time taken: 0.127 seconds, Fetched: 3 row(s)
-hive> select count(*) from kylin_sales;
-Query ID = root_20160707221515_b040318d-1f08-44ab-b337-d1f858c46d7d
-Total jobs = 1
-Launching Job 1 out of 1
-Number of reduce tasks determined at compile time: 1
-In order to change the average load for a reducer (in bytes):
-  set hive.exec.reducers.bytes.per.reducer=<number>
-In order to limit the maximum number of reducers:
-  set hive.exec.reducers.max=<number>
-In order to set a constant number of reducers:
-  set mapreduce.job.reduces=<number>
-Starting Job = job_1467288198207_0129, Tracking URL = http://sandbox.hortonworks.com:8088/proxy/application_1467288198207_0129/
-Kill Command = /usr/hdp/2.2.4.2-2/hadoop/bin/hadoop job  -kill job_1467288198207_0129
-Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
-2016-07-07 22:15:11,897 Stage-1 map = 0%,  reduce = 0%
-2016-07-07 22:15:17,502 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 1.64 sec
-2016-07-07 22:15:25,039 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 3.37 sec
-MapReduce Total cumulative CPU time: 3 seconds 370 msec
-Ended Job = job_1467288198207_0129
-MapReduce Jobs Launched:
-Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 3.37 sec   HDFS Read: 505033 HDFS Write: 6 SUCCESS
-Total MapReduce CPU Time Spent: 3 seconds 370 msec
-OK
-10000
-Time taken: 24.966 seconds, Fetched: 1 row(s)
 ```
 
-### Create Project
+Check the imported hive tables.
 
-In KAP, project is the workspace of tables, models and cubes. To create a sample project, open the web UI of KAP and click the plus icon at the top to create a new project like below.![](images/dataimport_1.png)
+```shell
+hive> show tables;
+```
 
-Select the project you just created on the upper corner of the web UI, all our following operations will be within the project.![](images/dataimport_2.png)
+Check the details of imported hive tables.
 
-### Synchronize Hive Table
+```shell
+hive> select count(*) from kylin_sales;
+```
 
-Hive tables need to be synchronized into KAP before they can be used. To make things easy, we synchronize by using following button to load the Hive table.![](images/dataimport_3.png)
+### Create Project with Hive Data Source
 
-In the dialog box, expand the default database and select the desired five tables.![](images/dataimport_4.png)
+1. log in on Kyligence Enterprise Web UI
+2. add a new project by clicking the `+` at the top right on Web UI.
+3. type project name (required) and dscriptions on the pop up page; click `OK` to finish creating a project.
+4. select `Data Source` under *Studio* section of  your project.
+5. click the blue `Data Source` button.
+6. select Hive as data source (as shown below).
 
-After importing, the system will automatically scan the tables to collect basic statistics of the data. Wait a few minutes, we can view the details under the "Data Source" tab.![](images/dataimport_5.png)
+![](images/dataimport_3.png)
+
+7. click `NEXT` and enter the *Load Hive Table Metadata* page; you can select tables you want from *Hive Table* on the left.
+
+8. click `sync` to load the data. 
+
+   ![](images/dataimport_4.png)
+
+   > By default, Kyligence Enterprise does not select data sample. Users have options to do it and select sample size.
+
+9. once done synchronizing, select specific tables and see the details under *Data Source* section.
+
+![](images/dataimport_5.png)
