@@ -2,7 +2,7 @@
 
 在创建好Cube之后，只有对Cube进行构建，才能利用它执行SQL查询。本文以本产品自带样例数据为例，介绍Cube构建的过程。
 ####	初次构建
-首先打开本产品的Web UI，并选择learn_kylin项目，然后跳转到建模页面，找到Cube列表。在Cube列表中找到**Kylin_Sales_Cube**。单击右侧的**Action**按钮，在弹出的菜单中选择“**构建**（build）”。
+首先打开本产品的Web UI，并选择learn_kylin项目，然后跳转到建模页面，找到Cube列表。在Cube列表中找到**Kylin_Sales_Cube**。单击右侧的**Action**按钮，在弹出的菜单中选择**构建**（build）。
 
 ![](images/buildcube_0.png)
 
@@ -24,3 +24,25 @@
 待构建完成，我们可以在Cube的Segment界面中查看，发现Cube的两个Segment都已就绪。
 
 ![](images/buildcube_3.png)
+
+
+
+### 常见问题答疑
+
+1. 在构建Cube时，如果遇到 killed by admin错误。
+
+这个问题主要是由于使用Sandbox时，MR任务请求的内存过多，从而被YARN拒绝导致的。您可以通过修改“conf/kylin_job_conf_inmem.xml”配置，调低请求的内存大小来解决这个问题。​
+
+```properties
+<property>
+	    <name>mapreduce.map.memory.mb</name>
+	    <value>1072</value>
+	    <description></description>
+	</property>
+<property>
+    <name>mapreduce.map.java.opts</name>
+    <value>-Xmx800m</value>
+    <description></description>
+</property>
+```
+
