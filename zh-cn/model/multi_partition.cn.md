@@ -32,3 +32,5 @@
 4. Cube构建时，已有多级分区列的cube需要选择多级分区列与对应的时间分区列；
 
    ![Save multi-partition model](images/multi_partition/cube.cn.png)
+
+>注：可计算列在目前版本中不支持作为分区列
