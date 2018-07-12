@@ -209,7 +209,7 @@ curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.
 
 #### 请求参数
 * project - `必选` `String`  指定hive表将要加载到哪个项目
-* tables - `必选` `string` 你想要加载的hive表, 用逗号分隔
+* tables - `必选` `string[]` 你想要加载的hive表, 字符串数组形式
 
 #### 请求示例
 `请求路径: http://host:port/kylin/api/tables/load`
