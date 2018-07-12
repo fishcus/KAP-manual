@@ -10,7 +10,6 @@ Kyligence Enterprise 支持在版本为 V100R002C60U20 的 FusionInsight 环境�
 + HBase: 1.0.2
 + Hive: 1.3.0
 + Zookeeper: 3.5.1
-+ Spark: 1.5.1
 
 如果您需要在 FusionInsight 的环境下运行 Kyligence Enterprise，请选择 HBase 1.x 对应的发行版。
 
@@ -82,81 +81,9 @@ source /opt/hadoopclient/bigdata_env
 
    > kylin.source.hive.beeline-params 参数中需要配置的usr.keytab项应为具体的路径名，如 user.keytab\= ${KYLIN_HOME}/conf/user.keytab;
 
-### 替换Spark jar文件
-
-由于**Fusioninght C70** 中，Hadoop版本有升级，所以发布的Kyligence Enterprise HBase 1.x版本中部分Jar包不兼容。需要获取Hadoop环境中的Jar包替换Spark中jar包。
-
-具体的替换步骤如下：
-
-1. 拷贝FI环境中的 distcp jar 到 `${KYLIN_HOME}/lib` 下
-
-   `find /opt/hadoop_client/ | grep distcp`
-
-2. 拷贝FI环境中的 Hadoop 相关jar包，替换 `${KYLIN_HOME}/spark/jars` 下相同的jar包
-
-- 查找FI环境中的 Hadoop 相关的jar
-
-   `find /opt/hadoop_client/HBase/hbase | grep hadoop`
-
-- 查看 ${KYLIN_HOME}/spark/jars 相关的 jars 
-
-   `ls {KYLIN_HOME}/spark | grep hadoop`
-
-- 备份 {KYLIN_HOME}/spark/jars 包并替换 ${KYLIN_HOME}/spark/jars下的包
-
-  需要拷贝或替换的jar包有：
-
-  - hadoop-auth-2.6.4.jar
-
-  - hadoop-client-2.6.4.jar
-
-  - hadoop-common-2.6.4.jar
-
-  - hadoop-hdfs-2.6.4.jar
-
-  - hadoop-mapreduce-client-app-2.6.4.jar
-
-  - hadoop-mapreduce-client-common-2.6.4.jar
-
-  - hadoop-mapreduce-client-core-2.6.4.jar
-
-  - hadoop-mapreduce-client-jobclient-2.6.4.jar
-
-  - hadoop-mapreduce-client-shuffle-2.6.4.jar
-
-  - hadoop-yarn-api-2.6.4.jar
-
-  - hadoop-yarn-client-2.6.4.jar
-
-  - hadoop-yarn-common-2.6.4.jar
-
-  - hadoop-yarn-server-common-2.6.4.jar
-
-  - hadoop-yarn-server-web-proxy-2.6.4.jar
-
-    - > 此包需要拷贝到spark/jars中
-
-  - hadoop-hdfs-client-2.7.2.jar
-
-    - > 此包需要拷贝到spark/jars中
-
-  - htrace-core-3.1.0-incubating.jar
-
-    - > 此包需要拷贝到spark/jars中
-
-​
-
 ### 检查运行环境
 
 首次启动 Kyligence Enterprise 之前，Kyligence Enterprise 会对所依赖的环境进行检查。如果在检查过程中发现问题，您将在控制台中看到警告或错误信息。
-
-检查中遇到的一部分问题可能是由于无法有效获取环境依赖信息导致的。如果遇到这类问题，请您运行如下命令，显示指定 Kyligence Enterprise 获取环境依赖信息的途径：
-
-```properties
-export HIVE_CONF=HIVE_CLIENT_CONF //hive客户端的配置文件路径,不是hive路径
-export HCAT_HOME=HCATALOG_DIR
-export SPARK_HOME=$KYLIN_HOME/spark //对于 Kyligence Enterprise Plus 2.2 以上版本
-```
 
 > 提示：您可以在任何时候手动检查运行环境。运行下述命令：
 >
