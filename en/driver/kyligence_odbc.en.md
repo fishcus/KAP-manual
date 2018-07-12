@@ -1,8 +1,10 @@
 ## Kyligence ODBC Driver
 
-Kyligence ODBC Driver is a ODBC Driver developed by Kyligence. It enables all functions of the Apache Kylin ODBC Driver and only supports the connection to KAP. Applications with ODBC interface can access KAP through this driver.
+Kyligence Enterprise supports and provides ODBC Driver. 
 
-Kyligence ODBC Driver is a part of KAP Product line. The valid period of Kyligence ODBC Driver depends on that of KAP. 
+It enables all functions of the Apache Kylin ODBC Driver and only supports the connection to Kyligence Enterprise. 
+
+Kyligence ODBC Driver is a part of Kyligence Enterprise Product line. The valid period of Kyligence ODBC Driver depends on that of Kyligence Enterprise. 
 
 Currently, Kyligence ODBC Driver has following versions:
 
@@ -10,6 +12,6 @@ Currently, Kyligence ODBC Driver has following versions:
 - Linux 64bit (Beta)
 
 
-In following sections, we will introduce how to install and configure Kyligence ODBC driver.
+
 
 
