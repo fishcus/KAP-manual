@@ -16,6 +16,7 @@
         * [Install on Horontowrks HDP sandbox](install/quick_install_HDP.en.md)
         * [Install on MapR CDP sandbox](install/quick_install_MAPR.en.md)
         * [Install on MapR Cluster](install/quick_install_MapR_cluster.en.md)
+        * [Install on Huawei FI](install/quick_install_FI.en.md)
         * [Environment Check](install/check_env.en.md)
     * Cluster Deployment
         * [Load Balance Deployment](install/adv_install_lb.en.md)

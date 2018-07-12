@@ -1,54 +1,42 @@
-## Install KAP
+## Installation for Single Node
 
-### Deployment Architecture
+In this section, we will guide you to quickly install Kyligence Enterprise on single node.
 
-In general KAP deployed on a single node can serve small-scale (QPS<50) query and deployment process is easy and quick. The architecture of this deployment is shown in the following figure.
+### Download and Install Kyligence Enterprise
 
-![](images/single_node.png)
+1.Get Kyligence Enterprise software package. You can visit [Kyligence Enterprise Release Notes](../release/README.md) and choose the version that is suitable for you.
 
-Please take care of following configurations in Single Node Deployment especially deployed in Sandbox. `yarn.nodemanager.resource.cpu-vcores` relates to CPU resources, and others are memory related configurations. Please refer to [Hadoop official site](https://hadoop.apache.org/docs/r2.7.3/hadoop-yarn/hadoop-yarn-common/yarn-default.xml) for detailed info.
+2.Decides the path and the Linux account to run Kyligence Enterprise. All the examples below are based on the following assumptions:
 
-- yarn.nodemanager.resource.cpu-vcores
+- Suppose the installation path is `/usr/local/`.
+- Suppose the Linux account running Kyligence Enterprise is `root`, below referred to as "Linux account".
+- When installing, lease note that the above assumptions are replaced by the true installation path and Linux account. For example, the default user for the CDH sandbox is `cloudera`.
 
-- yarn.scheduler.maximum-allocation-mb
 
-- yarn.nodemanager.resource.memory-mb
-
-- mapreduce.map.memory.mb
-
-- mapreduce.reduce.memory.mb
-
-- mapreduce.map.java.opts
-
-- mapreduce.reduce.java.opts
-
-  ​
-
-### Install KAP
-
-To obtain KAP package, please refer to [KAP release notes](../release/README.md). There may have some minor differences between KAP and KAP plus. 
-
-Copy KAP binary package into the server mentioned above, and unpack to /usr/local
+3.Copy the Kyligence Enterprise software package to the server or virtual machine you need to install, and uninstall to the installation path.
 
 ```shell
 cd /usr/local
-tar -zxvf kap-{version}-{hbase}.tar.gz
+tar -zxvf Kyligence-Enterprise-{version}.tar.gz
 ```
-
-Set environment variable `KYLIN_HOME` to the KAP extracted directory.
+4.Set the value of environment variable `KYLIN_HOME` to the path Kyligence Enterprise uninstalled:
 
 ```shell
-export KYLIN_HOME=/usr/local/kap-{version}-{hbase}
+export KYLIN_HOME=/usr/local/Kyligence-Enterprise-{version}
 ```
 
-Prepare a working directory on HDFS for KAP user. The directory is `/kylin` by default and is configurable in `conf/kylin.properties`.
+Create a working directory of Kyligence Enterprise on HDFS and grant Linux account permission to read and write. The default working directory is `/kylin`. At the same time, ensure that the user directory of Linux account on HDFS has normal read and write permissions. Run the following command:
 
 ```shell
 hdfs dfs -mkdir /kylin
-# and grant permission to the user who will run KAP process
-hdfs dfs -mkdir /kylin/root
+hdfs dfs -chown root /kylin
+hdfs dfs -mkdir /user/root
+hdfs dfs -chown root /user/root
 ```
-If no write permission on HDFS, please switch to hdfs account first, create the directory, and grant the privileges. 
+If necessary, you can modify the location of the Kyligence Enterprise working directory in `$KYLIN_HOME/conf/kylin.properties`.
+
+> Notice: If you do not have permission to execute the above command, you can first transfer to HDFS account and try again.
+>
 
 ```shell
 su hdfs
@@ -57,27 +45,87 @@ hdfs dfs -chown root /kylin
 hdfs dfs -mkdir /user/root
 hdfs dfs -chown root /user/root
 ```
+### Fast Configuration of Kyligence Enterprise
 
-> KAP Plus will start Spark Executor, so need more YARN resource. For sandbox testing, please lower the Executor resource. Append (or update) the following parameters to `conf/kylin.properties`
->
-> kap.storage.columnar.conf.spark.driver.memory=512m
-> kap.storage.columnar.conf.spark.executor.memory=512m
-> kap.storage.columnar.conf.spark.executor.cores=1
-> kap.storage.columnar.conf.spark.executor.instances=1
->
-> Or run `bin/setup.sh` to setup the Spark Executor related parameters.
+
+Because the single node environment can provide limited resources, we recommend you configure the Kyligence Enterprise to limit the resources it uses. Under the `$KYLIN_HOME/conf/` path, we have prepared two configurations for you: `profile_prod `and `profile_min`. The former is the default solution, which is suitable for the actual production environment. The latter uses less resources and is suitable for sandbox and other environments. Run the following command and switch to `profile_min` configuration:
+
+```shell
+rm -f $KYLIN_HOME/conf/profile
+ln -sfn $KYLIN_HOME/conf/profile_min $KYLIN_HOME/conf/profile
+```
+
+### If You Use Beeline to Connect Hive
+
+If you use Beeline to connect to Hive, you need to modify the `kylin.properties ` configuration as follows to ensure it uses the correct account to execute commands:
+
+- Please replace  `-n root's` with your Linux account
+- Please replace `jdbc:hive2://localhost:10000` with your Beeline service address in your enviroment
+
+```properties
+kylin.source.hive.beeline-params=-n root --hiveconf
+hive.security.authorization.sqlstd.confwhitelist.append='mapreduce.job.*|dfs.*' -u jdbc:hive2://localhost:10000
+```
+
+Writ3 the following parameters to `hive-site.xml, and give Kyligence Enterprise a certain permissions to adjust the Hive execution parameters:
+
+```properties
+hive.security.authorization.sqlstd.confwhitelist=dfs.replication|hive.exec.compress.output|hive.auto.convert.join.noconditionaltask.*|mapred.output.compression.type|mapreduce.job.split.metainfo.maxsize
+```
+
+For more information, refer to [Beeline command opetions](https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Clients#HiveServer2Clients-BeelineCommandOptions).
+
+### If You Use Kerberos to Connect HIVE
+
+If your cluster uses Kerberos security mechanism, Kyligence Enterprise's own Spark needs proper configuration to access your cluster resources securely.
+
+First of all, if you have SPARK_HOME environment variables on your machine, make sure that it points to Kyligence Enterprise's own Spark.
+
+```shell
+   export SPARK_HOME=$KYLIN_HOME/spark
+```
+
+Then, do the following configuration in `kylin.properties` to enable Kyligence Enterprise to read the Kerberos configuration file correctly.
+
+- Please replace `/opt/spark/cfg/jaas-zk.conf `with your `jaas` configuration file path
+
+- Please replace`/opt/spark/cfg/kdc.conf `with your `kdc`configuration file path
+
+```properties
+kap.storage.columnar.spark-conf.spark.yarn.am.extraJavaOptions=\
+-Djava.security.auth.login.config=/opt/spark/cfg/jaas-zk.conf \
+-Djava.security.krb5.conf=/opt/spark/cfg/kdc.conf
+kap.storage.columnar.spark-conf.spark.driver.extraJavaOptions=\
+-Djava.security.auth.login.config=/opt/spark/cfg/jaas-zk.conf \
+-Djava.security.krb5.conf=/opt/spark/cfg/kdc.conf
+kap.storage.columnar.spark-conf.spark.executor.extraJavaOptions=\
+-Djava.security.auth.login.config=/opt/spark/cfg/jaas-zk.conf \
+-Djava.security.krb5.conf=/opt/spark/cfg/kdc.conf
+```
+
+Finally, Kyligence Enterprise needs to use the correct Kerberos configuration to access Hive Metastore. There are two configuration methods.
+
+- Method 1: further modify `kap.storage.columnar.spark-conf.spark.driver.extraJavaOptions`parameters in `kylin.properties` as follows:
+
+  ```properties
+  ap.storage.columnar.spark-conf.spark.driver.extraJavaOptions=\
+  -Djava.security.auth.login.config=/opt/spark/cfg/jaas-zk.conf \
+  -Djava.security.krb5.conf=/opt/spark/cfg/kdc.conf \
+  -Dhive.metastore.sasl.enabled=true \
+  -Dhive.metastore.kerberos.principal=hive/XXX@XXX.com
+  ```
+
+- Method 2: copy `hive-site.xml` file (or soft link) to`$KYLIN_HOME/spark/conf directory`.
+
+  > Notice: When Kyligence Enterprise is started, if it is found that the `/tmp/hive-scratch `directory (or similar temporary HDFS directory) has no write permissions in the log, you just need to grant permissions (such as `Hadoop FS -chmod -R 777 /tmp/hive-scratch`), and then restart Kyligence Enterprise.
+
+For more information, refer to [Kerberos](C:\Users\yicen.du\Documents\GitHub\KAP-Manual\en\security\kerberos.en.md).
 
 ### Environment Check
 
-Make sure the user that runs KAP has permissions to access Hadoop services. If not sure, please run script `check-env.sh` to have a check. Errors will be printed to the console by this script if there is any misconfiguration.
+When start Kyligence Enterprise for the first time, system will automatically check the environment you depend on. If Kyligence Enterprise find problems in the process, you will see warnings or error messages in the console.
 
-```shell
-${KYLIN_HOME}/bin/check-env.sh
-```
-
-> Optionally, if want to install multiple KAP instances in a Hadoop cluster, you must specify different metadata URL for each instance. In `conf/kylin.properties`, set `kylin.metadata.url` to different values for each instance, for example `kylin_default_instance@hbase` (the default value), or `kylin_prod@hbase`, or `kylin_qa@hbase` etc.
-
-If environment check hits error, most likely it is because certain Hadoop dependency is not detected automatically. To overcome, you can specify Hadoop dependencies explicitly by setting environment variables, including `HADOOP_CONF_DIR`, `HIVE_LIB`, `HIVE_CONF`, and `HCAT_HOME`. Examples:
+Some of the problems may be due to the inability to obtain environmental dependencies effectively. If you encounter such problems, you can try to specify the way Kyligence Enterprise gets these information by displaying environment variables. For instance:
 
 ```shell
 export HADOOP_CONF_DIR=/etc/hadoop/conf
@@ -86,23 +134,35 @@ export HIVE_CONF=/etc/hive/conf
 export HCAT_HOME=/usr/lib/hive-hcatalog
 ```
 
-If you want to deploy Kerberos, please refer to [Kerberos](../security/kerberos.en.md).
+> Notice: you can check the running environment manually at any time. Run the following command:
+>
+> ```shell
+> $KYLIN_HOME/bin/check-env.sh
+> ```
 
-### Start KAP
+### Start Kyligence Enterprise
 
-Execute command `bin/kylin.sh start`, KAP will start in background. You can track starting progress by watching file `logs/kylin.log` with `tail` command.
+Run the following command to star Kyligence Enterprise:
 
 ```shell
 ${KYLIN_HOME}/bin/kylin.sh start
 ```
 
-To confirm KAP is running, check the process by `ps -ef | grep kylin`.
+> If you want to observe the detailed progress of the startup, run the following command:
+>
+> ```shell
+> tail -f $KYLIN_HOME/logs/kylin.log
+> ```
 
-> If hit problem, please confirm all KAP processes are stopped before restart. See "Stop KAP" section for details.
+After the boot is successful, you will see the information in the console. At this point, you can run the following commands to check the process:
 
-### Open KAP GUI
+```shell
+ps -ef | grep kylin
+```
 
-After starting KAP, open browser and visit KAP website `http://<host_name>:7070/kylin`. KAP login page shows if everything is good(**User**:ADMIN/**PW**: KYLIN). Once you login the web page via default user/password, GUI would lead you to reset the password follow the password rules.
+### Use Kyligence Enterprise
+
+After you start Kyligence Enterprise, you can visit KAP website `http://<host_name>:7070/kylin`. Please replace `host_name` with the specific machine name, IP address, or domain name. The default port is `7070`. The default username and password are `ADMIN` and `KYLIN` . After using the default user name / password for the first time, please reset the administrator password according to the password rule.
 
 > **Password rules:**
 >
@@ -110,11 +170,18 @@ After starting KAP, open browser and visit KAP website `http://<host_name>:7070/
 >
 > It should have at least one number/ one letter/ one special characters(~!@#$%^&*(){}|:"<>?[];',./`).
 
-Please replace `host_name` to machine name, ip address or domain name. The default KAP website port is 7070.
+Once login to Kyligence Enterprise successfully, you can validate the installation by building a sample cube. Please continue to [Install Validation](install_validate.en.md).
 
-Once login to KAP successfully, you can validate the installation by building a sample cube. Please continue to [Install Validation](install_validate.en.md).
+### Stop Kyligence Enterprise
+Run the following command to stop Kyligence Enterprise:
 
-### Stop KAP
-Execute command `bin/kylin.sh stop` to stop KAP service.
+```shell
+$KYLIN_HOME/bin/kylin.sh stop
+```
 
-Confirm KAP process is stopped, `ps -ef | grep kylin` should return nothing.
+You can run the following command to see if the Kyligence Enterprise process has stopped.
+
+```shell
+ps -ef | grep kylin
+```
+

@@ -1,110 +1,75 @@
-## KAP Quick Start on MapR sandbox
+## Kyligence Enterprise Quick Start on MapR Sandbox
 
-KAP releases a few sample data sets and cubes in its package together. You can import the data set and cube easily by executing the `sample.sh` script. For more details about installation and using instruction, please refer to other related guide documents. 
+To enable you to experience Kyligence Enterprise as soon as possible, we recommend you use Kyligence Enterprise with sandbox software such as All-in-one Sandbox VM. In this section, we will guide you to quickly install Kyligence Enterprise in the HDP sandbox.
 
-## Prepare Environment
+### Prepare Environment
 
-KAP should run in a Hadoop node to get better stability, we suggest you to deploy it a pure Hadoop client machine, on which the command like *hive*, *hbase*, *hadoop*, *hdfs* already be installed and configured. To make things easier we strongly recommend you try KAP with *All-in-one* sandbox VM, like *MapR Sandbox For Hadoop 5.2.1*. The minimal memory should be 10GB. 
+First of all, *make sure that you allocate sufficient resources for sandbox*. For resource requirements of Kyligence Enterprise for sandbox, please refer to [Requirement](.\hadoop_env.en.md).
 
-To avoid permission issue in the sandbox, you can use its *root* account through SSH . The password for *MapR 5.2.1* is *`mapr`*. This guide uses *`root`* account as example. 
+When configuring sandbox, we recommend that you use the Bridged Adapter model instead of the NAT model. The Bridged Adapter model will assign an independent IP address to your sandbox, allowing you to choose either local or remote access to Kyligence Enterprise GUI.
 
-We also suggest you using *bridged* mode instead of NAT mode in Virtual Box settings. Bridged mode will assign your sandbox an independent IP address so that you could access the KAP web page locally and remotely. 
+To avoid permission issue in the sandbox, you can use MapR's  *root* account through SSH . The password for *MapR 5.2.1* is *`mapr`*. This guide uses *`root`* account as example. 
 
+### Install Kyligence Enterprise
 
-### Install KAP
+After setting up the environment, installing Kyligence Enterprise is very simple.
 
-To obtain KAP package, please refer to [KAP release notes]((../release/README.md)). Note that KAP and KAP Plus are different on storage, yet you don't need to worry about installation difference of them.
+For detailed steps, please refer to [Quick install](.\quick_install.en.md). Pay attention to the following MapR particularity.
 
-Copy KAP binary package into the server mentioned above, and decompress it to `/usr/local`.
+### Particularity of the MapR Environment
 
-```shell
-cd /usr/local
-tar -zxvf kap-{version}-{hbase}.tar.gz 
-```
+The MapR environment has its particularity. Please pay attention to the following steps when implementing the installation steps:
 
-Set environment variable `KYLIN_HOME` to KAP home directory.
+- The file system of MapR is `maprfs://`, so the working directory of Kyligence Enterprise should be set as:
 
-```shell
-export KYLIN_HOME=/usr/local/kap-{version}-{hbase}
-```
+  ```properties
+  kylin.env.hdfs-working-dir=maprfs:///kylin
+  ```
 
-Create KAP working directory on HDFS and grant read/write permission to KAP.
+- The file operation command in MapR is `hadoop fs`instead of `hdfs dfs`. Please replace it by yourself when the file is operated, such as:
 
-```shell
-hadoop fs -mkdir /kylin
-hadoop fs -chown root /kylin
-```
+  ```shell
+  hadoop fs -mkdir /kylin
+  hadoop fs -chown root /kylin
+  ```
 
-Since the sandbox has limited resource, please shift the current configuration to minimal profile.
+- When checking the environment, there will be error because the `hdfs` command cannot be found. Please modify the` $KYLIN_HOME/bin/check-2100-os-commands.sh` and annotate the command line of `hdfs`. For an example:
 
-```shell
-cd $KYLIN_HOME/conf
+  ```shell
+  #command -v hdfs    || quit "ERROR: Command 'hdfs' is not accessible..."
+  ```
 
-# Use sandbox(min) profile
-ln -sfn profile_min profile
-```
+- If you need to specify the environment dependencies of Hive and Spark, their default locations are as follows:
 
-To use MapR FileSystem, KAP needs to point to MapR-FS(maprfs:///) rather than the default HDFS. Update kylin.properties
+  ```shell
+  export HIVE_CONF=/opt/mapr/hive/hive-2.1/conf
+  export SPARK_HOME=/opt/mapr/spark/spark-2.1.0
+  ```
 
-```
-kylin.env.hdfs-working-dir=maprfs:///kylin
-```
+### Common Problems in the MapR Environment
 
-### Environment Check
+- If you use HBase as Metastore and errors can't be solved easily, you can consider using MySQL as Metastore storage. Details refer to [Use JDBC to connect MySQL as metastore](..\config\metastore_jdbc_mysql.en.md).
 
-KAP will retrieve Hadoop dependency from environment by reading environment variables. The variables include: HADOOP_CONF_DIR, HIVE_LIB, HIVE_CONF, and HCAT_HOME. The example configuration:
+- If the spark-context task is failed on YARN at startup and shows `requestedVirtualCores > maxVirtualCores` error,  `yarn.scheduler.maximum-allocation-vcores` configuration parameters in `yarn-site.xml`can be adjusted:
 
-```shell
-export HIVE_CONF=/opt/mapr/hive/hive-2.1/conf
-export SPARK_HOME=/opt/mapr/spark/spark-2.1.0
-```
+  ```xml
+  <property>
+      <name>yarn.scheduler.maximum-allocation-vcores</name>
+      <value>24</value>
+  </property>
+  ```
 
-**Note：in MapR, the file operating command is`hadoop fs`，not`hdfs`，this may block the environment check. You need to modify the shell file`$KYLIN_HOME/bin/check-os-command.sh`and comment out this line：**
+   Or set `conf/profile` to `min_profile` to reduce the need for YARN Vcore:
 
-```shell
-#command -v hdfs                         || quit "ERROR: Command 'hdfs' is not accessible. Please check Hadoop client setup."
-```
+- ```shell
+  rm -f $KYLIN_HOME/conf/profile
+  ln -sfn $KYLIN_HOME/conf/profile_min $KYLIN_HOME/conf/profile
+  ```
 
-``bin/check-env.sh`` will check if all environment meet the KAP requirements.
+- If you use Kafka and can't connect to Zookeeper, please note that the default of Zookeeper's service port in the MapR environment is 5181, not 2181. The ports can be confirmed as follows:
 
-If you want to deploy Kerberos, please refer to [Kerberos](../security/kerberos.en.md).
+- ```shell
+  netstat -ntl | grep 5181
+  netstat -ntl | grep 2181
+  ```
 
-## Import Sample Data and Cube
-
-Run`$KYLIN_HOME/bin/sample.sh`, it will create three hive tables as a sample and import sample data to KAP. Then the sample project metadata will be imported as well, which includes model and cube definiton. 
-
-```shell
-cd kap-{version}-{hbase}
-bin/sample.sh
-```
-
-If execution succeed, the log would be:
-
-> Sample cube is created successfully in project 'learn_kylin'.
-> Restart Kylin server or reload the metadata from web UI to see the change.
-
-### Start KAP
-
-Execute command `bin/kylin.sh start`, KAP will start in background. You can track starting progress by watching file `logs/kylin.log` with `tail` command.
-
-```shell
-${KYLIN_HOME}/bin/kylin.sh start
-tail ${KYLIN_HOME}/logs/kylin.log
-```
-
-To confirm KAP is running, check the process by `ps -ef | grep kylin`.
-
-> If hit problem, please confirm all KAP processes are stopped before restart. See "Stop KAP" section for details.
-
-### Open KAP GUI
-
-After initializing KAP, open browser and visit KAP website `http://<host_name>:7070/kylin`. KAP login page shows if everything is good. 
-
-Please replace `host_name` to machine name, ip address or domain name. The default KAP website port is 7070, default username is ADMIN, and password is KYLIN.
-
-Once login to KAP successfully, you can validate the installation by building a sample cube. Please continue to [Install Validation](install_validate.en.md).
-
-### Stop KAP
-Execute command `bin/kylin.sh stop` to stop KAP service.
-
-Confirm KAP process is stopped, `ps -ef | grep kylin` should return nothing.

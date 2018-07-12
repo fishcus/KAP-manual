@@ -1,69 +1,59 @@
-## KAP Required Environment
+## Kyligence Enterprise Required Environment
 
-A stable Hadoop cluster is the basic execution environment for KAP. We recommend deploy KAP on a dedicated edge node (or client node) of Hadoop cluster. The node must have clients of `Hive`, `HBase`, `Hadoop`, `HDFS` installed and shells are available on command line.
+Kyligence Enterprise needs a good Hadoop cluster as its running environment to provide you with a more stable user experience. We recommend that you run Kyligence Enterprise on a single Hadoop cluster. Each server in the cluster should be configured with Hadoop, Hive, HBase, Kafka and so on. Among them, Hadoop and Hive are essential components.
 
-The Linux account running KAP must have required access permissions to Hadoop cluster. These permissions include:
+Next we will introduce the required enviroment for Kyligence Enterprise installation.
+
+### Account Authority
+
+The Linux account running Kyligence Enterprise must have required access permissions to Hadoop cluster. These permissions include:
 * Read/Write permission of HDFS
 * Create/Read/Write permission of Hive table
 * Create/Read/Write permission of HBase table
 * Execution permission of MapReduce job
 
-### Certificated and Tested Commercial Hadoop Distributions
+### Enterprise Level Platform Supported
+
+The following enterprise level data management platform have been authenticated and tested by us.
+
 * Cloudera CDH 5.7+
 * Hortonworks HDP 2.2+
 * MapR 5.2+
+* HUAWEI FusionInsight C60+
+
+### Resource Allocation
+
+To enable Kyligence Enterprise to efficiently complete the tasks, please ensure that the configuration of the Hadoop cluster satisfies the following conditions:
+
+* `yarn.nodemanager.resource.memory-mb` configuration item bigger than 8192 MB
+* `yarn.scheduler.maximum-allocation-mb` configuration item bigger than 4096 MB
+* `mapreduce.reduce.memory.mb` configuration item bigger than 700 MB
+* `mapreduce.reduce.java.opts` configuration item bigger than 512 MB
+
+If you need to run Kyligence Enterprise in sandbox and other virtual machine environments, please make sure that the virtual machine environment can get the following resources:
+
+- No less than 4 processors
+
+- Memory is no less than 10 GB
+
+- The value of the configuration item `yarn.nodemanager.resource.cpu-vcores` is no less than 8
 
 
-### Compatible Hadoop Versions
-* Hadoop: 2.6+
+### Recommended Hardware Configuration
+We recommend that you use the following hardware configuration:
 
-* Hive: 0.13+
+- Two way Intel to strong processor, 6 core (or 8 core) CPU, main frequency 2.3GHz or above.
 
-* HBase: 0.98/0.99, 1.x
+- 64GB ECC DDR3 or above
 
-* JDK: 1.7+ (JDK 1.8 is required for KAP 3.x. If the KAP doesn't work, please refer to [upgrade](../upgrade/upgrade_kapp.en.md).)
+- At least one 1TB SAS hard drives (3.5 inches), 7200RPM, RAID1
 
-
-### Configuration of YARN and MapReduce
-KAP requires Hadoop resource to run distributed computation jobs. Especially, memory resource is critical for KAP jobs to run smoothly. The Yarn configuration of least requirement is listed bellow.
-
-- Node Memory Resource (yarn.nodemanager.resource.memory-mb) >= 8192 MB
-- Container Memory Maximum (yarn.scheduler.maximum-allocation-mb) >= 8192 MB
-
-In addition, if KAP runs in a sandbox (virtual machine), please assign below resource as minimal.
-
-- Give 10 GB memory and 2 virtual CPU to this virtual machine
-- Container Virtual CPU Cores (yarn.nodemanager.resource.cpu-vcores) >= 8
-
-### Configuration of Hive
-
-When using *Beeline* as Hive client, KAP needs more privileges. 
-
-Please add following properties to kylin.properties:
-
-> “-n root” means user account is root;
->
-> “-u jdbc:hive2://localhost:10000” means connecting jdbc via the host;
->
-> ```properties
-> kylin.source.hive.beeline-params=-n root --hiveconf hive.security.authorization.sqlstd.confwhitelist.append='mapreduce.job.*|dfs.*' -u jdbc:hive2://localhost:10000
-> ```
-
-> Please update Hive configuration to add the following item:
->
-> ```properties
-> hive.security.authorization.sqlstd.confwhitelist=dfs.replication|hive.exec.compress.output|hive.auto.convert.join.noconditionaltask.*|mapred.output.compression.type|mapreduce.job.split.metainfo.maxsize
-> ```
-
-
-
-### Recommended Hardware
-
-- 2 Intel Xeon CPU (6 or 8 cores each, 2.3GHz or higher)
-- 64GB or larger ECC DDR3 memory
-- 1TB SAS Disk (7200 RPM, RAID1 supported) at minimal
-- 2 or more 1GbE Ethernet port
+- At least two 1GbE Ethernet ports
 
 ### Recommended Linux Distribution
-- Red Hat Enterprise Linux 6.4, 6.5, 7.x
-- CentOS 6.4+, 7.x
+
+We recommend that you use the following version of the Linux operating system:
+
+- Red Hat Enterprise Linux 6.4+ or  7.x
+- CentOS 6.4+ or 7.x
+

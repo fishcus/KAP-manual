@@ -1,36 +1,56 @@
-## Uninstall KAP
-KAP runs in non-invasive manner, so stop KAP instance processes stops all KAP cluster activities.
+## Uninstall Kyligence Enterprise
+In this section, we will show you the steps to uninstall Kyligence Enterprise.
 
-To uninstall KAP completely and erase all data, please follow these steps:
+The complete steps to uninstall Kyligence Enterprise and remove all relevant data are as follows:
 
-1. Stop KAP instance on all nodes: `$KYLIN_HOME/bin/kylin.sh stop`
-2. Back up metadata on one KAP server and copy it to other reliable storage: `$KYLIN_HOME/bin/metastore.sh backup`
-3. Delete data in HBase. If you only host one KAP environment in HBase cluster, following commands can be used to delete all built Cubes, otherwise refer to section [Storage Cleanup](../operation/storage_cleanup.en.md).
+1. Run the following command on all Kyligence Enterprise nodes to stop the Kyligence Enterprise instance:
 
-  ```
-  hbase shell
-  disable_all "KYLIN.*"
-  drop_all "KYLIN.*"
-  ```
+   ```shell
+   $KYLIN_HOME/bin/kylin.sh stop
+   ```
 
-4. Delete KAP directory on HDFS. First check file `${KYLIN_HOME}/conf/kylin.properites` and find out working directory. For example `kylin.hdfs.working.dir=/kylin`, execute following command to delete it:
+2. Data cleaning and backup (optional):
 
-  ```
-  hdfs dfs -rmr /kylin
-  ```
+   - To ensure that some temporary data in Kyligence Enterprise are deleted in the external system, it is recommended that [storage cleanup](..\operation\storage_cleanup.en.md) operations should be performed before the formal unloading.
 
-5. Delete KAP metadata table. First check file `conf/kylin.properties` and find out metadata table name. For example `kylin.metadata.url=kylin_metadata@hbase`, metadata table name is `kylin_metadata`, also there are two supporting tables: `kylin_metadata_user` and `kylin_metadata_acl`. execute following command to delete them:
+   - Backup metadata before full unloading so that it can be restored when needed.
 
-  ```
-  hbase shell
-  disable_all "kylin_metadata.*"
-  drop_all "kylin_metadata.*"
+     ```shell
+     $KYLIN_HOME/bin/metastore.sh backup
+     ```
 
-  ```
+     > Notice: We recommend that you copy metadata to more reliable storage devices later.
 
-6. Delete all KAP binary on all KAP nodes:
-```
-rm -rf $KYLIN_HOME
-```
+3. Please check the configuration file `$KYLIN_HOME/conf/kylin.properties`  to determine the name of the working directory. Suppose that your item is:
 
-Uninstallation completes now.
+   ```properties
+   kylin.hdfs.working.dir=/kylin
+   ```
+
+   Please run the following command to delete the working directory:
+
+   ```shell
+   hdfs dfs -rm -r /kylin
+   ```
+
+4. Please check the configuration file  `$KYLIN_HOME/conf/kylin.properties` to determine the name of the metadata table. Suppose that your item is:
+
+   ```properties
+   kylin.metadata.url=kylin_metadata@hbase
+   ```
+
+   Run the following command to delete the source data table:
+
+   ```shell
+   hbase shell
+   disable_all "kylin_metadata.*"
+   drop_all "kylin_metadata.*"
+   ```
+
+5. Run the following commands on all Kyligence Enterprise nodes to delete the Kyligence Enterprise installation:
+
+   ```shell
+   rm -rf $KYLIN_HOME
+   ```
+
+At this point, the Kyligence Enterprise uninstall is completed.

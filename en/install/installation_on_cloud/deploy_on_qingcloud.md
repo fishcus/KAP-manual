@@ -4,27 +4,57 @@
 
 QingCloud AppCenter is an enterprise applications delivery platform provided by QingCloud, including a series of applications in big data ecosystem, such as Hadoop, Zookeeper etc, and can reduce the efforts and complexity of development, deployment and maintanence in the cloud.
 
-In QingCloud AppCenter, KAP presents as a standard application, which allows users to provision a new cluster including Hadoop, Hive, KAP in one click. In the meantime, KAP also acts as a part of QingCloud's Hadoop service (QingMR), where users can select to install KAP as an application while deploying the QingMR service.
+In QingCloud AppCenter, Kyligence Enterprise presents as a standard application, which allows users to provision a new cluster including Hadoop, Hive, Kyligence Enterprise in one click. In the meantime, Kyligence Enterprise also acts as a part of QingCloud's Hadoop service (QingMR), where users can select to install KAP as an application while deploying the QingMR service.
 
-### Install KAP
+### Install Kyligence Enterprise
 
-#### Install from KAP App
+#### Precondition: Zookeeper, network configuration
 
-Prerequisite: A ready zookeeper service is required.
+1) Since Kyligence Enterprise needs to rely on ZooKeeper for cluster state management, it is necessary to deploy ZooKeeper clusters first. If you already have ZooKeeper clusters, this step can be ignored.
 
-1) Go to KAP Application webpage: [Kyligence Enterprise](https://appcenter.qingcloud.com/apps/app-oi15yp53/Kyligence%20Enterprise), and Click "Deploy on QingCloud" button to start provision.
+2) Create ZooKeeper cluster: select "big data platform" - > "ZooKeeper"
 
-2) Type the basic information, like Resource Configuration, Charge Model etc.
+![](C:images\qingyun_basic_settings.png)
 
-![](images/qingcloud_basic_conf.png)
+3) Network configuration: when creating Kyligence cluster or ZooKeeper cluster, system prompts to create private network. According to the hint, we can successfully create the routers and private networks needed, and bind the private network to the router.
 
-3) Select dependency components, like VxNet and Zookeeper service.
+![](images\qingyun_create_cluster.en.jpg)
 
-![](images/qingcloud_depend.png)
+4) Create a public network IP
 
-4) Set environment configuration according to performance requirements and cluster size. For more information about the configuration, please refer to: [Recommended Configuration](../../config/recommend_settings.en.md)
+![](images\qingyun_apply_for_IP.jpg)
 
-5) After agreed "User Agreement", click "Submit" button. You KAP will be there after several minutes.
+After creating the public network IP, you need to bind to the previously created router.
+
+![](images\qingcloud_IP_bind_en.png)
+
+5) Configure VPN, enter "router", select "VPN service", and recommend "Open VPN" service here. For more info, you can refer to [VPN configuration](https://docs.qingcloud.com/product/network/vpn)
+
+![](.\images\qingyun_openVPN.jpg)
+
+6) Configure firewalls: open the 1194 port for OpenVPN services.
+
+7) We recommend using [Tunnelblick](https://tunnelblick.net/) as the client of VPN services.
+
+#### Install Kyligence Enterprise in the application market
+
+1) Open Kyligence Enterprise web UI: [Kyligence Enterprise](https://appcenter.qingcloud.com/apps/app-oi15yp53/Kyligence%20Enterprise), click the "deploy to QingCloud" button on the right.
+
+2) Input basic information, such as resource allocation type, charging mode, etc.
+
+![](images\qingyun_kap_configuration.jpg)
+
+3) Choose the private network and Zookeeper services to rely on.
+
+> You can quickly deploy a Zookeeper service through the Zookeeper application in AppCenter, and then select the created Zookeeper service here.
+
+![](images\qingyun_configuration_settings.jpg)
+
+4) Configure environment parameters according to performance requirements and cluster size. For reference, please refer to the ：[recommend settings](../../config/recommend_settings.en.md)
+
+5) After the user agreement is agreed, click “Submit” button. After a few minutes, your Kyligence Enterprise service is created.
+
+After creating a Kyligence Enterprise service, you can first access the private network created by VPN, and then access the Kyligence Enterprise services through the Kyligence Enterprise server's intranet IP, such as the http://< intranet IP>: 7070/kylin
 
 #### Install from QingMR
 
@@ -32,7 +62,7 @@ Please refer to: [QingCloud Documentation](https://docs.qingcloud.com/product/bi
 
 ### **Request Trial License and Login**
 
-On the first time visiting, KAP will ask for a license. If you don’t have a license, you can easily request a free trial license here. Click ”Apply Evaluation License“, fill in your email address, organization name and person name, and then click ”Submit“. It will download a trial license immediately and then you can go ahead. After the trial expires (two months), you can contact Kyligence to purchase a formal license.
+On the first time visiting, Kyligence Enterprise will ask for a license. If you don’t have a license, you can easily request a free trial license here. Click ”Apply Evaluation License“, fill in your email address, organization name and person name, and then click ”Submit“. It will download a trial license immediately and then you can go ahead. After the trial expires (two months), you can contact Kyligence to purchase a formal license.
 
 ![Figure 6. Apply Trial License](images/trial_license.png)
 
@@ -40,7 +70,7 @@ The initial administrator username is ”ADMIN“ and the password is ”KYLIN�
 
 ### **Play with Sample Cube**
 
-The installation will create a sample “kylin_sales_cube” (as well as sample tables in Apache Hive) in the “learn_kylin” project. In the left navigation, click ”Studio“ -> ”Cube“ then you will see the sample cube. It is in “DISABLED” status, you need build it before query. Click ”Actions“ -> ”Build“, and then pick an end date like ‘2014-01-01’, KAP will start a build job.
+The installation will create a sample “kylin_sales_cube” (as well as sample tables in Apache Hive) in the “learn_kylin” project. In the left navigation, click ”Studio“ -> ”Cube“ then you will see the sample cube. It is in “DISABLED” status, you need build it before query. Click ”Actions“ -> ”Build“, and then pick an end date like ‘2014-01-01’, Kyligence Enterprise will start a build job.
 
 ![Figure 7. Sample Cube](images/sample_cube.png)
 
@@ -50,15 +80,15 @@ You can monitor the build progress on KAP’s  ”Monitor“ tab; After the buil
 select part_dt, sum(price) as total_selled, count(distinct seller_id) as sellers from kylin_sales group by part_dt order by part_dt;
 ```
 
-KAP will return results quickly. You can run the same query in to compare the performance.
+Kyligence Enterprise will return results quickly. You can run the same query in to compare the performance.
 
 ![Figure 8. Run Query in KAP](images/query_in_kap.png)
 
-Now you know how to use KAP to accelerate your data analysis. But writing SQL is still troublesome for most users. You can use KyAnalyzer to analyze the data by drag-and-drop.
+Now you know how to use Kyligence Enterprise to accelerate your data analysis. But writing SQL is still troublesome for most users. You can use KyAnalyzer to analyze the data by drag-and-drop.
 
 ### **Use KyAnalyzer for Agile BI**
 
-Log in KyAnalyzer with the same user as KAP, in the ” Console” page, click “Sync Cubes from Kylin”, select the “kylin_sales_cube” to sync. The Cube will be imported to KyAnalyzer.
+Log in KyAnalyzer with the same user as Kyligence Enterprise, in the ” Console” page, click “Sync Cubes from Kylin”, select the “kylin_sales_cube” to sync. The Cube will be imported to KyAnalyzer.
 
 ![Figure 13. Sync Cube to KyAnalyzer](images/sync_to_kyanalyzer.png)
 
@@ -70,9 +100,9 @@ By clicking the “Chart Mode” icon in the upper right corner, KyAnalyzer will
 
 ![Figure 15. Generate chart in KyAnalyzer](images/chart_in_kyanalyzer.png)
 
-Congratulations! You have built your first Cube and created the first chart by drag-and-drop. You can also integrate KAP with more visualization tools like Tableau, PowerBI/Excel. For detailed information, please refer to related pages in the chapter of **Integrate with the 3rd party**.
+Congratulations! You have built your first Cube and created the first chart by drag-and-drop. You can also integrate Kyligence Enterprise with more visualization tools like Tableau, PowerBI/Excel. For detailed information, please refer to related pages in the chapter of **Integrate with the 3rd party**.
 
 ### SSH Login to server
 
-In order to login to KAP server via SSH, a VPN is required. Then access KAP server with internal IP. About how to configure VPN, please refer to: [VPN Configuration](https://docs.qingcloud.com/product/network/vpn) (In Chinese).
+In order to login to Kyligence Enterprise server via SSH, a VPN is required. Then access Kyligence Enterprise server with internal IP. About how to configure VPN, please refer to: [VPN Configuration](https://docs.qingcloud.com/product/network/vpn) (In Chinese).
 

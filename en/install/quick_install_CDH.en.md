@@ -1,114 +1,31 @@
-## KAP Quick Start on CDH sandbox
+# Kyligence Enterprise Quick Start on CDH Sandbox
 
-KAP releases a few sample data sets and cubes in its package together. User could import the data set and cube easily by executing the sample script. For more detail information about installation and usage instruments, please refer to other related guide documents. 
+To enable you to experience Kyligence Enterprise as soon as possible, we recommend that you use Kyligence Enterprise with sandbox software such as All-in-one Sandbox VM. In this section. We will guide you to quickly install Kyligence Enterprise in the CDH sandbox.
 
 ### Prepare Environment
 
-KAP need run in a Hadoop node, to get better stability, we suggest you to deploy it a pure Hadoop client machine, on which its command like *hive*, *hbase*, *hadoop*, *hdfs* already be installed and configured. To make things easier we strongly recommend you try KAP with *All-in-one* sandbox VM, like *Hortonworks Sandbox(HDP)* and *Cloudera QuickStart VM(CDH)*. The minimal memory should be 10GB. 
+First of all, *make sure that you allocate sufficient resources for sandbox*. For resource requirements of Kyligence Enterprise for sandbox, please refer to [Requirement](.\hadoop_env.en.md).
 
-> Since different Sandbox have different HBase version, please install the corresponding KAP distribution.
->
-> Please use *HBase 0.98* distribution on *HDP 2.2*; Please use HBase 1.x distribution on *HDP 2.3+* 
->
-> Please use CDH distribution on *CDH 5.7+*
+When configuring sandbox, we recommend that you use the Bridged Adapter model instead of the NAT model. The Bridged Adapter model will assign an independent IP address to your sandbox, allowing you to choose either local or remote access to Kyligence Enterprise GUI.
 
-To avoid permission issue in the sandbox, you can use its *cloudera* account through SSH . 
+To avoid permission problems, we recommend that you use CDH default account and password `cloudera` to access CDH sandbox. In this section, the `cloudera` account is taken as an example.
 
-This guide uses *cloudera* as example. 
+If you need to run Kyligence Enterprise in the environment of CDH 5.7+, please select the corresponding version of the CDH.
 
-We also suggest you using *bridged* mode instead of NAT mode in Virtual Box settings. Bridged mode will assign your sandbox an independent IP address so that you could access the KAP web page locally and remotely. 
-
-Make sure the following services running in normal state, (login Cloudera Manager[http://{hostname}:7180](http://{hostname}:7180) ,default username *cloudera*, password *cloudera*) HDFS/YARN/Hive/HBase/ZooKeeper, without warning information. 
+Please visit Cloudera Manager (the default address: `http://<host_name>: 7180/`, default account and password: `cloudera`) and ensure that `HDFS`, `Yarn`, `Hive`, `HBase`, `Zookeeper` and other components are in normal state without any warning information, as shown in the diagram:
 
 ![](images/cdh_57_status.jpg)
 
-The following parameters should be updated, to meet the KAP resource requirement.
+> If you encounter the following information when installing Kyligence Enterprise:
+>
+> ```java
+> org.apache.hadoop.hbase.security.AccessDeniedException: Insufficient permissions for user'root (auth:SIMPLE) '
+> ```
+>
+> This indicates that you lack HBase write permissions. If you need to close the permission check for HBase, set the value of the `hbase.coprocessor.region.classes` and` hbase.coprocessor.master.classes`  to `empty`, and set the value of  `hbase.security.authentication`  to` simple`.
 
-1. For *CDH 5.7+*, update *yarn.nodemanager.resource.memory-mb* to 8192 (or 8 GB on *cloudera manager*), *yarn.scheduler.maximum-allocation-mb* to 4096 (or 4 GB on *cloudera manager*), *mapreduce.reduce.memory.mb* to 700, *mapreduce.reduce.java.opts* to 512.
-2. If meet *org.apache.hadoop.hbase.security.AccessDeniedException: Insufficient permissions for user 'root (auth:SIMPLE)'*, that means no enough HBase write permission. If you want to disable HBase permission check, please update *hbase.coprocessor.region.classes* and *hbase.coprocessor.master.classes* to *empty*, and *hbase.security.authentication* to *simple*.
+### Install Kyligence Enterprise
 
+After setting up the environment, installing Kyligence Enterprise is very simple.
 
-
-### Install KAP
-
-To obtain KAP package, please refer to [KAP release notes](../release/README.md). There may have some minor differences between KAP and KAP plus. 
-
-Copy KAP binary package into the server mentioned above, and unpack to /usr/local
-
-```shell
-cd /usr/local
-tar -zxvf kap-{version}-{hbase}.tar.gz 
-```
-
-Set environment variable `KYLIN_HOME` to KAP home directory.
-
-```shell
-export KYLIN_HOME=/usr/local/kap-{version}-{hbase}
-```
-
-
-Create KAP working directory on HDFS, and grant privileges to KAP, with read/write permission.
-
-```shell
-hdfs dfs -mkdir /kylin
-hdfs dfs -mkdir /user/cloudera
-```
-
-> If no write permission on HDFS, please switch to hdfs account first, create the directory, and grant the privileges. 
-
-```shell
-su hdfs
-hdfs dfs -mkdir /kylin
-hdfs dfs -chown cloudera /kylin
-hdfs dfs -mkdir /user/cloudera
-hdfs dfs -chown cloudera /user/cloudera
-```
-
-Since the sandbox has limited resource, please shift the current configuration to minimal profile.
-
-```shell
-cd $KYLIN_HOME/conf
-
-# Use sandbox(min) profile
-ln -sfn profile_min profile
-```
-
-### Environment Check
-
-KAP will retrieve Hadoop dependency from environment by reading environment variables. The variables include: HADOOP_CONF_DIR, HIVE_LIB, HIVE_CONF, and HCAT_HOME. The example configuration:
-
-```shell
-export HADOOP_CONF_DIR=/etc/hadoop/conf
-export HIVE_LIB=/usr/lib/hive
-export HIVE_CONF=/etc/hive/conf
-export HCAT_HOME=/usr/lib/hive-hcatalog
-```
-
-``bin/check-env.sh`` will check if all environment meets the KAP requirements.
-
-If you want to deploy Kerberos, please refer to [Kerberos](../security/kerberos.en.md).
-
-### Start KAP
-
-Execute command `bin/kylin.sh start`, KAP will start in background. You can track starting progress by watching file `logs/kylin.log` with `tail` command.
-
-```shell
-${KYLIN_HOME}/bin/kylin.sh start
-```
-
-To confirm KAP is running, check the process by `ps -ef | grep kylin`.
-
-> If hit problem, please confirm all KAP processes are stopped before restart. See "Stop KAP" section for details.
-
-### Open KAP GUI
-
-After starting KAP, open browser and visit KAP website `http://<host_name>:7070/kylin`. KAP login page shows if everything is good.
-
-Please replace `host_name` to machine name, ip address or domain name. The default KAP website port is 7070 and default username/password is ADMIN/KYLIN.
-
-Once login to KAP successfully, you can validate the installation by building a sample cube. Please continue to [Install Validation](install_validate.en.md).
-
-### Stop KAP
-Execute command `bin/kylin.sh stop` to stop KAP service.
-
-Confirm KAP process is stopped, `ps -ef | grep kylin` should return nothing.
+For detailed steps, please refer to [Quick install](.\quick_install.en.md).
