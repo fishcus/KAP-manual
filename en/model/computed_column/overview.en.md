@@ -1,6 +1,6 @@
 ## Computed Column
 
-*Computed Column* allows you to pre-define actions like data extraction/ transformation/ redefinition in modes, and thus enhance the data semantic abstraction. By replacing runtime calculation with offline cube construction, KAP's pre-calculation capability is fully utilized. As a result, query performance could improve significantly. It's allowed to use Hive UDF in computed column, so that existing business codes can be reused.
+*Computed Column* allows you to pre-define actions like data extraction/ transformation/ redefinition in modes, and thus enhance the data semantic abstraction. By replacing runtime calculation with offline cube construction, Kyligence Enterprise's pre-calculation capability is fully utilized. As a result, query performance could improve significantly. It's allowed to use Hive UDF in computed column, so that existing business codes can be reused.
 
 > Notice: Computed column is not available when the data source is Kafka.
 
@@ -19,7 +19,7 @@
 
 #### Create Computed Column
 
-KAP allows you to define computed columns for each model seperately. 
+Kyligence Enterprise allows you to define computed columns for each model seperately. 
 
 For example, say you have a fact table named `kylin_sales` with following columns: `price` (price for each item in the transaction), `item_count` (number of sold items in the transaction) and `part_dt` (time when the transaction happens). You can define two more computed columns on `kylin_sales`: `total_amount = kylin_sales.price * kylin_sales.item_count` and `deal_year = year(kylin_sales.part_dt)`. 
 
@@ -53,13 +53,13 @@ After defining the computed columns in model, you need to use them to build cube
 
 
 
-When **query pushdown** is enabled and there is no cube can be hit on for your query on computed column, KAP will analyze the query and translate the computed column to the original formula. Continuing with the previous example, if you query `select sum(total_amount) from kylin_sales` when there is no Cube ready to answer, and query pushdown is enabled, this query will be translated into `select sum(price * item_count) from kylin_sales`, and be pushed down to underlying SQL on Hadoop engine. 
+When **query pushdown** is enabled and there is no cube can be hit on for your query on computed column, Kyligence Enterprise will analyze the query and translate the computed column to the original formula. Continuing with the previous example, if you query `select sum(total_amount) from kylin_sales` when there is no Cube ready to answer, and query pushdown is enabled, this query will be translated into `select sum(price * item_count) from kylin_sales`, and be pushed down to underlying SQL on Hadoop engine. 
 
 
 
-**Explicit Query**: If you created and built a cube containing measure `sum(total_amount)`, KAP can answer queries like `select sum(total_amount) from kylin_sales`. We call it **Explicit Query** on computed columns. 
+**Explicit Query**: If you created and built a cube containing measure `sum(total_amount)`, Kyligence Enterprise can answer queries like `select sum(total_amount) from kylin_sales`. We call it **Explicit Query** on computed columns. 
 
-**Implicit Query:** your can pretend that computed column is invisible from the table, and still use the expression behind the computed column to query. Continuing with the last example, when your query `select sum(price * item_count) from kylin_sales`, KAP will analyze the query and figure out that expression in `price * item_count` is replaceable by an existing computed column named `total_amount`. For better performance KAP will try to translate your original query to `select sum(total_amount) from kylin_sales`. We call it **Implicit Query** on computed columns.
+**Implicit Query:** your can pretend that computed column is invisible from the table, and still use the expression behind the computed column to query. Continuing with the last example, when your query `select sum(price * item_count) from kylin_sales`, Kyligence Enterprise will analyze the query and figure out that expression in `price * item_count` is replaceable by an existing computed column named `total_amount`. For better performance Kyligence Enterprise will try to translate your original query to `select sum(total_amount) from kylin_sales`. We call it **Implicit Query** on computed columns.
 
 Implicit Query is **enabled** by default. To disable it you'll need to remove `kylin.query.transformers=io.kyligence.kap.query.util.ConvertToComputedColumn` in `KYLIN_HOME/conf/kylin.properties`
 

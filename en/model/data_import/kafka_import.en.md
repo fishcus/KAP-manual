@@ -3,9 +3,11 @@ This section introduces how to import Kafka data source and define a table from 
 
 ### Preparation
 
-Before starting this tutorial, please make sure that you have already prepared a Hadoop environment which has installed *KAP 2.3* or above and *Kafka v2.10-0.10.1.0* or above. In this tutorial, we use Hortonworks HDP 2.4 Sandbox VM as the Hadoop environment.
+Before starting this tutorial, please make sure that you have already prepared a Hadoop environment which has installed version *2.3* or above and *Kafka v2.10-0.10.1.0* or above. 
 
-It is unnecessary to deploy Kafka Broker and KAP in the same node. If Kafka Broker has not been deployed in KAP node, it is recommemded that you copy the Kafka binary package with the same version and extract it to any path of KAP's start node (such as: /usr/local/kafka_2.10-0.10.1.0), and set KAFKA_HOME to point to this path, thus ensuring there is a Kafka client library under the directory KAFKA_HOME/libs.
+In this tutorial, we use Hortonworks HDP 2.4 Sandbox VM as the Hadoop environment.
+
+It is unnecessary to deploy Kafka Broker and Kyligence Enterprise in the same node. If Kafka Broker has not been deployed in KAP node, it is recommemded that you copy the Kafka binary package with the same version and extract it to any path of KAP's start node (such as: /usr/local/kafka_2.10-0.10.1.0), and set KAFKA_HOME to point to this path, thus ensuring there is a Kafka client library under the directory KAFKA_HOME/libs.
 
 In this article, we assume that user has not installed Kafka Broker, and has not natively deployed and started Kafka Broker. User who has installed Kafka Broker may ignore this step.
 
@@ -16,7 +18,7 @@ cd /usr/local/kafka_2.10-0.10.1.0/
 ./bin/kafka-server-start.sh config/server.properties &
 ```
 
-Please make sure that the environment variable *KAFKA_HOME* has been exported successfully before KAP starts.
+Please make sure that the environment variable *KAFKA_HOME* has been exported successfully before Kyligence Enterprise starts.
 
 ```Shell
 export KAFKA_HOME=/usr/local/kafka_2.10-0.10.1.0

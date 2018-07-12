@@ -1,6 +1,6 @@
 ## Table index
 
-KAP provides table index to support querying on raw data. For customized queries, KAP leverages well-designed Cubes to efficiently process them; for queries not within such scope, Query Pushdown plays a supplement role. Those functions allow users to quickly get results of aggregation queries. Besides, users can make use of table index to fulfill their tasks, if they are interested in raw data. 
+This product provides table index to support querying on raw data. For customized queries, This product leverages well-designed Cubes to efficiently process them; for queries not within such scope, Query Pushdown plays a supplement role. Those functions allow users to quickly get results of aggregation queries. Besides, users can make use of table index to fulfill their tasks, if they are interested in raw data. 
 
 ### Create table index
 

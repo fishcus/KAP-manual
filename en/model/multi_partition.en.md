@@ -1,6 +1,10 @@
 ## Multi-Partition Model
 
-The common model is usually partitioned by time. But in the multi-tenant scenarios, we need another partition (partition column), besides time partition, to distinguish different subsidiaries or subbusinesses. Here, we call the new partition, except for the time partition, collectively as Multi-Partition. The time partition and primary partition are supported in KAP since KAP V2.5.2.
+In addition to time-based partition , this product also supports other types of partitions, collectively referred to as multi-level partition.
+
+> The time partition and primary partition are supported in our product since V2.5.2.
+
+Enhanced partition flexibility, such as multi-tenant usage scenarios, in addition to time, often using institutions or regions to partition.
 
 ### Concept of Multi-Partition
 
@@ -12,15 +16,22 @@ The common model is usually partitioned by time. But in the multi-tenant scenari
 
 ### Basic Usage
 
-1. For the general process of creating a model, please refer to [Model Design](data_modeling.en.md); for the general process of designing a model, please refer to [Create Cube](cube/create_cube.en.md).
+1. The last step in creating model or cube
 
-2. When saving a model, if you choose **More Partition** under Time Partition Column, then multi partitions will be created (currently you can add one partition).
+   + for the general process of creating a model, please refer to [Model Design](data_modeling.en.md);
+   + for the general process of designing a model, please refer to [Create Cube](cube/create_cube.en.md).
+
+   
+
+2. When saving a model, if you choose *More Partition* under Time Partition Column, then multi partitions will be created (currently you can add one partition).
+
+3. In the `Primary Partition Column`, specify the table name where the *partition column* is located and the specified partition column name
 
    ![Save multi-partition model](images/multi_partition/model.en.png)
 
    ​
 
-3. When a cube is built, if the cube has multi-partition column, you need to choose multi-partition column and the corresponding time partition column.
+4. When a cube is built, if the cube has multi-partition column, you need to choose multi-partition column and the corresponding time partition column.
 
    ![Save multi-partition model](images/multi_partition/cube.en.png)
 

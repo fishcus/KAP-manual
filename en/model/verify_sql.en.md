@@ -1,6 +1,6 @@
 ## Verify SQL 
 
-There is a huge question mark in your mind that when you design and save a cube/model: does this cube/model can answer all SQLs you often query? KAP v2.5 features this demand and provide you a pre-action,  ***Verify SQL*** action, before build the cube to relief your worries here. 
+There is a huge question mark in your mind that when you design and save a cube/model: does this cube/model can answer all SQLs you often query? Kyligence Enterprise v2.5 features this demand and provide you a pre-action,  ***Verify SQL*** action, before build the cube to relief your worries here. 
 
 ### Verify approach
 

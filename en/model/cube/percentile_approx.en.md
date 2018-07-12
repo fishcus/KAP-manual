@@ -1,6 +1,8 @@
 ## Approximate Percentile
 
-KAP supports the function **percentile**. Since KAP V2.5.4, it changed to **percentile_approx**. Both of them have the same algorithm and result. If you've pre-defined percentile measure, such SQL query will enable sub-second query latency. In KAP, this function has three return types: 'percentile(100)', 'percentile(1000)' and 'percentile(10000)'. The higher return value means higher accuracy and higher storage resources occupied. We recommend you use percentile(100) in general scenario.
+This product supports the function **percentile**. Since This product V2.5.4, it changed to **percentile_approx**. Both of them have the same algorithm and result. If you've pre-defined percentile measure, such SQL query will enable sub-second query latency. 
+
+This function has three return types: 'percentile(100)', 'percentile(1000)' and 'percentile(10000)'. The higher return value means higher accuracy and higher storage resources occupied. We recommend you use percentile(100) in general scenario.
 
 ### percentile_approx introduction
 

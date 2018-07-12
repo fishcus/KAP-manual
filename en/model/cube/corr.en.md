@@ -1,6 +1,6 @@
 ## CORR(Beta) ##
 
-Correlation coefficient is used in statics to measure how strong a relationship is between two variables. In KAP V2.5.5, it supports the correlation coefficients function, which is named *corr*. 
+Correlation coefficient is used in statics to measure how strong a relationship is between two variables. In V2.5.5, it supports the correlation coefficients function, which is named *corr*. 
 
 ### CORR Introduction ###
 
@@ -10,7 +10,7 @@ CORR function will return a value to find the relationship between the two varia
 >
 > If the data type of one column is decimal , another one also need to be decimal. Other data types which were mentioned before will not have the limitation.
 
-The query example in KAP is as below:
+The query example in Kyligence Enterprise is as below:
 
 ```
 SELECT corr(TOTAL_AMOUNT, PRICE)

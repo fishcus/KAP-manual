@@ -4,7 +4,7 @@ Find the Top-N (or Top-K) entities from a dataset is a frequent-using scenario a
 
 Within the era of big data, this need is getting stronger than ever before, as both the raw dataset and the number of entities are vast. Without pre-calculation, get the Top-K entities among a distributed big dataset may take a long time, leading the pushdown query inefficient.
 
-In v1.5.0, Apache Kylin introduces the “Top-N” measure, aiming to pre-calculate the top entities during the cube build phase; in the query phase,  Kylin can quickly fetch and return the top records. The performance would be much better than a cube without “Top-N”, giving the analyst more power to inspect data.
+In v2.1 and higher, Apache Kylin introduces the “Top-N” measure, aiming to pre-calculate the top entities during the cube build phase; in the query phase,  Kylin can quickly fetch and return the top records. The performance would be much better than a cube without “Top-N”, giving the analyst more power to inspect data.
 
 *Notice*: this “Top-N” measure is an approximate realization, to use it smoothly you need to have a good     understanding with the algorithm as well as the data distribution.
 
@@ -46,7 +46,7 @@ Suddenly, it return multiple records as below:
 
 ## Without Top-N pre-calculation
 
-Before Kylin v1.5.0, only dimension columns could be applied in “group by” query, then we came up with a design that using PART_DT, LSTG_SITE_ID and SELLER_ID as dimensions, and defining SUM(PRICE) as the measure. After building, the basic cubiod of the cube would be like:
+Before Kylin v2.1, only dimension columns could be applied in “group by” query, then we came up with a design that using PART_DT, LSTG_SITE_ID and SELLER_ID as dimensions, and defining SUM(PRICE) as the measure. After building, the basic cubiod of the cube would be like:
 
 | Rowkey of base cuboid     | SUM(PRICE) |
 | ------------------------- | ---------- |

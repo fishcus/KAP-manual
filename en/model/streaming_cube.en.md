@@ -1,6 +1,6 @@
 ##  Streaming Cube
 
-KAP 2.3.x releases the scalable streaming cubing function, it leverages Hadoop to consume the data from Kafka to build the cube. This doc is a step by step tutorial, illustrating how to create and build a streaming cube.
+Kyligence Enterprise 2.3.x releases the scalable streaming cubing function, it leverages Hadoop to consume the data from Kafka to build the cube. This doc is a step by step tutorial, illustrating how to create and build a streaming cube.
 
 For the information on Kafka data source import and definition of a table from streaming, please refer to [Import Kafka Data Source](data_import/kafka_import.en.md) under the section of Data Import.
 

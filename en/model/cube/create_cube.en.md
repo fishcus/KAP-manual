@@ -2,7 +2,7 @@
 
 This article will introduce how to design a cube with sample data(learn_kylin).
 
-Open KAP Web UI, select project *learn_kylin* in project list located at upper left corner. 
+Open this product Web UI, select project *learn_kylin* in project list located at upper left corner. 
 
 ![](images/createcube_1.png)
 
@@ -51,7 +51,7 @@ The rowkey setting result is shown in following figure:
 
 Step 3: *Measures*. Define Cube measure types according to aggregation requirements in analysis. COUNT measure and SUM measure could be created automatically if you click *Optimize*, which depend on data type, to demonstrate order amount and over all amount of item sold. Of course these defaulted measures can be modified or deleted later manually. In this case, `PRICE` is also an important in sales measurement. For example, total sales `SUM(PRICE)`. 
 
-Secondly we need to count sellers number by `COUNT(DISTINCT SELLER_ID)`. KAP adopts HyperLogLog algorithm, an approximation algorithm, by default in `COUNT_DISTINCT` computing. Low accuracy is enough in this case, so we choose "Error Rate < 9.75%". For the same reason we create another measure `COUNT(DISTINCT LSTG_FORMAT_NAME)`.
+Secondly we need to count sellers number by `COUNT(DISTINCT SELLER_ID)`. this product adopts HyperLogLog algorithm, an approximation algorithm, by default in `COUNT_DISTINCT` computing. Low accuracy is enough in this case, so we choose "Error Rate < 9.75%". For the same reason we create another measure `COUNT(DISTINCT LSTG_FORMAT_NAME)`.
 
 ![](images/createcube_5.png)
 
@@ -77,7 +77,7 @@ Step 4: *Refresh settings*. We configure cube's building and maintain. Filter an
 
 ![](images/createcube_8.png)
 
-*Retention Threshold*. For some old and not-used segments, KAP could remove these segments automatically by configuring the *Retention Threshold*. For each new segment built ready, KAP will check whether the old segments should be removed at the same time. The rule is if the time range between the latest segment's end date and the old segment's end date exceeds the *Retention Threshold*. 
+*Retention Threshold*. For some old and not-used segments, this product could remove these segments automatically by configuring the *Retention Threshold*. For each new segment built ready, this product will check whether the old segments should be removed at the same time. The rule is if the time range between the latest segment's end date and the old segment's end date exceeds the *Retention Threshold*. 
 
 > For example, if the **Retention Threshold** is 1 year, and the latest segment's end date is today. Any old segments whose end dates before the today of the last year will be removed. If no automatical cleanup needed, please keep the default value to 0. 
 
@@ -85,11 +85,11 @@ Step 4: *Refresh settings*. We configure cube's building and maintain. Filter an
 
 Build *Scheduler* is a cube build plan. Check the scheduler box and set a build time to trigger the first build and build cycle is time interval between different build job.
 
-Step5: *Table index*. KAP Plus series product include this  feature. Details please refer to [table index section](table_index.en.md).
+Step5: *Table index*. this product Plus series product include this  feature. Details please refer to [table index section](table_index.en.md).
 
 Step 6: *Advanced Setting*. The configuration added here can override the global ones read from file `kylin.properties`. We suggest don't change any configuration in this case.
 
-In this step, you may choose Cube build engine. By default, KAP uses MapReduce as build engine. But you may also switch to *Spark(Beta)* manually. For the detailed information on how to configure and use Spark as build engine, please see [Configure Spark Build Engine](../../config/spark_engine_conf.en.md).
+In this step, you may choose Cube build engine. By default, this product uses MapReduce as build engine. But you may also switch to *Spark(Beta)* manually. For the detailed information on how to configure and use Spark as build engine, please see [Configure Spark Build Engine](../../config/spark_engine_conf.en.md).
 
 Step 7: *Overview*. Please read the information carefully. Click `Save` button if everything is desired. Then click `Yes` button in pop-up menu.
 ​	

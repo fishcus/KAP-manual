@@ -1,6 +1,6 @@
 # Approximate Count Distinct
 
-Count distinct is a frequent-used function for most data analysts. Since KAP v2.1, KAP implements approximately count distinct using [HyperLogLog](https://hal.inria.fr/hal-00406166/document) algorithm, offered serveral precision, with the error rates from 9.75% to 1.22%. The result of measure has theorically upper limit in size, as 2^N bytes. For the max precision N=16, the upper limit is 64KB, and the max error rate is 1.22%. It would be perfectly fit if you don't require a particularly precise result and have limited storage resource. 
+Count distinct is a frequent-used function for most data analysts. Since v2.1, this product implements approximately count distinct using [HyperLogLog](https://hal.inria.fr/hal-00406166/document) algorithm, offered serveral precision, with the error rates from 9.75% to 1.22%. The result of measure has theorically upper limit in size, as 2^N bytes. For the max precision N=16, the upper limit is 64KB, and the max error rate is 1.22%. It would be perfectly fit if you don't require a particularly precise result and have limited storage resource. 
 
 
 
@@ -18,13 +18,13 @@ Firstly, after creating a new Cube and ensure all dimensions selected, then clic
 
 ![](images/cd_measures_add.1.png)
 
-Next, choose the column desired from `Param Value` and COUNT_DISTINCT from `Expression`. Here be careful to select accuracy requirement from `Return Type`.  KAP offers both approximate count distinct function and precise count distinct function. To get the pre-calculated approximate count distinct value, you should select  `Return Type: Error Rate<*%` based on HyperLogLog algorithm, which would return a nearly result if you don't require a particularly precise result and have limited storage resource. 
+Next, choose the column desired from `Param Value` and COUNT_DISTINCT from `Expression`. Here be careful to select accuracy requirement from `Return Type`.  this product offers both approximate count distinct function and precise count distinct function. To get the pre-calculated approximate count distinct value, you should select  `Return Type: Error Rate<*%` based on HyperLogLog algorithm, which would return a nearly result if you don't require a particularly precise result and have limited storage resource. 
 
 ![](images/cd_measures_add.2.png)
 
 ### Multiple Columns Count Distinct
 
-Multiple columns count distinct has been supported by [HyperLogLog](https://hal.inria.fr/hal-00406166/document) algorithm since KAP v2.4. The sql statements and detailed settings are shown below.
+Multiple columns count distinct has been supported by [HyperLogLog](https://hal.inria.fr/hal-00406166/document) algorithm since v2.4. The sql statements and detailed settings are shown below.
 
 ```sql
 SELECT COUNT (DISTINCT P_LINEORDER.LO_SHIPPRIORITY, PART.P_SIZE, CUSTOMER.C_REGION) FROM P_LINEORDER 

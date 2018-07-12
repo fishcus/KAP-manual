@@ -1,6 +1,6 @@
 ## Cube Optimizer
 
-Start from V2.5, KAP provides a *multi-preference based Cube Optimizer* to suggest cube designs, which helps reduce cube expansion and improve *Query/Build* performance.
+Start from V2.5, this product provides a *multi-preference based Cube Optimizer* to suggest cube designs, which helps reduce cube expansion and improve *Query/Build* performance.
 
 In the second step of Cube creation, you may find this function.
 
@@ -19,7 +19,7 @@ According to the best pratices of Cube tuning, Optimizer analyzes statistics of 
 
   - Business Oriented: Optimizer would only digest SQL patterns input in *Optimizer Inputs* to suggest multiple aggregate groups consisting of mandatory dimensions. Cubes which follows business-oriented strategy are designed to answer known queries.
 
-  - Default: If you do not specify any strategy, KAP will suggest the aggregation groups and Rowkeys based on the contents in *Optimizer Inputs*.
+  - Default: If you do not specify any strategy, This product will suggest the aggregation groups and Rowkeys based on the contents in *Optimizer Inputs*.
 
 - *Dimensions*: dimension and the type of dimension, such as *Normal* or *Derived.*
 - *Measures*: suggest common aggregation mostly in entered SQL patterns as measures.

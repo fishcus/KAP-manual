@@ -1,15 +1,15 @@
 ## Build Cube
 
-After cube is created, it has to be built to serve queries. We will use KAP sample data to show the process of cube building.
+After cube is created, it has to be built to serve queries. We will use Kyligence Enterprise sample data to show the process of cube building.
 
 ### First Build
 
-Open KAP web UI, select *learn_kylin* project, go to the *Studio* page, and find the cube list.
+Open Kyligence Enterprise web UI, select *learn_kylin* project, go to the *Studio* page, and find the cube list.
 Step1: Find the *Kylin_Sales_Cube* cube, right click the **Action** button, and select **Build** in the drop-down menu.
 
 ![](images/buildcube_0.png)
 
-Step 2: In the build cube dialog, confirm the *Partition Date Column* is *DEFAULT.KYLIN_SALES.PART_DT*, and its start time is `2012-01-01 00:00:00`. In KAP, every build will create a new segment in cube, and all segments will participate in queries. Bigger segments are faster in query but takes longer to build and refresh. Smaller segments are easier to build and refresh but have a small penalty to query performance. In this case, we choose the end date of segment to be `2013-01-01 00:00:00`. Click **Submit** to continue.
+Step 2: In the build cube dialog, confirm the *Partition Date Column* is *DEFAULT.KYLIN_SALES.PART_DT*, and its start time is `2012-01-01 00:00:00`. In Kyligence Enterprise, every build will create a new segment in cube, and all segments will participate in queries. Bigger segments are faster in query but takes longer to build and refresh. Smaller segments are easier to build and refresh but have a small penalty to query performance. In this case, we choose the end date of segment to be `2013-01-01 00:00:00`. Click **Submit** to continue.
 
 > Note: User shall manage the granularity of segments. The time range of segments may depend on data volume, ETL data arrival time, and other business requirements. Typically new segments are kept small to allow quicker build and easier refresh. Later, as data ages, historical segments are merged into bigger ones, to control the overall number of segments. In this example, since the volume is small, the one-year segment can be built without any problem.
 
