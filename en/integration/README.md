@@ -4,8 +4,6 @@ This chapter includes integration between KAP and 3rd party BI tools.
 
 Following BI tools are covered:
 
-When you connected with BI tools, some tools will send a query like `select * from fact_table `. Using the project configuration `kylin.query.force-limit ` is highly recommended if your data is extremely large.
-
 [Tableau](tableau_10.en.md)
 
 [Excel](excel_2018.en.md)

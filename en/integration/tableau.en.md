@@ -38,7 +38,7 @@ If you want to publish local dashboards to a Tableau Server, just expand `Server
 
 ### View Detail Data
 
-> Note: Table Index or Query Pushdown need to be enabled in order to query detail data from KAP.
+> Note: Table Index or Query Pushdown need to be enabled in order to query detail data from this product.
 
 You can drill down from aggregated data to detail data in Tableau. First, click on the data you would like to view detail data of on the report, then click the icon as shown. 
 
@@ -48,9 +48,9 @@ Click on the Full Data tab and then you can view the drill-down detail data.
 
 ![](images/tableau_10/step16_en.png)
 
-### Sync Model from KAP to Tableau
+### Sync Model from this product to Tableau
 
-#### **Export TDS from KAP**
+#### **Export TDS from This Product**
 
 If you want to download a tds file, please select a `READY` cube and click `Export TDS` in `more actions` to download a tds file.
 
@@ -61,4 +61,10 @@ To see the data source information, you can double click tds file on where has i
 
 ![](images/tableau_10/step18_en.png)
 ![](images/tableau_10/step19_en.png)
+
+### Notice
+
+When you connected with Tableau, Tableau will send a query to this product. This can take a relatively long time to process the query when the dataset is extremely large. For this situation, you can use the project configuration to shorten the waiting time. See *Configuration* for details.
+
+> Note: users can use`kylin.query.force-limit`. LIMIT clause helps in this case, and setting the value of this property to a positive integer make Kyligence Enterprise append LIMIT clause if there's no one. For instance the value is 1000, query "select * from fact_table" will be transformed to "select * from fact_table limit 1000". 
 

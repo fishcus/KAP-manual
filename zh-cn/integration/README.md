@@ -27,11 +27,3 @@
 [OBIEE](obiee.cn.md)
 
 
-
-> 注意：当您连接BI工具时，部分BI工具会发送全表查询语句如下： 
->
-> ```sql
-> select * from fact_table;
-> ```
->
-> 如果表数据量较大，会造成查询返回时间过长， 建议您根据自身需求配置项目参数进行优化。比如通过调整`kylin.query.force-limit ` 以限制返回记录数。
