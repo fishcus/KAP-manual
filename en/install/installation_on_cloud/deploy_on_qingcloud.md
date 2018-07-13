@@ -14,23 +14,23 @@ In QingCloud AppCenter, Kyligence Enterprise presents as a standard application,
 
 2) Create ZooKeeper cluster: select "big data platform" - > "ZooKeeper"
 
-![](C:images\qingyun_basic_settings.png)
+![](images/qingyun_basic_settings.png)
 
 3) Network configuration: when creating Kyligence cluster or ZooKeeper cluster, system prompts to create private network. According to the hint, we can successfully create the routers and private networks needed, and bind the private network to the router.
 
-![](images\qingyun_create_cluster.en.jpg)
+![](images/qingyun_create_cluster.en.jpg)
 
 4) Create a public network IP
 
-![](images\qingyun_apply_for_IP.jpg)
+![](images/qingyun_apply_for_IP.jpg)
 
 After creating the public network IP, you need to bind to the previously created router.
 
-![](images\qingcloud_IP_bind_en.png)
+![](images/qingcloud_IP_bind_en.png)
 
 5) Configure VPN, enter "router", select "VPN service", and recommend "Open VPN" service here. For more info, you can refer to [VPN configuration](https://docs.qingcloud.com/product/network/vpn)
 
-![](.\images\qingyun_openVPN.jpg)
+![](images/qingyun_openVPN.jpg)
 
 6) Configure firewalls: open the 1194 port for OpenVPN services.
 
@@ -42,13 +42,13 @@ After creating the public network IP, you need to bind to the previously created
 
 2) Input basic information, such as resource allocation type, charging mode, etc.
 
-![](images\qingyun_kap_configuration.jpg)
+![](images/qingyun_kap_configuration.jpg)
 
 3) Choose the private network and Zookeeper services to rely on.
 
 > You can quickly deploy a Zookeeper service through the Zookeeper application in AppCenter, and then select the created Zookeeper service here.
 
-![](images\qingyun_configuration_settings.jpg)
+![](images/qingyun_configuration_settings.jpg)
 
 4) Configure environment parameters according to performance requirements and cluster size. For reference, please refer to the ：[recommend settings](../../config/recommend_settings.en.md)
 

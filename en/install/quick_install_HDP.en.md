@@ -19,11 +19,11 @@ ambari-agent start
 ambari-server start
 ```
 
-![](.\images\quick_installation_for_hdp_hbase.png)
+![](images/quick_installation_for_hdp_hbase.png)
 
 After start, please ensure that `HDFS`, `Yarn`, `Hive`, `HBase`,` Zookeeper` and other components are in normal state and do not have any warning information, as shown in the figure:
 
-![](.\images\quick_installation_for_hdp.jpg)
+![](./images/quick_installation_for_hdp.jpg)
 
 > If you encounter the following information when installing Kyligence Enterprise:
 >
