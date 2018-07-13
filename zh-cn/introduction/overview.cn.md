@@ -1,7 +1,7 @@
 
-## KAP 概览
+## Kyligence Enterprise 概览
 
-Kyligence Analytics Platform(KAP)是Kyligence提供的基于Apache Kylin的企业级大数据智能分析平台，在PB级数据集上提供亚秒级标准SQL查询响应，支持互联网级的高并发访问，赋能分析师以行业标准的数据仓库和商业智能方法论架构DW on Hadoop解决方案。KAP为商业用户、分析师和工程师提供了统一的分析平台，支持自助式建模，无需编程，并与主流BI工具实现无缝集成，在开源Apache Kylin核心功能之外，在企业用户所关注的实施效率、安全控制、性能优化、自助式敏捷BI、系统监控和管理等方面进行了全面创新和增强。作为Hadoop上的原生OLAP解决方案，KAP基于Hadoop标准接口与集群交互，兼容主流Hadoop发行版，支持私有数据中心及云端部署安装。
+Kyligence Enterprise是Kyligence提供的基于Apache Kylin的企业级大数据智能分析平台，在PB级数据集上提供亚秒级标准SQL查询响应，支持互联网级的高并发访问，赋能分析师以行业标准的数据仓库和商业智能方法论架构DW on Hadoop解决方案。Kyligence Enterprise为商业用户、分析师和工程师提供了统一的分析平台，支持自助式建模，无需编程，并与主流BI工具实现无缝集成，在开源Apache Kylin核心功能之外，在企业用户所关注的实施效率、安全控制、性能优化、自助式敏捷BI、系统监控和管理等方面进行了全面创新和增强。作为Hadoop上的原生OLAP解决方案，Kyligence Enterprise基于Hadoop标准接口与集群交互，兼容主流Hadoop发行版，支持私有数据中心及云端部署安装。
 
 **KyStorage：高效的列式存储引擎，支持明细数据查询**
 
@@ -23,7 +23,7 @@ Kyligence Analytics Platform(KAP)是Kyligence提供的基于Apache Kylin的企�
 
 **兼容主流Hadoop发行版**
 
-KAP兼容开源Hadoop及主流商业Hadoop发行版，可运行在*Apache Hadoop*，*Hortonworks HDP*，*Microsoft HDInsight*，*AWS EMR*，*华为FusionInsight*等发行版和平台，并与*Cloudera CDH* 实现了产品相互认证。
+Kyligence Enterprise兼容开源Hadoop及主流商业Hadoop发行版，可运行在*Apache Hadoop*，*Hortonworks HDP*，*Microsoft HDInsight*，*AWS EMR*，*华为FusionInsight*等发行版和平台，并与*Cloudera CDH* 实现了产品相互认证。
 
 
 
@@ -31,23 +31,23 @@ KAP兼容开源Hadoop及主流商业Hadoop发行版，可运行在*Apache Hadoop
 
 
 
-### KAP与Apache Kylin比较
+### Kyligence Enterprise与Apache Kylin比较
 
-|                | Apache Kylin      | KAP企业版                      | KAP高级企业版                    |
-| -------------- | ----------------- | --------------------------- | --------------------------- |
-| **定位**         | OLAP on Hadoop    | Data Warehouse on Hadoop    | Data Warehouse on Hadoop    |
-| **核心**         | Apache Kylin      | Apache Kylin                | Apache Kylin                |
-| **查询性能**       | 亚秒级查询延迟           | 与Apache Kylin一致             | **在复杂查询上，比开源Kylin快3～40倍**   |
-| **并行计算**       | HBase Coprocessor | HBase Coprocessor           | **Spark**                   |
-| **存储引擎**       | HBase             | HBase                       | **KyStorage：自主研发的列式存储引擎**   |
-| **超高基维度支持**    | 有限                | 有限                          | **高效地支持**                   |
-| **超宽表支持**      | 有限                | 有限                          | **高效地支持**                   |
-| **明细查询**       | 有限                | 有限                          | **高效地支持**                   |
-| **建模工具**       | 以Cube为中心          | **KyStudio：增强的语义层建模流程**     | **KyStudio：增强的语义层建模流程**     |
-| **智能建模**       | 不支持               | **一键优化，智能剪枝**               | **一键优化，智能剪枝**               |
-| **查询下压**       | 不支持               | 基于JDBC的有限支持                 | **基于Spark SQL完善支持**         |
-| **安全**         | 有限                | **LDAP/Kerberos/单元格级别访问控制** | **LDAP/Kerberos/单元格级别访问控制** |
-| **敏捷BI工具**     | 无内置               | **KyAnalyzer：内置敏捷BI工具**     | **KyAnalyzer：内置敏捷BI工具**     |
-| **技术支持**       | 开源社区邮件组，没有SLA     | 邮件、电话、工单，支持SLA的5\*8或7\*24   | 邮件、电话、工单，支持SLA的5\*8或7\*24   |
-| **KyBot自助式服务** | 不包含，需要单独购买        | 包含                          | 包含                          |
+|                     | Apache Kylin            | Kyligence Enterprise企业版             | Kyligence Enterprise高级企业版         |
+| ------------------- | ----------------------- | -------------------------------------- | -------------------------------------- |
+| **定位**            | OLAP on Hadoop          | Data Warehouse on Hadoop               | Data Warehouse on Hadoop               |
+| **核心**            | Apache Kylin            | Apache Kylin                           | Apache Kylin                           |
+| **查询性能**        | 亚秒级查询延迟          | 与Apache Kylin一致                     | **在复杂查询上，比开源Kylin快3～40倍** |
+| **并行计算**        | HBase Coprocessor       | HBase Coprocessor                      | **Spark**                              |
+| **存储引擎**        | HBase                   | HBase                                  | **KyStorage：自主研发的列式存储引擎**  |
+| **超高基维度支持**  | 有限                    | 有限                                   | **高效地支持**                         |
+| **超宽表支持**      | 有限                    | 有限                                   | **高效地支持**                         |
+| **明细查询**        | 有限                    | 有限                                   | **高效地支持**                         |
+| **建模工具**        | 以Cube为中心            | **KyStudio：增强的语义层建模流程**     | **KyStudio：增强的语义层建模流程**     |
+| **智能建模**        | 不支持                  | **一键优化，智能剪枝**                 | **一键优化，智能剪枝**                 |
+| **查询下压**        | 不支持                  | 基于JDBC的有限支持                     | **基于Spark SQL完善支持**              |
+| **安全**            | 有限                    | **LDAP/Kerberos/单元格级别访问控制**   | **LDAP/Kerberos/单元格级别访问控制**   |
+| **敏捷BI工具**      | 无内置                  | **KyAnalyzer：内置敏捷BI工具**         | **KyAnalyzer：内置敏捷BI工具**         |
+| **技术支持**        | 开源社区邮件组，没有SLA | 邮件、电话、工单，支持SLA的5\*8或7\*24 | 邮件、电话、工单，支持SLA的5\*8或7\*24 |
+| **KyBot自助式服务** | 不包含，需要单独购买    | 包含                                   | 包含                                   |
 

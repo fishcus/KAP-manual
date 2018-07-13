@@ -1,11 +1,11 @@
-## KAP 概念
+## Kyligence Enterprise 概念
 
-本节介绍了在KAP中使用的基础概念。
+本节介绍了在Kyligence Enterprise中使用的基础概念。
 
 ## CUBE
-* __Table__ - 表， 是Cube的数据源；在创建Cube之前，KAP需要从数据源（通常为Hive）同步表的元数据，包含表名、列名、列属性等。
+* __Table__ - 表， 是Cube的数据源；在创建Cube之前，Kyligence Enterprise需要从数据源（通常为Hive）同步表的元数据，包含表名、列名、列属性等。
 
-* __Data Model__ - 数据模型，定义了由若干张表的一个连接关系。KAP支持[星型模型](https://en.wikipedia.org/wiki/Star_schema)的多维分析；在创建Cube之前，用户需定义这么一个数据模型。
+* __Data Model__ - 数据模型，定义了由若干张表的一个连接关系。Kyligence Enterprise支持[星型模型](https://en.wikipedia.org/wiki/Star_schema)的多维分析；在创建Cube之前，用户需定义这么一个数据模型。
 
 * __Cube__ - 数据立方体，是一种多维分析的技术，通过预计算，将计算结果存储在某多个维度值所映射的空间中；在运行时通过对Cube的再处理而快速获取结果。
 

@@ -4,7 +4,7 @@
 
 随着Apache Kylin的深入应用，Kylin集群规模不断扩大，数据存储不断增加，用户访问更加频繁，如何对整个Kylin集群、底层存储、构建任务、Hadoop资源利用等有更多的了解和分析，最大限度的利用相关资源，优化查询性能，提高运行效率，保证应用稳定等逐渐成了Kylin用户群的普遍且急迫的需求。
 
-作为Apache Kylin背后的创业公司，上海跬智信息技术有限公司（Kyligence）推出了KyBot云端服务，为Apache Kylin及其商业版KAP提供 **在线诊断、优化及服务平台** 。KyBot通过分析Kylin的日志等信息，为用户提供可视化仪表盘、系统优化、故障排查、技术支持等服务：
+作为Apache Kylin背后的创业公司，上海跬智信息技术有限公司（Kyligence）推出了KyBot云端服务，为Apache Kylin及其商业版Kyligence Enterprise提供 **在线诊断、优化及服务平台** 。KyBot通过分析Kylin的日志等信息，为用户提供可视化仪表盘、系统优化、故障排查、技术支持等服务：
 
 1. **仪表盘：** 以可视化的形式展现Kylin系统的相关内容，包括Cube、用户访问情况、查询延迟、任务构建统计、存储等各方面的信息， 从不同维度提供整个Kylin集群及应用的洞察能力
 2. **系统优化：** Kylin提供万亿规模数据集上的亚秒级交互式分析能力，因此，查询的优化是Kylin应用的核心。KyBot可以分析相应的日志为用户提供直观的性能分析试图，通过可视化来展示每一个阶段的性能消耗，以此来帮助用户快速定位瓶颈等。同时，KyBot通过对Cube日志的分析，来帮助用户不断优化数据模型及Cube的设计和存储，以在存储、构建及查询性能间找到最佳的平衡点
@@ -29,15 +29,15 @@ KyBot默认访问地址： [https://kybot.io](https://kybot.io)，根据提示�
 
 ## 3. 生成诊断包
 
-- KAP用户
+- Kyligence Enterprise用户
 
-登录每一个KAP节点的WEB UI,点击系统页面的"诊断"按钮,生成诊断包
+登录每一个Kyligence Enterprise节点的WEB UI,点击系统页面的"诊断"按钮,生成诊断包
 
 ![](images/Picture2.png)
 
 - Kylin 用户
 
-① 下载KyBot Client (支持Apache Kylin1.5.0以上及KAP全部版本)下载路径：登录KyBot 官网https://kybot.io，在首页点击上传，然后点击"打包工具: KyBot Client 1.0.1"即可下载。
+① 下载KyBot Client (支持Apache Kylin1.5.0以上及Kyligence Enterprise全部版本)下载路径：登录KyBot 官网https://kybot.io，在首页点击上传，然后点击"打包工具: KyBot Client 1.0.1"即可下载。
 
 ② 解压到每个Kylin节点的$KYLIN\_HOME/kybot目录
 
@@ -55,7 +55,7 @@ KyBot默认访问地址： [https://kybot.io](https://kybot.io)，根据提示�
 
 ## 1. 仪表盘
 
-洞悉KAP（Apache Kylin）集群的健康情况
+洞悉Kyligence Enterprise（Apache Kylin）集群的健康情况
 
 - Cube使用情况统计
 

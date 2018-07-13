@@ -1,8 +1,8 @@
-## KAP 简介
+## Kyligence Enterprise 简介
 
-Kyligence大数据分析平台\(Kyligence Analytics Platform, KAP\)是基于[_Apache Kylin_](http://kylin.apache.org)的，在超大规模数据集上提供亚秒级分析能力的企业级产品，为业务用户、分析师及工程师提供简单、快捷的大数据分析服务。
+Kyligence大数据分析平台\(Kyligence Analytics Platform, Kyligence Enterprise\)是基于[_Apache Kylin_](http://kylin.apache.org)的，在超大规模数据集上提供亚秒级分析能力的企业级产品，为业务用户、分析师及工程师提供简单、快捷的大数据分析服务。
 
-相较于其它技术，KAP具有以下特点：
+相较于其它技术，Kyligence Enterprise具有以下特点：
 
 * **亚秒级查询** 
 
@@ -14,7 +14,7 @@ Kyligence大数据分析平台\(Kyligence Analytics Platform, KAP\)是基于[_Ap
 
 * **自助服务** 
 
-KAP使得分析师及用户能以简洁而快速的方式分析海量数据。易于使用的Web界面允许用户自己构建数据集市而无需知晓底层技术 。
+Kyligence Enterprise使得分析师及用户能以简洁而快速的方式分析海量数据。易于使用的Web界面允许用户自己构建数据集市而无需知晓底层技术 。
 
 * **可扩展架构** 
 
@@ -22,7 +22,7 @@ KAP使得分析师及用户能以简洁而快速的方式分析海量数据。�
 
 * **非侵入式** 
 
-KAP的部署不需要在现有Hadoop集群上安装任何新的组件，更不需要在数据节点或其他节点上安装Agent等，所有与集群的操作都通过标准API完成，从而使得对现有集群的影响最小化，也为快速部署带来了可能。
+Kyligence Enterprise的部署不需要在现有Hadoop集群上安装任何新的组件，更不需要在数据节点或其他节点上安装Agent等，所有与集群的操作都通过标准API完成，从而使得对现有集群的影响最小化，也为快速部署带来了可能。
 
 更多信息，请访问Kyligence网站: [http://kyligence.io/](http://kyligence.io/)
 
