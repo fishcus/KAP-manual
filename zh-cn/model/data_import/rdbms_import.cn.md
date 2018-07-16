@@ -8,7 +8,7 @@
 
 - 下载各RDBMS官方JDBC驱动程序jar包
 - 拷贝相关jar包放置在`$KYLIN_HOME/ext`目录下
-- 拷贝相关jar包放置sqoop安装目录的lib目录下, 并检查全局参数。在`kylin.properties`中添加kylin.source.jdbc.sqoop-home=<sqoop_path>，其中sqoop_path为sqoop命令所在的文件。
+- 拷贝相关jar包放置sqoop安装目录的lib目录下, 并检查全局参数。在`kylin.properties`中添加kylin.source.jdbc.sqoop-home=&lt;sqoop_path&gt;，其中sqoop_path为sqoop命令所在的文件。
 
 
 
