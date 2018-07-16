@@ -1,9 +1,9 @@
 
 ## Kyligence Analytics Platform
 
-Kyligence Analytics Platform (KAP) is a big data analytics product base on Apache Kylin. It provides sub-second SQL query capability on tens of billions of records, enables simple and agile analytic features for enterprise users, analysts and engineers. KAP has been adopted by many big companies from different industries to tackle various big data challenges.
+Kyligence Enterprise is a big data analytics product base on Apache Kylin. It provides sub-second SQL query capability on tens of billions of records, enables simple and agile analytic features for enterprise users, analysts and engineers. Kyligence Enterprise has been adopted by many big companies from different industries to tackle various big data challenges.
 
-KAP offers following features:
+Kyligence Enterprise offers following features:
 
 * __Sub-second Query Latency__
 
@@ -20,12 +20,12 @@ Easy-to-use web GUI allows user to build data mart in a self-serving manner, wit
 
 * __Extensible Architecture__
 
-Extensible architecture decouples KAP with computation framework, data source, and storages. Allows flexible choices between alternative technologies like MapReduce and Spark, connects with different data sources and storages. Ensures KAP can evolve with the best of the big data ecosystem. 
+Extensible architecture decouples Kyligence Enterprise with computation framework, data source, and storages. Allows flexible choices between alternative technologies like MapReduce and Spark, connects with different data sources and storages. Ensures Kyligence Enterprise can evolve with the best of the big data ecosystem. 
 
 
 * __Non-invasive__
 
-KAP can deploy on a single node of cluster, unpack and run. All interactions to cluster are via standard Hadoop API, minimizing maintenance impact.
+Kyligence Enterprise can deploy on a single node of cluster, unpack and run. All interactions to cluster are via standard Hadoop API, minimizing maintenance impact.
 
 
 For more information, please access Kyligence web site: http://kyligence.io/.

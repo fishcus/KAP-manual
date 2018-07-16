@@ -1,11 +1,11 @@
 ### Basic Concepts
 
-This section introduces the basic concepts used in KAP.
+This section introduces the basic concepts used in Kyligence Enterprise.
 
 ### Cube
-* _Table_ - Table is the source data of cube. Before creating a cube, KAP need to sync tables from data source (typically Hive), including table name, columns, and types etc.
+* _Table_ - Table is the source data of cube. Before creating a cube, Kyligence Enterprise need to sync tables from data source (typically Hive), including table name, columns, and types etc.
 
-* _Data Model_ - Data model defines a set of connected tables and their joining conditions. KAP supports [star schema](https://en.wikipedia.org/wiki/Star_schema) as the base of multi-dimensional analysis. User has to define a data model before a cube can be created.
+* _Data Model_ - Data model defines a set of connected tables and their joining conditions. Kyligence Enterprise supports [star schema](https://en.wikipedia.org/wiki/Star_schema) as the base of multi-dimensional analysis. User has to define a data model before a cube can be created.
 
 * _Cube_ - Cube is a technology for multi-dimensional analytics. By calculating a cube, pre-aggregated values are stored in a multi-dimensional space. At query time, result is created by lightweight processing these pre-calculated values, thus boost query speed. 
 

@@ -2,7 +2,7 @@
 
 ### Kyligence Support
 
-Kyligence will help customer install, configure, optimize, and run KAP, help customer resovle the large scale data processing and analytics problems. Kyligence will support customer to install KAP in their own data center, and also cloud environment, such as Amazon Web Services and Microsoft Azure. 
+Kyligence will help customer install, configure, optimize, and run Kyligence Enterprise, help customer resovle the large scale data processing and analytics problems. Kyligence will support customer to install Kyligence Enterprise in their own data center, and also cloud environment, such as Amazon Web Services and Microsoft Azure. 
 
 If  you are Kyligence registed user, you could
 
