@@ -7,11 +7,8 @@
 连接RDBMS数据源，需要先完成相关驱动程序下载准备工作:
 
 - 下载各RDBMS官方JDBC驱动程序jar包
-- 下载Kyligence特定的SDK jar包（如果有特殊RDBMS支持，需要下载SDK jar包，请联系Kyligence Support）
 - 拷贝相关jar包放置在`$KYLIN_HOME/ext`目录下
-- 拷贝相关jar包放置sqoop安装目录的lib目录下
-
-> 注意：Cube构建过程需要使用**sqoop**，需要自行配置JDBC至sqoop安装路径/lib目录下。
+- 拷贝相关jar包放置sqoop安装目录的lib目录下, 并检查全局参数。在`kylin.properties`中添加kylin.source.jdbc.sqoop-home=<sqoop_path>，其中sqoop_path为sqoop命令所在的文件。
 
 
 
@@ -19,17 +16,15 @@
 
 用户通过**项目配置**或**全局配置**进行参数设置：
 
-> 说明：全局配置文件默认在安装路径下/conf目录的`kylin.properties`配置文件
-
-| 参数名                           | 解释                                             |
-| -------------------------------- | ------------------------------------------------ |
-| kylin.source.jdbc.driver         | JDBC驱动类名                                     |
-| kylin.source.jdbc.connection-url | JDBC连接字符串                                   |
-| kylin.source.jdbc.user           | JDBC连接用户名                                   |
-| kylin.source.jdbc.pass           | JDBC连接密码                                     |
-| kylin.source.jdbc.dialect        | JDBC方言（目前仅支持default、greenplum两种方言） |
-| kylin.source.default             | JDBC使用的数据源种类（RDBMS种类代码为16）        |
-| kylin.source.jdbc.adaptor        | JDBC连接的数据源对应的适配器                     |
+| 参数名                           | 解释                                      |
+| -------------------------------- | ----------------------------------------- |
+| kylin.source.jdbc.driver         | JDBC驱动类名                              |
+| kylin.source.jdbc.connection-url | JDBC连接字符串                            |
+| kylin.source.jdbc.user           | JDBC连接用户名                            |
+| kylin.source.jdbc.pass           | JDBC连接密码                              |
+| kylin.source.jdbc.dialect        | JDBC方言                                  |
+| kylin.source.default             | JDBC使用的数据源种类（RDBMS种类代码为16） |
+| kylin.source.jdbc.adaptor        | JDBC连接的数据源对应的适配器              |
 
 如果需要开启查询下压，还需要配置以下参数：
 
@@ -37,13 +32,11 @@
 kylin.query.pushdown.runner-class-name=io.kyligence.kap.query.pushdown.PushdownRunnerSDKImpl
 ```
 
-> 注：除以上项目配置项外，还需要在`kylin.properties`中添加kylin.source.jdbc.sqoop-home=<sqoop_path>，其中sqoop_path为sqoop命令所在的文件。
-
 
 
 ### 创建基于RDBMS数据源的项目
 
-以Greenplum数据源为例，使用 JDBC Driver来连接，步骤如下：
+使用 JDBC Driver来连接，步骤如下：
 
 1. 登录本产品的Web UI；
 2. 主界面顶端左侧的项目管理工具栏中，点击加号 **“＋” ** 以新建项目；
@@ -51,20 +44,47 @@ kylin.query.pushdown.runner-class-name=io.kyligence.kap.query.pushdown.PushdownR
 4. 进入具体项目**建模** 功能， 选择 **数据源** 选项卡；
 5. 点击蓝色的**数据源**按钮；
 6. 在弹出窗口中，选择 **RDBMS**作为数据源类型；
-7. 在项目配置中添加以下配置：
+7. 在项目配置中添加数据源参数配置(可参考相关受支持的RDBMS参数项目配置参考)
+
+8. 点击**下一步**按钮，进入**加载表元数据**窗口， 用户可按需在左侧表清单中， 单击选中需要建模的表。
+9. 点击右下方**同步**按钮进行加载。
+
+### 支持的RDBMS连接参数项目配置参考
+
+- 基本参数
+
+```properties
+kylin.source.jdbc.connection-url=jdbc:<sqlserver>://<HOST>:<PORT>;database=<DATABASE_NAME>
+kylin.source.jdbc.user=<username>
+kylin.source.jdbc.pass=<password>
+```
+
+- Greenplum数据源
 
 ```properties
 kylin.source.jdbc.driver=com.pivotal.jdbc.GreenplumDriver
-kylin.source.jdbc.connection-url=jdbc:sqlserver://<HOST>:<PORT>;database=<DATABASE_NAME>
-kylin.source.jdbc.user=<username>
-kylin.source.jdbc.pass=<password>
-kylin.query.pushdown.runner-class-name=io.kyligence.kap.query.pushdown.PushdownRunnerSDKImpl
 kylin.source.jdbc.dialect=greenplum
-kylin.source.jdbc.sqoop-home=/usr/hdp/current/sqoop-client/bin
 ```
 
-8. 点击**下一步**按钮，进入**加载表元数据**窗口， 用户可按需在左侧表清单中， 单击选中需要建模的表。
+- Mysql 数据源
 
-9. 点击右下方**同步**按钮进行加载。
+```properties
+kylin.source.jdbc.driver=com.mysql.jdbc.Driver
+kylin.source.jdbc.dialect=mysql
+kylin.source.jdbc.adaptor=io.kyligence.kap.sdk.datasource.adaptor.MysqlAdaptor
+```
 
-   
+- SQL SERVER数据源
+
+```properties
+kylin.source.jdbc.driver=com.microsoft.sqlserver.jdbc.SQLServerDriver
+kylin.source.jdbc.dialect=mssql
+kylin.source.jdbc.adaptor=io.kyligence.kap.sdk.datasource.adaptor.MssqlAdaptor
+```
+
+> 提示：SQL SERVER数据源支持存在已知限制
+>
+> - 不支持含limit子查询
+> - 不支持空间查询 如'geometric','geography'
+> - 不支持 INITCAP,MEDIAN,STDDEV_POP,FIRST_VALUE 等高阶统计函数
+> - 不支持开窗函数，如 avg/count/max/min/sum over() 等语法
