@@ -4,8 +4,8 @@ KyAnalyzer 是一款由 Kyligence 研发的敏捷 BI 工具，旨在为用户提
 
 主要特色：
 
-- 支持一键同步 KAP / Kylin 数据 Cube 模型
-- 统一集成 KAP 的访问认证系统
+- 支持一键同步 Kyligence Enterprise / Kylin 数据 Cube 模型
+- 统一集成 Kyligence Enterprise 的访问认证系统
 - 支持报表导出为链接，简化报表集成
 
 有关详情，请参考 [KyAnalyzer 自助式敏捷 BI 工具](kyanalyzer.cn.html)。

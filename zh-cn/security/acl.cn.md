@@ -1,8 +1,8 @@
 ## 管理访问权限
 
-用户／组在KAP中能否访问一个项目并使用项目中的一些功能是由项目级别访问权限决定的。KAP内置四种项目访问权限角色，他们是 Admin、Management、Operation 和 Query。每个角色定义了一系列在 KAP 中有权限访问的功能。
+用户／组在Kyligence Enterprise中能否访问一个项目并使用项目中的一些功能是由项目级别访问权限决定的。Kyligence Enterprise内置四种项目访问权限角色，他们是 Admin、Management、Operation 和 Query。每个角色定义了一系列在 Kyligence Enterprise 中有权限访问的功能。
 
-KAP 为不同角色提供什么样的权限？
+Kyligence Enterprise 为不同角色提供什么样的权限？
 
 - *Query*：定位为一般分析师，只需要项目中的表或者 Cube 的查询权限。
 - *Operation*：定位为公司、组织内的 IT 运维人员，负责运维 Cube。Operation 权限包含 Query 权限。

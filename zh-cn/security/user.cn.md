@@ -4,21 +4,21 @@
 
 ### 关于用户
 
-任何用户使用 KAP 都需要使用账号和密码登录。创建之后用户的信息会存储在 KAP 的元数据中，每个 KAP 实例上每个用户是唯一的，即用户不需要在同一实例的不同项目上反复创建。
+任何用户使用 Kyligence Enterprise 都需要使用账号和密码登录。创建之后用户的信息会存储在 Kyligence Enterprise 的元数据中，每个 Kyligence Enterprise 实例上每个用户是唯一的，即用户不需要在同一实例的不同项目上反复创建。
 
-创建新的 KAP 实例时，KAP 会创建缺省的三个用户，其中用户 **ADMIN** 是KAP内置的系统管理员。**系统管理员**拥有整个系统的所有权限。
+创建新的 Kyligence Enterprise 实例时，Kyligence Enterprise 会创建缺省的三个用户，其中用户 **ADMIN** 是Kyligence Enterprise内置的系统管理员。**系统管理员**拥有整个系统的所有权限。
 
 ### 权限控制列表
 
 权限控制列表（ACL）是用户及其访问权限的列表。除了系统管理员权限以外，ACL 需要以项目为单位进行授予。
 
-在项目上，KAP 提供四种访问权限。这四种权限分别为 Admin、Management、Operation 和 Query。每个权限定义了用户在项目上可以操作的功能。
+在项目上，Kyligence Enterprise 提供四种访问权限。这四种权限分别为 Admin、Management、Operation 和 Query。每个权限定义了用户在项目上可以操作的功能。
 
 关于项目级权限控制的更多内容，请参见[管理权限](acl.cn.md) 。
 
 ### 管理用户
 
-系统管理员登录 KAP 后，点击导航栏的`系统`按钮，进入系统管理页面，点击左侧的用户栏进入用户管理页面。KAP 默认会初始化三个用户，对应帐号信息为 ADMIN，MODELER，ANALYST。
+系统管理员登录 Kyligence Enterprise 后，点击导航栏的`系统`按钮，进入系统管理页面，点击左侧的用户栏进入用户管理页面。Kyligence Enterprise 默认会初始化三个用户，对应帐号信息为 ADMIN，MODELER，ANALYST。
 
 用户创建后，系统管理员可以在系统->用户页面对用户进行管理，可以增加、管理、删除用户和对用户分组。
 
@@ -62,7 +62,7 @@ $KYLIN_HOME/bin/kylin.sh admin-password-reset
 
 系统管理员可以在此页面删除用户。用户被删除后将不能恢复。
 
-将用户从一个 KAP 实例上彻底删除后，用户在所有项目上的访问权限也会被删除。这包括项目级别、表级、行级、列级等权限。
+将用户从一个 Kyligence Enterprise 实例上彻底删除后，用户在所有项目上的访问权限也会被删除。这包括项目级别、表级、行级、列级等权限。
 
 ### 启用/禁用用户
 

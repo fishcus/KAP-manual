@@ -37,7 +37,7 @@
 
 
 
-Rowkey的顺序对于查询性能来说至关重要，一般把最常出现在过滤条件中的列放置在Rowkey的前面，在这个案例中，我们首先把PART_DT放在Rowkey的第一位。接下来，按照层级把商品分类的字段跟随其后。由于参与Cuboid生成的维度都会作为Rowkey，因此我们需要把这些列添加为Rowkey当中。在这个案例中，总共需要添加7个Rowkey。在每个Rowkey上，还需要为列值设置编码方法。KAP支持的基本编码类型如下：
+Rowkey的顺序对于查询性能来说至关重要，一般把最常出现在过滤条件中的列放置在Rowkey的前面，在这个案例中，我们首先把PART_DT放在Rowkey的第一位。接下来，按照层级把商品分类的字段跟随其后。由于参与Cuboid生成的维度都会作为Rowkey，因此我们需要把这些列添加为Rowkey当中。在这个案例中，总共需要添加7个Rowkey。在每个Rowkey上，还需要为列值设置编码方法。Kyligence Enterprise支持的基本编码类型如下：
 
 1. "dict" 适用于大部分字段，默认推荐使用，但在超高基情况下，可能引起内存不足的问题。
 2. "boolean" 适用于字段值为: true, false, TRUE, FALSE, True, False, t, f, T, F, yes, no, YES, NO, Yes, No, y, n, Y, N, 1, 0
@@ -59,7 +59,7 @@ Rowkey设置的结果应该如下：
 
 根据数据分析中的聚合需求，我们需要为Cube定义度量的聚合形式。如果您继续点击一键优化，根据数据类型，系统会自动创建好一些默认的COUNT()聚合和SUM()聚合。默认建好的聚合仍然可以手动修改或删除。在这个案例中，我们还需要通过PRICE的不同聚合形式考量销售额，如总销售额为SUM(PRICE)、最高订单金额为MAX(PRICE)、最低订单金额为MIN(PRICE)。因此，我们手动创建三个度量，分别选择聚合表达式为SUM、MIN、MAX，并选择PRICE列作为目标列。
 
-其次，我们还需要通过COUNT(DISTINCT SELLER_ID)考量卖家个数。根据前面章节的介绍，KAP默认使用HyperLogLog算法进行COUNT_DISTINCT的计算，该算法是个近似算法，在创建度量时需要选择一个近似度，本案例对精确性要求不高，为了提升查询性能，我们选择精度较低的“Error Rate < 9.75%”。同样的，我们再创建一个COUNT(DISTINCT LSTG_FORMAT_NAME)的度量考量不同条件下的交易类型。
+其次，我们还需要通过COUNT(DISTINCT SELLER_ID)考量卖家个数。根据前面章节的介绍，Kyligence Enterprise默认使用HyperLogLog算法进行COUNT_DISTINCT的计算，该算法是个近似算法，在创建度量时需要选择一个近似度，本案例对精确性要求不高，为了提升查询性能，我们选择精度较低的“Error Rate < 9.75%”。同样的，我们再创建一个COUNT(DISTINCT LSTG_FORMAT_NAME)的度量考量不同条件下的交易类型。
 
 ![](images/createcube_5.png)
 
@@ -85,7 +85,7 @@ ORDER BY SUM(PRICE)
 
 ![](images/createcube_8.png)
 
-**保留时间阈值**：对于时间久远的不需要再被查询的Segment，KAP通过设置**保留时间阈值**可以自动清除这些Segment，以节省磁盘空间。每当构建新的Segment时，KAP会自动检查老的Segment，当这些Segment的结束日期与当前最新Segment的结束日期的差值大于**保留时间阈值**，则会被清除。如设置为1年，最新的Cube构建到当天，那么结束日期是一年以前的Segment会被清除。如果无需自动清理，可以默认设置**保留时间阈值**为0。
+**保留时间阈值**：对于时间久远的不需要再被查询的Segment，Kyligence Enterprise通过设置**保留时间阈值**可以自动清除这些Segment，以节省磁盘空间。每当构建新的Segment时，Kyligence Enterprise会自动检查老的Segment，当这些Segment的结束日期与当前最新Segment的结束日期的差值大于**保留时间阈值**，则会被清除。如设置为1年，最新的Cube构建到当天，那么结束日期是一年以前的Segment会被清除。如果无需自动清理，可以默认设置**保留时间阈值**为0。
 
 **分区起始时间**：在创建数据模型的时候我们提到，我们希望采用增量构建方式对Cube进行构建，并选择了PART_DT字段作为分区时间列。在创建Cube时，我们需要指定Cube构建的起始时间，在这个例子中，根据样例数据中的时间条件，在Cube的创建过程中，“1970-01-01 08:00:00“默认为**分区起始时间**。
 
@@ -93,9 +93,9 @@ ORDER BY SUM(PRICE)
 
 ### 表索引
 
-为了支持对明细数据进行高效的查询，KAP提供了表索引功能。对于定制查询，KAP使用构建良好的Cube来进行高效的处理；对于非定制查询，Query Pushdown提供了补充和完善。上述功能使得用户能够快速获取聚合查询的结果。如果用户在分析过程中对明细数据感兴趣，则可以通过表索引来达成目的。使用步骤与注意事项参见[表索引](table_index.cn.md)。
+为了支持对明细数据进行高效的查询，Kyligence Enterprise提供了表索引功能。对于定制查询，Kyligence Enterprise使用构建良好的Cube来进行高效的处理；对于非定制查询，Query Pushdown提供了补充和完善。上述功能使得用户能够快速获取聚合查询的结果。如果用户在分析过程中对明细数据感兴趣，则可以通过表索引来达成目的。使用步骤与注意事项参见[表索引](table_index.cn.md)。
 
-> **对Plus版本**：表索引是Plus版本的特有功能。如果启用，KAP将在构建Cube之外也保存所有的原始记录，支持高速的明细查询。
+> **对Plus版本**：表索引是Plus版本的特有功能。如果启用，Kyligence Enterprise将在构建Cube之外也保存所有的原始记录，支持高速的明细查询。
 
 
 
@@ -105,7 +105,7 @@ ORDER BY SUM(PRICE)
 
 关于cube配置参数的修改可以参见[多重配置重写](../../config/config_override.cn.md)。
 
-在**高级设置**中，可以选择 Cube 构建引擎。默认情况下，KAP 使用 MapReduce 作为 Cube 构建引擎，但也可以手动切换成 Spark(Beta)。关于如何配置和使用 Spark 构建引擎的详情，参见[配置 Spark 构建引擎](../../config/spark_engine_conf.cn.md)。	
+在**高级设置**中，可以选择 Cube 构建引擎。默认情况下，Kyligence Enterprise 使用 MapReduce 作为 Cube 构建引擎，但也可以手动切换成 Spark(Beta)。关于如何配置和使用 Spark 构建引擎的详情，参见[配置 Spark 构建引擎](../../config/spark_engine_conf.cn.md)。	
 
 ### Cube概览
 

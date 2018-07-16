@@ -1,6 +1,6 @@
 ## 与帆软集成
 
-帆软是国内最大、实力最强的 web 报表工具、商业智能等数据类产品研发的公司。旗下产品FineReport是中国报表软件著名品牌，FineBI 是新型商业智能软件优秀代表。帆软产品被成功实施于上万个信息化应用项目，客户遍及各行各业，每天有超过50万人通过帆软的产品来查阅、填报、分析数据。近日，Kyligence已认证帆软旗下FineBI（4.1版本）产品与FineReport（9.0版本）产品。本文将分别介绍KAP与FineBI、FineReport的集成。
+帆软是国内最大、实力最强的 web 报表工具、商业智能等数据类产品研发的公司。旗下产品FineReport是中国报表软件著名品牌，FineBI 是新型商业智能软件优秀代表。帆软产品被成功实施于上万个信息化应用项目，客户遍及各行各业，每天有超过50万人通过帆软的产品来查阅、填报、分析数据。近日，Kyligence已认证帆软旗下FineBI（4.1版本）产品与FineReport（9.0版本）产品。本文将分别介绍Kyligence Enterprise与FineBI、FineReport的集成。
 
 ### 与 FineBI 集成
 
@@ -10,7 +10,7 @@
 
 - **安装 Kyligence JDBC 驱动程序**
 
-  FineBI 通过JDBC连接 KAP，所以首先需要在FineBI 上安装 Kyligence JDBC 驱动程序。
+  FineBI 通过JDBC连接 Kyligence Enterprise，所以首先需要在FineBI 上安装 Kyligence JDBC 驱动程序。
 
 1.  获取 Kyligence JDBC 驱动程序
 
@@ -22,7 +22,7 @@
 
 ​       Linux版：拷贝JDBC驱动程序到 安装路径\webapps\WebRepor\WEB-INF\lib
 
-- **建立 KAP 数据源连接**
+- **建立 Kyligence Enterprise 数据源连接**
 
 1. 新建数据源
 
@@ -55,7 +55,7 @@
 
   ![新建仪表板](images/fineruan/06.jpeg)
 
-  编辑仪表板，自由使用KAP中的数据。
+  编辑仪表板，自由使用Kyligence Enterprise中的数据。
 
   ![新建仪表板](images/fineruan/07.jpeg)
 
@@ -68,7 +68,7 @@
 
 - **安装 Kyligence JDBC 驱动程序**
 
-  FineBI 通过JDBC连接 KAP，所以首先需要在FineBI 上安装 Kyligence JDBC 驱动程序。
+  FineBI 通过JDBC连接 Kyligence Enterprise，所以首先需要在FineBI 上安装 Kyligence JDBC 驱动程序。
 
 1. 获取 Kyligence JDBC 驱动程序
 
@@ -78,7 +78,7 @@
 
    拷贝JDBC驱动程序到 安装路径\WebReport\WEB-INF\lib 路径下,然后重启设计器。
 
-- **建立 KAP 数据源连接**
+- **建立 Kyligence Enterprise 数据源连接**
 
   在主页面选择服务器->定义数据连接，选择新建 JDBC 数据源。
 
@@ -91,9 +91,9 @@
   ![新建数据源](images/fineruan/10.jpeg)
 
 
-- **建立 KAP 数据集**
+- **建立 Kyligence Enterprise 数据集**
 
-  在主页面选择服务器->服务器数据集，选择新建 数据库查询 ,数据源选择KAP的数据源，然后将编辑查询语句。
+  在主页面选择服务器->服务器数据集，选择新建 数据库查询 ,数据源选择Kyligence Enterprise的数据源，然后将编辑查询语句。
 
   ![新建数据源](images/fineruan/11.jpeg)
 
@@ -102,7 +102,7 @@
 
 -  **制作报表**
 
-  在主页面选择文件->新建聚合报表，选择KAP的数据集，编辑报表，自由使用KAP中的数据。
+  在主页面选择文件->新建聚合报表，选择Kyligence Enterprise的数据集，编辑报表，自由使用Kyligence Enterprise中的数据。
 
   ![新建数据源](images/fineruan/13.jpeg)
 

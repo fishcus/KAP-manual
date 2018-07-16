@@ -8,9 +8,9 @@
 
    在安装 Kyligence ODBC 驱动程序的过程中，系统会首先自行安装 Microsoft Visual C++ 2015 Redistributable。如果操作系统中已经安装了 Microsoft Visual C++ 2015 Redistributable，安装步骤会跳过此步。
 
-2. 一个运行的KAP服务器（仅在配置DSN时）
+2. 一个运行的Kyligence Enterprise服务器（仅在配置DSN时）
 
-   Kyligence ODBC 驱动程序安装成功后，在配置DSN时会连接 KAP 服务器，请务必先确保 KAP 服务已正常运行。
+   Kyligence ODBC 驱动程序安装成功后，在配置DSN时会连接 Kyligence Enterprise 服务器，请务必先确保 Kyligence Enterprise 服务已正常运行。
 
 ## 安装
 
@@ -34,7 +34,7 @@
 
    ![ODBC 数据源管理器](images/01.png)
 
-3. 在弹出的对话框中输入 KAP 服务器信息，如图所示：
+3. 在弹出的对话框中输入 Kyligence Enterprise 服务器信息，如图所示：
 
    ![DSN 设置](images/02.png)
 
@@ -42,11 +42,11 @@
 
    * Data Source Name：数据源名称
    * Description：数据源描述
-   * Host：KAP 服务器地址
-   * Port：KAP 服务器端口号
-   * Username：KAP 服务登录用户名
-   * Password：KAP 服务登录密码
-   * Project：查询所使用的 KAP 项目名称
+   * Host：本产品 服务器地址
+   * Port：本产品 服务器端口号
+   * Username：本产品 服务登录用户名
+   * Password：本产品 服务登录密码
+   * Project：查询所使用的 本产品 项目名称
    * Disable catalog：是否关闭catalog层，默认为**开启**状态，如果勾选Disable catalog则为关闭状态
 
 4. 单击 **Test** 按钮，连接成功后，将显示如下对话框。
@@ -67,9 +67,9 @@
 DRIVER={KyligenceODBCDriver};SERVER=locahost;PORT=7070;PROJECT=learn_kylin
 ```
 
-<!--请将SERVER，PORT及PROJECT中的信息替换成您所使用的KAP的信息。-->
+<!--请将SERVER，PORT及PROJECT中的信息替换成您所使用的本产品的信息。-->
 
 ## 特别提醒
 
-如果用户希望在其他应用程序中使用 Kyligence ODBC 驱动程序连接 KAP，可访问本手册[ 与BI 工具连接](../integration/README.md)章节，了解相关信息。
+如果用户希望在其他应用程序中使用 Kyligence ODBC 驱动程序连接 本产品，可访问本手册[ 与BI 工具连接](../integration/README.md)章节，了解相关信息。
 

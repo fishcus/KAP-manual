@@ -1,3 +1,7 @@
+
+
+
+
 ## KyAnalyzer 配置项
 
 本节介绍 KyAnalyzer 的常用配置项。KyAnalyzer 通过安装路径下*conf* 文件夹中的 kyanalyzer.properties 和 mondrian.properties 进行配置。下面详细介绍这两个配置文件中的配置项。
@@ -32,11 +36,11 @@
 
 **kap.host**
 
-该参数指定 KAP 的 IP 地址或域名，默认值为 `localhost`。
+该参数指定 Kyligence Enterprise 的 IP 地址或域名，默认值为 `localhost`。
 
 **kap.port**
 
-该参数指定 KAP 的端口，默认值为 `7070`。
+该参数指定 Kyligence Enterprise 的端口，默认值为 `7070`。
 
 ###mondrian.properties 的配置项
 

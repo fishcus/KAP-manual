@@ -1,11 +1,11 @@
 ## 查询样例
-当Cube构建任务完成，系统一般会自动把Cube的状态切换为就绪（Ready）。我们以KAP样例数据为例介绍SQL查询方式。首先切换到Insight页面，在Web UI上选择本案例所用的Kylin_Sample_1项目。然后根据数据模型的设计，在查询输入框中输入SQL语句，然后单击Submit按钮。下面给出一下SQL查询的例子和相应的结果介绍。
+当Cube构建任务完成，系统一般会自动把Cube的状态切换为就绪（Ready）。我们以Kyligence Enterprise样例数据为例介绍SQL查询方式。首先切换到Insight页面，在Web UI上选择本案例所用的Kylin_Sample_1项目。然后根据数据模型的设计，在查询输入框中输入SQL语句，然后单击Submit按钮。下面给出一下SQL查询的例子和相应的结果介绍。
 ### 单表行数统计
 ```sql
 SELECT COUNT(*) FROM KYLIN_SALES
 ```
 
-这条SQL用于查询KYLIN_SALES表中总行数，读者可以同时在Hive中执行同样的查询进行性能对比。在笔者的对比中，Hive查询耗时29.385秒，KAP查询耗时0.18秒。
+这条SQL用于查询KYLIN_SALES表中总行数，读者可以同时在Hive中执行同样的查询进行性能对比。在笔者的对比中，Hive查询耗时29.385秒，Kyligence Enterprise查询耗时0.18秒。
 
 ### 多表连接
 
@@ -35,7 +35,7 @@ KYLIN_SALES.PART_DT
 ,KYLIN_SALES.LSTG_FORMAT_NAME
 ```
 
-这条SQL将事实表KYLIN_SALES和两张维表根据外键进行了内部连接。在笔者的对比试验中，Hive查询耗时34.361秒，KAP查询耗时0.33秒。
+这条SQL将事实表KYLIN_SALES和两张维表根据外键进行了内部连接。在笔者的对比试验中，Hive查询耗时34.361秒，Kyligence Enterprise查询耗时0.33秒。
 ### 维度列COUNT_DISTINCT
 
 ```sql
@@ -48,18 +48,18 @@ INNER JOIN KYLIN_CATEGORY_GROUPINGS as KYLIN_CATEGORY_GROUPINGS
 ON KYLIN_SALES.LEAF_CATEG_ID = KYLIN_CATEGORY_GROUPINGS.LEAF_CATEG_ID AND KYLIN_SALES.LSTG_SITE_ID = KYLIN_CATEGORY_GROUPINGS.SITE_ID
 ```
 
-这条SQL对PART_DT字段进行了COUNT_DISTINCT查询，但是该字段并没有被添加为COUNT_DISTINCT的度量。KAP会在运行时计算结果。在笔者的对比试验中，Hive查询耗时44.911秒，KAP查询耗时0.12秒。
+这条SQL对PART_DT字段进行了COUNT_DISTINCT查询，但是该字段并没有被添加为COUNT_DISTINCT的度量。Kyligence Enterprise会在运行时计算结果。在笔者的对比试验中，Hive查询耗时44.911秒，Kyligence Enterprise查询耗时0.12秒。
 ### 全表查询
 
 ```sql
 SELECT * FROM KYLIN_SALES
 ```
 
-默认的，KAP并不对原始数据的明细进行保存，因此并不支持类似的不带GROUP BY的查询。但是，用户经常希望通过执行`SELECT *`获取部分样例数据；因此KAP对这种SQL会返回不精确的查询结果（通过隐式地GROUP BY所有维度）。如果用户希望KAP支持原始数据的保存和查询，可以在Cube中定义RAW类型的度量。
+默认的，Kyligence Enterprise并不对原始数据的明细进行保存，因此并不支持类似的不带GROUP BY的查询。但是，用户经常希望通过执行`SELECT *`获取部分样例数据；因此Kyligence Enterprise对这种SQL会返回不精确的查询结果（通过隐式地GROUP BY所有维度）。如果用户希望Kyligence Enterprise支持原始数据的保存和查询，可以在Cube中定义RAW类型的度量。
 
 ### 展示查询计划
 
-KAP可以在查询的前面添加`explain plan for`以获得执行计划，例如:
+Kyligence Enterprise可以在查询的前面添加`explain plan for`以获得执行计划，例如:
 
 ```sql
 explain plan for select count(*) from KYLIN_SALES

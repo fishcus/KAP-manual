@@ -6,7 +6,7 @@
 
 ![](images/buildcube_0.png)
 
-第二步，在弹出的Cube构建确认对话框中确认Cube的分段时间列（Partition Date Column）是DEFAULT.KYLIN_SALES.PART_DT，以及起始时间是2012-01-01 00:00:00。在KAP中，一次构建会为Cube产生一个新的Segment，每次的SQL查询都会访问一个或多个符合条件的Segment；我们需要尽可能地让一个Segment更好地适用于查询条件，因此我们可以按年构建，即每个年份构建一个Segment。在这个例子中，我们输入结束日期（End Date）为2013-01-01 00:00:00。设置完成后单击Submit按钮。
+第二步，在弹出的Cube构建确认对话框中确认Cube的分段时间列（Partition Date Column）是DEFAULT.KYLIN_SALES.PART_DT，以及起始时间是2012-01-01 00:00:00。在Kyligence Enterprise中，一次构建会为Cube产生一个新的Segment，每次的SQL查询都会访问一个或多个符合条件的Segment；我们需要尽可能地让一个Segment更好地适用于查询条件，因此我们可以按年构建，即每个年份构建一个Segment。在这个例子中，我们输入结束日期（End Date）为2013-01-01 00:00:00。设置完成后单击Submit按钮。
 > 注意：增量构建是具体按年构建还是按月构建应该根据实际的业务需求、ETL时效及数据量大小而定。如果一次构建的数据量过大，可能导致构建时间过长，或出现内存溢出等异常。在当前的样例数据中，数据量较小，按年构建是可以顺利完成的。
 
 ![](images/buildcube_1.png)
@@ -19,7 +19,7 @@
 #### 增量构建
 在第一个Segment构建完成之后，我们开始构建第二个Segment。两个 segment 构建的时间周期不能有交集。
 
-首先在建模页面的Cube列表中找到该Cube，单击右侧的**Action**按钮，然后选择“构建(Build)”，打开Cube构建确认对话框。在这个对话框中，首先确认起始时间（Start Date）是2013-01-01 00:00:00，因为这是上次构建的结束日期，为保障所构建数据的连续性，KAP自动将新一次构建的起始时间更新为上次构建的结束日期。同样的，在结束时间（End Date）里输入2014-01-01 00:00:00，然后单击Submit按钮，开始构建下一年的Segment。
+首先在建模页面的Cube列表中找到该Cube，单击右侧的**Action**按钮，然后选择“构建(Build)”，打开Cube构建确认对话框。在这个对话框中，首先确认起始时间（Start Date）是2013-01-01 00:00:00，因为这是上次构建的结束日期，为保障所构建数据的连续性，Kyligence Enterprise自动将新一次构建的起始时间更新为上次构建的结束日期。同样的，在结束时间（End Date）里输入2014-01-01 00:00:00，然后单击Submit按钮，开始构建下一年的Segment。
 
 待构建完成，我们可以在Cube的Segment界面中查看，发现Cube的两个Segment都已就绪。
 

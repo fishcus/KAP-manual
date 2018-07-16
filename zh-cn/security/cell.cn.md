@@ -1,5 +1,5 @@
 ## 用户行列级别安全控制
-帮助管理员控制行列级别数据安全，通过配置安全控制文件，定义用户的访问权限。本案例基于KAP自带Sample。
+帮助管理员控制行列级别数据安全，通过配置安全控制文件，定义用户的访问权限。本案例基于Kyligence Enterprise自带Sample。
 
 #### 配置文件
 在使用前需要配置如下文件：
@@ -8,13 +8,13 @@
 
 ```kap.security.cell-level-acl-enabled``` 是行列安全配置的开关，```true```表示打开，```false```表示关闭，默认值是```false```
 
-```kap.security.cell-level-acl-config``` 指定安全控制文件名，KAP Sample里默认名为```userctrl.acl```。用户指定完安全配置文件名后，同时需要在```$KYLIN_HOME/conf```下新建一个同名文件。
+```kap.security.cell-level-acl-config``` 指定安全控制文件名，Kyligence Enterprise Sample里默认名为```userctrl.acl```。用户指定完安全配置文件名后，同时需要在```$KYLIN_HOME/conf```下新建一个同名文件。
 
 ```kylin.query.access.controller``` 指定实现安全控制的接口，当前只有一个实现```io.kyligence.kap.query.security.KapAccessDecisionMaker```
 
 **2.用户安全控制文件**
 
-在安全控制文件里，定义了限制用户行为的具体条件，下面是KAP Sample里userctrl.acl文件内容（**默认分隔符为空格**）：
+在安全控制文件里，定义了限制用户行为的具体条件，下面是Kyligence Enterprise Sample里userctrl.acl文件内容（**默认分隔符为空格**）：
 
 | **login_user** | **kylin_sales.region** | **kylin_sales.price** | **kylin_sales.lstg_format_name** |
 | :------------: | :--------------------: | :-------------------: | :------------------------------: |
@@ -24,7 +24,7 @@
 
 *内容说明：*
 
-* 第一列是KAP用户登录名。
+* 第一列是Kyligence Enterprise用户登录名。
 
 * 剩余列是隶属于该用户的属性，可以进一步定义该用户访问权限。
 
@@ -33,7 +33,7 @@
   值标记为特定值，表示此列用于**行级别**的安全控制，如: ```kylin_sales.region＝Shanghai```表示*ADMIN*用户只能看到```kylin_sales.region```为```Shanghai```的记录。
 
 
-#### KAP Sample测试
+#### Kyligence Enterprise Sample测试
 
 *一些准备工作*
 
@@ -49,7 +49,7 @@
 
 *查询测试*
 
-a.ADMIN用户登录KAP，执行查询：
+a.ADMIN用户登录Kyligence Enterprise，执行查询：
 
 ```select * from kylin_sales```
 

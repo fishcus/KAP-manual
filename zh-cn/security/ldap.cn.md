@@ -1,6 +1,6 @@
 ## LDAP 验证
 
-KAP 支持与 LDAP 服务器集成完成用户验证。这种验证是通过 Spring Security 框架实现的，所以具有良好的通用性。在启用 LDAP 验证之前，建议您联系 LDAP 管理员，以获取必要的信息。
+Kyligence Enterprise 支持与 LDAP 服务器集成完成用户验证。这种验证是通过 Spring Security 框架实现的，所以具有良好的通用性。在启用 LDAP 验证之前，建议您联系 LDAP 管理员，以获取必要的信息。
 
 ### LDAP 服务器的安装
 启用 LDAP 验证之前，需要一个运行的 LDAP 服务器。如果已经有，联系 LDAP 管理员，以获取必要的信息，如服务器连接信息、人员和组织结构等。
@@ -189,7 +189,7 @@ objectClass: top
 ldappasswd -xWD cn=Manager,dc=example,dc=com -S cn=jenny,ou=People,dc=example,dc=com
 ```
 
-### 在 KAP 中配置 LDAP 服务器的信息
+### 在 Kyligence Enterprise 中配置 LDAP 服务器的信息
 
 首先，在 conf/kylin.properties 中，需要配置 LDAP 服务器的 URL，必要的用户名和密码（如果 LDAP Server 不是匿名访问）。为安全起见，这里的密码是需要加密（加密算法 AES），您可以运行下面的命令来获得加密后的密码：
 
@@ -229,7 +229,7 @@ kylin.security.ldap.group-search-filter=(|(objectClass=groupOfNames)(objectClass
 kylin.security.ldap.group-member-search-filter=(&(cn={0})(objectClass=groupOfNames))
 ```
 
-如果您需要服务账户（供系统集成）可以访问 KAP，那么依照下面的例子配置 `ldap.service.*`，否则请将它们留空。
+如果您需要服务账户（供系统集成）可以访问 Kyligence Enterprise，那么依照下面的例子配置 `ldap.service.*`，否则请将它们留空。
 
 ```properties
 # LDAP service account directory
@@ -240,8 +240,8 @@ kylin.security.ldap.service-group-search-base=ou=Groups,dc=example,dc=com
 
 ### 配置管理员群组和默认角色
 
-在 KAP 中，可将一个 LDAP 群组映射成管理员角色：在 kylin.properties 中，将 "properties
-kylin.security.acl.admin-role" 设置为 LDAP 组名（组名大小写保留原样）。在当前例子中，将 LDAP 中组 `admin` 定义为 KAP 管理员，那么这里应该设置为:
+在 Kyligence Enterprise 中，可将一个 LDAP 群组映射成管理员角色：在 kylin.properties 中，将 "properties
+kylin.security.acl.admin-role" 设置为 LDAP 组名（组名大小写保留原样）。在当前例子中，将 LDAP 中组 `admin` 定义为 Kyligence Enterprise 管理员，那么这里应该设置为:
 
 ```properties
 kylin.security.acl.admin-role=admin
@@ -251,7 +251,7 @@ kylin.security.acl.admin-role=admin
 
 ### 启用 LDAP
 
-在 conf/kylin.properties 中，设置 "kylin.security.profile=ldap"，然后重启 KAP。
+在 conf/kylin.properties 中，设置 "kylin.security.profile=ldap"，然后重启 Kyligence Enterprise。
 
 当使用 `admin` 组的 `jenny` 用户登录时，会显示 `系统` 菜单项。
 ![使用管理员组的用户登录](images/ldap/w_1.png)
@@ -264,7 +264,7 @@ kylin.security.acl.admin-role=admin
 
 ### LDAP 用户信息缓存
 
-用户通过 LDAP 验证登录 KAP 后，其信息会被 KAP 缓存以减轻访问 LDAP 服务器的开销。用户可以在 kylin.properties 中对用户信息缓存时间（秒）和最大缓存用户数目进行配置，默认值如下：
+用户通过 LDAP 验证登录 Kyligence Enterprise 后，其信息会被 Kyligence Enterprise 缓存以减轻访问 LDAP 服务器的开销。用户可以在 kylin.properties 中对用户信息缓存时间（秒）和最大缓存用户数目进行配置，默认值如下：
 
 ```properties
 kylin.server.auth-user-cache.expire-seconds=300

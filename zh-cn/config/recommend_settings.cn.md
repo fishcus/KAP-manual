@@ -1,6 +1,6 @@
 ## 生产环境推荐配置
 
-KAP的配置文件包括几个部分：*kylin.properties*，*kylin_hive_conf.xml*，*kylin_job_conf.xml*，*kylin_job_conf_inmem.xml*。其中*kylin.properties*是KAP的主要配置参数，控制KAP的运行时行为，*kylin_hive_conf.xml*用于配置KAP与Hive交互的参数，*kylin_job_conf.xml*用于配置KAP与Hadoop集群交互的参数，其中*kylin_job_conf_inmem.xml*用在in-memory构建算法，*kylin_job_conf.xml*用在layer构建算法。
+Kyligence Enterprise的配置文件包括几个部分：*kylin.properties*，*kylin_hive_conf.xml*，*kylin_job_conf.xml*，*kylin_job_conf_inmem.xml*。其中*kylin.properties*是Kyligence Enterprise的主要配置参数，控制Kyligence Enterprise的运行时行为，*kylin_hive_conf.xml*用于配置Kyligence Enterprise与Hive交互的参数，*kylin_job_conf.xml*用于配置Kyligence Enterprise与Hadoop集群交互的参数，其中*kylin_job_conf_inmem.xml*用在in-memory构建算法，*kylin_job_conf.xml*用在layer构建算法。
 
 以下推荐配置将按照集群的规模分类，系统性能可能受其它外部系统参数影响，这里推荐仅作为经验值。
 
@@ -8,7 +8,7 @@ KAP的配置文件包括几个部分：*kylin.properties*，*kylin_hive_conf.xml
 
 *Prod*表示生产环境推荐配置，通常至少由5个节点组成的Hadoop集群，单机32核，128GB内存，20TB硬盘。
 
-> 提示：KAP v2.2 已经提供了*Sandbox*和*Prod*的推荐配置。其中默认配置为*Sandbox*，并可以通过修改profile的软连接指向来切换到*Prod*配置：
+> 提示：Kyligence Enterprise v2.2 已经提供了*Sandbox*和*Prod*的推荐配置。其中默认配置为*Sandbox*，并可以通过修改profile的软连接指向来切换到*Prod*配置：
 >
 > ```bash
 > cd $KYLIN_HOME/conf
@@ -46,7 +46,7 @@ KAP的配置文件包括几个部分：*kylin.properties*，*kylin_hive_conf.xml
 | kylin.query.derived-filter-translation-threshold | 100        | 100        |
 
 
-### kylin.properties for KAP Plus
+### kylin.properties for Kyligence Enterprise Plus
 
 | Properties Name                          | Sandbox | Prod   |
 | ---------------------------------------- | ------- | ------ |

@@ -1,13 +1,13 @@
 ## 配置 Spark 构建引擎
-KAP 中提供两种构建引擎用于构建 Cube。它们分别是：MapReduce 和 Spark。默认情况下，KAP 使用 MapReduce 来构建 Cube，但是您也可以选择 Spark 作为构建引擎。本文介绍如何配置 Spark 构建引擎。
+Kyligence Enterprise 中提供两种构建引擎用于构建 Cube。它们分别是：MapReduce 和 Spark。默认情况下，Kyligence Enterprise 使用 MapReduce 来构建 Cube，但是您也可以选择 Spark 作为构建引擎。本文介绍如何配置 Spark 构建引擎。
 
 ### 前提条件
 
-- KAP 2.5.4 或更高版本。在本文中，我们使用 Hortonworks HDP 2.4 Sandbox VM。
+- Kyligence Enterprise 2.5.4 或更高版本。在本文中，我们使用 Hortonworks HDP 2.4 Sandbox VM。
 
 ### 准备 “kylin.env.hadoop-conf-dir”
 
-要在 Yarn 上运行 Spark，需要指定环境变量 **HADOOP_CONF_DIR**，即用于存放 Hadoop 客户端配置文件的目录。在许多 Hadoop 发行版中，该目录为“/etc/hadoop/conf”。但 KAP 不仅需要访问 HDFS、Yarn 和 Hive，而且需要访问 HBase，所以该默认目录不一定包含所有必需的文件。在这种情况下，需要创建一个新目录，然后将这些客户端文件（core-site.xml、hdfs-site.xml、yarn-site.xml、hive-site.xml 和 hbase-site.xml）拷贝到该目录或为它们建立链接。在 HDP 2.4 中，hive-tez 与 Spark 之间有冲突，因此在拷贝时，需要将默认引擎由“tez”更改为“mr”。
+要在 Yarn 上运行 Spark，需要指定环境变量 **HADOOP_CONF_DIR**，即用于存放 Hadoop 客户端配置文件的目录。在许多 Hadoop 发行版中，该目录为“/etc/hadoop/conf”。但 Kyligence Enterprise 不仅需要访问 HDFS、Yarn 和 Hive，而且需要访问 HBase，所以该默认目录不一定包含所有必需的文件。在这种情况下，需要创建一个新目录，然后将这些客户端文件（core-site.xml、hdfs-site.xml、yarn-site.xml、hive-site.xml 和 hbase-site.xml）拷贝到该目录或为它们建立链接。在 HDP 2.4 中，hive-tez 与 Spark 之间有冲突，因此在拷贝时，需要将默认引擎由“tez”更改为“mr”。
 
 ```
 mkdir $KYLIN_HOME/hadoop-conf
@@ -25,11 +25,11 @@ vi $KYLIN_HOME/hadoop-conf/hive-site.xml (change "hive.execution.engine" value f
 kylin.env.hadoop-conf-dir=/usr/local/apache-kylin-2.1.0-bin-hbase1x/hadoop-conf
 ```
 
-如果未设置该属性，KAP 将使用“hive-site.xml”所在的目录，而该文件夹可能不包含“hbase-site.xml”，这样在 Spark 中会发生 HBase/ZK 连接错误。
+如果未设置该属性，Kyligence Enterprise 将使用“hive-site.xml”所在的目录，而该文件夹可能不包含“hbase-site.xml”，这样在 Spark 中会发生 HBase/ZK 连接错误。
 
 ### 检查 Spark 配置
 
-KAP 将 Spark 二进制包存放在 `$KYLIN_HOME/spark` 中，所有 Spark 配置在`$KYLIN_HOME/conf/kylin.properties` 中被托管，其前缀为“kylin.engine.spark-conf.”。 在运行提交 Spark 的任务时，这些属性将被提取出来使用，例如，如果配置 “kylin.engine.spark-conf.spark.executor.memory=4G”，在执行“spark-submit”时，KAP 将使用“–conf spark.executor.memory=4G”作为参数。
+Kyligence Enterprise 将 Spark 二进制包存放在 `$KYLIN_HOME/spark` 中，所有 Spark 配置在`$KYLIN_HOME/conf/kylin.properties` 中被托管，其前缀为“kylin.engine.spark-conf.”。 在运行提交 Spark 的任务时，这些属性将被提取出来使用，例如，如果配置 “kylin.engine.spark-conf.spark.executor.memory=4G”，在执行“spark-submit”时，Kyligence Enterprise 将使用“–conf spark.executor.memory=4G”作为参数。
 
 在运行 Spark cube 构建之前，建议查看这些配置，并根据集群需要进行定制。下面是默认配置，也是用于 sandbox 的最小配置（1 个 executor 占用 1GB 内存）。通常，在一般集群中，需要更多 executor，每个至少占用 4GB 内存和 2 个 core：
 

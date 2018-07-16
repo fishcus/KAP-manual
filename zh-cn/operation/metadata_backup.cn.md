@@ -1,8 +1,8 @@
 ## 元数据备份
 
-元数据是 KAP 中最重要的数据之一，备份元数据是运维工作中一个至关重要的环节。只有这样，在由于误操作导致整个 KAP 服务或某个 Cube 异常时，才能将 KAP 快速从备份中恢复出来。一般来说，在每次进行故障恢复或系统升级之前，对元数据进行备份是一个良好的习惯，这可以保证 KAP 服务在系统更新失败后依然有回滚的可能，在最坏情况下依然保持系统的鲁棒性。
+元数据是 Kyligence Enterprise 中最重要的数据之一，备份元数据是运维工作中一个至关重要的环节。只有这样，在由于误操作导致整个 Kyligence Enterprise 服务或某个 Cube 异常时，才能将 Kyligence Enterprise 快速从备份中恢复出来。一般来说，在每次进行故障恢复或系统升级之前，对元数据进行备份是一个良好的习惯，这可以保证 Kyligence Enterprise 服务在系统更新失败后依然有回滚的可能，在最坏情况下依然保持系统的鲁棒性。
 
-KAP 提供了一个命令行工具用于备份 KAP 的元数据，具体用法是：
+Kyligence Enterprise 提供了一个命令行工具用于备份 Kyligence Enterprise 的元数据，具体用法是：
 
 ```shell
 $KYLIN_HOME/bin/metastore.sh backup
@@ -12,7 +12,7 @@ $KYLIN_HOME/bin/metastore.sh backup
 ```shell
 metadata store backed up to /usr/local/kylin/meta_backups/meta_2016_06_10_20_24_50
 ```
-在上面的例子里，这个命令会把 KAP 用到的所有元数据以文件形式下载到本地目录当中（如/usr/local/kylin/meta_backups/meta_2016_06_10_20_24_50）。目录结构如下表所示：
+在上面的例子里，这个命令会把 Kyligence Enterprise 用到的所有元数据以文件形式下载到本地目录当中（如/usr/local/kylin/meta_backups/meta_2016_06_10_20_24_50）。目录结构如下表所示：
 
 | 目录名             | 介绍                                                 |
 | :----------------- | :--------------------------------------------------- |
@@ -68,17 +68,17 @@ more kylin_sales_cube.json
 
 ### 用户界面下的元数据备份 ###
 
-除了使用命令行进行元数据备份，KAP 还支持在用户界面下进行元数据备份。
+除了使用命令行进行元数据备份，Kyligence Enterprise 还支持在用户界面下进行元数据备份。
 
 * **系统元数据保存**
 
-进入页面左侧系统页面后，点击备份按钮进行系统元数据备份，元数据文件会备份在 KAP 安装目录下的 meta\_backups 文件夹中（如图中的 `/root/kap-plus-2.5-hbase1.x-236/kap-plus-2.5.5-alpha3.1-hbase1.x/meta\_backups`）。文件命名为 meta\_当前备份时间（如 meta_2018_01_11_07_00_25）。
+进入页面左侧系统页面后，点击备份按钮进行系统元数据备份，元数据文件会备份在 Kyligence Enterprise 安装目录下的 meta\_backups 文件夹中（如图中的 `/root/kap-plus-2.5-hbase1.x-236/kap-plus-2.5.5-alpha3.1-hbase1.x/meta\_backups`）。文件命名为 meta\_当前备份时间（如 meta_2018_01_11_07_00_25）。
 
 ![系统元数据备份](images/instance_backup_1_cn.png)
 
 * **项目元数据保存**
 
-点击页面上方项目展开按键后，选择需要备份的项目点击操作按键后进行备份，项目元数据文件会备份在KAP安装目录下的 meta\_backups 文件夹中。文件命名为 `project_备份项目名_当前时间`（如 `project_learn_kylin_2018_01_11_19_02_23`）。
+点击页面上方项目展开按键后，选择需要备份的项目点击操作按键后进行备份，项目元数据文件会备份在Kyligence Enterprise安装目录下的 meta\_backups 文件夹中。文件命名为 `project_备份项目名_当前时间`（如 `project_learn_kylin_2018_01_11_19_02_23`）。
 
 ![项目页面](images/project_page_1_cn.png)
 
@@ -86,7 +86,7 @@ more kylin_sales_cube.json
 
 * **Cube 元数据保存**
 
-点击页面左侧建模按键后，选择 Cube 界面，选择需要备份的 Cube 点击操作按键后进行备份，Cube 元数据文件会备份在 KAP 安装目录下的 meta\_backups 文件夹中。文件命名为 `cube_备份Cube名_当前时间`（如cube_corr_2018_01_11_19_04_47）。
+点击页面左侧建模按键后，选择 Cube 界面，选择需要备份的 Cube 点击操作按键后进行备份，Cube 元数据文件会备份在 Kyligence Enterprise 安装目录下的 meta\_backups 文件夹中。文件命名为 `cube_备份Cube名_当前时间`（如cube_corr_2018_01_11_19_04_47）。
 
 ![建模页面](images/studio_page_1_cn.png)
 

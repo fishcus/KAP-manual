@@ -1,7 +1,11 @@
+
+
+
+
 ## 与 Qlik Sense 集成
 
 Qlik Sense 
-是新一代自助式数据可视化工具。它是一款完整的商业分析软件，便于开发人员和分析人员快速构建和部署强大的分析应用。近年来，该工具成为全球增长率最快的 BI 产品。它可以与 Hadoop Database（Hive 和 Impala）集成。现在也可与 KAP 集成。本文将分步介绍 KAP 与 Qlik Sense 的连接。
+是新一代自助式数据可视化工具。它是一款完整的商业分析软件，便于开发人员和分析人员快速构建和部署强大的分析应用。近年来，该工具成为全球增长率最快的 BI 产品。它可以与 Hadoop Database（Hive 和 Impala）集成。现在也可与 Kyligence Enterprise 集成。本文将分步介绍 Kyligence Enterprise 与 Qlik Sense 的连接。
 
 ### 安装 Kyligence ODBC 驱动程序
 
@@ -12,7 +16,7 @@ Qlik Sense
 有关 Qlik Sense 的安装说明，请访问 [Qlik Sense Desktop 下载页面](https://www.qlik.com/us/try-or-buy/download-qlik-sense)。
 
 ### 与 Qlik Sense Desktop 连接
-配置完本地 DSN 并成功安装 Qlik Sense 后，可执行以下步骤来连接 KAP 与 Qlik Sense：
+配置完本地 DSN 并成功安装 Qlik Sense 后，可执行以下步骤来连接 Kyligence Enterprise 与 Qlik Sense：
 
 1. 从 Windows 桌面快捷方式或单击**开始 -> 所有程序 -> Qlik Sense -> Qlik Sense Desktop**，打开应用程序 **Qlik Sense Desktop**。
 
@@ -36,15 +40,15 @@ Qlik Sense
 
 5. 配置 Direct Query 模式：
 
-   在常见的 KAP 生产场景中， Cube 包含 PB 级数据，我们建议用户在 Qlik Sense 中使用 Direct Query 模式，而不用将数据导入 Qlik Sense。
+   在常见的 Kyligence Enterprise 生产场景中， Cube 包含 PB 级数据，我们建议用户在 Qlik Sense 中使用 Direct Query 模式，而不用将数据导入 Qlik Sense。
 
    在脚本编辑器中查询脚本的最前面，输入 `Direct Query`，即可启用 Direct Query 模式。 
 
    下图是以 Learn_kylin 项目中的 kylin_sales_cube 为例，进行 Direct Query 查询的脚本。![脚本](images/qlik/006-script_run_result.cn.png)
 
-   定义完此脚本后，Qlik Sense 可根据此脚本生成 SQL。建议定义的维度和度量与 KAP Cube 中的维度和度量对应。下面附上完整的脚本，供您参考。
+   定义完此脚本后，Qlik Sense 可根据此脚本生成 SQL。建议定义的维度和度量与 Kyligence Enterprise Cube 中的维度和度量对应。下面附上完整的脚本，供您参考。
 
-   也可通过创建 Native 表达式来使用 KAP 内置函数，如：
+   也可通过创建 Native 表达式来使用 Kyligence Enterprise 内置函数，如：
 
    `NATIVE('extract(month from PART_DT)') ` 
 
@@ -119,7 +123,7 @@ Qlik Sense
 
    ![选择所需图表类型、维度和度量](images/qlik/010-add_dimension.cn.png)
 
-   这样，新的工作表创建完成，KAP 与 Qlik Sense 相连。现在您可以在 Qlik Sense 中查看 KAP 数据。
+   这样，新的工作表创建完成，Kyligence Enterprise 与 Qlik Sense 相连。现在您可以在 Qlik Sense 中查看 Kyligence Enterprise 数据。
 
    ![在 Qlik Sense 中查看 KAP 数据](images/qlik/011-view_kap_data.cn.png)
 
@@ -161,13 +165,13 @@ Qlik Sense
 ![查看图表](images/Qlik/07_hub_qlik.PNG)
 
 
-#### 直接在Qlik Sense Hub 中连接 KAP
+#### 直接在Qlik Sense Hub 中连接 Kyligence Enterprise
 
-1. 通过浏览器在**Qlik Sense Hub**中新建应用，连接到KAP数据源，连接方法同在**Qlik Sense Desktop**中连接KAP。
+1. 通过浏览器在**Qlik Sense Hub**中新建应用，连接到Kyligence Enterprise数据源，连接方法同在**Qlik Sense Desktop**中连接Kyligence Enterprise。
 
 ![新建应用](images/Qlik/08_hub_create.PNG)
 
-2. 编辑刚才创建的应用，自由使用KAP中的数据。
+2. 编辑刚才创建的应用，自由使用Kyligence Enterprise中的数据。
 
 ![编辑应用](images/Qlik/09_hub_table.PNG)
 

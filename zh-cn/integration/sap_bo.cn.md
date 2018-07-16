@@ -1,7 +1,7 @@
 ## 与SAP BO集成
 
-SAP BusinessObjects（SAP BO）是SAP公司旗下的商务智能产品，自KAP3.0版本开始，支持与SAP BO 进行集成。
-本文将分步介绍SAP BO Web Intelligence 4.1与KAP连接的方法。
+SAP BusinessObjects（SAP BO）是SAP公司旗下的商务智能产品，自Kyligence Enterprise3.0版本开始，支持与SAP BO 进行集成。
+本文将分步介绍SAP BO Web Intelligence 4.1与Kyligence Enterprise连接的方法。
 
 ### 配置ODBC及DSN
 
@@ -70,15 +70,15 @@ SAP BusinessObjects（SAP BO）是SAP公司旗下的商务智能产品，自KAP3
    ![运行查询](images/SAP_BO/3.2_queryend.png)
 
 ### 替换数据源的方法
-   
+
    ***方法一 在报表内修改***
 
    首先创建kyligence的universe，然后在报表设计页面点击数据访问-更改源
-   
+
    ![运行查询](images/SAP_BO/4.1.png)
 
    选择其他universe
-   
+
    ![运行查询](images/SAP_BO/4.2.png)
 
    字段映射完毕后点击完成即可
@@ -94,23 +94,23 @@ SAP BusinessObjects（SAP BO）是SAP公司旗下的商务智能产品，自KAP3
    ![运行查询](images/SAP_BO/4.4.png)
 
    ***方法二 在universe上修改***
-   
+
    在universe里编辑Conenction
- 
+
    ![运行查询](images/SAP_BO/4.5.png)
 
    修改DSN为需要的DSN，然后保存即可。
 
 ### 一些注意事项
 
-BO发出的查询都会带上schema,包括default database，而default在KAP查询中是一个关键字不能使用default.table的形式的查询语句。
--->解决方式：在**kylin.properties**中把**kylin.query.escape-default-keyword**设为true，KAP会自动为default转为"DEFAULT"。
+BO发出的查询都会带上schema,包括default database，而default在Kyligence Enterprise查询中是一个关键字不能使用default.table的形式的查询语句。
+-->解决方式：在**kylin.properties**中把**kylin.query.escape-default-keyword**设为true，Kyligence Enterprise会自动为default转为"DEFAULT"。
 
 
-    
+​    
 
 
-    
+​    
 
 
 

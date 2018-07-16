@@ -1,8 +1,8 @@
 ## 与OBIEE集成
 
-OBIEE是Oracle旗下的BI产品，可提供完整的 BI 功能，包括交互式信息板、完全即席的主动式智能和警报、企业和财务报表、实时预测智能以及离线分析等。本文将分步介绍使用OBIEE11g连接KAP的方法。
+OBIEE是Oracle旗下的BI产品，可提供完整的 BI 功能，包括交互式信息板、完全即席的主动式智能和警报、企业和财务报表、实时预测智能以及离线分析等。本文将分步介绍使用OBIEE11g连接Kyligence Enterprise的方法。
 
-前置条件：**KAP 版本 >=3.0，KyligenceODBC 版本 >=2.2**
+前置条件：**Kyligence Enterprise 版本 >=3.0，KyligenceODBC 版本 >=2.2**
 
 ### 配置ODBC及DSN
 
@@ -48,11 +48,11 @@ OBIEE是Oracle旗下的BI产品，可提供完整的 BI 功能，包括交互式
 
    ![增加数据源](images/OBIEE/add_data.png)
 
-2. 选择ODBC2.0，将KAP中的表导入。
+2. 选择ODBC2.0，将Kyligence Enterprise中的表导入。
 
    ![导入KAP中的表](images/OBIEE/add_table.png)
 
-3. 导入成功后，在物理模型里找到KAP数据源，复选需要建模的表右键，选择**物理图表**进行建模。
+3. 导入成功后，在物理模型里找到Kyligence Enterprise数据源，复选需要建模的表右键，选择**物理图表**进行建模。
 
    ![进行建模](images/OBIEE/start_model.png)
 
@@ -60,7 +60,7 @@ OBIEE是Oracle旗下的BI产品，可提供完整的 BI 功能，包括交互式
 
    ![新建连接关系](images/OBIEE/define_connection.png)
 
-5. 保存模型后需要手动检索并更改数据类型为字符串的物理列，如果长度显示为0，则需要更改为KAP中字段的实际长度。
+5. 保存模型后需要手动检索并更改数据类型为字符串的物理列，如果长度显示为0，则需要更改为Kyligence Enterprise中字段的实际长度。
 
    ![更改数据类型](images/OBIEE/change_type.png)
 
@@ -81,7 +81,7 @@ OBIEE是Oracle旗下的BI产品，可提供完整的 BI 功能，包括交互式
 
 - **方法一**
 
-  1. 在BIEE主页点击**新建-分析**，使用在client端创建的主题区域即可使用KAP进行分析。这种方式使用拖拽查询方式方式。
+  1. 在BIEE主页点击**新建-分析**，使用在client端创建的主题区域即可使用Kyligence Enterprise进行分析。这种方式使用拖拽查询方式方式。
 
      ![新建分析](images/OBIEE/BIEE_page.png)
 

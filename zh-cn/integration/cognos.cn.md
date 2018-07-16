@@ -30,13 +30,13 @@ Kyligence ODBC Driver需要安装在Cognos Server所在的服务器上。
 
 
 
-### Cognos 与 KAP 权限集成
+### Cognos 与 Kyligence Enterprise 权限集成
 
-为了支持输入不同的用户名和密码，需要进行 Cognos 与 KAP 权限集成。本小节在默认已经配置 Cognos 认证程序的基础上进行 KAP 与 Cognos 的 ODBC 用户集成，以自定义的 Java 为样例来进行介绍。有关详细信息，请参考 Cognos SDK 对应的 AuthenticationProvider 文档。下图是以 Java 程序为例子的典型 Cognos 外部认证空间：
+为了支持输入不同的用户名和密码，需要进行 Cognos 与 Kyligence Enterprise 权限集成。本小节在默认已经配置 Cognos 认证程序的基础上进行 Kyligence Enterprise 与 Cognos 的 ODBC 用户集成，以自定义的 Java 为样例来进行介绍。有关详细信息，请参考 Cognos SDK 对应的 AuthenticationProvider 文档。下图是以 Java 程序为例子的典型 Cognos 外部认证空间：
 
 ![](images/cognos/cognos_acl_1.png)
 
-在 Cognos 权限认证对应的数据库中，添加 KAP 的用户名和密码：
+在 Cognos 权限认证对应的数据库中，添加 Kyligence Enterprise 的用户名和密码：
 
 ![](images/cognos/cognos_acl_2.png)
 
@@ -46,7 +46,7 @@ Kyligence ODBC Driver需要安装在Cognos Server所在的服务器上。
 
 
 
-点击测试连接后，可以看到测试成功的提示，这说明 Cognos 通过 KAP 的 ODBC 已成功连接 KAP 的 server。
+点击测试连接后，可以看到测试成功的提示，这说明 Cognos 通过 Kyligence Enterprise 的 ODBC 已成功连接 Kyligence Enterprise 的 server。
 
 ![](images/cognos/cognos_acl_4.png)
 
@@ -134,7 +134,7 @@ Kyligence ODBC Driver需要安装在Cognos Server所在的服务器上。
 
 点击菜单中的`运行`键运行报表。
 
-这样你就成功的使用KAP作为数据源创建了一个图表。
+这样你就成功的使用Kyligence Enterprise作为数据源创建了一个图表。
 
 ![](images/cognos/28.png)
 

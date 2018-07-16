@@ -1,6 +1,6 @@
 ## 构建Cube过程中使用SparkSQL ##
 
-KAP在Cube构建过程中，默认应用Hive来做部分预计算。SparkSQL在Hive上有更好的性能，所以使用Spark SQL可能会在特定步骤中提高构建速度。
+Kyligence Enterprise在Cube构建过程中，默认应用Hive来做部分预计算。SparkSQL在Hive上有更好的性能，所以使用Spark SQL可能会在特定步骤中提高构建速度。
 
 
 
@@ -23,7 +23,7 @@ KAP在Cube构建过程中，默认应用Hive来做部分预计算。SparkSQL在H
 
 需要注意的是对于JDBC URL，`localhost:10000`需要被替换为您自己的Thrift server的地址和端口；当集群在安全模式下，会需要配置`principal`参数。
 
-3. 关闭KAP，并运行环境检测脚本（check-env.sh）来检查相关配置是否生效。
+3. 关闭Kyligence Enterprise，并运行环境检测脚本（check-env.sh）来检查相关配置是否生效。
 
    ```sh
    bin/kylin.sh stop
@@ -34,7 +34,7 @@ KAP在Cube构建过程中，默认应用Hive来做部分预计算。SparkSQL在H
 
    ```${kylin.source.hive.sparksql-beeline-shell} ${kylin.source.hive.sparksql-beeline-params}```
 
-4. 重启KAP后，设置应生效。
+4. 重启Kyligence Enterprise后，设置应生效。
 
 ### 其他说明 ###
 

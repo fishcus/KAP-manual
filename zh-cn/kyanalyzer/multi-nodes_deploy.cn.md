@@ -7,7 +7,7 @@
 多节点部署的基本操作如下：
 
 首先，修改每个 KyAnalyzer 节点的 conf/kyanalyzer.properties 配置文件，将其中的
-"kap.host" 和 "kap.port" 两个配置项分别设置为同一个 KAP 服务器的地址和端口（或者配置为同一个 KAP 集群上的多个 Query Server）。
+"kap.host" 和 "kap.port" 两个配置项分别设置为同一个 Kyligence Enterprise 服务器的地址和端口（或者配置为同一个 Kyligence Enterprise 集群上的多个 Query Server）。
 
 第二，按以下步骤修改 node1 的 KyAnalyzer 安装目录下的 repository/configuration.xml 文件：
 

@@ -5,7 +5,7 @@
 > 使用API前请确保已阅读前面的**访问及安全认证**章节，知道如何在API中添加认证信息。
 >
 
-访问KAP构建的数据集，主要两个API，一个是直接查询Cube数据，一个是列出所有可以查询的表。
+访问Kyligence Enterprise构建的数据集，主要两个API，一个是直接查询Cube数据，一个是列出所有可以查询的表。
 
 * 查询
    * [查询Cube数据](#查询cube数据)
@@ -28,7 +28,7 @@
 * offset - `可选` `int` 查询默认从第一行返回结果，可以设置改参数设置返回数据从哪一行开始往后返回
 * limit - `可选` `int` •  加上limit参数后会从offset开始返回对应的行数，不足limt以实际行数为准
 
-* acceptPartial - `可选` `bool` (该参数在KAP2.1之后已无效 )
+* acceptPartial - `可选` `bool` (该参数在Kyligence Enterprise2.1之后已无效 )
   默认是“true”，如果为true，那么当前实际最多会返回一百万行数据，如果要返回超过一百万行的结果集，那该参数需要设置为“false”
 * project - `可选` `string` 
   默认为 ‘DEFAULT’，在实际使用时，如果对应查询的项目不是“DEFAULT”，需要设置为自己的项目

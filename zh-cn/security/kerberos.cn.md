@@ -1,8 +1,8 @@
 ## 集成Kerberos
-Kerberos 是一种支持票证身份验证的安全协议。如果 KAP 部署的 Hadoop 平台开启了 Kerberos 服务，需要通过本文的配置让 KAP 集成平台的 Kerberos 服务运行，这些配置主要分为两部分，KAP 中的配置及 Hadoop 平台中的配置。
+Kerberos 是一种支持票证身份验证的安全协议。如果 Kyligence Enterprise 部署的 Hadoop 平台开启了 Kerberos 服务，需要通过本文的配置让 Kyligence Enterprise 集成平台的 Kerberos 服务运行，这些配置主要分为两部分，Kyligence Enterprise 中的配置及 Hadoop 平台中的配置。
 
-### KAP 中配置
-以下是 KAP 的 `$KYLIN_HOME/conf/kylin.properties` 配置文件中与 Kerberos 相关的配置参数。
+### Kyligence Enterprise 中配置
+以下是 Kyligence Enterprise 的 `$KYLIN_HOME/conf/kylin.properties` 配置文件中与 Kerberos 相关的配置参数。
 
 必选参数：
 
@@ -39,11 +39,11 @@ Kerberos 是一种支持票证身份验证的安全协议。如果 KAP 部署的
 
     除此之外，机机账户需设置：
 
-   - 对于 KAP 期望读取的 Hive 数据库的读权限
+   - 对于 Kyligence Enterprise 期望读取的 Hive 数据库的读权限
    - 对于 kylin.env.hdfs-working-dir 的写权限
    - 对于 kylin.source.hive.database-for-flat-table 的写权限
 
-    KAP参数说明，请参考：[KAP参数列表](http://docs.kyligence.io/v3.0/zh-cn/config/basic_settings.cn.html)
+    Kyligence Enterprise参数说明，请参考：[Kyligence Enterprise参数列表](http://docs.kyligence.io/v3.0/zh-cn/config/basic_settings.cn.html)
 
 2. 将步骤2中导出的 keytab 文件以及配置文件 krb5.conf 放到 `$KYLIN_HOME/conf` 目录下。
 3. 配置 FusionInsight 认证方式为 cache 认证或 keytab 认证。

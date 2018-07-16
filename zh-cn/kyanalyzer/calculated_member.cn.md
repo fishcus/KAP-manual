@@ -4,7 +4,7 @@ Calculated Member 是由一组维度或指标组成的计算，这些计算根�
 
 KyAnalyzer 可支持创建 Calculated Member 来使用 MDX。 
 
-下面我们以 KAP 样例 Cube 为例，使用指标 `KYLIN_SALES.ITEM_COUNT_SUM` 和 `KYLIN_SALES.PRICE_SUM` 来创建一个新的 Calculated Member。
+下面我们以 Kyligence Enterprise 样例 Cube 为例，使用指标 `KYLIN_SALES.ITEM_COUNT_SUM` 和 `KYLIN_SALES.PRICE_SUM` 来创建一个新的 Calculated Member。
 
 1. 点击指标面板右侧的**添加**按钮。
 

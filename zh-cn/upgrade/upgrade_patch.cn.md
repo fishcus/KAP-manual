@@ -1,8 +1,10 @@
+
+
 ## 补丁包修复
 
-从KAP 3.X版本开始，提供了补丁包修复方式。当您需要修复当前版本时，可以通过Kybot工单系统联系Kyligence Support获取相应的版本信息，售后团队会将您需要的补丁包发送给您，之后通过补丁安装工具即可完成升级。
+从Kyligence Enterprise 3.X版本开始，提供了补丁包修复方式。当您需要修复当前版本时，可以通过Kybot工单系统联系Kyligence Support获取相应的版本信息，售后团队会将您需要的补丁包发送给您，之后通过补丁安装工具即可完成升级。
 
-1. 设置环境变量`KYLIN_HOME`为当前版本的KAP，并停止正在运行的KAP：
+1. 设置环境变量`KYLIN_HOME`为当前版本的Kyligence Enterprise，并停止正在运行的Kyligence Enterprise：
 
    ```
    export KYLIN_HOME=/usr/local/kap-{version}

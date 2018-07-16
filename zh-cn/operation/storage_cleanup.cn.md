@@ -1,6 +1,6 @@
 ## 垃圾清理
 
-在 KAP 运行一段时间之后，有很多数据因为不再使用而变成了垃圾数据，这些数据占据着系统资源，当积累到一定规模会对集群性能产生影响。
+在 Kyligence Enterprise 运行一段时间之后，有很多数据因为不再使用而变成了垃圾数据，这些数据占据着系统资源，当积累到一定规模会对集群性能产生影响。
 
 这些垃圾数据主要包括：
 
@@ -12,7 +12,7 @@
 > **注意**：数据一经删除将彻底无法恢复！建议使用前，进行元数据备份，并对目标资源进行谨慎核对。
 
 ### 垃圾清理工具
-KAP 提供了一个命令行工具清理系统垃圾。
+Kyligence Enterprise 提供了一个命令行工具清理系统垃圾。
 
 ```shell
 $KYLIN_HOME/bin/kylin.sh io.kyligence.kap.tool.storage.KapGarbageCleanupCLI [--delete true]

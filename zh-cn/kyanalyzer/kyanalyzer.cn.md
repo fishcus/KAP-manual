@@ -1,9 +1,11 @@
+
+
 ## KyAnalyzer 自助式敏捷 BI 工具
 
-KyAnalyzer 无缝集成 KAP (Kylin)，便于用户以最简单、快捷的方式访问 KAP 中的数据。
+KyAnalyzer 无缝集成 Kyligence Enterprise (Kylin)，便于用户以最简单、快捷的方式访问 Kyligence Enterprise 中的数据。
 
 ### 使用 KyAnalyzer 的前提条件
-* KAP 版本需为 2.1 或之后版本
+* Kyligence Enterprise 版本需为 2.1 或之后版本
 * Apache Kylin 版本需为 1.5.4.1 或之后版本
 * KyAnalyzer 暂不支持 *left join* 查询，使用者构建 Cube 模型时需将 join 关系指定为 *inner join*
 
@@ -18,7 +20,7 @@ KyAnalyzer 无缝集成 KAP (Kylin)，便于用户以最简单、快捷的方式
 
    ```mv kyAnalyzer.lic kyanalyzer-{version}/conf```
 
-   对于 2.5.0 版本及以后的版本，将直接使用 KAP 的许可证进行认证，只需将配置文件 kyanalyzer.properties 中的 `kap.host` 配置为当前具有有效许可证的 KAP 即可。
+   对于 2.5.0 版本及以后的版本，将直接使用 Kyligence Enterprise 的许可证进行认证，只需将配置文件 kyanalyzer.properties 中的 `kap.host` 配置为当前具有有效许可证的 Kyligence Enterprise 即可。
 
 3. KyAnalyzer 依赖于 mondrian 的 jar 包，为了符合其开源协议，需要单独下载并拷贝。
    * 对于 KyAnalyzer V2.1.3 及之前的版本，需要单独下载[ mondrian-kylin-1.2.jar ]( https://github.com/Kyligence/kylin-mondrian/blob/master/build/mondrian-kylin-1.2.jar )包，并拷贝至 kyanalyzer-server-{version}/tomcat/webapps/saiku/WEB-INF/lib 下
@@ -26,7 +28,7 @@ KyAnalyzer 无缝集成 KAP (Kylin)，便于用户以最简单、快捷的方式
    * 在无网络环境或Windows下安装 KyAnalyzer V2.5.0-2.5.1 版本时，可通过访问链接 [mondrian-kylin-2.0.jar](https://github.com/Kyligence/kylin-mondrian/blob/master/build/mondrian-kylin-2.0.jar) 下载 jar 包，并将它拷贝至 kyanalyzer-server-{version}/tomcat/webapps/saiku/WEB-INF/lib 下。安装 KyAnalyzer V2.5.4 及以上版本时，可通过访问链接 [mondrian-kylin-2.1.jar](https://github.com/Kyligence/kylin-mondrian/blob/master/build/mondrian-kylin-2.1.jar)
    * ) 下载 jar 包，并将它拷贝至 kyanalyzer-server-{version}/tomcat/webapps/saiku/WEB-INF/lib 下
 
-4. 在 kyanalyzer-server-{version}/conf 目录下有个配置文件kyanalyzer.properties，需要在该文件中配置好 KAP 的 IP 及端口信息。kap.host 为 KAP 的 IP，默认为 localhost，kap.port 为 KAP REST API 的端口，默认为 7070。有关 mondrian 的所有配置，可以参考 conf/mondrian.properties.template，配置到 mondrian.properties 中（注：在 KAP V2.2 之后，我们将 kap.host 及 kap.port 配置移到 kyanalyzer.properties 中，同时在 conf 下引入了mondrian.properties）。
+4. 在 kyanalyzer-server-{version}/conf 目录下有个配置文件kyanalyzer.properties，需要在该文件中配置好 Kyligence Enterprise 的 IP 及端口信息。kap.host 为 Kyligence Enterprise 的 IP，默认为 localhost，kap.port 为 Kyligence Enterprise REST API 的端口，默认为 7070。有关 mondrian 的所有配置，可以参考 conf/mondrian.properties.template，配置到 mondrian.properties 中（注：在 Kyligence Enterprise V2.2 之后，我们将 kap.host 及 kap.port 配置移到 kyanalyzer.properties 中，同时在 conf 下引入了mondrian.properties）。
 
 ### 启动
 通过 kyanalyzer-{version} 目录下的 start-analyzer.sh 启动 KyAnalyzer，默认端口为 8080。
@@ -64,7 +66,7 @@ KyAnalyzer 的数据信息主要存储在根目录下的 repository 和 data 目
 
 * 注意：默认端口为 8080，即可通过 http://{hostname}:8080 访问 KyAnalyzer 登录页面。如果需要修改此端口，请同步修改 tomcat/conf/server.xml 文件或者将 KyAnalyzer-1 的 server.xml 文件复制到 KyAnalyzer-2 的 tomcat/conf/server.xml 中。
 
-### 关于 KyAnalyzer、KAP 和 Mondrian-Kylin 的版本及功能描述
+### 关于 KyAnalyzer、Kyligence Enterprise 和 Mondrian-Kylin 的版本及功能描述
 
 <table>
     <tr>
@@ -140,15 +142,15 @@ KyAnalyzer 的数据信息主要存储在根目录下的 repository 和 data 目
 </table>
 
 ### 认证
-KyAnalyzer 的用户认证是通过 KAP 认证进行的，所以只需要输入 KAP 的帐号和密码即可登录。用户的管理也是通过 KAP 进行。KAP 中的系统管理员在 KyAnalyzer 中同样具有 Admin 角色。
+KyAnalyzer 的用户认证是通过 Kyligence Enterprise 认证进行的，所以只需要输入 Kyligence Enterprise 的帐号和密码即可登录。用户的管理也是通过 Kyligence Enterprise 进行。Kyligence Enterprise 中的系统管理员在 KyAnalyzer 中同样具有 Admin 角色。
 ![登录 KyAnalyzer](images/analyzer_login.png)
 
 ### 管理控制台
-该页面仅管理员可见。为了同步 KAP 中的 Cube，针对每一个 Cube，KyAnalyzer 中都必须创建一个对应的 schema 文件，同时配置对应的数据源 (Data Source)。KyAnalyzer 将通过这些配置信息组成 SQL 发送给 KAP。KyAnalyzer 将这一块自动化掉，用户不需要手动创建 schema 及数据源。只需要点击页面左侧的 **Sync Cubes From Kylin**，右侧下拉框会列出 KAP 中的所有项目。
+该页面仅管理员可见。为了同步 Kyligence Enterprise 中的 Cube，针对每一个 Cube，KyAnalyzer 中都必须创建一个对应的 schema 文件，同时配置对应的数据源 (Data Source)。KyAnalyzer 将通过这些配置信息组成 SQL 发送给 Kyligence Enterprise。KyAnalyzer 将这一块自动化掉，用户不需要手动创建 schema 及数据源。只需要点击页面左侧的 **Sync Cubes From Kylin**，右侧下拉框会列出 Kyligence Enterprise 中的所有项目。
 
 ![同步 Kylin 中的 Cube](images/admin_sync.png)
 
-选中项目后，点击绿色的按钮 **Sync Cubes From Kylin**，KAP 中该项目下所有状态为 **READY** 的 Cube 信息将会同步过来。
+选中项目后，点击绿色的按钮 **Sync Cubes From Kylin**，Kyligence Enterprise 中该项目下所有状态为 **READY** 的 Cube 信息将会同步过来。
 
 ![同步 Cube 结果](images/sync_done_tip.png)
 
@@ -210,15 +212,15 @@ KyAnalyzer 支持多种展现形式，如：表格、柱状图、堆积柱状图
 
 
 
-### KAP权限继承说明
+### Kyligence Enterprise权限继承说明
 
-KAP管理员在项目上为用户／组分配了管理权限后，用户／组会相应地继承数据源、模型及Cube上的访问权限，具体可查看[管理权限](../security/acl.cn.md)。
+Kyligence Enterprise管理员在项目上为用户／组分配了管理权限后，用户／组会相应地继承数据源、模型及Cube上的访问权限，具体可查看[管理权限](../security/acl.cn.md)。
 
-KyAnalyzer继承了KAP所设置的权限，具体展现如下表所示：
+KyAnalyzer继承了Kyligence Enterprise所设置的权限，具体展现如下表所示：
 
-| 权限所设范围 | KAP显示              | KyAnalyzer显示           |
-| ------------ | -------------------- | ------------------------ |
-| Row          | 仅查询所设行的数据   | 仅查询所设行的数据       |
-| Column       | 无法查询所设列的数据 | 无法查询所设列的数据     |
-| Table        | 无法查询表格数据     | 含有该表的Cube均不可查询 |
+| 权限所设范围 | Kyligence Enterprise显示 | KyAnalyzer显示           |
+| ------------ | ------------------------ | ------------------------ |
+| Row          | 仅查询所设行的数据       | 仅查询所设行的数据       |
+| Column       | 无法查询所设列的数据     | 无法查询所设列的数据     |
+| Table        | 无法查询表格数据         | 含有该表的Cube均不可查询 |
 

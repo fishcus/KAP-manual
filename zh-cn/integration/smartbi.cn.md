@@ -1,7 +1,7 @@
 ## 与 Smartbi Insight 集成
 
 Smartbi Insight
-是企业级的商业智能分析平台，定位于前端数据分析，对接各种数据库、数据仓库和大数据平台，构建交互式仪表盘，满足多样性的数据分析应用需求，如大数据分析、企业报表平台、自主探索分析等。本文将分步介绍 Smartbi Insight 与 KAP 的连接。
+是企业级的商业智能分析平台，定位于前端数据分析，对接各种数据库、数据仓库和大数据平台，构建交互式仪表盘，满足多样性的数据分析应用需求，如大数据分析、企业报表平台、自主探索分析等。本文将分步介绍 Smartbi Insight 与 Kyligence Enterprise 的连接。
 
 ### 1. 安装 Smartbi Insight
 
@@ -9,7 +9,7 @@ Smartbi Insight
 
 ### 2. 安装 Kyligence JDBC 驱动程序
 
-Smartbi Insight 通过JDBC连接 KAP，所以首先需要在Smartbi Insight 上安装 Kyligence JDBC 驱动程序
+Smartbi Insight 通过JDBC连接 Kyligence Enterprise，所以首先需要在Smartbi Insight 上安装 Kyligence JDBC 驱动程序
 
 2.1 获取 Kyligence JDBC 驱动程序：
 
@@ -29,7 +29,7 @@ Smartbi Insight 通过JDBC连接 KAP，所以首先需要在Smartbi Insight 上�
 
 (4)重启tomcat
 
-### 3. 建立 KAP 数据源连接 
+### 3. 建立 Kyligence Enterprise 数据源连接 
 
 #### 3.1 进入界面：
 
@@ -41,7 +41,7 @@ Smartbi Insight 通过JDBC连接 KAP，所以首先需要在Smartbi Insight 上�
 
 选择**Kylin**驱动程序类型，将服务器IP地址等信息填写到连接字符串（字符串格式为:**jdbc:kylin://<hostname>:<port>/<project_name>**) ,然后**保存**数据源连接。
 
-这里默认选择用户验证类型为**静态验证**，输入KAP的用户名和密码进行连接。
+这里默认选择用户验证类型为**静态验证**，输入Kyligence Enterprise的用户名和密码进行连接。
 
 如需使用**动态验证**方式，请参考本文下方的**用户的动态验证方式**。
 

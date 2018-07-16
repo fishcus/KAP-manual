@@ -1,16 +1,16 @@
 ## 配置 YARN 队列
 
-在多租户的场景下，多位租户为了安全地共享一个大型集群，需要对计算资源进行隔离及调配。在每位租户使用单独 KAP 项目的情况下，KAP 支持对每个项目单独设置 YARN 队列，以实现计算资源的调配隔离。
+在多租户的场景下，多位租户为了安全地共享一个大型集群，需要对计算资源进行隔离及调配。在每位租户使用单独 Kyligence Enterprise 项目的情况下，Kyligence Enterprise 支持对每个项目单独设置 YARN 队列，以实现计算资源的调配隔离。
 
-默认情况下，KAP 的构建任务会发送到集群的 `default` 队列中。为每个项目配置单独的队列，首先需要在 YARN 队列中添加一个新的队列。
+默认情况下，Kyligence Enterprise 的构建任务会发送到集群的 `default` 队列中。为每个项目配置单独的队列，首先需要在 YARN 队列中添加一个新的队列。
 
 在下面的截图中，我们创建了一个新的 YARN 队列 `learn_kylin`。
 
 ![](images/hadoop_queue/1.png)
 
-随后，在 KAP 中配置项目需要使用的队列
+随后，在 Kyligence Enterprise 中配置项目需要使用的队列
 
-1. 在 KAP 中进入项目配置页面，选择需要配置队列的项目。
+1. 在 Kyligence Enterprise 中进入项目配置页面，选择需要配置队列的项目。
 2. 点击编辑项目，然后点击 `+property` 添加 key / value 如下。
 
 ![](images/hadoop_queue/2_1.png)

@@ -30,7 +30,7 @@ Count distinct是一个对大多数数据分析师都很常用的函数。本产
 
 ### 多列count distinct
 
-KAP v2.4以来通过 [HyperLogLog](https://hal.inria.fr/hal-00406166/document) 算法支持了多列的 Count distinct 查询。设置方法如下图所示。对应的查询语句为(列的顺序无差别)：
+Kyligence Enterprise v2.4以来通过 [HyperLogLog](https://hal.inria.fr/hal-00406166/document) 算法支持了多列的 Count distinct 查询。设置方法如下图所示。对应的查询语句为(列的顺序无差别)：
 
 ```sql
 SELECT COUNT (DISTINCT P_LINEORDER.LO_SHIPPRIORITY, PART.P_SIZE, CUSTOMER.C_REGION) FROM P_LINEORDER 

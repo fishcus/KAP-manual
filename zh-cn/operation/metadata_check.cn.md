@@ -10,7 +10,7 @@
 2. Cube 与表索引
 3. Cube 与构建调度器
 4. 任务的元数据与输出信息
-5. KAP 实际加载数据是否与 ResourceStore 保存的数据一致
+5. Kyligence Enterprise 实际加载数据是否与 ResourceStore 保存的数据一致
 
 
 

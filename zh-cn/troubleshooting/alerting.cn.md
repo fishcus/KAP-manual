@@ -1,5 +1,5 @@
 ## 任务报警
-KAP 提供了**邮件通知**的功能，可以在Cube状态发生改变时，当Cube构建任务完成或者失败时，向Cube管理员发送电子邮件，便于运维人员进行下一步的故障排查或者增量构建。
+Kyligence Enterprise 提供了**邮件通知**的功能，可以在Cube状态发生改变时，当Cube构建任务完成或者失败时，向Cube管理员发送电子邮件，便于运维人员进行下一步的故障排查或者增量构建。
 
 ###如何通过电子邮件实现任务报警
 #### 1.在配置文件 `$KYLIN_HOME/conf/kylin.properties` 中进行如下设置：
@@ -13,7 +13,7 @@ kylin.job.notification-mail-password=your-smtp-pwd  # 设置该项为邮件的SM
 kylin.job.notification-mail-sender=your-sender-address  # 设置该项为邮件的发送邮箱地址
 kylin.job.notification-admin-emails=adminstrator-address  </pre>
 
-设置完毕后，**重新启动KAP** 使配置生效。
+设置完毕后，**重新启动Kyligence Enterprise** 使配置生效。
 
 
 #### 2.在Cube设计页面进行如下设置：
