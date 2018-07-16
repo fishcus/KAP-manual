@@ -13,7 +13,7 @@ Spark Thrift 使用 Hive JDBC 接口，支持 JDBC 接口的应用可以通过Hi
 
 #### 安装 JDBC
 
-把下载好的所有 jar 包放到 `KAP_HOME/ext` 下面，以便让 KAP 在启动时可以加载 JDBC Driver 。
+把下载好的所有 jar 包放到 `KAP_HOME/ext` 下面，以便让 本产品 在启动时可以加载 JDBC Driver 。
 
 #### 修改kylin.properties
 
@@ -29,7 +29,7 @@ Spark Thrift 使用 Hive JDBC 接口，支持 JDBC 接口的应用可以通过Hi
   - 以下配置中spark_host为 Spark Thrift 所在节点的hostname,spark_hs2_port 是 Spark Thrift 的端口.
   - 访问没有 kerberos 安全认证的 Spark Thrift，例如(访问default库):``kylin.query.pushdown.jdbc.url=jdbc:hive2://spark_host:spark_hs2_port/default``
   - 访问带有 kerberos 安全认证的 Spark Thrift: 访问带有 kerberos 认证 Spark Thrift 需要 JDBC Client 端包含 Spark Thrift(principal=<Spark-Kerberos-Principal>)principal 在 JDBC url中，例如(访问 default 库):``kylin.query.pushdown.jdbc.url=jdbc:hive2://spark_host:spark_hs2_port/default;principal=Spark-Kerberos-Principal``
-      - 请确保 KAP 能都读取到的 hive-site.xml 中打开了 hive-server2 的 kerberos 认证:
+      - 请确保 本产品 能都读取到的 hive-site.xml 中打开了 hive-server2 的 kerberos 认证:
 
           ```xml
           <property>
@@ -37,11 +37,11 @@ Spark Thrift 使用 Hive JDBC 接口，支持 JDBC 接口的应用可以通过Hi
           	<value>kerberos</value>
           </property>
           ```
-          在初始化 hive-jdbc connection 前，kap 需要具有有效的 kerberos ticket，**请确保 klist 中存在有效的 principal** 能够访问 Spark Thrift。
+          在初始化 hive-jdbc connection 前，本产品 需要具有有效的 kerberos ticket，**请确保 klist 中存在有效的 principal** 能够访问 Spark Thrift。
 
           ​
 
-> 注意：如果使用的环境没有Spark Thrift时，配置用户名与密码的方式为将下列参数在配置文件`kylin.properties`添加并重启KAP。
+> 注意：如果使用的环境没有Spark Thrift时，配置用户名与密码的方式为将下列参数在配置文件`kylin.properties`添加并重启本产品。
 
 ```properties
 kylin.query.pushdown.jdbc.username
@@ -64,9 +64,9 @@ kylin.query.pushdown.jdbc.password
 
 #### 验证 Query Pushdown
 
-启动 KAP ，在 Insight 界面进行一些简单查询。
+启动 本产品 ，在 Insight 界面进行一些简单查询。
 
-Spark web 页面中能够找到刚才的查询，表示 KAP 能够正常连接Spark Thrift。
+Spark web 页面中能够找到刚才的查询，表示 本产品 能够正常连接Spark Thrift。
 
  ![](images/query_pushdown_spark.png)
 

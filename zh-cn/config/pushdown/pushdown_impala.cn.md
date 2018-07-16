@@ -15,7 +15,7 @@ Impala 使用 Hive JDBC接口，支持 JDBC 接口的应用可以通过 Hive JDB
 
 #### 安装 JDBC
 
-把下载好的所有 jar 包放到 `$KAP_HOME/ext` 下面，以便让 KAP 在启动时可以加载 JDBC Driver 。
+把下载好的所有 jar 包放到 `$KAP_HOME/ext` 下面，以便让 本产品 在启动时可以加载 JDBC Driver 。
 
 #### 修改kylin.properties
 
@@ -43,7 +43,7 @@ Impala 使用 Hive JDBC接口，支持 JDBC 接口的应用可以通过 Hive JDB
       kylin.query.pushdown.jdbc.url=jdbc:hive2://impala_host:impala_hs2_port/default;principal=Impala-Kerberos-Principal
       ```
 
-      请确保 KAP 能都读取到的 hive-site.xml 中打开了 hive-server2 的 kerberos 认证:	
+      请确保 本产品 能都读取到的 hive-site.xml 中打开了 hive-server2 的 kerberos 认证:	
 
       ```xml
       <property>
@@ -52,7 +52,7 @@ Impala 使用 Hive JDBC接口，支持 JDBC 接口的应用可以通过 Hive JDB
       </property>
       ```
 
-      在初始化 hive-jdbc connection 前，KAP 需要具有有效的kerberos ticket，**请确保 klist 中存在有效的 principal** 能够访问 Impala 集群。
+      在初始化 hive-jdbc connection 前，本产品 需要具有有效的kerberos ticket，**请确保 klist 中存在有效的 principal** 能够访问 Impala 集群。
 
 
 
@@ -70,8 +70,8 @@ Impala 使用 Hive JDBC接口，支持 JDBC 接口的应用可以通过 Hive JDB
 
 #### 验证 Query Pushdown
 
-+ 启动 KAP ，在 Insight 界面进行一些简单查询。
-+ 在 Impala web 页面中能够找到刚才的查询，表示 KAP 能够正常连接 Impala。![](images/query_pushdown_impala.png)
++ 启动 本产品 ，在 Insight 界面进行一些简单查询。
++ 在 Impala web 页面中能够找到刚才的查询，表示 本产品 能够正常连接 Impala。![](images/query_pushdown_impala.png)
 
 
 
