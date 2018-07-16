@@ -4,13 +4,13 @@
 
 青云 AppCenter 是青云提供的云上企业级应用交付平台，包含了一系列云上大数据生态应用，如Hadoop、Zookeeper等，可以显著降低云端应用开发、部署及运维的复杂度。
 
-在青云AppCenter中，Kyligence Analytics Platform是一个独立的应用程序，允许用户一键部署一个全新的包含Hadoop、Hive、Kyligence Enterprise的完整集群；同时，Kyligence Enterprise也是青云Hadoop服务（QingMR）中的一部分，允许用户在部署QingMR服务时通过勾选安装Kyligence Enterprise到Hadoop集群当中。
+在青云AppCenter中，Kyligence Enterprise是一个独立的应用程序，允许用户一键部署一个全新的包含Hadoop、Hive、Kyligence Enterprise的完整集群；同时，Kyligence Enterprise也是青云Hadoop服务（QingMR）中的一部分，允许用户在部署QingMR服务时通过勾选安装Kyligence Enterprise到Hadoop集群当中。
 
 ### 安装 Kyligence Enterprise
 
 #### 前置条件：Zookeeper，网络配置
 
-1）由于Kyligecne Analytics Platform需要依赖ZooKeeper进行集群状态的管理，需要首先部署ZooKeeper集群。如果已有ZooKeeper集群，这步可以忽略。
+1）由于Kyligence Enterprise需要依赖ZooKeeper进行集群状态的管理，需要首先部署ZooKeeper集群。如果已有ZooKeeper集群，这步可以忽略。
 
 2）创建ZooKeeper集群：选择“大数据平台”->"ZooKeeper"
 
