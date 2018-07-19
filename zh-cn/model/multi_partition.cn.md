@@ -33,4 +33,3 @@
 
    ![Save multi-partition model](images/multi_partition/cube.cn.png)
 
->注：可计算列在目前版本中不支持作为分区列
