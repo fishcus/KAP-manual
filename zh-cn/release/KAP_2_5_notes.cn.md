@@ -54,7 +54,7 @@ KyAnalyzer无需单独提供许可证，可直接读取Kyligence Enterprise的�
 
   兼容性测试：
 
-  	Apache Hadoop 2.2+，HBase 0.98+，Hive 0.14+
+  	HBase 0.98+，Hive 0.14+
 
   	Hortonworks HDP 2.2/2.4
 

@@ -120,7 +120,7 @@ KyAnalyzer access control is integrated with Kyligence Enterprise backend
 
   Compatible distributions：
 
-  	Apache Hadoop 2.2+，HBase 0.98+，Hive 0.14+
+  	HBase 0.98+，Hive 0.14+
 
   	Hortonworks HDP 2.2/2.4
 

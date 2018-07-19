@@ -26,7 +26,7 @@ Kyligence Enterprise 3.0 satisfies full-scene analysis needs by simultaneously e
 
   Compatible distributions：
 
-  	Apache Hadoop 2.2+，HBase 0.98+，Hive 0.14+
+​        HBase 0.98+，Hive 0.14+
 
   	Hortonworks HDP 2.2/2.4
 

@@ -12,7 +12,7 @@
 
 兼容性测试：
 
-​	Apache Hadoop 2.2+，HBase 0.98+，Hive 0.14+
+​	HBase 0.98+，Hive 0.14+
 
 ​	Hortonworks HDP 2.2/2.3/2.4
 
