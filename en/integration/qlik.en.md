@@ -39,7 +39,7 @@ After configuring your Local DSN and installing Qlik Sense successfully, you may
 
    You may be able to enable Direct Query mode by typing `Direct Query` in front of your query script in Script editor.
 
-   Below is the screenshot of such Direct Query script against *kylin_sales_cube* in *Learn_kylin* project.![Script](images/qlik/script_run_result.png)
+   Below is the screenshot of such Direct Query script against *kylin_sales_cube* in *Learn_kylin* project.![Script](images/Qlik/script_run_result.PNG)
 
    Once you defined such script, Qlik Sense can generate SQL based on this script for your report.
 
@@ -108,17 +108,17 @@ After configuring your Local DSN and installing Qlik Sense successfully, you may
 
 6. Create a new report
 
-   On the top left manu open **App Overview**.![Open App Overview](images/qlik/go_to_app_overview.png)
+   On the top left manu open **App Overview**.![Open App Overview](images/Qlik/go_to_app_overview.png)
 
-   Click **Create new sheet** on the pop-up page.![Create new sheet](images/qlik/create_new_report.png)
+   Click **Create new sheet** on the pop-up page.![Create new sheet](images/Qlik/create_new_report.png)
 
    Select the charts you need, then add dimension and measurement based on your requirements. ![Select the required charts, dimension and measure](images/qlik/add_dimension.png)
 
-   You will get your worksheet and the connection is complete. Your KAP data shows in Qlik Sense now.![View KAP data in Qlik Sense](images/qlik/report.png)
+   You will get your worksheet and the connection is complete. Your KAP data shows in Qlik Sense now.![View KAP data in Qlik Sense](images/Qlik/report.png)
 
    Please note that if you want the report to hit on Cube, you need to create the measure exactly as those are defined in the Cube. For the case of *Kylin_sales_cube* in Learn_kylin project, we use sum(price) as an example. 
 
-![Create Measure that can hit on Cube](images/qlik/measure.png)
+![Create Measure that can hit on Cube](images/Qlik/measure.png)
 
 ### Connection with Qlik Sense Hub 
 
@@ -151,7 +151,7 @@ After configuring your Local DSN and installing Qlik Sense successfully, you may
 
 7. Go to the KAP_QLIK application just released to view the charts created in `Qlik Sense Desktop`.
 
-![查看图表](images/Qlik/07_hub_qlik.PNG)
+![查看图表](images/Qlik/07_hub_Qlik.PNG)
 
 #### Connect KAP directly in Qlik Sense Hub
 

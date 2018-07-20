@@ -20,15 +20,15 @@ Qlik Sense
 
 1. 从 Windows 桌面快捷方式或单击**开始 -> 所有程序 -> Qlik Sense -> Qlik Sense Desktop**，打开应用程序 **Qlik Sense Desktop**。
 
-2. 输入 Qlik 用户名和密码，接着系统将弹出以下对话框。单击**创建新应用程序**。![创建新应用程序](images/qlik/001-welcome_to_qlik_desktop.cn.png)
+2. 输入 Qlik 用户名和密码，接着系统将弹出以下对话框。单击**创建新应用程序**。![创建新应用程序](images/Qlik/001-welcome_to_qlik_desktop.cn.png)
 
-   为新建的应用程序指定名称，该名称不得与现有的应用程序相同。创建完成后，打开此应用程序。在本例中，我们将此应用程序命名为“Kylinfortesting”。![为新的应用程序命名](images/qlik/002-create_new_application.cn.png)
+   为新建的应用程序指定名称，该名称不得与现有的应用程序相同。创建完成后，打开此应用程序。在本例中，我们将此应用程序命名为“Kylinfortesting”。![为新的应用程序命名](images/Qlik/002-create_new_application.cn.png)
 
-3. 应用程序视图中有两个选项，选择下方的**脚本编辑器**。![选择脚本编辑器](images/qlik/003-script_editor.cn.png)
+3. 应用程序视图中有两个选项，选择下方的**脚本编辑器**。![选择脚本编辑器](images/Qlik/003-script_editor.cn.png)
 
-   此时会显示数据加载编辑器窗口。单击页面右上方的**创建新连接**。![创建数据连接](images/qlik/004-create_data_connection.cn.png)
+   此时会显示数据加载编辑器窗口。单击页面右上方的**创建新连接**。![创建数据连接](images/Qlik/004-create_data_connection.cn.png)
 
-   然后选择创建的 **DSN**，不需要填写帐户信息，单击**创建**即可。![ODBC 连接](images/qlik/005-odbc_connection.png)
+   然后选择创建的 **DSN**，不需要填写帐户信息，单击**创建**即可。![ODBC 连接](images/Qlik/005-odbc_connection.png)
 
 4. 将 "TimeFormat"、"DateFormat" 和 "TimestampFormat" 的默认脚本更改为：
 
@@ -44,7 +44,7 @@ Qlik Sense
 
    在脚本编辑器中查询脚本的最前面，输入 `Direct Query`，即可启用 Direct Query 模式。 
 
-   下图是以 Learn_kylin 项目中的 kylin_sales_cube 为例，进行 Direct Query 查询的脚本。![脚本](images/qlik/006-script_run_result.cn.png)
+   下图是以 Learn_kylin 项目中的 kylin_sales_cube 为例，进行 Direct Query 查询的脚本。![脚本](images/Qlik/006-script_run_result.cn.png)
 
    定义完此脚本后，Qlik Sense 可根据此脚本生成 SQL。建议定义的维度和度量与 Kyligence Enterprise Cube 中的维度和度量对应。下面附上完整的脚本，供您参考。
 
@@ -109,27 +109,27 @@ Qlik Sense
 
    点击窗口右上角的**加载数据**，这样 Qlik Sense 将发送查询，根据脚本来测试连接。
 
-   ![脚本运行结果](images/qlik/007-load_data.cn.png)
+   ![脚本运行结果](images/Qlik/007-load_data.cn.png)
 
 6. 创建新报告。单击窗口左上方的**应用程序视图**。
 
-   ![打开应用程序视图](images/qlik/008-go_to_app_overview.cn.png)
+   ![打开应用程序视图](images/Qlik/008-go_to_app_overview.cn.png)
 
    在弹出页面上单击**创建新工作表**。
 
-   ![创建新工作表](images/qlik/009-create_new_report.cn.png)
+   ![创建新工作表](images/Qlik/009-create_new_report.cn.png)
 
    选择所需的图表类型，并根据需要添加维度和度量项。
 
-   ![选择所需图表类型、维度和度量](images/qlik/010-add_dimension.cn.png)
+   ![选择所需图表类型、维度和度量](images/Qlik/010-add_dimension.cn.png)
 
    这样，新的工作表创建完成，Kyligence Enterprise 与 Qlik Sense 相连。现在您可以在 Qlik Sense 中查看 Kyligence Enterprise 数据。
 
-   ![在 Qlik Sense 中查看 KAP 数据](images/qlik/011-view_kap_data.cn.png)
+   ![在 Qlik Sense 中查看 KAP 数据](images/Qlik/011-view_kap_data.cn.png)
 
    注意，如果要使查询击中 Cube，创建的度量应与 Cube 中定义的度量匹配。例如，在 Learn_kylin 项目的 kylin_sales_cube 中，我们使用 Sum(price)：
 
-   ![创建可击中 Cube 的度量](images/qlik/012-measure.cn.png)
+   ![创建可击中 Cube 的度量](images/Qlik/012-measure.cn.png)
 
 ### 与 Qlik Sense Hub 连接 
 
