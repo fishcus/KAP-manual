@@ -8,7 +8,7 @@ First of all, *make sure that you allocate sufficient resources for sandbox*. Fo
 
 When configuring sandbox, we recommend that you use the Bridged Adapter model instead of the NAT model. The Bridged Adapter model will assign an independent IP address to your sandbox, allowing you to choose either local or remote access to Kyligence Enterprise GUI.
 
-To avoid permission issue in the sandbox, you can use MapR's  *root* account through SSH . The password for *MapR 5.2.1* is *`mapr`*. This guide uses *`root`* account as example. 
+To avoid permission issue in the sandbox, you can use MapR's  *mapr* account through SSH . The password for *MapR 5.2.1* is *`mapr`*. This guide uses *`mapr`* account as example. 
 
 ### Install Kyligence Enterprise
 
@@ -30,7 +30,7 @@ The MapR environment has its particularity. Please pay attention to the followin
 
   ```shell
   hadoop fs -mkdir /kylin
-  hadoop fs -chown root /kylin
+  hadoop fs -chown mapr /kylin
   ```
 
 - When checking the environment, there will be error because the `hdfs` command cannot be found. Please modify the` $KYLIN_HOME/bin/check-2100-os-commands.sh` and annotate the command line of `hdfs`. For an example:

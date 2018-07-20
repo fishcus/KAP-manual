@@ -32,7 +32,7 @@ The MapR environment has its particularity. Please pay attention to the followin
 
   ```shell
   hadoop fs -mkdir /kylin
-  hadoop fs -chown root /kylin
+  hadoop fs -chown mapr /kylin
   ```
 
 - When checking the environment, there will be error because the `hdfs` command cannot be found. Please modify the` $KYLIN_HOME/bin/check-2100-os-commands.sh` and annotate the command line of `hdfs`. For an example:
@@ -41,11 +41,16 @@ The MapR environment has its particularity. Please pay attention to the followin
   #command -v hdfs    || quit "ERROR: Command 'hdfs' is not accessible..."
   ```
 
-- If you need to specify the environment dependencies of Hive and Spark, their default locations are as follows:
+- Due to the special nature of the MapR environment, you need to use spark in the MapR environment. Please set SPARK_HOME to the location of spark in the MapR environment as follows:
+
+  ```shell
+  export SPARK_HOME=/opt/mapr/spark/spark-2.1.0
+  ```
+
+  If you need to specify the environment dependencies of Hive, its default location is as follows:
 
   ```shell
   export HIVE_CONF=/opt/mapr/hive/hive-2.1/conf
-  export SPARK_HOME=/opt/mapr/spark/spark-2.1.0
   ```
 
 ### Common Problems in the MapR Environment

@@ -8,7 +8,7 @@
 
 在配置沙箱时，我们推荐您使用 Bridged Adapter 模型替代 NAT 模型。Bridged Adapter 模型将为您的沙箱分配一个独立的 IP 地址，使您可以任意选择通过本地或远程访问 Kyligence Enterprise GUI。
 
-为了避免权限问题，我们推荐您使用 MapR 的 `root` 账户访问 MapR 沙箱。MapR 5.2.1 的默认密码是`mapr`。本节中均以`root`账户为例。
+为了避免权限问题，我们推荐您使用 MapR 的 `mapr` 账户访问 MapR 沙箱。MapR 5.2.1 的默认密码是`mapr`。本节中均以`mapr`账户为例。
 
 ### 快速安装 Kyligence Enterprise
 
@@ -28,7 +28,7 @@ MapR 环境有它的特殊性，在执行安装步骤时，请留意以下不同
 - MapR 中的文件操作命令为 `hadoop fs`，而不是 `hdfs dfs`。请在文件操作时自行替换，比如：
    ```shell
    hadoop fs -mkdir /kylin
-   hadoop fs -chown root /kylin
+   hadoop fs -chown mapr /kylin
    ```
 
 - 检查运行环境时，会因为 `hdfs` 命令找不到而报错。请修改 `$KYLIN_HOME/bin/check-2100-os-commands.sh`，将其中检查 `hdfs` 命令的一行注释掉即可。示例如下：
