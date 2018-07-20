@@ -34,7 +34,7 @@
 
 2. 保存数据源
 
-   将服务器IP地址等信息填写到连接字符串（字符串格式为:jdbc:kylin://\<hostname\>:\<port\>/\<project_name\>) 然后点击测试连接，测试成功后点击确定保存数据源连接。
+   将服务器IP地址等信息填写到连接字符串（字符串格式为:jdbc:kylin://&lt;hostname&gt;:&lt;port&gt;/&lt;project_name&gt;) 然后点击测试连接，测试成功后点击确定保存数据源连接。
 
    ![保存数据源](images/fineruan/03.jpeg)
 
