@@ -67,16 +67,24 @@ bin/kafka-console-consumer.sh --bootstrap-server 127.0.0.1:9092 --topic kylindem
 步骤四：您需要为流式数据源定义一个表名，本产品将消息流中的数据作为此表的数据。这张数据表将作为后续创建模型和查询的事实表。本例将表命名为 "KAFKA_TABLE_1" 。
 ![为流式数据源定义表名](images/s4.png)
 
-步骤五：检查表结构是否正确，确保至少有一列被选择为timestamp。
+步骤五：检查表结构是否正确，**确保至少有一列被选择为timestamp**。
 ![至少一列为 timestamp](images/s5.png)
 
 步骤六：设置解析器
 
-解析器名称: 默认为org.apache.kylin.source.kafka.TimedJsonStreamParser，支持自定义解析器；
+解析器名称: 默认为 org.apache.kylin.source.kafka.TimedJsonStreamParser，支持自定义解析器；
 
-时间戳字段名称: 必须为解析器指定一列用于分段的时间字段，本例选择了order_time；
+时间戳字段名称: 必须为解析器指定一列用于分段的时间字段，本例选择了 order_time；
 
 解析器属性: 为解析器定义更多属性；
+
+tsParser：指时间戳解析器，对 tsColName 的数值解析成时间戳；
+
+> 注意：tsParser 有两种内置解析器，一种是 org.apache.kylin.source.kafka.DefaultTimeParser，对 long 型的timestamp 值（epoc time）解析成 timestamp。另一种是org.apache.kylin.source.kafka.DateTimeParser，它根据给定的 tsPattern，将 string 类型的时间表达式解析成 timestamp；如果没有指定 tsPattern，默认使用 "yyyy-MM-dd HH:mm:ss" 的格式。
+
+tsPattern：指时间 pattern，供 tsParser使用。
+
+
 
 ![设置解析器](images/s6.png)
 

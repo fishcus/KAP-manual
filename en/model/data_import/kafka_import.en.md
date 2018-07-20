@@ -67,7 +67,7 @@ bin/kafka-console-consumer.sh --bootstrap-server 127.0.0.1:9092 --topic kylindem
 4.You need to give a logic table name for this streaming data source. The name will be used for SQL query later. Here please enter "KAFKA_TABLE_1" in the **Table Name** field.
    ![Input Table Name](images/d.png)
 
-5.Review the table schema, make sure there is at least one column chosen as ”timestamp“.
+5.Review the table schema, make sure there is at least one column chosen as *timestamp*.
 
    ![One Column Chosen as Timestamp](images/e.png)
 
@@ -78,6 +78,16 @@ Parser Name: org.apache.kylin.source.kafka.TimedJsonStreamParser (default), you 
 Parser Timestamp Field: you are required to set a timestamp field for the parser. In this example, we use order_time
 
 ParserProperties: Properties of the parser should as least include the timestamp field. In this example, tsColName=order_time. You can further define customized properties.
+
+tsColName: refers to the timestamp field;
+
+tsParser: refers to the timestamp parser, which parses the value of tsColName into a timestamp;
+
+> Note: tsParser has two built-ins, one is org.apache.kylin.source.kafka.DefaultTimeParser, which parses the long timestamp value (epoc time) into timestamp.
+>
+> Another built-in parser is org.apache.kylin.source.kafka.DateTimeParser, which parses the time expression of string type into timestamp according to the given tsPattern; if tsPattern is not specified, default format is "yyyy-MM-dd HH :mm:ss .
+
+tsPattern: refers to the time pattern for use by tsParser.
 
 ![Set Parser](images/f.png)
 
