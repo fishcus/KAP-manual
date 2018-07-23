@@ -1,13 +1,13 @@
-##基于关系型数据库（SQL Server）的Metastore配置
+## 基于SQL Server的Metastore配置
 
 
 
-###配置方法
+### 配置方法
 
 以下为以 SQL Server 作为 Metastore 的配置步骤：
 1. 在 SQL Server 数据库中新建名为 `kylin` 的数据库。
 
-2. 在 Kyligence Enterprise 安装目录下的 `$KYLIN_HOME/conf/kylin.properties` 配置文件中，将 `kylin.metadata.url` 修改为用户的 metadata 数据表名，如 `kylin_default_instance@jdbc` 。如果表已存在，则会使用现有表；如果不存在，则会自动创建新表。
+2. 在 KAP 安装目录下的 `$KYLIN_HOME/conf/kylin.properties` 配置文件中，将 `kylin.metadata.url` 修改为用户的 metadata 数据表名，如 `kylin_default_instance@jdbc` 。如果表已存在，则会使用现有表；如果不存在，则会自动创建新表。
 
 3. 设置 JDBC 连接字符串及其他配置项，完整例子如下：`kylin.metadata.jdbc.dialect=sqlserver` `kylin.metadata.url=kylin_default_instance@jdbc,url=jdbc:sqlserver://localhost:1433;database=kylin,username=sa,password=sa,driverClassName=com.microsoft.sqlserver.jdbc.SQLServerDriver,maxActive=10,maxIdle=10`  。
 
@@ -37,13 +37,10 @@
 
 5. 核对运行环境 Java 版本，准备相对应的 JDBC 驱动程序, 如：对应 JRE7 的SQL Server JDBC 驱动程序为 `sqljdbc41.jar` ， 并将相对应的 SQL Server JDBC 驱动程序的 Jar 包拷贝至 `$KYLIN_HOME/ext`  目录下。
 
-6. 由于 metadata 不依赖于 Hbase，所以需要在配置文件 `$KYLIN_HOME/conf/kylin.properties` 中添加 zookeeper 的连接项 `kylin.env.zookeeper-connect-string`，若部署 Kyligence Enterprise 的 server 同时部署有zookeeper，可配置为 `kylin.env.zookeeper-connect-string=localhost:2181` 。
+6. 由于 metadata 不依赖于 Hbase，所以需要在配置文件 `$KYLIN_HOME/conf/kylin.properties` 中添加 zookeeper 的连接项 `kylin.env.zookeeper-connect-string`，若部署 KAP 的 server 同时部署有zookeeper，可配置为 `kylin.env.zookeeper-connect-string=localhost:2181` 。
 
-7. 启动Kyligence Enterprise。
+7. 启动KAP。
 
-### 如何将 metadata 从 HBase 迁移至 JDBC
+### 将 metadata 从 HBase 迁移至 JDBC
 
-1. 将 `$KYLIN_HOME/conf/kylin.properties` 的 metadata 配置项 `kylin.metadata.url` 修改为待迁移的 HBase metadata 配置，如：`kylin_default_instance@hbase` 。
-2. 运行 `$KYLIN_HOME/bin/metastore.sh backup` 命令备份 metadata，获取备份地址 。
-3. 将 metadata 配置改为 JDBC 配置 。
-4. 运行 `$KYLIN_HOME/bin/metastore.sh restore /path/to/backup` 的 restore 命令实现 metadata 的迁移，如 `metastore.sh restore meta_backups/meta_2016_06_10_20_24_50` 。
+迁移方法可参考：[将 metadata 从 HBase 迁移至 JDBC](.\metastore_jdbc_move.cn.md)

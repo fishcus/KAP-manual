@@ -1,16 +1,10 @@
-
-
-
-
 ## 基于关系型数据库（MySQL）的 Metastore 配置
 
 
 #### 准备 JDBC Driver
- 1. Kyligence Enterprise 自带 MySQL 5.1.41 的 JDBC 驱动，该驱动在`$KYLIN_HOME/ext` 目录下。
-
- 2. 如果使用的是其他关系型数据库，请准备对应的 JDBC 驱动,并放置到  `$KYLIN_HOME/ext` 目录下。
-
- 3. 如果使用的是其他版本的 MySQL JDBC driver，请替换`$KYLIN_HOME/ext/mysql-connector-java-5.1.41.jar` 。
+  1. Kyligence Enterprise 自带 MySQL 5.1.41 的 JDBC 驱动，该驱动包含在`$KYLIN_HOME/lib/kap-ext-{version}.jar`中 。
+  2. 如果使用的是其他关系型数据库，请准备对应的 JDBC 驱动,并放置到  `$KYLIN_HOME/ext` 目录下。
+  3. 如果使用的是其他关系型数据库或使用其他版本的MySQL JDBC driver，请准备对应的 JDBC 驱动, 并放置到 `$KYLIN_HOME/ext` 目录下 。
 
 ### 配置方法
 以下以 MySQL 为例说明配置步骤
@@ -50,8 +44,5 @@
 
 7. 启动 Kyligence Enterprise
 
-###  如何将 metadata 从 HBase 迁移至 JDBC
-1. 将 `$KYLIN_HOME/conf/kylin.properties` 的 metadata 配置项 `kylin.metadata.url` 修改为待迁移的 HBase metadata 配置，如：`kylin_default_instance@hbase`
-2. 运行 `$KYLIN_HOME/bin/metastore.sh backup` 命令备份 metadata，获取备份地址
-3. 将 metadata 配置改为 JDBC 配置
-4. 运行 `$KYLIN_HOME/bin/metastore.sh restore /path/to/backup` 的 restore 命令实现 metadata 的迁移，如 `metastore.sh restore meta_backups/meta_2016_06_10_20_24_50`
+###  将 metadata 从 HBase 迁移至 JDBC
+迁移方法可参考：[将 metadata 从 HBase 迁移至 JDBC](.\metastore_jdbc_move.cn.md)

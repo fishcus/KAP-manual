@@ -1,5 +1,5 @@
 ## 配置 Spark 构建引擎
-Kyligence Enterprise 中提供两种构建引擎用于构建 Cube。它们分别是：MapReduce 和 Spark。默认情况下，Kyligence Enterprise 使用 MapReduce 来构建 Cube，但是您也可以选择 Spark 作为构建引擎。本文介绍如何配置 Spark 构建引擎。
+Kyligence Enterprise中提供两种构建引擎用于构建 Cube。它们分别是：MapReduce 和 Spark。默认情况下，Kyligence Enterprise使用 MapReduce 来构建 Cube，但是您也可以选择 Spark 作为构建引擎。本文介绍如何配置 Spark 构建引擎。
 
 ### 前提条件
 
@@ -25,7 +25,7 @@ vi $KYLIN_HOME/hadoop-conf/hive-site.xml (change "hive.execution.engine" value f
 kylin.env.hadoop-conf-dir=/usr/local/apache-kylin-2.1.0-bin-hbase1x/hadoop-conf
 ```
 
-如果未设置该属性，Kyligence Enterprise 将使用“hive-site.xml”所在的目录，而该文件夹可能不包含“hbase-site.xml”，这样在 Spark 中会发生 HBase/ZK 连接错误。
+如果未设置该属性，Kyligence Enterprise 将自动寻找环境中hive使用的配置目录（一般包含hive-site.xml等其它配置文件），而该文件夹可能不包含“hbase-site.xml”，这样在 Spark 中会发生 HBase/ZK 连接错误。
 
 ### 检查 Spark 配置
 
