@@ -46,6 +46,14 @@ Kyligence Enterprise 在使用构建Hadoop 集群进行 Cube 构建等任务的�
 8. 如果集群开启kerberos，需要进行以下配置；
 > -   需要配置kerberos集成, 可以查看[配置kerberos集成](../../security/kerberos.cn.md)
 > -   [Query]kap.storage.columnar.spark-conf.spark.yarn.access.namenodes=hdfs://readcluster,hdfs://writercluster
+> -   [Job]kylin.engine.spark-conf.spark.yarn.access.namenodes==hdfs://readcluster,hdfs://writercluster
+> -   修改Job KE的 kylin_job_conf.xml 添加
+```xml
+<property>
+   <name>mapreduce.job.hdfs-servers</name>
+   <value>hdfs://writercluster/, hdfs://readcluster/</value>
+</property>
+```
 
 
 6. 重新启动 Kyligence Enterprise
