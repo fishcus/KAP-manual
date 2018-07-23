@@ -37,22 +37,22 @@ Impala 使用 Hive JDBC接口，支持 JDBC 接口的应用可以通过 Hive JDB
     kylin.query.pushdown.jdbc.url=jdbc:hive2://impala_host:impala_hs2_port/default;auth=noSasl
     ```
 
-    - 访问带有 kerberos 安全认证的 Impala Thrift: 访问带有kerberos认证的Impala集群需要JDBC Client端包含 Impala(principal=<Impala-Kerberos-Principal>)principal 在 jdbc url 中，例如(访问default库):
+  - 访问带有 kerberos 安全认证的 Impala Thrift: 访问带有kerberos认证的Impala集群需要JDBC Client端包含 Impala(principal=<Impala-Kerberos-Principal>)principal 在 jdbc url 中，例如(访问default库):
 
-      ```properties
-      kylin.query.pushdown.jdbc.url=jdbc:hive2://impala_host:impala_hs2_port/default;principal=Impala-Kerberos-Principal
-      ```
+    ```properties
+    kylin.query.pushdown.jdbc.url=jdbc:hive2://impala_host:impala_hs2_port/default;principal=Impala-Kerberos-Principal
+    ```
 
-      请确保 本产品 能都读取到的 hive-site.xml 中打开了 hive-server2 的 kerberos 认证:	
+    - 请确保 本产品 能都读取到的 hive-site.xml 中打开了 hive-server2 的 kerberos 认证:	
 
-      ```xml
-      <property>
-      	<name>hive.server2.authentication</name>
-      	<value>kerberos</value>
-      </property>
-      ```
+        ```xml
+        <property>
+           <name>hive.server2.authentication</name>
+          	<value>kerberos</value>
+        </property>
+        ```
 
-      在初始化 hive-jdbc connection 前，本产品 需要具有有效的kerberos ticket，**请确保 klist 中存在有效的 principal** 能够访问 Impala 集群。
+        在初始化 hive-jdbc connection 前，本产品 需要具有有效的kerberos ticket，**请确保 klist 中存在有效的 principal** 能够访问 Impala 集群。
 
 
 
