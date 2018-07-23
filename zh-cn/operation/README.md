@@ -12,6 +12,8 @@
 
 [元数据检查](metadata_check.cn.md)
 
+[元数据导出导入](metadata_imp_exp.cn.md)
+
 [垃圾清理](storage_cleanup.cn.md)
 
 [跨集群迁移](cluster_migration.cn.md)
