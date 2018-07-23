@@ -1,7 +1,13 @@
 ## 基于关系型数据库（MySQL）的 Metastore 配置
 
+Kyligence Enterprise支持基于MySQL 5.1.41进行Metastore配置。
 
-#### 准备 JDBC Driver
+### 将 metadata 从 HBase 迁移至关系型数据库
+
+迁移方法可参考：[将 metadata 从 HBase 迁移至关系型数据库](.\metastore_jdbc_move.cn.md)
+
+### 准备 JDBC Driver
+
   1. Kyligence Enterprise 自带 MySQL 5.1.41 的 JDBC 驱动，该驱动包含在`$KYLIN_HOME/lib/kap-ext-{version}.jar`中 。
   2. 如果使用的是其他关系型数据库，请准备对应的 JDBC 驱动,并放置到  `$KYLIN_HOME/ext` 目录下。
   3. 如果使用的是其他关系型数据库或使用其他版本的MySQL JDBC driver，请准备对应的 JDBC 驱动, 并放置到 `$KYLIN_HOME/ext` 目录下 。
@@ -44,5 +50,3 @@
 
 7. 启动 Kyligence Enterprise
 
-###  将 metadata 从 HBase 迁移至 JDBC
-迁移方法可参考：[将 metadata 从 HBase 迁移至 JDBC](.\metastore_jdbc_move.cn.md)

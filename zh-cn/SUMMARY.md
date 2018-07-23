@@ -39,7 +39,7 @@
 
         * [基于MySQL的Metastore配置](config/metastore_jdbc_mysql.cn.md)
         * [基于SQLServer的Metastore配置](config/metastore_jdbc_sqlserver.cn.md)
-        * [将 metadata 从 HBase 迁移至 JDBC](config/metastore_jdbc_move.cn.md)
+        * [将 metadata 从 HBase 迁移至关系型数据库](config/metastore_jdbc_move.cn.md)
 
     * [Spark资源动态配置](config/spark_dynamic_allocation.cn.md)
 

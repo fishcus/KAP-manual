@@ -1,9 +1,9 @@
-## KyStorage参数配置
-Kyligence Enterprise Plus将所有的cube数据都保存在KyStorage，一种基于HDFS的列式存储之上。在查询时，Kyligence Enterprise Plus使用Spark (http://spark.apache.org ，具体而言是Spark on Yarn模式)来读取cube，并做可能的存储层预聚合。一个或者多个Spark executor作为长进程启动，用来接收可能的cube访问。对于生产环境部署，请仔细阅读本文档并保证您的executors已经正确配置。
+## Storage参数配置
+Kyligence Enterprise 将所有的cube数据都保存在 Storage，一种基于HDFS的列式存储之上。在查询时，Kyligence Enterprise 使用Spark (http://spark.apache.org） ，具体而言是Spark on Yarn模式)来读取cube，并做可能的存储层预聚合。一个或者多个Spark executor作为长进程启动，用来接收可能的cube访问。对于生产环境部署，请仔细阅读本文档并保证您的executors已经正确配置。
 
 ### 配置Spark参数
 
-Kyligence Enterprise Plus将Spark的二进制包和配置文件打包至`KAP_HOME/spark/`目录。理论上可以直接在`KAP_HOME/spark/conf/`路径下按照http://spark.apache.org/docs/latest/configuration.html 来修改Spark自带的所有配置。但是我们不推荐这种方式，因为从运维的便捷性考虑所有Kyligence Enterprise相关的配置都应限制在`KAP_HOME/conf/`路径下。
+Kyligence Enterprise 将Spark的二进制包和配置文件打包至`KAP_HOME/spark/`目录。理论上可以直接在`KAP_HOME/spark/conf/`路径下按照http://spark.apache.org/docs/latest/configuration.html 来修改Spark自带的所有配置。但是我们不推荐这种方式，因为从运维的便捷性考虑所有Kyligence Enterprise相关的配置都应限制在`KAP_HOME/conf/`路径下。
 
 我们建议用户通过修改kylin.properties配置文件中对应的参数值来配置Spark参数。这些参数大致分为两个类别：环境变量和Spark属性。
 
@@ -37,7 +37,7 @@ kap.storage.columnar.conf.spark.executor.instances=4
 
 ### 配置建议
 
-在Spark的默认配置下，启动的executor数量(*spark.executor.instances*)为2，每个executor的CPU核数量(*spark.executor.cores*)为1，为每个executor分配的内存(*spark.executor.memory*)为1GB，为driver分配的内存(*spark.driver.memory*)为1GB。显然这样的配置对于Kyligence Enterprise部署来说太小了。
+在Spark的默认配置下，启动的executor数量(*spark.executor.instances*)为2，每个executor的CPU核数量(*spark.executor.cores*)为1，为每个executor分配的内存(*spark.executor.memory*)为1GB，为driver分配的内存(*spark.driver.memory*)为1GB。显然这样的配置对于生产上的Kyligence Enterprise部署来说太小了。
 
 最佳的配置取决于具体的集群硬件配置。大多数情况下我们建议为每个HDFS或者Yarn节点上分配一个executor。每个executor的CPU核数量应该在2~5个之间。用户可以根据数据量的大小灵活地调节为executor和driver分配的内存大小。以下是一个示例集群上的配置，该集群有4个节点，每个节点有24个CPU核以及64GB的内存。
 

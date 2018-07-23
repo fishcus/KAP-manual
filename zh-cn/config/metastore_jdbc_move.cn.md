@@ -1,4 +1,4 @@
-## 将 metadata 从 HBase 迁移至 JDBC
+## 将 metadata 从 HBase 迁移至关系型数据库
 
 ### 迁移方法
 
@@ -6,3 +6,4 @@
 2. 运行 `$KYLIN_HOME/bin/metastore.sh backup` 命令备份 metadata，获取备份地址 。
 3. 将 metadata 配置改为 JDBC 配置 。
 4. 运行 `$KYLIN_HOME/bin/metastore.sh restore /path/to/backup` 的 restore 命令实现 metadata 的迁移，如 `metastore.sh restore meta_backups/meta_2016_06_10_20_24_50` 。
+
