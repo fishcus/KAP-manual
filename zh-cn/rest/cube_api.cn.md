@@ -18,7 +18,6 @@
 * [禁用 Cube](#禁用cube)
 * [清理 Cube](#清理cube)
 * [管理 Segment](#管理segment)
-* [删除 Segment](#删除segment)
 * [导出 TDS](#导出tds)
 
 ### 返回多个Cube

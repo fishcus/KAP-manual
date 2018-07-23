@@ -8,7 +8,6 @@
 * [List Cubes](#list-cubes)
 * [Get Cube](#get-cube)
 * [Get Cube Descriptor](#get-cube-descriptor)
-* [Get Data Model](#get-data-model)
 * [Build Cube - Date Partition](#build-cube-date-partition)
 * [Build Cube - Non Date Partition](#build-cube-non-date-partition)
 * [Build Cube - No Partition](#build-cube-no-partition)
@@ -18,7 +17,6 @@
 * [Disable Cube](#disable-cube)
 * [Purge Cube](#purge-cube)
 * [Manage Segment](#manage-segment)
-* [Delete Segment](#delete-segment)
 * [Export TDS](#export-tds)
 
 ### List Cubes 
@@ -893,7 +891,7 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apac
 #### Path Variable
 * cubeName - `required` `string`, Cube's name.
 
-####Request Body
+#### Request Body
 
 * mpValues - `optional` `string`, the value of Model Primary Partition.
 
