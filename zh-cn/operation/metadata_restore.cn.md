@@ -1,42 +1,46 @@
 ## 元数据恢复
 
-有了元数据备份，往往用户还需要对元数据从备份进行恢复。和备份类似，Kyligence Enterprise 中提供了一个元数据恢复的工具，具体用法是：
+### 元数据检测
+
+在开始恢复前，为了避免出现可能的冲突，本产品会对**项目和cube级别**进行检测。检测情况如下：
+
+- 对项目的segment进行检测
+
+检测时，被恢复的项目里有segment时，元数据无法恢复。此时，需要用户清除掉segment后再进行恢复。
+
+- 对项目里的模型和cube进行检测
+
+在项目级别的元数据恢复过程中，可能会存在项目名不一样但是项目组模型或cube名与其他项目中的模型和cube出现重名的情况，因此，本产品会在元数据恢复前对其进行检测。
+
+- 对单个cube进行检测
+
+当用户恢复cube的元数据时，其关联的模型可能会同时关联其他的cube（不在元数据中），此时恢复元数据只会恢复原数据中有的模型和cube。
+
+> 注意：该情况下可能会影响到现关联的非元数据中的cube。
+
+### 元数据恢复
+
+Kyligence Enterprise 中需要用**命令行**进行元数据恢复。
+
+- 系统级别的元数据恢复
 
 ```shell
 $KYLIN_HOME/bin/metastore.sh restore /path_to_backup
 ```
-如果从前一节元数据备份的例子中恢复，需要在命令行中执行：
-```shell
-cd $KYLIN_HOME
-bin/metastore.sh restore meta_backups/meta_2016_06_10_20_24_50
-```
-等待恢复操作成功，用户可以在系统设置页面右侧单击`重新加载元数据`按钮对元数据缓存进行刷新，即可看到最新的元数据。
-
-请注意，做恢复操作时，会用本地元数据覆盖远端元数据，所以请确认从备份到恢复期间，Kyligence Enterprise 处于关闭／无活动（包括构建任务）状态，否则从备份到恢复之间的其它元数据改变会因此而丢失。如果希望 Kyligence Enterprise 服务不受影响，请使用下面的方式操作。
-
-## 有选择的元数据恢复（推荐）
-
-如管理员只是改动某几个元数据文件，可以只恢复这几个文件，而无需覆盖所有元数据。相比于全部恢复，这种做法效率高、对用户影响小，故推荐使用；步骤如下：
-
-* 创建一个新的空目录，按要恢复的元数据文件所在的位置创建子目录；例如恢复一个 Cube 实例信息，应创建 cube 子目录：
+- 项目级别的元数据恢复
 
 ```shell
-mkdir /path_to_restore_new
-mkdir /path_to_restore_new/cube
+$KYLIN_HOME/bin/metastore.sh restore-project project_name /path_to_backup
 ```
 
-* 将要恢复的元数据文件拷贝到此新目录下
+- cube级别的元数据恢复
 
 ```shell
-cp meta_backups/meta_2016_06_10_20_24_50/cube/kylin_sales_cube.json /path_to_restore_new/cube/
-```
-此时可以用编辑器对元数据做修改。
-
-* 从此目录下恢复
-
-```shell
-cd $KYLIN_HOME
-bin/metastore.sh restore /path_to_restore_new
+$KYLIN_HOME/bin/metastore.sh restore-cube project_name /path_to_backup
 ```
 
-同样，等待恢复操作成功，用户可以在 Web UI 上单击`重新加载元数据`按钮对元数据缓存进行刷新，即可看到最新的元数据。
+> 注意: 
+>
+> project_name表示项目名称，path_to_backup表示恢复路径；
+>
+> 恢复操作时，会用本地元数据覆盖远端元数据，所以请确认从备份到恢复期间，Kyligence Enterprise 处于关闭／无活动（包括构建任务）状态，否则从备份到恢复之间的其它元数据改变会因此而丢失。如果希望 Kyligence Enterprise 服务不受影响，请使用project级别或者cube级别的元数据恢复。
