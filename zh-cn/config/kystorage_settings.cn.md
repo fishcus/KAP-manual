@@ -1,5 +1,5 @@
 ## Storage参数配置
-Kyligence Enterprise 将所有的cube数据都保存在 Storage，一种基于HDFS的列式存储之上。在查询时，Kyligence Enterprise 使用Spark (http://spark.apache.org） ，具体而言是Spark on Yarn模式)来读取cube，并做可能的存储层预聚合。一个或者多个Spark executor作为长进程启动，用来接收可能的cube访问。对于生产环境部署，请仔细阅读本文档并保证您的executors已经正确配置。
+Kyligence Enterprise 将所有的cube数据都保存在Storage，一种基于HDFS的列式存储之上。在查询时，Kyligence Enterprise 使用Spark (http://spark.apache.org） ，具体而言是Spark on Yarn模式)来读取cube，并做可能的存储层预聚合。一个或者多个Spark executor作为长进程启动，用来接收可能的cube访问。对于生产环境部署，请仔细阅读本文档并保证您的executors已经正确配置。
 
 ### 配置Spark参数
 
