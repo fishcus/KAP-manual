@@ -13,7 +13,7 @@
   3. 如果使用的是其他关系型数据库或使用其他版本的MySQL JDBC driver，请准备对应的 JDBC 驱动, 并放置到 `$KYLIN_HOME/ext` 目录下 。
 
 ### 配置方法
-以下以 MySQL 为例说明配置步骤
+以下以 MySQL 5.1.41 为例说明配置步骤：
 1. 在 MySQL 数据库中新建名为 `kylin` 的数据库
 
 2. 在 Kyligence Enterprise 安装目录下的 `$KYLIN_HOME/conf/kylin.properties` 配置文件中，将 `kylin.metadata.url` 修改为 `{metadata_name}@jdbc`，`{metadata_name}` 修改为用户的 metadata 数据表名，如 `kylin_default_instance@jdbc`。如果表已存在，则会使用现有表；如果不存在，则会自动创建新表。
