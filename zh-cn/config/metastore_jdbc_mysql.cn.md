@@ -1,6 +1,6 @@
 ## 基于关系型数据库（MySQL）的 Metastore 配置
 
-Kyligence Enterprise支持基于MySQL 5.1.41进行Metastore配置。
+以下示例为 Kyligence Enterprise 基于 MySQL 5.1.41 进行 Metastore 配置。
 
 ### 将 metadata 从 HBase 迁移至关系型数据库
 
