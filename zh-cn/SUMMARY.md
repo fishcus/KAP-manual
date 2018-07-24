@@ -140,7 +140,10 @@
         * [Smartbi](integration/smartbi.cn.md)
         * [Fanruan](integration/fanruan.cn.md)
         * [SAP BO](integration/sap_bo.cn.md)
-        * [OBIEE](integration/obiee.cn.md)
+        * OBIEE
+          * [OBIEE 11g](integration/obiee.cn.md)
+          * [OBIEE 12c](integration/obiee_12c.cn.md)
+
 * [REST API](rest/README.md)
     * [访问及安全验证](rest/authentication.cn.md)
     * [查询 API](rest/query_api.cn.md)
