@@ -1,6 +1,6 @@
 ## 基于SQL Server的Metastore配置
 
-Kyligence Enterprise支持基于SQL Server2008 进行Metastore配置。
+以下示例是 Kyligence Enterprise基于 SQL Server 2008 进行 Metastore 配置。
 
 ### 将 metadata 从 HBase 迁移至关系型数据库
 
@@ -8,7 +8,7 @@ Kyligence Enterprise支持基于SQL Server2008 进行Metastore配置。
 
 ### 配置方法
 
-以下为以 SQL Server 作为 Metastore 的配置步骤：
+以下为以 SQL Server 2008 作为 Metastore 的配置步骤：
 1. 在 SQL Server 数据库中新建名为 `kylin` 的数据库。
 
 2. 在 Kyligence Enterprise 安装目录下的 `$KYLIN_HOME/conf/kylin.properties` 配置文件中，将 `kylin.metadata.url` 修改为用户的 metadata 数据表名，如 `kylin_default_instance@jdbc` 。如果表已存在，则会使用现有表；如果不存在，则会自动创建新表。
