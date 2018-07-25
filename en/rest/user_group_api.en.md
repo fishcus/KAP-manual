@@ -8,7 +8,7 @@
 * [Get All User Groups](#get-all-user-groups)
 * [Get User Group and its Users](#get-user-group-and-its-users)
 * [Add User Group](#add-user-group)
-* [Delete User Group](#delete user group)
+* [Delete User Group](#delete-user-group)
 * [Get All Users under Specified User Group](#get-all-users-under-specified-user-group)
 * [Add Users to User Group](#add-users-to-user-group)
 
@@ -139,10 +139,6 @@ curl -X GET -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apach
 ```
 curl -X DELETE -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/user_group/g1
 ```
-
-#### 
-
-
 
 ### Get All Users under Specified User Group
 `Request Mode GET`

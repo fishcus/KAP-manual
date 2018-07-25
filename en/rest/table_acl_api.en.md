@@ -123,9 +123,16 @@ curl -X DELETE -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.ap
 - project - `required` `string`, project name
 - table - `required` `string`, table name
 
+#### Request Body
+
+* sid - `required` `string`, user or user group
+* principal - `required` `boolean`, determine if the value is a user
+
 #### Request Example
 
 `Request Path:http://host:port/kylin/api/acl/table/batch/learn_kylin/DEFAULT.KYLIN_SALES`
+
+`Requset Body:[ { "sid": "ACL_TEST", "principal": true }, { "sid": "ANALYST", "principal": true } ]`
 
 #### Curl Request Example
 
