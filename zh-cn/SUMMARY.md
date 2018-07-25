@@ -182,6 +182,7 @@
     * [元数据备份](operation/metadata_backup.cn.md)
     * [元数据恢复](operation/metadata_restore.cn.md)
     * [元数据检查](operation/metadata_check.cn.md)
+    * [项目级元数据导入导出](operation/metadata_imp_exp.cn.md)
     * [垃圾清理](operation/storage_cleanup.cn.md)
     * [服务器状态](operation/server_status.cn.md)
     * [跨集群迁移](operation/cluster_migration.cn.md)
