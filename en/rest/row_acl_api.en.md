@@ -7,6 +7,7 @@
 
 * [Get Row ACL](#get-row-acl)
 * [Add Row ACL](#add-row-acl)
+* [Batch Add Row ACL](#batch-add-row-acl)
 * [Modify Row ACL](#modify-row-acl)
 * [Delete Row ACL](#delete-row-acl)
 
@@ -121,6 +122,61 @@ curl -X POST -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apac
 #### Response Example
 ```json
 {"code":"000","data":"","msg":"add user row cond list."}
+```
+
+### Batch Add Row ACL
+`Request Mode POST`
+
+`Access Path http://host:port/kylin/api/acl/row/batch/{project}/{type}/{table}`
+
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en`
+
+#### Path Variable
+* project - `required` `string`, project name
+* type - `required` `string`, indicate the type of action, value: user/group
+* table - `required` `string`, table name
+
+
+#### Request Body
+* The request body is a map structure, key is the user name, value is also a map structure which has the column name as key and set of column values as value. For details, see the request body in the following request example.
+
+#### Request Example
+`Request Path:http://host:port/kylin/api/acl/row/batch/learn_kylin/user/DEFAULT.KYLIN_SALES`
+
+```
+Request Body:
+LSTG_FORMAT_NAME's values:'Auction','ABIN' and OPS_REGION's value: 'BEIJING' for user ADMIN;
+LSTG_FORMAT_NAME's value:'ABIN' for user ANALYST
+
+{
+	"ADMIN": {
+		"LSTG_FORMAT_NAME":[
+			"Auction",
+			"ABIN"
+		],
+		"OPS_REGION":[
+			"BEIJING"
+		]
+	},
+	"ANALYST": {
+		"LSTG_FORMAT_NAME":[
+			"ABIN"
+		]
+	}
+}
+```
+
+#### Curl Request Example
+```
+curl -X POST -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "ADMIN": { "LSTG_FORMAT_NAME":["Auction", "ABIN"],"OPS_REGION":["BEIJING"]},"ANALYST": { "LSTG_FORMAT_NAME":["ABIN"]} }' http://host:port/kylin/api/acl/row/batch/learn_kylin/user/DEFAULT.KYLIN_SALES
+```
+
+
+#### Response Example
+```json
+{"code":"000","data":"","msg":"${user_count} user row ACL(s) updated"}
 ```
 
 ### Modify Row ACL
