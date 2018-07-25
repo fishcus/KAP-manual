@@ -62,15 +62,12 @@ source /opt/hadoopclient/bigdata_env
    hdfs dfs -chown root /user/root
    ```
 
-5. 请您将 Hive 客户端的`hivemetastore-site.xml`文件中的所有配置项拷贝至`hive-site.xml`文件中。
+5. 请您将 FusionInsight 客户端中Hive目录的`hivemetastore-site.xml`文件中的所有配置项拷贝至`hive-site.xml`文件中，并将`hive-site.xml`文件拷贝到KE目录下spark的conf目录中。
 
-   **注意：对于 Kyligence Enterprise Plus 2.4 及以上版本，还需要将`hive-site.xml`文件拷贝至`$KYLIN_HOME/spark/conf/`路径下。**
-
-   > 如果您运行的是 Kyligence Enterprise Enterprise 而非 Kyligence Enterprise Plus，请您将 HBase 客户端的`hbase-site.xml`文件中的所有配置项拷贝至`$KYLIN_HOME/conf/kylin_job_conf.xml`文件中。
 
 6. 在 FI Manager 页面中，依次点击 **Hive** - **配置（全部配置）**- **安全** - **白名单**，
 
-   该白名单的配置项名称为：`hive.security.authorization.sqlstd.confwhitelist`，再将`$KYLIN_HOME/conf/kylin_hive_conf.xml`文件中的所有 Hive 配置项的 key（如`dfs.replication`）添加至 FI Hive 配置的白名单中。此外，对于 Kyligence Enterprise Plus 2.2 及以上版本，还需要额外将`mapreduce.job.reduces`配置项添加至白名单中。
+   该白名单的配置项名称为：`hive.security.authorization.sqlstd.confwhitelist`，再将`$KYLIN_HOME/conf/kylin_hive_conf.xml`文件中的所有 Hive 配置项的 key（如`dfs.replication`）添加至 FI Hive 配置的白名单中。此外，还需要额外将`mapreduce.job.reduces`配置项添加至白名单中。
 
 7. 请您在 FI 客户端中输入 **beeline**，并复制 **Connect to** 后面的内容：**jdbc:hive2://…HADOOP.COM**，并且在`$KYLIN_HOME/conf/kylin.properties`中进行如下配置：
 
@@ -103,7 +100,7 @@ hdfs dfs -chown -R <user_name> <working_directory>
 kylin.storage.hbase.compression-codec=none
 # Kyligence Enterprise.storage.columnar.page-compression=SNAPPY //注释掉该项
 ```
-对于华为FI C70，如果运行环境有启用kerberos安全认证，并且集群的hive-site.xml的配置hive.server2.enable.doAs为false，则需要添加相关的配置项：
+注意：对于华为FI C70，如果运行环境有启用kerberos安全认证，并且集群的`hive-site.xml`的配置`hive.server2.enable.doAs`为false，则需要添加相关的配置项：
 
 ```properties
 kylin.source.hive.table-dir-create-first=true
@@ -119,7 +116,7 @@ kylin.source.hive.table-dir-create-first=true
 $KYLIN_HOME/bin/kylin.sh start
 ```
 
-> 您可以执行下述命令以观察启动的详细进度：
+> 提示：您可以执行下述命令以观察启动的详细进度：
 >
 > ```shell
 > tail $KYLIN_HOME/logs/kylin.log
@@ -151,4 +148,6 @@ $KYLIN_HOME/bin/kylin.sh stop
 ps -ef | grep kylin
 ```
 
-
+### FAQ：
+1、 Q：重启FusionInsight hive之后，KE 提示/tmp/hive-scratch权限不足？
+   > A：执行hdfs dfs -chmod 755 /tmp/hive-scratch
