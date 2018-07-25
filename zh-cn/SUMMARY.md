@@ -151,7 +151,7 @@
     * [缓存 API](rest/cache_api.cn.md)
     * [异步查询 API](rest/async_query_api.cn.md)
     * 权限控制
-      - [表级访问权限](security/table.cn.md)
+      - [访问与安全认证](rest/authentication.cn.md)
       - [列级访问权限 API](rest/column_acl_api.cn.md)
       - [行级访问权限 API](rest/row_acl_api.cn.md)
       - [表级访问权限 API](rest/table_acl_api.cn.md)

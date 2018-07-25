@@ -1,6 +1,6 @@
 ## Table-level Access Control 
 
-**Table-level Access Control** allows KAP system admin to control who can access data of Hive or KAFKA tables that have been loaded into KAP. When a user/group has been revoked of query access to a table, this user/group will not be able to **query** data in this table regardless of through Cube, Table Index or Query Pushdown. The user/group can still query the Cube that has a reference to the forbidden table, as long as the query itself does not refer to the forbidden table. 
+*Table-level Access Control* allows Kyligence Enterprise system admin to control who can access data of Hive or KAFKA tables that have been loaded into Kyligence Enterprise. When a user/group has been revoked of query access to a table, this user/group will not be able to *query* data in this table regardless of through Cube, Table Index or Query Pushdown. The user/group can still query the Cube that has a reference to the forbidden table, as long as the query itself does not refer to the forbidden table. 
 
 When you load the table for the first time into a project or upgrade KAP from a lower version, by default, every user/group has access to all tables that have been loaded into the project. 
 
@@ -14,6 +14,10 @@ Before you set table-level access control for a user, please ensure that the use
 ###Manage Table-level Access Control 
 
 #### Grant Access
+
+Normally, if a user has the access permission to the project, the user will be automatically granted the access control in all tables. 
+
+A more flexible method has been supported since Kyligence Enterprise 3.1.0. After setting the project level configuration `kap.acl.project-internal-default-permission-granted = false` , new users will not be granted the access permission to tables. To grant the access permission, uesrs need to be manually granted access of selected tables.
 
 Follow below steps to grant access at table-level:
 
