@@ -1,8 +1,8 @@
-## Upgrading from Kyligence Enterprise Plus##
+## Upgrading from Kyligence Enterprise##
 
-### Upgrading from Kyligence Enterprise Plus 2.X to Kyligence Enterprise Plus of higher versions###
+### Upgrading from Kyligence Enterprise 2.X to Kyligence Enterprise of higher versions###
 
-Kyligence Enterprise Plus 2.X shares compatible metadata with other Kyligence Enterprise Plus 2.X versions. Thus you could upgrade the system from Kyligence Enterprise Plus 2.X to Kyligence Enterprise Plus of higher versions by overwriting the software package, updating configuration files, and upgrading HBase coprocessors without upgrading the metadata unnecessarily. 
+Kyligence Enterprise 2.X shares compatible metadata with other Kyligence Enterprise 2.X versions. Thus you could upgrade the system from Kyligence Enterprise  2.X to Kyligence Enterprise of higher versions by overwriting the software package, updating configuration files, and upgrading HBase coprocessors without upgrading the metadata unnecessarily. 
 
 > Before upgrading from the older version, please ensure that all automated **metadata clean** and **storage cleanup CLI** tools are turned off to avoid the impact of the upgrade.
 
@@ -20,7 +20,7 @@ Please follow the steps below:
    $KYLIN_HOME/bin/kylin.sh stop
    ```
 
-3. Unzip the Kyligence Enterprise Plus package of new version. Update the value of the environment variable KYLIN_HOME: 
+3. Unzip the Kyligence Enterprise package of new version. Update the value of the environment variable KYLIN_HOME: 
 
    ```shell
    tar -zxvf kap-{version-env}.tar.gz
@@ -41,7 +41,7 @@ Please follow the steps below:
 
    > Watch out: 1. the folder for setenv.sh has changed. 2. Direct file copy-and-replace is not allowed.
 
-5. If you are upgrading from Kyligence Enterprise Plus <2.4.0, you are required to migrate ACL data. Run commands below: 
+5. If you are upgrading from Kyligence Enterprise <2.4.0, you are required to migrate ACL data. Run commands below: 
 
    ```shell
    $KYLIN_HOME/bin/kylin.sh org.apache.kylin.tool.AclTableMigrationCLI MIGRATE
@@ -78,9 +78,9 @@ Please follow the steps below:
        </property>
    ```
 
-8. Start the Kyligence Enterprise Plus instance:
+8. Start the Kyligence Enterprise instance:
 
-   If you are upgrading from Kyligence Enterprise Plus <3.0, the project dictionary will be upgraded and metadata will backup automatically in the upgrade process.
+   If you are upgrading from Kyligence Enterprise <3.0, the project dictionary will be upgraded and metadata will backup automatically in the upgrade process.
 
    *Please ensure that there is no running job before you upgrade, which include running, pending, error, stopped*
 
