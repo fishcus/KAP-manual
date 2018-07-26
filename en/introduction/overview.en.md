@@ -30,21 +30,4 @@ Kyligence Enterprise is compatible with open source Hadoop and mainstream commer
 
 ### Kyligence Enterprise vs. Apache Kylin
 
-|                            | Apache Kylin                      | Kyligence Enterprise                           | Kyligence Enterprise                                       |
-| -------------------------- | --------------------------------- | ---------------------------------------------- | ---------------------------------------------------------- |
-| **Position**               | OLAP on Hadoop                    | Data Warehouse on Hadoop                       | Data Warehouse on Hadoop                                   |
-| **Core**                   | Apache Kylin                      | Apache Kylin                                   | Apache Kylin                                               |
-| **Query Performance**      | Sub-second query latency          | Same with Apache Kylin                         | **Faster 3 ~ 40 times than Apache Kylin on complex query** |
-| **Parallel Computing**     | Coprocessor                       | Coprocessor                                    | **Spark**                                                  |
-| **Storage Engine**         | HBase                             | HBase                                          | **KyStorage: Columnar Storage Engine**                     |
-| **Ultra High Cardinality** | Limited                           | Limited                                        | **Efficiently Support**                                    |
-| **Wide Table**             | Limited                           | Limited                                        | **Efficiently Support**                                    |
-| **Detailed Query**         | Limited                           | Limited                                        | **Efficiently Support**                                    |
-| **Data Modeling Tool**     | Cube Only                         | **KyStudio: Enhanced Semantic Layer Modeling** | **KyStudio: Enhanced Semantic Layer Modeling**             |
-| **Intelligent Modeling**   | Unsupported                       | **Cube Suggestion, Smart Pruning**             | **Cube Suggestion, Smart Pruning**                         |
-| **Query Pushdown**         | Unsupported                       | Limited Supported by JDBC Integration          | **Fully Supported by Spark SQL Integration**               |
-| **Security**               | Limited                           | **LDAP/Kerberos/Cell Level Security**          | **LDAP/Kerberos/Cell Level Security**                      |
-| **BI Tool**                | No built-in                       | **KyAnalyzer: Built-in Agile BI**              | **KyAnalyzer: Built-in Agile BI**                          |
-| **Technical Support**      | Open source community, no SLA     | Mail, phone, ticket, SLA with 5*8 or 7\*24     | Mail, phone, ticket, SLA with 5*8 or 7\*24                 |
-| **KyBot: Self-Service**    | Not included, Purchase seperately | Included                                       | Included                                                   |
-
+![](images/compare.png)
