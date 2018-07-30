@@ -4,11 +4,19 @@
 
 有关安装信息，参考页面 [Kyligence ODBC 驱动程序教程](../driver/kyligence_odbc.cn.md)。
 
-Kyligence ODBC Driver需要安装在Cognos Server所在的服务器上。
+### 前提条件
+
+•Cognos Framework manager 的版本与 Cognos server 的版本一致。
+
+•Framework manager 和 Cognos server使用相同版本ODBC driver（若之前安装了64位的ODBC，需要卸载）
+
+•DSN的名字在 Framework manager和Cognos server 上一致。
+
+•ODBC driver 版本跟 Kyligence Enterprise 版本的匹配。
 
 ### 创建一个Cognos数据源
 
-在安装完 Kyligence ODBC Driver 并配置好 DSN 后，打开一个已有Cognos项目或者创建一个新项目。在本例中我们将创建一个新项目。
+在安装完 Kyligence ODBC Driver 并配置好 DSN 后，打开一个已有 Cognos 项目或者创建一个新项目。在本例中我们将创建一个新项目。
 
 1. 创建新项目![](images/cognos/1.png)
 
