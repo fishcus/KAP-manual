@@ -1,8 +1,8 @@
 ## 从Kyligence Enterprise 升级##
 
-### 从Kyligence Enterprise 2.X升级至Kyligence Enterprise 更高版本###
+### 从KAP Plus 2.X升级至Kyligence Enterprise 更高版本###
 
-Kyligence Enterprise 2.X各版本之间兼容元数据。因此在从Kyligence Enterprise 2.X升级至更高版本时，无需对元数据进行升级，只需要覆盖软件包、更新配置文件并升级HBase协处理器即可。
+KAP Plus 2.X与Kyligence Enterprise之间兼容元数据。因此在从KAP Plus 2.X升级至更高版本时，无需对元数据进行升级，只需要覆盖软件包、更新配置文件并升级HBase协处理器即可。
 
 > 从旧版本升级前，请您务必确认已关闭所有自动执行的metadata clean和Storage cleanup CLI工具，以避免影响升级。
 
@@ -14,7 +14,7 @@ Kyligence Enterprise 2.X各版本之间兼容元数据。因此在从Kyligence E
    $KYLIN_HOME/bin/metastore.sh backup
    ```
 
-2. 停止正在运行的Kyligence Enterprise 实例：
+2. 停止正在运行的KAP Plus 2.X实例：
 
    ```shell
    $KYLIN_HOME/bin/kylin.sh stop
@@ -31,7 +31,7 @@ Kyligence Enterprise 2.X各版本之间兼容元数据。因此在从Kyligence E
 
    如果是从>=2.4.0的版本升级到更新的版本，只需要简单地用老版本中的的`$KYLIN_HOME/conf`替换新版本中的`$KYLIN_HOME/conf`
 
-   > 需要注意的是`$KYLIN_HOME/conf/kylin.properties`中，kylin.server.init-tasks这一行需要被删除或注释。
+   > 注意:  在`$KYLIN_HOME/conf/kylin.properties`中，kylin.server.init-tasks这一行需要被删除或注释。
 
    如果是从<2.4.0的版本升级到更新的版本，需要： 
 
@@ -43,7 +43,7 @@ Kyligence Enterprise 2.X各版本之间兼容元数据。因此在从Kyligence E
 
    > 注意：1. setenv.sh的目录发生了改变 2. 不允许直接拷贝-替换配置文件
 
-5. 如果是从<2.4.0 的Kyligence Enterprise 版本进行升级，需要对ACL数据进行迁移，执行下述命令：
+5. 如果是从<2.4.0 的KAP版本进行升级，需要对ACL数据进行迁移，执行下述命令：
 
    ```shell
    $KYLIN_HOME/bin/kylin.sh org.apache.kylin.tool.AclTableMigrationCLI MIGRATE
