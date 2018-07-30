@@ -33,21 +33,4 @@ Kyligence Enterprise兼容开源Hadoop及主流商业Hadoop发行版，可运行
 
 ### Kyligence Enterprise与Apache Kylin比较
 
-|                     | Apache Kylin            | Kyligence Enterprise企业版             | Kyligence Enterprise高级企业版         |
-| ------------------- | ----------------------- | -------------------------------------- | -------------------------------------- |
-| **定位**            | OLAP on Hadoop          | Data Warehouse on Hadoop               | Data Warehouse on Hadoop               |
-| **核心**            | Apache Kylin            | Apache Kylin                           | Apache Kylin                           |
-| **查询性能**        | 亚秒级查询延迟          | 与Apache Kylin一致                     | **在复杂查询上，比开源Kylin快3～40倍** |
-| **并行计算**        | HBase Coprocessor       | HBase Coprocessor                      | **Spark**                              |
-| **存储引擎**        | HBase                   | HBase                                  | **KyStorage：自主研发的列式存储引擎**  |
-| **超高基维度支持**  | 有限                    | 有限                                   | **高效地支持**                         |
-| **超宽表支持**      | 有限                    | 有限                                   | **高效地支持**                         |
-| **明细查询**        | 有限                    | 有限                                   | **高效地支持**                         |
-| **建模工具**        | 以Cube为中心            | **KyStudio：增强的语义层建模流程**     | **KyStudio：增强的语义层建模流程**     |
-| **智能建模**        | 不支持                  | **一键优化，智能剪枝**                 | **一键优化，智能剪枝**                 |
-| **查询下压**        | 不支持                  | 基于JDBC的有限支持                     | **基于Spark SQL完善支持**              |
-| **安全**            | 有限                    | **LDAP/Kerberos/单元格级别访问控制**   | **LDAP/Kerberos/单元格级别访问控制**   |
-| **敏捷BI工具**      | 无内置                  | **KyAnalyzer：内置敏捷BI工具**         | **KyAnalyzer：内置敏捷BI工具**         |
-| **技术支持**        | 开源社区邮件组，没有SLA | 邮件、电话、工单，支持SLA的5\*8或7\*24 | 邮件、电话、工单，支持SLA的5\*8或7\*24 |
-| **KyBot自助式服务** | 不包含，需要单独购买    | 包含                                   | 包含                                   |
-
+![KAP Portofilio](images/compare.png)

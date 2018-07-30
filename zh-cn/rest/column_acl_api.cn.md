@@ -6,12 +6,13 @@
 >
 
 
-* [获取表下列的黑名单](#获取表下列的黑名单)
+* [获取表中列的黑名单](#获取表下列的黑名单)
 * [添加用户不能访问的列](#添加用户不能访问的列)
+* [批量添加用户不能访问的列](#批量添加用户不能访问的列)
 * [修改用户不能访问的列](#修改用户不能访问的列)
 * [删除用户的列级ACL](#删除用户的列级ACL)
 
-### 获取表下列的黑名单
+### 获取表中列的黑名单
 
 `请求方式 GET`
 
@@ -92,6 +93,53 @@ curl -X POST -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apac
 ```json
 {"code":"000","data":"","msg":"add user to column black list."}
 ```
+
+### 批量添加用户不能访问的列
+`请求方式 POST`
+
+`访问路径 http://host:port/kylin/api/acl/column/batch/{project}/{type}/{table}/{username}`
+
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en`
+
+#### 路径变量
+* project - `必选` `string`，项目名称
+* type - `必选` `string`，用来表示操作是用户操作还是用户组操作，取值：user/group
+* table - `必选` `string`，表名称
+
+#### 请求主体
+* 请求体是一个的map结构，key值为用户名，value值列的集合。详见下面请求示例中的请求主体
+
+#### 请求示例
+`请求路径:http://host:port/kylin/api/acl/column/batch/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN`
+
+```
+请求主体:
+ADMIN的取值为'LSTG_FORMAT_NAME','PART_DT';
+ANALYST的取值为'LSTG_FORMAT_NAME'
+
+{
+	"ADMIN": [
+		"LSTG_FORMAT_NAME",
+		"PART_DT"
+	],
+	"ANALYST": [
+		"LSTG_FORMAT_NAME"
+	]
+}
+```
+
+#### Curl Request Example
+```
+curl -X POST -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "ADMIN": ["LSTG_FORMAT_NAME", "PART_DT"],"ANALYST": ["LSTG_FORMAT_NAME"]}' http://host:port/kylin/api/acl/column/batch/learn_kylin/user/DEFAULT.KYLIN_CAL_DT
+```
+
+#### 响应示例
+```json
+{"code":"000","data":"", "msg":"${user_count} user column ACL(s) updated"}
+```
+
 
 ### 修改用户不能访问的列
 `请求方式 PUT`

@@ -49,8 +49,7 @@
 
 * [Upgrade](upgrade/README.md)
     * [Upgrading from Apache Kylin](upgrade/upgrade_kylin.en.md)
-    * [Upgrading from Kyligence Enterprise](upgrade/upgrade_kap.en.md)
-    * [Upgrading from Kyligence Enterprise Plus](upgrade/upgrade_kapp.en.md)
+    * [Upgrading from Kyligence Enterprise](upgrade/upgrade_kapp.en.md)
     * [Installing Hotfix Patch](upgrade/upgrade_patch.en.md)
     * [Failure Rollback](upgrade/rollback.en.md)
 

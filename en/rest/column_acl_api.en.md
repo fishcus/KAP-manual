@@ -7,6 +7,7 @@
 
 * [Get Black List under Column](#get-black-list-under-column)
 * [Add Column ACL](#add-column-acl)
+* [Batch Add Column ACL](#batch-add-column-acl)
 * [Modify Column ACL](#modify-column-acl)
 * [Delete Column ACL](#delete-column-acl)
 
@@ -90,6 +91,52 @@ curl -X POST -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apac
 #### Response Example
 ```json
 {"code":"000","data":"","msg":"add user to column black list."}
+```
+
+### Batch Add Column ACL
+`Request Mode POST`
+
+`Access Path http://host:port/kylin/api/acl/column/batch/{project}/{type}/{table}`
+
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en`
+
+#### Path Variable
+* project - `required` `string`, project name
+* type - `required` `string`, indicate the type of action, value: user/group
+* table - `required` `string`, table name
+
+#### Request Body
+* The request body is a map structure with user name as the key and column list as the value. For details, see the request body in the following request example.
+
+#### Request Example
+`Request Path:http://host:port/kylin/api/acl/column/batch/learn_kylin/user/DEFAULT.KYLIN_CAL_DT`
+
+```
+Request Body:
+ADMIN's values:'LSTG_FORMAT_NAME','PART_DT';
+ANALYST's value:'LSTG_FORMAT_NAME'
+
+{
+	"ADMIN": [
+		"LSTG_FORMAT_NAME",
+		"PART_DT"
+	],
+	"ANALYST": [
+		"LSTG_FORMAT_NAME"
+	]
+}
+```
+
+#### Curl Request Example
+```
+curl -X POST -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "ADMIN": ["LSTG_FORMAT_NAME", "PART_DT"],"ANALYST": ["LSTG_FORMAT_NAME"]}' http://host:port/kylin/api/acl/column/batch/learn_kylin/user/DEFAULT.KYLIN_CAL_DT
+```
+
+#### Response Example
+```json
+{"code":"000","data":"","msg":"${user_count} user column ACL(s) updated"}
 ```
 
 ### Modify Column ACL

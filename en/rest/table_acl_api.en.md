@@ -8,6 +8,7 @@
 * [Get Table ACL](#get-table-acl)
 * [Grant Table ACL](#grant-table-acl)
 * [Delete Table ACL](#delete-table-acl)
+* [Grant Table ACL - Batch](#Grant Table ACL - Batch)
 
 ### Get Table ACL
 `Request Mode GET`
@@ -107,3 +108,41 @@ curl -X DELETE -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.ap
 ```
 {"code":"000","data":"","msg":"revoke user table query permission and add user to table black list."}
 ```
+### Grant Table ACL - Batch
+
+`Request Mode POST`
+
+`Access Path http://host:port/kylin/api/acl/table/batch/{project}/{table:.+}`
+
+`Accept: application/vnd.apache.kylin-v2+json`
+
+`Accept-Language: cn|en`
+
+#### Path Variable
+
+- project - `required` `string`, project name
+- table - `required` `string`, table name
+
+#### Request Body
+
+* sid - `required` `string`, user or user group
+* principal - `required` `boolean`, determine if the value is a user
+
+#### Request Example
+
+`Request Path:http://host:port/kylin/api/acl/table/batch/learn_kylin/DEFAULT.KYLIN_SALES`
+
+`Requset Body:[ { "sid": "ACL_TEST", "principal": true }, { "sid": "ANALYST", "principal": true } ]`
+
+#### Curl Request Example
+
+```
+curl -X POST -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json"  -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '[{"sid": "ACL_TEST", "principal": true}, {"sid": "ANALYST", "principal": true}]' http://host:port/kylin/api/acl/table/batch/acl_test/DEFAULT.TEST_ACCOUNT
+```
+
+#### Response Example
+
+```
+{"code": "000", "data": "", "msg": "batch grant user table query permission and remove user from table black list"}
+```
+

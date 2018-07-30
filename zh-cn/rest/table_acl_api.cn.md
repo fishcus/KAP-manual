@@ -125,8 +125,24 @@ curl -X DELETE -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.ap
 * project - `必选` `string`，项目名称
 * table - `必选` `string`，表名称
 
+#### 请求主体
+* sid - `必选` `string`，用户或组名
+* principal - `必选` `boolean`，是否为用户
+
 #### 请求示例
 `请求路径:http://host:port/kylin/api/acl/table/batch/acl_test/DEFAULT.TEST_ACCOUNT`
+
+`请求主体:
+[
+	{
+		"sid": "ACL_TEST",
+		"principal": true
+	},
+	{
+		"sid": "ANALYST",
+		"principal": true
+	}
+]`
 
 #### Curl 访问示例
 ```
