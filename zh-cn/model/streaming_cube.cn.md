@@ -4,7 +4,7 @@
 
 ### 通过样例程序快速创建流式模型
 
-Kyligence Enterprise内置了样例流式Cube和Kafka测试数据生成脚本，方便您快速体验流失数据建模与数据构建。
+Kyligence Enterprise内置了样例流式Cube和Kafka测试数据生成脚本，方便您快速体验流式数据建模与数据构建。
 
 在本产品二进制包安装路径下，执行`bin/sample.sh`将创建`kylin_streaming_table`数据表，创建`kylin_streaming`模型，创建`kylin_streaming_cube` Cube 。其中`kylin_streaming_table`关联了运行在localhost:9092的Kafka节点，名为`kylin_streaming_topic`的Kafka Topic。
 
