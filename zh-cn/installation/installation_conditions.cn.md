@@ -17,11 +17,11 @@ Kyligence Enterprise 需要一个状态良好的 Hadoop 集群作为其运行环
 
 下述企业级数据管理平台及其相应版本已经过我们的认证和测试：
 
-+ Cloudera CDH 5.7+
++ Cloudera CDH 5.7 / 5.8 / 5.11 / 5.12
 + Hortonworks HDP 2.2 / 2.4
-+ MapR 5.2+
++ MapR 5.2.1
 + Apache Hadoop 2.2+，HBase 0.98+，Hive 0.14+
-+ 华为 FusionInsight C60/ C70
++ 华为 FusionInsight C60 / C70
 + Azure HDInsight 3.4~3.6 
 + AWS EMR 5.1~5.7
 
