@@ -1,5 +1,7 @@
 ## 在 MapR Cluster 中快速安装 Kyligence Enterprise
 
+在安装前，请确认您已阅读[**安装前置条件**](../installation_conditions.cn.md)。
+
 MapR Cluster 相比于 MapR Sandbox 环境提供了更多的计算存储资源，但是同时环境上也存在一些差异。
 
 ### 准备运行环境

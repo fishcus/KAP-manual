@@ -2,6 +2,8 @@
 
 在本节中，我们将引导您在单节点上快速安装 Kyligence Enterprise。
 
+在安装前，请确认您已阅读[**安装前置条件**](../installation_conditions.cn.md)。
+
 ### 下载安装 Kyligence Enterprise
 
 1. 获取 Kyligence Enterprise 软件包。您可以访问 [Kyligence Enterprise Release Notes](../../release/README.md)，选择适合您的版本。

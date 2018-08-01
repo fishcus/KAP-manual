@@ -1,5 +1,7 @@
 ## 在 FusionInsight 上快速安装 Kyligence Enterprise
 
+在安装前，请确认您已阅读[**安装前置条件**](../installation_conditions.cn.md)。
+
 Kyligence Enterprise 可以在 FusionInsight 环境中运行。在本节中，我们将引导您在 FusionInsight 环境中快速安装 Kyligence Enterprise。
 
 ### 准备运行环境

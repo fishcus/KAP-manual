@@ -1,5 +1,7 @@
 ## 在 MapR 沙箱中快速安装 Kyligence Enterprise
 
+在安装前，请确认您已阅读[**安装前置条件**](../installation_conditions.cn.md)。
+
 为使您可以尽快体验到 Kyligence Enterprise 的强大功能，我们推荐您将 Kyligence Enterprise 与 All-in-one Sandbox VM 等沙箱软件一起配合使用。在本节中，我们将引导您在 MapR 沙箱中快速安装 Kyligence Enterprise。
 
 ### 准备运行环境
