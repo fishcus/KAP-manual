@@ -4,6 +4,12 @@ Kyligence Enterprise 需要一个状态良好的 Hadoop 集群作为其运行环
 
 下面我们将为您介绍 Kyligence Enterprise 安装的前置条件。
 
+### Java 环境
+
+我们推荐安装本产品的环境是：
+
+- JDK 8 64 bit
+
 ### 账户权限
 
 您在运行 Kyligence Enterprise 时所使用的的 Linux 账户，应当具备访问 Hadoop 集群的权限，包括：
@@ -22,7 +28,7 @@ Kyligence Enterprise 需要一个状态良好的 Hadoop 集群作为其运行环
 + MapR 5.2.1
 + Apache Hadoop 2.2+，HBase 0.98+，Hive 0.14+
 + 华为 FusionInsight C60 / C70
-+ Azure HDInsight 3.4~3.6 
++ Azure HDInsight 3.4~3.6
 + AWS EMR 5.1~5.7
 
 
@@ -50,22 +56,18 @@ Kyligence Enterprise 需要一个状态良好的 Hadoop 集群作为其运行环
 + 至少1个 1TB 的 SAS 硬盘（3.5寸），7200RPM，RAID1
 + 至少两个 1GbE 的以太网电口
 
-### 其他要求
+### 推荐的Linux版本
 
-推荐的Linux操作系统：
+我们推荐您使用下述版本的 Linux 操作系统：
 
 + Red Hat Enterprise Linux 6.4+ 或 7.x
 + CentOS 6.4+ 或 7.x
 
-推荐的客户端配置：
+### 推荐的客户端配置：
 
-* CPU：2.5 GHz Intel Core i7 
-* 操作系统：macOS / windows 7 或 10
-* 内存：8G 或以上
-* 浏览器及版本：
-  * 火狐 60.0.2 及以上
-  * 谷歌 67.0.3396 及以上
-
-JAVA
-
-- JDK 8 64 bit
+- CPU：2.5 GHz Intel Core i7
+- 操作系统：macOS / windows 7 或 10
+- 内存：8G 或以上
+- 浏览器及版本：
+- 火狐 60.0.2 及以上
+- 谷歌 67.0.3396 及以上
