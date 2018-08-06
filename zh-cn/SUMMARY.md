@@ -199,7 +199,5 @@
     * [Kyligence Enterprise 2.0 发行说明](release/KAP_2_0_notes.cn.md)
 
 * [常见问题](faq/README.md)
-    * [Kylin常见问题](faq/kylin_faq.cn.md)
-    * [Kyligence Enterprise常见问题](faq/kap_faq.cn.md)
 * [Kyligence Enterprise词汇表](GLOSSARY.cn.md)
 * [联系我们](contact/README.md)
