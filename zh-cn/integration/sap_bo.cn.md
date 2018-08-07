@@ -51,13 +51,9 @@ SAP BusinessObjects（SAP BO）是SAP公司旗下的商务智能产品，自Kyli
 
    ![建立连接](images/SAP_BO/universe_model.png)
 
-   2.5 点击连接线即可修改连接关系，如left join需要改为1:N（维度表：事实表）的关系。编辑全部关系后点击保存即可。
+   2.5 点击连接线即可修改连接关系,编辑全部关系后点击保存即可。
 
    ![修改连接](images/SAP_BO/universe_connection.png)
-
-   > 注：此处如果需要outer join，需要在参数里设置**ANSI92=Yes**。
-   >
-   > ![修改参数](images/SAP_BO/universe_model_ansi92.jpg)
 
 ### 在Rich client中创建报表
 
