@@ -66,7 +66,7 @@ kylin.hive.config.override *key* = *value*
 
 Kyligence Enterprise支持通过Kyligence Enterprise GUI覆盖kylin_job_conf.xml和kylin_job_conf_inmem.xml中的参数，以Key/Value的形式，按照如下格式替换：
 
-kylin.job.mr.config.overrid *key* = *value*
+kylin.job.mr.config.override *key* = *value*
 
 ![override_cube](images/override_job.cn.png)
 
