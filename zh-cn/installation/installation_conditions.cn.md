@@ -6,7 +6,7 @@ Kyligence Enterprise 需要一个状态良好的 Hadoop 集群作为其运行环
 
 ### Java 环境
 
-我们推荐安装本产品的环境是：
+安装本产品的Java环境是：
 
 - JDK 8 64 bit
 
