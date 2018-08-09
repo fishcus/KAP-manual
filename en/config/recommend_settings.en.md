@@ -1,14 +1,22 @@
 ## Recommended Configurations for Production
 
-The configuration files of KAP include following files: *kylin.properties*, *kylin_hive_conf.xml*, *kylin_job_conf.xml*, *kylin_job_conf_inmem.xml*. Among those files, *kylin.properties* is a major configuration parameter to control KAP's running behavior; *kylin_hive_conf.xml* is applied to configure parameters of interaction between KAP and Hive; *kylin_job_conf.xml* is applied to configure parameters of interaction between KAP and Hadoop cluster; *kylin_job_conf_inmem.xml is applied on in-memory* algorithm, *kylin_job_conf.xml* is applied on layer algorithm.
+The configuration files of Kyligence Enterprise include: 
+
+- *kylin.properties*, the major configuration file of the system; 
+
+- *kylin_hive_conf.xml*, applies to Hive jobs launched by the system; 
+
+- *kylin_job_conf.xml*, applies to MapReduce jobs launched by the system; 
+
+- *kylin_job_conf_inmem.xml*, applies to the special MapReduce jobs that have high demand of memory.
 
 The following recommended configurations are classified according to the size of the cluster, system performance could be influenced by other external system parameters. Here our recommending configurations are based on experience.
 
-*Sandbox* refers the testing environment for single machine sandbox virtual machine, dual core, 10GB internal storage, 10GB hard disk.
+*Sandbox* refers the testing environment for single machine sandbox virtual machine, dual core, 10 GB internal storage, 10 GB hard disk.
 
-*Prod* represents recommended configuration for the production environment, usually, the Hadoop cluster consisting of at least 5 nodes, single machine 32 core, 128GB internal storage, 20TB hard disk.
+*Prod* represents recommended configuration for the production environment, usually, the Hadoop cluster consisting of at least 5 nodes, single machine 32 core, 128 GB internal storage, 20 TB hard disk.
 
-> Tip: KAP v2.2 provides sample configurations of *Sandbox* and *Prod* profiles. *Sandbox* is used as default profile and can be switched by rebuild soft link:
+> Tip: The product ships with sample configurations for *Sandbox* and *Prod* profiles. *Sandbox* is used as default profile and can be switched by rebuild soft link:
 >
 > ```bash
 > cd $KYLIN_HOME/conf
@@ -22,41 +30,32 @@ The following recommended configurations are classified according to the size of
 
 ### kylin.properties
 
-| Properties Name                          | Sandbox    | Prod       |
-| ---------------------------------------- | ---------- | ---------- |
-| kylin.storage.hbase.compression-codec    | none       | snappy     |
-| kylin.storage.hbase.region-cut-gb        | 1          | 5          |
-| kylin.storage.hbase.hfile-size-gb        | 1          | 2          |
-| kylin.storage.hbase.min-region-count     | 1          | 1          |
-| kylin.storage.hbase.max-region-count     | 100        | 500        |
-| kylin.storage.hbase.coprocessor-mem-gb   | 3          | 3          |
-| kylin.job.max-concurrent-jobs            | 10         | 20         |
-| kylin.job.sampling-percentage            | 100        | 100        |
-| kylin.engine.mr.yarn-check-interval-seconds | 10         | 10         |
-| kylin.engine.mr.reduce-input-mb          | 100        | 500        |
-| kylin.engine.mr.max-reducer-number       | 100        | 500        |
-| kylin.engine.mr.mapper-input-rows        | 200000     | 1000000    |
-| kylin.cube.algorithm                     | auto       | auto       |
-| kylin.cube.algorithm.layer-or-inmem-threshold | 8          | 8          |
-| kylin.cube.aggrgroup.max-combination     | 4096       | 4096       |
-| kylin.dictionary.max.cardinality         | 5000000    | 5000000    |
-| kylin.snapshot.max-mb                    | 300        | 300        |
-| kylin.query.scan-threshold               | 10000000   | 10000000   |
-| kylin.query.memory-budget-bytes          | 3221225472 | 3221225472 |
+| Properties Name                                  | Sandbox    | Prod       |
+| ------------------------------------------------ | ---------- | ---------- |
+| kylin.job.max-concurrent-jobs                    | 10         | 20         |
+| kylin.job.sampling-percentage                    | 100        | 100        |
+| kylin.engine.mr.yarn-check-interval-seconds      | 10         | 10         |
+| kylin.engine.mr.reduce-input-mb                  | 100        | 500        |
+| kylin.engine.mr.max-reducer-number               | 100        | 500        |
+| kylin.engine.mr.mapper-input-rows                | 200000     | 1000000    |
+| kylin.cube.algorithm                             | auto       | auto       |
+| kylin.cube.algorithm.layer-or-inmem-threshold    | 8          | 8          |
+| kylin.cube.aggrgroup.max-combination             | 4096       | 4096       |
+| kylin.dictionary.max.cardinality                 | 5000000    | 5000000    |
+| kylin.snapshot.max-mb                            | 300        | 300        |
+| kylin.query.scan-threshold                       | 10000000   | 10000000   |
+| kylin.query.memory-budget-bytes                  | 3221225472 | 3221225472 |
 | kylin.query.derived-filter-translation-threshold | 100        | 100        |
 
-
-### kylin.properties for KAP Plus
-
-| Properties Name                          | Sandbox | Prod   |
-| ---------------------------------------- | ------- | ------ |
-| kap.storage.columnar.spark-conf.spark.driver.memory | 512m    | 8192m  |
-| kap.storage.columnar.spark-conf.spark.executor.memory | 512m    | 4096m  |
-| kap.storage.columnar.spark-conf.spark.yarn.am.memory | 512m    | 4096m  |
-| kap.storage.columnar.spark-conf.spark.executor.cores | 1       | 5      |
-| kap.storage.columnar.spark-conf.spark.executor.instances | 1       | 4      |
-| kap.storage.columnar.page-compression    |         | SNAPPY |
-| kap.storage.columnar.ii-spill-threshold-mb | 128     | 512    |
+| Properties Name                                          | Sandbox | Prod  |
+| -------------------------------------------------------- | ------- | ----- |
+| kap.storage.columnar.spark-conf.spark.driver.memory      | 512m    | 8192m |
+| kap.storage.columnar.spark-conf.spark.executor.memory    | 512m    | 4096m |
+| kap.storage.columnar.spark-conf.spark.yarn.am.memory     | 512m    | 4096m |
+| kap.storage.columnar.spark-conf.spark.executor.cores     | 1       | 5     |
+| kap.storage.columnar.spark-conf.spark.executor.instances | 1       | 4     |
+| kap.storage.columnar.page-compression                    | N/A     | N/A   |
+| kap.storage.columnar.ii-spill-threshold-mb               | 128     | 512   |
 
 
 

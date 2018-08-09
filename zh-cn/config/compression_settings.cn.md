@@ -1,18 +1,25 @@
 ## 启用压缩
 
-Kyligence Enterprise在默认状态下不会启用压缩。这并非适合生产环境的推荐配置，而是出于为新用户的考虑而做出的保守选择。配置合适的压缩算法可以大大降低存储开销；但配置环境未支持的压缩算法也可能破坏任务进程。Kyligence Enterprise中有三处使用压缩，分别是HBase表压缩、Hive输出压缩和MR任务输出压缩。
+Kyligence Enterprise 在默认状态下不会启用压缩，这是为了保证产品在所有的环境下都能开箱即用。在多数生产环境，一个合适的压缩算法能够使用少量的CPU计算，来降低存储开销和网络开销，提高整体系统运行效率。Kyligence Enterprise 主要有三处使用压缩，分别是Cube数据压缩、Hive 输出压缩和 MR 任务输出压缩。
 
-### HBase表压缩
+**注意：所有下述配置需要重启后方能生效。**
 
-该项压缩通过kylin.properties中的kylin.hbase.default.compression.codec参数进行配置。默认值为*none*，有效可选值包括：*none*、*snappy*、*lzo*、*gzip*以及*lz4*。在修改压缩算法前，请确保你的HBase集群支持所选的压缩算法，尤其是对于*snappy*、*lzo*和*lz4*，并非所有的Hadoop环境都支持这些算法。
+### Cube 数据压缩
 
-注意：由于Kyligence Enterprise Plus中默认使用KyStorage代替HBase作为存储引擎，该项压缩算法配置仅在仍使用HBase作为存储引擎之一时有效。
+该项压缩通过 `kylin.properties` 中的 `kap.storage.columnar.page-compression` 参数进行配置，该配置决定了构建出的 Cube 数据是否压缩，及所使用的压缩算法。默认值为""，即不压缩数据。将其改为 **SNAPPY** 来启用压缩。
 
-### Hive输出压缩
-
-该项压缩通过kylin_hive_conf.xml进行配置。默认配置为空，即直接使用Hive的默认配置。如想覆盖改配置，请添加下面的参数至kylin_hive_conf.xml中，或替换掉其中原先存在的相应部分。此处以*snappy*压缩算法为例：
-
+```properties
+kap.storage.columnar.page-compression=SNAPPY
 ```
+在修改压缩算法前，请确保你的 Hadoop 集群支持 SNAPPY 压缩算法。
+
+> 注意：Kyligence Enterprise 3.1.0 版本后，该参数默认值由SNAPPY改为 ""。请您根据使用环境情况选择是否开启该压缩。
+
+### Hive 输出压缩
+
+该项压缩通过 `kylin_hive_conf.xml` 进行配置。默认配置为空，即直接使用Hive的默认配置。如想覆盖改配置，请添加下面的参数至 `kylin_hive_conf.xml` 中，或替换掉对应部分。此处以 **SNAPPY** 压缩算法为例：
+
+```xml
 <property>
     <name>mapreduce.map.output.compress.codec</name>
     <value>org.apache.hadoop.io.compress.SnappyCodec</value>
@@ -25,11 +32,11 @@ Kyligence Enterprise在默认状态下不会启用压缩。这并非适合生产
 </property>
 ```
 
-### MR任务输出压缩
+### MR 任务输出压缩
 
-该项压缩通过kylin_job_conf.xml和kylin_job_conf_inmem.xml进行配置。默认配置为空，即直接使用MR的默认配置。如想覆盖改配置，请添加下面的参数至kylin_job_conf.xml和kylin_job_conf_inmem.xml中，或替换掉其中原先存在的相应部分。仍以*snappy*压缩算法为例：
+该项压缩通过 `kylin_job_conf.xml` 和 `kylin_job_conf_inmem.xml` 进行配置。默认配置为空，即直接使用MR的默认配置。如想覆盖改配置，请添加下面的参数至 `kylin_job_conf.xml` 和 `kylin_job_conf_inmem.xml` 中，或替换掉对应部分。仍以 **SNAPPY** 压缩算法为例：
 
-```
+```xml
 <property>
     <name>mapreduce.map.output.compress.codec</name>
     <value>org.apache.hadoop.io.compress.SnappyCodec</value>
@@ -42,4 +49,3 @@ Kyligence Enterprise在默认状态下不会启用压缩。这并非适合生产
 </property>
 ```
 
-**注意：上述配置仅在重启Kyligence Enterprise后方生效。**

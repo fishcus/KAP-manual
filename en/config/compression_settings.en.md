@@ -1,18 +1,28 @@
-## Enable compression
+## Enable Compression
 
-By default, KAP does not enable compression, which is not the recommended setting for production environment, but a tradeoff for new KAP users. A suitable compression algorithm could reduce the storage overhead. However, unsupported algorithm might break the KAP jobs also. There are three kinds of compression settings used in KAP: HBase table compression, Hive output compression and MR job output compression.
+By default, Kyligence Enterprise does not enable compression, in order to maximize the out-of-box compatibility. However a suitable compression algorithm could reduce storage and save network I/O at the cost of a little CPU cycles. This can benefit many production deployments. There are three kinds of compression settings in Kyligence Enterprise: Cube data compression, Hive output compression and MR job output compression.
 
-###HBase table compression
+**Notice: all configurations below requires a restart to take effect. **
 
-The compression settings are defined in kylin.properties by *kylin.hbase.default.compression.codec*. The default value is *none*. Valid values include *none*, *snappy*, *lzo*, *gzip* and *lz4*. Before changing the compression algorithm, please make sure the selected algorithm is supported on your HBase cluster. Especially for snappy, lzo and lz4, because not all Hadoop distributions include these algorithms. 
+###Cube Data Compression
 
-Notice: considering that KyStorage is the default storage engine in KAP Plus rather than HBase, the compression settings are valid only if KAP users HBase as one of its storage engines. 
+The compression setting is defined in `kylin.properties` by `kap.storage.columnar.page-compression`. The default value is "", which means no compression. Change it to "*SNAPPY*" to enable cube data compression.
 
-### Hive output compression
-
-The compression settings are defined in kylin_hive_conf.xml. The default setting is empty which leverages the Hive default configuration. If you want to override the settings, please add (or replace) the following properties into kylin_hive_conf.xml. Take the snappy compression for example: 
-
+```properties
+kap.storage.columnar.page-compression=SNAPPY
 ```
+
+Also please make sure snappy algorithm is supported on your Hadoop cluster.
+
+> Notice: The default value of this configuration is SNAPPY before Kyligence Enterprise 3.1.0. 
+>
+> Please consider your cluster to choose whether enabling this compression.
+
+### Hive Output Compression
+
+The compression settings are defined in `kylin_hive_conf.xml`. The default setting is empty which means the Hive default configuration takes effect. If you want to override the settings, please add (or replace) the following properties into `kylin_hive_conf.xml`. Take the snappy compression for example: 
+
+```xml
 <property>
     <name>mapreduce.map.output.compress.codec</name>
     <value>org.apache.hadoop.io.compress.SnappyCodec</value>
@@ -25,11 +35,11 @@ The compression settings are defined in kylin_hive_conf.xml. The default setting
 </property>
 ```
 
-### MR jobs output compression
+### MR Jobs Output Compression
 
-The compression settings are defined in kylin_job_conf.xml and kylin_job_conf_inmem.xml. The default setting is empty which leverages the MR default configuration. If you want to override the settings, please add (or replace) the following properties into kylin_job_conf.xml and kylin_job_conf_inmem.xml. Take the snappy compression for example: 
+The compression settings are defined in `kylin_job_conf.xml` and `kylin_job_conf_inmem.xml`. The default setting is empty which means the MR default configuration takes effect. If you want to override the settings, please add (or replace) the following properties into `kylin_job_conf.xml` and `kylin_job_conf_inmem.xml`. Take the snappy compression for example: 
 
-```
+```xml
 <property>
     <name>mapreduce.map.output.compress.codec</name>
     <value>org.apache.hadoop.io.compress.SnappyCodec</value>
@@ -42,4 +52,3 @@ The compression settings are defined in kylin_job_conf.xml and kylin_job_conf_in
 </property>
 ```
 
-**Notice: all configurations above will take effect after restarting KAP.  **
