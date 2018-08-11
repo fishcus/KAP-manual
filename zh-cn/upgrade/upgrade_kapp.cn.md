@@ -6,7 +6,7 @@ KAP Plus 2.X 与更高版本之间兼容元数据。因此在从 KAP Plus 2.X �
 
 ### 升级准备工作 ###
 
-1. 为了获得更加的查询性能，升级过程中将对 Cube 和 Segment 进行升级。作为先决条件，**请确保没有处于构建状态的 Segment，构建状态包括等待、运行、错误和暂停**。
+1. 为了获得更佳的查询性能，升级过程中将对 Cube 和 Segment 进行升级。作为先决条件，**请确保没有处于构建状态的 Segment，构建状态包括等待、运行、错误和暂停**。
 
 2. 停止所有 KAP 服务，确保没有活动的 KAP 进程影响升级。
 
@@ -45,9 +45,9 @@ KAP Plus 2.X 与更高版本之间兼容元数据。因此在从 KAP Plus 2.X �
    * 将老版本中`$KYLIN_HOME/conf`文件拷贝并替换在新版本中的 `$KYLIN_HOME/conf`中。
    * 在`$KYLIN_HOME/conf/kylin.properties`中删除`kylin.server.init-tasks`这一行。 
 
-   从 KAP 2.4 及以下版本升级：
+   从 KAP 2.4 以下版本升级：
 
-   > **注意，对于 KAP 2.4 及以下版本**
+   > **注意，对于 KAP 2.4 以下版本**
    >    * `setenv.sh`的目录发生了改变，2.4 版本后位于`$KYLIN_HOME/conf`下
    >    * 配置文件并不完全兼容，请不要直接拷贝替换配置文件
 
@@ -67,9 +67,10 @@ KAP Plus 2.X 与更高版本之间兼容元数据。因此在从 KAP Plus 2.X �
 
    在第一次启动过程中，Kyligence Enterprise 会对 Cube 和 Segment 进行自动升级。升级时间取决于您的数据大小，可能达到一个小时或更久。
 
-   ```
+   ```shell
    $KYLIN_HOME/bin/kylin.sh start
    ```
+
    升级成功后，将在命令行提示：
    ```
    Segments have been upgraded successfully.
@@ -110,7 +111,7 @@ KAP Plus 2.X 与更高版本之间兼容元数据。因此在从 KAP Plus 2.X �
              <value>JAVA_HOME=/usr/java/jdk1.8</value>
          </property>
      ```
-   
+
 **Q：需要我手动升级 Cube 和 Segment 吗？**
 
 不需要，在您第一次启动 Kyligence Enterprise 时，会自动执行升级操作。
