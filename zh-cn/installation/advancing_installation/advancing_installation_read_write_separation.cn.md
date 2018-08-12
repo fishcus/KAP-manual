@@ -1,59 +1,108 @@
 ## 读写分离部署
-**Kyligence Enterprise企业版的读写分离部署**
+Kyligence Enterprise 读写分离部署需要使用两个 Hadoop 集群，分别称为 **构建集群** 和 **查询集群**。
 
-Kyligence Enterprise 在使用构建Hadoop 集群进行 Cube 构建等任务的同时，使用 查询Hadoop 集群处理 Cube 查询。前者中存在很多写操作，而后者中则以只读操作为主。如果您需要完全隔离上述两种工作负载，让它们各自独立运行，减少甚至避免它们之间的相互影响及其可能引发的性能不稳定，以响应即时性较高的查询，可以将 构建 和 查询 集群分开部署，即读写分离部署，其部署架构如图所示：
+即使在普通部署方式下，这两个集群也是“逻辑上”存在的，只是在物理上共用同一个 Hadoop 集群而已。Kyligence Enterprise 使用构建集群进行 Cube 构建等任务，同时使用查询集群进行分布式查询计算。前者中存在很多写操作，而后者中则以只读操作为主。如果您需要完全隔离上述两种工作负载，让它们各自独立运行，避免它们之间的相互影响及其可能引发的性能不稳定，那么可以将 **构建集群（写集群）** 和 **查询集群（读集群）** 分开部署，即读写分离部署。其部署架构如下图所示。
 
 ![](advancing_installation_images/advancing_installation_read_write_separation.png)
 
-可以将构建和查询所使用的集群分开，以使得它们相互之间不会因资源竞争而导致效率下降。
+### 检查和准备工作
 
-前置检查步骤如下：
+读写分离部署将在两个 Hadoop 集群上分别部署 Kyligence Enterprise，下面称这两组将要部署 Kyligence Enterprise 的机器为 **构建服务器** 和 **查询服务器**。
 
-1. 确认您需要部署的 构建 集群和 查询 集群的 Hadoop 核心版本一致，且分别有各自的 Zookeeper 等必要组件；
+由于牵涉到两套 Hadoop 环境，读写分离部署的环境复杂度较高。**请仔细阅读和执行下述的环境检查**。
 
-2. 确认在您需要运行 Kyligence Enterprise 的服务器上安装和配置 构建Hadoop 集群的客户端，并确认`hdfs`、`mapred`、`hive`等命令能够正常使用，且Hadoop 集群上的服务和资源能够正常访问；
+1. 请确认要用到的构建集群和查询集群的 Hadoop 版本一致，且满足 Kyligence Enterprise 安装的必要条件。
 
-3. 确认 构建 集群和 查询 集群的网络可以在无须额外验证的情况下互相连通；
+2. 请确认在**构建服务器**上安装和配置了构建集群的 Hadoop 客户端，并确认`hdfs`、`mapred`、`hive`等命令能够正常使用，且 Hadoop 集群上的服务和资源能够正常访问。
 
-   > 提示：您可以尝试重 构建 集群的任一节点上拷贝文件至 查询 集群的任一节点，以验证两个集群之间的网络连通状况。
+3. 请确认在**查询服务器**上安装和配置了查询集群的 Hadoop 客户端，并确认`hdfs`、`mapred`、`hive`等命令能够正常使用，且 Hadoop 集群上的服务和资源能够正常访问。
 
-4. 确认在您需要运行 Kyligence Enterprise 的服务器上，通过为`hdfs`命令指定 查询 集群 NameNode 地址的方式，能够访问 查询 集群的 HDFS；
-   > 提示：在构建集群上执行此命令可以获取查询集群hdfs数据 hadoop fs -ls hdfs://readcluster/ 
+4. 在**构建服务器**上，请配置并确认通过 `hdfs` 命令能访问**查询集群** HDFS。
 
-5. 尽可能使得您需要运行 Kyligence Enterprise 的服务器在网络上靠近 查询 集群，以降低密集查询时的网络延迟；
+   > 提示：在**构建服务器**上，请确认命令可用：`hadoop fs -ls hdfs://{read-cluster}/`
+   >
+   > 提示：如果启用了 Hadoop HA，您将需要配置查询集群的 Nameservice。
 
-6. 如果集群开启kerberos，需要确保以下条件就绪；
-> -   构建集群和查询集群属于不同的域
-> -   构建集群和查询集群已配置互信
+5. 请确认构建集群和查询集群可以在无须额外验证的情况下互相连通。
+   > 提示：您可以尝试从**构建集群**的任一节点上拷贝文件至**查询集群**的任一节点，以验证两个集群之间的安全性和网络连通状况。
 
+6. 由于构建过程会在两个集群之间移动大量数据，请尽量缩短查询集群和构建集群之间的网络延迟。
 
-进行读写分离部署的步骤如下：
+7. 如果集群开启 Kerberos，需要确保以下配置。
+   - 构建集群和查询集群属于不同的域
+   - 构建集群和查询集群已配置互信
 
-6. 部署两个 Kyligence Enterprise 安装包到构建和查询集群，定义构建集群上的KE为Job KE, 定义查询集群上的KE为Query KE;(添加配置项，[ALL]表示两个KE都需配置，[Query]表示Query KE需要配置，[Job]表示Job KE需要配置)
-> - [ALL]kylin.source.hive.client=beeline
-> - [ALL]kylin.source.hive.beeline-shell=beeline
-> - [ALL]kylin.source.hive.beeline-params 配置beeline连接参数
-> - [ALL]kylin.storage.columnar.separate-fs-enable=true
-> - [ALL]kylin.storage.columnar.file-system=hdfs://CDHLOCAL:8020/ （注意：这里CDHLOCAL需要替换成查询集群namenode机器的hostname;如果配置了HA的情况下，此处应该设置成查询集群nameservice）
-> - [ALL]kylin.metadata.url 配置Jdbc ResourceStore
-> - [ALL]kylin.env.zookeeper-connect-string 配置zk的连接
-> - [ALL]kylin.source.hive.table-dir-create-first=true FI需配置
-> - [Query]kylin.server.mode=query
-> - [Job]kylin.server.mode=job
+### 安装和配置读写分离部署
 
-7. 需要拷贝构建集群上的hive-site.xml文件到Query KE的conf目录下;
+下面说明如何在两个 Hdaoop 集群中部署 Kyligence Enterprise 构建服务器和查询服务器，并配置它们协同工作。
 
-8. 如果集群开启kerberos，需要进行以下配置；
-> -   需要配置kerberos集成, 可以查看[配置kerberos集成](../../security/kerberos.cn.md)
-> -   [Query]kap.storage.columnar.spark-conf.spark.yarn.access.namenodes=hdfs://readcluster,hdfs://writercluster
-> -   [Job]kylin.engine.spark-conf.spark.yarn.access.namenodes==hdfs://readcluster,hdfs://writercluster
-> -   修改Job KE的 kylin_job_conf.xml 添加
-```xml
-<property>
-   <name>mapreduce.job.hdfs-servers</name>
-   <value>hdfs://writercluster/, hdfs://readcluster/</value>
-</property>
-```
+1. 首先在**构建服务器**和**查询服务器**上，解压 Kyligence Enterprise 安装包到统一的安装路径下。以下称此安装路径为 `$KYLIN_HOME`。
+2. 在**构建服务器**和**查询服务器**上，修改 `$KYLIN_HOME/conf/kylin.properties`，为所有的 Kyligence Enterprise 服务配置相同的元数据仓库和数据存储路径。
 
+   > 注意：此处需使用 JDBC 为元数据仓库，请参阅 [JDBC 元数据仓库的相关配置文档](../../config/metastore_jdbc_mysql.cn.md)。
+   > 注意：此处数据存储路径需指向**查询集群** HDFS。
 
-6. 重新启动 Kyligence Enterprise
+   ```properties
+   # 请参阅 JDBC 元数据仓库的相关配置文档
+   kylin.metadata.url=...
+   
+   # 数据存储路径需指向查询集群 HDFS
+   kylin.storage.columnar.file-system=hdfs://{read-cluster}:8020/
+   kylin.storage.columnar.separate-fs-enable=true
+   
+   # 请替换为查询集群的 Zookeeper 服务地址，格式为 host1:port1,host2:port2,...
+   kylin.env.zookeeper-connect-string=...
+   ```
+
+3. 在**构建服务器**和**查询服务器**上，修改 `$KYLIN_HOME/conf/kylin.properties`，为所有的 Kyligence Enterprise 服务配置相同的 Hive 数据源。
+
+   > 注意：为了性能考虑，我们假设 Hive 数据源在构建集群中。为了让**查询服务器**能连接**构建集群**中的 Hive 服务，**请复制构建集群上的 `hive-site.xml` 到查询服务器的 `$KYLIN_HOME/conf` 目录下**。
+   >
+   > 注意：下例假设 Hive 使用 Beeline 连接方式。如果您使用 Hive CLI 连接方式，请自行调整。
+
+   ```properties
+   kylin.source.hive.client=beeline
+   kylin.source.hive.beeline-shell=beeline
+   kylin.source.hive.beeline-params=...
+   
+   # 对于华为 FusionInsight，请打开下面配置
+   #kylin.source.hive.table-dir-create-first=true
+   ```
+
+4. 在**构建服务器**上，修改 `$KYLIN_HOME/conf/kylin.properties`，设置其工作模式。
+
+   ```properties
+   kylin.server.mode=job
+   ```
+
+5. 在**查询服务器**上，修改 `$KYLIN_HOME/conf/kylin.properties`，设置其工作模式。
+
+   ```properties
+   kylin.server.mode=query
+   ```
+
+6. 如果集群开启 Kerberos，还需要进行以下配置。
+
+   - 在两个集群上 [配置 Kerberos 集成](../../security/kerberos.cn.md)。并确认：
+     - 构建集群和查询集群属于不同的域
+     - 构建集群和查询集群已配置互信
+   
+   - 在**查询服务器**上，修改 `$KYLIN_HOME/conf/kylin.properties`。
+     ```properties
+     kap.storage.columnar.spark-conf.spark.yarn.access.namenodes=hdfs://{read-cluster},hdfs://{write-cluster}
+     ```
+
+   - 在**构建服务器**上，修改 `$KYLIN_HOME/conf/kylin.properties`。
+     ```properties
+     kylin.engine.spark-conf.spark.yarn.access.namenodes==hdfs://{read-cluster},hdfs://{write-cluster}
+     ```
+   
+   - 在**构建服务器**上，修改 `$KYLIN_HOME/conf/kylin_job_conf.xml`。
+     ```xml
+     <property>
+         <name>mapreduce.job.hdfs-servers</name>
+         <value>hdfs://{write-cluster}/, hdfs://{read-cluster}/</value>
+     </property>
+     ```
+
+至此，读写分离配置完毕。请启动 Kyligence Enterprise 查询服务器和构建服务器。
