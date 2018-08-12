@@ -1,18 +1,18 @@
-## Upgrading from KAP Plus 2.X to Kyligence Enterprise 3.x ##
+## Upgrading from KAP Plus 2.x to Kyligence Enterprise 3.x ##
 
-From 3.x, Kyligence Analytics Platform (KAP) changed the name to Kyligence Enterprise .
+From 3.x, Kyligence Analytics Platform (KAP) renamed to Kyligence Enterprise.
 
-KAP 2.X shares compatible metadata with other higher versions. Therefore, you could upgrade from KAP  2.X to higher versions by overwriting the software package and updating configuration files.
+KAP 2.X shares compatible metadata with higher versions. Therefore, you can upgrade from KAP  2.X to higher versions by just overwriting the software package and updating configuration files.
 
 ### Preparation
 
-1. In order to improve the query performance, cube and segment will be upgraded during the upgrade process. As the precondition, *please ensure that there is no active build job before your upgrade, which includes running, pending, error and stopped*.
+1. In order to improve the query performance, cube and segment will be upgraded during the upgrade process. As a precondition, *please ensure that there is no active build job before upgrade, which includes running, pending, error and stopped jobs*.
 
 2. Please stop all KAP service and confirm that there is no running KAP process.
 
-3. Please ensure the JDK version is 1.8 or above. You can use the following command to check the JDK version. If the version is under 1.8, please refer to "Upgrade FAQ" at the end of the page, which introduce how to upgrade JDK.
+3. Please ensure the JDK version of your whole cluster is 1.8 or above. You can use the following command to check the JDK version. If the version is under 1.8, please refer to "Upgrade FAQ" at the end of the page, which talks about how to upgrade JDK.
 
-   ```
+   ```bash
    java -version
    ```
 
@@ -32,7 +32,7 @@ KAP 2.X shares compatible metadata with other higher versions. Therefore, you co
    $KYLIN_HOME/bin/metastore.sh backup
    ```
 
-3. Decompress the Kyligence Enterprise package of new version. Update the value of the environment variable KYLIN_HOME: 
+3. Unpack the Kyligence Enterprise package. Update the environment variable KYLIN_HOME: 
 
    ```shell
    tar -zxvf Kyligence-Enterprise-{version-env}.tar.gz
@@ -41,47 +41,51 @@ KAP 2.X shares compatible metadata with other higher versions. Therefore, you co
 
 4. Update the configuration files
 
-   upgrading from 2.4.0 version or above: 
+   Upgrading from version 2.4 or above: 
 
-   * replace new versions' `$KYLIN_HOME/conf` with old version's `$KYLIN_HOME/conf`.
-   * `kylin.server.init-tasks` needs to be deleted or annotated in `kylin.server.init-tasks`.
+   * Overwrite the `$KYLIN_HOME/conf` by copying from your existing configuration files.
+   * `kylin.server.init-tasks` needs to be deleted or commented out in `conf/kylin.properties`.
 
-   upgrading from 2.4.0 version below
+   Upgrading from version 2.3 or below:
 
-   > Notice: for KAP 2.4 version below
+   > Notice: For KAP version 2.3 or below
    >
-   > * The directory of ` setenv.sh` has changed, which moved to `$KYLIN_HOME/conf` since 2.4 version.
-   > * Configuration file is not fully compatible, please don't copy and replace. 
+   > * The location of ` setenv.sh` has changed. The file moved to `$KYLIN_HOME/conf` since 2.4 version.
+   > * Configuration file is not fully compatible, please don't copy and overwrite. 
 
-   * Manually re-apply all changes in old version's `$KYLIN_HOME/conf` to new version's `$KYLIN_HOME/conf`.
+   * Manually re-apply all changes in old version's `$KYLIN_HOME/conf` on new version's `$KYLIN_HOME/conf`.
 
-   * Manually re-apply all changes in old version's `$KYLIN_HOME/bin/setenv.sh` to new version's `$KYLIN_HOME/conf/setenv.sh`. 
+   * Manually re-apply all changes in old version's `$KYLIN_HOME/bin/setenv.sh` on new version's `$KYLIN_HOME/conf/setenv.sh`. 
 
-   * Manually delete `kylin.server.init-tasks` in `$KYLIN_HOME/conf/kylin.properties`.
+   * Manually delete `kylin.server.init-tasks` in `conf/kylin.properties` if any.
 
-   * Manually migrate ACL data. Please run commands below: 
+   * Manually migrate ACL data. Please run: 
 
      ```shell
      $KYLIN_HOME/bin/kylin.sh org.apache.kylin.tool.AclTableMigrationCLI MIGRATE
      ```
 
-5. Start Kyligence Enterprise instance
+5. If your cluster is based on JDK 7
 
-   In the first time, cube and segment will be upgraded automatically. The upgrade time depends on your data size, which may cost 1 hour or longer.
+   Please follow the steps in "[How to Run Kyligence Enterprise on Lower Version JDK](../install/about_low_version_jdk.en.md)".
+
+6. Start Kyligence Enterprise
+
+   During the first start, cube and segment will be upgraded automatically. The upgrade time depends on your data size, which could last for 1 hour or longer.
 
    ```shell
    $KYLIN_HOME/bin/kylin.sh start
    ```
 
-   If the upgrade succeeded, you may see:
+   If the upgrade succeeded, you will see console prompt:
 
    ```
    Segments have been upgraded successfully.
    ```
 
-6. Upgrade succeed.
+7. Till now, the uprade is done.
 
-   The backup data including installation directory and metadata can be safely deleted. 
+   The backup data including old installation files and metadata can be safely deleted. 
 
 ### Upgrade FAQ
 
@@ -92,7 +96,7 @@ Sure, please refer to the following steps:
 * After download and decompress the JDK file, please prepare a file to store them in all nodes, such as `/usr/java/jdk1.8`. 
 * Please add the following configurations in `$KYLIN_HOME/conf/kylin.properties`.
 
-```shell
+```properties
 kap.storage.columnar.spark-conf.spark.executorEnv.JAVA_HOME=/usr/java/jdk1.8
 kap.storage.columnar.spark-conf.spark.yarn.appMasterEnv.JAVA_HOME=/usr/java/jdk1.8
 #If you need to use Spark building engine, please add the following properties
@@ -114,19 +118,19 @@ kylin.engine.spark-conf.spark.yarn.appMasterEnv.JAVA_HOME=/usr/java/jdk1.8
 ```
 *Q: Do I need to manually upgrade cube and segment?*
 
-No, the upgrade will be automatically started when you start Kyligence Enterprise in the first time.
+No, the upgrade will happen automatically when you start Kyligence Enterprise for the first time.
 
-*Q: How could I determine if the upgrade succeeded or failed?*
+*Q: How could I determine if the upgrade has succeeded or not?*
 
-During the first upgrade progress, you may see:
+During the first start of Kyligence Enterprise, you may see:
 
-* Successful tips:
+* Prompt in case of success:
 
   ```
   Segments have been upgraded successfully.
   ```
 
-* Failed tips:
+* Prompt in case of failure:
 
   ```
   Upgrade failed. Please try to run
@@ -136,13 +140,17 @@ During the first upgrade progress, you may see:
 
 *Q: If the upgrade failed, what could I do?*
 
-If there is something wrong in the upgrade process, please run the following command to fix.
+If there is something went wrong in the upgrade process, please run the following command to fix.
 
- `bin/kylin.sh io.kyligence.kap.tool.migration.ProjectDictionaryMigrationCLI FIX` . If the upgrade succeeded, you will see “Segments have been upgraded successfully”. If the fix command did not work, please contact Kyligence Support.
+```bash
+bin/kylin.sh io.kyligence.kap.tool.migration.ProjectDictionaryMigrationCLI FIX
+```
+
+If the fix succeeded, you will see “Segments have been upgraded successfully”. If the fix failed again, please contact Kyligence Support for help.
 
 *Q: How could I roll back if the upgrade failed?*
 
-If you back up the Kyligence Enterprise installation directory and metadata, you could roll back with the following steps:
+If you have backup of the KAP installation directory and metadata, you could roll back like below:
 
 - Stop and confirm that there is no running KAP process:
 
@@ -164,7 +172,7 @@ If you back up the Kyligence Enterprise installation directory and metadata, you
   $KYLIN_HOME/bin/metastore.sh restore {your-backup-metadata-folder}
   ```
 
-- Rollback finished and then you can start the original KAP
+- Now rollback is finished and you can start the original KAP
 
   ```shell
   $KYLIN_HOME/bin/kylin.sh start

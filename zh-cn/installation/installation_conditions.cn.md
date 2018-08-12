@@ -6,9 +6,11 @@ Kyligence Enterprise 需要一个状态良好的 Hadoop 集群作为其运行环
 
 ### Java 环境
 
-安装本产品的Java环境是：
+本产品，及其运行的 Hadoop 环境中的所有节点，需要的 Java 环境是：
 
-- JDK 8 64 bit
+- JDK 8 64 bit 或以上
+
+如果您的 Hadoop 集群环境为 JDK 7，请参考 [如何在低版本 JDK 上运行 Kyligence Enterprise](about_low_version_jdk.cn.md)。
 
 ### 账户权限
 
@@ -26,7 +28,6 @@ Kyligence Enterprise 需要一个状态良好的 Hadoop 集群作为其运行环
 + Cloudera CDH 5.7 / 5.8 / 5.11 / 5.12
 + Hortonworks HDP 2.2 / 2.4
 + MapR 5.2.1
-+ Apache Hadoop 2.2+，HBase 0.98+，Hive 0.14+
 + 华为 FusionInsight C60 / C70
 + Azure HDInsight 3.4~3.6
 + AWS EMR 5.1~5.7

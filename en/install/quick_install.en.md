@@ -75,7 +75,7 @@ hive.security.authorization.sqlstd.confwhitelist=dfs.replication|hive.exec.compr
 
 For more information, refer to [Beeline command opetions](https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Clients#HiveServer2Clients-BeelineCommandOptions).
 
-### If You Use Kerberos to Connect HIVE
+### If You Use Kerberos to Connect Hive
 
 If your cluster uses Kerberos security mechanism, Kyligence Enterprise's own Spark needs proper configuration to access your cluster resources securely.
 
@@ -120,6 +120,10 @@ Finally, Kyligence Enterprise needs to use the correct Kerberos configuration to
   > Notice: When Kyligence Enterprise is started, if it is found that the `/tmp/hive-scratch `directory (or similar temporary HDFS directory) has no write permissions in the log, you just need to grant permissions (such as `Hadoop FS -chmod -R 777 /tmp/hive-scratch`), and then restart Kyligence Enterprise.
 
 For more information, refer to [Kerberos](C:\Users\yicen.du\Documents\GitHub\KAP-Manual\en\security\kerberos.en.md).
+
+### If Your Cluster is Based on JDK 7
+
+Please follow the steps in "[How to Run Kyligence Enterprise on Lower Version JDK](about_low_version_jdk.en.md)".
 
 ### Environment Check
 

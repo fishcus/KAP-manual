@@ -112,6 +112,10 @@ hive.security.authorization.sqlstd.confwhitelist=dfs.replication|hive.exec.compr
 
 更多 Kerberos 相关的信息，请参看[集成Kerberos](../../security/kerberos.cn.md)章节。
 
+### 如果您的 Hadoop 集群为 JDK 7
+
+请执行 [如何在低版本 JDK 上运行 Kyligence Enterprise](../about_low_version_jdk.cn.md) 中的配置步骤。
+
 ### 检查运行环境
 
 首次启动 Kyligence Enterprise 时，会自动对所依赖的环境进行检查。如果在检查过程中发现问题，您将在控制台中看到警告或错误信息。

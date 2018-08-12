@@ -1,4 +1,4 @@
-## 从 KAP Plus 2.X 升级至 Kyligence Enterprise 3.x 最新版本 ##
+## 从 KAP Plus 2.x 升级至 Kyligence Enterprise 3.x 最新版本 ##
 
 从 3.X 开始，Kyligence Analytics Platform (KAP) 正式改名为 Kyligence Enterprise。
 
@@ -10,9 +10,9 @@ KAP Plus 2.X 与更高版本之间兼容元数据。因此在从 KAP Plus 2.X �
 
 2. 停止所有 KAP 服务，确保没有活动的 KAP 进程影响升级。
 
-3. 确保您的 JDK 版本是 1.8 或更高，您可以通过以下命令查看 JDK 版本。如果您的 JDK 版本小于 1.8，请参考最后 “升级 FAQ” 中升级 JDK 的方法。
+3. 请确保在集群的所有节点上，JDK 版本是 1.8 或更高，您可以通过以下命令查看 JDK 版本。
 
-   ```
+   ```bash
    java -version
    ```
 ### 具体升级步骤 ###
@@ -42,12 +42,12 @@ KAP Plus 2.X 与更高版本之间兼容元数据。因此在从 KAP Plus 2.X �
 
    从 KAP 2.4 及以上版本升级：
 
-   * 将老版本中`$KYLIN_HOME/conf`文件拷贝并替换在新版本中的 `$KYLIN_HOME/conf`中。
-   * 在`$KYLIN_HOME/conf/kylin.properties`中删除`kylin.server.init-tasks`这一行。 
+   * 将老版本中`$KYLIN_HOME/conf`文件拷贝并覆盖到新版本中的 `$KYLIN_HOME/conf`中。
+   * 在`conf/kylin.properties`中删除`kylin.server.init-tasks`这一行。 
 
-   从 KAP 2.4 以下版本升级：
+   从 KAP 2.3 及以下版本升级：
 
-   > **注意，对于 KAP 2.4 以下版本**
+   > 注意，对于 KAP 2.3 以下版本
    >    * `setenv.sh`的目录发生了改变，2.4 版本后位于`$KYLIN_HOME/conf`下
    >    * 配置文件并不完全兼容，请不要直接拷贝替换配置文件
 
@@ -63,7 +63,11 @@ KAP Plus 2.X 与更高版本之间兼容元数据。因此在从 KAP Plus 2.X �
      $KYLIN_HOME/bin/kylin.sh org.apache.kylin.tool.AclTableMigrationCLI MIGRATE
      ```
 
-5. 启动 Kyligence Enterprise。
+5. 如果您的 Hadoop 集群为 JDK 7
+
+   请执行 [如何在低版本 JDK 上运行 Kyligence Enterprise](../installation/about_low_version_jdk.cn.md) 中的配置步骤。
+
+6. 启动 Kyligence Enterprise。
 
    在第一次启动过程中，Kyligence Enterprise 会对 Cube 和 Segment 进行自动升级。升级时间取决于您的数据大小，可能达到一个小时或更久。
 
@@ -76,41 +80,15 @@ KAP Plus 2.X 与更高版本之间兼容元数据。因此在从 KAP Plus 2.X �
    Segments have been upgraded successfully.
    ```
 
-6. 至此升级成功。
+7. 至此升级成功。
 
    之前备份的 KAP 安装目录和元数据可以安全删除。
 
 ### 升级 FAQ ###
 
-**Q：如果当前集群的 JDK 版本小于 1.8 ，我能否不影响当前集群的默认 JDK，仅对运行 Kyligence Enterprise 的进程进行 JDK 升级？**
+**Q：如果当前集群的 JDK 版本小于 8 ，我能否不影响当前集群的默认 JDK，仅对运行 Kyligence Enterprise 的进程进行 JDK 升级？**
 
-可以。步骤如下：
-
-   * 在集群中的所有节点上，下载并解压缩 JDK 1.8 后放置在一个目录（如`/usr/java/jdk1.8`）
-
-
-   * 在`$KYLIN_HOME/conf/kylin.properties`中添加以下配置	
-
-     ```
-     kap.storage.columnar.spark-conf.spark.executorEnv.JAVA_HOME=/usr/java/jdk1.8
-     kap.storage.columnar.spark-conf.spark.yarn.appMasterEnv.JAVA_HOME=/usr/java/jdk1.8
-     #如果您需要使用Spark构建引擎，请添加以下配置
-     kylin.engine.spark-conf.spark.executorEnv.JAVA_HOME=/usr/java/jdk1.8
-     kylin.engine.spark-conf.spark.yarn.appMasterEnv.JAVA_HOME=/usr/java/jdk1.8
-     ```
-   
-   * 在`$KYLIN_HOME/conf`目录下`kylin_job_conf.xml`以及`kylin_job_conf_inmem.xml`添加以下配置
-   
-     ```xml
-         <property>
-             <name>mapred.child.env</name>
-             <value>JAVA_HOME=/usr/java/jdk1.8</value>
-         </property>
-         <property>
-             <name>yarn.app.mapreduce.am.env</name>
-             <value>JAVA_HOME=/usr/java/jdk1.8</value>
-         </property>
-     ```
+可以。请参考 [如何在低版本 JDK 上运行 Kyligence Enterprise](../installation/about_low_version_jdk.cn.md)。
 
 **Q：需要我手动升级 Cube 和 Segment 吗？**
 
@@ -135,7 +113,11 @@ KAP Plus 2.X 与更高版本之间兼容元数据。因此在从 KAP Plus 2.X �
 
 **Q：升级 Cube 和 Segment 失败如何处理？**
 
-如果升级 Cube 和 Segment 失败，请运行`bin/kylin.sh io.kyligence.kap.tool.migration.ProjectDictionaryMigrationCLI FIX` 进行修复。修复成功后，将会看到“Segments have been upgraded successfully”提示。如修复失败，请您联系Kyligence Support。
+如果升级 Cube 和 Segment 失败，请运行如下命令进行修复：
+```bash
+bin/kylin.sh io.kyligence.kap.tool.migration.ProjectDictionaryMigrationCLI FIX
+```
+修复成功后，将会看到 “Segments have been upgraded successfully” 提示。如果修复任然失败，请您联系Kyligence Support。
 
 **Q：假如升级不成功，如何回滚到原版本？**
 

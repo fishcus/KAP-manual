@@ -4,6 +4,14 @@ Kyligence Enterprise needs a good Hadoop cluster as its running environment to p
 
 Next we will introduce the required enviroment for Kyligence Enterprise installation.
 
+### Java Environment
+
+Kyligence Enterprise, and the Hadoop nodes that it runs on top of, requires:
+
+- JDK 8 64 bit or above
+
+If your Hadoop cluster is based on JDK 7, please refer to "[How to Run Kyligence Enterprise on Lower Version JDK](about_low_version_jdk.en.md)".
+
 ### Account Authority
 
 The Linux account running Kyligence Enterprise must have required access permissions to Hadoop cluster. These permissions include:
@@ -16,10 +24,12 @@ The Linux account running Kyligence Enterprise must have required access permiss
 
 The following enterprise level data management platform have been authenticated and tested by us.
 
-* Cloudera CDH 5.7+
-* Hortonworks HDP 2.2+
-* MapR 5.2+
-* HUAWEI FusionInsight C60+
+* Cloudera CDH 5.7 / 5.8 / 5.11 / 5.12
+* Hortonworks HDP 2.2 / 2.4
+* MapR 5.2.1
+* Huawei FusionInsight C60 / C70
+* Azure HDInsight 3.4~3.6
+* AWS EMR 5.1~5.7
 
 ### Resource Allocation
 
