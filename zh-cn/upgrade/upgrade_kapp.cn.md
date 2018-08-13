@@ -10,7 +10,7 @@ KAP Plus 2.X 与更高版本之间兼容元数据。因此在从 KAP Plus 2.X �
 
 2. 停止所有 KAP 服务，确保没有活动的 KAP 进程影响升级。
 
-3. 请确保在集群的所有节点上，JDK 版本是 1.8 或更高，您可以通过以下命令查看 JDK 版本。
+3. 本产品要求 JDK 8 或更高，您可以通过以下命令查看 JDK 版本。如果您的 JDK 版本不满足要求，请留意下面升级文档中的额外步骤。
 
    ```bash
    java -version
@@ -86,7 +86,7 @@ KAP Plus 2.X 与更高版本之间兼容元数据。因此在从 KAP Plus 2.X �
 
 ### 升级 FAQ ###
 
-**Q：如果当前集群的 JDK 版本小于 8 ，我能否不影响当前集群的默认 JDK，仅对运行 Kyligence Enterprise 的进程进行 JDK 升级？**
+**Q：如果我的 Hadoop 集群用的是 JDK 7，还可以升级到 Kyligence Enterprise 吗？**
 
 可以。请参考 [如何在低版本 JDK 上运行 Kyligence Enterprise](../installation/about_low_version_jdk.cn.md)。
 

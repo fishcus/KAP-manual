@@ -10,7 +10,7 @@ KAP 2.X shares compatible metadata with higher versions. Therefore, you can upgr
 
 2. Please stop all KAP service and confirm that there is no running KAP process.
 
-3. Please ensure the JDK version of your whole cluster is 1.8 or above. You can use the following command to check the JDK version. If the version is under 1.8, please refer to "Upgrade FAQ" at the end of the page, which talks about how to upgrade JDK.
+3. This product requires JDK 8 or above. Run the following command to check your JDK version. If your JDK version is 7 or below, you will find addition steps required in the following document. Please pay attention.
 
    ```bash
    java -version
@@ -89,38 +89,15 @@ KAP 2.X shares compatible metadata with higher versions. Therefore, you can upgr
 
 ### Upgrade FAQ
 
-*Q: If the JDK version of current cluster is less than 1.8, could I only upgrade the JDK which is used by Kyligence Enterprise process.*
+**Q: If my Hadoop cluster is JDK 7, can I upgrade to Kyligence Enterprise 3.x?.**
 
-Sure, please refer to the following steps:
+Sure, please refer to "[How to Run Kyligence Enterprise on Lower Version JDK](../install/about_low_version_jdk.en.md)".
 
-* After download and decompress the JDK file, please prepare a file to store them in all nodes, such as `/usr/java/jdk1.8`. 
-* Please add the following configurations in `$KYLIN_HOME/conf/kylin.properties`.
-
-```properties
-kap.storage.columnar.spark-conf.spark.executorEnv.JAVA_HOME=/usr/java/jdk1.8
-kap.storage.columnar.spark-conf.spark.yarn.appMasterEnv.JAVA_HOME=/usr/java/jdk1.8
-#If you need to use Spark building engine, please add the following properties
-kylin.engine.spark-conf.spark.executorEnv.JAVA_HOME=/usr/java/jdk1.8
-kylin.engine.spark-conf.spark.yarn.appMasterEnv.JAVA_HOME=/usr/java/jdk1.8
-```
-
-* In`$KYLIN_HOME/conf/`, please add the following configurations in `kylin_job_conf.xml` and `kylin_job_conf_inmem.xml`.
-
-```xml
- <property>
-        <name>mapred.child.env</name>
-        <value>JAVA_HOME=/usr/java/jdk1.8</value>
-    </property>
-    <property>
-        <name>yarn.app.mapreduce.am.env</name>
-        <value>JAVA_HOME=/usr/java/jdk1.8</value>
-    </property>
-```
-*Q: Do I need to manually upgrade cube and segment?*
+**Q: Do I need to manually upgrade cube and segment?**
 
 No, the upgrade will happen automatically when you start Kyligence Enterprise for the first time.
 
-*Q: How could I determine if the upgrade has succeeded or not?*
+**Q: How could I determine if the upgrade has succeeded or not?**
 
 During the first start of Kyligence Enterprise, you may see:
 
@@ -138,7 +115,7 @@ During the first start of Kyligence Enterprise, you may see:
   to fix.
   ```
 
-*Q: If the upgrade failed, what could I do?*
+**Q: If the upgrade failed, what could I do?**
 
 If there is something went wrong in the upgrade process, please run the following command to fix.
 
@@ -148,7 +125,7 @@ bin/kylin.sh io.kyligence.kap.tool.migration.ProjectDictionaryMigrationCLI FIX
 
 If the fix succeeded, you will see “Segments have been upgraded successfully”. If the fix failed again, please contact Kyligence Support for help.
 
-*Q: How could I roll back if the upgrade failed?*
+**Q: How could I roll back if the upgrade failed?**
 
 If you have backup of the KAP installation directory and metadata, you could roll back like below:
 
