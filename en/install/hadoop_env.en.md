@@ -1,8 +1,8 @@
-## Kyligence Enterprise Required Environment
+## Prerequisite of Kyligence Enterprise
 
-Kyligence Enterprise needs a good Hadoop cluster as its running environment to provide you with a more stable user experience. We recommend that you run Kyligence Enterprise on a single Hadoop cluster. Each server in the cluster should be configured with Hadoop, Hive, HBase, Kafka and so on. Among them, Hadoop and Hive are essential components.
+Kyligence Enterprise needs a good Hadoop cluster as its running environment to provide you with a more stable user experience. We recommend that you run Kyligence Enterprise on a single Hadoop cluster. Each server in the cluster should be configured with HDFS, Yarn, MapReduce, Hive, Kafka and so on. Among them, HDFS, Yarn, MapReduce, and Hive are essential components.
 
-Next we will introduce the required enviroment for Kyligence Enterprise installation.
+Next we will introduce the prerequisite of Kyligence Enterprise installation.
 
 ### Java Environment
 
@@ -10,7 +10,7 @@ Kyligence Enterprise, and the Hadoop nodes that it runs on top of, requires:
 
 - JDK 8 64 bit or above
 
-If your Hadoop cluster is based on JDK 7, please refer to "[How to Run Kyligence Enterprise on Lower Version JDK](about_low_version_jdk.en.md)".
+If your Hadoop cluster is based on JDK 7, please refer to [How to Run Kyligence Enterprise on Lower Version JDK](about_low_version_jdk.en.md).
 
 ### Account Authority
 
@@ -20,16 +20,16 @@ The Linux account running Kyligence Enterprise must have required access permiss
 * Create/Read/Write permission of HBase table
 * Execution permission of MapReduce job
 
-### Enterprise Level Platform Supported
+### Supported Hadoop Distributions
 
-The following enterprise level data management platform have been authenticated and tested by us.
+The following Hadoop distributions have been authenticated and tested by us.
 
-* Cloudera CDH 5.7 / 5.8 / 5.11 / 5.12
+* Cloudera CDH 5.7 / 5.8 / 5.11 / 5.12	
 * Hortonworks HDP 2.2 / 2.4
 * MapR 5.2.1
 * Huawei FusionInsight C60 / C70
-* Azure HDInsight 3.4~3.6
-* AWS EMR 5.1~5.7
+* Azure HDInsight 3.4 ~ 3.6
+* AWS EMR 5.1 ~ 5.7
 
 ### Resource Allocation
 

@@ -1,6 +1,6 @@
 ## Kyligence Enterprise 安装前置条件
 
-Kyligence Enterprise 需要一个状态良好的 Hadoop 集群作为其运行环境，以便为您提供更加稳定的使用体验。我们建议您将 Kyligence Enterprise 单独运行在一个 Hadoop 集群上。该集群中的每一台服务器应当配置的组件包括：Hadoop、Hive、HBase、Kafka 等。其中，Hadoop 和 Hive 是必需组件。
+Kyligence Enterprise 需要一个状态良好的 Hadoop 集群作为其运行环境，以便为您提供更加稳定的使用体验。我们建议您将 Kyligence Enterprise 单独运行在一个 Hadoop 集群上。该集群中的每一台服务器应当配置的组件包括：HDFS、Yarn、MapReduce、Hive、Kafka 等。其中，HDFS、Yarn、MapReduce、Hive 是必需组件。
 
 下面我们将为您介绍 Kyligence Enterprise 安装的前置条件。
 
@@ -21,7 +21,7 @@ Kyligence Enterprise 需要一个状态良好的 Hadoop 集群作为其运行环
 + 创建和操作 HBase 表（如果您使用 JDBC 连接元数据存储，该项可忽略）
 + 提交 MapReduce 任务
 
-### 支持的企业级平台
+### 支持的 Hadoop 平台
 
 下述企业级数据管理平台及其相应版本已经过我们的认证和测试：
 
@@ -64,7 +64,7 @@ Kyligence Enterprise 需要一个状态良好的 Hadoop 集群作为其运行环
 + Red Hat Enterprise Linux 6.4+ 或 7.x
 + CentOS 6.4+ 或 7.x
 
-### 推荐的客户端配置：
+### 推荐的客户端配置
 
 - CPU：2.5 GHz Intel Core i7
 - 操作系统：macOS / windows 7 或 10
