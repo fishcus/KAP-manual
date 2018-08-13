@@ -1,7 +1,7 @@
-## 集成Kerberos
+## 集成 Kerberos
 Kerberos 是一种支持票证身份验证的安全协议。如果 Kyligence Enterprise 部署的 Hadoop 平台开启了 Kerberos 服务，需要通过本文的配置让 Kyligence Enterprise 集成平台的 Kerberos 服务运行，这些配置主要分为两部分，Kyligence Enterprise 中的配置及 Hadoop 平台中的配置。
 
-### Kyligence Enterprise 中配置
+### Kerberos 配置
 以下是 Kyligence Enterprise 的 `$KYLIN_HOME/conf/kylin.properties` 配置文件中与 Kerberos 相关的配置参数。
 
 必选参数：

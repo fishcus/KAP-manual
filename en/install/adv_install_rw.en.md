@@ -1,39 +1,119 @@
-## Read/Write Deployment
+## Read/Write Split Deployment
 
-KAP Enterprise and KAP Enterprise Plus have some difference of cube build and storage settings, therefore please note that the Read/Write Deployments on these two KAP distributions are different. Following sections would introduce you specific settings for each distribution.
+Kyligence Enterprise read/write split deployment requires two separate Hadoop clusters, called the **Build Cluster** and the **Query Cluster** respectively.
 
-**Read/Write Deployment on KAP Enterprise**
+Logically, the two clusters always exist even for normal deployment. They just happen to be the same physical cluster in that case. Kyligence Enterprise uses the build cluster to build cubes, and the query cluster to do parallel computation for online queries. In the build cluster, it has lots of data writes; while in the query cluster, it is mainly about data reads. By splitting the two clusters physically, known as the Build Cluster (*Write Cluster*) and the Query Cluster (*Read Cluster*), the read operations can be well isolated from the write operations, and as a result, the overall storage performance and system stability is improved.
 
-In general KAP leverages all computing resource of Hadoop cluster (Hbase runs on the same cluster) for Cube build and query. While these jobs runing at the same time, they affect each other, causing performance degrading. It's not acceptable especially when users want low-latency query. Read/Write splitting deployment provides a solution in this case.
-
-For KAP Enterprise, after deploying KAP in Read/Write Splitting mode, Cube building job is submitted to Hadoop cluster and Cube query job is submitted to HBase cluster. They're two separated clusters, which should not affect each other any more. Hadoop cluster only handles write operations, and HBase cluster only handles read operations.
-
-For KAP Enterprise Plus, it is also meaningful to separate cube build and cube query，and make sure it will not reduce efficiency by resource competition.
-
-The following figure shows the architecture of Read/Write splitting deployment.
+Below is the deployment diagram of read/write split architecture.
 
 ![](images/rw_separated.png)
 
-Deployment usually includes following steps:
+### Precondition Check
 
-- Deploy Hadoop cluster (computing) and HBase cluster (storage), their Hadoop core version must be the same and equipped with necessary Hadoop components, including HDFS, Zookeeper, etc.
+The read/write split deployment will deploy Kyligence Enterprise in two separate Hadoop clusters. We call the two groups of nodes that will host Kyligence Enterprise as **Build Servers** and **Query Servers** respectively.
 
-- Install Hadoop clients on the server that installed KAP instance (called `KAP server` later). These clients can access previous mentioned Hadoop cluster.
+With the interactions between the two Hadoop clusters, the read/write split deployment is much more complicated than normal deployment. *Please read and execute the below checks carefully before proceeding*.
 
-- Install HBase client on `KAP server`. The client can access previous mentioned HBase cluster.
+1. Please check the Hadoop versions of the build cluster and the query cluster are identical, and that it satisfies the prerequisite of installation of Kyligence Enterprise.
 
-  >Use ` $KYLIN_HOME/bin/check-env.sh` for check.
+2. Please check that the **build servers** have the Hadoop client of the **build cluster** installed. Check commands like `hdfs`、`mapred`、`hive` are all working properly and can access the cluster resources.
 
-- Make sure Hadoop and HBase clusters can connect to each other without additional certification, which means any node in Hadoop cluster can copy file to any node in HBase cluster.
+3. Please check that the **query servers** have the Hadoop client of the **query cluster** installed. Check commands like `hdfs`、`mapred`、`hive` are all working properly and can access the cluster resources.
 
-- Make sure the `KAP server` can access HDFS in the cluster by adding HBase cluster NameNode in HDFS CLI.
+4. On the **build servers**, please configure and check the `hdfs` command can access HDFS resources in the **query cluster**.
 
-- Make sure `KAP server` locates near to HBase cluster, guaranteeing low network latency.
+   > Hint: As a test, try run `hadoop fs -ls hdfs://{query-cluster}/` on the build servers.
+   >
+   > Hint: If Hadoop HA is enabled, you will need to configure the Nameservice for the query cluster.
 
-- Edit file `${KYLIN_HOME}/conf/kylin.properties` to set `kylin.hbase.cluster.fs` HBase cluster's HDFS URL. For example: `kylin.hbase.cluster.fs＝hdfs://hbase-cluster-nn01.example.com:8020`.
+5. Please check the two clusters can access each other in a password-less style.
 
-- Restart KAP
+   > Hint: As a test, on any build server, try copy some HDFS files from/to the read cluster. The copy must succeed without any extra human interaction.
 
-**Read/Write Deployment on KAP Enterprise Plus**
+6. Please make sure the network latency between the two clusters is low enough, as there will be many data movements inbetween during cube build.
 
-Read/Write Deployment on KAP Enterprise Plus is supported but might have potential issues. Thus it strongly recommands to contact [Kyligence's expert](../introduction/get_support.en.md) for corresponding tech support.
+7. If  Kerberos is enabled, please check the below as well.
+
+   - The build cluster and the query cluster belong to different realms.
+   - The cross-realm trust between the two clusters is configured properly.
+
+### Install and Configure the Read/Write Split Deployment
+
+Follow the below instructions to install Kyligence Enterprise in the build cluster and query cluster, and configure them to work together.
+
+1. First of all, on all the **build servers** and **query servers**, unpack the Kyligence Enterprise software package to the same location. This location is called `$KYLIN_HOME` hereafter.
+
+2. On all the **build servers** and **query servers**, modify `$KYLIN_HOME/conf/kylin.properties` to setup the same metastore and storage location for all of them.
+
+   > Notice: JDBC metastore is required here. Please find more information in [the JDBC metastore configuration document](../config/metastore_jdbc_mysql.en.md).
+   >
+   > Notice: The storage location must point to the query cluster HDFS.
+
+   ```properties
+   # Please find more information in the JDBC metastore configuration document
+   kylin.metadata.url=...
+   
+   # The storage location must point to the the query cluster HDFS
+   kylin.storage.columnar.file-system=hdfs://{query-cluster}:8020/
+   kylin.storage.columnar.separate-fs-enable=true
+   
+   # The Zookeeper service address of the query cluster, like "host1:port1,host2:port2,..."
+   kylin.env.zookeeper-connect-string=...
+   ```
+
+3. On all the **build servers** and **query servers**, modify `$KYLIN_HOME/conf/kylin.properties` to setup the same Hive source for all of them.
+
+   > Notice: The example below assumes Beeline as Hive connectivity. If you use Hive CLI, please adjust accordingly.
+
+   ```properties
+   kylin.source.hive.client=beeline
+   kylin.source.hive.beeline-shell=beeline
+   kylin.source.hive.beeline-params=...
+   
+   # For Huawei FusionInsight, please uncomment the next line
+   #kylin.source.hive.table-dir-create-first=true
+   ```
+
+   For better performance, we assume your Hive source resides in the build cluster. In order to let the query servers access the Hive in the build cluster, **please copy the build cluster's `hive-site.xml` into the query servers'`$KYLIN_HOME/conf` folder**.
+
+4. On the **build servers**, modify `$KYLIN_HOME/conf/kylin.properties` to set the server mode.
+
+   ```properties
+   kylin.server.mode=job
+   ```
+
+5. On the **query servers**, modify `$KYLIN_HOME/conf/kylin.properties` to set the server mode.
+
+   ```properties
+   kylin.server.mode=query
+   ```
+
+6. If Kerberos is enabled, please do the following steps.
+
+   - Configure [Kerberos intergration](../security/kerberos.en.md) in both clusters, and confirm:
+
+     - The build cluster and the query cluster belong to different realms.
+     - The cross-realm trust between the two clusters is configured properly.
+
+   - On the **query servers**, modify `$KYLIN_HOME/conf/kylin.properties`
+
+     ```properties
+     kap.storage.columnar.spark-conf.spark.yarn.access.namenodes=hdfs://{query-cluster},hdfs://{build-cluster}
+     ```
+
+   - On the **build servers**, modify `$KYLIN_HOME/conf/kylin.properties`
+
+     ```properties
+     kylin.engine.spark-conf.spark.yarn.access.namenodes==hdfs://{query-cluster},hdfs://{build-cluster}
+     ```
+
+   - On the **build servers**, modify `$KYLIN_HOME/conf/kylin_job_conf.xml`
+
+     ```xml
+     <property>
+         <name>mapreduce.job.hdfs-servers</name>
+         <value>hdfs://{build-cluster}/, hdfs://{query-cluster}/</value>
+     </property>
+     ```
+
+Now the read/write split deployment is configured. It is ready to start all the Kyligence Enterprise servers.

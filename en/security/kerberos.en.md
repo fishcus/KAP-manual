@@ -1,8 +1,8 @@
-## Kerberos ##
+## Kerberos Integration ##
 
 Kerberos is a computer network authentication protocol that works on the basis of tickets. If the Hadoop platform where KAP is installed enables this protocol, some configurations need to be changed to support that. This mainly includes two parts: KAP configurations & Hadoop platform configurations.
 
-### KAP configurations ###
+### Kerberos Configuration ###
 
 There are some parameters about Kerberos worth mentioning in `$KYLIN_HOME/conf/kylin.properties` file.
 
@@ -19,9 +19,9 @@ Optional parameters：
    - kap.kerberos.krb5.conf: the config file name of Kerberos. Default value is `krb5.conf`
    - kap.kerberos.cache: the name of ticket cache file. Default value is `kap_kerberos.cache`
 
-### Hadoop platform configurations
+### Hadoop Platform Configurations
 
-#### Cloudera/Hortonworks Hadoop distribution configuration
+Cloudera/Hortonworks Hadoop distribution configuration:
 
 1. On the node where YARN NodeManager is installed, the OS user which Kerberos uses needs to be created. For example, if Kerberos user `kylin` needs to be used to run KAP, this user should exist in the OS of YARN NodeManager node
 

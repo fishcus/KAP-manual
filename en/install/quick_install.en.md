@@ -67,7 +67,7 @@ kylin.source.hive.beeline-params=-n root --hiveconf
 hive.security.authorization.sqlstd.confwhitelist.append='mapreduce.job.*|dfs.*' -u jdbc:hive2://localhost:10000
 ```
 
-Writ3 the following parameters to `hive-site.xml, and give Kyligence Enterprise a certain permissions to adjust the Hive execution parameters:
+Write the following parameters to `hive-site.xml, and give Kyligence Enterprise a certain permissions to adjust the Hive execution parameters:
 
 ```properties
 hive.security.authorization.sqlstd.confwhitelist=dfs.replication|hive.exec.compress.output|hive.auto.convert.join.noconditionaltask.*|mapred.output.compression.type|mapreduce.job.split.metainfo.maxsize
