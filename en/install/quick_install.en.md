@@ -118,7 +118,7 @@ If your cluster enables Kerberos security, the Spark embeds in Kyligence Enterpr
 
 ### If Your Cluster is Based on JDK 7
 
-Please follow the steps in [How to Run Kyligence Enterprise on Lower Version JDK](about_low_version_jdk.en.md).
+Please follow the steps in [How to Run Kyligence Enterprise on Lower Version JDK](./about_low_version_jdk.en.md).
 
 ### Environment Check
 
