@@ -10,7 +10,7 @@ Kyligence Enterprise 需要一个状态良好的 Hadoop 集群作为其运行环
 
 - JDK 8 64 bit 或以上
 
-如果您的 Hadoop 集群环境为 JDK 7，请参考 [如何在低版本 JDK 上运行 Kyligence Enterprise](./about_low_version_jdk.cn.md)。
+如果您的 Hadoop 集群环境为 JDK 7，请参考 [如何在低版本 JDK 上运行 Kyligence Enterprise](about_low_version_jdk.cn.md)。
 
 ### 账户权限
 

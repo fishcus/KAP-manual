@@ -10,6 +10,7 @@
 
 * [Installation](install/README.md)
     * [Requirement](install/hadoop_env.en.md)
+        * [How to Run Kyligence Enterprise on Lower Version JDK](install/about_low_version_jdk.en.md)
     * Quick Start
         * [Quick Install](install/quick_install.en.md)
         * [Install on Cloudera CDH sandbox](install/quick_install_CDH.en.md)

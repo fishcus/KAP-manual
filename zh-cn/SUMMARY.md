@@ -8,6 +8,7 @@
     * [获取支持](introduction/get_support.cn.md)
 * [安装](installation/installation.cn.md)
     * [安装前置条件](installation/installation_conditions.cn.md)
+        * [如何在低版本 JDK 上运行 Kyligence Enterprise](installation/about_low_version_jdk.cn.md)
     * [快速安装](installation/installation_quick_installation.cn.md)
         * [在单节点上快速安装](installation/quick_installation/quick_installation_for_single_node.cn.md)
         * [在 Cloudera CDH 沙箱中快速安装](installation/quick_installation/quick_installation_for_cdh.cn.md)
