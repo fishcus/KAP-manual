@@ -42,7 +42,7 @@
 
 #### Curl 访问示例
 ```
-curl -X POST -H "Authorization: Basic XXXXXX" -H “Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "sql":"select * from kylin_sales", "separator":","，“project”:"tpch_kap_24" }' http://host:port/kylin/api/async_query
+curl -X POST -H "Authorization: Basic XXXXXX" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "sql":"select * from kylin_sales", "separator":","，"project":"tpch_kap_24" }' http://host:port/kylin/api/async_query
 ```
 
 #### 响应信息
@@ -83,7 +83,7 @@ curl -X POST -H "Authorization: Basic XXXXXX" -H “Accept: application/vnd.apac
 
 #### Curl 访问示例
 ```
-curl -X GET -H "Authorization: Basic XXXXXX" -H “Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/async_query/your_query_id/status
+curl -X GET -H "Authorization: Basic XXXXXX" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/async_query/your_query_id/status
 ```
 
 #### 响应信息
@@ -124,7 +124,7 @@ curl -X GET -H "Authorization: Basic XXXXXX" -H “Accept: application/vnd.apach
 
 #### Curl 访问示例
 ```
-curl -X GET -H "Authorization: Basic XXXXXX" -H “Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/async_query/your_query_id/metadata
+curl -X GET -H "Authorization: Basic XXXXXX" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/async_query/your_query_id/metadata
 ```
 
 #### 响应信息
@@ -172,7 +172,7 @@ curl -X GET -H "Authorization: Basic XXXXXX" -H “Accept: application/vnd.apach
 
 #### Curl 访问示例
 ```
-curl -X GET -H "Authorization: Basic XXXXXX" -H “Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/async_query/your_query_id/filestatus
+curl -X GET -H "Authorization: Basic XXXXXX" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/async_query/your_query_id/filestatus
 ```
 
 #### 响应信息
@@ -208,7 +208,7 @@ curl -X GET -H "Authorization: Basic XXXXXX" -H “Accept: application/vnd.apach
 
 #### Curl 访问示例
 ```
-curl -X GET -H "Authorization: Basic XXXXXX" -H “Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/async_query/your_query_id/result_download
+curl -X GET -H "Authorization: Basic XXXXXX" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/async_query/your_query_id/result_download
 ```
 
 #### 响应信息
@@ -232,7 +232,7 @@ curl -X GET -H "Authorization: Basic XXXXXX" -H “Accept: application/vnd.apach
 
 #### Curl 访问示例
 ```
-curl -X GET -H "Authorization: Basic XXXXXX" -H “Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/async_query/your_query_id/result_path
+curl -X GET -H "Authorization: Basic XXXXXX" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/async_query/your_query_id/result_path
 ```
 
 #### 响应信息
@@ -264,7 +264,7 @@ curl -X GET -H "Authorization: Basic XXXXXX" -H “Accept: application/vnd.apach
 
 #### Curl 访问示例
 ```
-curl -X DELETE -H "Authorization: Basic XXXXXX" -H “Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/async_query
+curl -X DELETE -H "Authorization: Basic XXXXXX" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/async_query
 ```
 
 #### 响应信息
