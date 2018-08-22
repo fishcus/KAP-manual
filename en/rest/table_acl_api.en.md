@@ -33,7 +33,7 @@
 
 #### Curl Request Example
 ```
-curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{"pageSize":10，“pageOffset”:0 }' http://host:port/kylin/api/acl/table/paged/learn_kylin/DEFAULT.KYLIN_SALES
+curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{"pageSize":10，"pageOffset":0 }' http://host:port/kylin/api/acl/table/paged/learn_kylin/DEFAULT.KYLIN_SALES
 ```
 
 #### Response Example
@@ -73,7 +73,7 @@ curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.
 
 #### Curl Request Example
 ```
-curl -X POST -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/acl/table/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN
+curl -X POST -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/acl/table/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN
 ```
 
 #### Response Example
@@ -101,7 +101,7 @@ curl -X POST -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apac
 
 #### Curl Request Example
 ```
-curl -X DELETE -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/acl/table/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN
+curl -X DELETE -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/acl/table/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN
 ```
 
 #### Response Example
@@ -137,7 +137,7 @@ curl -X DELETE -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.ap
 #### Curl Request Example
 
 ```
-curl -X POST -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json"  -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '[{"sid": "ACL_TEST", "principal": true}, {"sid": "ANALYST", "principal": true}]' http://host:port/kylin/api/acl/table/batch/acl_test/DEFAULT.TEST_ACCOUNT
+curl -X POST -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json"  -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '[{"sid": "ACL_TEST", "principal": true}, {"sid": "ANALYST", "principal": true}]' http://host:port/kylin/api/acl/table/batch/acl_test/DEFAULT.TEST_ACCOUNT
 ```
 
 #### Response Example

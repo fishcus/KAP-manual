@@ -35,7 +35,7 @@
 
 #### Curl Request Example
 ```
-curl -X GET -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{"pageSize":10，“pageOffset”:0 }' http://host:port/kylin/api/acl/column/paged/learn_kylin/DEFAULT.KYLIN_SALES
+curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{"pageSize":10，"pageOffset":0 }' http://host:port/kylin/api/acl/column/paged/learn_kylin/DEFAULT.KYLIN_SALES
 ```
 
 #### 响应示例
@@ -86,7 +86,7 @@ curl -X GET -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apach
 
 #### Curl Request Example
 ```
-curl -X POST -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '["YEAR_BEG_DT", "CAL_DT", "QTR_BEG_DT"]' http://host:port/kylin/api/acl/column/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN
+curl -X POST -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '["YEAR_BEG_DT", "CAL_DT", "QTR_BEG_DT"]' http://host:port/kylin/api/acl/column/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN
 ```
 
 #### 响应示例
@@ -132,7 +132,7 @@ ANALYST的取值为'LSTG_FORMAT_NAME'
 
 #### Curl Request Example
 ```
-curl -X POST -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "ADMIN": ["LSTG_FORMAT_NAME", "PART_DT"],"ANALYST": ["LSTG_FORMAT_NAME"]}' http://host:port/kylin/api/acl/column/batch/learn_kylin/user/DEFAULT.KYLIN_CAL_DT
+curl -X POST -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "ADMIN": ["LSTG_FORMAT_NAME", "PART_DT"],"ANALYST": ["LSTG_FORMAT_NAME"]}' http://host:port/kylin/api/acl/column/batch/learn_kylin/user/DEFAULT.KYLIN_CAL_DT
 ```
 
 #### 响应示例
@@ -170,7 +170,7 @@ curl -X POST -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apac
 
 #### Curl Request Example
 ```
-curl -X PUT -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '["YEAR_BEG_DT", "CAL_DT", "QTR_BEG_DT"]' http://host:port/kylin/api/acl/column/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN
+curl -X PUT -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '["YEAR_BEG_DT", "CAL_DT", "QTR_BEG_DT"]' http://host:port/kylin/api/acl/column/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN
 ```
 
 
@@ -199,7 +199,7 @@ curl -X PUT -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apach
 
 #### Curl Request Example
 ```
-curl -X DELETE -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/acl/column/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN
+curl -X DELETE -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/acl/column/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN
 ```
 
 #### 响应示例

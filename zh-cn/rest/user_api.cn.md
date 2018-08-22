@@ -34,7 +34,7 @@
 
 #### Curl 请求示例
 ```
-curl -X GET -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json"  -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/kap/user/users?pageSize=9&pageOffset=0&project=default
+curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json"  -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/kap/user/users?pageSize=9&pageOffset=0&project=default
 ```
 #### 响应示例
 ```json
@@ -130,7 +130,7 @@ curl -X GET -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apach
 
 #### Curl 请求示例
 ```
-curl -X POST -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "username":"test", "password":"KYLIN"，“disabled”:false，“authorities”:["ROLE_ADMIN"] }' http://host:port/kylin/api/kap/user/t
+curl -X POST -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "username":"test", "password":"KYLIN"，"disabled":false，"authorities":["ROLE_ADMIN"] }' http://host:port/kylin/api/kap/user/t
 ```
 #### 响应示例
 ```json
@@ -180,7 +180,7 @@ curl -X POST -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apac
 
 #### Curl 请求示例
 ```
-curl -X PUT -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "username":"test", "password":"KYLIN"，“disabled”:false，“authorities”:["ROLE_ADMIN"] }' http://host:port/kylin/api/kap/user/t
+curl -X PUT -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "username":"test", "password":"KYLIN"，"disabled":false，"authorities":["ROLE_ADMIN"] }' http://host:port/kylin/api/kap/user/t
 ```
 #### 响应示例
 ```json
@@ -220,5 +220,5 @@ curl -X PUT -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apach
 
 #### Curl 请求示例
 ```
-curl -X DELETE -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/kap/user/t
+curl -X DELETE -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/kap/user/t
 ```

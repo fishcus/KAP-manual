@@ -60,7 +60,7 @@
 
 #### Curl 请求示例
 ```
-curl -X GET -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{"pageSize":10，“pageOffset”:0 }' http://host:port/kylin/api/user_group/usersWithGroup?pageSize=9&pageOffset=0
+curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{"pageSize":10，"pageOffset":0 }' http://host:port/kylin/api/user_group/usersWithGroup?pageSize=9&pageOffset=0
 ```
 
 #### 响应示例
@@ -131,7 +131,7 @@ curl -X GET -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apach
 #### Curl 请求示例
 
 ```
-curl -X DELETE -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/user_group/g1
+curl -X DELETE -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/user_group/g1
 ```
 
 
@@ -152,7 +152,7 @@ curl -X DELETE -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.ap
 
 #### Curl 请求示例
 ```
-curl -X GET -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/user_group/groupMembers/ALL_USERS
+curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/user_group/groupMembers/ALL_USERS
 ```
 
 #### 响应示例
@@ -244,5 +244,5 @@ curl -X GET -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apach
 
 #### Curl 请求示例
 ```
-curl -X POST -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '["ADMIN","ANALYST","MODELER"]' http://host:port/kylin/api/user_group/users/g1
+curl -X POST -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '["ADMIN","ANALYST","MODELER"]' http://host:port/kylin/api/user_group/users/g1
 ```
