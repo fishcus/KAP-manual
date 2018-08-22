@@ -8,8 +8,9 @@
 	},
    "plugins": [
         "-disqus",
-        "search",
-        "-search-pro@1.0.7",
+        "-lunr",
+        "-search",
+        "search-pro",
         "github",
         "ace",
         "emphasize",
