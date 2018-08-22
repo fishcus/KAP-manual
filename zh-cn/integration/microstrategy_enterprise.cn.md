@@ -46,7 +46,7 @@ Kyligence目前支持 MicroStrategy Secure Enterprise 10.8及更高版本。
 
 #### 更新Intelligence Server上的数据类型映射
 
-1. 将 DTMAPPING.xslt 和 AddConnector.jar 复制到需要安装连接器的机器。
+1. 将 DTMAPPING 和 AddConnector.jar 复制到需要安装连接器的机器。
 
 2. 查找安装Intelligence Server的机器上的DTMAPPING.pds文件的位置
 
@@ -54,7 +54,7 @@ Kyligence目前支持 MicroStrategy Secure Enterprise 10.8及更高版本。
 
 3. 用 DTMAPPING.pds 所在的文件夹替换 <location> 并运行以下命令。
 
-   ``` java -jar AddConnector.jar --target <location>\DTMAPPING.pds --file DTMAPPING.xslt```
+   ``` java -jar AddConnector.jar --target <location>\DTMAPPING.pds --file DTMAPPING```
 
    > 注：运行该命令需要具有复制和修改现有 DTMAPPING.pds文件的权限。该命令将在 <location> 中创建原始 DTMAPPING.pds文件的备份。
 
@@ -64,7 +64,7 @@ Kyligence目前支持 MicroStrategy Secure Enterprise 10.8及更高版本。
 
 接下来需要在 MicrStrategy 集群中所有的 MicrStrategy Web 计算机中完成如下的配置：
 
-1. 将 DBproperties.xslt 文件和 AddConnector.jar 文件复制到运行MicroStrategy Web的机器。 并将文件的所在路径记为<location1>。
+1. 将 DBproperties 文件和 AddConnector.jar 文件复制到运行MicroStrategy Web的机器。 并将文件的所在路径记为<location1>。
 
 2. 找到DBProperties.xml文件的所在路径，并将此路径记为<location2>。
 
@@ -78,7 +78,7 @@ Kyligence目前支持 MicroStrategy Secure Enterprise 10.8及更高版本。
 3. 替换<location1>和<location2>，并执行如下命令：
 
   ```
-  java -jar <location1>\AddConnector.jar --target <location2>\DBProperties.xml --file <location2>\DBproperties.xsl
+  java -jar <location1>\AddConnector.jar --target <location2>\DBProperties.xml --file <location2>\DBproperties
   ```
 
   > 注：
