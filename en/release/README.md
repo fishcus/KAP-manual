@@ -1,10 +1,6 @@
 ## Kyligence Enterprise Release Notes
 
-This chapter records Kyligence Enterprise released versions and download information.
-
-Kyligence will provide migration tools to support the migration from *Apache Kylin* to Kyligence Enterprise and Kyligence Enterprise Plus.
-
-Continue reading
+This chapter records Kyligence Enterprise major released versions and download information.
 
 [Kyligence Enterprise 3.0 release notes](KAP_3_0_notes.en.md)
 
@@ -19,4 +15,3 @@ Continue reading
 [Kyligence Enterprise 2.1 release notes](KAP_2_1_notes.en.md)
 
 [Kyligence Enterprise 2.0 release notes](KAP_2_0_notes.en.md)
-

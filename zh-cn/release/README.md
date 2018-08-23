@@ -1,10 +1,6 @@
-## KAP 发行说明
+## Kyligence Enterprise 发行说明
 
-本章将记录Kyligence EnterpriseP发行版本更新记录及下载信息。
-
-发行包括标准企业版（Kyligence Enterprise），两个版本同步发行。Kyligence提供迁移工具，支持从Apache Kylin向Kyligence Enterprise迁移。
-
-继续阅读
+本章将记录 Kyligence Enterprise 主要发行版本更新记录及下载信息。
 
 [Kyligence Enterprise 3.0 发行说明](KAP_3_0_notes.cn.md)
 
