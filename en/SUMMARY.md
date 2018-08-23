@@ -182,14 +182,9 @@
     * [Cross Hadoop Cluster Migration](operation/cluster_migration.en.md)
     * [Hadoop Queue Configuration](operation/hadoop_queue.en.md)
 
-* [Kyligence Enterprise Release Notes](release/README.md)
+* [Release Notes](release/README.md)
     * [Kyligence Enterprise 3.0 Release Notes](release/KAP_3_0_notes.en.md)
-    * [Kyligence Enterprise 2.5 Release Notes](release/KAP_2_5_notes.en.md)
-    * [Kyligence Enterprise 2.4 Release Notes](release/KAP_2_4_notes.en.md)
-    * [Kyligence Enterprise 2.3 Release Notes](release/KAP_2_3_notes.en.md)
-    * [Kyligence Enterprise 2.2 Release Notes](release/KAP_2_2_notes.en.md)
-    * [Kyligence Enterprise 2.1 Release Notes](release/KAP_2_1_notes.en.md)
-    * [Kyligence Enterprise 2.0 Release Notes](release/KAP_2_0_notes.en.md)
+    * [Kyligence Enterprise Archived Release Notes](release/KAP_archive_notes.en.md)
 
 * [FAQ](faq/README.md)
 
