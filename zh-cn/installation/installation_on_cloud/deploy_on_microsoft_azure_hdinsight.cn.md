@@ -113,7 +113,7 @@ hive> CREATE EXTERNAL TABLE airline_data (
  TBLPROPERTIES('serialization.null.format'='','skip.header.line.count'='1');
 ```
 
-请将 contianer 和 storage-account 替换为您的存储账户信息。接下来就可以添加分区：
+请将 container 和 storage-account 替换为您的存储账户信息。接下来就可以添加分区：
 
 ```
 hive> ALTER TABLE airline_data ADD PARTITION (Part_year = '2015') location 'wasb://<container>@<storage-account>.blob.core.windows.net/airline/2015';

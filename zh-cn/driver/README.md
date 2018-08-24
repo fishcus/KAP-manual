@@ -6,4 +6,4 @@
 
 [Kyligence JDBC驱动](jdbc.cn.md)
 
-[Kyligence ODBC驱动](kyligence-odbc.cn.md)
+[Kyligence ODBC驱动](kyligence_odbc.cn.md)

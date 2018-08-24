@@ -1,9 +1,7 @@
 ## Cloud Deployment
 
-This chapter introduces the cloud deployment mode Kyligence Enterprise supports currently.
 
-Continue reading:
 
-[Deploying on Microsoft Azure HDInsight](deploy_on_microsoft_azure_hdinsight.en.md)
+Kyligence Enterprise can be quickly deployed in public cloud like Microsoft Azure, Amazon AWS, Alibaba Cloud, etc. With a cloud solution, you can move big data analytics to cloud platform, connect to various data sources and perform interactive analysis on huge amounts of data with sub-second query latency.
 
-[Deploying on Qingyun Cloud](deploy_on_qingcloud.md)
+For more information, please refer to [Kyligence Cloud user manual](http://docs.kyligence.io/books/cloud/en/index.html).

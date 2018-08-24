@@ -113,7 +113,7 @@ hive> CREATE EXTERNAL TABLE airline_data (
  TBLPROPERTIES('serialization.null.format'='','skip.header.line.count'='1');
 ```
 
-Please replace contianer and storage-account with your store account information. Then you can add partitions like this:
+Please replace container and storage-account with your store account information. Then you can add partitions like this:
 
 ```properties
 hive> ALTER TABLE airline_data ADD PARTITION (Part_year = '2015') location 'wasb://<container>@<storage-account>.blob.core.windows.net/airline/2015';
