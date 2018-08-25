@@ -1,8 +1,8 @@
 ## 从 KAP Plus 2.x 升级至 Kyligence Enterprise 3.x 最新版本 ##
 
-从 3.X 开始，Kyligence Analytics Platform (KAP) 正式改名为 Kyligence Enterprise。
+从 3.x 开始，Kyligence Analytics Platform (KAP) 正式改名为 Kyligence Enterprise。
 
-KAP Plus 2.X 与更高版本之间兼容元数据。因此在从 KAP Plus 2.X 升级至更高版本时，无需对元数据进行升级，只需要覆盖软件包、更新配置文件即可。
+KAP Plus 2.x 与更高版本之间兼容元数据。因此在从 KAP Plus 2.x 升级至更高版本时，无需对元数据进行升级，只需要覆盖软件包、更新配置文件即可。
 
 ### 升级准备工作 ###
 

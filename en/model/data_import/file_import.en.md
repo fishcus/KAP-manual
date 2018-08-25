@@ -26,7 +26,7 @@ For instance, a typical mapping of segment timeline is called "YYYYMMDD+Hour+Bat
 
 - Assume A is the 1st file in *6 am 2018-11-12*, it maps to range [2018111206000, 2018111206001)
 - Assume B is the 2nd file in *6 am 2018-11-12*, it maps to range [2018111206001, 2018111206002)
-- Assume C is the 1st file in 7 am 2018-11-12, it maps to range [2018111207000, 2018111207001)
+- Assume C is the 1st file in *7 am 2018-11-12*, it maps to range [2018111207000, 2018111207001)
 - Assume D is the 3rd file in *6 am 2018-11-12* (late coming), it maps to range [2018111206002, 2018111207003)
 
 Then, to merge all segments in the 6 am, that is A, B, and D, we just need to specify the merge range of [2018111206000, 2018111207000). Similarly, to merge all segments of date 2018-11-12, we just specify the merge range of [2018111200000, 2018111300000).
@@ -37,7 +37,7 @@ Then, to merge all segments in the 6 am, that is A, B, and D, we just need to sp
 
    * Create a new fact table in Hive. It is only for the description of data schema. Any data inside the fact table will be ignored.
 
-   * > Note: Please don't use partition column on this fact table, or it will cause problem to later data import.
+     > Note: Please don't use partition column on this fact table, or it will cause problem to later data import.
 
    * Prepare a few data files that can be loaded into the Hive fact table.
 
@@ -47,7 +47,7 @@ Then, to merge all segments in the 6 am, that is A, B, and D, we just need to sp
 
    * With the above Hive fact table, create a model as usual. Please refer to [the model design guide](../data_modeling.en.md) for more information.
 
-   * > Note: Please don't use lookup table in the model yet. It is not supported at the moment.
+     > Note: Please don't use lookup table in the model yet. It is not supported at the moment.
 
    * Create a cube base on the model above. Please refer to [the cube guide](../cube/create_cube.en.md) for more information.
 
@@ -60,7 +60,7 @@ Then, to merge all segments in the 6 am, that is A, B, and D, we just need to sp
 
 3. Import data
 
-4. * For cubes with file data import enabled, a new Rest API must be used to trigger build jobs. No data import is allowed from web GUI at the moment. Please refer to the Rest API documented below.
+   * For cubes with file data import enabled, a new Rest API must be used to trigger build jobs. No data import is allowed from web GUI at the moment. Please refer to the Rest API documented below.
    * Similarly, segment merge is also triggered via Rest API, please see the document below.
 
 ### Rest API: Build New Segment from Hive Data Files

@@ -2,7 +2,7 @@
 
 From 3.x, Kyligence Analytics Platform (KAP) renamed to Kyligence Enterprise.
 
-KAP 2.X shares compatible metadata with higher versions. Therefore, you can upgrade from KAP  2.X to higher versions by just overwriting the software package and updating configuration files.
+KAP 2.x shares compatible metadata with higher versions. Therefore, you can upgrade from KAP 2.x to higher versions by just overwriting the software package and updating configuration files.
 
 ### Preparation
 
