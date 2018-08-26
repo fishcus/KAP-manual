@@ -33,9 +33,10 @@
     * [Recommended Configuration](config/recommend_settings.en.md)
     * [Configuration Override](config/config_override.en.md)
     * [KyStorage Configuration](config/kystorage_settings.en.md)
-    * [JDBC Metastore Configuration](config/metastore_jdbc_settings.en.md)
+    * JDBC Metastore Configuration
         * [MySQL Metastore Configuration](config/metastore_jdbc_mysql.en.md)
         * [SQLServer Metastore Configuration](config/metastore_jdbc_sqlserver.en.md)
+        * [Migrate Metadata from HBase to Relational Database](config/migrate_metadata.en.md)
     * [Spark Dynamic Allocation](config/spark_dynamic_allocation.en.md)
     * [Use SparkSQL during Cube Build](config/use_sparksql_during_cube_build.en.md)
     * [Configure Spark Build Engine](config/spark_engine_conf.en.md)

@@ -1,26 +1,28 @@
-## Use JDBC to connect MySQL as metastore
+## Use MySQL as Metastore
 
+### Prerequisites
 
+1. Kyligence Enterprise  has prepared a 5.1.41 version of MySQL JDBC driver, which is contained in `$KYLIN_HOME/lib/kap-ext-{version}.jar `.
+2. If you are using a different version of the MySQL JDBC driver, please put the driver in `$KYLIN_HOME/ext/`.
 
-### Prepare JDBC Driver
+### Configuration Steps
 
-1. KAP has 5.4.1 version of MySQL JDBC driver that drives in the `$KYLIN_HOME/ext ` directory.
-2. If you are using another relational database , prepare the corresponding JDBC driver and place it in the `$KYLIN_HOME/ext` directory.
-3. If you are using a different version of the MySQL JDBC driver, replace the `$KYLIN_HOME/ext/mysql-connector-java-5.1.41.jar`.
+The following steps illustrate how to connect MySQL as metastore. Here is an example for MySQL 5.1.41.
 
-### Config metadata in the form of JDBC
+1. Create database `kylin` in MySQL
 
-Steps below are with the case of MYSQL:
+2. Set configuration item `kylin.metadata.url = {metadata_name}@jdbc` in `$KYLIN_HOME/conf/kylin.properties`,
+   please replace `{metadata_name}` with your metadata name in MySQL, for example, `kylin_default_instance@jdbc`. 
 
-1. Install KAP Plus
+   > If the metadata name doesn't exist, it will be automatically created it in MySQL. Otherwise, Kyligence Enterprise will use the existing ones.
 
-2. Create database `kylin` in MYSQL
+   For example: `kylin.metadata.url=kylin_default_instance@jdbc,url=jdbc:mysql://localhost:3306/kylin,username=root,password=,maxActive=10,maxIdle=10`. 
 
-3. In KAP's installation directory, set configuration item `kylin.metadata.url` of configuration file `$KYLIN_HOME/conf/kylin.properties` to `{metadata_name}@jdbc`,
-   replace `{metadata_name}` as user's metadata name, for example, `{metadata_name}@jdbc`. 
+   If you need to use MySQL cluster for load balance, please add the parameter in the connect string. For example,
 
-4. Set configuration items for JDBC, for example: `kylin.metadata.url=kylin_default_instance@jdbc,url=jdbc:mysql://localhost:3306/kylin,username=root,password=,maxActive=10,maxIdle=10`. 
-   All items are as below, configs for `url`, `username` and `password` must be set. For others, if not set, default values will be used:
+   `kylin.metadata.url=kylin_default_instance@jdbc,url=jdbc:mysql:loadbalance://host1:port1,host2:port2/kylin,username=root,password=root,maxActive=10,maxIdle=10` 
+
+   The meaning of each parameter is as below,  `url`, `username`, and `password` are required parameters. For others, default values will be used if they are not indicated.
 
      *url*: JDBC's url;
 
@@ -39,20 +41,19 @@ Steps below are with the case of MYSQL:
      *removeAbandoned*: whether remove timeout connection automatically, default value is `true`;
 
      *removeAbandonedTimeout*: timeout milliseconds, default value is `300`;
-     
+
      *passwordEncrypted*: whether JDBC's password is encrypted，default value is `false`；
-     
-5. Under directory `$KYLIN_HOME/tomcat/webapps/kylin/WEB-INF/lib`, run command `java -classpath kap.jar:spring-beans-4.3.10.RELEASE.jar:spring-core-4.3.10.RELEASE.jar:commons-codec-1.7.jar org.apache.kylin.rest.security.PasswordPlaceholderConfigurer AES <your_password>` to get the encrypted value
 
-6. Copy the JDBC connector jar to $KYLIN_HOME/ext
+3. To encrypt the password, you can run the following command in `$KYLIN_HOME/tomcat/webapps/kylin/WEB-INF/lib` 
 
-7. For metadta doesn't depend on HBase, user is required to add configuration item `kylin.env.zookeeper-connect-string` of configuration file `$KYLIN_HOME/conf/kylin.properties` to zookeeper's url and port. If the server of KAP installs zookeeper as well, it can be set as `kylin.env.zookeeper-connect-string=localhost:2181`
+   ```shell
+   java -classpath kap.jar:spring-beans-4.3.10.RELEASE.jar:spring-core-4.3.10.RELEASE.jar:commons-codec-1.7.jar org.apache.kylin.rest.security.PasswordPlaceholderConfigurer AES <your_password>
+   ```
 
-8. Start KAP
+4. It is required to add the zookeeper connection configuration `kylin.env.zookeeper-connect-string = host:port` in `$KYLIN_HOME/conf/kylin.properties` because the metadata has no dependency on HBase.
 
-### How to migrate metadata from HBase to JDBC
+5. Start Kyligence Enterprise
 
-1. Set configuration item `kylin.metadata.url` of configuration file `$KYLIN_HOME/conf/kylin.properties` to the HBase metadata to be migrated
-2. Run `$KYLIN_HOME/bin/metastore.sh backup` to backup metadata, and get the backup path
-3. Set the metadata's settings to JDBC
-4. Run `$KYLIN_HOME/bin/metastore.sh restore /path/to/backup` to restore metadata, for example `metastore.sh restore meta_backups/meta_2016_06_10_20_24_50`
+### How to Migrate Metadata from HBase to Relational Database
+
+For more details, please refer to [Migrate Metadata from HBase to Relational Database](./migrate_metadata.en.md)

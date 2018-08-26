@@ -1,47 +1,55 @@
-## 基于SQL Server的Metastore配置
+## 基于 SQL Server 的 Metastore 配置
 
-以下示例是 Kyligence Enterprise基于 SQL Server 2008 进行 Metastore 配置。
+### 准备工作
 
-### 将 metadata 从 HBase 迁移至关系型数据库
-
-迁移方法可参考：[将 metadata 从 HBase 迁移至关系型数据库](.\metastore_jdbc_move.cn.md)
+1. 核对运行环境的  Java 版本，准备相对应的 JDBC 驱动程序。
+2. 将相应的 SQL Server JDBC 驱动程序的 jar 包拷贝至 `$KYLIN_HOME/ext`  目录下。
 
 ### 配置方法
 
-以下为以 SQL Server 2008 作为 Metastore 的配置步骤：
+以下以 SQL Server 2008 为例说明配置步骤：
 1. 在 SQL Server 数据库中新建名为 `kylin` 的数据库。
 
-2. 在 Kyligence Enterprise 安装目录下的 `$KYLIN_HOME/conf/kylin.properties` 配置文件中，将 `kylin.metadata.url` 修改为用户的 metadata 数据表名，如 `kylin_default_instance@jdbc` 。如果表已存在，则会使用现有表；如果不存在，则会自动创建新表。
+2. 在 Kyligence Enterprise 安装目录下的 `$KYLIN_HOME/conf/kylin.properties` 配置文件中，配置 `kylin.metadata.url = {metadata_name}@jdbc`，`{metadata_name}` 需要替换为您需要的元数据表名，如 `kylin_default_instance@jdbc`。
 
-3. 设置 JDBC 连接字符串及其他配置项，完整例子如下：`kylin.metadata.jdbc.dialect=sqlserver` `kylin.metadata.url=kylin_default_instance@jdbc,url=jdbc:sqlserver://localhost:1433;database=kylin,username=sa,password=sa,driverClassName=com.microsoft.sqlserver.jdbc.SQLServerDriver,maxActive=10,maxIdle=10`  。
+   > 如果该表已存在，则会使用现有的表；如果不存在，则会自动创建该表。
 
-   配置项的含义如下，其中`url`，`username`和`password`为必须配置项，其余项若不配置将使用默认配置项：
+   具体示例如下：
 
-     *url*：JDBC 的url；
+   `kylin.metadata.jdbc.dialect=sqlserver` `kylin.metadata.url=kylin_default_instance@jdbc,url=jdbc:sqlserver://localhost:1433;database=kylin,username=sa,password=sa,driverClassName=com.microsoft.sqlserver.jdbc.SQLServerDriver,maxActive=10,maxIdle=10`  。
 
-     *username*：JDBC 的用户名；
+   各配置项的含义如下，其中 `url`，`username` 和 `password` 为必须配置项，其余项若不配置将使用默认配置值：
 
-     *password*：JDBC 的密码；
+     **url**：JDBC 的 url；
 
-     *driverClassName*：JDBC 的 driver 类名，默认值为 `com.mysql.jdbc.Driver`；
+     **username**：JDBC 的用户名；
 
-     *maxActive*：最大数据库连接数，默认值为 `5`；
+     **password**：JDBC 的密码；
 
-     *maxIdle*：最大等待中的连接数量，默认值为 `5`；
+     **driverClassName**：JDBC 的 driver 类名，默认值为 `com.mysql.jdbc.Driver`；
 
-     *maxWait*：最大等待连接毫秒数，默认值为 `1000`；
+     **maxActive**：最大数据库连接数，默认值为 `5`；
 
-     *removeAbandoned*：是否自动回收超时连接，默认值为 `true`；
+     **maxIdle**：最大等待中的连接数量，默认值为 `5`；
 
-     *removeAbandonedTimeout*：超时时间秒数，默认为 `300`；
-   
-     *passwordEncrypted*: 是否对JDBC密码进行了加密，默认为 `false`；
-   
-4. 对JDBC的密码进行加密方法为：在`$KYLIN_HOME/tomcat/webapps/kylin/WEB-INF/lib`目录下运行`java -classpath kap.jar:spring-beans-4.3.10.RELEASE.jar:spring-core-4.3.10.RELEASE.jar:commons-codec-1.7.jar org.apache.kylin.rest.security.PasswordPlaceholderConfigurer AES <your_password>`
+     **maxWait**：最大等待连接毫秒数，默认值为 `1000`；
 
-5. 核对运行环境 Java 版本，准备相对应的 JDBC 驱动程序，如：对应 JRE7 的SQL Server JDBC 驱动程序为 `sqljdbc41.jar` ， 并将相对应的 SQL Server JDBC 驱动程序的 Jar 包拷贝至 `$KYLIN_HOME/ext`  目录下。
+     **removeAbandoned**：是否自动回收超时连接，默认值为 `true`；
 
-6. 由于 metadata 不依赖于 Hbase，所以需要在配置文件 `$KYLIN_HOME/conf/kylin.properties` 中添加 zookeeper 的连接项 `kylin.env.zookeeper-connect-string`，若部署 Kyligence Enterprise 的 server 同时部署有zookeeper，可配置为 `kylin.env.zookeeper-connect-string=localhost:2181` 。
+     **removeAbandonedTimeout**：超时时间秒数，默认为 `300`；
 
-7. 启动Kyligence Enterprise。
+     **passwordEncrypted**: 是否对 JDBC 密码进行加密，默认为 `false`；
 
+3. 如果您需要对 JDBC 的密码进行加密，请在 `$KYLIN_HOME/tomcat/webapps/kylin/WEB-INF/lib` 目录下运行如下命令：
+
+   ```shell
+   java -classpath kap.jar:spring-beans-4.3.10.RELEASE.jar:spring-core-4.3.10.RELEASE.jar:commons-codec-1.7.jar org.apache.kylin.rest.security.PasswordPlaceholderConfigurer AES <your_password>
+   ```
+
+4. 由于元数据不依赖于 HBase，所以需要在配置文件 `$KYLIN_HOME/conf/kylin.properties` 中添加 zookeeper 的连接项 `kylin.env.zookeeper-connect-string= host:port `。
+
+5. 启动Kyligence Enterprise。
+
+### 将元数据从 HBase 迁移至关系型数据库
+
+迁移方法可参考：[将元数据从 HBase 迁移至关系型数据库](.\metastore_jdbc_move.cn.md)
