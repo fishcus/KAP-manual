@@ -2,8 +2,9 @@
 
 > **Tip**
 >
-> Before using API, please make sure that you have read the Access and Authentication in advance and know how to add verification information. 
+> Before using API, make sure that you read the previous chapter of [Access and Authentication](authentication.en.md), and know how to add authentication information in API.
 >
+> If there exists `&` in your request path, please enclose the URL in quotation marks `""` or add a backslash ahead  `\&`  to avoid being escaped.
 
 
 * [List Model](#list-model)
@@ -29,11 +30,11 @@
 * projectName - `optional` `string`, specify the returned project.
 
 #### Request Example
-`请求路径:http://host:port/kylin/api/models?projectName=test&pageSize=10&pageOffset=0`
+`Request Path: "http://host:port/kylin/api/models?projectName=test&pageSize=10&pageOffset=0"`
 
 #### Curl request Example
 ```
-curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json"  http://host:port/kylin/api/models?projectName=test&pageSize=10&pageOffset=0
+curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json"  "http://host:port/kylin/api/models?projectName=test&pageSize=10&pageOffset=0"
 ```
 
 #### Response Example
@@ -109,14 +110,14 @@ curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.
 
 `Accepe: application/vnd.apache.kylin-v2+json`
 
-#### 路径变量
+#### Path Variable
 
-- projectName - `必选` `string` 返回该项目下的model. 
-- modelName - `必选` `string` 数据模型名称.
+- projectName - `required` `string` project name
+- modelName -  `required ` `string`  model name
 
 #### Request Example
 
-`请求路径: http://host:port/kylin/api/model_desc/your_project/your_model`
+`Request Path: http://host:port/kylin/api/model_desc/your_project/your_model`
 
 #### Response Example
 

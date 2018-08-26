@@ -2,16 +2,16 @@
 
 > **Tip**
 >
-> Before using API, please make sure that you have read the Access and Authentication in advance and know how to add verification information. 
+> Before using API, make sure that you read the previous chapter of [Access and Authentication](authentication.en.md), and know how to add authentication information in API.
 >
+> If there exists `&` in your request path, please enclose the URL in quotation marks `""` or add a backslash ahead  `\&`  to avoid being escaped.
 
-If users access dataset built by KAP, mainly there are two API, one is querying data from Cube, another one is listing all available tables.
+If users access dataset built by Kyligence Enterprise, mainly there are two API, one is querying data from cube, another one is listing all available tables.
 
-* Query
-   * [Query Cube](#query-data-from-cube)
-   * [List queryable tables](#list-queryable-tables)
+* [Query Cube](#query-data-from-cube)
+* [List queryable tables](#list-queryable-tables)
 
-## Query Data from Cube
+### Query Data from Cube
 `Request Mode POST`
 
 `Access Path http://host:port/kylin/api/query`
@@ -140,7 +140,7 @@ curl -X POST -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apa
 ```
 
 
-## List Queryable Tables
+### List Queryable Tables
 `Request Mode GET`
 
 `Access Path http://host:port/kylin/api/tables_and_columns`

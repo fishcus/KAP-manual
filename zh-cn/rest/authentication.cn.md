@@ -63,15 +63,27 @@ $.ajaxSetup({
 
 ### Curl 示例
 
-通过curl进行认证
+通过 Curl 进行认证
 
 ```
 curl -X POST -H 'Authorization: Basic XXXXXXXXX' -H  'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/user/authentication
 ```
 
-通过API访问时添加认证信息
+通过 API 访问时添加认证信息
 
 ```
 curl -X PUT -H 'Authorization: Basic XXXXXXXXX' -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{"startTime":'1423526400000', "endTime":'1423626400000', "buildType":"BUILD", "mpValues":""}' http://host:port/kylin/api/cubes/your_cube/segments/build
+```
+
+需要注意的是，当您的访问路径中含有 `&` 符号时，请在 URL 两端加上引号`""`，例如 ：
+
+```
+curl -X GET -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json"  -H "Content-Type:application/vnd.apache.kylin-v2+json" "http://host:port/kylin/api/kap/user/users?pageSize=9&pageOffset=0&project=default"
+```
+
+或者在 `&` 符号前加入反斜杠 `\ `来避免转义，例如：
+
+```
+curl -X GET -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json"  -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/kap/user/users?pageSize=9\&pageOffset=0\&project=default
 ```
 

@@ -1,8 +1,9 @@
 ## Metadata REST API
 > **Tip**
 >
-> Before using API, please make sure that you have read the Access and Authentication in advance and know how to add verification information. 
+> Before using API, make sure that you read the previous chapter of [Access and Authentication](authentication.en.md), and know how to add authentication information in API.
 >
+> If there exists `&` in your request path, please enclose the URL in quotation marks `""` or add a backslash ahead  `\&`  to avoid being escaped.
 
 
 * [Get multiple Hive tables](#get-multiple-hive-tables)
@@ -24,11 +25,11 @@
 * ext - `optional` `boolean`, specify if table's extension information is returned.
 
 #### Request Example
-`请求路径:http://host:port/kylin/api/tables?project=learn_kylin&ext=true`
+`Request Path: "http://host:port/kylin/api/tables?project=learn_kylin&ext=true"`
 
 #### Curl Request Example
 ```
-curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json"  -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/tables?project=learn_kylin&ext=true
+curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json"  -H "Content-Type:application/vnd.apache.kylin-v2+json" "http://host:port/kylin/api/tables?project=learn_kylin&ext=true"
 ```
 
 #### Response Example

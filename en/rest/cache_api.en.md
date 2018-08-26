@@ -2,8 +2,9 @@
 
 > **Tip**
 >
-> Before using API, please make sure that you have read the Access and Authentication in advance and know how to add verification information. 
+> Before using API, make sure that you read the previous chapter of [Access and Authentication](authentication.en.md), and know how to add authentication information in API.
 >
+> If there exists `&` in your request path, please enclose the URL in quotation marks `""` or add a backslash ahead  `\&`  to avoid being escaped.
 
 
 ### Purge Cluster Cache

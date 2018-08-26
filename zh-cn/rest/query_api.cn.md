@@ -2,14 +2,14 @@
 
 > **提示**
 >
-> 使用API前请确保已阅读前面的**访问及安全认证**章节，知道如何在API中添加认证信息。
+> 使用 API 前请确保已阅读前面的[访问及安全认证](authentication.cn.md)章节，知道如何在 API 中添加认证信息。
 >
+> 当您的访问路径中含有 `&` 符号时，请在 URL 两端加上引号`""` 或者添加反斜杠来避免转义 `\&`。
 
 访问Kyligence Enterprise构建的数据集，主要两个API，一个是直接查询Cube数据，一个是列出所有可以查询的表。
 
-* 查询
-   * [查询Cube数据](#查询cube数据)
-   * [列出可查询的表](#列出可查询的表)
+* [查询Cube数据](#查询cube数据)
+* [列出可查询的表](#列出可查询的表)
 
 
 ### 查询Cube数据
@@ -695,5 +695,3 @@ curl -X POST -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apa
 ```
 curl -X GET -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/tables_and_columns?project=your_project
 ```
-
-### 

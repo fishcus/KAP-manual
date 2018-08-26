@@ -2,7 +2,9 @@
 
 > **Tip**
 >
-> Before using API, please make sure that you have read the previous chapter of *Access and Authentication* in advance and know how to add verification information in API. 
+> Before using API, make sure that you read the previous chapter of [Access and Authentication](authentication.en.md), and know how to add authentication information in API.
+>
+> If there exists `&` in your request path, please enclose the URL in quotation marks `""` or add a backslash ahead  `\&`  to avoid being escaped.
 
 
 * [Get All Users](#get-all-users)
@@ -27,11 +29,11 @@
 * pageSize - `optional` `int`
 
 #### Request Example
-`Request Path: http://host:port/kylin/api/kap/user/users?pageSize=9&pageOffset=0&project=default`
+`Request Path: "http://host:port/kylin/api/kap/user/users?pageSize=9&pageOffset=0&project=default"`
 
 #### Curl Request Example
 ```
-curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/kap/user/users?pageSize=9&pageOffset=0&project=default
+curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" "http://host:port/kylin/api/kap/user/users?pageSize=9&pageOffset=0&project=default"
 ```
 
 #### Response Example

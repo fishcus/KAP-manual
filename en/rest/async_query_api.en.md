@@ -2,8 +2,9 @@
 
 > **Tip**
 >
-> Before using API, make sure that you read the previous chapter of access and security authentication, and know how to add authentication information in API.
+> Before using API, make sure that you read the previous chapter of [Access and Authentication](authentication.en.md), and know how to add authentication information in API.
 >
+> If there exists `&` in your request path, please enclose the URL in quotation marks `""` or add a backslash ahead  `\&`  to avoid being escaped.
 * [Asyn Query](#Asyn Query)
 * [Query Status](#Query Status)
 * [Query Metadata Info](#Query Metadata Info)

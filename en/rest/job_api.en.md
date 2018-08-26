@@ -2,8 +2,9 @@
 
 > **Tip**
 >
-> Before using API, please make sure that you have read the Access and Authentication in advance and know how to add verification information. 
+> Before using API, make sure that you read the previous chapter of [Access and Authentication](authentication.en.md), and know how to add authentication information in API.
 >
+> If there exists `&` in your request path, please enclose the URL in quotation marks `""` or add a backslash ahead  `\&`  to avoid being escaped.
 
 
 * [Resume Job](#resume-job)
@@ -304,7 +305,7 @@ curl -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kyli
 
 #### Request Example
 
-`Request Path: http://host:port/kylin/api/jobs?status=&pageOffset=0&pageSize=10&projectName=TEST&timeFilter=1&jobName=&sortby=last_modify`
+`Request Path: "http://host:port/kylin/api/jobs?status=&pageOffset=0&pageSize=10&projectName=TEST&timeFilter=1&jobName=&sortby=last_modify"`
 
 #### Response Sample
 
@@ -373,6 +374,6 @@ curl -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kyli
 #### Curl Example
 
 ```
-curl -X GET -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json'  -H "Content-Type:application/vnd.apache.kylin-v2+json"  http://host:port/kylin/api/jobs?timeFilter=1&pageOffset=0&pageSize=10&status=&projectName=your_project&jobName=&sortby=last_modify
+curl -X GET -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json'  -H "Content-Type:application/vnd.apache.kylin-v2+json"  "http://host:port/kylin/api/jobs?timeFilter=1&pageOffset=0&pageSize=10&status=&projectName=your_project&jobName=&sortby=last_modify"
 ```
 

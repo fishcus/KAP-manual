@@ -1,19 +1,19 @@
 ## Access and Authentication
 
 ### Access information
-The access prefix of KAP API is "/kylin/api". This prefix is required regardless of which module API is accessed,  such as accessing all cubes whose APIs are "/kylin/api/cubes", and correspondingly the complete path is http://host:port/kylin/api/cubes.
+The access prefix of Kyligence Enterpriese API is "/kylin/api". This prefix is required regardless of which module API is accessed,  such as accessing all cubes whose APIs are "/kylin/api/cubes", and correspondingly the complete path is http://host:port/kylin/api/cubes.
 
 
 ### Authentication
-All APIs in KAP are based on [basic authentication](http://en.wikipedia.org/wiki/Basic_access_authentication) authentication mechanism. Basic Authentication is a simple access control mechanism, which encodes account and password information based on Base64, and add these information as request headers to HTTP request headers, then the back-end will read account information from the request header for authentication. Take KAP default account password ADMIN:KYLIN as an example, after encoding, the corresponding account password would be "Basic QURNSU46S1lMSU4 =", so the corresponding HTTP header information is "Authorization: Basic QURNSU46S1lMSU4 =". 
+All APIs in Kyligence Enterprise are based on [basic authentication](http://en.wikipedia.org/wiki/Basic_access_authentication) authentication mechanism. Basic Authentication is a simple access control mechanism, which encodes account and password information based on Base64, and add these information as request headers to HTTP request headers, then the back-end will read account information from the request header for authentication. Take Kyligence Enterprise default account password ADMIN:KYLIN as an example, after encoding, the corresponding account password would be "Basic QURNSU46S1lMSU4 =", so the corresponding HTTP header information is "Authorization: Basic QURNSU46S1lMSU4 =". 
 
 ### Authentication essentials
 * Add `Authorization` to HTTP header
 * Or users could get authorization through `POST http://localhost:7070/kylin/api/user/authentication` . Once the authentication passes, the authentication information would be stored in cookie files for the following visit. 
 
-`请求方式 POST`
+`Request Mode: POST`
 
-`访问路径 http://host:port/kylin/api/user/authentication `
+`Request Path: http://host:port/kylin/api/user/authentication `
 
 `Authorization:Basic xxxxJD124xxxGFxxxSDF`
 
@@ -23,7 +23,7 @@ All APIs in KAP are based on [basic authentication](http://en.wikipedia.org/wiki
 
 Here we use javascript and curl as examples to introduce how to add authentication information when accessing the API. 
 
-## Query API Example
+### Query API Example
 ```
 $.ajaxSetup({
       headers: { 
@@ -60,7 +60,7 @@ $.ajaxSetup({
 });
 ```
 
-## Curl Example
+### Curl Example
 
 Using curl to get authorization:
 
@@ -74,3 +74,14 @@ Adding authorization information when using api to get access:
 curl -X PUT -H 'Authorization: Basic XXXXXXXXX' -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{"startTime":'1423526400000', "endTime":'1423626400000', "buildType":"BUILD", "mpValues":""}' http://host:port/kylin/api/cubes/your_cube/segments/build
 ```
 
+If there is a  `&` symbol in your request path, please enclose the URL in quotation marks `""`. For example:
+
+```
+curl -X GET -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json"  -H "Content-Type:application/vnd.apache.kylin-v2+json" "http://host:port/kylin/api/kap/user/users?pageSize=9&pageOffset=0&project=default"
+```
+
+You can also add a backslash `\` in front of the `&` symbol to avoid being escaped. For example:
+
+```
+curl -X GET -H "Authorization: Basic xxxxxx" -H “Accept: application/vnd.apache.kylin-v2+json"  -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/kap/user/users?pageSize=9\&pageOffset=0\&project=default
+```

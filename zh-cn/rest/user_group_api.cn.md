@@ -2,8 +2,9 @@
 
 > **提示**
 >
-> 使用API前请确保已阅读前面的**访问及安全认证**章节，知道如何在API中添加认证信息。
+> 使用 API 前请确保已阅读前面的[访问及安全认证](authentication.cn.md)章节，知道如何在 API 中添加认证信息。
 >
+> 当您的访问路径中含有 `&` 符号时，请在 URL 两端加上引号`""` 或者添加反斜杠来避免转义 `\&`。
 
 
 * [获取所有用户组](#获取所有用户组)
@@ -56,11 +57,11 @@
 * pageSize - `可选` `int`
 
 #### 请求示例
-`请求路径:http://host:port/kylin/api/user_group/usersWithGroup?pageSize=9&pageOffset=0`
+`请求路径: "http://host:port/kylin/api/user_group/usersWithGroup?pageSize=9&pageOffset=0"`
 
 #### Curl 请求示例
 ```
-curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{"pageSize":10，"pageOffset":0 }' http://host:port/kylin/api/user_group/usersWithGroup?pageSize=9&pageOffset=0
+curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{"pageSize":10，"pageOffset":0 }' "http://host:port/kylin/api/user_group/usersWithGroup?pageSize=9&pageOffset=0"
 ```
 
 #### 响应示例

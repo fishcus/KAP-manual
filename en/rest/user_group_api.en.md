@@ -2,7 +2,9 @@
 
 > **Tip**
 >
-> Before using API, please make sure that you have read the previous chapter of *Access and Authentication* in advance and know how to add verification information in API. 
+> Before using API, make sure that you read the previous chapter of [Access and Authentication](authentication.en.md), and know how to add authentication information in API.
+>
+> If there exists `&` in your request path, please enclose the URL in quotation marks `""` or add a backslash ahead  `\&`  to avoid being escaped.
 
 
 * [Get All User Groups](#get-all-user-groups)
@@ -60,11 +62,11 @@ curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.
 * pageSize - `optional` `int`
 
 #### Request Example
-`Request Path:http://host:port/kylin/api/user_group/usersWithGroup?pageSize=9&pageOffset=0`
+`Request Path: "http://host:port/kylin/api/user_group/usersWithGroup?pageSize=9&pageOffset=0"`
 
 #### Curl Request Example
 ```
-curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{"pageSize":10，"pageOffset":0 }' http://host:port/kylin/api/user_group/usersWithGroup?pageSize=9&pageOffset=0
+curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{"pageSize":10，"pageOffset":0 }' "http://host:port/kylin/api/user_group/usersWithGroup?pageSize=9&pageOffset=0"
 ```
 
 
