@@ -31,7 +31,7 @@ URL参数说明如下：
 
 * &lt;user&gt;: 	登陆服务实例的用户名
 * &lt;password&gt;: 登陆服务实例的密码
-* &lt;ssl&gt;: 是否开启SSL， 值为布尔型 true/false. 默认为false，如果是true，所有Kyligence的访问都将基于HTTPS
+* &lt;ssl&gt;: 是否开启SSL， 值为String类型的"true"或"false"， 默认为"false"。如果是"true"，所有Kyligence的访问都将基于HTTPS
 
 JAVA配置连接样例：
 

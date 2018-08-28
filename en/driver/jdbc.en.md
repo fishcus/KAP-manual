@@ -17,7 +17,7 @@ Besides, users need to specify username, password and whether SSL would be true 
 
 * &lt;user&gt;: username to login KAP service
 * &lt;password&gt;: password to login KAP service
-* &lt;ssl&gt;: true/false. Default is false, if it is true, all accesses to KAP are based on HTTPS
+* &lt;ssl&gt;: enable ssl parameter. Set up string type "true" / "false", the default setting for this parameter  is "false". If the value is "true", all accesses to KAP are based on HTTPS
 
 Here lists an example of Connection: 
 
