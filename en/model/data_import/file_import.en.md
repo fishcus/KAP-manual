@@ -20,7 +20,7 @@ This method of data import can reduce data delay to a few minutes. It enables ne
 
 Technically, this feature is a variant of the normal Hive data import. First, user creates model and cube based on Hive tables as usual. The new data files that upstream sends over must match the Hive table schema defined by the model fact table. During data import, the system will clone a new temporary table from the model fact table, and mount the new data files under it. The temporary Hive table is then used in place of the model fact table for the rest of data loading. Throughout the whole process, the data in the model fact table is ignored. The mere purpose of the model fact table is to define the data schema for new data files.
 
-Another key point is that, user is responsible to map data files to the **Segment Timeline** and continuously merge small segments by calling rest APIs provided by the system. Like normal Hive data import, every segment needs a clear start time and end time, which is its **Segment Range**. Multiple segment ranges connect together and form a timeline. The same concept applies to file based data import. The only difference is that the system will rely on user to specify the segment range of new data files.
+Another key point is that, user is responsible for map data files to the **Segment Timeline** and continuously merge small segments by calling rest APIs provided by the system. Like normal Hive data import, every segment needs a clear start time and end time, which is its **Segment Range**. Multiple segment ranges connect together and form a timeline. The same concept applies to file based data import. The only difference is that the system will rely on user to specify the segment range of new data files.
 
 For instance, a typical mapping of segment timeline is called "YYYYMMDD+Hour+BatchNum", which is a segment range format made up of 13 digits. Like the samples below, the first 10 digits represent year, month, day, and hour. The last 3 digits represent the batch number within the hour.
 
@@ -33,7 +33,7 @@ Then, to merge all segments in the 6 am, that is A, B, and D, we just need to sp
 
 ### Usage
 
-1. Prepare data files
+1. Prepare Data Files
 
    * Create a new fact table in Hive. It is only for the description of data schema. Any data inside the fact table will be ignored.
 
@@ -43,13 +43,13 @@ Then, to merge all segments in the 6 am, that is A, B, and D, we just need to sp
 
    * As a test, try copy the data files to the storage location of the Hive table, then query from Hive command line. The query result should contain the records from the data files.
 
-2. Create model and cube
+2. Create Model and Cube
 
    * With the above Hive fact table, create a model as usual. Please refer to [the model design guide](../data_modeling.en.md) for more information.
 
      > Note: Please don't use lookup table in the model yet. It is not supported at the moment.
 
-   * Create a cube base on the model above. Please refer to [the cube guide](../cube/create_cube.en.md) for more information.
+   * Create a cube based on the model above. Please refer to [the cube guide](../cube/create_cube.en.md) for more information.
 
    * To enable data import by files on the cube, add the following to the cube's advanced settings.
 
@@ -58,7 +58,7 @@ Then, to merge all segments in the 6 am, that is A, B, and D, we just need to sp
      ```
      > Note: Please replace the `{KE-install-dir}` in the above example with the install location of Kyligence Enterprise. The `file-incr-load-prepare-hive.sh` will be called at the beginning of data import. In this script, a new temporary Hive table will be cloned from the model fact table and under which the given data files will be mounted.
 
-3. Import data
+3. Import Data
 
    * For cubes with file data import enabled, a new Rest API must be used to trigger build jobs. No data import is allowed from web GUI at the moment. Please refer to the Rest API documented below.
    * Similarly, segment merge is also triggered via Rest API, please see the document below.
@@ -182,9 +182,9 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/js
 }
 ```
 
-### Rest API: Merge Segment using Custom Range
+### Rest API: Merge Segment using Customized Range
 
-Specify a custom range to merge segment.
+Specify a customized range to merge segments.
 
 * `PUT http://host:port/kylin/api/cubes/{cubeName}/segments/build_by_files`
 * HTTP Header
