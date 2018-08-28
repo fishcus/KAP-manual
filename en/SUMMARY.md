@@ -49,9 +49,12 @@
 
 * [Upgrade](upgrade/README.md)
     * [Upgrading from Apache Kylin](upgrade/upgrade_kylin.en.md)
-    * [Upgrading from Kyligence Enterprise](upgrade/upgrade_kapp.en.md)
+
+    * [Upgrading from KAP Plus 2.x to Kyligence Enterprise 3.x](upgrade/upgrade_kapp.en.md)
+
+      [Upgrading from Kyligence Enterprise 3.x to Latest Version](upgrade/upgrade_ke3.x.en.md)
+
     * [Installing Hotfix Patch](upgrade/upgrade_patch.en.md)
-    * [Failure Rollback](upgrade/rollback.en.md)
 
 * [Modeling](model/README.md)
     * [Sample Data Set](model/sample_dataset.en.md)

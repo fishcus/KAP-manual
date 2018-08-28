@@ -6,9 +6,9 @@
 
 [Apache Kylin升级](upgrade_kylin.cn.md)
 
-[Kyligence Enterprise 升级](upgrade_kapp.cn.md)
+[从 KAP Plus 2.x 升级至 Kyligence Enterprise 3.x 最新版本](upgrade_kapp.cn.md)
+
+[从 Kyligence Enterprise 3.x 升级至最新版本](upgrade_ke3.x.cn.md)
 
 [补丁包修复](upgrade_patch.cn.md)
-
-[升级失败的处理](rollback.cn.md)
 

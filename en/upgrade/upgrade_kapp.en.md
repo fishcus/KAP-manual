@@ -65,11 +65,16 @@ KAP 2.x shares compatible metadata with higher versions. Therefore, you can upgr
      $KYLIN_HOME/bin/kylin.sh org.apache.kylin.tool.AclTableMigrationCLI MIGRATE
      ```
 
-5. If your cluster is based on JDK 7
+5. If the Redis cluster is used to share sessions in your [cluster deployment](../install/adv_install_lb.en.md),  please do the following steps:
+
+   - Copy the Redis jar packages to `$KYLIN_HOME/tomcat/lib` from your exisiting files.
+   - Overwrite the  `$KYLIN_HOME/tomcat/content.xml` by copying from your existing configuration files.
+
+6. If your cluster is based on JDK 7
 
    Please follow the steps in "[How to Run Kyligence Enterprise on Lower Version JDK](../install/about_low_version_jdk.en.md)".
 
-6. Start Kyligence Enterprise
+7. Start Kyligence Enterprise
 
    During the first start, cube and segment will be upgraded automatically. The upgrade time depends on your data size, which could last for 1 hour or longer.
 
@@ -83,7 +88,7 @@ KAP 2.x shares compatible metadata with higher versions. Therefore, you can upgr
    Segments have been upgraded successfully.
    ```
 
-7. Till now, the uprade is done.
+8. Till now, the uprade is done.
 
    The backup data including old installation files and metadata can be safely deleted. 
 
@@ -154,5 +159,3 @@ If you have backup of the KAP installation directory and metadata, you could rol
   ```shell
   $KYLIN_HOME/bin/kylin.sh start
   ```
-
-  

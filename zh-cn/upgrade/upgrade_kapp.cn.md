@@ -63,11 +63,16 @@ KAP Plus 2.x 与更高版本之间兼容元数据。因此在从 KAP Plus 2.x �
      $KYLIN_HOME/bin/kylin.sh org.apache.kylin.tool.AclTableMigrationCLI MIGRATE
      ```
 
-5. 如果您的 Hadoop 集群为 JDK 7
+5. 如果当前部署方式为[通过 Redis 共享信息的集群部署](../installation/advancing_installation/advancing_installation_load_balance.cn.md)，您还需要进行以下操作：
+
+   - 将老版本中 `$KYLIN_HOME/tomcat/lib/` 目录下 Redis 相关 jar 包拷贝到新版本对应的位置。
+   - 将老版本中 `$KYLIN_HOME/tomcat/context.xml` 文件拷贝并覆盖到新版本对应的位置。
+
+6. 如果您的 Hadoop 集群为 JDK 7
 
    请执行 [如何在低版本 JDK 上运行 Kyligence Enterprise](../installation/about_low_version_jdk.cn.md) 中的配置步骤。
 
-6. 启动 Kyligence Enterprise。
+7. 启动 Kyligence Enterprise。
 
    在第一次启动过程中，Kyligence Enterprise 会对 Cube 和 Segment 进行自动升级。升级时间取决于您的数据大小，可能达到一个小时或更久。
 
@@ -80,7 +85,7 @@ KAP Plus 2.x 与更高版本之间兼容元数据。因此在从 KAP Plus 2.x �
    Segments have been upgraded successfully.
    ```
 
-7. 至此升级成功。
+8. 至此升级成功。
 
    之前备份的 KAP 安装目录和元数据可以安全删除。
 
