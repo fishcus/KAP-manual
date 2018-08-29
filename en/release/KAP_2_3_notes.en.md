@@ -59,4 +59,4 @@ Support asynchronous query request, check query schedule and export 10 million l
 
 [http://kyligence.io/kyligence-analytics-platform/](http://kyligence.io/kyligence-analytics-platform/)
 
-
+Release Notes
