@@ -10,7 +10,7 @@
         "-disqus",
         "-lunr",
         "-search",
-        "search-pro",
+        "search-pro-kui",
         "github",
         "ace",
         "emphasize",
@@ -30,11 +30,6 @@
         "github": {
             "url": "https://github.com/Kyligence-git/kap-manual"
         },
-        "search-pro": {
-            "cutWordLib": "nodejieba",
-            "defineWord": ["kyligence manual"]
-         },
-        
         "sharing": {
             "weibo": true,
             "facebook": true,
