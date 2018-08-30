@@ -1,70 +1,95 @@
+## Integration with Tableau
 
-## Integration with Tableau 
+Tableau is one of the most popular business intelligence application. It is very easy to utilize by draging and droping feature which user can simply  interactive data visualization and generate story or reports. 
 
-### Install Kyligence ODBC Driver
+This section will introduct  two methods available to connect Tableau with Kyligence Enterprise.
 
-For the installation information, please refer to [Kyligence ODBC Driver tutorial](../driver/kyligence_odbc.en.md).
+- Quick Sync up model by using  import/export function
+- Manually build mapping model 
 
-### Connect to Kylin Server
-Connect Using Driver: Start Tableau 10.1 desktop, click `Other Database(ODBC)` in the left panel and choose `Kyligence ODBC Driver` in the pop-up window. 
+### Prerequises
 
+- Install the Kyligence ODBC driver
 
-![](images/tableau_10/1_en.png)
+> Tips: Instructions refer to [Kyligence ODBC Driver tutorial](../driver/kyligence_odbc.en.md).
 
-Click `Connect` button and input the server information, then click `ok`.
+- To support detail data query, you need config table index or push down.
 
-![](images/tableau_10/2_en.png)
+### Method 1: Quick sync up model by using  TDS import/export function
 
+After modeling and creating cube, user can export tableau model definition file,
 
-### Mapping Data Model
-In left panel, select `defaultCatalog` as Database, click `Search` button in Table search box, and all tables get listed. Drag the table to right side, then you can add this table as your data source and edit relation between tables(mapping information is shown in figure).
+> Remark: Supported from Kyligence Enterprise 3.0.1 version
 
-**NOTE: Tableau will send query "select \* from fact\_table" and it'll take a long time if the table size is extremely large. To work around the issue please refer to [Configuration](../config/basic_settings.en.md#kylinqueryforce-limit)**
+The following detail steps required :
 
-![](images/tableau_10/step5_en.png)
+1. Export Tableau Data source(TDS) file from Kyligence Enterprise
 
+   - Under **Model** >**Cube** module
+   - Select a **Ready** Cube
+   - Click **More Action** icon, Select **Export TDS** option
 
-### Connect Live
+2. Import TDS file into Tableau
 
-There are two types of Connection in Tableau 10.1, choose the Live option to make sure using Connect Live mode.
+   - Copy the TDS file to the enviroment which tableau installed, and double click on it
+   - In the pop-up window, enter authorization information.
+   - Click **OK** 
 
-### Visualization
+3. In Tableau, check  model import, such as dimension, meseaure etc.
 
-Now you can start to enjou analyzing with Tableau .
-![](images/tableau_10/step13_en.png)
+   
 
-### Publish to Tableau Server
-If you want to publish local dashboards to a Tableau Server, just expand `Server` menu and select `Publish Workbook`.
+### Method 2: Manually build mapping model
 
-### View Detail Data
+User can connect Kyligence Enterprise through ODBC Driver, and manually mapping model in Tableau
 
-> Note: Table Index or Query Pushdown need to be enabled in order to query detail data from this product.
+The following detail steps required for mapping data model :
 
-You can drill down from aggregated data to detail data in Tableau. First, click on the data you would like to view detail data of on the report, then click the icon as shown. 
+1. Start Tableau, under **Data**>**Connect**>**Other Databases(ODBC)**
+2. In the pop-up window, select Driver **Kyligence ODBCDriver**, and click **Connect**
+3. In **Connection Attributes**, config the connection information as following, and click **OK** 
+   - Host
+   - Port
+   - Username
+   - Password
+   - Project
+4. (Or) In the pop-up window, select the existing DSN to connect
+5. In Tableau, you need rebuild data model refer to Kyligence Enterprise. How to create model in Tableau please refer to Tableau official website.
 
-![](images/tableau_10/step15_en.png)
+### Other remarks
 
-Click on the Full Data tab and then you can view the drill-down detail data.
+When you connect  Tableau to Kyligence Enterprise, it will send a query which trigger full table scan. This will take a relatively long time to process the query when the dataset is extremely large. There are two ways to avoid this situation
 
-![](images/tableau_10/step16_en.png)
+**Method 1**: You can download Kyligence Tableau Datasource Customization(TDC) file from account website and config it. This file is a Kyligence specific connection setting file  which help tableau connect better to Kyligence. 
 
-### Sync Model from this product to Tableau
+If Tableau is installed, you can just copy it into the required Tableau directory. 
 
-#### **Export TDS from This Product**
+If Tableau is installed, you  can copy this Kyligence specific connection setting for Tableau copy it into the required Tableau directory
 
-If you want to download a tds file, please select a `READY` cube and click `Export TDS` in `more actions` to download a tds file.
+- For Tableau Desktop, the default location is:
 
-![](images/tableau_10/step17_en.png)
+  `Documents\My Tableau Repository\Datasources`
 
-#### Connect Kiligence Datasource Using TDS file
-To see the data source information, you can double click tds file on where has installed tableau, type authorization information in dialog.
+- For Tableau Server，the default location is： 
 
-![](images/tableau_10/step18_en.png)
-![](images/tableau_10/step19_en.png)
+  Windows enviroment
 
-### Notice
+  `Program Files\Tableau\Tableau Server\<version>\bin`
 
-When you connected with Tableau, Tableau will send a query to this product. This can take a relatively long time to process the query when the dataset is extremely large. For this situation, you can use the project configuration to shorten the waiting time. See *Configuration* for details.
+  Or
 
-> Note: users can use`kylin.query.force-limit`. LIMIT clause helps in this case, and setting the value of this property to a positive integer make Kyligence Enterprise append LIMIT clause if there's no one. For instance the value is 1000, query "select * from fact_table" will be transformed to "select * from fact_table limit 1000". 
+  `ProgramData\Tableau\Tableau Server\data\tabsvc\vizqlserver\Datasources`
 
+  Linux enviroment
+
+  `/var/opt/tableau/tableau_server/data/tabsvc/vizqlserver/Datasources/`
+
+**Method 2:** You can set up the parameter `kylin.query.force-limit` to limit records return. Set the value as integer to enable this configuration, such as 1000.
+
+ There are two ways to avoid this situation:
+
+Method 1: You can download Kyligence Tableau Datasource Customization(TDC) file from Kyligence account site and config with.
+
+This file allow If Tableau is installed, Jethro will need a jethro specific connection settings for Tableau, to be copied into the required Tableau directory. 
+
+Method 2: you can set up paremeter  `kylin.query.force-limit` to limite the records return.
