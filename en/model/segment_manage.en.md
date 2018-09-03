@@ -1,10 +1,10 @@
 ## Cube and Segment Management
 
-### Cube Managment
+### Cube Management
 
 Visit Cube Management Page
 
-Users can enter Cube Management page with follwing steps.
+Users can enter Cube Management page with the following steps.
 
 Step 1. Log in to the product web UI and switch to a specific project.
 
@@ -20,33 +20,33 @@ There are 4 types of Cubes built, which can be viewed in the `Status` column of 
 
 - *Disable:* A cube with Disable status means it cannot be queried. The status will be converted to Ready automatically when it is built. Common executable actions includes:
 
-  + validate SQL
-  + delete
-  + edit
-  + build 
-  + ready (convert a cube with a segment to Ready)
-  + purge (empty all segments under a cube)
-  + clone (copy a cube, but do not copy a segment)
-  + view cube (view a cube's description)
-  + backup (backup a cube's metadata), 
+  + Validate SQL
+  + Delete
+  + Edit
+  + Build 
+  + Ready (Convert a cube with a segment to Ready)
+  + Purge (Empty all segments under a cube)
+  + Clone (Copy a cube, without copy a segment)
+  + View Cube (View a cube's description)
+  + Backup (Backup a cube's metadata), 
 
-  + edit cube's details (view or edit a cube's json).
+  + Edit cube's details (view or edit a cube's json).
 
     > Notice: When cubes are re-disabled after they are enabled, you will not be able to edit dimensions and measures. If you need to edit dimensions and metrics, you need to redesign and build a new cube.
 
 - *Ready:* A cube with Ready status means it has a segment and can be queried, but cannot be deleted or purged directly. Common executable actions includes: 
-  + validate SQL
-  + edit
-  + disable (convert a Ready cube to Disable) 
-  + clone (copy a cube, but do not copy a segment) 
-  + view cube (view a cube's description) 
-  + backup (backup a cube's metadata) 
+  + Validate SQL
+  + Edit
+  + Disable (Convert a Ready cube to Disable) 
+  + Clone (Copy a cube, without copy a segment) 
+  + View Cube (View a cube's description) 
+  + Backup (Backup a cube's metadata) 
 
 Broken: A cube with Broken status means it is abnormal because its metadata is broken.
 
 ### Segment Management
 
-Cube consists of one or more segments. When a cube is built, the segment data will be generated. The segment is divided by partition column. 
+Cube consists of one or more segments. When a cube is built, the segment data will be generated. The segment is divided by the partition columns.
 
 Users can enter the Segment management interface by the following steps:
 
@@ -55,13 +55,11 @@ Users can enter the Segment management interface by the following steps:
 
 ![build cube](images/cube_segment_manage/build_segment_en.png)
 
-On Segment page, users can excuate following actions: 
+On Segment page, users can execute the following actions: 
 
-- refresh (rebuild the segment) 
-- merge (merge several segments into one 
-- even if they are discontinous) 
+- Refresh (Rebuild the segment) 
+- Merge (Merge several segments into one even if they are discontinuous) 
+- Delete
 
-delete.
-
-> Tips: clicking an ID of a segment being built, refreshed or merged may lead you to the jobs associated on the Monitor page.  
+> Tips: by clicking an ID of a segment that is being built, refreshed or merged, may lead you to the jobs associated in the Monitor page.
 

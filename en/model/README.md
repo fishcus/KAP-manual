@@ -1,3 +1,3 @@
 ## Modeling
 
-This chapter will introduce how to use sample data, how to design model and cube, build and optimize the cube at last.
+This chapter will introduce how to design and optimize a model and cube as well as build a cube, base on sample data.

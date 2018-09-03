@@ -1,6 +1,6 @@
 ## Introduction
 
-The Auto-Modeling has been supported since Kyligence Enterprise 3.0. The system will create models automatically on the basis of the SQLs imported. Also it is feasible to accelerate history query, which helps improve your efficiency of building models and executing query.
+Auto-Modeling has been supported since Kyligence Enterprise 3.0. The system will create models automatically based on SQL statements. It is very useful to accelerate historical queires, which greatly improves efficiency of model building and query execution.
 
 It takes four steps to accomplish Auto-Modeling:
 
@@ -10,5 +10,5 @@ It takes four steps to accomplish Auto-Modeling:
 - Query Accelerator
 
 
-> Notice: Kafka is not available in Auto-Modeling.
+> Notice: Data source Kafka is not supported in Auto-Modeling.
 
