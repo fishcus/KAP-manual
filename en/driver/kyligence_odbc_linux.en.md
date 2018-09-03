@@ -30,7 +30,7 @@ Users can download Kyligence ODBC driver (Linux version) from [Kyligence Account
 
 2. Setup environment param of third-party libs
 
-`cd ODBC_DRIVER/`
+`cd ODBCDriver/`
 
 `source setenv.sh`
 

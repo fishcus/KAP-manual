@@ -34,7 +34,7 @@
 
 2. 设置第三方库的环境变量
 
-   `cd ODBC_DRIVER/`
+   `cd ODBCDriver/`
 
    `source setenv.sh`
 
