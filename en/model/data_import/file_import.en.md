@@ -1,26 +1,26 @@
-## Near Realtime Data Import using Hive Data Files (Beta)
+## Near Real-time Data Import using Hive Data Files (Beta)
 
-Kyligence Enterprise 3.1.0 starts to support data import directly from Hive data files. Together with upstream ETL, it can achieve near realtime data import and allow query of changes in the last few minutes.
+Kyligence Enterprise 3.1.0 starts to support data import directly from Hive data files. Together with upstream ETL, it can achieve near real-time data import and allow query of changes in the last few minutes.
 
-This feature is still in **Beta** state. It requires user have a good understanding of this product and Hive database. Please read and understand this guide fully before put it into real use.
+This feature is still in **Beta** state. It requires users to have a good understanding of Kyligence Enterprise and Hive database. Please read and understand this guide thoroughly before put it into real use.
 
 ### Problem Background
 
-Traditionally, the Hive data import is scheduled by fixed period, for example daily. It requires a whole day's data be ready in Hive before the import can start. This causes an one-day delay before new data can serve queries, and thus, cannot satisfy many near realtime analytics scenarios.
+Traditionally, the Hive data import is scheduled by fixed period (e.g. daily). It requires a whole day's data be ready in Hive before the import can start. This causes an one-day delay before new data can serve queries, as a result, cannot satisfy many near real-time analytics scenarios.
 
-To allow for near realtime analysis, we come up with a new way of import directly using Hive data files. It is summarized as below.
+To allow for near real-time analysis, we came up with a new way of import directly using Hive data files. It is summarized as below.
 
-- Upstream ETL sends new data to Kyligence Enterprise in the form of data files, typically several to a dozen files every hour.
+- Upstream ETL sends new data to Kyligence Enterprise in the form of data files, typically several to a dozen of files per hour.
 - The new file(s) kicks off data import immediately, and the new data is ready for query as soon as the data import job is completed.
-- The system tolerates late coming data files, for example the last file of the first hour can come later than the first file of the second hour. The late coming of data is common in streaming ETL.
+- The system tolerates late coming data files, for example, the last file of the first hour can come later than the first file of the second hour. The late coming of data is common in streaming ETL.
 
-This method of data import can reduce data delay to a few minutes. It enables near realtime analytics scenarios with a little change of the import process, which is described below.
+This method of data import can reduce data delay to a few minutes. It enables near real-time analytics scenarios with minor change of the import process, which is described as below.
 
-### How it Works
+### How It Works
 
-Technically, this feature is a variant of the normal Hive data import. First, user creates model and cube based on Hive tables as usual. The new data files that upstream sends over must match the Hive table schema defined by the model fact table. During data import, the system will clone a new temporary table from the model fact table, and mount the new data files under it. The temporary Hive table is then used in place of the model fact table for the rest of data loading. Throughout the whole process, the data in the model fact table is ignored. The mere purpose of the model fact table is to define the data schema for new data files.
+Technically, this feature is a variant of the normal Hive data import. First, user creates model and cube based on Hive tables as usual. The new data files that upstream sends over must match the Hive table schema defined by the fact table in the model. During data import process, the system will clone a new temporary table from the fact table in the model, and mount the new data files under it. The temporary Hive table is then used in place of the fact table in the model for the rest of data loading. Throughout the whole process, the data in the fact table is ignored. The purpose of the fact table is to define the data schema for new data files.
 
-Another key point is that, user is responsible for map data files to the **Segment Timeline** and continuously merge small segments by calling rest APIs provided by the system. Like normal Hive data import, every segment needs a clear start time and end time, which is its **Segment Range**. Multiple segment ranges connect together and form a timeline. The same concept applies to file based data import. The only difference is that the system will rely on user to specify the segment range of new data files.
+Another key point is that, user is responsible for mapping data files to the **Segment Timeline** and continuously merge small segments by calling rest APIs provided by the system. Like normal Hive data import, every segment needs a clear start time and end time, which is its **Segment Range**. Multiple segment ranges connect together and form a timeline. The same concept applies to file based data import. The only difference is that the system will rely on the users to specify the segment range of new data files.
 
 For instance, a typical mapping of segment timeline is called "YYYYMMDD+Hour+BatchNum", which is a segment range format made up of 13 digits. Like the samples below, the first 10 digits represent year, month, day, and hour. The last 3 digits represent the batch number within the hour.
 
@@ -41,7 +41,7 @@ Then, to merge all segments in the 6 am, that is A, B, and D, we just need to sp
 
    * Prepare a few data files that can be loaded into the Hive fact table.
 
-   * As a test, try copy the data files to the storage location of the Hive table, then query from Hive command line. The query result should contain the records from the data files.
+   * As a test, try to copy the data files to the storage location of the Hive table, then query from Hive command line. The query result should contain the records from the data files.
 
 2. Create Model and Cube
 
@@ -76,7 +76,7 @@ Given new Hive data files, build a new cube segment and load data into it.
 * URL Parameter
   * `cubeName` - `required` `string` The name of the cube to operate on.
 * HTTP Body: A Json object with the following members.
-  * `startOffset` - `required` `long` The start value (inclusive) of the new segment range. Should be a number representing a point in time. For example, with the "YYYYMMDD+Hour+BatchNum" format, 2018042210000 stands for the 1st batch of 10 am 2018-4-22. The last 3 digits is batch sequence number.
+  * `startOffset` - `required` `long` The start value (inclusive) of the new segment range. Should be a number that represents a point in time. For example, with the "YYYYMMDD+Hour+BatchNum" format, 2018042210000 stands for the 1st batch of 10 am 2018-4-22. The last 3 digits is batch sequence number.
 
   * `endOffset` - `optional` `long` The end value (exclusive) of the new segment range. When omitted, the system will automatically determine the range based on existing segments and the given `startOffset`. The typical usage is requesting multiple builds in a row with the same `startOffset`, and the system will figure out the batch numbers automatically. For example, if request new builds with `startOffset=2018042210000` for 3 times in a row, the resulted segment ranges will be [2018042210000, 2018042210001), [2018042210001, 2018042210002), [2018042210002, 2018042210003).
 
@@ -237,7 +237,7 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/js
 
 ### Rest API: Refresh a Segment
 
-Generally speaking, we don't expect data changes in a built segment. However if source data did change, it is possible to rebuild (refresh) an existing segment by invoking this API.
+Generally speaking, we don't expect data changes in a built segment. However, if source data did change, it is possible to rebuild (refresh) an existing segment by invoking this API.
 
 * `PUT http://host:port/kylin/api/cubes/{cubeName}/segments/build_by_files`
 * HTTP Header
