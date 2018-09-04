@@ -8,7 +8,7 @@ This feature is still in **Beta** state. It requires users to have a good unders
 
 Traditionally, the Hive data import is scheduled by fixed period (e.g. daily). It requires a whole day's data be ready in Hive before the import can start. This causes an one-day delay before new data can serve queries, as a result, cannot satisfy many near real-time analytics scenarios.
 
-To allow for near real-time analysis, we came up with a new way of import directly using Hive data files. It is summarized as below.
+To allow for near real-time analysis, we come up with a new way of import directly using Hive data files. It is summarized as below.
 
 - Upstream ETL sends new data to Kyligence Enterprise in the form of data files, typically several to a dozen of files per hour.
 - The new file(s) kicks off data import immediately, and the new data is ready for query as soon as the data import job is completed.
