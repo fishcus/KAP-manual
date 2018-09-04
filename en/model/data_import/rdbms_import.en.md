@@ -33,7 +33,7 @@ To enable query pushdown, following configuration is required:
 
 Taking Greenplum as an example. We connect Greenplum data source with PostgreSQL JDBC Driver, followings are the steps:
 
-1. Log in on Kyligence Enterprise Web UI.
+1. Log in Kyligence Enterprise Web UI.
 2. Add a new project by clicking the `+` at the top right on Web UI. 
 3. Type `project name` (required) and `descriptions` on the pop up page; click OK to finish.
 4. Select `Data Source` under *Studio* section of your project.
