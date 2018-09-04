@@ -10,7 +10,7 @@ Excel can connect KyAnalyzer service with some plugins (e.g. XMLA Connector), an
 
 1. Excel version is 2013 or above. 
 2. Install XMLA connect Excel Plugin here. You may download and install it with your Excel [here](https://sourceforge.net/projects/xmlaconnect/).
-3. KyAnalyzer is installed and configured to your Kyligence Enterprise. Please refer to this [section](http://docs.kyligence.io/books/v2.5/en/kyanalyzer/kyanalyzer.en.html) on Kyligence Enterprise manual for detail instruction on how to install and configure KyAnalyzer. 
+3. KyAnalyzer is installed and configured to your Kyligence Enterprise. Please refer to this [section](http://docs.kyligence.io/books/v3.1/en/kyanalyzer/kyanalyzer.en.html) on Kyligence Enterprise manual for detail instruction on how to install and configure KyAnalyzer. 
 
 ### Establish connection to KyAnalyzer 
 

@@ -10,7 +10,7 @@ Excel能够通过一些插件（例如XMLA）来关联KyAnalyzer，调用XMLA查
 
 1. Excel为2013版及以上
 2. 安装XMLA连接Excel的插件。可以点击[下载](https://sourceforge.net/projects/xmlaconnect/)。
-3. KyAnalyzer已安装并且部署到你的本产品，请参照本产品手册[KyAnalyzer章节](http://docs.kyligence.io/books/v2.5/en/kyanalyzer/kyanalyzer.en.html)来看如何安装和部署KyAnalyzer。
+3. KyAnalyzer已安装并且部署到你的本产品，请参照本产品手册[KyAnalyzer章节](http://docs.kyligence.io/books/v3.1/zh-cn/kyanalyzer/)来看如何安装和部署KyAnalyzer。
 
 ### 建立对KyAnalyzer的连接 
 
