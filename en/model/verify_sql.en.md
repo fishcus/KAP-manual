@@ -1,10 +1,10 @@
 ## Verify SQL 
 
-There is a huge question mark in your mind that when you design and save a cube/model: does this cube/model can answer all SQLs you often query? Kyligence Enterprise v2.5 features this demand and provide you a pre-action,  ***Verify SQL*** action, before build the cube to relief your worries here. 
+You might be wondering when you design a cube/model: will this cube/model be able to answer all my SQLs? Kyligence Enterprise helps you verify this by providing a ***Verify SQL*** action, before you actually start to build the cube . 
 
-### Verify approach
+### Verify Approach
 
-Step 1, when you done with cube/model design and save it, you can do the ***verify SQL*** action from action list on the cube/model. 
+Step 1, after you finish cube/model design and save it, you can do the ***verify SQL*** action from action list on the cube/model.
 
 ![](images/verify_sql/model_action.png)
 
@@ -18,13 +18,13 @@ Step 2, paste or manually enter SQLs you want to verify, which are often queried
 
 
 
-Step 3, click ***verify*** and this action may take a while. If the cube/model designed perfect fine, it can answer all queries entered, you will get the following figure.
+Step 3, click ***verify*** and this action may take a while. If the cube/model is designed appropriately, it can answer all entered queries, you will get the following result.
 
 ![](images/verify_sql/SQL_valid.png)
 
 
 
-Step 4, if there are queries cannot pass the verify test, it will be listed after "x". You can click the "x" to get details about ***why*** this query cannot work and ***how*** to refine SQL or cube/model to get it work. 
+Step 4, if there are queries cannot pass the verification test, it will be listed after "x". You can click the "x" to get details about ***why*** this query cannot work and ***how*** to refine SQL or cube/model to make it work.
 
 ![](images/verify_sql/show_error.png)
 

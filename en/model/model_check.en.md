@@ -1,56 +1,53 @@
 ## Model Check
 
-When the model is created, it is hard to say if it is reasonable or not, thus KAP provides a check procedure to inspect the model before building a cube with using it.
+Once the model is created, it is hard to say whether it is reasonable or not. Kyligence Enterprise provides a check procedure to inspect the model before building a cube on it.
 
-The procedure includes four small steps:
+The procedure includes the following three steps:
 
-1. Check if there are the duplications in primary key of lookup tables.
-2. Check if the source data of foreigner key is distributed uniformly.
-3. Check if the join condition is reasonable.
-4. Calculate single and double columns cardinality.
+1. Check if there are duplicates in primary key of lookup tables.
+2. Check if the data of fact table is distributed evenly, and the possibility of data skew.
+3. Check if the join condition is rational.
 
-**Step1.** Start KAP and go to UI，pick a project, such as *learn_kylin*,  then click **Studio** in the left navigator, after that click **Model** tab.
+**Step1.** Launch Kyligence Enterprise and go to the UI page，select a project, such as *learn_kylin*,  then click **Studio** in the left nav bar, after that click **Model** tab.
 
 ![](images/model_check/24_model_diagnose_1.png)
 
-**Step2.** For the models already exist, such as kylin_sales_model, click the menu on the top right conner and click **Check** button.
+**Step2.** For the models already exist, such as kylin_sales_model, click the menu on the upper right corner and click **Check** button.
 
 ![](images/model_check/24_model_diagnose_2.png)
 
 **Step3. Configuration**
 
-Time Range. It asks for selecting a start time and end time if the partition column has been set during creating model. With the time range condition it could reduce the source data, instead of scanning whole data. By default, it will check the whole data.
+Time Range. It asks for selecting a start time and end time if the partition column has been set during model creation process. With the time range condition it could reduce the scanning scope. By default, it will scan the whole data.
 
 Sampling percentage. It means it only checks the data in the given ratio, such as 50% will check one line in each two lines.
 
 ![](images/model_check/25_model_check.png)
 
-**Step4.** After all configuration is done, click **Submit** button and it starts a check job. The job status can be observed after clicking **Monitor** in the left navigator.
+**Step4.** After all configurations are done, click **Submit** button and it starts a model checking job. The job status could be observed in **Monitor** page.
 
 ![](images/model_check/24_model_diagnose_4.png)
 
-If creating or editting a model, after clicking **save**, it shows a checkbox to ask user if starting a check model job. By default, it stats the check job.
+If you create or edit a model, after clicking **save**, it will show a checkbox to ask you whether to start a model checking job and it's checked by default.
 
 ![](images/model_check/25_model_save.png)
 
-If the model check job is done without any exceptions, it can observe the check result on the model list. In this case, che check result is health，there are other check status and details if the model has some issues.
+If the model checking job is finished without any exceptions, you can observe the checking result in the model list. In this case, checking result is healthy. But there might be other checking status and details if the model has some issues.
 
 ![](images/model_check/24_model_diagnose_6.png)
 
-As mentioned in the beginning, The Model Check includes 3 different check tasks:
+As mentioned in the beginning, the model check includes 3 different check tasks:
 
-1. **Model status check**: Check if the join condition is reasonable. It will generate a flat table and check the join result. According to the result, it could have basic judgement that if the given join condition is good or bad. If the condition is totally good, there could be some issues in the source data.
+1. **Model Status Checking**: Check if the join condition is reasonable. It will generate a flat table and check the join result. According to the result, it could have basic judgement that the given join condition is good or bad. If the condition is totally bad, there could be some issues in the source data.
 
-2. **Fact table sampling**: Check if the source data on the foreigner key is distributed uniformly. When the data is not distributed uniformly, might cause the whole job can not finish until the latest reducer which possesses the skew data completes its task. It suggests to have some efforts to avoid the this situation before starting the cubing job. 
+2. **Fact Table Sampling**: Check if the source data on the foreign key is distributed evenly. When the data is not distributed evenly, the whole job cannot finish until the latest reducer which possesses the skew data completes its task. It suggests to have some efforts to avoid the this situation before starting the cubing job.
 
-3. **Lookup table sampling**: Check if there are the duplications in primary key of lookup tables. If there are the duplication and it is over the given threshold will terminates the check job immediately. In this case, it's better to remove the duplication.
+3. **Lookup Table Sampling**: Check if there are the duplications in primary key of lookup tables. If there are the duplication and it is over the given threshold will terminates the check job immediately. In this case, it's better to remove the duplication.
 
-   ​
-
-With the above checks, it defines five model check status:
+With the above checks, we defines five model checking status:
 
 1. Not Checked Yet. Once a model is created, it will be in this state.
-2. On Checking. It means a model check job is running.
-3. Good Health. It means there are no any check errors .
-4. Warn. It indicates there is one check error.
-5. Error. It show there are at least check errors.
+2. On Checking. It means a model checking job is running.
+3. Good Health. It means there are no checking errors.
+4. Warning. It indicates there is one checking error.
+5. Error. It shows there are at least two checking errors.
