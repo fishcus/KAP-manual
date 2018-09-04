@@ -16,7 +16,7 @@ Excel能够通过一些插件（例如XMLA）来关联KyAnalyzer，调用XMLA查
 
 现在你的KyAnalyzer已经在运行了，你可以连接到KyAnalyzer并且使用Excel中的透视表了。
 
-在Excel中，点击`插入`菜单，点击`透视表`。
+在Excel中，点击`插入`菜单，点击`数据透视表`。
 
 选择`使用外部数据源`。
 

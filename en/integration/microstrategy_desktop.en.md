@@ -3,7 +3,7 @@
 ### Prerequisite:
 
 1. MicroStrategy Workstation / Desktop 10.10 or above is installed.
-2. Kyligence Analytics Platform 2.x is installed. 
+2. Kyligence Enterprise is installed. 
 3. JDK 1.8 or above is installed on your MicroStrategy WorkStation / Desktop machine.
 4. Kyligence ODBC Driver 64 bit is installed on your MicroStrategy WorkStation / Desktop machine. 
 For detail on how to download and configure Kyligence ODBC Driver please refer to [Kyligence ODBC Driver tutorial](../driver/kyligence_odbc.en.md)

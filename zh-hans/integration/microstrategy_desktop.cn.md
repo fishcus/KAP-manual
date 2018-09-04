@@ -3,7 +3,7 @@
 ### 前提条件:
 
 1. 已经安装 MicroStrategy Workstation / Desktop 10.10 或更高版本。
-2. 已经安装 Kyligence Analytics Platform 2.x  。
+2. 已经安装 Kyligence Enterprise 。
 3. 已经在安装 MicroStrategy Workstation / Desktop的机器上安装了 JDK 1.8或更高版本。
 4. 已经在安装 MicroStrategy Workstation / Desktop的机器上安装了64位的Kyligence ODBC 驱动程序。 有关如何下载和配置 Kyligence ODBC驱动程序的详细信息，请参阅 Kyligence Enterprise 用户手册中 [Kyligence ODBC 驱动程序教程](../driver/kyligence_odbc.cn.md) 章节。
 

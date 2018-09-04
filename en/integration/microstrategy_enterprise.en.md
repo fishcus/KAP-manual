@@ -8,7 +8,7 @@ Kyligence currently support MicroStrategy Secure Enterprise 10.8 or above on Win
 
 1. MicroStrategy Secure Enterprise 10.8 or above is installed. 
 
-2. Kyligence Analytics Platform 2.x is installed. 
+2. Kyligence Enterprise is installed. 
 
 3. JDK 1.8 or above is installed on the machine where MicroStrategy Intelligence Server is installed.
 
