@@ -61,7 +61,7 @@ bin/kafka-console-consumer.sh --bootstrap-server 127.0.0.1:9092 --topic kylindem
 
    ![Input Broker Information](images/k2.en.png)
 
-3. Click √ to confirm your broker info, then click *Get Cluster Info* to select the topic kylindemo. The kafka sample message would appear in the right box, after *Convert* button was clicked.
+3. Click √ to confirm your broker info, then click *Get Cluster Info* to select the topic kylindemo. The kafka sample message will appear in the right box, after *Convert* button is clicked.
    ![Get Cluster Information](images/k3.en.png)
 
 4. You need to give a logic table name for this streaming data source. The name will be used for SQL query later. Please enter "KAFKA_TABLE_1" in the **Table Name** field.
