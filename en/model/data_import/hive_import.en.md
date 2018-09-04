@@ -14,7 +14,7 @@ The script is `sample.sh.`. Its default storage path is the bin directory under 
 $KYLIN_HOME/bin/sample.sh
 ```
 
-> Tips: After sample.sh executed, it is required to choose **Reload Metadata** under the **System** page. Otherwise, there will be errors in data modeling. 
+> Tips: After sample.sh is executed, it is required to choose **Reload Metadata** under the **System** page. Otherwise, there will be errors in data modeling. 
 
 Once the script is complete, execute the following commands in Hive shell to confirm the tables are imported successfully.
 
