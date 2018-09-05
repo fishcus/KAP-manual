@@ -27,7 +27,7 @@ Kyligence Enterprise shares compatible metadata with higher versions. Therefore,
 
    ```shell
    tar -zxvf Kyligence-Enterprise-{version-env}.tar.gz
-   export KYLIN_HOME={your-unpack-folder}
+   export KYLIN_HOME={path_to_unpack_folder}
    ```
 
 4. Update the configuration files
@@ -73,7 +73,7 @@ If you have backup of the Kyligence Enterprise installation directory and metada
 - Restore metadata
 
   ```shell
-  $KYLIN_HOME/bin/metastore.sh restore {your-backup-metadata-folder}
+  $KYLIN_HOME/bin/metastore.sh restore {path_to_your_backup_metadata_folder}
   ```
 
 - Now rollback is finished and you can start the original Kyligence Enterprise

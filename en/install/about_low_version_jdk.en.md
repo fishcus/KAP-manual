@@ -16,7 +16,7 @@ If user's current Hadoop cluster is based on JDK 7 or below, we can still instal
    kylin.engine.spark-conf.spark.yarn.appMasterEnv.JAVA_HOME=/usr/java/jdk1.8
    ```
 
-3. In`$KYLIN_HOME/conf`, find `kylin_job_conf.xml` and `kylin_job_conf_inmem.xml`, then insert following properties.
+3. In`$KYLIN_HOME/conf`, find `kylin_job_conf.xml` and `kylin_job_conf_inmem.xml`, then insert the following properties.
 
   ```xml
       <property>

@@ -26,7 +26,7 @@ Kyligence Enterprise 与更高版本之间兼容元数据。因此在从 Kyligen
 
    ```shell
    tar -zxvf Kyligence-Enterprise-{version-env}.tar.gz
-   export KYLIN_HOME={your-unpack-folder}
+   export KYLIN_HOME={path_to_your_unpack_folder}
    ```
 
 4. 更新配置文件。
@@ -72,7 +72,7 @@ Kyligence Enterprise 与更高版本之间兼容元数据。因此在从 Kyligen
    * 恢复元数据
 
      ```shell
-     $KYLIN_HOME/bin/metastore.sh restore {your-backup-metadata-folder}
+     $KYLIN_HOME/bin/metastore.sh restore {path_to_your_backup_metadata_folder}
      ```
 
    * 回滚完毕，重新启动原 Kyligence Enterprise

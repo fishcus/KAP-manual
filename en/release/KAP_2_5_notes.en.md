@@ -32,7 +32,7 @@ Cube optimizer offers various strategies. Priority Strategy takes full advantage
 
 ### Other Improvements
 
-The new release also provides much richer sample data and streaming data model, facilitating to rapidly validate the integration with streaming datasource. 
+The new release also provides much richer sample data and streaming data model, facilitating to rapidly validate the integration with streaming data source. 
 
 KyAnalyzer reads the Kyligence Enterprise license directly and does not require a separate license file.
 
@@ -58,4 +58,4 @@ KyAnalyzer reads the Kyligence Enterprise license directly and does not require 
 
 ### Download
 
-Kyligence Enterprise V2.5 is available for download. Please visit [Kyligence Enterprise Products](http://en.kyligence.io/assets/views/products) for more information.
+Kyligence Enterprise V2.5 is available for download. Please visit [Kyligence Enterprise Products](http://kyligence.io/products-list/) for more information.

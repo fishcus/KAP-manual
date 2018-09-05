@@ -68,4 +68,4 @@ KyAnalyzer无需单独提供许可证，可直接读取Kyligence Enterprise的�
 
 ### **产品下载**
 
-Kyligence Enterprise v2.5已经开放下载试用，更多产品信息请见[Kyligence Enterprise产品页面](http://cn.kyligence.io/products/)。
+Kyligence Enterprise v2.5已经开放下载试用，更多产品信息请见[Kyligence Enterprise产品页面](http://kyligence.io/zh/enterprise-zh/)。

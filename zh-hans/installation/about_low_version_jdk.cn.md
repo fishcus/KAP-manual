@@ -1,8 +1,8 @@
 ## 如何在低版本 JDK 上运行 Kyligence Enterprise
 
-Kyligence Enterprise 要求 JDK 8 或以上。这要求不仅适用于运行 Kyligence Enterprise 的节点，也适用于 Hadoop 集群中，所有运行 Kyligence Enterprise 相关的 MapReduce 任务和 Spark 任务的节点，都必需装有 JDK 8 或以上。
+Kyligence Enterprise 要求 JDK 8 或以上。这要求不仅适用于运行 Kyligence Enterprise 的节点，也适用于 Hadoop 集群中，所有运行 Kyligence Enterprise 相关的 MapReduce 任务和 Spark 任务的节点，都必须装有 JDK 8 或以上。
 
-如果用户当前的集群为 JDK 7 或更低，我们任然可以安装和运行 Kyligencen Enterprise。只是在第一次启动 Kyligence Enterprise 之前，必需先执行以下配置：
+如果用户当前的集群为 JDK 7 或更低，我们仍然可以安装和运行 Kyligence Enterprise。只是在第一次启动 Kyligence Enterprise 之前，必需先执行以下配置：
 
 1. 在 **集群中的所有节点上**，下载并安装 JDK 8 64 bit 到同样的路径下，比如`/usr/java/jdk1.8`。
 
@@ -29,7 +29,7 @@ Kyligence Enterprise 要求 JDK 8 或以上。这要求不仅适用于运行 Kyl
       </property>
   ```
 
-至此 JDK 1.8 配置完毕，且只影响 Kyligence Enterprise 相关的服务、Spark、和 MapReduce 进程。
+至此 JDK 1.8 配置完毕，且只影响 Kyligence Enterprise 相关的服务、Spark和 MapReduce 进程。
 
 请继续启动 Kyligence Enterprise。
 

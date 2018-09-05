@@ -1,6 +1,6 @@
 ## Kyligence Enterprise 3.0 Release Note
 
-Today, Kyligence, the leading big data analysis company, launches its next generation enterprise data warehouse product and Kyligence Enterprise 3.0, a solution that has revolutionarily achieved *automated modeling*, with its extraordinary searching feature, and combined both traditional and modern analysis in a *unified platform*. 
+Today, Kyligence, the leading big data analysis company, launches its next generation enterprise data warehouse product and Kyligence Enterprise 3.0, a solution that has revolutionary achieved *automated modeling*, with its extraordinary searching feature, and combined both traditional and modern analysis in a *unified platform*. 
 
 ### **Automated Modeling and Turbo Boost**
 
@@ -18,13 +18,13 @@ Kyligence Enterprise 3.0 satisfies full-scene analysis needs by simultaneously e
 
 ### Hadoop Distribution Support
 
-  Certificated distributions：
+  Certified Distributions：
 
   	Cloudera CDH 5.7/5.8/5.11/5.12
 
   	MapR 5.2.1
 
-  Compatible distributions：
+  Compatible Distributions：
 
 ​        HBase 0.98+，Hive 0.14+
 
