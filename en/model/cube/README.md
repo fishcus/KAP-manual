@@ -1,8 +1,8 @@
 # Cube Design
 
-We need to define dimension combinations and measure types based on existing data model. This process is called Cube design. This chapter will introduce you more cube design skills on KAP. 
+We need to define dimension combinations and measure types based on existing data model. This process is called cube design. This chapter will introduce you more details about cube design in Kyligence Enterprise. 
 
-Continue reading:
+Continue Reading:
 
 - [Create Cube](create_cube.en.md)
 - [Aggregation Group](aggregation_group.en.md)

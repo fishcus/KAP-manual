@@ -16,7 +16,7 @@ There is one mandatory dimension, two dimensions belonging to one joint dimensio
 
 ![sprouting graph](images/cuboid_mdc.en.png)
 
-This is a sprouting graph of cuboid which has 7 dimensions and some details are hiden in order to help users understand.
+This is a sprouting graph of cuboid which has 7 dimensions and some details are hidden in order to help users understand.
 
 When MDC = 4, the cuboid which has over 4 dimensions will be pruned, such as ABCDEF, ABCDEG, ABCDE, and ABCDF.
 
@@ -24,20 +24,20 @@ When MDC = 3, the cuboid which has over 4 dimensions will be pruned, such as ABC
 
 Considering the performance in cube build, the base cuboid and *some cuboid* will not be pruned although their dimensions are greater than MDC. For example, cuboid ABCEF is likely to be left. Meanwhile, a group of joint dimension or hierarchy dimension and mandatory dimensions need to be considered when using the MDC tool.
 
-### Turn it on ###
+### Turn It On ###
 
 We'll introduce how to leverage the tool in this section. It locates in Dimension Optimizations section of Cube dimension design, the second step of the whole Cube design process.
 
 ![](images/cuboid_pruning_1.png)
 
-As shown in Figure 1, the default value is 0 meaning disable MDC. To enable MDC, enter a positive number. For example, input 4 and click apply. 
+As shown above, the default value is 0 which means MDC is disable. To enable MDC, enter a positive number. For example, input 4 and click **Apply**. 
 
 ![](images/cuboid_pruning_2.png)
 
 The cuboid number is reduced from 161 to 141 in this case. It's because the cuboids containing more than 4 dimensions are ignored except for base cuboid.
 
-### Benefit and Tradeoff ###
+### Benefit and Trade-off ###
 
 On one hand, MDC dimension pruning tool reduces the cuboids number and storage size significantly. On the other hand, some complex queries that cover more dimensions may hit large cuboids, in which case online calculation cannot be avoided. The too much online calculation may make query response slower. 
 
-Like other cube optimization tools, it's a kind of tradeoff. If most queries touch fewer dimensions in your case, MDC deserves a shot.
+Like other cube optimization tools, it's a kind of trade-off. If most queries touch fewer dimensions in your case, MDC deserves a shot.

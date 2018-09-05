@@ -1,10 +1,10 @@
-## Table index
+## Table Index
 
-This product provides table index to support querying on raw data. For customized queries, This product leverages well-designed Cubes to efficiently process them; for queries not within such scope, Query Pushdown plays a supplement role. Those functions allow users to quickly get results of aggregation queries. Besides, users can make use of table index to fulfill their tasks, if they are interested in raw data. 
+This product provides table index to support querying on raw data. For customized queries, this product leverages well-designed cubes to efficiently process them; for queries not within such scope, Query Pushdown plays a supplementary role. Those functions allow users to quickly get results of aggregation queries. Besides, users can make use of table index to fulfill their tasks, if they are interested in raw data. 
 
-### Create table index
+### Create Table Index
 
-The procedure of creating table index is embed in the procedure of create Cube. As the graph shows, click *+Cube* button to start a general Cube creation procedure. When you getting the 5th step of Cube creation wizard (in versions higher than 2.4): *Table Index*, you can find a check box of *Config Table Index*, which is unchecked by default: 
+The procedure of creating table index is embedded in the procedure of cube creation. As the graph shows, click *+Cube* button to start a general cube creation procedure. When you get the 5th step of Cube creation wizard (in versions higher than 2.4): *Table Index*, you can find a check box of *Config Table Index*, which is unchecked by default: 
 
 ![](images/table_index/table_index_disable.png)
 
@@ -18,7 +18,7 @@ Select appropriate columns in *SortBy* and *ShardBy*, and click the drop down li
 
 Setting a certain column as SortBy or ShardBy reasonably could substantially increase query efficiency of table index. Now we introduce their meaning and how to set them. 
 
-When configuring table index, you should set at least 1 column as SortBy. Those columns will be listed below the table index configuration, which looks like: 
+When you configure table index, you should set at least 1 column as SortBy. Those columns will be listed below the table index configuration, which looks like: 
 
 ![](images/table_index/table_index_sortby.png)
 
@@ -28,9 +28,9 @@ The first column of SortBy list must have encoding of "integer", "date" or "time
 
 Those top columns in the order of SortBy list will get more benefits on efficiency when they are filter condition of queries. Thus, we suggest you arrange SortBy columns as the order of chance to be filter condition in your environment. Do not set too many SortBy columns, because tail columns have little help for performance, increasing overheads of table index building on the contrary. We also suggest you set a column of time to be the first in SortBy list, in order to get a better performance when processing time-related queries, which are very common. 
 
-When configuring table index, you could set 1 column as ShardBy or simply do nothing. If you set a certain column as ShardBy column, the raw data will be sharded according to values of that column. If you don't explicitly specify an ShardBy column, sharding will be done considering of values in all columns. 
+When you configure table index, you could set 1 column as ShardBy or simply do nothing. If you set a certain column as ShardBy column, the raw data will be sharded according to values of that column. If you don't explicitly specify an ShardBy column, sharding will be done considering of values in all columns. 
 
-Selecting an appropriate ShardBy column could distribute raw data into multiple shards, thus increase concurrency, and finally get a better query performance. We suggest you choose columns with relatively large cardinalities as ShardBy column to prevent nonuniform distribution of data. 
+Select an appropriate ShardBy column could distribute raw data into multiple shards, which can increase concurrency, and finally get a better query performance. We suggest you choose columns with relatively large cardinality as ShardBy column to prevent heterogeneous distribution of data. 
 
 ### Encoding
 
@@ -59,6 +59,6 @@ You can click *Index* drop down list of each column in table index configuration
 
 1. "discrete" index is the default index. It supports fast match of equal condition, but will degrade to table scan when processing ">" or "<" condition. 
 
-2. "fuzzy" index is for query with like filter. If query with like filter will be applied to one column, please set the index as "fuzzy". It is not suggested to set index of too many columns as "fuzzy", which will increase storage overhead. 
+2. "fuzzy" index is for query with like filter. If query with "like" filter will be applied to one column, please set the index as "fuzzy". It is not recommended to set index of too many columns as "fuzzy", which will increase storage overhead. 
 
    > If query with the like filter applied to the columns which are not set as "fuzzy", it may spend more time when using table index.

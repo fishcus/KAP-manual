@@ -4,7 +4,7 @@ Correlation coefficient is used in statics to measure how strong a relationship 
 
 ### CORR Introduction ###
 
-CORR function will return a value to find the relationship between the two variables. The value is between -1 and 1, where 1 indicates a strong positive relationship. For example, for every positive increase in one variable, there will be a positive increase in the aother variable. 0 means that there is no relationship between the two variables and -1 means that when one variable has a positive increase, another one will have a negative decrease.  Its syntax is as below:
+CORR function will return a value to find the relationship between the two variables. The value is between -1 and 1, where 1 indicates a strong positive relationship. For example, for every positive increase in one variable, there will be a positive increase in another variable. 0 means that there is no relationship between the two variables and -1 means that when one variable has a positive increase, another one will have a negative decrease. Its syntax is as below:
 
 > corr({measure1},{measure2}), measure is the column to calculate. It should note that, in the current version, the parameter return type for function CORR must be one of *real*, *bigint*, *integer*, *int4*, *long8*, *tinyint*, *smallint*, *decimal*, *double*, *float* and *numeric*. Date column is not supported to calculate now.
 >

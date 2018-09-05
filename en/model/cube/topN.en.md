@@ -4,13 +4,12 @@ Find the Top-N (or Top-K) entities from a dataset is a frequent-using scenario a
 
 Within the era of big data, this need is getting stronger than ever before, as both the raw dataset and the number of entities are vast. Without pre-calculation, get the Top-K entities among a distributed big dataset may take a long time, leading the pushdown query inefficient.
 
-In v2.1 and higher, Apache Kylin introduces the “Top-N” measure, aiming to pre-calculate the top entities during the cube build phase; in the query phase,  Kylin can quickly fetch and return the top records. The performance would be much better than a cube without “Top-N”, giving the analyst more power to inspect data.
+In v2.1 and higher, Apache Kylin introduces the “Top-N” measure, aiming to pre-calculate the top entities during the cube build phase; in the query phase, Apache Kylin can quickly fetch and return the top records. The performance would be much better than a cube without “Top-N”, giving the analyst more power to inspect data.
 
-*Notice*: this “Top-N” measure is an approximate realization, to use it smoothly you need to have a good     understanding with the algorithm as well as the data distribution.
+*Notice*: this “Top-N” measure is an approximate realization, to use it smoothly you need to have a good understanding with the algorithm as well as the data distribution.
 
 
-
-## Top-N query
+## Top-N Query
 
 Let’s start with the default project `learn_kylin` that shipped in KAP binary package as well as pre-loaded in KAP Web GUI. We would use a sample fact table within this project called `kylin_sales`. If you haven’t done that before, follow this tutorial to create it: [Quick Start with Sample Cube](https://kylin.apache.org/docs15/tutorial/kylin_sample.html).
 
@@ -23,7 +22,7 @@ The sample fact table “default.kylin_sales” mock the transactions happened i
 | SELLER_ID    | Seller ID                  | About one million |
 | PRICE        | Sold amount                | -                 |
 
-*Method1*: Very often this e-commerce company needs to identify the top sellers  (say top 100) in a given period in some countries. The query could be as following:
+*Method1*: Oftentimes this e-commerce company needs to identify the top sellers (say top 100) in a given period in some countries. The query could be as following:
 
 ```
 SELECT SELLER_ID, SUM(PRICE) FROM KYLIN_SALES
@@ -34,7 +33,7 @@ SELECT SELLER_ID, SUM(PRICE) FROM KYLIN_SALES
 	order by SUM(PRICE) DESC limit 100
 ```
 
-Suddenly, it return multiple records as below:
+Suddenly, it returns multiple records as below:
 
  ![](images/topN_1.png)
 
@@ -44,9 +43,9 @@ Suddenly, it return multiple records as below:
 
 
 
-## Without Top-N pre-calculation
+## Without Top-N Pre-calculation
 
-Before Kylin v2.1, only dimension columns could be applied in “group by” query, then we came up with a design that using PART_DT, LSTG_SITE_ID and SELLER_ID as dimensions, and defining SUM(PRICE) as the measure. After building, the basic cubiod of the cube would be like:
+Before Kylin v2.1, only dimension columns could be applied in “group by” query, then we came up with a design that using PART_DT, LSTG_SITE_ID and SELLER_ID as dimensions, and defining SUM(PRICE) as the measure. After building, the basic cuboid of the cube would be like:
 
 | Rowkey of base cuboid     | SUM(PRICE) |
 | ------------------------- | ---------- |
@@ -65,9 +64,9 @@ Soon you will find the Top-N query doesn't work, or cost unacceptable long time.
 
 
 
-## With Top-N pre-calculation
+## With Top-N Pre-calculation
 
-With the Top-N measure, KAP will pre-calculate the top entities for each dimension combination duing the cube create section, saving the result (both entity ID and measure value) as a column in storage. The entity ID (“SELLER_ID” in this case) now can be moved from dimension to the measure, which doesn’t participate in the rowkey. For the sample scenario described above, the newly designed cube will have 2 dimensions (PART_DT, LSTG_SITE_ID), and 1 Top-N measure.
+With the Top-N measure, Kyligence Enterprise will pre-calculate the top entities for each dimension combination during the cube create section, saving the result (both entity ID and measure value) as a column in storage. The entity ID (“SELLER_ID” in this case) now can be moved from dimension to the measure, which doesn’t participate in the rowkey. For the sample scenario described above, the newly designed cube will have 2 dimensions (PART_DT, LSTG_SITE_ID), and 1 Top-N measure.
 
 | Rowkey of base cuboid | Top-N measure                            |
 | --------------------- | ---------------------------------------- |
@@ -81,7 +80,6 @@ The base cuboid only has $730 * 50 = 36.5 k$ rows now. In the measure cell, the 
 For the same query, “Top sellers in past 30 days in US” now only need to read 30 rows from storage. The measure object, also called as counter containers will be further aggregated/merged at the storage side, finally only one container is returned. KAP would extract the “SELLER_ID” and “SUM(PRICE)” from it before returns to client. The cost is much lighter than before, the performance is highly improved as well.
 
 
-
 ## Algorithm
 
 Kylin’s Top-N implementation referred to [stream-lib](https://github.com/addthis/stream-lib/blob/master/src/main/java/com/clearspring/analytics/stream/StreamSummary.java), which is based on the Space-Saving algorithm and the Stream-Summary data structure as described in *[1]Efficient Computation of Frequent and Top-k Elements in Data Streams* by Metwally, Agrawal, and Abbadi.
@@ -89,20 +87,19 @@ Kylin’s Top-N implementation referred to [stream-lib](https://github.com/addth
 A couple of modifications are made to let it better fit with Kylin:
 
 - Using double as the counter data type;
-- Simplfied data strucutre, using one linked list for all entries;
+- Simplified data structure, using one linked list for all entries;
 - A more compact serializer;
 
-Besides, in order to run SpaceSaving in parallel on Hadoop, we make it mergable with the algorithm introduced in *[2] A parallel space saving algorithm for frequent items and the Hurwitz zeta distribution*.
-
+Besides, in order to run SpaceSaving in parallel on Hadoop, we make it mergeable with the algorithm introduced in *[2] A parallel space saving algorithm for frequent items and the Hurwitz zeta distribution*.
 
 
 ## Accuracy
 
-Although the experiments in paper"Efficient Computation of Frequent and Top-k Elements in Data Streams" **[1]** has proved SpaceSaving’s efficiency and accuracy for realistic Zipfian data, it doesn’t ensure 100% accuracy for all scenarios. SpaceSaving uses a fixed space to put the most frequent candidates;  when the entities exceeds the space size, the tail entities will be truncated, causing data loss. The parallel algorithm merges multiple SpaceSavings into one, at that moment for the entities appeared in one but not in the other it had some assumptions, this will also cause some data distortion. Finally, the result from Top-N measure may have minor difference with the real result.
+Although the experiments in paper"Efficient Computation of Frequent and Top-k Elements in Data Streams" **[1]** has proved SpaceSaving’s efficiency and accuracy for realistic Zipfian data, it does not ensure 100% accuracy for all scenarios. SpaceSaving uses a fixed space to put the most frequent candidates;  when the entities exceeds the space size, the tail entities will be truncated, causing data loss. The parallel algorithm merges multiple SpaceSavings into one, at that moment for the entities appeared in one but not in the other it had some assumptions, this will also cause some data distortion. Finally, the result from Top-N measure may have minor differences with the real result.
 
 A couple of factors can affect the accuracy:
 
-###### Zipfian distribution
+###### Zipfian Distribution
 
 Many rankings in the world follows the **[3] Zipfian distribution**, such as the population ranks of cities in various countries, corporation sizes, income rankings, etc. But the exponent of the distribution varies in different scenarios, this will affect the correctness of the result to some extend. The higher the exponent is (the distribution is more sharp), the more accurate answer will get. If the distribution is very flat, entities’ values are very close, the rankings from SpaceSaving will be less accurate. When using SpaceSaving, you’d better have an calculation on your data distribution.
 
@@ -110,11 +107,11 @@ Many rankings in the world follows the **[3] Zipfian distribution**, such as the
 
 As mentioned above, SpaceSaving use a limited space to put the most frequent elements. Giving more space it will provide more accurate answer. For example, to calculate Top N elements, using 100 * N space would provide more accurate answer than 50 * N space. If the space is more than the entity’s cardinality, the result will be accurate. More space will take more CPU, memory and storage, this need be balanced.
 
-###### Entity cardinality
+###### Entity Cardinality
 
 Element cardinality is also a factor to consider. Calculating Top 100 among 10 thousands is easiser than among 10 million.
 
-###### Dataset size
+###### Dataset Size
 
 Error ratio from a big dataset is less than from a small dataset. The same for Top-N calculation.
 
@@ -122,7 +119,7 @@ Error ratio from a big dataset is less than from a small dataset. The same for T
 
 ## Test Statistics
 
-We designed a test case to calculate the top 100 elements using the **parallel SpaceSaving** among a generated data set (with commons-math3’s ZipfianDistribution). The entity’s occurancy follows the Zipfian distribution, adjusting the parameters of Zipfian exponent, space, entity cardinality and dataset size time to times, compare the result with the accurate result (using mergesort) to collect the statistics, we get a rough accuracy report in below.
+We designed a test case to calculate the top 100 elements using the **parallel SpaceSaving** among a generated data set (with commons-math3’s Zipfian Distribution). The entity’s occurrence follows the Zipfian distribution, adjusting the parameters of Zipfian exponent, space, entity cardinality and dataset size time to times, compare the result with the accurate result (using merge sort) to collect the statistics, we get a rough accuracy report in below.
 
 The first column is the entity cardinality, which means among how many entities to identify the top 100 elements. The other three columns represent how much space using in the algorithm: 20X means using 2,000, 50X means use 5,000, and so on. Each cell of the table shows how many records are matched with the real result; if the error (or say difference) is less than 5 per million of total data size, then we would think it is matched. E.g, for a 1 million data set, if the difference < 5. The SpaceSaving is calculated in parallel with 10 threads.
 
@@ -171,8 +168,7 @@ Conclusion: we would have the same conclusion as test 3 had.
 These statistics match with our assumption before. It just gives us a rough estimation on the result correctness. To use this feature well in Kylin, you need to know about all these variables, and do some pilots before publish it to analysts.
 
 
-
-### Further works
+### Further Works
 
 This feature is developed as a basic version, which may solve over 80% cases. While it has some limitations or hard-codings that need your attention:
 
@@ -185,8 +181,7 @@ This feature is developed as a basic version, which may solve over 80% cases. Wh
 **Notice**: If you select “topn(10)” as the return type, it doesn’t mean you have to use `limit 10` in your query. You can use other limit numbers, Kylin can return the top 500 entities for one combination, but the precision of `limit query` (over 10) are not terrified.
 
 
-
-## Reference
+## References
 
 **[1]**[Efficient Computation of Frequent and Top-k Elements in Data Streams](https://dl.acm.org/citation.cfm?id=2131596)
 
