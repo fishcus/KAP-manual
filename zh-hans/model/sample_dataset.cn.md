@@ -9,23 +9,23 @@
 
 - *KYLIN_CATEGORY_GROUPINGS* 
 
-  维表，保存了商品分类的详细介绍，例如商品分类名称等。
+  维度表，保存了商品分类的详细介绍，例如商品分类名称等。
 
 - *KYLIN_CAL_DT* 
 
-  维表，保存了时间的扩展信息。如单个日期所在的年始、月始、周始、年份、月份等。
+  维度表，保存了时间的扩展信息。如单个日期所在的年始、月始、周始、年份、月份等。
 
 - *KYLIN_ACCOUNT*
 
-  维表，用户账户表，每行是一个用户。用户在事实表中可以是买方(Buyer)或者卖方(Seller)。通过ACCOUNT_ID链接到*KYLIN_SALES*的BUYER_ID或者SELLER_ID上。
+  维度表，用户账户表，每行是一个用户。用户在事实表中可以是买方(Buyer)或者卖方(Seller)。通过ACCOUNT_ID链接到*KYLIN_SALES*的BUYER_ID或者SELLER_ID上。
 
 - *KYLIN_COUNTRY*
 
-  维表，用户所在的国家表，链接到*KYLIN_ACCOUNT*。
+  维度表，用户所在的国家表，链接到*KYLIN_ACCOUNT*。
 
 
 
-这5张表一起构成了整个雪花模型的结构，下图是实例-关系图：
+这5张表一起构成了整个雪花模型的结构，下图是实例-关系（ER）图：
 
 ![](images/dataset_1.png)
 

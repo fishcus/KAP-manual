@@ -5,7 +5,6 @@ Count distinct是一个对大多数数据分析师都很常用的函数。本产
 > 如果你不要求非常精准的查询结果，这种近似的Count Distinct查询就可以在有限的存储资源条件下，完美的得到你需要的结果。
 
 
-
 ### 查询前提
 
 在使用count distinct 查询之前，你需要确认目标列是否预存了count distinct的预计算结果。在Cube展示界面点击需要查看的Cube的名称，可以通过点击Cube Designer界面的 **度量（measures）**来查看Cube中所有度量的预计算信息。如果目标列已经被进行过 count distinct的预计算（**表达式(Expression)**为count_distinct 并且 **返回类型(Return Type)**： **hllc**）则意味着此列可以直接进行count distinct的近似查询。否则，你需要创建新Cube来存储目标列的count distinct预计算结果。
@@ -28,7 +27,7 @@ Count distinct是一个对大多数数据分析师都很常用的函数。本产
 
 
 
-### 多列count distinct
+### 多列 Count Distinct
 
 Kyligence Enterprise v2.4以来通过 [HyperLogLog](https://hal.inria.fr/hal-00406166/document) 算法支持了多列的 Count distinct 查询。设置方法如下图所示。对应的查询语句为(列的顺序无差别)：
 

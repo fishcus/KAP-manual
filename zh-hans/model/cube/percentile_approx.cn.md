@@ -8,7 +8,7 @@
 
 percentile_approx 函数返回数值的第 p 个百分位数的值，其语法如下：
 
-> percentile_approx({measure},p,B)，measure 为要查询的度量，p 为 0 到 1 之间的百分比数字，包含 0 和 1，B 控制近似精度，B 越大，结果的精确度越高。percentile_approx 函数用插值法来确定第 p 个百分位数的值。
+> percentile_approx({measure}, p, B)，measure 为要查询的度量，p 为 0 到 1 之间的百分比数字，包含 0 和 1，B 控制近似精度，B 越大，结果的精确度越高。percentile_approx 函数用插值法来确定第 p 个百分位数的值。
 >
 
 查询示例如下：
@@ -25,7 +25,7 @@ GROUP BY seller_id
 
 ![添加度量页面](images/percentile_approximate/1.cn.png)
 
-第二步，输入度量名称，选择 **PENCENTILE_APPROX** 为表达式，选择参数值，然后根据需要选择返回类型 'percentile(100)'、'percentile(1000)' 或 'percentile(10000)'。这里的返回类型即上述语法中的 B，值越大，结果的精确度越高。
+第二步，输入度量名称，选择 **PERCENTILE_APPROX** 为表达式，选择参数值，然后根据需要选择返回类型 'percentile(100)'、'percentile(1000)' 或 'percentile(10000)'。这里的返回类型即上述语法中的 B，值越大，结果的精确度越高。
 
 ![添加度量页面](images/percentile_approximate/return_type.cn.png)
 

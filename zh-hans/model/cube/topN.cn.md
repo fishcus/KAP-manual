@@ -44,7 +44,7 @@ SELECT SELLER_ID, SUM(PRICE) FROM KYLIN_SALES
 
 本产品较早前的版本(v2.1版本以下)，只有维度列可以用“group by”查询，于是我们设计如下：用 `PART_DT`、 `LSTG_SITE_ID` 、 `SELLER_ID` 作为维度，同时定义 SUM(PRICE) 作为度量。Cube构建之后，基本的Cuboid则如下所示：
 
-| Rowkey of base cuboid     | SUM(PRICE) |
+| RowKey of base cuboid     | SUM(PRICE) |
 | ------------------------- | ---------- |
 | 20140318_00_seller0000001 | xx.xx      |
 | 20140318_00_seller0000002 | xx.xx      |
@@ -55,7 +55,7 @@ SELECT SELLER_ID, SUM(PRICE) FROM KYLIN_SALES
 | …                         | …          |
 | 20160318_49_seller0999999 | xx.xx      |
 
-假设这些维度都是彼此独立的，则基本Cuboid中行数为：$730 \* 50 \* 1million = 36.5 billion$。其他包含`SELLER_ID` 字段的Cuboid也有百万行。现在你应该意识到这种处理方法会使得Cube的膨胀率很高，如果维度更多或基数更高，则情况更糟。但真正的挑战还不在这里。
+假设这些维度都是彼此独立的，则基本Cuboid中行数为：$730 \* 50 \* 1 million = 36.5 billion = 365亿。其他包含`SELLER_ID` 字段的Cuboid也有百万行。现在你应该意识到这种处理方法会使得Cube的膨胀率很高，如果维度更多或基数更高，则情况更糟。但真正的挑战还不在这里。
 
 之后你还可能发现 Top-N查询并不能正常工作，或者花费特别长的时间。假设你想查30天内美国销售额排名最前的100名卖家，则查询引擎会从存储读取3000万记录行，然后聚合，分类，最终返回排名最前的100个卖家。由于没有进行预计算，即使最终结果很小，内存和其中的控制器都被严重耗用了。
 
@@ -63,16 +63,16 @@ SELECT SELLER_ID, SUM(PRICE) FROM KYLIN_SALES
 
 ### Top-N 预计算
 
-如果在Cube创建时，设置了目标列Top-N的预计算，则当这个Cube被构建时，预计算结果会被存成一个新列。在这个例子中，`SELLER_ID`现在由维度变成了度量，不再出现在rowkey中。而以上场景中，新设计好的Cube中只有两个维度和一个Top-N的度量。
+如果在Cube创建时，设置了目标列Top-N的预计算，则当这个Cube被构建时，预计算结果会被存成一个新列。在这个例子中，`SELLER_ID`现在由维度变成了度量，不再出现在RowKey中。而以上场景中，新设计好的Cube中只有两个维度和一个Top-N的度量。
 
-| Rowkey of base cuboid | Top-N measure                            |
+| RowKey of base cuboid | Top-N measure                            |
 | --------------------- | ---------------------------------------- |
 | 20140318_00           | seller0010091:xx.xx, seller0005002:xx.xx, …, seller0001789:xx.xx |
 | 20140318_01           | seller0032036:xx.xx, seller0010091:xx.xx, …, seller000699:xx.xx |
 | …                     | …                                        |
 | 20160318_49           | seller0061016:xx.xx, seller0665091:xx.xx, …, seller000699:xx.xx |
 
-现在Cuboid中只有 $730 * 50 = 36.5 k$ 行。在度量的单元格中，预计算的Top-N结果先被以倒序的方式存储在一个容器中，而序列尾端的记录已经被筛选掉。
+现在Cuboid中只有 $730 * 50 = 36.5 k行。在度量的单元格中，预计算的Top-N结果先被以倒序的方式存储在一个容器中，而序列尾端的记录已经被筛选掉。
 
 现在，同样的查询语句 "Top sellers in past 30 days in US”, 只需要从内存中读取30行。度量对象，也就是计数容器将会在存储端进一步聚合或者并和，最终只有一个容器被返回。Kyligence Enterprise将会从中抽出`SELLER_ID`和`SUM(PRICE)`然后返回客户端。现在的成本就减少很多，查询性能也得到很大的提升。
 

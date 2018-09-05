@@ -19,7 +19,7 @@
 
 ### 维度设置
 
-从数据模型的维度中选择一些列作为Cube的维度。这里的设置会影响到生成的Cuboid数量，进而影响Cube的数据量大小。在选择维度时，每一个维度列可以作为**普通维度**（Normal），也可以作为**衍生维度**（Derived）。相对于普通维度来说，衍生维度并不参与维度的Cuboid，衍生维度对应的外键（FK）参与维度Cuboid，从而降低Cuboid数。在查询时，对衍生维度的查询会首先转换为对外键所在维度的查询，因此会牺牲少量性能。一些基本的设计规则如下：
+从数据模型的维度中选择一些列作为Cube的维度。这里的设置会影响到生成的Cuboid数量，进而影响Cube的数据量大小。在选择维度时，每一个维度列可以作为**普通维度**（Normal Dimension），也可以作为**衍生维度**（Derived Dimension）。相对于普通维度来说，衍生维度并不参与维度的Cuboid，衍生维度对应的外键（FK）参与维度Cuboid，从而降低Cuboid数。在查询时，对衍生维度的查询会首先转换为对外键所在维度的查询，因此会牺牲少量性能。一些基本的设计规则如下：
 
 在KYLIN\_CATEGORY\_GROUPINGS表里，和商品分类相关的三个字段（META\_CATEG\_NAME、CATEG\_LVL2\_NAME、CATEG\_LVL3\_NAME）都可能出现在过滤条件中，我们先把他们添加为普通类型维度，方法如下：单击蓝色的“维度”按钮，然后选择所需的列，将其设置为**普通维度**。
 
@@ -31,13 +31,13 @@
 最终，维度的设置结果如下图所示：
 
 ![](images/createcube_3.png)
-这里我们推荐您使用（点击）一键优化功能。这个功能可以根据您选择的维度，对cube的维度做最优的处理，即节省存储空间的同时最大的优化查询速度。优化的方法包括聚合组(AGG)，rowkey和最大组合维度数（MDC）的设置。更多优化后的细节如下图所示。
+这里我们推荐您使用（点击）一键优化功能。这个功能可以根据您选择的维度，对cube的维度做最优的处理，即节省存储空间的同时最大的优化查询速度。优化的方法包括聚合组(AGG)，RowKey和最大组合维度数（MDC）的设置。更多优化后的细节如下图所示。
 
 ![](images/createcube_9.png)
 
 
 
-Rowkey的顺序对于查询性能来说至关重要，一般把最常出现在过滤条件中的列放置在Rowkey的前面，在这个案例中，我们首先把PART_DT放在Rowkey的第一位。接下来，按照层级把商品分类的字段跟随其后。由于参与Cuboid生成的维度都会作为Rowkey，因此我们需要把这些列添加为Rowkey当中。在这个案例中，总共需要添加7个Rowkey。在每个Rowkey上，还需要为列值设置编码方法。Kyligence Enterprise支持的基本编码类型如下：
+RowKey的顺序对于查询性能来说至关重要，一般把最常出现在过滤条件中的列放置在RowKey的前面，在这个案例中，我们首先把PART_DT放在RowKey的第一位。接下来，按照层级把商品分类的字段跟随其后。由于参与Cuboid生成的维度都会作为RowKey，因此我们需要把这些列添加为Rowkey当中。在这个案例中，总共需要添加7个Rowkey。在每个Rowkey上，还需要为列值设置编码方法。Kyligence Enterprise支持的基本编码类型如下：
 
 1. "dict" 适用于大部分字段，默认推荐使用，但在超高基情况下，可能引起内存不足的问题。
 2. "boolean" 适用于字段值为: true, false, TRUE, FALSE, True, False, t, f, T, F, yes, no, YES, NO, Yes, No, y, n, Y, N, 1, 0
@@ -47,9 +47,9 @@ Rowkey的顺序对于查询性能来说至关重要，一般把最常出现在�
 6. "time" 适用于字段值为时间戳字符，支持范围为[ 1970-01-01 00:00:00, 2038/01/19 03:14:07]，毫秒部分会被忽略。time编码适用于time, datetime, timestamp等类型。
 7. "fix_length" 适用于超高基场景，将选取字段的前N个字节作为编码值，当N小于字段长度，会造成字段截断，当N较大时，造成RowKey过长，查询性能下降。只适用于varchar或nvarchar类型。
 8. "fixed_length_hex" 适用于字段值为十六进制字符，比如1A2BFF或者FF00FF，每两个字符需要一个字节。只适用于varchar或nvarchar类型。
-   在这个案例中，我们除了把LSTG_FORMAT_NAME设置为fixed_length类型（长度为12）外，将其余的Rowkey都设置为dict编码。 
+   在这个案例中，我们除了把LSTG_FORMAT_NAME设置为fixed_length类型（长度为12）外，将其余的RowKey都设置为dict编码。 
 
-Rowkey设置的结果应该如下：
+RowKey设置的结果应该如下：
 
 ![](images/createcube_10.png)
 
@@ -70,7 +70,7 @@ SELECT SELLER_ID, SUM(PRICE) FROM KYLIN_SALES
 GROUP BY SELLER_ID 
 ORDER BY SUM(PRICE)
 ```
-因此，我们创建一个TOP-N的度量，选择PRICE字段作为SUM/OPDER BY字段，选择SELLER_ID字段作为GROUP BY字段，并选择TOPN(100)作为度量的精度。
+因此，我们创建一个TOP-N的度量，选择PRICE字段作为SUM/ORDER BY字段，选择SELLER_ID字段作为GROUP BY字段，并选择TOPN(100)作为度量的精度。
 
 ![](images/createcube_6.png)
 最终添加的度量如下图所示：
@@ -81,7 +81,7 @@ ORDER BY SUM(PRICE)
 
 ### 更新设置
 
-**触发自动合并的时间阈值(Auto Merge Thresholds)**：一般的，一个销售统计的SQL查询往往会按周、月进行过滤和聚合，所以我们可以设置Cube自动按周或月进行自动合并，设置**触发自动合并的时间阈值(Auto Merge Thresholds)**如下所示：
+**触发自动合并的时间阈值(Auto Merge Threshold)**：一般的，一个销售统计的SQL查询往往会按周、月进行过滤和聚合，所以我们可以设置Cube自动按周或月进行自动合并，设置**触发自动合并的时间阈值(Auto Merge Threshold)**如下所示：
 
 ![](images/createcube_8.png)
 
@@ -105,7 +105,7 @@ ORDER BY SUM(PRICE)
 
 关于cube配置参数的修改可以参见[多重配置重写](../../config/config_override.cn.md)。
 
-在**高级设置**中，可以选择 Cube 构建引擎。默认情况下，Kyligence Enterprise 使用 MapReduce 作为 Cube 构建引擎，但也可以手动切换成 Spark(Beta)。关于如何配置和使用 Spark 构建引擎的详情，参见[配置 Spark 构建引擎](../../config/spark_engine_conf.cn.md)。	
+在**高级设置**中，可以选择 Cube 构建引擎。默认情况下，Kyligence Enterprise 使用 MapReduce 作为 Cube 构建引擎，但也可以手动切换成Spark(Beta)。关于如何配置和使用 Spark 构建引擎的详情，参见[配置 Spark 构建引擎](../../config/spark_engine_conf.cn.md)。	
 
 ### Cube概览
 

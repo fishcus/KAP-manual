@@ -18,9 +18,9 @@ select count(*) from table group by column_mandatory, column_joint1, column_join
 
 如上图所示，该图为一个维度为7时的Cuboid生成图，为了方便理解剪枝功能，该生成图部分内容进行了省略。
 
-当MDC=4时，包含多余4个维度的Cuboid会被剪裁掉如：ABCDEF，ABCDEG，ABCDE，ABCDF等。
+当MDC=4时，包含多于4个维度的Cuboid会被剪裁掉，如：ABCDEF，ABCDEG，ABCDE，ABCDF等。
 
-当MDC=3时，包含多余3个维度的Cuboid会被剪裁掉如：ABCDEF，ABCDEG，ABCD，ABCE等。
+当MDC=3时，包含多于3个维度的Cuboid会被剪裁掉，如：ABCDEF，ABCDEG，ABCD，ABCE等。
 
 考虑到Cube构建过程中性能问题，Base Cuboid和一些Cuboid不会被剪裁掉即使包含维度大于当前MCD的值，如当MDC=4时，ABCEF可能不会被剪裁掉。同时根据上一节关于查询维度计算方法，当一个Cuboid中含有必要维度，联合维度组和层级维度组时，这两个维度组均算做一个维度，必要维度不算做维度。因此在使用自动剪枝功能时需要考虑到当含有以上维度组或者必要维度时，Cuboid的实际所含维度数。
 
@@ -40,4 +40,4 @@ select count(*) from table group by column_mandatory, column_joint1, column_join
 
 ### 注意事项 ###
 
-一方面该剪枝方法能够显著减少Cube中包含的Cuboid数目，另一方面一些需要访问许多dimension的复杂查询则会命中较大的Cuboid，造成大量的在线计算，最终导致查询速度变慢。和其他的剪枝方法一样，该方法是一种数据模型的妥协和权衡，要在存储空间和查询速度间进行取舍。当多数查询访问的维度数目不多时，该方法能起到显著的作用。
+一方面该剪枝方法能够显著减少Cube中包含的Cuboid数目，另一方面一些需要访问许多维度的复杂查询则会命中较大的Cuboid，造成大量的在线计算，最终导致查询速度变慢。和其他的剪枝方法一样，该方法是一种数据模型的妥协和权衡，要在存储空间和查询速度间进行取舍。当多数查询访问的维度数目不多时，该方法能起到显著的作用。

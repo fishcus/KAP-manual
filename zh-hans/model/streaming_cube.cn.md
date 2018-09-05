@@ -11,7 +11,6 @@ Kyligence Enterprise内置了样例流式Cube和Kafka测试数据生成脚本，
 假设在localhost:9092 确实运行有kafka节点，并且Kyligence Enterprise启动时，`KAFKA_HOME`已经被正确设置，下一步将通过`sample-streaming.sh`脚本，创建`kylin_streaming_topic`的Kafka Topic，并以每秒钟100个消息的速度发送随机消息到该topic。
 
 
-
 ### 创建流式数据模型
 
 本产品支持将消息流抽象为事实表。定义好事实表后，就可以开始定义数据模型。这一步和定义一个普通的数据模型没有太大不同（[通用模型设计](data_modeling.cn.md)）。不过，您需要留意如下两点：
@@ -20,21 +19,21 @@ Kyligence Enterprise内置了样例流式Cube和Kafka测试数据生成脚本，
 - 定义事实表上的维度和度量时，可以参照一般的业务逻辑。本例中，将 `country(国家)、category(品类)、device（设备）、user_gender(用户性别)、user_age(用户年龄)`作为维度（dimension/D），将`amount(商品总量)、QTY(商品数)`作为度量(measure/M)。
 - 保存模型时，请选择 MINUTE_START 属性作为分区列（partition column）, 后续构建对应cube时可以以分钟为间隔构建Cube。不要直接选择ORDER_TIME（因为其数据类型为timestamp, 构建粒度太小）。	
 
-### 创建流式cube
+### 创建流式 Cube
 
 流式Cube与常规Cube在大部分情况下都十分相似([通用cube设计](cube/create_cube.cn.md))。您需要特别留意以下几个方面。
 
-##### Cube维度设置
+##### Cube 维度设置
 
-- 不建议将order\_time作为维度（dimension），此列的数据类型是timestamp（粒度在毫秒级），将成为一个超高基的维度且一般的查询时间粒度都会大于毫秒。这里，推荐使用mintue\_start, hour\_start等时间维度。
+- 不建议将order\_time作为维度（dimension），此列的数据类型是timestamp（粒度在毫秒级），将成为一个超高基的维度且一般的查询时间粒度都会大于毫秒。这里，推荐使用minute\_start, hour\_start等时间维度。
 - minute_start是本例中流式模型的分区列，需要被定义为维度。
-- 在设置rowkeys时, 请将"minute\_start" 拖拽到所有属性的最顶部。对于基于流式Cube的查询，时间维度会是一个经常被用到的维度。因此，将其放在rowkeys前面有助于快速过滤。
+- 在设置RowKeys时, 请将"minute\_start" 拖拽到所有属性的最顶部。对于基于流式Cube的查询，时间维度会是一个经常被用到的维度。因此，将其放在RowKeys前面有助于快速过滤。
 
 ##### 刷新设置
 
 - 推荐设置自动合并数据块（segment），例如0.5小时，4小时，１天，７天等。合并segment有助于提升SQL查询性能。 
 
-### 触发流式Cube构建
+### 触发流式 Cube 构建
 
 您可以直接在Web GUI中，点击cube的操作**构建**来触发Cube构建，当然，你也可以通过curl指令结合Kyligence Enterprise的RESTfulAPI触发cube构建
 
@@ -46,24 +45,21 @@ curl -X PUT --user ADMIN:KYLIN -H "Accept: application/vnd.apache.kylin-v2+json"
 > 同时，语句中的数字０指的是Cube开始构建的偏移量，而9223372036854775807指的是Long.MAX_VALUE的值，指的是Kyligence Enterprise的构建会用到Topic中目前为止拥有的所有消息。
 >
 
-在触发了Cube构建以后，在“Monitor” 页面，我们可以观察到一个新的构建任务，接下来，我们只需耐心等待Cube构建完成。在Cube构建完成后，进入 “Insight” 页面, 并执行sql语句，确认流式Cube可用。
+在触发了Cube构建以后，在“Monitor” 页面，我们可以观察到一个新的构建任务，接下来，我们只需耐心等待Cube构建完成。在Cube构建完成后，进入 “Insight” 页面, 并执行SQL语句，确认流式Cube可用。
 
 ```sql
 SELECT MINUTE_START, COUNT(*), SUM(AMOUNT), SUM(QTY) FROM KAFKA_TABLE_1 GROUP BY MINUTE_START ORDER BY MINUTE_START
 ```
 
 
-### 自动触发Cube定期构建
+### 自动触发 Cube 定期构建
 
-在第一次构建完成以后，你可以以一定周期定时触发构建任务。Kyligence Enterprise会自动记录每次构建的偏移量，每次触发构建的时候，Kyligence Enterprise都会自动从上次结束的位置开始构建。您可以使用Linux上的crontab指令定期触发构建任务:
+在第一次构建完成以后，你可以以一定周期定时触发构建任务。Kyligence Enterprise会自动记录每次构建的偏移量，每次触发构建的时候，Kyligence Enterprise都会自动从上次结束的位置开始构建。您可以使用Linux上的**crontab**指令定期触发构建任务:
 
 ```shell
 crontab -e　*/5 * * * * curl -X PUT --user ADMIN:KYLIN -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/json" -H "Accept-Language: en" -d '{ "sourceOffsetStart": 0, "sourceOffsetEnd": 9223372036854775807, "buildType": "BUILD"}' http://localhost:7070/kylin/api/cubes/{your_cube_name}/build_streaming
 ```
 现在，您可以看到Cube已经可以自动定期构建了。同时，当累积的segments超过一定阈值时，本产品会自动触发segment合并。
-
-
-
 
 
 ### 常见问题答疑
