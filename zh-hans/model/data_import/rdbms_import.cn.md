@@ -42,11 +42,11 @@ kylin.query.pushdown.runner-class-name=io.kyligence.kap.query.pushdown.PushdownR
 1. 登录本产品的Web UI；
 2. 主界面顶端左侧的项目管理工具栏中，点击加号 **“＋” ** 以新建项目；
 3. 在弹出的窗口中，输入**项目名称** （必选）和 **项目描述**, 点击 **确定** 按钮，完成项目创建；
-4. 进入具体项目**建模** 功能， 选择 **数据源** 选项卡；
+4. 进入具体项目**建模** 功能，选择 **数据源** 选项卡；
 5. 点击蓝色的**数据源**按钮；
 6. 在弹出窗口中，选择 **RDBMS**作为数据源类型；
 7. 在项目配置中添加数据源参数配置(可参考相关受支持的RDBMS参数项目配置参考)
-8. 点击**下一步**按钮，进入**加载表元数据**窗口， 用户可按需在左侧表清单中， 单击选中需要建模的表。
+8. 点击**下一步**按钮，进入**加载表元数据**窗口，用户可按需在左侧表清单中，单击选中需要建模的表。
 9. 点击右下方**同步**按钮进行加载。
 
 
@@ -72,7 +72,7 @@ kylin.source.jdbc.driver=com.pivotal.jdbc.GreenplumDriver
 kylin.source.jdbc.dialect=greenplum
 ```
 
-- Mysql 数据源
+- MySQL 数据源
 
 ```properties
 kylin.source.jdbc.driver=com.mysql.jdbc.Driver
@@ -94,5 +94,5 @@ kylin.source.jdbc.adaptor=io.kyligence.kap.sdk.datasource.adaptor.Mssql08Adaptor
 >
 > - 不支持含limit子查询
 > - 不支持空间查询 如'geometric','geography'
-> - 不支持 INITCAP,MEDIAN,STDDEV_POP,FIRST_VALUE 等高阶统计函数
+> - 不支持 INITCAP, MEDIAN, STDDEV_POP, FIRST_VALUE 等高阶统计函数
 > - 不支持开窗函数，如 avg/count/max/min/sum over() 等语法

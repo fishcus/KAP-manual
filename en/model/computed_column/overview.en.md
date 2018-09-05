@@ -1,29 +1,29 @@
 ## Computed Column
 
-*Computed Column* allows you to pre-define actions like data extraction/ transformation/ redefinition in modes, and thus enhance the data semantic abstraction. By replacing runtime calculation with offline cube construction, Kyligence Enterprise's pre-calculation capability is fully utilized. As a result, query performance could improve significantly. It's allowed to use Hive UDF in computed column, so that existing business codes can be reused.
+*Computed Column* allows you to pre-define actions like data extraction/transformation/redefinition in modes, it enhances the data semantic abstraction. By replacing runtime calculation with offline cube construction, the pre-calculation capability of Kyligence Enterprise is fully utilized. As a result, query performance could be improved significantly. It's allowed to use Hive UDF in computed columns, so that existing business codes can be reused.
 
 > Notice: Computed column is not available when the data source is Kafka.
 
 ### Basic Concept and Rules
 
-- Expression：calculating logic. Expression of computed column supports across a fact table or a lookup table. Plus, it support cross use columns from different tables.
-- Consistent：
-  - In a project, computed column's name should be consistent with its expression (computed logic). It means one computed column can be defined once in one project, yet can be reused no matter how many times over different models.
-  - Reuse：computed column can be reused from one model to another model's same position. 
-- Position：
-  - Defining a computed column in fact table is highly suggested. In some cases, you can define computed column in special lookup tables, which is not stored as snapshot.
+- Expression: calculating logic. Expression of computed column supports across a fact table or a lookup table.
+- Consistency:
+  - In a project, computed columns' name should be consistent with their expression (computed logic). It means one computed column can be defined once in one project, yet can be reused no matter how many times over different models.
+  - Reuse: computed columns can be reused from one model to another, same position is required. 
+- Position:
+  - Defining a computed column in fact table is highly recommended. In some cases, you can define computed column in special lookup tables, which is not stored as snapshot.
   - Allow to define different computed columns in different models.
-- More：
-  - Under one project, computed column's name cannot duplicate with any other column in current model.
+- More:
+  - Under one project, the name of a computed column cannot duplicate with any other columns in current model.
   - Access：If a user has been restricted access to the column that is used in the expression of a computed column, the user will not be able to query the computed column either. 
 
 #### Create Computed Column
 
-Kyligence Enterprise allows you to define computed columns for each model seperately. 
+Kyligence Enterprise allows you to define computed columns for each model separately. 
 
 For example, say you have a fact table named `kylin_sales` with following columns: `price` (price for each item in the transaction), `item_count` (number of sold items in the transaction) and `part_dt` (time when the transaction happens). You can define two more computed columns on `kylin_sales`: `total_amount = kylin_sales.price * kylin_sales.item_count` and `deal_year = year(kylin_sales.part_dt)`. 
 
-Later when creating a cube, you can add computed columns total_amount/deal_year.
+Later when you create a cube, you can add computed columns total_amount/deal_year.
 
 You can create computed columns by clicking the icon as the arrow points to:
 
@@ -41,7 +41,7 @@ After successfully submitting and saving the computed column, you will see the n
 
 ![](images/computed_column_en.4.png)
 
-After defining the computed columns in model, you need to use them to build cube (either as dimension or measure), so that computed column can be pre-calculated and performance advantages can be observed.
+After defining the computed columns in model, you need to use them to build cube (either as dimension or measure), so that computed column can be pre-calculated and performance improvement can be observed.
 
 ![](images/computed_column_en.3.png)
 
@@ -49,11 +49,11 @@ After defining the computed columns in model, you need to use them to build cube
 
 #### Explicit Query vs. Implicit Query
 
-**Query:** A computed column is logically appended to the table's column list after creation. You can query the computed column as if it was a normal column as long as it is pre-calculated in a Cube. 
+**Query:** A computed column is logically appended to the table's column list after creation. You can query the computed column as if it was a normal column as long as it is pre-calculated in a cube. 
 
 
 
-When **query pushdown** is enabled and there is no cube can be hit on for your query on computed column, Kyligence Enterprise will analyze the query and translate the computed column to the original formula. Continuing with the previous example, if you query `select sum(total_amount) from kylin_sales` when there is no Cube ready to answer, and query pushdown is enabled, this query will be translated into `select sum(price * item_count) from kylin_sales`, and be pushed down to underlying SQL on Hadoop engine. 
+When **query pushdown** is enabled and there is no cube can be hit on for your query on computed columns, Kyligence Enterprise will analyze the query and translate the computed column to the original formula. Continuing with the previous example, if you query `select sum(total_amount) from kylin_sales` when there is no cube ready to answer, and query pushdown is enabled, this query will be translated into `select sum(price * item_count) from kylin_sales`, and be pushed down to underlying SQL on Hadoop engine. 
 
 
 
@@ -67,7 +67,7 @@ Implicit Query is **enabled** by default. To disable it you'll need to remove `k
 
 ### Advanced Functions
 
-Computed column is pushed down to data source to be calculated. Hive is the default data source for KAP, thus the syntax for computed need to follow hive's. 
+Computed column is pushed down to data source which will be calculated. Hive is the default data source for Kyligence Enterprise, as a result, the syntax for computed column need to follow hive's. 
 
 Expressions can support rich advanced functions (specified at the end of this article), but please do not define the expression that contains the aggregate functions (as cube measures). For example that expression of a computed column cannot directly support count (distinct), such as `select count (distinct seller_ID) from kylin_sales`
 

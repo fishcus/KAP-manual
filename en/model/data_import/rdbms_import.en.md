@@ -85,3 +85,4 @@ kylin.source.jdbc.adaptor=io.kyligence.kap.sdk.datasource.adaptor.Mssql08Adaptor
 > - Not support 'geometric','geography'
 > - Not support INITCAP,MEDIAN,STDDEV_POP,FIRST_VALUE functions
 > - Not support aggregate functions like avg/count/max/min/sum
+> - Not support windowing functions: over()

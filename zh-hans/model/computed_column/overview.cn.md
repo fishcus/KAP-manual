@@ -11,7 +11,7 @@
 - 表达式：指可计算列的计算逻辑。可计算列的表达式可以包含不同表上的列，无论是事实表还是维度表。
 - 唯一性：
   - 同一个项目下，可计算列的名字和表达式（计算逻辑）是一一对应的，即同样的计算逻辑在一个项目中，只能被定义一次，但可以多次引用。
-  - 引用：在新模型中，可以引用其他模型已有的可计算列（跨模型引用时，可计算列所在的表的位置需要是一致的）。
+  - 复用：在新模型中，可以复用其他模型已有的可计算列（跨模型引用时，可计算列所在的表的位置需要是一致的）。
 - 可计算列的位置：
   - 建议您将可计算列定义在事实表上，在一些特殊情况下，也支持定义在非snapshot存储的维度表。
   - 在多个模型中，定义不同的可计算列。
@@ -112,7 +112,7 @@ select sum(price * item_count) from kylin_sales。
 
 
 
-本产品会识别表达式`price * item_count`可以由可计算列`total_amount`替代，且`sum(total_amount)`已经在某个 Cube 中被预计算完毕。产品将您原始查询翻译为`select sum(total_amount) from kylin_sales`。
+本产品会识别表达式`price * item_count`可以由可计算列`total_amount`替代，且`sum(total_amount)`已经在某个 Cube 中被预计算完毕。产品将您的原始查询翻译为`select sum(total_amount) from kylin_sales`。
 
 我们将这种查询方式成为可计算列的**隐式查询**
 
@@ -124,7 +124,7 @@ select sum(price * item_count) from kylin_sales。
 
 ### 高级函数的使用
 
-由于可计算列的计算是直接下沉到数据源进行处理的，而当前 Hive 是本产品的默认数据源，因此可计算列的表达式定义默认需要以 hive SQL 的语法为准。
+由于可计算列的计算是直接下沉到数据源进行处理的，而当前 Hive 是本产品的默认数据源，因此可计算列的表达式定义默认需要以 Hive SQL 的语法为准。
 
 可计算列的表达式可以支持丰富的高级函数，但请勿在表达式中定义包含聚合的结果。比如：可计算列的表达式无法直接支持 count(distinct)，像是“select count(distinct Seller_ID) from kylin_sales”这类查询语句无法直接定义为可计算列。
 

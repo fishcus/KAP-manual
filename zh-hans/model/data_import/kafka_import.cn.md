@@ -1,5 +1,5 @@
 ## 导入Kafka数据源
-本节介绍如何导入 Kafka 数据源，以及将kafka消息流解析事实表。
+本节介绍如何导入 Kafka 数据源，以及将Kafka消息流解析为事实表。
 
 ### 环境准备
 
@@ -9,7 +9,7 @@ Kafka Broker无需与本产品部署在同一个节点上。
 
 > 注意：如果Kyligence Enterprise节点上没有部署Kafka Broker，建议将与其他已部署节点相同版本的Kafka二进制包复制并解压在本产品启动节点上的任意路径（如/usr/local/kafka_2.10-0.10.1.0），并设置KAFKA_HOME指向该路径。确保KAFKA_HOME/libs 目录下有Kafka的客户端library。
 
-本例中，假设用户没有安装过Kafka Broker，包含了Kafka Broker部署到本机，以及启动的过程，对于已经安装过Kafka Broker的用户该步骤可以省略。
+本例中，假设用户没有安装过Kafka Broker，包含了将Kafka Broker部署到本机，以及启动的过程，对于已经安装过Kafka Broker的用户该步骤可以省略。
 
 ```shell
 curl -s https://archive.apache.org/dist/kafka/0.10.1.0/kafka_2.10-0.10.1.0.tgz | tar -xz -C /usr/local/
@@ -17,7 +17,7 @@ cd /usr/local/kafka_2.10-0.10.1.0/
 ./bin/kafka-server-start.sh config/server.properties &
 ```
 
-务必确保产品实例启动前，已经将**KAFKA_HOME**变量正确导出。
+务必确保产品实例启动前，已经将**KAFKA_HOME**变量正确导出，操作如下。
 
 ```shell
 export KAFKA_HOME=/usr/local/kafka_2.10-0.10.1.0
@@ -29,7 +29,7 @@ export KAFKA_HOME=/usr/local/kafka_2.10-0.10.1.0
 >
 > 以下例子假设Kafka Broker运行在127.0.0.1:9092，ZooKeeper运行在127.0.0.1:2181，用户在自己环境中请自行更新IP地址。
 
-通过以下命令，我们创建一个名为"kylin_demo"的topic。
+通过以下命令，我们创建一个名为"kylindemo"的topic。
 
 ```shell
 ./bin/kafka-topics.sh --create --zookeeper 127.0.0.1:2181 --replication-factor 1 --partitions 3 --topic kylindemo
@@ -82,7 +82,7 @@ tsParser：指时间戳解析器，对 tsColName 的数值解析成时间戳；
 
 > 注意：tsParser 有两种内置解析器，一种是 org.apache.kylin.source.kafka.DefaultTimeParser，对 long 型的timestamp 值（epoc time）解析成 timestamp。另一种是org.apache.kylin.source.kafka.DateTimeParser，它根据给定的 tsPattern，将 string 类型的时间表达式解析成 timestamp；如果没有指定 tsPattern，默认使用 "yyyy-MM-dd HH:mm:ss" 的格式。
 
-tsPattern：指时间 pattern，供 tsParser使用。
+tsPattern：指时间戳样式，供 tsParser使用。
 
 
 
