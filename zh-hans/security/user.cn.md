@@ -48,7 +48,7 @@
 
 ![系统管理员修改密码](images/users/user_w4.png)
 
-初始的ADMIN账户密码在首次登陆后，需要被修改。如需恢复初始密码，在<code>$KYLIN_HOME/</code>使用重置密码命令
+初始的 ADMIN 账户密码在首次登陆后，需要被修改。如需恢复初始密码，在<code>$KYLIN_HOME/</code>使用重置密码命令
 
 ```
 $KYLIN_HOME/bin/kylin.sh admin-password-reset

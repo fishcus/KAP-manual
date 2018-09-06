@@ -4,11 +4,11 @@
 
 继续阅读：
 
-[基本Query](basic_query.cn.md)
+[基本 Query](basic_query.cn.md)
 
-[在Insight页面查询](insight.cn.md)
+[在 Insight 页面查询](insight.cn.md)
 
-[SQL规范参考](sql_spec.cn.md)
+[SQL 规范参考](sql_spec.cn.md)
 
 [异步查询](async_query.cn.md)
 
@@ -27,4 +27,3 @@
   - [分组函数](adv_sql/grouping_sets.cn.md)
   - [交集函数](adv_sql/intersect_count.cn.md)
   - [聚合函数](adv_sql/aggregate_function.cn.md)
-

@@ -1,6 +1,6 @@
 ## 异步查询
 
-异步查询可以帮助用户异步地执行SQL查询，提供更高效的数据导出方式。
+异步查询可以帮助用户异步地执行 SQL 查询，提供更高效的数据导出方式。
 
 ### 发起异步查询
 
@@ -11,7 +11,7 @@
 - sql - ```必须``` ```string``` sql查询语句
 - offset - ```可选``` ```int```  查询的偏移，如果在查询语句中已经有偏移，该值会被忽略
 - limit - ```可选``` ```int``` 查询限制，如果在查询语句中已经有限制，该值会被忽略
-- project - ```可选``` ```string``` 选中的项目，默认为"DEFAULT"
+- project - ```可选``` ```string``` 选中的项目，默认为 "DEFAULT"
 
 #### 请求示例
 
@@ -27,10 +27,10 @@
 
 #### 返回主体
 
-- code - 请求的返回码，"000"意味着没有异常发生
+- code - 请求的返回码，"000" 意味着没有异常发生
 - data - 返回的主体，包含三个部分：
-  - queryID - 查询的ID
-  - status - 查询的当前状态，对于新发起的查询，该值总是"RUNNING"
+  - queryID - 查询的 ID
+  - status - 查询的当前状态，对于新发起的查询，该值总是 "RUNNING"
   - info - 对状态的额外描述
 - msg - 可忽略
 
@@ -48,7 +48,7 @@
 }
 ```
 
-#### Curl实例
+#### Curl 示例                          
 
 ```
 curl -X POST -H "Authorization: Basic QURNSU46S1lMSU4=" -H "Content-Type: application/json" -d '{ "sql":"select * from p_lineorder limit 100", "project":"ssb" }' http://master:7070/kylin/api/async_query
@@ -64,9 +64,9 @@ curl -X POST -H "Authorization: Basic QURNSU46S1lMSU4=" -H "Content-Type: applic
 
 #### 返回主体
 
-- code - 请求的返回码，"000"意味着没有异常发生
+- code - 请求的返回码，"000" 意味着没有异常发生
 - data - 返回的主体，包含三个部分：
-  - queryID - 查询的ID
+  - queryID - 查询的 ID
   - status -查询的当前状态，有四种可能的值：
     - RUNNING - 查询仍在进行中
     - SUCCESSFUL - 查询已经成功
@@ -103,10 +103,10 @@ curl -X POST -H "Authorization: Basic QURNSU46S1lMSU4=" -H "Content-Type: applic
 }
 ```
 
-#### Curl示例
+#### Curl 示例
 
 ```
-curl -X GET -H "Authorization: Basic QURNSU46S1lMSU4=" -H "Content-Type: application/json"  http://master:7070/kylin/api/async_query/43eeb967-e76a-4214-8932-70594d454013/status 
+curl -X GET -H "Authorization: Basic QURNSU46S1lMSU4=" -H "Content-Type: application/json"  http://master:7070/kylin/api/async_query/43eeb967-e76a-4214-8932-70594d454013/status
 ```
 
 
@@ -115,20 +115,20 @@ curl -X GET -H "Authorization: Basic QURNSU46S1lMSU4=" -H "Content-Type: applica
 
 **GET /kylin/api/async_query/{QUERY_ID}/result**
 
-请确认查询状态为SUCCESSFUL之后再调用此接口
+请确认查询状态为 SUCCESSFUL 之后再调用此接口
 
 #### 请求路径参数
 
-- Query ID - `必须` 发起查询时收到的查询ID
+- Query ID - `必须` 发起查询时收到的查询 ID
 
 #### 返回主体
 
-- 此接口直接返回一个名为result.csv的文件
+- 此接口直接返回一个名为 result.csv 的文件
 
-#### Curl示例
+#### Curl 示例
 
 ```
-curl -X GET -H "Authorization: Basic QURNSU46S1lMSU4=" -H "Content-Type: application/json"  http://master:7070/kylin/api/async_query/43eeb967-e76a-4214-8932-70594d454012/result 
+curl -X GET -H "Authorization: Basic QURNSU46S1lMSU4=" -H "Content-Type: application/json"  http://master:7070/kylin/api/async_query/43eeb967-e76a-4214-8932-70594d454012/result
 ```
 
 
@@ -149,9 +149,8 @@ curl -X GET -H "Authorization: Basic QURNSU46S1lMSU4=" -H "Content-Type: applica
 }
 ```
 
-#### Curl示例
+#### Curl 示例
 
 ```
 curl -X DELETE -H "Authorization: Basic QURNSU46S1lMSU4=" -H "Content-Type: application/json"  http://master:7070/kylin/api/async_query
 ```
-
