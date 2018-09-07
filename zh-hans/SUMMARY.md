@@ -68,7 +68,7 @@
     * [数据采样](model/data_sampling.cn.md)
     * [设计模型](model/data_modeling.cn.md)
     * [多级分区模型](model/multi_partition.cn.md)
-    * [模型推荐](model/auto_modling.cn.md)
+    * [模型推荐](model/auto_modeling.cn.md)
     * [可计算列](model/computed_column/README.cn.md)
         - [可计算列简介](model/computed_column/overview.cn.md)
         - [可计算列支持的函数](model/computed_column/functions.cn.md)

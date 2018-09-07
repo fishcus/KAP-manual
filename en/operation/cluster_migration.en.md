@@ -1,10 +1,10 @@
-## **KAP Across-Hadoop-Cluster Migration**
+## **Kyligence Enterprise Across-Hadoop-Cluster Migration**
 
 KAP Across-Hadoop-Cluster Migration includes whole KAP instance migration and single Cube migration.
 
-###Whole KAP instance migration
+###Whole Kyligence Enterprise Instance Migration
 
-Whole KAP instance migration job contains two tasks
+Whole Kyligence Enterprise instance migration job contains two tasks
 
 + Dump metadata from Source Hadoop Cluster (SHC) and migrate it to HDFS.
 + ```Distcp``` KAP instance data from SHC to Destination Hadoop Cluster (DHC).
@@ -21,7 +21,7 @@ The two clusters can communicate to each other and command ```hadoop distcp``` i
 2. In SHC, run `bin/cluster-migration.sh backup`
 3. In DHC, run `bin/cluster-migration.sh restore hdfs://SHC-namenode/kylin_working_dir`
 
-### Single Cube migration
+### Single Cube Migration
 
 Single Cube migration job also contains two tasks
 
@@ -39,4 +39,4 @@ The two clusters can communicate to each other and command ```hadoop distcp``` i
 1. In SHC, run `bin/cluster-migration.sh backup-cube --cubeName someCube --onlyMetadata true`
 2. In DHC, run `bin/cluster-migration.sh restore-cube --cubeName someCube --project someProject --namenode hdfs://someip [--overwrite true]`
 
-If there is already a cube with same name in target project, the command will throw an exception. You can overwrite the cube by setting ```--overwrite true```.
+If there is already a cube with same name in the target project, the command will throw an exception. You can overwrite the cube by setting ```--overwrite true```.

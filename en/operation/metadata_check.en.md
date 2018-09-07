@@ -4,7 +4,7 @@ We suggest you backup the metadata regularly so that you may recover it quickly 
 
 ### Check Scope
 
-We summarize some scenarios which might cause metadata inconsistency in KAP as follows:
+We summarize some scenarios which might cause metadata inconsistency in Kyligence Enterprise as follows:
 
 1. Cube against Model (consistency check of Cube and Model)
 2. Cube against Table Index

@@ -1,6 +1,6 @@
-## Cube与Segment管理
+## Cube 与 Segment 管理
 
-### Cube管理
+### Cube 管理
 
 - **访问Cube管理页面**
 
@@ -12,7 +12,7 @@
 
 ![cube draft](images/cube_segment_manage/draft_action.png)
 
-- **Cube状态与操作类型**
+- **Cube 状态与操作类型**
 
   构建的Cube包含4种， 可在Cube列表的 **状态** 列进行查看， 以及最右侧 **操作** 进行Cube操作管理
 
@@ -45,7 +45,7 @@
 
   ​
 
-### Segment管理
+### Segment 管理
 
 Cube数据由一个或多个Segment组成。因此当Cube构建后，会生成segment数据。Segment的生成是以分区列（partition column）为依据的。
 

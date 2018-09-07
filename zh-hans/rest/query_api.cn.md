@@ -12,7 +12,7 @@
 * [列出可查询的表](#列出可查询的表)
 
 
-### 查询Cube数据
+### 查询 Cube 数据
 `请求方式 POST`
 
 `访问路径 http://host:port/kylin/api/query`

@@ -66,7 +66,7 @@
     * [Data Sampling](model/data_sampling.en.md)
     * [Model Design](model/data_modeling.en.md)
     * [Multi-partition Model](model/multi_partition.en.md)
-    * [Model Advisor](model/auto_modling.en.md)
+    * [Model Advisor](model/auto_modeling.en.md)
     * [Computed Column](model/computed_column/README.en.md)
         - [Introduction to Computed Column](model/computed_column/overview.en.md)
         - [Functions Used in Computed Column](model/computed_column/functions.en.md)

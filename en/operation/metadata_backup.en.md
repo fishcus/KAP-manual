@@ -58,7 +58,7 @@ Go to the studio page and switch to Cube. Then choose one cube and unfold the ac
 
 ![studio page](images/studio_page_1_en.png)
 
-### Metadata Directory Stucture
+### Metadata Directory Structure
 
 In the above example, this command downloads all of the metadata to the local directory as local files (e.g.: `/usr/local/kylin/meta_backups/meta_2016_06_10_20_24_50`). System level metadata may include directories as shown in the following ：
 
