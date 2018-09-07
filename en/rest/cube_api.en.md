@@ -104,7 +104,7 @@ curl -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kyli
 
 `Accept-Language: cn|en`
 
-#### Path variable
+#### Path Variable
 * cubeName - `required` `string`, obtained Cube's name.
 
 #### Request Example

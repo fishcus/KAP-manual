@@ -1,8 +1,8 @@
-## REST API
+## REST APIs
 
-KAP provides completed REST API, which can be used to query model, trigger build job, execute SQL query, get metadata and so on. Based on API, the third party system could integrate with KAP seamlessly.  
+KAP provides completed REST APIs, which can be used to query model, trigger build job, execute SQL query, get metadata and so on. Based on API, the third party system could integrate with KAP seamlessly.  
 
-Continue reading：
+Continue reading:
 
 [Access and authentication](authentication.en.md)
 

@@ -1,6 +1,6 @@
 # SQL Query
 
-This chapter would introduce you some common SQL support.
+This chapter introduces some common SQL support.
 
 Continue reading:
 

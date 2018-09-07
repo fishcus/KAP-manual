@@ -32,7 +32,7 @@
 #### Request Example
 `Request Path: "http://host:port/kylin/api/models?projectName=test&pageSize=10&pageOffset=0"`
 
-#### Curl request Example
+#### Curl Request Example
 ```
 curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json"  "http://host:port/kylin/api/models?projectName=test&pageSize=10&pageOffset=0"
 ```
@@ -110,7 +110,7 @@ curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.
 
 `Accepe: application/vnd.apache.kylin-v2+json`
 
-#### Path Variable
+#### Path Variables
 
 - projectName - `required` `string` project name
 - modelName -  `required ` `string`  model name
@@ -311,8 +311,6 @@ curl -X PUT -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.
 ```
 curl -X DELETE -H "Authorization: Basic xxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/models/learn_kylin/m2
 ```
-
-
 
 ### Get Computed Columns
 `Request Mode：GET`

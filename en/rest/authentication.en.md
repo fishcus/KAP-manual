@@ -1,13 +1,13 @@
 ## Access and Authentication
 
-### Access information
+### Access Information
 The access prefix of Kyligence Enterpriese API is "/kylin/api". This prefix is required regardless of which module API is accessed,  such as accessing all cubes whose APIs are "/kylin/api/cubes", and correspondingly the complete path is http://host:port/kylin/api/cubes.
 
 
 ### Authentication
 All APIs in Kyligence Enterprise are based on [basic authentication](http://en.wikipedia.org/wiki/Basic_access_authentication) authentication mechanism. Basic Authentication is a simple access control mechanism, which encodes account and password information based on Base64, and add these information as request headers to HTTP request headers, then the back-end will read account information from the request header for authentication. Take Kyligence Enterprise default account password ADMIN:KYLIN as an example, after encoding, the corresponding account password would be "Basic QURNSU46S1lMSU4 =", so the corresponding HTTP header information is "Authorization: Basic QURNSU46S1lMSU4 =". 
 
-### Authentication essentials
+### Authentication Essentials
 * Add `Authorization` to HTTP header
 * Or users could get authorization through `POST http://localhost:7070/kylin/api/user/authentication` . Once the authentication passes, the authentication information would be stored in cookie files for the following visit. 
 

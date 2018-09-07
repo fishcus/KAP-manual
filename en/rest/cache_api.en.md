@@ -18,7 +18,7 @@
 
 `Accept-Language: cn|en`
 
-#### Path Variable
+#### Path Variables
 
 - entity - `required` `string` 'all', 'project_schema', 'project_data' or 'project_acl'.
 - cacheKey - `required` `string` cache key, such as Project name.
@@ -47,7 +47,7 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apac
 
 `Accept-Language: cn|en` 
 
-#### Path Variable
+#### Path Variables
 
 - entity - `required` `string`, 'all','project_schema','project_data' or 'project_acl'.
 - cacheKey - `required` `string`, cache key, such as Project name.

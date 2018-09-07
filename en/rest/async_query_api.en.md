@@ -1,20 +1,20 @@
-## Asyn Query Result Export REST API
+## Async Query Result Export REST API
 
 > **Tip**
 >
 > Before using API, make sure that you read the previous chapter of [Access and Authentication](authentication.en.md), and know how to add authentication information in API.
 >
 > If there exists `&` in your request path, please enclose the URL in quotation marks `""` or add a backslash ahead  `\&`  to avoid being escaped.
-* [Asyn Query](#Asyn Query)
-* [Query Status](#Query Status)
-* [Query Metadata Info](#Query Metadata Info)
-* [Query Result File Status](#Query Result File Status)
-* [Download Query Result](#Download Query Result)
-* [Query hdfs Path](#Query hdfs Path)
-* [Delete All Query Result Files](#Delete All Query Result Files)
+* [Async Query](#async-query)
+* [Query Status](#query-status)
+* [Query Metadata Info](#query-metadata-info)
+* [Query Result File Status](#query-result-file-status)
+* [Download Query Result](#download-query-result)
+* [Query hdfs Path](#query-hdfs-path)
+* [Delete All Query Result Files](#delete-all-query-result-files)
 
 
-### Asyn Query
+### Async Query
 
 `Request Mode POST`
 
@@ -25,8 +25,8 @@
 `Accept-Language: cn|en`
 
 #### Request Body
-- sql - ```required``` ```string``` The text of sql statement.
-- separator - `可选` `string` The spearator of export result. Default value is ",".
+- sql - ```required``` ```string``` The text of SQL statement.
+- separator - `可选` `string` The separator of export result. Default value is ",".
 - limit - ```optional``` ```int``` Query limit. If limit is set in sql, limit will be ignored.
 - project - ```optional``` ```string``` Project to perform query. Default value is ‘DEFAULT’.
 
@@ -215,7 +215,7 @@ curl -X GET -H "Authorization: Basic XXXXXX" -H "Accept: application/vnd.apache.
 #### Response Info
 * Return a file to download at this time
 
-### Query hdfs Path
+### Query HDFS Path
 
 `Request Mode GET`
 

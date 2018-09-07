@@ -1,6 +1,6 @@
 ## Query REST API
 
-> **Tip**
+> **Tips**
 >
 > Before using API, make sure that you read the previous chapter of [Access and Authentication](authentication.en.md), and know how to add authentication information in API.
 >
@@ -23,7 +23,7 @@ If users access dataset built by Kyligence Enterprise, mainly there are two API,
 #### Request Body
 * sql - `required` `string` 
 
-  Sql query sentences.
+  SQL query statement.
 
 * offset - `optional` `int` 
 

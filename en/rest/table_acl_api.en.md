@@ -21,7 +21,7 @@
 
 `Accept-Language: cn|en`
 
-#### Path Variable
+#### Path Variables
 * project - `required` `string`, project name
 * table - `required` `string`, table name
 
@@ -64,7 +64,7 @@ curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.
 
 `Accept-Language: cn|en`
 
-#### Path Variable
+#### Path Variables
 * project - `required` `string`, project name
 * type - `required` `string`, indicate the type of action, value: user/group
 * table - `required` `string`, table name
@@ -120,7 +120,7 @@ curl -X DELETE -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apac
 
 `Accept-Language: cn|en`
 
-#### Path Variable
+#### Path Variables
 
 - project - `required` `string`, project name
 - table - `required` `string`, table name

@@ -52,4 +52,4 @@ KAP displays query result in table by default, the result data could be sorted i
 
 ![](images/insight/insight_show_result.png)
 
-Click *Visulization* button, you can display query result in chart. KAP supports *line chart*, *bar chart*, *pie chart* by default.
+Click *Visualization* button, you can display query result in chart. KAP supports *line chart*, *bar chart*, *pie chart* by default.

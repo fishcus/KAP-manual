@@ -16,11 +16,11 @@ Step 2: *Dimensions and dimension optimization*. Select some dimensions via *Add
 
 Dimension can be set as *normal* and *derived*. For derived dimensions, only dimensions from lookup table can be set as derived dimension. We recommend you to use cube optimizer to generate dimension type. Or use following case to lead you set derived dimensions.
 
-Basic rules for dimension selecting process are as following example:
+Basic rules for dimension selection process are as the following example:
 
 In table `KYLIN_CATEGORY_GROUPINGS`, if three columns (`META_CATEG_NAME`, `CATEG_LVL2_NAME`, `CATEG_LVL3_NAME`) can be filter condition in query, they should be set as normal dimensions at first.  
 
-Date usually appears in filter and aggregation condition appears in query, such as filter by week or aggregation by week. Here we take Week as an example, column `WEEK_BEG_DT` in table `KYLIN_CAL_DT` is required and derived from column `PART_DT`. So column `WEEK_BEG_DT` is set as *derived* dimension.
+Date usually appears in filter, whereas aggregation condition appears in query, such as filter by week or aggregation by week. Here we take Week as an example, column `WEEK_BEG_DT` in table `KYLIN_CAL_DT` is required and derived from column `PART_DT`. So column `WEEK_BEG_DT` is set as *derived* dimension.
 
 For the same reason, column `USER_DEFINED_FIELD1`, `USER_DEFINED_FIELD3` and `UPD_DATE、UPD_USER` in table `KYLIN_CATEGORY_GROUPINGS` are set as derived dimensions. Finally set column `LSTG_FORMAT_NAME` in fact table as *normal* dimension.
 
@@ -73,21 +73,21 @@ The result is shown in the following diagram:
 
 
 
-Step 4: *Refresh settings*. We configure cube's building and maintain. Filter and aggregation conditions of a SQL query are usually based on months or weeks. So Cube's set to automatically merge every week or month, meaning cube will be merged every 7 days. The settings are as bellow:
+Step 4: *Refresh settings*. We configure cube's build and maintenance. Filter and aggregation conditions of a SQL query are usually based on months or weeks. Hence, Cube is set to automatically merge on a weekly/monthly basis, which means cube will be merged every 7 days. The settings are as bellow:
 
 ![](images/createcube_8.png)
 
-*Retention Threshold*. For some old and not-used segments, this product could remove these segments automatically by configuring the *Retention Threshold*. For each new segment built ready, this product will check whether the old segments should be removed at the same time. The rule is if the time range between the latest segment's end date and the old segment's end date exceeds the *Retention Threshold*. 
+*Retention Threshold*. For some old and not-used segments, this product could remove these segments automatically by configuring the *Retention Threshold*. For each new segment built ready, Kyligence Enterprise will check whether the old segments should be removed at the same time. The rule is if the time range between the latest segment's end date and the old segment's end date exceeds the *Retention Threshold*. 
 
 > For example, if the **Retention Threshold** is 1 year, and the latest segment's end date is today. Any old segments whose end dates before the today of the last year will be removed. If automatic cleanup is not required, please keep the default value to 0. 
 
 *Partition start time*. In previous sections, we mentioned that we want to build Cube incrementally and choose column `PART_DT` as the partition column. The *partition start time* of the cube is required in creating process and it is "1970-01-01 08:00:00" as the start time by default.
 
-Build *Scheduler* is a cube build plan. Check the scheduler box and set a build time to trigger the first build and build cycle is time interval between different build job.
+Build *Scheduler* is a cube build plan. Check the scheduler box and set a build time to trigger the first build and build cycle is time interval between different build jobs.
 
 Step5: *Table index*. Please refer to [table index section](table_index.en.md).
 
-Step 6: *Advanced Setting*. The configuration added here can override the global ones read from file `kylin.properties`. We suggest don't change any configuration in this case.
+Step 6: *Advanced Setting*. The configuration added here can override the global ones read from file `kylin.properties`. We do not suggest you to change any configurations in this case.
 
 In this step, you may choose Cube build engine. By default, Kyligence Enterprise uses MapReduce as build engine. But you may also switch to *Spark(Beta)* manually. For the detailed information on how to configure and use Spark as build engine, please see [Configure Spark Build Engine](../../config/spark_engine_conf.en.md).
 

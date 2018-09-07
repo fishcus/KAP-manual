@@ -1,6 +1,6 @@
 ## 基本运维
 
-Kyligence Enterpriseigence Enterpriseigence Enterprise 服务器每天会接受不同用户提交的多个 Cube 构建任务，因为 Cube 设计不当或集群环境异常等原因，Kyligence Enterprise致 Cube 构建失败或时间过长，需要运维人员提高警惕；此外，Kyligence Enterprise 服务运行一段时间之后，一些存在于 HBase 或 HDFS 上的数据会成为无用数据，需要定时对存储器进行垃圾清理。
+Kyligence Enterprise 服务器每天会接受不同用户提交的多个 Cube 构建任务，因为 Cube 设计不当或集群环境异常等原因，导致 Kyligence Enterprise Cube 构建失败或时间过长，需要运维人员提高警惕；此外，Kyligence Enterprise 服务运行一段时间之后，一些存在于 HBase 或 HDFS 上的数据会成为无用数据，需要定时对存储器进行垃圾清理。
 
 ## 运维任务
 

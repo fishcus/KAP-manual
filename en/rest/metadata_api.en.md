@@ -10,7 +10,7 @@
 * [Get Hive table information](#get-hive-table-information)
 * [Load Hive tables](#load-hive-tables)
 
-### Get multiple Hive tables
+### Get Multiple Hive Tables
 `Request Mode：GET`
 
 `Access Path：http://host:port/kylin/api/tables`
@@ -20,7 +20,7 @@
 `Accept-Language: cn|en`
 
 
-#### Request Parameter
+#### Request Parameters
 * project - `required` `string`, project name.
 * ext - `optional` `boolean`, specify if table's extension information is returned.
 
@@ -88,7 +88,7 @@ curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.
 }
 ```
 
-### Get Hive table information
+### Get Hive Table Information
 `Request Mode: GET`
 
 `Access Path: http://host:port/kylin/api/tables/{project}/{tableName}`
@@ -98,7 +98,7 @@ curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.
 `Accept-Language: cn|en`
 
 
-#### Request Parameter
+#### Request Parameters
 * project - `optional` `string`, project name.
 * tableName - `optional` `string`, table name.
 
@@ -211,7 +211,7 @@ curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.
 `Accept-Language: cn|en`
 
 
-#### Request Parameter
+#### Request Parameters
 * project - `required` `string`, specify which project the hive table will be loaded to.
 * tables - `required` `string[]`, the hive table name list to be loaded.
 

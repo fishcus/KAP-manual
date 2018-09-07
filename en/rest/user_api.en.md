@@ -21,7 +21,7 @@
 
 `Accept-Language: cn|en` 
 
-#### Request Parameter
+#### Request Parameters
 * project - `optional` `string`, determine if the current user has the permission to get all users. If it is blank, the current user shall have Admin permission to get all users.
 * name - `optional` `string`, filter the user list.
 * isCaseSensitive - `optional` `bool`, indicate if the fuzzy matching of the above parameter, name, is case sensitive. It is case insensitive by default. 

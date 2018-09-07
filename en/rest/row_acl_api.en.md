@@ -22,7 +22,7 @@
 
 `Accept-Language: cn|en`
 
-#### Path Variable
+#### Path Variables
 * project - `required` `string`, project name
 * table - `required` `string`, table name
 
@@ -247,7 +247,7 @@ curl -X PUT -H "Authorization: Basic xxxxxx" -H Accept: application/vnd.apache.k
 
 `Accept-Language: cn|en`
 
-#### Path Variable
+#### Path Variables
 * project - `required` `string`, project name
 * type - `required` `string`, indicate the type of action, value: user/group
 * table - `required` `string`, table name

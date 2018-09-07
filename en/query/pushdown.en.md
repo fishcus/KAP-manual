@@ -12,7 +12,7 @@ Query pushdown is turned off by default. To turn it on, please do the following 
 
   Remove the comment symbol in front of the parameter  `kylin.query.pushdown.runner-class-name=io.kyligence.kap.storage.parquet.adhoc.PushDownRunnerSparkImpl` to bring it into effect. 
 
-- Restart KE:
+- Restart Kyligence Enterprise:
 
   ```
   $KYLIN_HOME/bin/kylin.sh stop
