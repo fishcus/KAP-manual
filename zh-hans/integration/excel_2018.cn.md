@@ -1,55 +1,153 @@
-## 通过KyAnalyzer在本产品中集成Excel
+## 与 Excel 集成
 
-这节将介绍如何使用Excel分析本产品中的数据。您的Excel将能够通过KyAnalyzer来查询本产品，而不需要导入数据到Excel中。
+本章节将介绍如何使用 Excel 分析 Kyligence Enterprise 中的数据，使用 Excel 的数据透视表功能，通过 MDX Service 直接在线查询分析 Kyligence Enterprise 的数据，而不需要导入数据到 Excel 中。
 
 ### 运行原理
 
-Excel能够通过一些插件（例如XMLA）来关联KyAnalyzer，调用XMLA查询API。KyAnalyzer将XMLA的查询从Excel转换为SQL，推送给本产品。查询结果将通过KyAnalyzer从本产品返回到Excel，最终展现在透视表中。
+Excel 通过 SSAS 接口连接 MDX Service，协议使用 XMLA。MDX Service 将 Excel 发送的 MDX 查询转换为 SQL，通过 JDBC 查询 Kyligence Enterprise，然后将查询结果转换后返回给 Excel，最终展现在透视表中。
 
 ### 使用条件
 
-1. Excel为2013版及以上
-2. 安装XMLA连接Excel的插件。可以点击[下载](https://sourceforge.net/projects/xmlaconnect/)。
-3. KyAnalyzer已安装并且部署到你的本产品，请参照本产品手册[KyAnalyzer章节](http://docs.kyligence.io/books/v3.1/zh-cn/kyanalyzer/)来看如何安装和部署KyAnalyzer。
+1. 安装部署 MDX Service
 
-### 建立对KyAnalyzer的连接 
+2. 安装 Excel 2007 版及以上
+> 注意：
+>
+> 如果您使用的 Excel 版本是2016，需要修改系统默认的 MSOLAP 版本，修改方式如下：
+>
+> 1. 在安装 Excel 的环境中，访问[下载链接](https://www.microsoft.com/zh-CN/download/details.aspx?id=35580) 点击下载，选择下载项目 `SQL_AS_OLEDB.msi` （根据Windows系统选择64位或32位），然后安装。
+>
+> 2. 在安装 Excel 的环境中，创建一个文本文件，将以下内容复制到文件中，最后将文件名重命名为 edit.reg，然后运行此文件。
+>
+>
+> ```
+> Windows Registry Editor Version 5.00
+>
+> [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Office\ClickToRun\REGISTRY\MACHINE\Software\Classes\MSOLAP]
+>
+> @="MSOLAP 11.0 OLE DB Provider"
+>
+> [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Office\ClickToRun\REGISTRY\MACHINE\Software\Classes\MSOLAP\CLSID]
+>
+> @="{308FF259-8671-4df4-B66C-9851BFACF446}"
+>
+> [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Office\ClickToRun\REGISTRY\MACHINE\Software\Classes\MSOLAP\CurVer]
+>
+> @="MSOLAP.5"
+> ```
 
-现在你的KyAnalyzer已经在运行了，你可以连接到KyAnalyzer并且使用Excel中的透视表了。
+### 部署 MDX Service
++ 下载 [MDX Service ](http://download.kyligence.io)二进制包（在**扩展包**标签页中），并拷贝至您的环境中。
+> 提示：我们推荐您把 MDX Service 安装在和 Kyligence Enterprise 同一个环境上。
 
-在Excel中，点击`插入`菜单，点击`数据透视表`。
++ 解压安装包。
 
-选择`使用外部数据源`。
+   `tar -xvf MDX Service-{version}.tar.gz`
 
-![使用外部数据源](images/excel_2018_cn/Excel1.png)
++ 配置mdx参数 。
 
-在现有连接中，点击`浏览更多`。
+  `vi mdx-server-{version}/conf/mdx/properties`
 
-![浏览更多](images/excel_2018_cn/Excel2.png)
+|配置项|配置说明|默认值|备注|
+| :------| :------| :------| :------|
+|kyligence.host|KE 主机名|localhost|
+|kyligence.port|KE 端口号|7070|
+|mdx.calculate.total.need|是否开启计算 total/subtotal 的功能|true|关闭后，返回结果将不会携带 total/subtoal，查询速度更快。如果在 url 中加入请求参数 needCalculateTotal=false，将会关闭计算 total/subtotal 的功能，并且会忽略配置文件对此项的配置。示例 url (http://localhost:7080/mdx/xmla/learn_kylin?needCalculateTotal=false)|
+|mdx.optimize.enable|是否开启 MDX 语句优化功能|true|如果在 url 中加入请求参数 enableOptimizeMdx=true, 同样也会打开 MDX 优化功能，并且会忽略配置文件对此项的配置。示例 url(http://localhost:7080/mdx/xmla/learn_kylin?enableOptimizeMdx=true)|
 
-下一步，选择`新建源`。
++ 启动 MDX Service 服务。
 
-![新建源](images/excel_2018_cn/Excel3.png)
+   `./start-mdx.sh`
+> 提示：
+>
+> 1. MDX Service 默认端口号为7080，如果存在端口冲突， 请自行修改安装目录 tomcat/conf/server.xml 文件
+> 2. 首次启动 MDX Service 会自动下载依赖包 mondrian-kylin。如在无网络环境下， 您需要手动下载 mondrian-kylin 依赖包, 并拷贝至安装目录的 tomcat/webapps/mdx/WEB-INF/lib 目录下，[点击此处开始下载](http://repository.kyligence.io:8081/repository/maven-releases/pentaho/mondrian/mdx-1.0/mondrian-mdx-1.0.jar)。
+>
 
-在数据连接向导中，选择`其他/高级`。
++ 停止 MDX Service 服务。
 
-![其他/高级](images/excel_2018_cn/Excel4.png)
+   `./stop-mdx.sh`
 
-在数据连接属性中，选择`XMLA数据源`。
+### 使用 Excel 连接 MDX Service
 
-![XMLA数据源](images/excel_2018_cn/Excel5.png)
+1. 选择 **数据** -> **来自 Analysis Services**。
 
-接下来，您需要在Location一栏中填写连接KyAnalyzer的地址信息，样本如下：`http://<host>:<port>/saiku/xmla/<cube_name>`
-用户名和密码是您的**本产品**登陆用户名和密码。
+   ![使用 SSAS 数据源](images/excel_2018_cn/Excel_SSAS_1.png)
 
-在Catalog下选择想要连接到的Cube。
+2. 接下来，您需要在**服务器名称**一栏中填写连接 MDX Service 的地址信息，样本如下：
 
-![选择Cube](images/excel_2018_cn/excel.png)
+   `http://{host}:{port}/mdx/xmla/{project}`
 
-现在Cube已经被连接到Excel了。点击完成关闭数据连接助手。
+   MDX Service 默认端口号是7080，用户名和密码是您的 Kyligence Enterprise 登陆用户名和密码。
 
-![连接成功](images/excel_2018_cn/Excel7.png)
+   ![登录认证](images/excel_2018_cn/Excel_SSAS_2.png)
 
-现在，您可以使用Excel透视表分析本产品的Cube了。
+3. 现在 Cube 已经被连接到 Excel 了。在下拉框中选择您需要使用的Cube，点击下一步。
 
-![分析Cube](images/excel_2018_cn/Excel8.png)
+   ![连接成功](images/excel_2018_cn/Excel_SSAS_3.png)
 
+4. 勾选总是尝试文件来刷新数据，点击完成。
+
+   ![保存连接](images/excel_2018_cn/Excel_SSAS_4.png)
+
+5. 现在，您可以使用 Excel 透视表分析 Kyligence 的 Cube 了。
+
+   ![分析Cube](images/excel_2018_cn/Excel_SSAS_5.png)
+
+
+### 如何升级 MDX Service
+1. 停止当前正在运行的 MDX Service。
+
+    `./stop-mdx.sh`
+
+2. 将 MDX Service 文件夹重命名。
+
+    `mv MDX Service-{version} MDX Service.old`
+
+3. 解压新版本的 MDX Service。
+
+    `tar -xvf MDX Service-{new_version}`
+
+4. 拷贝原有的配置文件至新的 MDX Service 中。
+
+    `cp -rf MDX Service.old/conf MDX Service-{new_version}`
+
+5. 启动 MDX Service。
+
+    `./start-mdx.sh`
+
+### 如何使用 HTTPS 连接 MDX Service
+
+1. 制作 SSL 秘钥和证书。
+
+   * 在 MDX Service 根目录下使用如下命令生成秘钥
+
+     `keytool -genkeypair -alias "tomcat" -keyalg "RSA" -keystore "tomcat.keystore" -validity 9999`
+
+     ![生成秘钥](images/excel_2018_cn/mdx_https/mdx_https_01.png)
+
+   * 秘钥生成后，保存在当前目录
+     ![查看秘钥](images/excel_2018_cn/mdx_https/mdx_https_02.png)
+   
+   * 利用如下命令生成一份证书
+     `keytool -export -alias tomcat -keystore tomcat.keystore -file tomcat.crt -storepass tomcat`
+     ![生成证书](images/excel_2018_cn/mdx_https/mdx_https_03.png)
+
+2. 在 Excel 环境中安装证书。
+
+   拷贝一份刚才生成的证书至安装了 Excel 的环境，双击证书，开始安装
+   ![安装证书](images/excel_2018_cn/mdx_https/mdx_https_04.png) 
+   
+3. 重启 MDX Service
+
+   安装证书后, 你需要重启 MDX Service。
+   
+   ![restart MDX Service](images/excel_2018_cn/mdx_https/mdx_https_06.png)
+
+4. 使用 HTTPS 连接。
+
+   MDX Service 的 HTTPS 默认端口为7043，所以连接样式为
+
+    `https://{host}:7043/mdx/xmla/{project}`
+    
+   ![使用https连接](images/excel_2018_cn/mdx_https/mdx_https_05.png)
