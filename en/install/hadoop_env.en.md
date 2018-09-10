@@ -67,11 +67,10 @@ We recommend that you use the following version of the Linux operating system:
 - Red Hat Enterprise Linux 6.4+ or  7.x
 - CentOS 6.4+ or 7.x
 
-### Recommended Client-side Configuration
+### Recommended Client Configuration
 - CPU: 2.5 GHz Intel Core i7
 - Operatoin System: macOS / windows 7 / windows 10
 - RAM: 8G or above
 - Browser version:
-
    + Firefox 60.0.2 or above
-   + Google 67.0.3396 or above
+   + Chrome 67.0.3396 or above
