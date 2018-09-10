@@ -52,65 +52,26 @@ ln -sfn $KYLIN_HOME/conf/profile_min $KYLIN_HOME/conf/profile
 ```
 
 ### 如果您使用 Beeline 连接 Hive
-如果您使用 Beeline 连接 Hive，需要如下修改 `conf/kylin.properties`，确保 Beeline 使用正确的账户执行命令：
+如果您使用 Beeline 连接 Hive，需要如下修改 `$KYLIN_HOME/conf/kylin.properties`，确保 Beeline 使用正确的账户执行命令：
 
 - 请留意替换 `-n root` 为您运行 Kyligence Enterprise 的 Linux 账户
 - 请留意替换 `jdbc:hive2://localhost:10000` 为您环境中的 Beeline 服务地址
 
 ```properties
-kylin.source.hive.beeline-params=-n root -u jdbc:hive2://localhost:10000 --hiveconf hive.security.authorization.sqlstd.confwhitelist.append='mapreduce.job.*|dfs.*'
+kylin.source.hive.client=beeline
+kylin.source.hive.beeline-params=beeline -n root -u 'jdbc:hive2://host:port' --hiveconf hive.exec.compress.output=true --hiveconf dfs.replication=2  --hiveconf hive.security.authorization.sqlstd.confwhitelist.append='mapreduce.job.*|dfs.*'
 ```
 
-并将如下参数写入环境中的 `hive-site.xml`，给与 Kyligence Enterprise 调整 Hive 执行参数的一定权限：
+注意：若您使用 **HDP** 环境，请确保您的安全配置方案为 `SQLStdAuth` 并且设置为 `true`。并将如下参数写入环境中的 `hive-site.xml`，赋予 Kyligence Enterprise 调整 Hive 执行参数的一定权限：
 
 ```properties
-hive.security.authorization.sqlstd.confwhitelist=dfs.replication|hive.exec.compress.output|hive.auto.convert.join.noconditionaltask.*|mapred.output.compression.type|mapreduce.job.split.metainfo.maxsize
+hive.security.authorization.sqlstd.confwhitelist=dfs.replication|hive.exec.compress.output|hive.auto.convert.join|hive.auto.convert.join.noconditionaltask.*|mapreduce.map.output.compress.codec|mapreduce.output.fileoutputformat.compress.*|mapreduce.job.split.metainfo.maxsize|hive.stats.autogather|hive.merge.*|hive.security.authorization.sqlstd.confwhitelist.*
 ```
-> 参见更多 [Beeline命令说明](https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Clients#HiveServer2Clients-BeelineCommandOptions)。
+> 更多 Beeline 介绍请查看 [Beeline命令说明](https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Clients#HiveServer2Clients-BeelineCommandOptions)。
 
 ### 如果您使用 Kerberos
 
-如果您的集群启用 Kerberos 安全机制，Kyligence Enterprise 自带的 Spark 需要正确的配置才能安全地访问您的集群资源。
-
-- 首先，如果您的机器上设有 SPARK_HOME 环境变量，请确保它指向 Kyligence Enterprise 自带的 Spark。
-
-   ```shell
-   export SPARK_HOME=$KYLIN_HOME/spark
-   ```
-
-- 然后，在 `kylin.properties` 中做如下配置，使 Kyligence Enterprise 能正确地读取 Kerberos 配置文件：
-
-  - 请留意替换 `/opt/spark/cfg/jaas-zk.conf` 为您环境中对应的 `jaas` 配置文件路径
-  - 请留意替换 `/opt/spark/cfg/kdc.conf` 为您环境中对应的 `kdc` 配置文件路径
-
-  ```properties
-  kap.storage.columnar.spark-conf.spark.yarn.am.extraJavaOptions=\
-    -Djava.security.auth.login.config=/opt/spark/cfg/jaas-zk.conf \
-    -Djava.security.krb5.conf=/opt/spark/cfg/kdc.conf
-  kap.storage.columnar.spark-conf.spark.driver.extraJavaOptions=\
-    -Djava.security.auth.login.config=/opt/spark/cfg/jaas-zk.conf \
-    -Djava.security.krb5.conf=/opt/spark/cfg/kdc.conf
-  kap.storage.columnar.spark-conf.spark.executor.extraJavaOptions=\
-    -Djava.security.auth.login.config=/opt/spark/cfg/jaas-zk.conf \
-    -Djava.security.krb5.conf=/opt/spark/cfg/kdc.conf
-  ```
-
-- 最后，Kyligence Enterprise 需要使用正确的 Kerberos 配置来访问 Hive Metastore。这里有两种配置方法。
-
-  - 方法一：进一步修改 `kylin.properties` 中的 `kap.storage.columnar.spark-conf.spark.driver.extraJavaOptions` 参数如下。
-    ```properties
-    kap.storage.columnar.spark-conf.spark.driver.extraJavaOptions=\
-      -Djava.security.auth.login.config=/opt/spark/cfg/jaas-zk.conf \
-      -Djava.security.krb5.conf=/opt/spark/cfg/kdc.conf \
-      -Dhive.metastore.sasl.enabled=true \
-      -Dhive.metastore.kerberos.principal=hive/XXX@XXX.com
-    ```
-
-  - 方法二：将 `hive-site.xml` 文件拷贝（或软链接）至 `$KYLIN_HOME/spark/conf` 目录下。
-
-> 常见问题：如果 Kyligence Enterprise 启动后，在日志中发现 `/tmp/hive-scratch` 目录（或类似的临时 HDFS 目录）没有写权限，只要授予权限（如 `hadoop fs -chmod -R 777 /tmp/hive-scratch`），再重启 Kyligence Enterprise 即可。
-> 
-> 更多 Kerberos 相关的信息，请参看[集成Kerberos](../../security/kerberos.cn.md)章节。
+如果您的集群启用 Kerberos 安全机制，Kyligence Enterprise 自带的 Spark 需要正确的配置才能安全地访问您的集群资源。具体配置方法请参看[集成Kerberos](../../security/kerberos.cn.md)章节。
 
 ### 如果您的 Hadoop 集群为 JDK 7
 
@@ -182,3 +143,8 @@ $KYLIN_HOME/bin/kylin.sh stop
 ps -ef | grep kylin
 ```
 
+### FAQ
+
+**Q：使用 Beeline 连接 Hive时，连接失败，出现如下报错： Cannot modify xxx at runtime. It is not in list of params that are allowed to be modified at runtime**
+
+请在 `hive-site.xml` 文件中，找到 `hive.security.authorization.sqlstd.confwhitelist` 参数，并根据报错提示追加该参数值。

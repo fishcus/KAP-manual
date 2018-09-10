@@ -53,68 +53,27 @@ ln -sfn $KYLIN_HOME/conf/profile_min $KYLIN_HOME/conf/profile
 
 ### If You Use Beeline to Connect Hive
 
-If you use Beeline to connect Hive, you need to modify `conf/kylin.properties ` as below to ensure it uses the correct account to execute Hive commands:
+If you use Beeline to connect Hive, you need to modify `$KYLIN_HOME/conf/kylin.properties ` as below to ensure it uses the correct account to execute Hive commands:
 
 - Please note the  `-n root` should be replaced with your Linux account.
 - Please note the `jdbc:hive2://localhost:10000` should be replaced with the Beeline service address in your enviroment.
 
 ```properties
-kylin.source.hive.beeline-params=-n root -u jdbc:hive2://localhost:10000 --hiveconf hive.security.authorization.sqlstd.confwhitelist.append='mapreduce.job.*|dfs.*'
+kylin.source.hive.client=beeline
+kylin.source.hive.beeline-params=beeline -n root -u 'jdbc:hive2://host:port' --hiveconf hive.exec.compress.output=true --hiveconf dfs.replication=2  --hiveconf hive.security.authorization.sqlstd.confwhitelist.append='mapreduce.job.*|dfs.*'
 ```
 
-And add the following to your `hive-site.xml` to give Kyligence Enterprise some permission to adjust the Hive execution parameters at runtime:
+Notice: If your Hadoop platform is **HDP**, please ensure the security authorization is `SQLStdAuth` with `true` status. Then add the following to your `hive-site.xml` to give Kyligence Enterprise some permission to adjust the Hive execution parameters at runtime:
 
 ```properties
-hive.security.authorization.sqlstd.confwhitelist=dfs.replication|hive.exec.compress.output|hive.auto.convert.join.noconditionaltask.*|mapred.output.compression.type|mapreduce.job.split.metainfo.maxsize
+hive.security.authorization.sqlstd.confwhitelist=dfs.replication|hive.exec.compress.output|hive.auto.convert.join|hive.auto.convert.join.noconditionaltask.*|mapreduce.map.output.compress.codec|mapreduce.output.fileoutputformat.compress.*|mapreduce.job.split.metainfo.maxsize|hive.stats.autogather|hive.merge.*|hive.security.authorization.sqlstd.confwhitelist.*
 ```
 
-> Refer to [Beeline command options](https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Clients#HiveServer2Clients-BeelineCommandOptions) for more information.
+>   For more information, please refer to [Beeline command options](https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Clients#HiveServer2Clients-BeelineCommandOptions) .
 
 ### If You Use Kerberos
 
-If your cluster enables Kerberos security, the Spark embeds in Kyligence Enterprise needs proper configuration to access your cluster resource securely.
-
-- First, if you have SPARK_HOME environment variable defined, please make sure it points to the Spark embeds in Kyligence Enterprise.
-
-  ```shell
-  export SPARK_HOME=$KYLIN_HOME/spark
-  ```
-
-- Then, modify `kylin.properties` to let Kyligence Enterprise read the correct Kerberos configuration file in your environment.
-
-  - Please replace `/opt/spark/cfg/jaas-zk.conf` with your `jaas` configuration file path
-
-  - Please replace `/opt/spark/cfg/kdc.conf` with your `kdc` configuration file path
-
-  ```properties
-  kap.storage.columnar.spark-conf.spark.yarn.am.extraJavaOptions=\
-    -Djava.security.auth.login.config=/opt/spark/cfg/jaas-zk.conf \
-    -Djava.security.krb5.conf=/opt/spark/cfg/kdc.conf
-  kap.storage.columnar.spark-conf.spark.driver.extraJavaOptions=\
-    -Djava.security.auth.login.config=/opt/spark/cfg/jaas-zk.conf \
-    -Djava.security.krb5.conf=/opt/spark/cfg/kdc.conf
-  kap.storage.columnar.spark-conf.spark.executor.extraJavaOptions=\
-    -Djava.security.auth.login.config=/opt/spark/cfg/jaas-zk.conf \
-    -Djava.security.krb5.conf=/opt/spark/cfg/kdc.conf
-  ```
-
-- Finally, Kyligence Enterprise needs to use the correct Kerberos configuration to access the Hive Metastore. There are two ways to do it.
-
-  - Method 1: Further modify the `kylin.properties` to use the `hive` principal to access Hive Metastore.
-
-    ```properties
-    kap.storage.columnar.spark-conf.spark.driver.extraJavaOptions=\
-      -Djava.security.auth.login.config=/opt/spark/cfg/jaas-zk.conf \
-      -Djava.security.krb5.conf=/opt/spark/cfg/kdc.conf \
-      -Dhive.metastore.sasl.enabled=true \
-      -Dhive.metastore.kerberos.principal=hive/XXX@XXX.com
-    ```
-
-  - Method 2: Copy the environment `hive-site.xml` (or soft link it) into`$KYLIN_HOME/spark/conf`.
-
-> Notice: Once Kyligence Enterprise is started, if the log reports that the system has no write permission to `/tmp/hive-scratch` or other temporary HDFS directory, you can fix it by granting permissions (like `hadoop fs -chmod -R 777 /tmp/hive-scratch`), and then restart Kyligence Enterprise.
-> 
-> For more information, please refer to [Kerberos integration](../security/kerberos.en.md).
+If your cluster enables Kerberos security, the Spark embeds in Kyligence Enterprise needs proper configuration to access your cluster resource securely. For more information, please refer to [Kerberos integration](../security/kerberos.en.md).
 
 ### If Your Cluster is Based on JDK 7
 
@@ -183,3 +142,8 @@ You can run the following command to check if the Kyligence Enterprise process h
 ps -ef | grep kylin
 ```
 
+### FAQ
+
+**Q: When I using Beeline to connect Hive, it was failed with the following error message:  Cannot modify xxx at runtime. It is not in list of params that are allowed to be modified at runtime.**
+
+Please find the `hive.security.authorization.sqlstd.confwhitelist` property in `hive-site.xml` file and add the values according to the error messages. 
