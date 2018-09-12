@@ -1,340 +1,230 @@
 ## 模型 REST API
 
-> **提示**
+> 提示：
 >
-> 使用 API 前请确保已阅读前面的[访问及安全认证](authentication.cn.md)章节，知道如何在 API 中添加认证信息。
+> 1. 请确保已阅读前面的[访问及安全认证](authentication.cn.md)章节，了解如何在 REST API 语句中添加认证信息。
 >
-> 当您的访问路径中含有 `&` 符号时，请在 URL 两端加上引号`""` 或者添加反斜杠来避免转义 `\&`。
-
+> 2. 如果您的访问路径中含有 `&` 符号时，请在访问路径两端加上引号`""` 或者添加反斜杠 `\` 对 `&` 进行转义。
 
 * [返回模型](#返回模型)
 * [返回模型描述信息](#返回模型描述信息)
 * [克隆模型](#克隆模型)
-* [删除模型](#删除数据模型)
+* [删除模型](#删除模型)
+* [获取项目下所有可计算列](#获取项目下所有可计算列)
 
 ### 返回模型
-`请求方式：GET`
+- `GET http://host:port/kylin/api/models`
 
-`访问路径：http://host:port/kylin/api/models`
+- URL Parameter
+	* `pageOffset` - `可选` `int` 默认0 返回数据起始下标
+	* `pageSize` - `可选` `int ` 默认10 每页返回多少
+	* `modelName` - `可选` `string` 模型名
+	* `exactMatch` - `可选` `boolean` 是否对 `modelName` 完全匹配，默认`true`
+	* `projectName` - `可选` `string` 项目名
 
-`Accept: application/vnd.apache.kylin-v2+json`
+- HTTP Header
+	- `Accept: application/vnd.apache.kylin-v2+json`
+	- `Accept-Language: cn|en`
+	- `Content-Type: application/json;charset=utf-8`
 
-`Accept-Language: cn|en`
+#### cURL 访问示例
 
-#### 请求主体
-* pageOffset - `可选` `int` 默认0 返回数据起始下标
-* pageSize`可选` `int ` 默认10 分页返回对应每页返回多少
-* modelName - `可选` `string` 返回名称等于该关键字的Model
-* exactMatch - `可选` `boolean` 默认true 是否对modelName完全匹配
-* projectName - `可选` `string` 指定返回该项目下
-
-#### 请求示例
-`请求路径: "http://host:port/kylin/api/models?projectName=test&pageSize=10&pageOffset=0"`
-
-#### Curl 访问示例
 ```
-curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json"  "http://host:port/kylin/api/models?projectName=test&pageSize=10&pageOffset=0"
+curl -X GET \
+  'http://host:port/kylin/api/models?pageOffset=1' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8'
 ```
 
 #### 响应示例
-```json
+
+```JSON
 {
-    "code": "000",
-    "data": {
-        "models": [
-            {
-                "uuid": "63c20e51-c580-49dd-b1dc-7bec621c7b03",
-                "last_modified": 1509006427481,
-                "version": "3.0.0.1",
-                "name": "m1",
-                "owner": "ADMIN",
-                "is_draft": false,
-                "description": "",
-                "fact_table": "DEFAULT.TEST_KYLIN_FACT",
-                "lookups": [],
-                "dimensions": [
-                    {
-                        "table": "TEST_KYLIN_FACT",
-                        "columns": [
-                            "TRANS_ID",
-                            "ORDER_ID",
-                            "CAL_DT",
-                            "LSTG_FORMAT_NAME",
-                            "LEAF_CATEG_ID",
-                            "LSTG_SITE_ID",
-                            "SLR_SEGMENT_CD",
-                            "SELLER_ID",
-                            "TEST_COUNT_DISTINCT_BITMAP"
-                        ]
-                    }
-                ],
-                "metrics": [
-                    "TEST_KYLIN_FACT.PRICE",
-                    "TEST_KYLIN_FACT.ITEM_COUNT"
-                ],
-                "filter_condition": "",
-                "partition_desc": {
-                    "partition_date_column": "TEST_KYLIN_FACT.CAL_DT",
-                    "partition_time_column": null,
-                    "partition_date_start": 0,
-                    "partition_date_format": "yyyy-MM-dd",
-                    "partition_time_format": "",
-                    "partition_type": "APPEND",
-                    "partition_condition_builder": "io.kyligence.kap.cube.mp.MPSqlCondBuilder"
-                },
-                "capacity": "MEDIUM",
-                "multilevel_partition_cols": [
-                    "TEST_KYLIN_FACT.LSTG_FORMAT_NAME"
-                ],
-                "computed_columns": [],
-                "smart_model": false,
-                "smart_model_sqls": [],
-                "project": "default"
-            }
-        ],
-        "size": 1
+    "code":"000",
+    "data":{
+        "models":[...],
+        "size":12
     },
-    "msg": ""
+    "msg":""
 }
 ```
 
 ### 返回模型描述信息
 
- 事实表及维度表等信息
-`请求方式 GET`
+- `GET http://host:port/kylin/api/model_desc/{projectName}/{modelName}`
 
-`访问路径 http://host:port/kylin/api/model_desc/{projectName}/{modelName}`
+- URL Parameter
+	- `projectName` - `必选` `string` 项目名
+	- `modelName` - `必选` `string` 模型名
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+- HTTP Header
+	- `Accept: application/vnd.apache.kylin-v2+json`
+	- `Accept-Language: cn|en`
+	- `Content-Type: application/json;charset=utf-8`
 
-`Accepe: application/vnd.apache.kylin-v2+json`
+#### cURL 访问示例
 
-#### 路径变量
+```
+curl -X GET \
+  http://host:port/kylin/api/model_desc/learn_kylin/kylin_sales_model \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8'
+```
 
-- projectName - `必选` `string` 返回该项目下的model. 
-- modelName - `必选` `string` 数据模型名称.
-
-#### 请求示例
-
-`请求路径: http://host:port/kylin/api/model_desc/your_project/your_model`
 
 #### 响应示例
 
-```sh
+```JSON
 {
-    "code": "000",
-    "data": {
-        "model": {
-            "uuid": "72ab4ee2-2cdb-4b07-b39e-4c298563ae27",
-            "last_modified": 1507691058000,
-            "version": "3.0.0.1",
-            "name": "ci_inner_join_model",
-            "owner": null,
-            "is_draft": false,
-            "description": null,
-            "fact_table": "DEFAULT.TEST_KYLIN_FACT",
-            "lookups": [
-                {
-                    "table": "DEFAULT.TEST_ORDER",
-                    "kind": "FACT",
-                    "alias": "TEST_ORDER",
-                    "join": {
-                        "type": "INNER",
-                        "primary_key": [
-                            "TEST_ORDER.ORDER_ID"
-                        ],
-                        "foreign_key": [
-                            "TEST_KYLIN_FACT.ORDER_ID"
-                        ]
-                    }
-                }
-            ],
-            "dimensions": [
-                {
-                    "table": "TEST_KYLIN_FACT",
-                    "columns": [
-                        "TRANS_ID",
-                        "ORDER_ID",
-                        "CAL_DT",
-                        "LSTG_FORMAT_NAME",
-                        "LSTG_SITE_ID",
-                        "LEAF_CATEG_ID",
-                        "SLR_SEGMENT_CD",
-                        "SELLER_ID",
-                        "TEST_COUNT_DISTINCT_BITMAP",
-                        "DEAL_YEAR",
-                        "SELLER_COUNTRY_ABBR",
-                        "BUYER_COUNTRY_ABBR",
-                        "SELLER_ID_AND_COUNTRY_NAME",
-                        "BUYER_ID_AND_COUNTRY_NAME"
-                    ]
-                }            
-            ],
-            "metrics": [
-                "TEST_KYLIN_FACT.PRICE",
-                "TEST_KYLIN_FACT.ITEM_COUNT",
-                "TEST_KYLIN_FACT.DEAL_AMOUNT"
-            ],
-            "filter_condition": null,
-            "partition_desc": {
-                "partition_date_column": "TEST_KYLIN_FACT.CAL_DT",
-                "partition_time_column": null,
-                "partition_date_start": 0,
-                "partition_date_format": "yyyy-MM-dd",
-                "partition_time_format": "HH:mm:ss",
-                "partition_type": "APPEND",
-                "partition_condition_builder": "org.apache.kylin.metadata.model.PartitionDesc$DefaultPartitionConditionBuilder"
-            },
-            "capacity": "MEDIUM",
-            "multilevel_partition_cols": [],
-            "computed_columns": [
-                {
-                    "tableIdentity": "DEFAULT.TEST_KYLIN_FACT",
-                    "tableAlias": "TEST_KYLIN_FACT",
-                    "columnName": "DEAL_AMOUNT",
-                    "expression": "TEST_KYLIN_FACT.PRICE * TEST_KYLIN_FACT.ITEM_COUNT",
-                    "datatype": "decimal",
-                    "comment": "deal amount of inner join model (with legacy expression format)"
-                },
-                {
-                    "tableIdentity": "DEFAULT.TEST_KYLIN_FACT",
-                    "tableAlias": "TEST_KYLIN_FACT",
-                    "columnName": "DEAL_YEAR",
-                    "expression": "year(TEST_KYLIN_FACT.CAL_DT)",
-                    "datatype": "integer",
-                    "comment": "the year of the deal"
-                },
-                {
-                    "tableIdentity": "DEFAULT.TEST_KYLIN_FACT",
-                    "tableAlias": "TEST_KYLIN_FACT",
-                    "columnName": "BUYER_ID_AND_COUNTRY_NAME",
-                    "expression": "CONCAT(BUYER_ACCOUNT.ACCOUNT_ID, BUYER_COUNTRY.NAME)",
-                    "datatype": "string",
-                    "comment": "synthetically concat buyer's account id and buyer country"
-                },
-                {
-                    "tableIdentity": "DEFAULT.TEST_KYLIN_FACT",
-                    "tableAlias": "TEST_KYLIN_FACT",
-                    "columnName": "SELLER_ID_AND_COUNTRY_NAME",
-                    "expression": "CONCAT(SELLER_ACCOUNT.ACCOUNT_ID, SELLER_COUNTRY.NAME)",
-                    "datatype": "string",
-                    "comment": "synthetically concat seller's account id and seller country"
-                },
-                {
-                    "tableIdentity": "DEFAULT.TEST_KYLIN_FACT",
-                    "tableAlias": "TEST_KYLIN_FACT",
-                    "columnName": "BUYER_COUNTRY_ABBR",
-                    "expression": "SUBSTR(BUYER_ACCOUNT.ACCOUNT_COUNTRY,0,1)",
-                    "datatype": "string",
-                    "comment": "first char of country of buyer account"
-                },
-                {
-                    "tableIdentity": "DEFAULT.TEST_KYLIN_FACT",
-                    "tableAlias": "TEST_KYLIN_FACT",
-                    "columnName": "SELLER_COUNTRY_ABBR",
-                    "expression": "SUBSTR(SELLER_ACCOUNT.ACCOUNT_COUNTRY,0,1)",
-                    "datatype": "string",
-                    "comment": "first char of country of seller account"
-                }
-            ],
-            "smart_model": false,
-            "smart_model_sqls": [],
-            "project": "default"
+    "code":"000",
+    "data":{
+        "model":{
+            "uuid":"0928468a-9fab-4185-9a14-6f2e7c74823f",
+            "last_modified":1536287374944,
+            "version":"3.0.0.1",
+            "name":"kylin_sales_model",
+            "owner":null,
+            "is_draft":false,
+            "description":"",
+            "fact_table":"DEFAULT.KYLIN_SALES",
+            "lookups":[...],
+            "dimensions":[...],
+            "metrics":[...],
+            "filter_condition":"",
+            "partition_desc":{...},
+            "capacity":"MEDIUM",
+            "multilevel_partition_cols":[...],
+            "computed_columns":[...],
+            "smart_model":false,
+            "smart_model_sqls":[...],
+            "project":"learn_kylin"
         }
     },
-    "msg": ""
+    "msg":""
 }
 ```
-
-#### Curl 访问示例
-
-```
-curl -H "Authorization: Basic XXXXXXXXX" -H "Accept: application/vnd.apache.kylin-v2+json"  -H "Content-Type:application/vnd.apache.kylin-v2+json"  http://host:port/kylin/api/model_desc/your_project/your_model
-```
-
 
 
 ### 克隆模型
-`请求方式：PUT`
+- `PUT http://host:port/kylin/api/models/{modelName}/clone`
 
-`访问路径：http://host:port/kylin/api/models/{modelName}/clone`
+- URL Parameter
+	* `modelName` - `必选` `string` 被克隆模型名称
 
-`Accept: application/vnd.apache.kylin-v2+json`
+- HTTP Header
+	- `Accept: application/vnd.apache.kylin-v2+json`
+	- `Accept-Language: cn|en`
+	- `Content-Type: application/json;charset=utf-8`
 
-`Accept-Language: cn|en`
+- HTTP Body
+	* `modelName` - `必选` `string` 克隆后的模型名称
+	* `project` - `必选` `string` 项目名称 
 
-#### 路径变量
-* modelName - `必选` `string` 被克隆模型名称.
+#### cURL 访问示例
 
-#### 请求主体
-* modelName - `必选` `string` 新模型名称.
-* project - `必选` `string` 新项目名称 
-
-#### 请求示例
-`请求路径: http://host:port/kylin/api/models/m2/clone`
-
-#### Curl 访问示例
 ```
-curl -X PUT -H "Authorization: Basic xxxxxx" -H "Content-Type: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json"  http://host:port/kylin/api/models/m2/clone
+curl -X PUT \
+  http://host:port/kylin/api/models/kylin_sales_model/clone \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8' \
+  -d '{"modelName":"learn_kylin_model_clone2","project":"learn_kylin"}'
 ```
 
 #### 响应示例
-```json
- {
-    "code": "000",
-    "data": {
-        "modelDescData": "{\n  \"uuid\" : \"60f4e30e-f50f-4abf-8ad2-4f34233aae21\",\n  \"last_modified\" : 1509010496630,\n  \"version\" : \"3.0.0.1\",\n  \"name\" : \"m2\",\n  \"owner\" : \"ADMIN\",\n  \"is_draft\" : false,\n  \"description\" : \"\",\n  \"fact_table\" : \"DEFAULT.TEST_KYLIN_FACT\",\n  \"lookups\" : [ ],\n  \"dimensions\" : [ {\n    \"table\" : \"TEST_KYLIN_FACT\",\n    \"columns\" : [ \"TRANS_ID\", \"ORDER_ID\", \"CAL_DT\", \"LSTG_FORMAT_NAME\", \"LEAF_CATEG_ID\", \"LSTG_SITE_ID\", \"SLR_SEGMENT_CD\", \"SELLER_ID\", \"TEST_COUNT_DISTINCT_BITMAP\" ]\n  } ],\n  \"metrics\" : [ \"TEST_KYLIN_FACT.PRICE\", \"TEST_KYLIN_FACT.ITEM_COUNT\" ],\n  \"filter_condition\" : \"\",\n  \"partition_desc\" : {\n    \"partition_date_column\" : \"TEST_KYLIN_FACT.CAL_DT\",\n    \"partition_time_column\" : null,\n    \"partition_date_start\" : 0,\n    \"partition_date_format\" : \"yyyy-MM-dd\",\n    \"partition_time_format\" : \"\",\n    \"partition_type\" : \"APPEND\",\n    \"partition_condition_builder\" : \"io.kyligence.kap.cube.mp.MPSqlCondBuilder\"\n  },\n  \"capacity\" : \"MEDIUM\",\n  \"multilevel_partition_cols\" : [ \"TEST_KYLIN_FACT.LSTG_FORMAT_NAME\" ],\n  \"computed_columns\" : [ ]\n}",
-        "uuid": "60f4e30e-f50f-4abf-8ad2-4f34233aae21"
+
+```JSON
+{
+    "code":"000",
+    "data":{
+        "modelDescData":"{{
+    "uuid":"2a4fe755-5810-4e41-aa9e-ecb3114b1e0b",
+    "last_modified":1536546593858,
+    "version":"3.0.0.1",
+    "name":"learn_kylin_model_clone2",
+    "owner":"ADMIN",
+    "is_draft":false,
+    "description":"",
+    "fact_table":"DEFAULT.KYLIN_SALES",
+    "lookups":[...],
+    "dimensions":[...],
+    "metrics":[...],
+    "filter_condition":"",
+    "partition_desc":{...},
+    "capacity":"MEDIUM",
+    "multilevel_partition_cols":[...],
+    "computed_columns":[...],
+    "smart_model":false,
+    "smart_model_sqls":[...]
+},
+        "uuid":"2a4fe755-5810-4e41-aa9e-ecb3114b1e0b"
     },
-    "msg": ""
+    "msg":""
 }
 ```
 
-### 删除数据模型
-`请求方式：DELETE`
+### 删除模型
 
-`访问路径：http://host:port/kylin/api/models/{projectName}/{modelName}`
+- `DELETE http://host:port/kylin/api/models/{projectName}/{modelName}`
 
-`Accept: application/vnd.apache.kylin-v2+json`
+- URL Parameter	
+	* `projectName` - `必选` `string` 项目名称
+	* `modelName` - `必选` `string` 数据模型名称
+	
+- HTTP Header
+	- `Accept: application/vnd.apache.kylin-v2+json`
+	- `Accept-Language: cn|en`
+	- `Content-Type: application/json;charset=utf-8`
 
-`Accept-Language: cn|en`
+#### cURL 请求示例
 
-#### 路径变量
-* projectName - `必选` `string` 项目名称.
-* modelName - `必选` `string` 数据模型名称.
-
-#### 请求示例
-`请求路径: http://host:port/kylin/api/models/learn_kylin/m2`
-
-#### Curl 访问示例
 ```
-curl -X DELETE -H "Authorization: Basic xxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/models/learn_kylin/m2
+curl -X DELETE \
+  http://host:port/kylin/api/models/learn_kylin/kylin_sales_model_clone \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/vnd.apache.kylin-v2+json;charset=UTF-8'
 ```
 
 ### 获取项目下所有可计算列
-`请求方式：GET`
 
-`访问路径：http://host:port/kylin/api/models/computed_column_usage/{projectName}`
+- `GET http://host:port/kylin/api/models/computed_column_usage/{projectName}`
 
-`Accept: application/vnd.apache.kylin-v2+json`
+- URL Parameter	
+	* `projectName` - `必选` `string` 项目名称
 
-`Accept-Language: cn|en`
+- HTTP Header
+	- `Accept: application/vnd.apache.kylin-v2+json`
+	- `Accept-Language: cn|en`
+	- `Content-Type: application/json;charset=utf-8`
 
-#### 路径变量
-* projectName - `必选` `string` 项目名称.
+#### cURL 访问示例
 
-#### 请求示例
-`请求路径: http://host:port/kylin/api/models/computed_column_usage/your_project_name`
-
-#### Curl 访问示例
 ```
-curl -X GET -H "Authorization: Basic xxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/models/computed_column_usage/your_project_name
+curl -X GET \
+  http://host:port/kylin/api/models/computed_column_usage/learn_kylin \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8'
 ```
+
 #### 响应示例
-```json
- {
+
+```JSON
+{
     "code": "000",
-    "data": {"test_model":["cc_name"]},
+    "data": {
+        "THIS_IS_A_COMPUTED_COLUMN": [
+            "kylin_sales_model"
+        ]
+    },
     "msg": ""
 }
 ```
