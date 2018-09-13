@@ -21,6 +21,52 @@ Kyligence Enterprise 需要一个状态良好的 Hadoop 集群作为其运行环
 + 创建和操作 HBase 表（如果您使用 JDBC 连接元数据存储，该项可忽略）
 + 提交 MapReduce 任务
 
+验证是否具备访问Hadoop集群的权限，以下是具体测试步骤：
+
+1. 测试是否具有HDFS读写权限
+  
+   假设使用账户为KyAdmin，cube数据的HDFS存储路径为/kylin，要手动创建工作目录，并在conf/kylin.properties中定义`kylin.env.hdfs-working-dir=/kylin`
+   一般需要由管理员切换到hdfs用户，为KyAdmin创建工作目录/kylin，并且赋予权限
+   ```
+   su hdfs
+   hdfs dfs -mkdir /kylin
+   hdfs dfs -chown KyAdmin /kylin
+   hdfs dfs -mkdir /user/KyAdmin
+   hdfs dfs -chown KyAdmin /user/KyAdmin
+   ```
+   验证KyAdmin具有读写权限
+   ```
+   hdfs dfs -put <any_file> /kylin
+   hdfs dfs -put <any_file> /user/KyAdmin   
+   ```
+2. 测试KyAdmin用户是否具备Hive读写权限
+
+   假设存储中间表的Hive数据库为kylinDB，需要手动创建名为kylinDB的Hive数据库，并在
+   conf/kylin.properties中定义`kylin.source.hive.database-for-flat-table=kylinDB`
+   ```
+   #hive
+   hive> show databases;
+   hive> create database kylinDB location "/kylin";
+   hive> use kylinDB;
+   hive> create table t1(id string);
+   hive> drop table t1;
+   ```
+   在Hive中需要授权当前用户访问Kyligence Enterprise HDFS工作目录（本例为/kylin）的权限。
+   ```
+   hive> grant all on URI "/kylin" to role kyAdmin;
+   ```
+3. 测试KyAdmin用户是否具备HBase读写权限
+   假设存储元数据的HBase表为XXX_instance（Kyligence集群唯一标识），HBase命名空间为XXX_NS，
+   并在conf/kylin.properties中定义`kylin.metadata.url=XXX_NS:XXX_instance@hbase`
+   ```
+   #hbase shell
+   hbase(main)> list
+   hbase(main)> create 't1',{NAME => 'f1', VERSIONS => 2}
+   hbase(main)> disable 't1'
+   hbase(main)> drop 't1'
+   ```
+   如果没有权限，找管理员授权，授权方法`hbase(main)> grant 'KyAdmin','RWXCA'`
+   
 ### 支持的 Hadoop 平台
 
 下述企业级数据管理平台及其相应版本已经过我们的认证和测试：

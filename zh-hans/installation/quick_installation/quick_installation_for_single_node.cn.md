@@ -77,25 +77,6 @@ hive.security.authorization.sqlstd.confwhitelist=dfs.replication|hive.exec.compr
 
 请执行 [如何在低版本 JDK 上运行 Kyligence Enterprise](../about_low_version_jdk.cn.md) 中的配置步骤。
 
-### 检查运行环境
-
-首次启动 Kyligence Enterprise 时，会自动对所依赖的环境进行检查。如果在检查过程中发现问题，您将在控制台中看到警告或错误信息。
-
-检查中遇到的一部分问题可能是由于无法有效探测 Hadoop 环境导致的。如果遇到这类问题，您可以尝试通过环境变量显示指定 Kyligence Enterprise 获取这些信息的途径。示例如下：
-
-```shell
-export HADOOP_CONF_DIR=/etc/hadoop/conf
-export HIVE_LIB=/usr/lib/hive
-export HIVE_CONF=/etc/hive/conf
-export HCAT_HOME=/usr/lib/hive-hcatalog
-```
-
-> 提示：您可以在任何时候手动检查运行环境。运行下述命令：
->
-> ```shell
-> $KYLIN_HOME/bin/check-env.sh
-> ```
-
 ### 启动 Kyligence Enterprise
 
 运行下述命令以启动 Kyligence Enterprise：
