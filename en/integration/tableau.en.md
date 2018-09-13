@@ -58,7 +58,7 @@ The following detail steps required for mapping data model :
 
 ### Other remarks
 
-When you connect  Tableau to Kyligence Enterprise, it will send a query which trigger full table scan. This will take a relatively long time to process the query when the dataset is extremely large. There are two ways to avoid this situation
+When you connect Tableau to Kyligence Enterprise, it will send a query which triggers full table scan. This will take a relatively long time to process the query when the dataset is extremely large. There are two ways to avoid this situation
 
 **Method 1**: You can download Kyligence Tableau Datasource Customization(TDC) file from account website and config it. This file is a Kyligence specific connection setting file  which help tableau connect better to Kyligence. 
 
@@ -84,12 +84,4 @@ If Tableau is installed, you  can copy this Kyligence specific connection settin
 
   `/var/opt/tableau/tableau_server/data/tabsvc/vizqlserver/Datasources/`
 
-**Method 2:** You can set up the parameter `kylin.query.force-limit` to limit records return. Set the value as integer to enable this configuration, such as 1000.
-
- There are two ways to avoid this situation:
-
-Method 1: You can download Kyligence Tableau Datasource Customization(TDC) file from Kyligence account site and config with.
-
-This file allow If Tableau is installed, Jethro will need a jethro specific connection settings for Tableau, to be copied into the required Tableau directory. 
-
-Method 2: you can set up paremeter  `kylin.query.force-limit` to limite the records return.
+**Method 2:** You can set the parameter `kylin.query.force-limit` in `kylin.properties` to limit returned records, such as 1000.

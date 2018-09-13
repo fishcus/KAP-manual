@@ -8,7 +8,7 @@ The Kyligence ODBC driver needs to be installed in the machine or virtual enviro
 
 ### Create a Data Source in Cognos
 
-Depending on your business scenario, you may need to create a new project or simply use an existing project to create the data source for KAP. In the example, we will start with a new project. 
+Depending on your business scenario, you may need to create a new project or simply use an existing project to create the data source for Kyligence Enterprise. In the example, we will start with a new project. 
 
 1. Create a new project.![](images/cognos/1.png)
 
@@ -21,30 +21,29 @@ Depending on your business scenario, you may need to create a new project or sim
 5. In ODBC data source, fill in the DSN name that you created in the previous step. Check `Unicode ODBC`. For Signon `choose no authorization`. Then Click `Test the connection`.![](images/cognos/5.png)![](images/cognos/6.png)If everything set up properly, test the connection will finish successfully.![](images/cognos/7.png)![](images/cognos/8.png)
 
    Now you have the data source created.
+   
+> Tip: When you connect Cognos to Kyligence Enterprise, it will send a query which triggers full table scan. This will take a relatively long time to process the query when the dataset is extremely large. You can adjust parameter `kylin.query.force-limit` in `kylin.properties` to 1000, which indicates that the total records queried by statement `select *` from the data source is limited to 1000.
 
 6. Click `Next`, you may test the connection in the`Metadata Wizard`.![](images/cognos/9.png)
 
 
 
-### Cognos & KAP ACL Integration
+### Cognos & Kyligence Enterprise ACL Integration
 
-In order to reflect KAP Access Control in Cognos, it is necessary to allow Cognos users to query KAP with their corresponding KAP credentials. This following will introduce how to integrate the access permission of Cognos with KAP by using a custom Java example, on the assumption that Cognos's authentication has been configured. For the details, please refer to the AuthenticationProvider document corresponding to Cognos SDK. The following figure is a typical Cognos external authentication space using Java example:
+In order to reflect Kyligence Enterprise Access Control in Cognos, it is necessary to allow Cognos users to query Kyligence Enterprise with their corresponding credentials. This following will introduce how to integrate the access permission of Cognos with Kyligence Enterprise by using a custom Java example, on the assumption that Cognos's authentication has been configured. For the details, please refer to the AuthenticationProvider document corresponding to Cognos SDK. The following figure is a typical Cognos external authentication space using Java example:
 
 ![](images/cognos/33.png)
 
-
-
-In the database of Cognos authentication, add KAP's usename and password:
+In the database of Cognos authentication, add usename and password for Kyligence Enterprise:
 
 ![](images/cognos/34.png)
-
 
 
 Next, create a Cognos data source. You may refer to the 1st - 4th steps above. And select `An external namespace` in the 5th step as shown in below figure:
 
 ![](images/cognos/35.png)
 
-Click `Test the connection…` . If everything is set up properly, the connection testing will finish successfully, which means that Cognos has been connected to KAP's server through KAP's ODBC. 
+Click `Test the connection…` . If everything is set up properly, the connection testing will finish successfully, which means that Cognos has been connected to Kyligence Enterprise's server through Kyligence Enterprise's ODBC. 
 
 ![](images/cognos/8.png)
 

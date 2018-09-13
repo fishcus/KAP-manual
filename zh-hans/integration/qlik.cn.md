@@ -7,13 +7,12 @@
 Qlik Sense 
 是新一代自助式数据可视化工具。它是一款完整的商业分析软件，便于开发人员和分析人员快速构建和部署强大的分析应用。近年来，该工具成为全球增长率最快的 BI 产品。它可以与 Hadoop Database（Hive 和 Impala）集成。现在也可与 Kyligence Enterprise 集成。本文将分步介绍 Kyligence Enterprise 与 Qlik Sense 的连接。
 
-### 安装 Kyligence ODBC 驱动程序
+### 前置条件
 
-有关安装信息，参考页面 [Kyligence ODBC 驱动程序教程](../driver/kyligence_odbc.cn.md)。
+• 安装 Kyligence ODBC 驱动程序。有关安装信息，参考页面 [Kyligence ODBC 驱动程序教程](../driver/kyligence_odbc.cn.md)。
 
-### 安装 Qlik Sense
+• 安装 Qlik Sense。有关 Qlik Sense 的安装说明，请访问 [Qlik Sense Desktop 下载页面](https://www.qlik.com/us/try-or-buy/download-qlik-sense)。
 
-有关 Qlik Sense 的安装说明，请访问 [Qlik Sense Desktop 下载页面](https://www.qlik.com/us/try-or-buy/download-qlik-sense)。
 
 ### 与 Qlik Sense Desktop 连接
 配置完本地 DSN 并成功安装 Qlik Sense 后，可执行以下步骤来连接 Kyligence Enterprise 与 Qlik Sense：
@@ -22,7 +21,7 @@ Qlik Sense
 
 2. 输入 Qlik 用户名和密码，接着系统将弹出以下对话框。单击**创建新应用程序**。![创建新应用程序](images/Qlik/001-welcome_to_qlik_desktop.cn.png)
 
-   为新建的应用程序指定名称，该名称不得与现有的应用程序相同。创建完成后，打开此应用程序。在本例中，我们将此应用程序命名为“Kylinfortesting”。![为新的应用程序命名](images/Qlik/002-create_new_application.cn.png)
+   为新建的应用程序指定名称，该名称不得与现有的应用程序相同。创建完成后，打开此应用程序。在本例中，我们将此应用程序命名为 "Kylinfortesting"。![为新的应用程序命名](images/Qlik/002-create_new_application.cn.png)
 
 3. 应用程序视图中有两个选项，选择下方的**脚本编辑器**。![选择脚本编辑器](images/Qlik/003-script_editor.cn.png)
 
@@ -43,6 +42,8 @@ Qlik Sense
    在常见的 Kyligence Enterprise 生产场景中， Cube 包含 PB 级数据，我们建议用户在 Qlik Sense 中使用 Direct Query 模式，而不用将数据导入 Qlik Sense。
 
    在脚本编辑器中查询脚本的最前面，输入 `Direct Query`，即可启用 Direct Query 模式。 
+   
+   提示：考虑到本 BI 工具的连接数据源时的探测特性，请调整 kylin.properties 中的 kylin.query.force-limit 参数为1000，表示数据源限制 `select *` 探测语句返回的记录数为1000。
 
    下图是以 Learn_kylin 项目中的 kylin_sales_cube 为例，进行 Direct Query 查询的脚本。![脚本](images/Qlik/006-script_run_result.cn.png)
 
@@ -50,7 +51,7 @@ Qlik Sense
 
    也可通过创建 Native 表达式来使用 Kyligence Enterprise 内置函数，如：
 
-   `NATIVE('extract(month from PART_DT)') ` 
+   `NATIVE('extract(month from PART_DT)')` 
 
    请确保将脚本中的 `LIB CONNECT TO 'kylin';` 修改成你创建的 DSN 名称。
 
@@ -134,7 +135,7 @@ Qlik Sense
 ### 与 Qlik Sense Hub 连接 
 
 
-#### 将Qlik Sense Desktop 中的应用上传到 Qlik Sense Hub
+#### 将 Qlik Sense Desktop 中的应用上传到 Qlik Sense Hub
 
 1. 从浏览器进入 **Qlik Managerment Console(QMC)**，选择**License and tokens**模块。
 
@@ -148,7 +149,7 @@ Qlik Sense
 
 ![选择APPS](images/Qlik/03-apps.PNG)
 
-4. 在QMC中选择Apps模块，选择**Import**,从本地导入由**Qlik Sense Desktop**所创建的应用。
+4. 在 QMC 中选择 Apps 模块，选择**Import**,从本地导入由**Qlik Sense Desktop**所创建的应用。
 
 ![导入APP](images/Qlik/04-add_apps.PNG)
 
@@ -156,7 +157,7 @@ Qlik Sense
 
 ![发布APP](images/Qlik/05-publish_app.PNG)
 
-6. 进入**Qlik Sense Hub**,在**Streams**模块中即可发现刚才发布的应用，如果只是导入而没有发布的话，应用则存在于**Personal**模块中。
+6. 进入**Qlik Sense Hub**，在**Streams**模块中即可发现刚才发布的应用，如果只是导入而没有发布的话，应用则存在于**Personal**模块中。
 
 ![进入APP](images/Qlik/06_hub_app.PNG)
 
@@ -165,13 +166,13 @@ Qlik Sense
 ![查看图表](images/Qlik/07_hub_qlik.PNG)
 
 
-#### 直接在Qlik Sense Hub 中连接 Kyligence Enterprise
+#### 直接在 Qlik Sense Hub 中连接 Kyligence Enterprise
 
-1. 通过浏览器在**Qlik Sense Hub**中新建应用，连接到Kyligence Enterprise数据源，连接方法同在**Qlik Sense Desktop**中连接Kyligence Enterprise。
+1. 通过浏览器在**Qlik Sense Hub**中新建应用，连接到 Kyligence Enterprise 数据源，连接方法同在**Qlik Sense Desktop**中连接 Kyligence Enterprise。
 
 ![新建应用](images/Qlik/08_hub_create.PNG)
 
-2. 编辑刚才创建的应用，自由使用Kyligence Enterprise中的数据。
+2. 编辑刚才创建的应用，自由使用 Kyligence Enterprise 中的数据。
 
 ![编辑应用](images/Qlik/09_hub_table.PNG)
 

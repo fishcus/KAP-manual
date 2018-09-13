@@ -39,6 +39,8 @@ After configuring your Local DSN and installing Qlik Sense successfully, you may
 
    You may be able to enable Direct Query mode by typing `Direct Query` in front of your query script in Script editor.
 
+   > Tip: When you connect Qlik to Kyligence Enterprise, it will send a query which triggers full table scan. This will take a relatively long time to process the query when the dataset is extremely large. You can adjust parameter `kylin.query.force-limit` in `kylin.properties` to 1000, which indicates that the total records queried by statement `select *` from the data source is limited to 1000.
+   
    Below is the screenshot of such Direct Query script against *kylin_sales_cube* in *Learn_kylin* project.![Script](images/Qlik/script_run_result.PNG)
 
    Once you defined such script, Qlik Sense can generate SQL based on this script for your report.

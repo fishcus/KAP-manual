@@ -4,13 +4,13 @@
 
 有关安装信息，参考页面 [Kyligence ODBC 驱动程序教程](../driver/kyligence_odbc.cn.md)。
 
-### 前提条件
+### 前置条件
 
 •Cognos Framework manager 的版本与 Cognos server 的版本一致。
 
 •Framework manager 和 Cognos server使用相同版本ODBC driver（若之前安装了64位的ODBC，需要卸载）
 
-•DSN的名字在 Framework manager和Cognos server 上一致。
+•DSN 的名字在 Framework manager 和 Cognos server 上一致。
 
 •ODBC driver 版本跟 Kyligence Enterprise 版本的匹配。
 
@@ -26,13 +26,15 @@
 
 4. 选择`ODBC`作为连接类型。在`隔离级别`中，选择`使用默认对象Gateway`。![](images/cognos/4.png)
 
-5. 在ODBC数据源中填入上一步创建的DSN的名称。勾选`Unicode ODBC`。在`登陆`项中勾选`无身份验证`。
+5. 在 ODBC 数据源中填入上一步创建的 DSN 的名称。勾选`Unicode ODBC`。在`登陆`项中勾选`无身份验证`。
 
    随后点击`测试连接`。![](images/cognos/6.png)
 
    如果一切配置正确的话，测试连接会顺利通过。![](images/cognos/7.png)![](images/cognos/8.png)
 
    这样数据源就创建成功了。
+   
+   提示：考虑到本 BI 工具的连接数据源时的探测特性，请调整 kylin.properties 中的 kylin.query.force-limit 参数为1000，表示数据源限制 select * 探测语句返回的记录数为1000。
 
 6. 点击`下一步`你可以继续在`元数据向导`中测试表的连接。![](images/cognos/9.png)
 
@@ -78,6 +80,8 @@
 
 ![](images/cognos/13.png)
 
+
+
 ### 发布数据包
 
 在项目查看器中，右键`数据包`->`新建`->`数据包`将需要使用的表进行发布。
@@ -112,11 +116,13 @@
 
 这样数据包就发布成功了。
 
+
+
 ### 创建一个简单的图表
 
 下面我们可以使用发布好的数据包来制作一个简单的图表。
 
-在Cognos网页端启动`Report Studio`。
+在 Cognos 网页端启动`Report Studio`。
 
 ![](images/cognos/23.png)
 
@@ -142,7 +148,7 @@
 
 点击菜单中的`运行`键运行报表。
 
-这样你就成功的使用Kyligence Enterprise作为数据源创建了一个图表。
+这样你就成功的使用 Kyligence Enterprise 作为数据源创建了一个图表。
 
 ![](images/cognos/28.png)
 
