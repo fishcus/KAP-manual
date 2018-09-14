@@ -7,7 +7,11 @@ After KAP running for a period of time, there could be garbage data leftover. Ga
 - Temporary files from error jobs
 - Job history that no need to keep forever
 
-> **Notice:** Data cannot be restored once deleted. It is essential to back up metadata and check the target resources carefully before deletion.
+**Notice: **
+
+1. **Data cannot be restored once deleted.** It is essential to back up metadata and check the target resources carefully before deletion.
+
+2. **Please try arrange cleanup at when there is no (or less) running jobs in the system**, for better overall stability and perofrmance.
 
 ### Garbage Cleanup Command Tool
 
