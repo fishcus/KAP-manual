@@ -91,7 +91,7 @@ Step 6: *Advanced Setting*. The configuration added here can override the global
 
 In this step, you may choose Cube build engine. By default, Kyligence Enterprise uses MapReduce as build engine. But you may also switch to *Spark(Beta)* manually. For the detailed information on how to configure and use Spark as build engine, please see [Configure Spark Build Engine](../../config/spark_engine_conf.en.md).
 
-Step 7: *Overview*. Please read the information carefully. Click `Save` button if everything is desired. Then click `Yes` button in pop-up menu.
+Step 7: *Overview*. Please read the information carefully. Click `Save` button if everything is desired. Then click `OK` button in pop-up menu.
 ​	
 Finally Cube creation is complete. The new Cube will be shown in Cube list in the refreshed Cube list page. The state of the Cube is disable for that it has not been built.
 

@@ -1,8 +1,10 @@
 ## Computed Column
 
-*Computed Column* allows you to pre-define actions like data extraction/transformation/redefinition in modes, it enhances the data semantic abstraction. By replacing runtime calculation with offline cube construction, the pre-calculation capability of Kyligence Enterprise is fully utilized. As a result, query performance could be improved significantly. It's allowed to use Hive UDF in computed columns, so that existing business codes can be reused.
+*Computed Column* allows you to pre-define actions like data extraction / transformation / redefinition in modes, it enhances the data semantic abstraction. By replacing runtime calculation with offline cube construction, the pre-calculation capability of Kyligence Enterprise is fully utilized. As a result, query performance could be improved significantly. It's allowed to use Hive UDF in computed columns, so that existing business codes can be reused.
 
-> Notice: Computed column is not available when the data source is Kafka.
+> Caution: 
+>   - Computed column is not available when the data source is Kafka.
+>   - Please **DO NOT** define an expression with only constants for a computed column.
 
 ### Basic Concept and Rules
 

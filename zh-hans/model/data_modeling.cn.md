@@ -164,11 +164,11 @@
 
 **步骤五**：完成模型定义后， 单击右下角**保存**按钮
 
-**步骤六：**设置分区列：
+**步骤六**：设置分区列：
 
 在保存时， 系统弹出窗口（如下图所示），用户可以设置分区字段列。分区列是可选项，如果不设置，则留空。
 
-本产品自带时间分区列定义，字段类型支持data, timestamp, string, varchar, int, integer, bigint
+本产品自带时间分区列定义，字段类型支持data, timestamp, string, varchar, integer, bigint
 
 
 
