@@ -20,39 +20,29 @@
 
 ### 覆盖kylin.properties中参数
 
-目前kylin.properties中的下列配置项可以使用上述方法进行重定义：
+目前kylin.properties中的下列配置项均可以通过Cube级别和Project级别进行重定义。
 
-*kylin.hbase.default.compression.codec*，默认值none，其他有效值包括snappy，lzo，gzip，lz4；
+- `kylin.cube.cuboid-scheduler`，默认值org.apache.kylin.cube.cuboid.DefaultCuboidScheduler；
+- `kylin.cube.algorithm`，默认值auto，其它有效值包括inmem，layer；
+- `kylin.cube.algorithm.layer-or-inmem-threshold`，默认值7；
+- `kylin.cube.aggrgroup.max-combination`，默认值4096；
 
-*kylin.storage.hbase.region-cut-gb*，默认值5；
+   > 注意：**请勿**将此参数设置> 10000, 否则将会在计算维度组合时耗用大量CPU与内存资源。易导致页面卡顿，严重或可致Kyligence Enterprise崩溃。如Cube中有大量维度，建议分多个聚合组（AGG）进行优化。
 
-*kylin.storage.hbase.hfile-size-gb*，默认值2；
-
-*kylin.storage.hbase.min-region-count*，默认值1；
-
-*kylin.storage.hbase.max-region-count*，默认值500；
-
-*kylin.job.sampling-percentage*，默认值100；
-
-*kylin.engine.mr.reduce-input-mb*，默认值500；
-
-*kylin.engine.mr.max-reducer-number*，默认值500；
-
-*kylin.engine.mr.mapper-input-rows*，默认值1000000；
-
-*kylin.cube.algorithm*，默认值auto，其它有效值包括inmem，layer；
-
-*kylin.cube.algorithm.layer-or-inmem-threshold*，默认值8；
-
-*kylin.cube.aggrgroup.max-combination*，默认值4096；
-
-> 注意：**请勿**将此参数设置> 10000, 否则将会在计算维度组合时耗用大量CPU与内存资源。易导致页面卡顿，严重或可致Kyligence Enterprise崩溃。如Cube中有大量维度，建议分多个聚合组（AGG）进行优化。
-
-*kylin.snapshot.max-mb*，默认值300；
-
-[RDBMS配置参数](../model/data_import/rdbms_import.cn.md)
-
-
+- `kylin.cube.aggrgroup.is-mandatory-only-valid`，默认值false；
+- `kylin.engine.mr.config-override.*，默认值空字符串；
+- `kylin.engine.mr.reduce-input-mb`，默认值500；
+- `kylin.engine.mr.max-reducer-number`，默认值500；
+- `kylin.engine.mr.mapper-input-rows`，默认值1000000；
+- `kylin.hbase.default.compression.codec`，默认值none，其他有效值包括snappy，lzo，gzip，lz4;
+- `kylin.job.sampling-percentage`，默认值100；
+- `kylin.snapshot.max-cache-entry`，默认值500；
+- `kylin.snapshot.max-mb`，默认值300；
+- `kylin.storage.hbase.region-cut-gb`，默认值5.0；
+- `kylin.storage.hbase.hfile-size-gb`，默认值2.0；
+- `kylin.storage.hbase.min-region-count`，默认值1；
+- `kylin.storage.hbase.max-region-count`，默认值500；
+- `kylin.storage.partition.max-scan-bytes`，默认值3221225472，即3G；
 
 ### 覆盖kylin_hive_conf.xml中参数
 
