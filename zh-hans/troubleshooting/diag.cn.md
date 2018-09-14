@@ -29,8 +29,6 @@
 
    ![](images/diagnosis/sys_diag_1_host.png)
 
-   
-
 5. 选择将系统诊断包下载到本地或者上传到 KyBot
 
    > Kyligence Enterprise 提供了两种选择，可以下载到本地供运维人员分析，也可以上传到 KyBot 网站，进行自助诊断。
@@ -60,5 +58,10 @@
 3. 选择将系统诊断包下载到本地或者上传到 KyBot
 
 -  点击`下载诊断包`，可以将诊断包下载至本地。
-
 -  点击`生成诊断包`，并上传到 KyBot，可以将诊断包上传至 KyBot 网站。
+
+### FAQ
+
+**Q:如果遇到内存分配不够，导致打包失败怎么办？**
+
+请您修改 `$KYLIN_HOME/kybot/setenv.sh` 内的 `KYBOT_JVM_SETTINGS` 参数。然后重新启动 Kyligence Enterprise 并再次执行打包任务。

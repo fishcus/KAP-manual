@@ -58,5 +58,11 @@ Job Diagnostic Package includes all diagnostic information of a specific job, an
 Kyligence Enterprise provides two options to dealing with Diagnostic Packages, one is downloading to local, and the other is uploading to KyBot for further analysis.
 
 - Click `Only generate` to generate the System Diagnostic Package and download to local.
-
 - Click `Generate and sync package with KyBot` to generate the System Diagnostic Package and upload it to KyBot.
+
+#### FAQ
+
+**Q: If I failed to generate diagnostic packages because the allocated memory is insufficient. What should I do?**
+
+Please change the `KYBOT_JVM_SETTINGS` parameters in `$KYLIN_HOME/kybot/setenv.sh`. Then restart Kyligence Enterprise and try again.
+
