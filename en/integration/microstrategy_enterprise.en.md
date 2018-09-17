@@ -51,7 +51,7 @@ For details on how to download and configure Kyligence ODBC Driver please refer 
 x
 2. Find the location of the DTMAPPING.pds file of the Intelligence Server installation
 
-   > On Windows the default location is C:\Program Files (x86)\Common Files\MicroStrategy, also referred to in the  $MSTR_CLASSPATH environment variable.
+   > Note: On Windows the default location is `C:\Program Files (x86)\Common Files\MicroStrategy`, also referred to in the  $MSTR_CLASSPATH environment variable.
 
 3. Run the following command replacing <location> with the folder where dtmapping.pds file is located.
 
@@ -71,11 +71,11 @@ Next, you will need to finish below configurations in all MicrStrategy Web machi
 
 2. Find the location of the DBProperties.xml file. Use this location to replace <location2> as the path to the DBProperties.xml file in the command in step 3. 
 
-   > The file can be found in the directory where MicroStrategy Web is deployed. This path will be different depending on the application server used. The following are common examples:
+   > Note: The file can be found in the directory where MicroStrategy Web is deployed. This path will be different depending on the application server used. The following are common examples:
    >
-   > * Microsoft IIS: C:\Program Files (x86)\MicroStrategy\Web ASPx\WEB-INF\xml\DBproperties.xml
-   > * Tomcat (on Windows): C:\Program Files (x86)\Common Files\MicroStrategy\Tomcat\apache-tomcat-8.0.30\webapps\MicroStrategy\WEB-INF\xml\DBProperties.xml
-   > * Tomcat (on Linux): /opt/apache/tomcat/apache-tomcat-8.0.43/webapps/MicroStrategy/WEB-INF/xml/DBproperties.xml
+   > * Microsoft IIS: `C:\Program Files (x86)\MicroStrategy\Web ASPx\WEB-INF\xml\DBproperties.xml`
+   > * Tomcat (on Windows): `C:\Program Files (x86)\Common Files\MicroStrategy\Tomcat\apache-tomcat-8.0.30\webapps\MicroStrategy\WEB-INF\xml\DBProperties.xml`
+   > * Tomcat (on Linux): `/opt/apache/tomcat/apache-tomcat-8.0.43/webapps/MicroStrategy/WEB-INF/xml/DBproperties.xml`
 
 3. Run the following command replacing <location2> with the folder where DBProperties.xml file is located.
 
@@ -85,11 +85,11 @@ Next, you will need to finish below configurations in all MicrStrategy Web machi
 
       > Note:
       >
-      > Running the command requires the privileges to copy and modify the existing DBproperties.xml file.
+      > * Running the command requires the privileges to copy and modify the existing DBproperties.xml file.
       >
-      > On Windows the <location> needs to finish with a backslash ("\") on Linux with a forward slash ("/") character.
+      > * The <location> needs to finish with a backslash ("\") on Windows and with a forward slash ("/") character on Linux.
       >
-      > The command will create a backup of the original DBProperties file in <location2>.
+      > * The command will create a backup of the original DBProperties file in <location2>.
 
 4. After running the above command, please restart your application server.
 
@@ -104,7 +104,20 @@ Next, you will need to finish below configurations in all MicrStrategy Web machi
         ![](images/microstrategy_10_8/ky_icon.png)
 
 
-
 Then search for kyligence at the data source to connect kyligence. Alternatively, you may find Kyligence under the “Hadoop” connection category.
 
 ![](images/microstrategy_10_8/datasource_ky.png)
+
+### Best Practice for Connecting MicroStrategy to Kyligence Enterprise
+
+1. It is recommended to set up your report intermediate table type as derived to improve query efficiency.
+   You can change this setting at report level using Data-> VLDB property-> Tables-> Intermediate Table Type
+
+2. Avoid using below functionality in MicroStrategy as it will generate multiple SQL passes that can not be bypassed by VLDB property:
+    - Creation of datamarts
+    - Query partitioned tables
+    - Reports with custom groups
+
+3. If underlying Kyligence data model has left join from fact table to lookup table, in order for Microstrategy to also generate the same left join SQL statement, please follow below MicroStrategy TN to modify VLDB property: [https://community.microstrategy.com/s/article/...](https://community.microstrategy.com/s/article/ka1440000009GrQAAU/KB17514-Using-the-Preserve-all-final-pass-result-elements-VLDB)
+
+4. By default, MicroStrategy generates SQL query with date filter in a format like 'mm/dd/yyyy'. This format might be different from Kylin's date format. if so, query will error out. You may refer to this article to change the setting in MicroStrategy so that date format MicroStrategy generated will be consistent with Kyligence Enterprise: [https://kyligence.zendesk.com/...](https://kyligence.zendesk.com/hc/en-us/articles/115001690433-Modify-MicroStrategy-query-date-format-to-be-consitent-with-KAP)

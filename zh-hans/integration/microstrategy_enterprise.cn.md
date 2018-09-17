@@ -2,14 +2,14 @@
 
 ### 支持的平台:
 
-Kyligence目前支持 MicroStrategy Secure Enterprise 10.8及更高版本。
+Kyligence 目前支持 MicroStrategy Secure Enterprise 10.8及更高版本。
 
 ### 前提条件:
 
-1. 已经安装 MicroStrategy Secure Enterprise 10.8或更高版本。
-2. 已经安装 Kyligence Enterprise 。
-3. 已经在安装 MicroStrategy Intelligence Server 的机器上安装了 JDK 1.8或更高版本。
-4. 已经在安装 MicroStrategy Intelligence Server 的机器上安装了64位的 Kyligence ODBC 驱动程序。 有关如何下载和配置 Kyligence ODBC 驱动程序的详细信息，请参阅 Kyligence Enterprise用户手册中 [Kyligence ODBC 驱动程序教程](../driver/kyligence_odbc.cn.md)章节。
+- 已经安装 MicroStrategy Secure Enterprise 10.8或更高版本。
+- 已经安装 Kyligence Enterprise 。
+- 已经在安装 MicroStrategy Intelligence Server 的机器上安装了 JDK 1.8或更高版本。
+- 已经在安装 MicroStrategy Intelligence Server 的机器上安装了64位的 Kyligence ODBC 驱动程序。 有关如何下载和配置 Kyligence ODBC 驱动程序的详细信息，请参阅 Kyligence Enterprise用户手册中 [Kyligence ODBC 驱动程序教程](../driver/kyligence_odbc.cn.md)章节。
 
 
 ### 为MicroStrategy Intelligence Server 安装Kyligence 连接器 
@@ -50,13 +50,13 @@ Kyligence目前支持 MicroStrategy Secure Enterprise 10.8及更高版本。
 
 2. 查找安装Intelligence Server的机器上的DTMAPPING.pds文件的位置
 
-   > 在Windows上，默认位置是C：\ Program Files（x86）\ Common Files \ MicroStrategy，也指向环境变量$ MSTR_CLASSPATH
+   > 提示：在 Windows 上，默认位置是 `C：\Program Files（x86）\Common Files \MicroStrategy`，也指向环境变量$ MSTR_CLASSPATH
 
 3. 用 DTMAPPING.pds 所在的文件夹替换 <location> 并运行以下命令。
 
    ``` java -jar AddConnector.jar --target <location>\DTMAPPING.pds --file DTMAPPING```
 
-   > 注：运行该命令需要具有复制和修改现有 DTMAPPING.pds文件的权限。该命令将在 <location> 中创建原始 DTMAPPING.pds文件的备份。
+   > 提示：运行该命令需要具有复制和修改现有 DTMAPPING.pds文件的权限。该命令将在 <location> 中创建原始 DTMAPPING.pds文件的备份。
 
 4. 重启 Intelligence Server.
 
@@ -70,9 +70,9 @@ Kyligence目前支持 MicroStrategy Secure Enterprise 10.8及更高版本。
 
   > DBProperties.xml文件的路径默认为
   >
-  > * Microsoft IIS: C:\Program Files (x86)\MicroStrategy\Web ASPx\WEB-INF\xml\DBproperties.xml
-  > * Tomcat (on Windows): C:\Program Files (x86)\Common Files\MicroStrategy\Tomcat\apache-tomcat-8.0.30\webapps\MicroStrategy\WEB-INF\xml\DBProperties.xml
-  > * Tomcat (on Linux): /opt/apache/tomcat/apache-tomcat-8.0.43/webapps/MicroStrategy/WEB-INF/xml/DBproperties.xml
+  > * Microsoft IIS: `C:\Program Files (x86)\MicroStrategy\Web ASPx\WEB-INF\xml\DBproperties.xml`
+  > * Tomcat (on Windows): `C:\Program Files (x86)\Common Files\MicroStrategy\Tomcat\apache-tomcat-8.0.30\webapps\MicroStrategy\WEB-INF\xml\DBProperties.xml`
+  > * Tomcat (on Linux): `/opt/apache/tomcat/apache-tomcat-8.0.43/webapps/MicroStrategy/WEB-INF/xml/DBproperties.xml`
   >
 
 3. 替换<location1>和<location2>，并执行如下命令：
@@ -81,13 +81,13 @@ Kyligence目前支持 MicroStrategy Secure Enterprise 10.8及更高版本。
   java -jar <location1>\AddConnector.jar --target <location2>\DBProperties.xml --file <location2>\DBproperties
   ```
 
-  > 注：
+  > 提示：
   >
-  > 运行该命令需要具有复制和修改现有DBproperties.xml文件的权限。
+  > * 运行该命令需要具有复制和修改现有DBproperties.xml文件的权限。
   >
-  > 在Windows上，<location>需要以反斜杠 “ \ ” 字符结束，在Linux上需要以正斜杠 “ / ” 字符结束。
+  > * 在Windows上，<location>需要以反斜杠 “ \ ” 字符结束，在Linux上需要以正斜杠 “ / ” 字符结束。
   >
-  > 该命令将在<location2>中创建原始DBProperties 文件的备份。
+  > * 该命令将在<location2>中创建原始DBProperties 文件的备份。
 
 4. 运行上述命令后，请重新启动您的应用程序服务器。
 
@@ -102,11 +102,26 @@ Kyligence目前支持 MicroStrategy Secure Enterprise 10.8及更高版本。
      ![](images/microstrategy_10_8/ky_icon.png)
 
 
-
-
-然后在数据源处搜索 Kyligence 来连接 Kyligence，或者可以在 “Hadoop” 连接类别下找到Kyligence。
+然后在数据源处搜索 Kyligence 来连接 Kyligence，或者可以在 **Hadoop** 连接类别下找到 Kyligence。
 
  ![](images/microstrategy_10_8/datasource_ky.png)
 
+### 使用 MicroStrategy 连接 Kyligence Enterprise 的最佳实践
+
+以下是经笔者测试的 MicroStrategy 连接 Kyligence Enterprise 的最佳实践，建议按照下面操作配置你的 MicroStrategy 环境以优化和 Kyligence Enterprise 的连接。
+
+1. 建议在 MicroStrategy 环境中修改 VLDB 配置，设置 report intermediate table类型为 derived 来避免 MicroStrategy 生成临时表，以提高查询效率。修改方法为在 MicroStrategy 的 report 中菜单选择 Data-> VLDB property-> Tables-> Intermediate Table Type设置为Derived即可。
+
+2. 避免使用以下 MicroStrategy功能，因为下面的功能可能会生成多段SQL语句，这些多段的SQL语句无法通过VLDB配置规避。
+
+   - 使用 Datamarts
+   - 使用 partitioned tables
+   - 使用 custom groups
+
+3. 如果 Kyligence 数据模型中有事实表向维度表的左连接，MicroStrategy 生成的 SQL 也需要产生相同的左连接来击中 Cube，默认情况下 MicroStrategy 仅会生成内连接，
+   可以参照以下 MicroStrategy 技术文档来修改 MicroStrategy 的 VLDB 配置实现左连接：[https://community.microstrategy.com/s/article/...](https://community.microstrategy.com/s/article/ka1440000009GrQAAU/KB17514-Using-the-Preserve-all-final-pass-result-elements-VLDB)
+
+4. 默认情况下 MicroStrategy 生成的 SQL 语句在对日期进行过滤时日期的格式为 'mm/dd/yyyy'。这个格式可能会和 Kyligence Enterprise 中的日期格式不一致，导致查询报错。
+   可以参考以下文章来修改 MicroStrategy 的配置，使其生成与 Kyligence Enterprise 的日期格式一致的日期过滤查询：[https://kyligence.zendesk.com/...](https://kyligence.zendesk.com/hc/en-us/articles/115001690433-Modify-MicroStrategy-query-date-format-to-be-consitent-with-KAP)
 
 
