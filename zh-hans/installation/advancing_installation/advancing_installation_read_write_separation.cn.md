@@ -95,7 +95,7 @@ Kyligence Enterprise 读写分离部署需要使用两个 Hadoop 集群，分别
 
    - 在**构建服务器**上，修改 `$KYLIN_HOME/conf/kylin.properties`。
      ```properties
-     kylin.engine.spark-conf.spark.yarn.access.namenodes==hdfs://{query-cluster},hdfs://{build-cluster}
+     kylin.engine.spark-conf.spark.yarn.access.namenodes=hdfs://{query-cluster},hdfs://{build-cluster}
      ```
 
    - 在**构建服务器**上，修改 `$KYLIN_HOME/conf/kylin_job_conf.xml`。

@@ -3,7 +3,7 @@ Kyligence Enterprise 将所有的 Cube数据都保存在 KyStorage，一种基�
 
 Kyligence Enterprise 将Spark的二进制包和配置文件打包至 `$KYLIN_HOME/spark/` 目录。理论上可以直接在 `$KYLIN_HOME/spark/conf/` 路径下按照 [Spark 参数配置](http://spark.apache.org/docs/latest/configuration.html) 来修改 Spark 自带的所有配置。但是我们不推荐这种方式，因为从运维的便捷性考虑所有Kyligence Enterprise相关的配置都应限制在`$KYLIN_HOME/conf/`路径下。
 
-我们建议用户通过修改 `$KYLIN_HOME/bin/kylin.properties` 配置文件中对应的参数值来配置 Spark 参数。这些参数大致分为两个类别：环境变量和Spark属性。
+我们建议用户通过修改 `$KYLIN_HOME/bin/kylin.properties` 配置文件中对应的参数值来配置 Spark 参数。这些参数大致分为两个类别：环境变量和 Spark 属性。
 
 ### 环境变量
 

@@ -104,7 +104,7 @@ Follow the below instructions to install Kyligence Enterprise in the build clust
    - On the **build servers**, modify `$KYLIN_HOME/conf/kylin.properties`
 
      ```properties
-     kylin.engine.spark-conf.spark.yarn.access.namenodes==hdfs://{query-cluster},hdfs://{build-cluster}
+     kylin.engine.spark-conf.spark.yarn.access.namenodes=hdfs://{query-cluster},hdfs://{build-cluster}
      ```
 
    - On the **build servers**, modify `$KYLIN_HOME/conf/kylin_job_conf.xml`

@@ -29,7 +29,7 @@ Enter *Studio* page and click *Cubes*, you will see the sample Cube named `kylin
 
 ![](images/kap_learn_kylin.png)
 
-Click *Action -> Build*, pick up a end date later than *2012-01-01*, and click *Submit*.
+Click *Action -> Build*, pick up an end date later than *2012-01-01*, and click *Submit*.
 
 ![](images/kap_build_cube.png)
 

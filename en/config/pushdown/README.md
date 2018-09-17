@@ -1,6 +1,6 @@
 ## Query Pushdown Configuration
 
-KAP supports HOLAP architecture. It routes the Cube incapable query into Pushdown Query Engine.
+Kyligence Enterprise supports HOLAP architecture. It routes the Cube incapable query into Pushdown Query Engine.
 
 Continue reading:
 

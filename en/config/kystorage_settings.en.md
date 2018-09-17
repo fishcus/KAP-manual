@@ -1,7 +1,7 @@
 ## KyStorage Configuration
 Kyligence Enterprise stores all cube data in KyStorage, a columnar storage system on HDFS. When processing queries, Kyligence Enterprise uses [Spark](http://spark.apache.org), specifically we use Spark on Yarn mode, for cube accessing and possibly storage pre-aggregations.  One or more Spark executors are started as long-running processes to receive cube access requests. For deployments in production environment, please go through this page to make sure your Spark executors are well configured. 
 
-Kyligence Enterprise ships with all necessary Spark assemblies and configurations, which reside in `$KYLIN_HOME/spark/`. Kyligence Enterprise uses the spark-submit script to launch all the executors. Theoretically you can directly go to `$KYLIN_HOME/spark/conf/` to make changes according to the [Spark configuration]( http://spark.apache.org/docs/latest/configuration.html). However it's NOT the recommended way, we suggest you keep all KE related configurations in `$KYLIN_HOME/conf/`. 
+Kyligence Enterprise ships with all necessary Spark assemblies and configurations, which reside in `$KYLIN_HOME/spark/`. Kyligence Enterprise uses the spark-submit script to launch all the executors. Theoretically you can directly go to `$KYLIN_HOME/spark/conf/` to make changes according to the [Spark configuration]( http://spark.apache.org/docs/latest/configuration.html). However it's NOT the recommended way, we suggest you keep all Kyligence Enterprise related configurations in `$KYLIN_HOME/conf/`. 
 
 It's highly recommended to change Spark configurations in `$KYLIN_HOME/bin/kylin.properties`. Typically there're two major categories of configurations for Spark: environment variables and Spark properties.
 

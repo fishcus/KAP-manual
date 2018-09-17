@@ -13,7 +13,7 @@ If you need pushdown to Impala, you must have a Impala Thrift Server.
 
 #### Install Hive JDBC
 
-Put all the downloaded jar package into `$KAP_HOME/ext`, so that KAP can be loaded at startup JDBC Driver
+Put all the downloaded jar package into `$KAP_HOME/ext`, so that Kyligence Enterprise can be loaded at startup JDBC Driver
 
 #### Modify kylin.properties
 
@@ -51,7 +51,7 @@ Modify `$KAP_HOME/conf/kylin.properties`, add Hive JDBC configuration
       </property>
       ```
 
-      The **KAP must have a valid Kerberos ticket before you initiate a connection to HiveServer2** (use kinit).
+      The **Kyligence Enterprise must have a valid Kerberos ticket before you initiate a connection to HiveServer2** (use kinit).
 
 #### Verify thrift
 
@@ -61,10 +61,10 @@ Modify `$KAP_HOME/conf/kylin.properties`, add Hive JDBC configuration
 
 #### Verify Query Pushdown
 
-- Start KAP to query loaded tables in the insight page
+- Start Kyligence Enterprise to query loaded tables in the insight page
 
 
-- If queries working track can be found in the Impala web page, it means KAP has been integrated with Impala normally
+- If queries working track can be found in the Impala web page, it means Kyligence Enterprise has been integrated with Impala normally
 - ![](images/query_pushdown_impala.png)
 
 

@@ -2,7 +2,7 @@
 
 ### Service Discovery
 
-Kyligence Enterprise supports service discovery from 2.0. Multiple Kyligence Enterprise instances can work together as a cluster. When a Kyligence Enterprise instance is started, stopped or lost, other instances in the cluster will notice and then update automatically. Now KAP 2.4 has a new implementation based on Apache Curator framework, which is handier and stabler. 
+Kyligence Enterprise supports service discovery from 2.0. Multiple Kyligence Enterprise instances can work together as a cluster. When a Kyligence Enterprise instance is started, stopped or lost, other instances in the cluster will notice and then update automatically. Now Kyligence Enterprise has a new implementation based on Apache Curator framework, which is handier and stabler. 
 
 Service Discovery based on Curator is enabled by default. When HBase metadata store is NOT chosen, you'll need to additionally configure zookeeper address in `$KYLIN_HOME/conf/kylin.properties`, for instance:
 

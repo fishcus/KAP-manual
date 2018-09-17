@@ -1,6 +1,6 @@
 ## Use SparkSQL during Cube Build
 
-KAP leverages Hive by default to do part of the pre-calculations during cube build process. Since SparkSQL has better performance over Hive in general, using SparkSQL instead of Hive during cube build may improve the build speed at certain steps.
+Kyligence Enterprise leverages Hive by default to do part of the pre-calculations during cube build process. Since SparkSQL has better performance over Hive in general, using SparkSQL instead of Hive during cube build may improve the build speed at certain steps.
 
 ![sparksql_build_step](images/use_sparksql_during_cube_build/sparksql_flat_table.png)
 
@@ -20,7 +20,7 @@ Follow the steps below to enable SparkSQL during cube build:
 
    Note for the JDBC URL, the `localhost:10000` should be replaced with the host and port of your thrift server; the `principle` parameter is only needed if security is enabled in your cluster.
 
-3. Stop KAP and run check-env to verify the configuration.
+3. Stop Kyligence Enterprise and run check-env to verify the configuration.
 
    ```sh
    bin/kylin.sh stop
@@ -33,7 +33,7 @@ Follow the steps below to enable SparkSQL during cube build:
    ${kylin.source.hive.sparksql-beeline-shell} ${kylin.source.hive.sparksql-beeline-params}
    ```
 
-4. Restart KAP to take effect.
+4. Restart Kyligence Enterprise to take effect.
 
 
 
@@ -41,7 +41,8 @@ Follow the steps below to enable SparkSQL during cube build:
 
 Don't confuse the SparkSQL configuration above with the Hive client settings (listed below), which is used for accessing Hive metadata, retrieving Hive table structure etc. Although seemingly similar, they are for different purposes.
 
-```properties
+```
+properties
 # Hive client, valid value [cli, beeline]
 kylin.source.hive.client=cli
 

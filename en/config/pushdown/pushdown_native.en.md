@@ -1,6 +1,6 @@
 ##  Pushdown to Native SparkSQL
 
-KAP supports Query Pushdown since 2.4. If the query is Cube incapable, KAP will route the query to the pushdown query engine. 
+Kyligence Enterprise supports Query Pushdown since 2.4. If the query is Cube incapable, Kyligence Enterprise will route the query to the pushdown query engine. 
 
 #### Turn on Query Pushdown
 

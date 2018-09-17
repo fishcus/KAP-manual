@@ -1,7 +1,7 @@
 ## 服务发现及任务引擎高可用
 
 ### 服务发现
-Kyligence Enterprise 从2.0版本开始支持服务发现，即在多个 Kyligence Enterprise 实例组成的集群中，当一个 Kyligence Enterprise 实例启动、停止或意外中断通讯时，集群中的其他实例能够自动发现并更新状态。在Kyligence Enterprise 2.4版本中新增了基于 Apache Curator 框架的服务发现功能，相较于之前的版本更为稳定易用。
+Kyligence Enterprise 从2.0版本开始支持服务发现，即在多个 Kyligence Enterprise 实例组成的集群中，当一个 Kyligence Enterprise 实例启动、停止或意外中断通讯时，集群中的其他实例能够自动发现并更新状态。在 Kyligence Enterprise 版本中新增了基于 Apache Curator 框架的服务发现功能，相较于之前的版本更为稳定易用。
 
 基于 Curator 的服务发现默认会被启用。如果您运行 Kyligence Enterprise 时没有使用 HBase 作为 metastore，那么您应当在`$KYLIN_HOME/conf/kylin.properties`文件中配置 Zookeeper 的地址，例如：
 
