@@ -44,12 +44,12 @@ All query histories will show in *Query History* tab. Click *Query History* tab,
 
 ![](images/insight/insight_list_history.png)
 
-### Data Visualization in KAP
+### Data Visualization in Kyligence Enterprise
 
 #### Table
 
-KAP displays query result in table by default, the result data could be sorted in ascending or descending order. You can also hide the column and export results in CSV.
+Kyligence Enterprise displays query result in table by default, the result data could be sorted in ascending or descending order. You can also hide the column and export results in CSV.
 
 ![](images/insight/insight_show_result.png)
 
-Click *Visualization* button, you can display query result in chart. KAP supports *line chart*, *bar chart*, *pie chart* by default.
+Click *Visualization* button, you can display query result in chart. Kyligence Enterprise supports *line chart*, *bar chart*, *pie chart* by default.

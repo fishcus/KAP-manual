@@ -35,7 +35,7 @@ In access control file, it defines the specific conditions for restricting filte
 
   *If value is evaluated as a string(non-Boolean), means the corresponding attribute will be used for row level security, for example: kylin_sales.region.*
 
-#### KAP Sample Test
+#### Kyligence Enterprise Sample Test
 
 *Some preparation*s
 

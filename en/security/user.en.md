@@ -4,7 +4,7 @@ This section provides an overview of what a user is and how a user can be manage
 
 ### About User
 
-To use KAP, a user must log in to the system using a login ID and password. Users are defined in the KAP metadata and exist across projects. You do not have to define users for every project you create in a single metadata. 
+To use Kyligence Enterprise, a user must log in to the system using a login ID and password. Users are defined in the Kyligence Enterprise built-in metadata and exist across projects. You do not have to define users for every project you create in a single metadata. 
 
 User **ADMIN** is a built-in default user with system admin access permission created with a new KAP metadata. **System admin** user has all access permission for all projects. 
 

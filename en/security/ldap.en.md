@@ -2,7 +2,7 @@
 
 KAP supports integration with LDAP servers for user authentication. This validation is achieved through the Spring Security framework, so it has a good versatility. Before enabling LDAP authentication, please contact your LDAP administrator for required information.
 
-### Setup LDAP server
+### Setup LDAP Server
 
 Before enabling LDAP authentication, you need a running LDAP service. If you already have it, contact your LDAP administrator to get the necessary information including connectivity inforamtion, organization structure, etc..
 
@@ -255,7 +255,7 @@ kylin.security.ldap.service-group-search-base=ou=Groups,dc=example,dc=com
 
 ### Configure Administrator Groups and Default Roles
 
-KAP allows mapping an LDAP group to the administrator role: In kylin.properties, set "kylin.security.acl.admin-role" to the LDAP group name (case sensitive). In this example, you would like to use the group "admin" to manage all KAP administrators, then this property should be set as:
+Kyligence Enterprise allows mapping an LDAP group to the administrator role: In kylin.properties, set "kylin.security.acl.admin-role" to the LDAP group name (case sensitive). In this example, you would like to use the group "admin" to manage all KAP administrators, then this property should be set as:
 
 ```
 kylin.security.acl.admin-role=admin

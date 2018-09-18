@@ -1,6 +1,6 @@
 ##Arithmetic Function
 
-| Function Syntax                | Decription                               | Example                                  | Return                                   |
+| Function Syntax                | Description                               | Example                                  | Return                                   |
 | ------------------------------ | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | POWER(numeric1, numeric2)      | Returns *numeric1* raised to the power of *numeric2* | ```select POWER(2,2)```                  | ```4.0```                                |
 | ABS(numeric)                   | Returns the absolute value of *numeric*  | ```select ABS(2)```                      | ```2```                                  |

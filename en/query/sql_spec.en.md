@@ -1,6 +1,6 @@
 ##SQL Syntax
 
-KAP supports ANSI SQL 2003*, and its basic SQL grammar is listed as follows.
+Kyligence Enterprise supports ANSI SQL 2003*, and its basic SQL grammar is listed as follows.
 
 ### Supported Syntax
 

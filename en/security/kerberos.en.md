@@ -19,7 +19,7 @@ Optional parameters：
    - kap.kerberos.krb5.conf: the config file name of Kerberos. Default value is `krb5.conf`
    - kap.kerberos.cache: the name of ticket cache file. Default value is `kap_kerberos.cache`
 
-### Hadoop Platform Configurations
+### Hadoop Platform Configuration
 
 Cloudera/Hortonworks Hadoop distribution configuration:
 

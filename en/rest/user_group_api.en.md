@@ -1,6 +1,6 @@
 ## User Group Management REST API
 
-> **Tip**
+> **Tips**
 >
 > Before using API, make sure that you read the previous chapter of [Access and Authentication](authentication.en.md), and know how to add authentication information in API.
 >
@@ -14,7 +14,7 @@
 * [Get All Users under Specified User Group](#get-all-users-under-specified-user-group)
 * [Add Users to User Group](#add-users-to-user-group)
 
-### Get All User Group
+### Get All User Groups
 `Request Mode GET`
 
 `Access Path http://host:port/kylin/api/user_group/groups`
@@ -48,7 +48,7 @@ curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.
 }
 ```
 
-### Get User Group and its Users
+### Get User Group and Its Users
 `Request Mode GET`
 
 `Access Path http://host:port/kylin/api/user_group/usersWithGroup`

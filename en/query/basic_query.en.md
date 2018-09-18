@@ -38,7 +38,7 @@ SELECT * FROM KYLIN_SALES
 
 By default, KAP does not memorize raw records, thus cannot answer queries that does not have a `GROUP BY` clause. However, user often like to "`SELECT *`" to peek a few sample records. In such cases, KAP will return result at the best effort, by grouping all dimensions implicitly. Such result is not accurate but gives a signal to user that the cube is loaded with good data.If user wants KAP to store and return raw records, please define table index(raw table) in cube definition.
 
-### Displays Execution Plans
+### Display Execution Plans
 
 KAP supports using `explain plan for` to displays execution plans. For example,
 

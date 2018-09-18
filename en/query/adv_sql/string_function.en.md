@@ -1,6 +1,6 @@
 ## String Function
 
-| Function Syntax                          | Decription                               | Example                                  | Return            |
+| Function Syntax                          | Description                               | Example                                  | Return            |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ----------------- |
 | CHAR_LENGTH(string)                      | Returns the number of characters in a character string | ```select char_length(name) from KYLIN_COUNTRY where name='Fiji'``` | ```4```           |
 | CHARACTER_LENGTH(string)                 | As CHAR_LENGTH(*string*)                 | ```select CHARACTER_LENGTH(name) from KYLIN_COUNTRY where name='Fiji'``` | ```4```           |

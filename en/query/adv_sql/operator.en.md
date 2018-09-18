@@ -4,7 +4,7 @@ The following are operators applicable to SQL query.
 
 ### Comparison Operator 
 
-| Opeartor             | Decription                               | Syntax                                   | Example                                  |
+| Operator             | Description                               | Syntax                                   | Example                                  |
 | -------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | <                    | Less than                                | A<B                                      | Profit < Cost                            |
 | <=                   | Less than or equal                       | A<=B                                     | Profit <=Cost                            |
@@ -24,7 +24,7 @@ The following are operators applicable to SQL query.
 
 ###Logical Operator
 
-| Opeartor     | Decription                               | Syntax                | Example                       |
+| Operator     | Description                               | Syntax                | Example                       |
 | ------------ | ---------------------------------------- | --------------------- | ----------------------------- |
 | AND          | Whether *boolean1* and *boolean2* are both TRUE | boolean1 AND boolean2 | Name ='frank' AND gender='M'  |
 | OR           | Whether *boolean1* is TRUE or *boolean2* is TRUE | boolean1 OR boolean2  | Name='frank' OR Name='Hentry' |
@@ -36,16 +36,16 @@ The following are operators applicable to SQL query.
 
 ###Arithmetic Operator
 
-| Opeartor | Decription                               | Syntax | Example              |
+| Operator | Description                               | Syntax | Example              |
 | -------- | ---------------------------------------- | ------ | -------------------- |
 | +        | Plus                                     | A+B    | Cost+Profit          |
 | -        | Minus.                                   | A-B    | Revenue- Cost        |
-| *        | Times. Returns *numeric1* multiplied by *numeric2* | A*B    | Unit_Price* Quantity |
-| /        | Devide                                   | A/B    | Total_Sale/Quantity  |
+| *        | Multiply. Returns *numeric1* multiplied by *numeric2* | A*B    | Unit_Price* Quantity |
+| /        | Divide                                   | A/B    | Total_Sale/Quantity  |
 
 ### String Operator
 
-| Opeartor | Decription       | Syntax | Example                 |
+| Operator | Description       | Syntax | Example                 |
 | -------- | ---------------- | ------ | ----------------------- |
 | \|\|     | String\|\|string | A\|\|B | First_name\|\|Last_name |
 

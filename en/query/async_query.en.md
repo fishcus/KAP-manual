@@ -1,6 +1,6 @@
 Async query helps user to execute queries asynchronously, providing a more efficient way for result exporting.
 
-## Issuing async query
+## Issuing Async Query
 
 **POST /kylin/api/async_query**
 
@@ -52,7 +52,7 @@ Async query helps user to execute queries asynchronously, providing a more effic
 curl -X POST -H "Authorization: Basic QURNSU46S1lMSU4=" -H "Content-Type: application/json" -d '{ "sql":"select * from p_lineorder limit 100", "project":"ssb" }' http://master:7070/kylin/api/async_query
 ```
 
-## Inquiring async query status
+## Inquiring Async Query Status
 
 **GET /kylin/api/async_query/{QUERY_ID}/status**
 
@@ -109,7 +109,7 @@ curl -X GET -H "Authorization: Basic QURNSU46S1lMSU4=" -H "Content-Type: applica
 
 
 
-## retrieve async query result
+## Retrieve Async Query Result
 
 **GET /kylin/api/async_query/{QUERY_ID}/result**
 Invoke this after you confirm query status being SUCCESSFUL

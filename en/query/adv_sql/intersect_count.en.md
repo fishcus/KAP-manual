@@ -4,7 +4,7 @@ Retention or conversion rate is important in data analysis for most internet ent
 
 
 
-### Intersect query
+### Intersect Query
 
 The SQL **INTERSECT** clause/operator is used to combine two SELECT statements, but returns rows only from the first SELECT statement that are identical to a row in the second SELECT statement. This means 
 INTERSECT returns only common rows returned by the two SELECT statements.

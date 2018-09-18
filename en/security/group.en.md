@@ -34,7 +34,7 @@ The system administrator can manage user groups by adding a user to different gr
 
 #### Manage users in a user group
 
-The system adminstrator can add or delete users in a user group except for the group All Users in bulk. A user can be added to multiple groups.
+The system administrator can add or delete users in a user group except for the group All Users in bulk. A user can be added to multiple groups.
 
 ### Action Steps
 

@@ -1,6 +1,6 @@
 ## Functions
 
-Here we will introduce functions applicable to SQL query. Click on each section to read more details:
+Here we will introduce functions applicable to SQL statements. Click on each section to read more details:
 
 [Arithmetic Function](arithmetic_function.en.md) 
 

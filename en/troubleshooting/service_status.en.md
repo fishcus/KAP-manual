@@ -17,8 +17,8 @@ Service status detection mainly focuses on following aspects：
 - Metadata synchronization: to check the whether metadata is synchronized successfully and if not, metadata will be reloaded automatically
 - Job Engine availability: to check the availability of job engines
 
-### Check service status manually
-KAP also supports users to check service status manually through command lines, and the results will be logged in `$KYLIN_HOME/logs/canary.log`.
+### Check Service Status Manually
+Kyligence Enterprise also supports users to check service status manually through command lines, and the results will be logged in `$KYLIN_HOME/logs/canary.log`.
 
 You can run the command line `$KYLIN_HOME/bin/kylin.sh io.kyligence.kap.canary.CanaryCLI <canaries-to-test>`, in which <canaries-to-test> could be replaced by the following parameters,
 
@@ -40,7 +40,7 @@ You can run the command line `$KYLIN_HOME/bin/kylin.sh io.kyligence.kap.canary.C
 - *Red:* Error or crash, indicating that there is something wrong with the service status or the service throws exception. 
 
 
-#### Detailed criteria
+#### Detailed Criteria
 
 | Canary Items          | Status: Yellow                                               | Status: Red                                                  |
 | --------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |

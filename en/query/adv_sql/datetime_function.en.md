@@ -1,6 +1,6 @@
 ### Date and Time Function
 
-| Function Syntax                          | Decription                               | Example                                  |                            |
+| Function Syntax                          | Description                               | Example                                  |                            |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | -------------------------- |
 | LOCALTIME                                | Returns the current date and time in the session time zone in a value of datatype TIME | ```select LOCALTIME```                   | ```14:34:06```             |
 | LOCALTIMESTAMP                           | Returns the current date and time in the session time zone in a value of datatype TIMESTAMP | ```select LOCALTIMESTAMP```              | ``` 2017-10-20 14:34:29``` |
