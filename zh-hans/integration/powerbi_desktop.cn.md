@@ -22,8 +22,8 @@ Microsoft Power BI Desktop 是由微软推出的一款商业智能的专业分�
 
 ### 使用 Power BI Desktop 连接 Kyligence Enterprise
 
-1. 启动已经安装的 Power BI Desktop，单击 **Get data -> more**，在 **Database** 类别下选中 **Kyligence Analytics Platform**。
-    ![选中 Kyligence Analytics Platform](images/powerbi/Picture5.png)
+1. 启动已经安装的 Power BI Desktop，单击 **Get data -> more**，在 **Database** 类别下选中 **Kyligence Enterprise**。
+    ![选中 Kyligence Enterprise](images/powerbi/Picture5.png)
 
 2. 在连接字符串文本框中输入所需的数据库信息。请选择 **DirectQuery** 作为数据连接方式。
 

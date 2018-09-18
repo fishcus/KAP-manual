@@ -131,7 +131,9 @@
     * [Connect with BI tools](integration/README.md)
         * [Tableau](integration/tableau.en.md)
         * [Excel](integration/excel_2018.en.md)
-        * [Power BI](integration/powerbi.en.md)
+        * Power BI
+          * [Power BI Desktop](integration/powerbi_desktop.en.md)
+          * [Power BI Service](integration/powerbi_service.en.md)
         * [Apache Zeppelin](integration/zeppelin.en.md)
         * [Cognos](integration/cognos.en.md)
         * MicroStrategy

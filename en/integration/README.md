@@ -8,7 +8,10 @@ Following BI tools are covered:
 
 [Excel](excel_2018.en.md)
 
-[Power BI](powerbi.en.md)
+Power BI
+
+* [Power BI Desktop](powerbi.en.md)
+* [Power BI Service](powerbi_service.en.md)
 
 [Apache Zeppelin](zeppelin.en.md)
 

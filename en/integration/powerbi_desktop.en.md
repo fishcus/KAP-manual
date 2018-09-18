@@ -22,9 +22,9 @@ For the installation information, please refer to [Kyligence ODBC Driver tutoria
 
 ### Connect Kyligence Enterprise through Power BI Desktop
 
-1.  Start the installed Power BI Desktop, click **Get data -> more**, and then click **Database -> Kyligence Analytics Platform**.
+1.  Start the installed Power BI Desktop, click **Get data -> more**, and then click **Database -> Kyligence Enterprise**.
 
-     ![Select Kyligence Analytics Platform](images/powerbi/Picture5.png)
+     ![Select Kyligence Enterprise](images/powerbi/Picture5.png)
 
 2.  In the pop-up window, type the required database information, and select **DirectQuery** as Data Connectivity mode.
 

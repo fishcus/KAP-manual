@@ -129,7 +129,9 @@
     * [与BI工具连接](integration/README.md)
         * [Tableau](integration/tableau.cn.md)
         * [Excel ](integration/excel_2018.cn.md)
-        * [Power BI](integration/powerbi.cn.md)
+        * Power BI
+          * [Power BI Desktop](integration/powerbi_desktop.cn.md)
+          * [Power BI Service](integration/powerbi_service.cn.md)
         * [Apache Zeppelin](integration/zeppelin.cn.md)
         * MicroStrategy
           * [MicroStrategy Secure Enterprise](integration/microstrategy_enterprise.cn.md)
