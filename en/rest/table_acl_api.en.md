@@ -1,150 +1,201 @@
 ## Table ACL REST API
 
-> **Tip**
+> Reminder:
 >
-> Before using API, make sure that you read the previous chapter of [Access and Authentication](authentication.en.md), and know how to add authentication information in API.
->
-> If there exists `&` in your request path, please enclose the URL in quotation marks `""` or add a backslash ahead  `\&`  to avoid being escaped.
+> 1. Please read Access and Authentication REST API and understand how authentication works.
+> 2. On Curl command line, don't forget to quote the URL if it contains `&` or other special chars.
 
 
-* [Get Table ACL](#get-table-acl)
-* [Grant Table ACL](#grant-table-acl)
-* [Delete Table ACL](#delete-table-acl)
-* [Grant Table ACL - Batch](#Grant Table ACL - Batch)
+
+* [Get Table ACL](#Get Table ACL)
+* [Grant Table ACL](#Grant Table ACL)
+* [Grant Table ACL in batch](#Grant Table ACL in batch)
+* [Revoke Table ACL](#Revoke Table ACL)
+
+
 
 ### Get Table ACL
-`Request Mode GET`
 
-`Access Path http://host:port/kylin/api/acl/table/paged/{project}/{table}`
-
-`Accept: application/vnd.apache.kylin-v2+json`
-
-`Accept-Language: cn|en`
-
-#### Path Variables
-* project - `required` `string`, project name
-* table - `required` `string`, table name
-
-#### Request Body
-* pageSize - `optional` `int`, default 10, how many lines would be included in each returned page.
-* pageOffset - `optional` `int`, default 0, get data start subscript.
-
-#### Request Example
-`Request Path:http://host:port/kylin/api/acl/table/paged/learn_kylin/DEFAULT.KYLIN_SALES`
+- `GET http://host:port/kylin/api/acl/table/paged/{project}/{table}`
 
 
-#### Curl Request Example
+- URL Parameter
+    * `project` - `required` `string`, project name
+    * `table` - `required` `string`, table name
+
+- HTTP Header
+	- `Accept: application/vnd.apache.kylin-v2+json`
+	- `Accept-Language: cn|en`
+	- `Content-Type: application/json;charset=utf-8`
+
+
+- HTTP Body
+    * `pageSize` - `optional` `int`,  returned result number per page, 10 by default
+    * `pageOffset` - `optional` `int`,  offset of returned result, 0 by default
+
+
+**Curl Request Example**
+
+```shell
+curl -X GET \
+  http://host:port/kylin/api/acl/table/paged/learn_kylin/DEFAULT.KYLIN_SALES \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8'
 ```
-curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{"pageSize":10，"pageOffset":0 }' http://host:port/kylin/api/acl/table/paged/learn_kylin/DEFAULT.KYLIN_SALES
-```
 
-#### Response Example
-```json
+**Response Example**
+
+```JSON
 {
-  "code": "000",
-  "data": {
-    "size": 2,
-    "user": [
-      "ROLE_ADMIN"
-    ],
-    group: [
-      "ADMIN"
-    ]
-  },
-  "msg": "get table acl"
+    "code": "000", 
+    "data": {
+        "size": 2, 
+        "user": [
+            "ADMIN"
+        ], 
+        "group": [
+            "ROLE_ADMIN"
+        ]
+    }, 
+    "msg": "get table acl"
 }
 ```
 
+
+
 ### Grant Table ACL
-`Request Mode POST`
 
-`Access Path http://host:port/kylin/api/acl/table/{project}/{type}/{table}/{name}`
+- `POST http://host:port/kylin/api/acl/table/{project}/{type}/{table}/{name}`
 
-`Accept: application/vnd.apache.kylin-v2+json`
 
-`Accept-Language: cn|en`
+- URL Parameter
+    * `project` - `required` `string`, project name
+    * `type` - `required` `string`, operation object, ie.,user or group
+    * `table` - `required` `string`, table name
+	* `name` - `required` `string`, user name
 
-#### Path Variables
-* project - `required` `string`, project name
-* type - `required` `string`, indicate the type of action, value: user/group
-* table - `required` `string`, table name
-* username - `required` `string`, user name
 
-#### Request Example
-`Request Path:http://host:port/kylin/api/acl/table/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN`
+- HTTP Header
+	- `Accept: application/vnd.apache.kylin-v2+json`
+	- `Accept-Language: cn|en`
+	- `Content-Type: application/json;charset=utf-8`
 
-#### Curl Request Example
+
+**Curl Request Example**
+
+```shell
+curl -X POST \
+  http://host:port/kylin/api/acl/table/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8'
 ```
-curl -X POST -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/acl/table/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN
+
+
+**Response Example**
+
+```JSON
+{
+    "code": "000",
+    "data": "",
+    "msg": "grant user table query permission and remove user from table black list."
+}
 ```
 
-#### Response Example
+
+
+### Grant Table ACL in batch
+
+
+- `POST http://host:port/kylin/api/acl/table/batch/{project}/{table:.+}`
+
+
+- URL Parameter
+    * `project` - `required` `string`, project name
+    * `table` - `required` `string`, table name
+
+
+- HTTP Header
+	- `Accept: application/vnd.apache.kylin-v2+json`
+	- `Accept-Language: cn|en`
+	- `Content-Type: application/json;charset=utf-8`
+
+
+- HTTP Body
+    * `sid` - `required` `string`, user name or group name
+    * `principal` - `required` `boolean`, "true" for user and "false" for group
+
+
+**Curl Request Example**
+
+```shell
+curl -X POST \
+  http://host:port/kylin/api/acl/table/batch/learn_kylin/DEFAULT.KYLIN_CAL_DT \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json' \
+  -d '[{
+	"sid":"ADMIN",
+	"principal":"true"
+},
+{
+	"sid":"{username}",
+	"principal":"true"
+}
+]'
+```
+
+**Response Example**
 ```json
-{"code":"000","data":"","msg":"grant user table query permission and remove user from table black list."}
+{
+    "code": "000",
+    "data": "",
+    "msg": "batch grant user table query permission and remove user from table black list"
+}
 ```
 
-### Delete Row ACL
-`Request Mode DELETE`
 
-`Access Path http://host:port/kylin/api/acl/table/{project}/{type}/{table}/{name}`
 
-`Accept: application/vnd.apache.kylin-v2+json`
+### Revoke Table ACL
 
-`Accept-Language: cn|en`
+- `DELETE http://host:port/kylin/api/acl/table/{project}/{type}/{table}/{name}`
 
-#### Path Variable
-* project - `required` `string`, project name
-* type - `required` `string`，indicate the type of action, value: user/group
-* table - `required` `string`, table name
-* username - `required` `string`, user name
 
-#### Request Example
-`Request Path:http://host:port/kylin/api/acl/table/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN`
+- URL Parameter
+    * `project` - `required` `string`, project name
+    * `type` - `required` `string`, operation object, ie.,user or group
+    * `table` - `required` `string`, table name
+    * `name` - `required` `string`, user name
 
-#### Curl Request Example
-```
-curl -X DELETE -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/acl/table/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN
-```
 
-#### Response Example
-```
-{"code":"000","data":"","msg":"revoke user table query permission and add user to table black list."}
-```
-### Grant Table ACL - Batch
+- HTTP Header
+	- `Accept: application/vnd.apache.kylin-v2+json`
+	- `Accept-Language: cn|en`
+	- `Content-Type: application/json;charset=utf-8`
 
-`Request Mode POST`
 
-`Access Path http://host:port/kylin/api/acl/table/batch/{project}/{table:.+}`
+**Curl Request Example**
 
-`Accept: application/vnd.apache.kylin-v2+json`
-
-`Accept-Language: cn|en`
-
-#### Path Variables
-
-- project - `required` `string`, project name
-- table - `required` `string`, table name
-
-#### Request Body
-
-* sid - `required` `string`, user or user group
-* principal - `required` `boolean`, determine if the value is a user
-
-#### Request Example
-
-`Request Path:http://host:port/kylin/api/acl/table/batch/learn_kylin/DEFAULT.KYLIN_SALES`
-
-`Requset Body:[ { "sid": "ACL_TEST", "principal": true }, { "sid": "ANALYST", "principal": true } ]`
-
-#### Curl Request Example
-
-```
-curl -X POST -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json"  -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '[{"sid": "ACL_TEST", "principal": true}, {"sid": "ANALYST", "principal": true}]' http://host:port/kylin/api/acl/table/batch/acl_test/DEFAULT.TEST_ACCOUNT
+```shell
+curl -X DELETE \
+  http://host:port/kylin/api/acl/table/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8'
 ```
 
-#### Response Example
 
-```
-{"code": "000", "data": "", "msg": "batch grant user table query permission and remove user from table black list"}
-```
+**Response Example**
 
+```JSON
+{
+    "code": "000",
+    "data": "",
+    "msg": "revoke user table query permission and add user to table black list."
+}
+```
