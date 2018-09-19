@@ -9,11 +9,11 @@ This article will guide you to connect Kyligence Enterprise with Power BI servic
 
 ### Integration With Power BI Desktop
 
-To analyze and share the reports on Power BI service, which are published through Power BI Desktop, you need to integrate the Power BI Desktop with Kyligence at first. The relevant installation and configuration information, please refer to following link for details: [Power BI Desktop integration](powerbi.cn.md). NOTE: Power BI Desktop is linked to Power BI service through Power BI account, you need to guarantee that Power BI Desktop is at correct log-in status before deploying the reports on Power BI service platform. 
+To analyze and share the reports on Power BI service, which are published through Power BI Desktop, you need to integrate the Power BI Desktop with Kyligence at first. The relevant installation and configuration information, please refer to following link for details: [Power BI Desktop integration](powerbi_desktop.en.md). NOTE: Power BI Desktop is linked to Power BI service through Power BI account, you need to guarantee that Power BI Desktop is at correct log-in status before deploying the reports on Power BI service platform. 
 
 ### Install Gateway
 
-Power BI service communicates with local server by Gateway, you can refer this guide [Gateway installation](https://docs.microsoft.com/zh-cn/power-bi/service-gateway-install) for installation. Note: Gateway does not need to be installed on the same machine as Power BI Desktop, but the machine network running the Gateway should be open and access to data source configured by Kyligence Enterprise Data Connector for Power BI.
+Power BI service communicates with local server by Gateway, you can refer this guide [Gateway installation](https://docs.microsoft.com/en-us/power-bi/service-gateway-install) for installation. Note: Gateway does not need to be installed on the same machine as Power BI Desktop, but the machine network running the Gateway should be open and access to data source configured by Kyligence Enterprise Data Connector for Power BI. So you should install 64 bit Kyligence ODBC Driver in the machine which has installed the Gateways, you can refer this guide [Kyligence ODBC Driver tutorial](../driver/kyligence_odbc.en.md) for installation.
 
 ### Configure Gateway
 
