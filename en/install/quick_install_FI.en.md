@@ -1,31 +1,19 @@
 # Kyligence Enterprise Quick Start on FusionInsight
 
+Before the installation, please read the [Prerequisite of Kyligence Enterprise](hadoop_env.en.md) chapter at first.
+
 Kyligence Enterprise can run in FusionInsight environment. In this section, we will guide you to install Kyligence Enterprise quickly in the FusionInsight environment.
 
-### Preparation for Operating Environment
+### Preparation for Operating Environment 
 
-Kyligence Enterprise supports FusionInsight environment of version V100R002C60U20. The versions of the components in this version are as follows:
+If you need to run Kyligence Enterprise in FusionInsight environment, please select the corresponding version of **Huawei FI** package.
 
-- Hadoop: 2.7.2
-
-- HBase: 1.0.2
-
-- Hive: 1.3.0
-
-- Zookeeper: 3.5.1
-
-- Spark: 1.5.1
-
-If you need to run Kyligence Enterprise in FusionInsight environment, please select the corresponding version of HBase 1.x.
-
-Execute the following command to create Kerberos users and initialize the environment:
+Execute the following command to initialize some environment variables:
 
 ```shell
-kinit <user_name>
 source /opt/hadoopclient/bigdata_env
+kinit <user_name>
 ```
-
-If the version of the thrift package under  `lib/ ` of HBase client and Hive client is inconsistent, please keep the higher version and remove the lower version of the thrift package out of `lib/ ` and backup it.
 
 ### Download and Install Kyligence Enterprise
 
@@ -34,13 +22,13 @@ If the version of the thrift package under  `lib/ ` of HBase client and Hive cli
 
 ```shell
 cd /usr/local
-tar -zxvf Kyligence Enterprise-{version}.tar.gz
+tar -zxvf Kyligence-Enterprise-{version}.tar.gz
 ```
 
 3. Set the value of environment variable `KYLIN_HOME` to the path of Kyligence Enterprise.
 
 ```shell
-export KYLIN_HOME=/usr/local/Kyligence Enterprise-{version}
+export KYLIN_HOME=/usr/local/Kyligence-Enterprise-{version}
 ```
 
 4. Create a working directory of Kyligence Enterprise on HDFS and grant permission to read and write. The default working directory is `/kylin`. Kyligence Enterprise needs to write temporary data to `/user/{current_user} `directory, and create corresponding directory. Run the following command:
@@ -56,7 +44,7 @@ hdfs dfs -chown root /user/root
 > Tip: You can modify the location of the Kyligence Enterprise working directory in `$KYLIN_HOME/conf/kylin.properties`.
 >
 
-*Notice: If the account you use does not have read and write permissions on HDFS, please transfer to HDFS account first, then create work directory and grant permissions.* Execute the following command:
+Notice: If the account you use does not have read and write permissions on HDFS, please transfer to HDFS account first, then create work directory and grant permissions. Please execute the following command:
 
 ```shell
 su hdfs
@@ -67,87 +55,30 @@ hdfs dfs -mkdir /user/root
 hdfs dfs -chown root /user/root
 ```
 
-5. Please copy all the configuration items file of the Hive client  in`hivemetastore-site.xml`  to `hive-site.xml`.
+5. Please copy **all the configuration items** from `hivemetastore-site.xml`  to `hive-site.xml` in FusionInsight Hive directory. Then copy the `hive-site.xml` file to `$KYLIN_HOME/conf/` by the following commands:
 
-> *Notice: For Kyligence Enterprise Plus 2.4 and above, you also need to copy `hive-site.xml` file to `$KYLIN_HOME/spark/conf/ path`.*
->
-> If you are running Kyligence Enterprise Enterprise instead of Kyligence Enterprise Plus, please copy all the configuration items in `hbase-site.xml  `of the HBase client to` $KYLIN_HOME/conf/kylin_job_conf.xml`.
->
+   ```shell
+   cp $HIVE_HOME/../config/hive-site.xml $KYLIN_HOME/conf/
+   ```
 
-6. In the FI Manager page, click *Hive - configuration (all configuration) - Security-whitelist*.
+6. In the FI Manager page, click **Hive - configuration (all configuration) - Security-whitelist.**
 
-   The white list's configuration item is named `hive.security.authorization.sqlstd.confwhitelis`t, and then add all the keys to Hive configurarion files(such as `dfs.replication`)  in `$KYLIN_HOME/conf/kylin_hive_conf.xml `  to the whitelist of the FI Hive configuration. In addition, for Kyligence Enterprise Plus 2.2 and above, add `mapreduce.job.reduces` to the whitelist.
+   The white list's configuration item is named `hive.security.authorization.sqlstd.confwhitelist`, and then add all Hive configuration keys (such as `dfs.replication`) from `$KYLIN_HOME/conf/kylin_hive_conf.xml ` and some other parameters (such as `fs.defaultFS` and`mapreduce.job.reduces`) to the whitelist of the FI Hive configuration.
 
-7. Please input *beeline* into the FI client and copy the contents after *Connect to*: *jdbc:hive2://... HADOOP.COM*, and do the following configuration in `$KYLIN_HOME/conf/kylin.properties`:
+   Here is an example and please replace some values based on your **Hadoop** environment.
 
-```properties
-kylin.source.hive.client=beeline
-kylin.source.hive.beeline-params=-n root -u 'jdbc:hive2://…HADOOP.COM'
-```
+   ```properties
+   hive.security.authorization.sqlstd.confwhitelist = mapreduce.job.reduces,dfs.replication,hive.exec.compress.output,hive.auto.convert.join,hive.auto.convert.join.noconditionaltask,hive.auto.convert.join.noconditionaltask.size,mapreduce.map.output.compress.codec,mapreduce.output.fileoutputformat.compress.codec,mapreduce.output.fileoutputformat.compress.type,mapreduce.job.split.metainfo.maxsize,hive.stats.autogather,hive.merge.mapfiles,hive.merge.mapredfiles,mapreduce.job.reduces,fs.defaultFS
+   ```
 
-> The usr.keytab item that needs to be configured in the `kylin.source.hive.beeline-params` should be the concrete path name, such as `user.keytab\= ${KYLIN_HOME}/conf/user.keytab`;
+7. Please input **beeline** into the FI client and copy the contents after `Connect to`,  and do the following configuration in `$KYLIN_HOME/conf/kylin.properties`:
 
-### Replace the Spark Jar File
+   ```properties
+   kylin.source.hive.client=beeline
+   kylin.source.hive.beeline-params=-n root -u 'jdbc:hive2://…HADOOP.COM'
+   ```
 
-Due to the upgrade of Hadoop version in *Fusioninght C70*, some Jar packages in Kyligence Enterprise HBase 1.x version are not compatible. You need to get the Jar package in the Hadoop environment to replace the jar package in Spark.
-
-The specific replacement steps are as follows:
-
-1. Copy the distcp jar from FI environment to `${KYLIN_HOME}/lib`.
-
-   `Find /opt/hadoop_client/ grep distcp`
-
-2. Copy the Hadoop related jar package in the FI environment to replace the same jar package under `${KYLIN_HOME}/spark/jars`.
-
-- Find the jar related to Hadoop in the FI environment
-
-`find /opt/hadoop_client/HBase/hbase | grep hadoop`
-
-- Find related jars of `${KYLIN_HOME}/spark/jars`
-
-`ls {KYLIN_HOME}/spark | grep hadoop`
-
-- Backup the `{KYLIN_HOME}/spark/jars` package and replace the package under `${KYLIN_HOME}/spark/jars`.
-
-  The jar packages that need to be copied or replaced are:
-
-- - hadoop-auth-2.6.4.jar
-
-  - hadoop-client-2.6.4.jar
-
-  - hadoop-common-2.6.4.jar
-
-  - hadoop-hdfs-2.6.4.jar
-
-  - hadoop-mapreduce-client-app-2.6.4.jar
-
-  - hadoop-mapreduce-client-common-2.6.4.jar
-
-  - hadoop-mapreduce-client-core-2.6.4.jar
-
-  - hadoop-mapreduce-client-jobclient-2.6.4.jar
-
-  - hadoop-mapreduce-client-shuffle-2.6.4.jar
-
-  - hadoop-yarn-api-2.6.4.jar
-
-  - hadoop-yarn-client-2.6.4.jar
-
-  - hadoop-yarn-common-2.6.4.jar
-
-  - hadoop-yarn-server-common-2.6.4.jar
-
-  - hadoop-yarn-server-web-proxy-2.6.4.jar
-
-    > This package needs to be copied to spark/jars
-
-  - hadoop-hdfs-client-2.7.2.jar
-
-    > This package needs to be copied to spark/jars
-
-  - htrace-core-3.1.0-incubating.jar
-
-    > This package needs to be copied to spark/jars
+   > The user.keytab item that needs to be configured in the `kylin.source.hive.beeline-params` should be the concrete path name, such as `user.keytab = ${KYLIN_HOME}/conf/user.keytab`;
 
 ### Check the Running Environment
 
@@ -166,19 +97,6 @@ export SPARK_HOME=$KYLIN_HOME/spark //For Kyligence Enterprise Plus 2.2 and plus
 > ```shell
 > $KYLIN_HOME/bin/check-env.sh
 > ```
-
-If there is a lack of HBase permission to check the run environment, you can create a new user on the FI Manager page and add the user to the`supergroup`  to assign permissions `System_administrator`. Then, please run the following command to change the owner of Kyligence Enterprise working directory to this user:
-
-```shell
-hdfs dfs -chown -R <user_name> <working_directory>
-```
-
-If you have not installed Snappy, you can install Snappy on your own, or modify the following configuration items related to the Snappy in the `$KYLIN_HOME/conf/kylin.properties` :
-
-```properties
-kylin.storage.hbase.compression-codec=none
-#kyligence Enterprise.storage.columnar.page-compression=SNAPPY //Annotate the item
-```
 
 For HUAWEI FI C70, if Kerberos security authentication is enabled in the runtime environment, and the configuration `hive.server2.enable.doAs `of the cluster's` hive-site.xml `is false, the associated configuration items need to be added:
 
@@ -228,3 +146,20 @@ You can run the following command to see if the Kyligence Enterprise process has
 ps -ef | grep kylin
 ```
 
+### FAQ:
+
+**Q: If there occurs permission denied on /tmp/hive-scratch after restart FusionInsight Hive, how to resolve it?**
+
+Please run the command below and try again.
+
+```shell
+hdfs dfs -chmod 755 /tmp/hive-scratch
+```
+
+**Q: If the environment check failed on Snappy not installed, how to resolve it?**
+
+Please install Snappy on your own, or modify the following configuration items related to the Snappy in the `$KYLIN_HOME/conf/kylin.properties`:
+
+```properties
+kylin.storage.hbase.compression-codec=none
+```
