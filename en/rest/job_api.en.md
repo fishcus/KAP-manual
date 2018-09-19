@@ -1,379 +1,432 @@
 ## Job REST API
 
-> **Tip**
+> Reminder:
 >
-> Before using API, make sure that you read the previous chapter of [Access and Authentication](authentication.en.md), and know how to add authentication information in API.
->
-> If there exists `&` in your request path, please enclose the URL in quotation marks `""` or add a backslash ahead  `\&`  to avoid being escaped.
+> 1. Please read Access and Authentication REST API and understand how authentication works.
+> 2. On Curl command line, don't forget to quote the URL if it contains `&` or other special chars.
 
 
-* [Resume Job](#resume-job)
-* [Discard Job](#discard-job)
-* [Pause Job](#pause-job)
-* [Drop Job](#drop-job)
-* [Get Job Status](#get-job-status)
-* [Get Job Step Output](#get-job-step-output)
-* [Get Job List](#get-job-list)
 
-### Resume Job
-`Request Mode PUT`
+* [Get Job List](#Get Job List)
+* [Get Job Information](#Get Job Information)
+* [Get Job Step Output](#Get Job Step Output)
+* [Pause a Job](#Pause a Job)
+* [Resume a Job](#Resume a Job)
+* [Cancel a Job](#Cancel a Job)
+* [Drop a Job](#Drop a Job)
 
-`Access Path http://host:port/kylin/api/jobs/{jobId}/resume`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
-
-`Accept: application/vnd.apache.kylin-v2+json`
-
-`Accept-Language: cn|en`
-
-#### Path Variable
-* jobId - `required` `string` job id.
-
-#### Request Example
-
-`Request Path: http://host:port/kylin/api/jobs/7cba7f9d-7cd3-44e7-905c-9f88ff5ee838/resume`
-
-#### Response Information
-
-- uuid - job ID.
-- last_modified - the last modified time of job.
-- name - job name.
-- type - job type, such as BUILD, MERGE, REFRESH.
-- duration - job duration.
-- related_cube - Cube related to job.
-- related_segment - segment related to job.
-- exec_start_time - start time of execution.
-- exec_end_time - end time of execution.
-- steps - steps executed.
-- job_status - job status: RUNNING，PENDING，STOPPED，ERROR，DISCARDED，FINISHED.
-- progress - job progress.
-
-#### Response Example
-```json
-{
-   "code":"000",
-   "data":{  
-     "uuid":"c143e0e4-ac5f-434d-acf3-46b0d15e3dc6",
-     "last_modified":1407908916705,
-     "version": "3.0.0.1",
-     "name":"test_kylin_cube_with_slr_empty - 19700101000000_20140731160000 - BUILD - PDT 2014-08-12 22:48:36",
-     "type":"BUILD",
-     "duration":0,
-     "related_cube":"test_kylin_cube_with_slr_empty",
-     "display_cube_name": "test_kylin_cube_with_slr_empty",
-     "related_segment":"19700101000000_20140731160000",
-     "exec_start_time":0,
-     "exec_end_time":0,
-     "exec_interrupt_time": 0,
-     "mr_waiting":0,
-     "steps":[  
-      {  
-         "interruptCmd":null,
-         "id": "dd31d565-c450-4312-bd31-fd388d99bc88-00",
-         "name":"Create Intermediate Flat Hive Table",
-         "sequence_id":0,
-         "exec_cmd":"hive -e \"DROP TABLE IF EXISTS kylin_intermediate_test_kylin_cube_with_slr_desc_19700101000000_20140731160000_c143e0e4_ac5f_434d_acf3_46b0d15e3dc6;\nCREATE EXTERNAL TABLE IF NOT EXISTS kylin_intermediate_test_kylin_cube_with_slr_desc_19700101000000_20140731160000_c143e0e4_ac5f_434d_acf3_46b0d15e3dc6\n(\nCAL_DT date\n,LEAF_CATEG_ID int\n,LSTG_SITE_ID int\n,META_CATEG_NAME string\n,CATEG_LVL2_NAME string\n,CATEG_LVL3_NAME string\n,LSTG_FORMAT_NAME string\n,SLR_SEGMENT_CD smallint\n,SELLER_ID bigint\n,PRICE decimal\n)\nROW FORMAT DELIMITED FIELDS TERMINATED BY '\\177'\nSTORED AS SEQUENCEFILE\nLOCATION '/tmp/kylin-c143e0e4-ac5f-434d-acf3-46b0d15e3dc6/kylin_intermediate_test_kylin_cube_with_slr_desc_19700101000000_20140731160000_c143e0e4_ac5f_434d_acf3_46b0d15e3dc6';\nSET mapreduce.job.split.metainfo.maxsize=-1;\nSET mapred.compress.map.output=true;\nSET mapred.map.output.compression.codec=com.hadoop.compression.lzo.LzoCodec;\nSET mapred.output.compress=true;\nSET mapred.output.compression.codec=com.hadoop.compression.lzo.LzoCodec;\nSET mapred.output.compression.type=BLOCK;\nSET mapreduce.job.max.split.locations=2000;\nSET hive.exec.compress.output=true;\nSET hive.auto.convert.join.noconditionaltask = true;\nSET hive.auto.convert.join.noconditionaltask.size = 300000000;\nINSERT OVERWRITE TABLE kylin_intermediate_test_kylin_cube_with_slr_desc_19700101000000_20140731160000_c143e0e4_ac5f_434d_acf3_46b0d15e3dc6\nSELECT\nTEST_KYLIN_FACT.CAL_DT\n,TEST_KYLIN_FACT.LEAF_CATEG_ID\n,TEST_KYLIN_FACT.LSTG_SITE_ID\n,TEST_CATEGORY_GROUPINGS.META_CATEG_NAME\n,TEST_CATEGORY_GROUPINGS.CATEG_LVL2_NAME\n,TEST_CATEGORY_GROUPINGS.CATEG_LVL3_NAME\n,TEST_KYLIN_FACT.LSTG_FORMAT_NAME\n,TEST_KYLIN_FACT.SLR_SEGMENT_CD\n,TEST_KYLIN_FACT.SELLER_ID\n,TEST_KYLIN_FACT.PRICE\nFROM TEST_KYLIN_FACT\nINNER JOIN TEST_CAL_DT\nON TEST_KYLIN_FACT.CAL_DT = TEST_CAL_DT.CAL_DT\nINNER JOIN TEST_CATEGORY_GROUPINGS\nON TEST_KYLIN_FACT.LEAF_CATEG_ID = TEST_CATEGORY_GROUPINGS.LEAF_CATEG_ID AND TEST_KYLIN_FACT.LSTG_SITE_ID = TEST_CATEGORY_GROUPINGS.SITE_ID\nINNER JOIN TEST_SITES\nON TEST_KYLIN_FACT.LSTG_SITE_ID = TEST_SITES.SITE_ID\nINNER JOIN TEST_SELLER_TYPE_DIM\nON TEST_KYLIN_FACT.SLR_SEGMENT_CD = TEST_SELLER_TYPE_DIM.SELLER_TYPE_CD\nWHERE (test_kylin_fact.cal_dt < '2014-07-31 16:00:00')\n;\n\"",
-         "interrupt_cmd":null,
-         "exec_start_time":0,
-         "exec_end_time":0,
-         "exec_wait_time":0,
-         "step_status":"PENDING",
-         "cmd_type":"SHELL_CMD_HADOOP",
-         "info":null,
-         "run_async":false
-      },
-      {  
-         "interruptCmd":null,
-         "id": "dd31d565-c450-4312-bd31-fd388d99bc88-01",
-         "name":"Extract Fact Table Distinct Columns",
-         "sequence_id":1,
-         "exec_cmd":" -conf C:/kylin/Kylin/server/src/main/resources/hadoop_job_conf_medium.xml -cubename test_kylin_cube_with_slr_empty -input /tmp/kylin-c143e0e4-ac5f-434d-acf3-46b0d15e3dc6/kylin_intermediate_test_kylin_cube_with_slr_desc_19700101000000_20140731160000_c143e0e4_ac5f_434d_acf3_46b0d15e3dc6 -output /tmp/kylin-c143e0e4-ac5f-434d-acf3-46b0d15e3dc6/test_kylin_cube_with_slr_empty/fact_distinct_columns -jobname Kylin_Fact_Distinct_Columns_test_kylin_cube_with_slr_empty_Step_1",
-         "interrupt_cmd":null,
-         "exec_start_time":0,
-         "exec_end_time":0,
-         "exec_wait_time":0,
-         "step_status":"PENDING",
-         "cmd_type":"JAVA_CMD_HADOOP_FACTDISTINCT",
-         "info":null,
-         "run_async":true
-      },
-      {  
-         "interruptCmd":null,
-         "id": "dd31d565-c450-4312-bd31-fd388d99bc88-12",
-         "name":"Load HFile to HBase Table",
-         "sequence_id":12,
-         "exec_cmd":" -input /tmp/kylin-c143e0e4-ac5f-434d-acf3-46b0d15e3dc6/test_kylin_cube_with_slr_empty/hfile/ -htablename KYLIN-CUBE-TEST_KYLIN_CUBE_WITH_SLR_EMPTY-19700101000000_20140731160000_11BB4326-5975-4358-804C-70D53642E03A -cubename test_kylin_cube_with_slr_empty",
-         "interrupt_cmd":null,
-         "exec_start_time":0,
-         "exec_end_time":0,
-         "exec_wait_time":0,
-         "step_status":"PENDING",
-         "cmd_type":"JAVA_CMD_HADOOP_NO_MR_BULKLOAD",
-         "info":null,
-         "run_async":false
-      }
-     ],
-     "submitter": "ADMIN",
-     "job_status":"PENDING",
-     "progress":0.0},
-  "msg":""
-}
-```
-
-#### Curl Example
-
-```
-curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json"  http://host:port/kylin/api/jobs/7cba7f9d-7cd3-44e7-905c-9f88ff5ee838/resume
-```
-
-### Discard Job
-
-`Request Mode PUT`
-
-`Access Path http://host:port/kylin/api/jobs/{jobId}/cancel`
-
-`Content-Type: application/vnd.apache.kylin-v2+json`
-
-`Accept: application/vnd.apache.kylin-v2+json`
-
-`Accept-Language: cn|en`
-
-#### Path Variable
-* jobId - `required` `string` Job id.
-
-#### Request Example
-
-`Request Path: http://host:port/kylin/api/jobs/7cba7f9d-7cd3-44e7-905c-9f88ff5ee838/cancel`
-
-#### Response Example
-(same as "Resume Job")
-
-#### Curl Example
-
-```
-curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json'  http://host:port/kylin/api/jobs/7cba7f9d-7cd3-44e7-905c-9f88ff5ee838/cancel
-```
-
-### Pause Job
-
-`Request Mode PUT`
-
-`Access Path http://host:port/kylin/api/jobs/{jobId}/pause`
-
-`Content-Type: application/vnd.apache.kylin-v2+json`
-
-`Accept: application/vnd.apache.kylin-v2+json`
-
-`Accept-Language: cn|en`
-
-#### Path Variable
-
-- jobId - `required` `string` Job id.
-
-#### Request Example
-
-`Request Path: http://host:port/kylin/api/jobs/7cba7f9d-7cd3-44e7-905c-9f88ff5ee838/pause`
-
-#### Response Example
-
-(same as "Resume Job")
-
-#### Curl Example
-
-```
-curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json"  http://host:port/kylin/api/jobs/7cba7f9d-7cd3-44e7-905c-9f88ff5ee838/pause
-```
-
-### Drop Job
-
-`Request Mode DELETE`
-
-`Access Path http://host:port/kylin/api/jobs/{jobId}/drop`
-
-`Content-Type: application/vnd.apache.kylin-v2+json`
-
-`Accept: application/vnd.apache.kylin-v2+json`
-
-`Accept-Language: cn|en`
-
-#### Path Variable
-
-- jobId - `required` `string` Job id.
-
-#### Request Example
-
-`Request Path: http://host:port/kylin/api/jobs/7cba7f9d-7cd3-44e7-905c-9f88ff5ee838/drop`
-
-#### Response Example
-
-(same as "Resume Job")
-
-#### Curl Example
-
-```
-curl -X DELETE -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json"  http://host:port/kylin/api/jobs/7cba7f9d-7cd3-44e7-905c-9f88ff5ee838/drop
-```
-
-### Get Job Status
-
-`Request Mode GET`
-
-`Access Path http://host:port/kylin/api/jobs/{jobId}`
-
-`Content-Type: application/vnd.apache.kylin-v2+json`
-
-`Accept: application/vnd.apache.kylin-v2+json`
-
-`Accept-Language: cn|en`
-
-#### Path Variable
-* jobId - `required` `string` job id.
-
-#### Request Example
-
-`Request Path: http://host:port/kylin/api/jobs/7cba7f9d-7cd3-44e7-905c-9f88ff5ee838`
-
-#### Response Example
-(same as "Resume Job")
-
-#### Curl Example
-
-```
-curl -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json'  -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/jobs/7cba7f9d-7cd3-44e7-905c-9f88ff5ee838
-```
-
-### Get Job Step Output
-
-`Request Mode GET`
-
-`Access Path http://host:port/kylin/api/jobs/{jobId}/steps/{stepId}/output`
-
-`Content-Type: application/vnd.apache.kylin-v2+json`
-
-`Accept: application/vnd.apache.kylin-v2+json`
-
-`Accept-Language: cn|en`
-
-#### Path Variable
-* jobId - `required` `string` job id.
-* stepId - `required` `string` step id;  step id is consist of Job id and step sequence id. For example, job id is "fb479e54-837f-49a2-b457-651fc50be110", then step id of the third step is "fb479e54-837f-49a2-b457-651fc50be110-03".
-
-#### Request Example
-
-`Request Path: http://host:port/kylin/api/jobs/fb479e54-837f-49a2-b457-651fc50be110/steps/fb479e54-837f-49a2-b457-651fc50be110-03/output`
-
-#### Response Example
-```json
-{  
-   "code":"000",
-   "data":{  
-     "jobId":"fb479e54-837f-49a2-b457-651fc50be110",
-     "cmd_output":"log string",
-     "stepId": "fb479e54-837f-49a2-b457-651fc50be110-03"
-   },
-   "msg":""
-}
-```
-#### Curl Example
-
-```
-curl -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json"   http://host:port/kylin/api/jobs/fb479e54-837f-49a2-b457-651fc50be110/steps/fb479e54-837f-49a2-b457-651fc50be110-03/output
-```
 
 ### Get Job List
 
-`Request Mode GET`
+- `GET http://host:port/kylin/api/jobs`
 
-`Access Path http://host:port/kylin/api/jobs`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+- URL Parameter
+    - `timeFilter` - `required` `int` , e.g. (LAST ONE DAY: 0, LAST ONE WEEK: 1, LAST ONE MONTH: 2, LAST ONE YEAR: 3, ALL: 4)
+    - `jobName` - `optional` `string` , job name
+    - `projectName` - `optional` `string` , project name
+    - `status` - `optional` `int` , e.g. (NEW: 0, PENDING: 1, RUNNING: 2, STOPPED: 32, FINISHED: 4, ERROR: 8, DISCARDED: 16)
+    - `pageOffset` - `optional` `int` , offset of the returned jobs per page
+    - `pageSize` - `optional` `int`, returned jobs number per page
+    - `sortby` -  `optional`  `string`, sort field,  "last_modify" by default
+    - `reverse` - `optional` `boolean`, whether reverse, "true" by default
 
-`Accept: application/vnd.apache.kylin-v2+json`
 
-`Accept-Language: cn|en`
+- HTTP Header
+	- `Accept: application/vnd.apache.kylin-v2+json`
+	- `Accept-Language: cn|en`
+	- `Content-Type: application/json;charset=utf-8`
 
-#### Path Variable
 
-- jobName - `optional` `string` Cube name.
-- projectName - `optional` `string` Project name.
-- status - `optional` `int` Job status, e.g. (NEW: 0, PENDING: 1, RUNNING: 2, STOPPED: 32, FINISHED: 4, ERROR: 8, DISCARDED: 16)
-- pageOffset - `optional` `int` Offset used by pagination.
-- pageSize - `optional `int` Jobs per page.
-- timeFilter - `required` `int`, e.g. (LAST ONE DAY: 0, LAST ONE WEEK: 1, LAST ONE MONTH: 2, LAST ONE YEAR: 3, ALL: 4).
-- sortby - `optional` `string` default:"last_modyfy", sort field.
-- reverse - `optional` `boolean` default:true.
+**Curl Request Example**
 
-#### Request Example
+```shell
+curl -X GET \
+  'http://host:port/kylin/api/jobs?timeFilter=0&pageSize=1' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8'
+```
 
-`Request Path: "http://host:port/kylin/api/jobs?status=&pageOffset=0&pageSize=10&projectName=TEST&timeFilter=1&jobName=&sortby=last_modify"`
 
-#### Response Sample
+**Response Example**
 
-```json
+```JSON
 {
     "code":"000",
     "data":{
-       "size":1,
-       "jobs":[
-        { 
-          "uuid": "9eb7bccf-4448-4578-9c29-552658b5a2ca", 
-          "last_modified": 1490957579843, 
-          "version": "3.0.0.1",
-          "name": "Sample_Cube - 19700101000000_20150101000000 - BUILD - GMT+08:00 2017-03-31 18:36:08", 
-          "type": "BUILD", 
-          "duration": 936, 
-          "related_cube": "Sample_Cube",
-          "display_cube_name": "Sample_Cube",
-          "related_segment": "53a5d7f7-7e06-4ea1-b3ee-b7f30343c723", 
-          "exec_start_time": 1490956581743, 
-          "exec_end_time": 1490957518131,
-          "exec_interrupt_time": 0,
-          "mr_waiting": 0, 
-          "steps": [
-            { 
-              "interruptCmd": null, 
-              "id": "9eb7bccf-4448-4578-9c29-552658b5a2ca-00", 
-              "name": "Create Intermediate Flat Hive Table", 
-              "sequence_id": 0, 
-              "exec_cmd": null, 
-              "interrupt_cmd": null, 
-              "exec_start_time": 1490957508721, 
-              "exec_end_time": 1490957518102, 
-              "exec_wait_time": 0, 
-              "step_status": "DISCARDED", 
-              "cmd_type": "SHELL_CMD_HADOOP", 
-              "info": { "endTime": "1490957518102", "startTime": "1490957508721" }, 
-              "run_async": false 
-            }, 
-            { 
-              "interruptCmd": null, 
-              "id": "9eb7bccf-4448-4578-9c29-552658b5a2ca-01", 
-              "name": "Redistribute Flat Hive Table", 
-              "sequence_id": 1, 
-              "exec_cmd": null, 
-              "interrupt_cmd": null, 
-              "exec_start_time": 0, 
-              "exec_end_time": 0, 
-              "exec_wait_time": 0, 
-              "step_status": "DISCARDED", 
-              "cmd_type": "SHELL_CMD_HADOOP", 
-              "info": {}, 
-              "run_async": false 
+        "size":1,
+        "jobs":[
+            {
+                "uuid":"05926c0e-7785-4691-8e23-3441c9baebfa",
+                "last_modified":1536748978697,
+                "version":"3.0.0.1",
+                "name":"BUILD CUBE - kylin_sales_cube - 20140101000000_20140102000000 - GMT+00:00 2018-09-12 10:00:03",
+                "type":"BUILD",
+                "duration":2573,
+                "related_cube":"kylin_sales_cube",
+                "display_cube_name":"kylin_sales_cube",
+                "related_segment":"a1b61f36-c2e7-4185-b6a9-8974606502ab",
+                "exec_start_time":0,
+                "exec_end_time":0,
+                "exec_interrupt_time":0,
+                "mr_waiting":280,
+                "steps":[...],
+                "submitter":"ADMIN",
+                "job_status":"FINISHED",
+                "progress":100
             }
-          ],
-          "submitter": "ADMIN", 
-          "job_status": "FINISHED", 
-          "progress": 100.0 
-        }
-       ]
+        ]
+    },
+    "msg":""
+}
+
+```
+
+
+
+### Get Job Information
+
+- `GET http://host:port/kylin/api/jobs/{jobId}`
+
+
+- URL Parameter
+	* `jobId` - `required` `string` , Job ID
+
+
+- HTTP Header
+	- `Accept: application/vnd.apache.kylin-v2+json`
+	- `Accept-Language: cn|en`
+	- `Content-Type: application/json;charset=utf-8`
+
+
+**Curl Request Example**
+
+```shell
+curl -X GET \
+  http://host:port/kylin/api/jobs/{jobId} \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8'
+```
+
+
+**Response Example**
+
+```JSON
+{
+    "code":"000",
+    "data":{
+        "uuid":"a82a2ce1-bef2-4af2-a08e-adaa58fecada",
+        "last_modified":1535696142826,
+        "version":"3.0.0.1",
+        "name":"BUILD CUBE - {cubeName} - FULL_BUILD - GMT+08:00 2018-08-31 11:29:43",
+        "type":"BUILD",
+        "duration":1494,
+        "related_cube":"{cubeName}",
+        "display_cube_name":"{cubeName}",
+        "related_segment":"5a8220bf-59ff-438c-bd4b-0e567341dbb4",
+        "exec_start_time":0,
+        "exec_end_time":0,
+        "exec_interrupt_time":0,
+        "mr_waiting":202,
+        "steps":[...],
+        "submitter":"ADMIN",
+        "job_status":"FINISHED",
+        "progress":100
+    },
+    "msg":""
+}
+
+```
+
+
+
+
+### Get Job Step Output
+
+- `GET http://host:port/kylin/api/jobs/{jobId}/steps/{stepId}/output`
+
+
+- URL Parameter
+    * `jobId` - `required` `string` , Job ID
+    * `stepId` - `required` `string` , Step ID, which consists of Job ID and step sequence id, eg,.  Job ID is "fb479e54-837f-49a2-b457-651fc50be110", and the step sequence ID is "02",  then the Step ID is "fb479e54-837f-49a2-b457-651fc50be110-02"
+
+
+- HTTP Header
+	- `Accept: application/vnd.apache.kylin-v2+json`
+	- `Accept-Language: cn|en`
+	- `Content-Type: application/json;charset=utf-8`
+
+
+**Curl Request Example**
+
+```shell
+curl -X GET \
+  http://host:port/kylin/api/jobs/{jobId}/steps/{stepId}/output \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Content-Type: application/json;charset=utf-8'
+```
+
+
+**Response Example**
+
+```JSON
+{
+    "code": "000",
+    "data": {
+        "jobId": "a54683d7-2a54-4717-ab44-2bf7107c4be5",
+        "cmd_output": "result code:0",
+        "stepId": "a54683d7-2a54-4717-ab44-2bf7107c4be5-02"
+    },
+    "msg": ""
+}
+```
+
+
+
+
+### Pause a Job
+
+- `PUT http://host:port/kylin/api/jobs/{jobId}/pause`
+
+
+- URL Parameter
+	* `jobId` - `required` `string` , Job ID
+
+
+- HTTP Header
+	- `Accept: application/vnd.apache.kylin-v2+json`
+	- `Accept-Language: cn|en`
+	- `Content-Type: application/json;charset=utf-8`
+
+
+**Curl Request Example**
+
+```shell
+curl -X PUT \
+  http://host:port/kylin/api/jobs/{jobId}/pause \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8'
+```
+
+
+**Response Example**
+
+```JSON
+{
+    "code":"000",
+    "data":{
+        "uuid":"9277ca7a-7d99-456e-827c-2ebd1371c210",
+        "last_modified":1536739063548,
+        "version":"3.0.0.1",
+        "name":"BUILD CUBE - kylin_sales_cube - 20140101000000_20140101000000 - GMT+08:00 2018-09-10 14:37:23",
+        "type":"BUILD",
+        "duration":13405,
+        "related_cube":"kylin_sales_cube",
+        "display_cube_name":"kylin_sales_cube",
+        "related_segment":"01c4a559-ed4a-4273-803d-acade58f4676",
+        "exec_start_time":0,
+        "exec_end_time":0,
+        "exec_interrupt_time":0,
+        "mr_waiting":147,
+        "steps":[...],
+        "submitter":"ADMIN",
+        "job_status":"STOPPED",
+        "progress":19.444444444444443
     },
     "msg":""
 }
 ```
 
-#### Curl Example
 
-```
-curl -X GET -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json'  -H "Content-Type:application/vnd.apache.kylin-v2+json"  "http://host:port/kylin/api/jobs?timeFilter=1&pageOffset=0&pageSize=10&status=&projectName=your_project&jobName=&sortby=last_modify"
+
+
+### Resume a Job
+
+- `PUT http://host:port/kylin/api/jobs/{jobId}/resume`
+
+
+- URL Parameter
+	* `jobId` - `required` `string` , Job ID
+
+
+- HTTP Header
+	- `Accept: application/vnd.apache.kylin-v2+json`
+	- `Accept-Language: cn|en`
+	- `Content-Type: application/json;charset=utf-8`
+
+
+**Curl Request Example**
+
+```shell
+curl -X PUT \
+  http://host:port/kylin/api/jobs/{jobId}/resume \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8'
 ```
 
+
+**Response Example**
+
+```JSON
+{
+    "code":"000",
+    "data":{
+        "uuid":"5b30c6b2-d950-4085-8e4e-cd8bc94e0d69",
+        "last_modified":1536737919796,
+        "version":"3.0.0.1",
+        "name":"BUILD CUBE - kylin_sales_cube - 20140101000000_20140101000000 - GMT+08:00 2018-09-07 11:45:07",
+        "type":"BUILD",
+        "duration":283211,
+        "related_cube":"kylin_sales_cube",
+        "display_cube_name":"kylin_sales_cube",
+        "related_segment":"12fdbe4d-00c8-484e-8bd5-363f3fce87ce",
+        "exec_start_time":0,
+        "exec_end_time":0,
+        "exec_interrupt_time":0,
+        "mr_waiting":455,
+        "steps":[...],
+        "submitter":"ADMIN",
+        "job_status":"PENDING",
+        "progress":13.88888888888889
+    },
+    "msg":""
+}
+```
+
+
+- **Response Information**
+
+    - `uuid` - Job ID
+    - `last_modified` - last mofidied time of the job
+    - `name` - job name
+    - `type` - job type, ie., "BUILD", "MERGE", "REFRESH"
+    - `duration` - job duration
+    - `related_cube` - Cube related to job
+    - `related_segment` - segment related to job
+    - `exec_start_time` - start time of execution
+    - `exec_end_time` - end time of execution
+    - `steps` - steps executed
+    - `job_status` -  job status, ie., "RUNNING", "PENDING", "STOPPED", "ERROR", "DISCARDED", "FINISHED"
+    - `progress` -  job progress
+
+
+
+### Cancel a Job
+
+- `PUT http://host:port/kylin/api/jobs/{jobId}/cancel`
+
+
+- URL Parameter
+	* `jobId` - `required` `string` , Job ID
+
+
+- HTTP Header
+	- `Accept: application/vnd.apache.kylin-v2+json`
+	- `Accept-Language: cn|en`
+	- `Content-Type: application/json;charset=utf-8`
+
+
+**Curl Request Example**
+
+```shell
+curl -X PUT \
+  http://host:port/kylin/api/jobs/{jobId}/cancel \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8'
+```
+
+
+**Response Example**
+
+```JSON
+{
+    "code":"000",
+    "data":{
+        "uuid":"5b30c6b2-d950-4085-8e4e-cd8bc94e0d69",
+        "last_modified":1536738761394,
+        "version":"3.0.0.1",
+        "name":"BUILD CUBE - kylin_sales_cube - 20140101000000_20140101000000 - GMT+08:00 2018-09-07 11:45:07",
+        "type":"BUILD",
+        "duration":284053,
+        "related_cube":"kylin_sales_cube",
+        "display_cube_name":"kylin_sales_cube",
+        "related_segment":"12fdbe4d-00c8-484e-8bd5-363f3fce87ce",
+        "exec_start_time":0,
+        "exec_end_time":0,
+        "exec_interrupt_time":0,
+        "mr_waiting":911,
+        "steps":[...],
+        "submitter":"ADMIN",
+        "job_status":"DISCARDED",
+        "progress":36.111111111111114
+    },
+    "msg":""
+}
+```
+
+
+
+### Drop a Job
+
+- `DELETE http://host:port/kylin/api/jobs/{jobId}/drop`
+
+- URL Parameter
+	* `jobId` - `required` `string`, Job ID
+
+- HTTP Header
+	- `Accept: application/vnd.apache.kylin-v2+json`
+	- `Accept-Language: cn|en`
+	- `Content-Type: application/json;charset=utf-8`
+
+
+**Curl Request Example**
+
+```shell
+curl -X DELETE \
+  http://host:port/kylin/api/jobs/0140b8e1-d74e-4c01-86d0-a114f59ba787/drop \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8'
+```
+
+
+**Response Example**
+
+```JSON
+{
+    "code":"000",
+    "data":{
+        "uuid":"0140b8e1-d74e-4c01-86d0-a114f59ba787",
+        "last_modified":1536757263622,
+        "version":"3.0.0.1",
+        "name":"BUILD CUBE - {cubeName} - FULL_BUILD - GMT+08:00 2018-08-29 14:53:42",
+        "type":"BUILD",
+        "duration":221,
+        "related_cube":"{cubeName}",
+        "display_cube_name":"{cubeName}",
+        "related_segment":"369fc50c-bf6e-474c-a07f-a572c4404bee",
+        "exec_start_time":0,
+        "exec_end_time":0,
+        "exec_interrupt_time":0,
+        "mr_waiting":18,
+        "steps":[...],
+        "submitter":"ADMIN",
+        "job_status":"DISCARDED",
+        "progress":31.25
+    },
+    "msg":""
+}
+```
