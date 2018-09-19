@@ -151,7 +151,7 @@
     * [模型 API](rest/model_api.cn.md)
     * [Cube API](rest/cube_api.cn.md)
     * [任务 API](rest/job_api.cn.md)
-    * [数据源 API](rest/metadata_api.cn.md)
+    * [数据源 API](rest/data_source_api.cn.md)
     * [缓存 API](rest/cache_api.cn.md)
     * [异步查询 API](rest/async_query_api.cn.md)
     * 权限控制

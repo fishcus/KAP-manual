@@ -147,7 +147,7 @@
     * [Model API](rest/model_api.en.md)
     * [Cube API](rest/cube_api.en.md)
     * [Job API](rest/job_api.en.md)
-    * [Metadata API](rest/metadata_api.en.md)
+    * [Data Source API](rest/data_source_api.en.md)
     * [Cache API](rest/cache_api.en.md)
     * Authority Management
       - [Column ACL API](rest/column_acl_api.en.md)
