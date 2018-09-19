@@ -1,65 +1,71 @@
 ## Cache REST API
 
-> **Tip**
+> Reminder:
 >
-> Before using API, make sure that you read the previous chapter of [Access and Authentication](authentication.en.md), and know how to add authentication information in API.
->
-> If there exists `&` in your request path, please enclose the URL in quotation marks `""` or add a backslash ahead  `\&`  to avoid being escaped.
+> 1. Please read Access and Authentication REST API and understand how authentication works.
+> 2. On Curl command line, don't forget to quote the URL if it contains `&` or other special chars.
+
+
+
+* [Purge Cluster Cache](#Purge Cluster Cache)
+* [Purge Single Node Cache](#Purge Single Node Cache)
+
 
 
 ### Purge Cluster Cache
-`Request Mode PUT`
 
-`Access Path http://host:port/kylin/api/cache/announce/{entity}/{cacheKey}/{event}`
-
-`Content-Type: application/vnd.apache.kylin-v2+json`
-
-`Accept: application/vnd.apache.kylin-v2+json`
-
-`Accept-Language: cn|en`
-
-#### Path Variables
-
-- entity - `required` `string` 'all', 'project_schema', 'project_data' or 'project_acl'.
-- cacheKey - `required` `string` cache key, such as Project name.
-- event - `required` `string` 'create', 'update' or 'drop'.
+- `PUT http://host:port/kylin/api/cache/announce/{entity}/{cacheKey}/{event}`
 
 
-#### Request Example
+- URL Parameter
+    * `entity` - `required` `string`, entity, ie., "all", "project_schema", "project_data" or "project_acl" 
+    * `cacheKey` - `required` `string`, cache key, ie., project name
+    * `event` - `required` `string` , event, ie., "create", "update" or "drop"
 
-`Request Path: http://host:port/kylin/api/cache/announce/project_data/your_project/update`
 
-#### Curl Example
+- HTTP Header
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: cn|en`
+  - `Content-Type: application/json;charset=utf-8`
 
+
+**Curl Request Example**
+
+```shell
+curl -X PUT \
+  http://host:port/kylin/api/cache/announce/all/learn_kylin/update \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8'
 ```
-curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/cache/announce/project_data/your_project/update
-```
+
+
 
 ### Purge Single Node Cache
 
-`Request Mode PUT`
+- `PUT http://host:port/kylin/api/cache/{entity}/{cacheKey}/{event}`
 
-`Access Path http://host:port/kylin/api/cache/{entity}/{cacheKey}/{event}`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+- URL Parameter
+    * `entity` - `required` `string`,entity,ie., "all", "project_schema", "project_data" or "project_acl" 
+    * `cacheKey` - `required` `string`, cache key, ie., project name
+    * `event` - `required` `string`, event, ie., "create", "update" or "drop"
 
-`Accept: application/vnd.apache.kylin-v2+json`
 
-`Accept-Language: cn|en` 
+- HTTP Header
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: cn|en`
+  - `Content-Type: application/json;charset=utf-8`
 
-#### Path Variables
 
-- entity - `required` `string`, 'all','project_schema','project_data' or 'project_acl'.
-- cacheKey - `required` `string`, cache key, such as Project name.
-- event - `required` `string`, 'create', 'update' or 'drop'.
+**Curl Request Example**
 
-#### Request Example
-
-`Request Path: http://host:port/kylin/api/cache/project_data/your_project/update`
-
-#### Curl Example
-
+```shell
+curl -X PUT \
+  http://host:port/kylin/api/cache/project_data/learn_kylin/update \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8'
 ```
-curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/cache/project_data/your_project/update
-```
-
