@@ -1,4 +1,4 @@
-## Access and Authentication REST API
+## Access and Authentication API
 
 ### Access Information
 The access prefix of all Kyligence Enterpriese APIs is `/kylin/api`. This prefix is required regardless of which module API is accessed. For example,  accessing all cubes uses API  of `/kylin/api/cubes`, and the correspondingly complete path is `http://host:port/kylin/api/cubes`.

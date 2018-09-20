@@ -1,4 +1,4 @@
-## Column ACL REST API
+## Column ACL API
 
 > **Tip**
 >

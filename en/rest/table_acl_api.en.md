@@ -1,4 +1,4 @@
-## Table ACL REST API
+## Table ACL API
 
 > Reminder:
 >

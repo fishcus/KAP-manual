@@ -1,4 +1,4 @@
-## Data Source REST API
+## Data Source API
 
 > Reminder:
 >

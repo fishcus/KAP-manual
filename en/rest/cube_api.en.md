@@ -1,4 +1,4 @@
-## Cube REST API
+## Cube API
 
 > **Tip**
 >

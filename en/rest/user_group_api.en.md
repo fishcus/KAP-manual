@@ -1,4 +1,4 @@
-## User Group Management REST API
+## User Group Management API
 
 > **Tips**
 >

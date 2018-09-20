@@ -1,4 +1,4 @@
-## Model REST API
+## Model API
 
 > **Tip**
 >

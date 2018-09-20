@@ -1,4 +1,4 @@
-## Async Query REST API
+## Async Query API
 
 > Reminder:
 >

@@ -1,4 +1,4 @@
-## Project Access REST API
+## Project ACL API
 
 > **Tip**
 >

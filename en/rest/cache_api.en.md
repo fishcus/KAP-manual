@@ -1,4 +1,4 @@
-## Cache REST API
+## Cache API
 
 > Reminder:
 >

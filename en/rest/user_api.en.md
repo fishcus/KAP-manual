@@ -1,4 +1,4 @@
-## User Management REST API
+## User Management API
 
 > **Tip**
 >

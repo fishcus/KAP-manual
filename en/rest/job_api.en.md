@@ -1,4 +1,4 @@
-## Job REST API
+## Job API
 
 > Reminder:
 >

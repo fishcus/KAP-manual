@@ -1,4 +1,4 @@
-## Query REST API
+## Query API
 
 > **Tips**
 >

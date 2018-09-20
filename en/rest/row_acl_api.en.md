@@ -1,4 +1,4 @@
-## Row ACL REST API
+## Row ACL API
 
 > **Tip**
 >
