@@ -1,6 +1,6 @@
 ## Intersect Function
 
-Retention or conversion rate is important in data analysis for most internet enterprises. In general, the value can be calculated based on the intersection of two data sets, with some same dimensions (city, category, or so on) and one varied dimension (date, or so forth). KAP has supported retention calculation based on the bitmap and UDAF **intersect_count**. This article would introduce you how to use this function.
+Retention or conversion rate is important in data analysis for most internet enterprises. In general, the value can be calculated based on the intersection of two data sets, with some same dimensions (city, category, or so on) and one varied dimension (date, or so forth). Kyligence Enterprise has supported retention calculation based on the bitmap and UDAF **intersect_count**. This article would introduce you how to use this function.
 
 
 
@@ -23,7 +23,7 @@ Moreover, detailed using rules of intersect_count could be described as below:
 
 ### Precondition
 
-To apply retention calculation in KAP, sql query needs to meet requirements as below:
+To apply retention calculation in Kyligence Enterprise, sql query needs to meet requirements as below:
 
 - Only one dimension can be varied;
 - The measure to be calculated must have been defined as a precise count distinct measure(check [precise count distinct](../../model/cube/count_distinct_precise.en.md) for help);

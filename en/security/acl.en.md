@@ -1,6 +1,6 @@
 ## Manage Access Permission
 
-When a user/group uses KAP, whether the user/group can access a project and use some functionalities within the project is determined by project-level access control, there are four types of access permission roles set at the project-level in KAP. They are *Admin*, *Management*, *Operation* and *Query*. Each role defines a list of functions user/group may perform in KAP system. 
+When a user/group uses Kyligence Enterprise, whether the user/group can access a project and use some functionalities within the project is determined by project-level access control, there are four types of access permission roles set at the project-level in Kyligence Enterprise. They are *Admin*, *Management*, *Operation* and *Query*. Each role defines a list of functions user/group may perform in Kyligence Enterprise system. 
 
 - *Query*: designed to be used by analysts who only need access permission to query tables/cubes in the project.
 - *Operation*: designed to be used by operation team in a corporate/organization who need permission to maintain the Cube. *Operation* access permission includes *Query*.

@@ -32,11 +32,11 @@ Specify the number format in the query. The default value is  `#,##0.00`. The va
 
 **kap.host**
 
-Specify IP address or domain of KAP. The default value is  `localhost`.
+Specify IP address or domain of Kyligence Enterprise. The default value is  `localhost`.
 
 **kap.port**
 
-Specify the port of KAP. The default value is `7070`.
+Specify the port of Kyligence Enterprise. The default value is `7070`.
 
 ###Configurations of mondrian.properties
 

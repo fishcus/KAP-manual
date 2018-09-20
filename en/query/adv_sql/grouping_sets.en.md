@@ -1,12 +1,12 @@
 ## Grouping Sets
 
-Since KAP v2.1, we've provided grouping sets function in KAP to support when we want aggregate data by different keys in one SQL statements. Here we are going to introduce how to use this function. 
+Since Kyligence Enterprise v2.1, we've provided grouping sets function in Kyligence Enterprise to support when we want aggregate data by different keys in one SQL statements. Here we are going to introduce how to use this function. 
 
 
 
 ### Grouping Sets Function
 
-Grouping sets function query supported by KAP is list as follow:
+Grouping sets function query supported by Kyligence Enterprise is list as follow:
 
 | Operator syntax                          | Description                              |
 | ---------------------------------------- | ---------------------------------------- |
@@ -18,7 +18,7 @@ Grouping sets function query supported by KAP is list as follow:
 
 ### Example
 
-In this section, we would take a dataset defaulted in KAP as data source to practice some typical query mentioned above. Step by step, we will introduce you how to use Grouping sets Function in KAP.
+In this section, we would take a dataset defaulted in Kyligence Enterprise as data source to practice some typical query mentioned above. Step by step, we will introduce you how to use Grouping sets Function in Kyligence Enterprise.
 
 #### Dataset
 

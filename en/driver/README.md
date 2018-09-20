@@ -1,6 +1,6 @@
 ## Driver Support
 
-This chapter will introduce several drivers supported by KAP.
+This chapter will introduce several drivers supported by Kyligence Enterprise.
 
 Continue reading:
 

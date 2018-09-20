@@ -129,7 +129,7 @@ Then click the `Play` button on the top menu to run this report.
 
 ![](images/cognos/27.png)
 
-Now you have successfully created a new chart with KAP as the data source.
+Now you have successfully created a new chart with Kyligence Enterprise as the data source.
 
 ![](images/cognos/28.png)
 

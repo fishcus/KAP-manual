@@ -1,6 +1,6 @@
 ## Garbage Cleanup
 
-After KAP running for a period of time, there could be garbage data leftover. Garbage data occupies disk and metadata spaces and could downgrade overall system performance to some extent. The garbage data mainly includes: 
+After Kyligence Enterprise running for a period of time, there could be garbage data leftover. Garbage data occupies disk and metadata spaces and could downgrade overall system performance to some extent. The garbage data mainly includes: 
 
 - Leftover cube data after cube is purged
 - Leftover segment data after segment is merged
@@ -15,7 +15,7 @@ After KAP running for a period of time, there could be garbage data leftover. Ga
 
 ### Garbage Cleanup Command Tool
 
-KAP provides a command line tool to clean garbage data.
+Kyligence Enterprise provides a command line tool to clean garbage data.
 
 ```shell
 $KYLIN_HOME/bin/kylin.sh io.kyligence.kap.tool.storage.KapGarbageCleanupCLI [--delete true]

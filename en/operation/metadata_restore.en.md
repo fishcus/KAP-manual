@@ -20,7 +20,7 @@ When the user restores the cube's metadata, its associated model may be associat
 
 ### Metadata Restore
 
-With the metadata backups, users can restore the metadata. Similar to the backup, KAP provides a  recovery tool, the usage is as follows:
+With the metadata backups, users can restore the metadata. Similar to the backup, Kyligence Enterprise provides a  recovery tool, the usage is as follows:
 
 ```shell
 $KYLIN_HOME/bin/metastore.sh restore /path_to_backup
@@ -32,6 +32,6 @@ bin/metastore.sh restore meta_backups/meta_2016_06_10_20_24_50
 ```
 When the restore operation is finished, you may click the `Reload Metadata` button on the right of System Config page to refresh the cache, and then you can see the latest metadata.
 
-> Note: The recover operation will overwrite the whole remote metadata with the local one, so you'd better make sure the KAP service is in a stopped or inactive state (no building task) when doing restore; otherwise some changes in remote metastore might be lost. 
+> Note: The recover operation will overwrite the whole remote metadata with the local one, so you'd better make sure the Kyligence Enterprise service is in a stopped or inactive state (no building task) when doing restore; otherwise some changes in remote metastore might be lost. 
 >
 

@@ -118,11 +118,11 @@ Matching identifiers to the name of the referenced object is case-sensitive. But
 
 If your column or table name use keywords, you will need to use double quote to escape it.  
 
-For example, table `AIRLINE` contains column `YEAR` and `QUARTER` that overlap with KAP's keywords **YEAR** and **QUARTER**. As shown in the example below, if user query  `YEAR` and `QUARTER` directly, the query would return will error as KAP query engine fails to differentiate these two columns from keywords. 
+For example, table `AIRLINE` contains column `YEAR` and `QUARTER` that overlap with Kyligence Enterprise's keywords **YEAR** and **QUARTER**. As shown in the example below, if user query  `YEAR` and `QUARTER` directly, the query would return will error as Kyligence Enterprise query engine fails to differentiate these two columns from keywords. 
 
 ![Column named with reserved words will fail the query](images/spec/1.png)
 
-When you try to escape column with a double quote, matching identifier to the name of the referenced object become case-sensitive (as mentioned above), KAP query engine will fail to query with double-quoted lower case letter as these columns are stored in capital letters in KAP.  ![Query with double-quoted lower case columns will fail ](images/spec/2.png)
+When you try to escape column with a double quote, matching identifier to the name of the referenced object become case-sensitive (as mentioned above), Kyligence Enterprise query engine will fail to query with double-quoted lower case letter as these columns are stored in capital letters in Kyligence Enterprise.  ![Query with double-quoted lower case columns will fail ](images/spec/2.png)
 
 If we change the double-quoted column name to all capitals, the query will return correctly.
 

@@ -1,9 +1,9 @@
 ## Tableau 9.x 集成
 
 ### Install ODBC Driver
-参考页面[KAP ODBC 驱动程序教程](../driver/odbc.cn.html)KAP ODBC Driver __v1.2__. 如果你安装有早前版本，请卸载后再安装。 
+参考页面[Kyligence Enterprise ODBC 驱动程序教程](../driver/odbc.cn.html)Kyligence Enterprise ODBC Driver __v1.2__. 如果你安装有早前版本，请卸载后再安装。 
 
-### Connect to KAP Server
+### Connect to Kyligence Enterprise Server
 在Tableau 9.1创建新的数据连接，单击左侧面板中的`Other Database(ODBC)`，并在弹出窗口中选择`KylinODBCDriver` 
 ![](images/tableau_9/1.png)
 

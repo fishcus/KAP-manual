@@ -1,6 +1,6 @@
 ## (v2.4.6 or earlier) Cell Level Security
 
-Cell Level Security helps administrator guarantee the data security on cell level, which is achieved by configuring access control file. The examples mentioned in this text are based on KAP's Sample.
+Cell Level Security helps administrator guarantee the data security on cell level, which is achieved by configuring access control file. The examples mentioned in this text are based on Kyligence Enterprise's Sample.
 
 #### Configurations
 
@@ -10,7 +10,7 @@ First of all, we need to compose a couple of configs:
 
 To enable the cell level security, please turn on the ```kap.security.cell-level-acl-enabled```，the default is ```false```
 
-```kap.security.cell-level-acl-config``` specifies the name of access control file. In KAP Example, the default is: ```userctrl.acl```. Meanwhile, an access control file with the same name should exist in ```$KYLIN_HOME/conf```.
+```kap.security.cell-level-acl-config``` specifies the name of access control file. In Kyligence Enterprise Example, the default is: ```userctrl.acl```. Meanwhile, an access control file with the same name should exist in ```$KYLIN_HOME/conf```.
 
 ```kylin.query.access.controller``` specifies the interface. Currently, we have only one implementation, ```io.kyligence.kap.query.security.KapAccessDecisionMaker```
 
@@ -43,11 +43,11 @@ In access control file, it defines the specific conditions for restricting filte
 2. ```kap.security.cell-level-acl-config=userctrl.acl```
 3. ```kylin.query.access.controller=io.kyligence.kap.query.security.KapAccessDecisionMaker```
 4. `kylin_sales_cube is built`
-5. `Grant MODELER to access Cube`. On KAP GUI, click on the **project management**, then select the project **learn_kylin**, click **privilege**, add grant: **MODELER** , **Cube query**
+5. `Grant MODELER to access Cube`. On Kyligence Enterprise GUI, click on the **project management**, then select the project **learn_kylin**, click **privilege**, add grant: **MODELER** , **Cube query**
 
 *Query Test*
 
-a. ADMIN login KAP, and execute query：
+a. ADMIN login Kyligence Enterprise, and execute query：
 
 ```select * from kylin_sales```
 

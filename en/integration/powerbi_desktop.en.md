@@ -34,7 +34,7 @@ For the installation information, please refer to [Kyligence ODBC Driver tutoria
 
 3.  Enter **User name** and **Password** 
 
-     ![Input account information to connect KAP](images/powerbi/Picture7.png)
+     ![Input account information to connect Kyligence Enterprise](images/powerbi/Picture7.png)
 
 4.  After connecting successfully, Power BI will list all the tables in the project. You may select the tables based on your requirements.
      ![Select tables as required](images/powerbi/Picture8.png)

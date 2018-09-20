@@ -1,6 +1,6 @@
 ## Configuration Overriding
 
-Some of the configuration properties in `$KAP_HOME/conf/` could be overridden through KAP GUI. Configuration overriding has two scopes: project level and cube level. The priority order can be stated as: cube level configurations > project level configurations > configuration files.  
+Some of the configuration properties in `$KYLIN_HOME/conf/` could be overridden through Kyligence Enterprise GUI. Configuration overriding has two scopes: project level and cube level. The priority order can be stated as: cube level configurations > project level configurations > configuration files.  
 
 ### Project-level Configuration Overriding
 
@@ -27,7 +27,7 @@ The configurations below can be overridden at cube level and project level.
 - `kylin.cube.algorithm.layer-or-inmem-threshold`, default is 7;
 - `kylin.cube.aggrgroup.max-combination`, default is 4096;
 
-> Note: **DO NOT** set this parameter over 10000. Otherwise it will consume a lot of CPU and memory resources when calculating the dimension combination, may lead to browser unstable or KAP crash. If there are a number of dimensions in the Cube, it is recommended to set multiple Aggregation Groups (AGG). 
+> Note: **DO NOT** set this parameter over 10000. Otherwise it will consume a lot of CPU and memory resources when calculating the dimension combination, may lead to browser unstable or Kyligence Enterprise Instance crash. If there are a number of dimensions in the Cube, it is recommended to set multiple Aggregation Groups (AGG). 
 
 - `kylin.cube.aggrgroup.is-mandatory-only-valid`, default is false;
 - `kylin.engine.mr.config-override.`, default is empty string;
@@ -47,7 +47,7 @@ The configurations below can be overridden at cube level and project level.
 
 ### Overriding Properties in kylin_hive_conf.xml
 
-KAP allows overriding properties in kylin_hive_conf.xml through KAP GUI. Replace original values by the following Key-Value format：
+Kyligence Enterprise allows overriding properties in kylin_hive_conf.xml through Kyligence Enterprise Web GUI. Replace original values by the following Key-Value format：
 
 kylin.hive.config.override *key* = *value*
 
@@ -55,7 +55,7 @@ kylin.hive.config.override *key* = *value*
 
 ### Overriding Properties In kylin_job_conf.xml And kylin_job_conf_inmem.xml
 
-KAP allows overriding kylin_job_conf.xml and kylin_job_conf_inmem.xml through KAP GUI. Replace original values by the following Key/Value format：
+Kyligence Enterprise allows overriding kylin_job_conf.xml and kylin_job_conf_inmem.xml through Kyligence Enterprise Web GUI. Replace original values by the following Key/Value format：
 
 kylin.job.mr.config.override *key* = *value*
 

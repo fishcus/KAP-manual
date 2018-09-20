@@ -1,23 +1,23 @@
 ## Kyligence JDBC Driver
-KAP provides JDBC driver, through which applications with JDBC interface can access KAP to query data.  
+Kyligence Enterprise provides JDBC driver, through which applications with JDBC interface can access Kyligence Enterprise to query data.  
 
-Under KAP's installation directory's subdirectory "lib", users would find a jar package named as kylin-jdbc-kap-*.jar, which is the JDBC driver of KAP.
+Under Kyligence Enterprise's installation directory's subdirectory "lib", users would find a jar package named as kylin-jdbc-kap-*.jar, which is the JDBC driver of Kyligence Enterprise.
 
 #### Connecting Steps
-KAP JDBC driver follows the JDBC standard interface, users can specify the KAP service to which the JDBC connection is made via the URL and the URL form is:
+Kyligence Enterprise JDBC driver follows the JDBC standard interface, users can specify the Kyligence Enterprise service to which the JDBC connection is made via the URL and the URL form is:
 
-```
+<!-- ``` -->
 jdbc:kylin://<hostname>:<port>/<project_name>
 ```
-* &lt;hostname&gt; : If KAP service start SSL, then JDBC should use the HTTPS port of the KAP service 
+* &lt;hostname&gt; : If Kyligence Enterprise service start SSL, then JDBC should use the HTTPS port of the Kyligence Enterprise service 
 * &lt;port&gt;: If port has not been specified, then JDBC driver would use default port of HTTP and HTTPS 
-* &lt;project_name&gt; : Required. users have to ensure the project exist in KAP service 
+* &lt;project_name&gt; : Required. users have to ensure the project exist in Kyligence Enterprise service 
 
 Besides, users need to specify username, password and whether SSL would be true for connection, these properties are as follow: 
 
-* &lt;user&gt;: username to login KAP service
-* &lt;password&gt;: password to login KAP service
-* &lt;ssl&gt;: enable ssl parameter. Set up string type "true" / "false", the default setting for this parameter  is "false". If the value is "true", all accesses to KAP are based on HTTPS
+* &lt;user&gt;: username to login Kyligence Enterprise service
+* &lt;password&gt;: password to login Kyligence Enterprise service
+* &lt;ssl&gt;: enable ssl parameter. Set up string type "true" / "false", the default setting for this parameter  is "false". If the value is "true", all accesses to Kyligence Enterprise are based on HTTPS
 
 Here lists an example of Connection: 
 

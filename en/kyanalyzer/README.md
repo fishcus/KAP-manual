@@ -4,8 +4,8 @@ KyAnalyzer is an agile BI tool developed by Kyligence which enables users to use
 
 The highlight features include:
 
-- Support sync KAP/Kylin data model by one click
-- Integrate authentication with KAP
+- Support sync Kyligence Enterprise Web/Kylin data model by one click
+- Integrate authentication with Kyligence Enterprise Web
 - Enable share reports with the 3rd party
 
 For more information, please see [KyAnalyzer Self-service Agile BI Tools](kyanalyzer.en.html).

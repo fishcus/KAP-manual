@@ -214,16 +214,16 @@ kylin.security.ldap.connection-password=${crypted_password}
 其次，提供检索用户信息的模式, 例如从某个节点开始查询，需要满足哪些条件等。下面是一个例子，供参考:
 
 ```properties
-#定义同步到 KAP 的用户的范围
+#定义同步到 Kyligence Enterprise 的用户的范围
 kylin.security.ldap.user-search-base=ou=People,dc=example,dc=com
 #定义登录验证匹配的用户名
 kylin.security.ldap.user-search-pattern=(&(cn={0}))
-#定义同步到 KAP 的用户组的范围
+#定义同步到 Kyligence Enterprise 的用户组的范围
 kylin.security.ldap.user-group-search-base=ou=Groups,dc=example,dc=com
 
-#定义同步到 KAP 的用户的类型
+#定义同步到 Kyligence Enterprise 的用户的类型
 kylin.security.ldap.user-search-filter=(objectClass=person)
-#定义同步到 KAP 的用户组的类型
+#定义同步到 Kyligence Enterprise 的用户组的类型
 kylin.security.ldap.group-search-filter=(|(objectClass=groupOfNames)(objectClass=group))
 #定义同步到用户组下的用户
 kylin.security.ldap.group-member-search-filter=(&(cn={0})(objectClass=groupOfNames))

@@ -6,7 +6,7 @@ This section provides an overview of what a user group is and how a user group c
 
 User group is a collection of users. Users in a user group share the same permissions through the group. In a large organization/enterprise, user's permissions are usually granted on a user group basis, so that users who have the same permissions can be set in bulk. This will greatly improve the productivity in such scenario.
 
-The group `All Users` is a default user group. A user will enter into this group once being created. That means the group `All Users` includes all users created. This group cannot be modified or deleted. The system administrator can bulk add or delete users to/from a group except for `All Users`, and add a user to multiple groups except for `All Users`. The name of a user group shall be unique in KAP.
+The group `All Users` is a default user group. A user will enter into this group once being created. That means the group `All Users` includes all users created. This group cannot be modified or deleted. The system administrator can bulk add or delete users to/from a group except for `All Users`, and add a user to multiple groups except for `All Users`. The name of a user group shall be unique in Kyligence Enterprise.
 
 ### About User Group Permissions
 
@@ -40,7 +40,7 @@ The system administrator can add or delete users in a user group except for the 
 
 #### Enter User Group Page
 
-Login to KAP and click `System` button on the navigation bar. The system management page will then show. Next, click `Group` bar on the left side to enter the group management page. Only system admin could get access to the group management page. There are four default user groups in KAP: ALL_USERS, ROLE_ADMIN, ROLE_ANALYST and ROLE_MODELER.
+Login to Kyligence Enterprise and click `System` button on the navigation bar. The system management page will then show. Next, click `Group` bar on the left side to enter the group management page. Only system admin could get access to the group management page. There are four default user groups in Kyligence Enterprise: ALL_USERS, ROLE_ADMIN, ROLE_ANALYST and ROLE_MODELER.
 
 Once a user group is created, the system admin can add, delete, modify and assign users on the group management page. 
 

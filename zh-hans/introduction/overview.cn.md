@@ -27,10 +27,10 @@ Kyligence Enterprise兼容开源Hadoop及主流商业Hadoop发行版，可运行
 
 
 
-![KAP Portofilio](images/kap_portofilio.png)
+![Kyligence Enterprise Portofilio](images/kap_portofilio.png)
 
 
 
 ### Kyligence Enterprise与Apache Kylin比较
 
-![KAP Portofilio](images/compare.png)
+![Kyligence Enterprise Portofilio](images/compare.png)

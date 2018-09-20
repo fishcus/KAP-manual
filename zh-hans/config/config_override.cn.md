@@ -1,6 +1,6 @@
 ## 配置重写
 
-`$KAP_HOME/conf/`下的部分配置项可以在Kyligence Enterprise GUI中重写。配置重写有两个作用域，分别是project级别和cube级别。Project级别的配置继承于全局配置文件，cube级别的配置继承于project；而配置的覆盖优先级关系是：cube级别配置项 > project级别配置项 > 配置文件（kylin.properties）。
+`$KYLIN_HOME/conf/`下的部分配置项可以在Kyligence Enterprise GUI中重写。配置重写有两个作用域，分别是project级别和cube级别。Project级别的配置继承于全局配置文件，cube级别的配置继承于project；而配置的覆盖优先级关系是：cube级别配置项 > project级别配置项 > 配置文件（kylin.properties）。
 
 ### 项目配置重写
 

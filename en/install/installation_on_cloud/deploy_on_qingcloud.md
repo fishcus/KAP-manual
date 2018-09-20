@@ -4,7 +4,7 @@
 
 QingCloud AppCenter is an enterprise applications delivery platform provided by QingCloud, including a series of applications in big data ecosystem, such as Hadoop, Zookeeper etc, and can reduce the efforts and complexity of development, deployment and maintanence in the cloud.
 
-In QingCloud AppCenter, Kyligence Enterprise presents as a standard application, which allows users to provision a new cluster including Hadoop, Hive, Kyligence Enterprise in one click. In the meantime, Kyligence Enterprise also acts as a part of QingCloud's Hadoop service (QingMR), where users can select to install KAP as an application while deploying the QingMR service.
+In QingCloud AppCenter, Kyligence Enterprise presents as a standard application, which allows users to provision a new cluster including Hadoop, Hive, Kyligence Enterprise in one click. In the meantime, Kyligence Enterprise also acts as a part of QingCloud's Hadoop service (QingMR), where users can select to install Kyligence Enterprise as an application while deploying the QingMR service.
 
 ### Install Kyligence Enterprise
 
@@ -66,7 +66,7 @@ On the first time visiting, Kyligence Enterprise will ask for a license. If you 
 
 ![Figure 6. Apply Trial License](images/trial_license.png)
 
-The initial administrator username is ”ADMIN“ and the password is ”KYLIN“. Enter it and then click ”Submit“ to login. At the first login, KAP will ask you to update the password to a stronger one. Please remember the new password for future login.
+The initial administrator username is ”ADMIN“ and the password is ”KYLIN“. Enter it and then click ”Submit“ to login. At the first login, Kyligence Enterprise will ask you to update the password to a stronger one. Please remember the new password for future login.
 
 ### **Play with Sample Cube**
 
@@ -74,7 +74,7 @@ The installation will create a sample “kylin_sales_cube” (as well as sample 
 
 ![Figure 7. Sample Cube](images/sample_cube.png)
 
-You can monitor the build progress on KAP’s  ”Monitor“ tab; After the build is finished (progress 100%), the Cube status is changed to “Ready”, that means you can query it with ANSI-SQL in the “Insight” page, e.g.:
+You can monitor the build progress on Kyligence Enterprise’s  ”Monitor“ tab; After the build is finished (progress 100%), the Cube status is changed to “Ready”, that means you can query it with ANSI-SQL in the “Insight” page, e.g.:
 
 ```
 select part_dt, sum(price) as total_selled, count(distinct seller_id) as sellers from kylin_sales group by part_dt order by part_dt;
@@ -82,7 +82,7 @@ select part_dt, sum(price) as total_selled, count(distinct seller_id) as sellers
 
 Kyligence Enterprise will return results quickly. You can run the same query in to compare the performance.
 
-![Figure 8. Run Query in KAP](images/query_in_kap.png)
+![Figure 8. Run Query in Kyligence Enterprise](images/query_in_kap.png)
 
 Now you know how to use Kyligence Enterprise to accelerate your data analysis. But writing SQL is still troublesome for most users. You can use KyAnalyzer to analyze the data by drag-and-drop.
 

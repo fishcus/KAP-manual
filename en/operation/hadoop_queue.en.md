@@ -1,16 +1,16 @@
 ## YARN Queue Configuration
 
-In the case of multiple-tenants environment, to securely share a large cluster, each tenant needs to have allocated resources in a timely manner under constraints of allocated capacities. With the assumption that each tenant owns a separate project in KAP, to achieve computing resources allocation and separation, each project can be configured to use different YARN queue. 
+In the case of multiple-tenants environment, to securely share a large cluster, each tenant needs to have allocated resources in a timely manner under constraints of allocated capacities. With the assumption that each tenant owns a separate project in Kyligence Enterprise, to achieve computing resources allocation and separation, each project can be configured to use different YARN queue. 
 
-To achieve this, first, you need to create a new YARN capacity scheduler queue. By default, job sent out by KAP will go to default YARN queue.
+To achieve this, first, you need to create a new YARN capacity scheduler queue. By default, job sent out by Kyligence Enterprise will go to default YARN queue.
 
 In the screenshot below, a new YARN queue `learn_kylin` has been set up.
 
 ![](images/hadoop_queue/1.png)
 
-Then you may configure the YARN queue to be used in KAP
+Then you may configure the YARN queue to be used in Kyligence Enterprise
 
-1. In KAP, go to project setting page, choose the project you are intended to switch the queue.
+1. In Kyligence Enterprise, go to project setting page, choose the project you are intended to switch the queue.
 2. Edit the page and click `+property` to add key value pair as shown below. 
 
 ![](images/hadoop_queue/2_1.png)
@@ -36,4 +36,4 @@ Now, go to YARN Resource Manager on the cluster, you may observe that this job h
 
 
 
-Similarly, you may set up YARN queue for other KAP projects to achieve computing resource separation.
+Similarly, you may set up YARN queue for other Kyligence Enterprise projects to achieve computing resource separation.

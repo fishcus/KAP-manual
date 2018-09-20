@@ -1,12 +1,12 @@
 ## LDAP Authentication
 
-KAP supports integration with LDAP servers for user authentication. This validation is achieved through the Spring Security framework, so it has a good versatility. Before enabling LDAP authentication, please contact your LDAP administrator for required information.
+Kyligence Enterprise supports integration with LDAP servers for user authentication. This validation is achieved through the Spring Security framework, so it has a good versatility. Before enabling LDAP authentication, please contact your LDAP administrator for required information.
 
 ### Setup LDAP Server
 
 Before enabling LDAP authentication, you need a running LDAP service. If you already have it, contact your LDAP administrator to get the necessary information including connectivity inforamtion, organization structure, etc..
 
-If you don't have a LDAP server, you need to install one for KAP. The recommended LDAP server tool is OpenLDAP Server 2.4, as it is an open source implementation under OpenLDAP Public License and is one of the most popular LDAP server implementations. It has been packaged in some Linux distributions like Red Hat Enterprise Linux. Tt can also be downloaded from http://www.openldap.org/
+If you don't have a LDAP server, you need to install one for Kyligence Enterprise. The recommended LDAP server tool is OpenLDAP Server 2.4, as it is an open source implementation under OpenLDAP Public License and is one of the most popular LDAP server implementations. It has been packaged in some Linux distributions like Red Hat Enterprise Linux. Tt can also be downloaded from http://www.openldap.org/
 
 The installation may vary with different platforms. You may need check different documents or tutorials. Here we take CentOS 6.4 as an example:  
 
@@ -205,7 +205,7 @@ LDAP Administrator password
 ```
 
 
-### Configure LDAP Information in KAP
+### Configure LDAP Information in Kyligence Enterprise
 
 First, in `conf/kylin.properties`, configure the URL of the LDAP server and the username and password (if the LDAP server is not anonymous). For security reason, the password here need be encrypted with AES, you can run the below command to get the encrypted password:
 
@@ -229,22 +229,22 @@ kylin.security.ldap.connection-password=${crypted_password}
 Second, provide user retrieval pattern, such as starting organization unit, filtering conditions etc.. The following is an example for reference:
 
 ```properties
-#Define the range of user to sync to KAP
+#Define the range of user to sync to Kyligence Enterprise
 kylin.security.ldap.user-search-base=ou=People,dc=example,dc=com
 #Define the user name to login and validate
 kylin.security.ldap.user-search-pattern=(&(cn={0}))
-#Define the range of user group to sync to KAP
+#Define the range of user group to sync to Kyligence Enterprise
 kylin.security.ldap.user-group-search-base=ou=Groups,dc=example,dc=com
 
-#Define the type of user to sync to KAP
+#Define the type of user to sync to Kyligence Enterprise
 kylin.security.ldap.user-search-filter=(objectClass=person)
-#Define the type of user group to sync to KAP
+#Define the type of user group to sync to Kyligence Enterprise
 kylin.security.ldap.group-search-filter=(|(objectClass=groupOfNames)(objectClass=group))
 #Define users to sync to user group
 kylin.security.ldap.group-member-search-filter=(&(cn={0})(objectClass=groupOfNames))
 ```
 
-If you need service accounts (for system integration) to access KAP, follow the example below to configure `ldap.service. *`, otherwise leave them blank.
+If you need service accounts (for system integration) to access Kyligence Enterprise, follow the example below to configure `ldap.service. *`, otherwise leave them blank.
 
 ```properties
 # LDAP service account directory
@@ -255,7 +255,7 @@ kylin.security.ldap.service-group-search-base=ou=Groups,dc=example,dc=com
 
 ### Configure Administrator Groups and Default Roles
 
-Kyligence Enterprise allows mapping an LDAP group to the administrator role: In kylin.properties, set "kylin.security.acl.admin-role" to the LDAP group name (case sensitive). In this example, you would like to use the group "admin" to manage all KAP administrators, then this property should be set as:
+Kyligence Enterprise allows mapping an LDAP group to the administrator role: In kylin.properties, set "kylin.security.acl.admin-role" to the LDAP group name (case sensitive). In this example, you would like to use the group "admin" to manage all Kyligence Enterprise administrators, then this property should be set as:
 
 ```
 kylin.security.acl.admin-role=admin
@@ -265,9 +265,9 @@ When upgrading from KAP 2.5.4 or prior to 2.5.4 or later, please remove the `ROL
 
 ### Enable LDAP
 
-In 	`conf/kylin.properties`, set "kylin.security.profile=ldap"，and then restart KAP.
+In 	`conf/kylin.properties`, set "kylin.security.profile=ldap"，and then restart Kyligence Enterprise.
 
-If we login KAP with `jenny` who belongs to group `admin`, `System` menu will be displayed in the navigation bar:
+If we login Kyligence Enterprise with `jenny` who belongs to group `admin`, `System` menu will be displayed in the navigation bar:
 
 ![Login as user in Admin group](images/ldap/w_1.png)
 
@@ -279,7 +279,7 @@ Once LDAP is enabled, the user/group is read-only and cannot be added, edited, d
 
 ### LDAP user information cache
 
-After users login to KAP by LDAP authentication, their information will be cached to reduce overhead of accessing LDAP server. You can set configuration of cache time (seconds) and max cache entries in kylin.properties. Default values are shown below: 
+After users login to Kyligence Enterprise by LDAP authentication, their information will be cached to reduce overhead of accessing LDAP server. You can set configuration of cache time (seconds) and max cache entries in kylin.properties. Default values are shown below: 
 
 ```properties
 kylin.server.auth-user-cache.expire-seconds=300

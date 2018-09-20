@@ -8,9 +8,9 @@ In this section, we will take Windows 7 as an example to introduce how to instal
 
    During the installation of Kyligence ODBC Driver, Microsoft VC++ will be installed first and redistributable is already embedded in the installation package. If Microsoft Visual C++ 2015 is already installed on your machine, this step will be skipped.
 
-2. A running KAP server
+2. A running Kyligence Enterprise server
 
-   Kyligence ODBC Driver will connect to a KAP server to verify whether the connection works, so make sure the KAP is running properly.
+   Kyligence ODBC Driver will connect to a Kyligence Enterprise server to verify whether the connection works, so make sure the Kyligence Enterprise is running properly.
 
 ## Installation
 
@@ -34,7 +34,7 @@ In this section, we will take Windows 7 as an example to introduce how to instal
 
    ![Add Kyligence ODBC Driver](images/01.png)
 
-3. In the pop-up window, input the KAP server information, as shown in the figure:
+3. In the pop-up window, input the Kyligence Enterprise server information, as shown in the figure:
 
     ![DSN setting](images/02.png)
 
@@ -42,11 +42,11 @@ In this section, we will take Windows 7 as an example to introduce how to instal
 
    * Data Source Name: name of data source
    * Description：Description of data source
-   * Host: KAP server address
-   * Port: KAP server port number
-   * Username: username to login KAP
-   * Password: password to login KAP 
-   * Project: the name of the KAP project to use for the query
+   * Host: Kyligence Enterprise server address
+   * Port: Kyligence Enterprise server port number
+   * Username: username to login Kyligence Enterprise
+   * Password: password to login Kyligence Enterprise 
+   * Project: the name of the Kyligence Enterprise project to use for the query
    * Disable catalog：Whether to disable the catalog layer, the default is **enable** state, If you choose to disable catalog, check this option.
 
 4. Click **Test**
@@ -69,8 +69,8 @@ Some BI tools support connect data source with ODBC connection string. In that c
 DRIVER={KyligenceODBCDriver};SERVER=locahost;PORT=7070;PROJECT=learn_kylin
 ```
 
-Please replace SERVER, PORT and PROJECT with your KAP settings.
+Please replace SERVER, PORT and PROJECT with your Kyligence Enterprise settings.
 
 ## Special Reminder
 
-If you want to use Kyligence ODBC driver to connect to KAP in other client applications, the configuration is similar to this example. For more information, please see [Connect with BI tools](../integration/README.md) chapter of KAP manual.
+If you want to use Kyligence ODBC driver to connect to Kyligence Enterprise in other client applications, the configuration is similar to this example. For more information, please see [Connect with BI tools](../integration/README.md) chapter of Kyligence Enterprise Manual.

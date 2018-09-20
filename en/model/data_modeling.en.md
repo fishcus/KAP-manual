@@ -9,7 +9,7 @@ Data model is created based on the data source. In this section, we take the Kyl
 
 ### Create Data Model
 
-**Step 1**: Open KAP Web UI, select project `Learn_kylin` in project list located at upper left corner. Then create a new data model on `Model` page.
+**Step 1**: Open Kyligence Enterprise Web UI, select project `Learn_kylin` in project list located at upper left corner. Then create a new data model on `Model` page.
 
 ![](images/model_design_update_en_1.png)
 
@@ -23,14 +23,14 @@ Data model is created based on the data source. In this section, we take the Kyl
 
 ![](images/model_design_update_en_2.png)
 
-**Step 3**: Set dimensions and measures (DM). Since KAP V2.5.4, you may not only make single selection or batch selections for dimensions and measures, but also use suggestions by the system. In this example, we use the dimensions and measures suggested by the system. The steps are as below. For more operations, please refer to [Instructions and Tips](#instructions-and-tips) at the end of this article.
+**Step 3**: Set dimensions and measures (DM). Since Kyligence Enterprise V2.5.4, you may not only make single selection or batch selections for dimensions and measures, but also use suggestions by the system. In this example, we use the dimensions and measures suggested by the system. The steps are as below. For more operations, please refer to [Instructions and Tips](#instructions-and-tips) at the end of this article.
 
-1. Click the icon `DM` at the upper left corner to expand DM setting toolbar. In this toolbar, the icon `D` is for dimension, `M` for measure, `—`  for disable and `A` indicates dimensions and measures suggested by KAP.
+1. Click the icon `DM` at the upper left corner to expand DM setting toolbar. In this toolbar, the icon `D` is for dimension, `M` for measure, `—`  for disable and `A` indicates dimensions and measures suggested by Kyligence Enterprise.
 2. Select the checkbox at the leftmost of the toolbar to check all columns, and set them as dimension `D` or measure `M`, or select `A` to use suggested dimensions and measures. You may also select and set the columns one by one. In this example, we select the checkbox and choose `A` .
 
 ![](images/model_design_update_en_3.png)
 
-**Step 4**: Set table join conditions as below. In KAP V2.4 and above, dragging one dimension and dropping it to a target lookup table can setup join condition among tables. For instance, to set up join condition as “KYLIN_SALES *Inner Join* KYLIN\_CAL\_DT on KYLIN\_SALES.PART_DT=KYLIN\_CAL\_DT.CAL\_DT”, you should drag `PART_DT` from `KYLIN_SALES` to the table`KYLIN_CAL_DT`, the following window will pop up.
+**Step 4**: Set table join conditions as below. In Kyligence Enterprise V2.4 and above, dragging one dimension and dropping it to a target lookup table can setup join condition among tables. For instance, to set up join condition as “KYLIN_SALES *Inner Join* KYLIN\_CAL\_DT on KYLIN\_SALES.PART_DT=KYLIN\_CAL\_DT.CAL\_DT”, you should drag `PART_DT` from `KYLIN_SALES` to the table`KYLIN_CAL_DT`, the following window will pop up.
 
 ![](images/model_design_update_en_4.png)
 
@@ -80,7 +80,7 @@ The result is shown in the following figure (if you click "inner" as join type, 
 
 
 
-Computed column is supported in KAP, which could improve query performance by pre-calculation capability. For more details, please refer to [computed column chapter](../model/computed_column/README.en.md).
+Computed column is supported in Kyligence Enterprise, which could improve query performance by pre-calculation capability. For more details, please refer to [computed column chapter](../model/computed_column/README.en.md).
 
 **Step 5**: Click `Save` button, and then select the time partition column. The time partition column is pre-defined, in which the field type supports data, timestamp, string, varchar, integer, bigint.
 
@@ -94,7 +94,7 @@ Finally, click the button `Submit`, and the data model is created.
 
 #### Lookup Table Storage
 
-If you want to set the storage of lookup table, click `Overview` and then click `Model`. The Lookup table and Fact table will appear. By default, when the size of lookup table is less than 300M, the table will be stored as snapshot, so as to improve the query efficiency; when it is greater than 300M,  KAP do not support to store it as snapshot. At this time, if you still want to make it available, you need to change the corresponding configuration in kylin.properties(details refer to KAP tech support: kybot.io).
+If you want to set the storage of lookup table, click `Overview` and then click `Model`. The Lookup table and Fact table will appear. By default, when the size of lookup table is less than 300M, the table will be stored as snapshot, so as to improve the query efficiency; when it is greater than 300M,  Kyligence Enterprise do not support to store it as snapshot. At this time, if you still want to make it available, you need to change the corresponding configuration in kylin.properties(details refer to Kyligence Support.).
 
 ![](images/model_design_update_en_6.png)
 

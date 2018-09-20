@@ -1,17 +1,17 @@
 ## Tableau 8.x 集成
 
-> KAP ODBC驱动程序与Tableau存在一些限制，请在尝试前仔细阅读本说明书。
-> * 仅支持“managed”分析路径，KAP引擎将对意外的维度或度量报错
+> Kyligence Enterprise ODBC驱动程序与Tableau存在一些限制，请在尝试前仔细阅读本说明书。
+> * 仅支持“managed”分析路径，Kyligence Enterprise 引擎将对意外的维度或度量报错
 > * 请始终优先选择事实表，然后使用正确的连接条件添加查找表（cube中已定义的连接类型）
 > * 请勿尝试在多个事实表或多个查找表之间进行连接；
 > * 你可以尝试使用类似Tableau过滤器中seller id这样的高基数维度，但引擎现在将只返回有限个Tableau过滤器中的seller id。
 > 
-> 如需更多详细信息或有任何问题，请联系KAP团队：`support@kyligence.io`
+> 如需更多详细信息或有任何问题，请联系 Kyligence 技术支持。
 
-### 步骤1. KAP ODBC驱动程序
-参考页面[KAP ODBC 驱动程序教程](../driver/odbc.cn.html)。
+### 步骤1. Kyligence Enterprise ODBC驱动程序
+参考页面[Kyligence Enterprise ODBC 驱动程序教程](../driver/odbc.cn.html)。
 
-### 步骤2. 连接到KAP服务器
+### 步骤2. 连接到 Kyligence Enterprise 服务器
 > 我们建议使用Connect Using Driver而不是Using DSN。
 
 Connect Using Driver: 选择左侧面板中的“Other Database(ODBC)”和弹出窗口的“KylinODBCDriver”。

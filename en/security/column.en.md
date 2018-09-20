@@ -4,7 +4,7 @@
 
 When a user/group sends `Select * from table` query on the table that contains forbidden column, the query will still run and return the result without the forbidden column. 
 
-When you load the table for the first time into a project or upgrade KAP from a lower version, by default, there is no column-level access control being set for any user/group.
+When you load the table for the first time into a project or upgrade Kyligence Enterprise from a lower version, by default, there is no column-level access control being set for any user/group.
 
 Column-level access control needs to be set by project basis. That means even if you load the same Hive or KAFKA table from data source twice in different projects, column-level access control needs to be set independently for those two projects. 
 

@@ -1,6 +1,6 @@
 ##Import Greenplum Data Source
 
-Greenplum is supported as the default data source since KAP 3.0. In order to load the Greenplum tables, Greenplum Driver Jar package is needed to put in  `$KYLIN_HOME/ext`.  The jar package is also needed to copy to `<sqoop_installation_directory>/lib`, because *sqoop* is used in the process of cube building.
+Greenplum is supported as the default data source since Kyligence Enterprise 3.0. In order to load the Greenplum tables, Greenplum Driver Jar package is needed to put in  `$KYLIN_HOME/ext`.  The jar package is also needed to copy to `<sqoop_installation_directory>/lib`, because *sqoop* is used in the process of cube building.
 
 Then, please set the following configurations in *kylin.properties* or *project configuration*:
 
@@ -27,7 +27,7 @@ After the configuration finished users can access Greenplum Data Source on Web U
 Using Greenplum as an example, we connect Greenplum data source with Greenplum Driver, followings are the steps:
 
 1. Download Greenplum Driver jar package, and put it under `$KYLIN_HOME/ext` and `<sqoop_installation_directory>/lib`.
-2. In KAP, project is the workspace of tables, models and cubes. To create a sample project, open the web UI of KAP and click the plus icon at the top to create a new project like below.![create project](images/rdbms_import.en.png)
+2. In Kyligence Enterprise, project is the workspace of tables, models and cubes. To create a sample project, open the web UI of Kyligence Enterprise and click the plus icon at the top to create a new project like below.![create project](images/rdbms_import.en.png)
 
 
 
@@ -56,7 +56,7 @@ kylin.source.jdbc.sqoop-home=/usr/hdp/current/sqoop-client/bin
 
 ### Synchronize Greenplum Table
 
-Greenplum tables need to be synchronized into KAP before they can be used. To make things easy, we synchronize by using following button to load tables.
+Greenplum tables need to be synchronized into Kyligence Enterprise before they can be used. To make things easy, we synchronize by using following button to load tables.
 
 ![synchronize table's metadata](images/rdbms_import3.en.png)
 

@@ -76,7 +76,7 @@ Cube优化器根据源数据特征和用户常用SQL模式，推荐出优化的C
 
 **Apache Kylin 升级到2.0**
 
-KAP基于Apache Kylin内核，与Apache Kylin完全兼容，本次升级基于Apache Kylin 2.0，完整公告参见Kylin官方网站。主要功能如下：
+Kyligence Enterprise 基于Apache Kylin内核，与Apache Kylin完全兼容，本次升级基于Apache Kylin 2.0，完整公告参见Kylin官方网站。主要功能如下：
 
 KYLIN-2467: Support TPCH queries
 
@@ -108,7 +108,7 @@ KYLIN-490: 支持多列的Distinct Count
 
 简易配置升级，所有配置向后兼容，升级过程仅需用老版本conf目录覆盖新的安装包即可
 
-KyAnalyzer集成KAP权限管理机制
+KyAnalyzer集成 Kyligence Enterprise 权限管理机制
 
 
 

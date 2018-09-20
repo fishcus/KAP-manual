@@ -8,7 +8,7 @@ KAP 2.x shares compatible metadata with higher versions. Therefore, you can upgr
 
 1. In order to improve the query performance, cube and segment will be upgraded during the upgrade process. As a precondition, *please ensure that there is no active build job before upgrade, which includes running, pending, error and stopped jobs*.
 
-2. Please stop all KAP service and confirm that there is no running KAP process.
+2. Please stop all Kyligence Enterprise service and confirm that there is no running Kyligence Enterprise process.
 
 3. This product requires JDK 8 or above. Run the following command to check your JDK version. If your JDK version is 7 or below, you will find addition steps required in the following document. Please pay attention.
 
@@ -18,14 +18,14 @@ KAP 2.x shares compatible metadata with higher versions. Therefore, you can upgr
 
 ### Perform the Upgrade
 
-1. Stop and confirm that there is no running KAP process:
+1. Stop and confirm that there is no running Kyligence Enterprise process:
 
    ```shell
    $KYLIN_HOME/bin/kylin.sh stop
    ps -ef | grep kylin
    ```
 
-2. Backup KAP installation directory and metadata:
+2. Backup Kyligence Enterprise installation directory and metadata:
 
    ```shell
    cp -r $KYLIN_HOME ${KYLIN_HOME}.backup
@@ -132,9 +132,9 @@ If the fix succeeded, you will see â€œSegments have been upgraded successfullyâ€
 
 **Q: How could I roll back if the upgrade failed?**
 
-If you have backup of the KAP installation directory and metadata, you could roll back like below:
+If you have backup of the Kyligence Enterprise installation directory and metadata, you could roll back like below:
 
-- Stop and confirm that there is no running KAP process:
+- Stop and confirm that there is no running Kyligence Enterprise process:
 
   ```shell
   $KYLIN_HOME/bin/kylin.sh stop
@@ -154,7 +154,7 @@ If you have backup of the KAP installation directory and metadata, you could rol
   $KYLIN_HOME/bin/metastore.sh restore {your-backup-metadata-folder}
   ```
 
-- Now rollback is finished and you can start the original KAP
+- Now rollback is finished and you can start the original Kyligence Enterprise
 
   ```shell
   $KYLIN_HOME/bin/kylin.sh start

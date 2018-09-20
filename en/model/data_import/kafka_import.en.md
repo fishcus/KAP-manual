@@ -7,7 +7,7 @@ Before starting this tutorial, please make sure that you have already prepared a
 
 In this tutorial, we use Hortonworks HDP 2.4 Sandbox VM as the Hadoop environment.
 
-It is unnecessary to deploy Kafka Broker and Kyligence Enterprise in the same node. If Kafka Broker has not been deployed in Kyligence Enterprise node, it is highly recommended that you copy the Kafka binary package with the same version and extract it to any path of KAP's start node (such as: /usr/local/kafka_2.10-0.10.1.0), and set KAFKA_HOME to point to this path, thus ensuring there is a Kafka client library under the directory KAFKA_HOME/libs.
+It is unnecessary to deploy Kafka Broker and Kyligence Enterprise in the same node. If Kafka Broker has not been deployed in Kyligence Enterprise node, it is highly recommended that you copy the Kafka binary package with the same version and extract it to any path of Kyligence Enterprise's start node (such as: /usr/local/kafka_2.10-0.10.1.0), and set KAFKA_HOME to point to this path, thus ensuring there is a Kafka client library under the directory KAFKA_HOME/libs.
 
 In this article, we assume that user has not installed Kafka Broker, and has not deployed and/or started Kafka Broker. User who has installed Kafka Broker may ignore this step.
 

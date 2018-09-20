@@ -4,7 +4,7 @@
 
 If a user/group has restricted access to a row in a table, this user/group will only be able to view rows that applied in the Row-level Access Control, regardless of querying through Cube, Table Index or Query Push Down. If the user/group does not use the restricted row in the query, then row-level access control will not be applied in the query. 
 
-When you load the table for the first time into a project or upgrade KAP from a lower version, by default, when you give users/groups QUERY access to a project in KAP, they have access to all the rows of data in the table. 
+When you load the table for the first time into a project or upgrade Kyligence Enterprise from a lower version, by default, when you give users/groups QUERY access to a project in Kyligence Enterprise, they have access to all the rows of data in the table. 
 
 Row-level Access Control needs to be set by project basis. That means even if you load the same Hive or KAFKA table from data source twice in different projects, row-level access control needs to be set independently for those two projects. 
 

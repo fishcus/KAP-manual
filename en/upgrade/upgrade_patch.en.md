@@ -1,8 +1,8 @@
 ## Installing Hotfix Patch
 
-Since KAP 3.X, you can install hotfix patch to fix some bugs. You can contact Kyligence Support Team to obtain the hotfix patch, which enables you to upgrade KAP automatically.
+Since Kyligence Enterprise 3.X, you can install hotfix patch to fix some bugs. You can contact Kyligence Support Team to obtain the hotfix patch, which enables you to upgrade Kyligence Enterprise automatically.
 
-1. Set the value of the environment variable KYLIN_HOME as the contemporary version and stop the running KAP instance:
+1. Set the value of the environment variable KYLIN_HOME as the contemporary version and stop the running Kyligence Enterprise instance:
 
    ```
    export KYLIN_HOME=/usr/local/kap-{version}
@@ -22,7 +22,7 @@ Since KAP 3.X, you can install hotfix patch to fix some bugs. You can contact Ky
    > - The files of `$KYLIN_HOME/logs` and `$KYLIN_HOME/tomcat/logs` will not be backed up. You have to backup these two files manually.
    > - The files of `$KYLIN_HOME/conf`，`$KYLIN_HOME/tomcat/conf`，`$KYLIN_HOME/ext`，`$KYLIN_HOME/meta_backups` will not be changed during the procedure of upgrading.
 
-3. Finish installation and restart KAP.
+3. Finish installation and restart Kyligence Enterprise.
 
    ![upgraded version](images/upgrade_license.en.png)
 

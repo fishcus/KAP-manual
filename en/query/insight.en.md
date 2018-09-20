@@ -8,7 +8,7 @@
 
 
 ### Query Page Overview
-Click *Insight* on KAP navigation header, all query-able tables will be listed on the left side of page. The tables will be shown only after the cube build successfully. Enter SQL in textbox on the right side of page, query result will be shown at the below textbox.
+Click *Insight* on Kyligence Enterprise navigation header, all query-able tables will be listed on the left side of page. The tables will be shown only after the cube build successfully. Enter SQL in textbox on the right side of page, query result will be shown at the below textbox.
 
 * **F(FACT)** - Fact Table 
 * **L(LOOKUP)** - Dimension Table

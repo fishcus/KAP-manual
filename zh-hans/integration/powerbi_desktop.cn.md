@@ -31,7 +31,7 @@ Microsoft Power BI Desktop 是由微软推出的一款商业智能的专业分�
 
       ![数据连接方式：DirectQuery](images/powerbi/Picture6.png)
 
-3. 输入账号密码进行身份验证。![登录连接 KAP](images/powerbi/Picture7.png)
+3. 输入账号密码进行身份验证。![登录连接 Kyligence Enterprise](images/powerbi/Picture7.png)
 
 4. 这样 Power BI 会列出项目中所有的表，可以根据需要选择要连接的表。![根据需要选择表](images/powerbi/Picture8.png)
 

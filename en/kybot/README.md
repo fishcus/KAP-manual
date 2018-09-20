@@ -1,7 +1,7 @@
 ## KyBot Introduction
 KyBot is an online platform researched and developed by Kyligence, providing services including Dashboard, System Optimization, Troubleshooting and Technical Support.
 
-* *Dashboard：* Visually presenting basic condition of Kyligence Enterprise system, including Cubes, queries, jobs, storage, users and environment, providing insight into the whole KAP cluster and applications from various aspects.
+* *Dashboard：* Visually presenting basic condition of Kyligence Enterprise system, including Cubes, queries, jobs, storage, users and environment, providing insight into the whole Kyligence Enterprise cluster and applications from various aspects.
 
 * *System Optimization：* Visually presenting the performance overhead of cube construction and queries, helping users to continuously optimize data model, the cube design and storage, and to find out the best balance between storage, construction and query performance.
 

@@ -50,7 +50,7 @@ OBIEE是Oracle旗下的BI产品，可提供完整的 BI 功能，包括交互式
 
 2. 选择ODBC2.0，将Kyligence Enterprise中的表导入。
 
-   ![导入KAP中的表](images/OBIEE/add_table.png)
+   ![导入 Kyligence Enterprise 中的表](images/OBIEE/add_table.png)
 
 3. 导入成功后，在物理模型里找到Kyligence Enterprise数据源，复选需要建模的表右键，选择**物理图表**进行建模。
 

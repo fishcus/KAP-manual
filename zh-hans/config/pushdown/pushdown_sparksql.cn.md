@@ -13,11 +13,11 @@ Spark Thrift 使用 Hive JDBC 接口，支持 JDBC 接口的应用可以通过Hi
 
 #### 安装 JDBC
 
-把下载好的所有 jar 包放到 `KAP_HOME/ext` 下面，以便让 本产品 在启动时可以加载 JDBC Driver 。
+把下载好的所有 jar 包放到 `KYLIN_HOME/ext` 下面，以便让 本产品 在启动时可以加载 JDBC Driver 。
 
 #### 修改kylin.properties
 
-修改 `$KAP_HOME/conf/kylin.properties` ，添加以下配置：
+修改 `$KYLIN_HOME/conf/kylin.properties` ，添加以下配置：
 
 - 配置 Hive JDBC driver 和 Pushdown Runner:
 

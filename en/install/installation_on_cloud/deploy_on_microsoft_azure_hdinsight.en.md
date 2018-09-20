@@ -12,7 +12,7 @@ With Azure HDInsight, you can easily deploy Kyligence Enterprise in a few minute
 
 HDInsight application platform is an easy way to distribute, discover, and install applications that you have built for the Hadoop ecosystem. HDInsight application platform automatically provisions an “Edge Node” for the application, and installs/configures the Hadoop clients on it. Developers only need to provide a shell script and a ARM (Azure Resource Manager) template for their application to install the application, and other processes are handled by Azure. This is a fancy feature that makes deploying Kyligence Enterprise on HDInsight much easier and more efficient. Figure 1 shows the architecture of Kyligence Enterprise with HDInsight.
 
-![Figure 1. KAP with Azure HDInsight Architecture](images/kap_with_hdinsight.png)
+![Figure 1. Kyligence Enterprise with Azure HDInsight Architecture](images/kap_with_hdinsight.png)
 
 By referring to the samples in Azure [Iaas-Applications](https://github.com/hdinsight/Iaas-Applications) project, we developed the first version of the Azure Resource Manager (ARM) template for Kyligence Enterprise, and successfully deployed Kyligence Enterprise on a cluster. After that, we continuously enhance the template and scripts to enable more features. Now, both Kyligence Enterprise and KyAnalyzer, our agile BI tool, can be installed as HDInsight applications. Users can quickly get a Hadoop-based Data Warehouse + Business Intelligence tool in a couple of minutes.
 
@@ -28,15 +28,15 @@ Kyligence Enterprise is now available on Microsoft Azure (including Azure overse
 
 2) If it is a new cluster, you need to switch to the “Custom” wizard, select “Kyligence Enterprise Plus” in the third step, as below:
 
-![Figure 3. Select KAP to install](images/kap_install.png)
+![Figure 3. Select Kyligence Enterprise to install](images/kap_install.png)
 
 If it is an existing Hadoop cluster, you need to click the “Applications” icon, and then click “Add” button. In the application list, select “Kyligence Enterprise Plus” to install. Clicking “Purchase” button means you agree with the terms to install. It won’t cause additional charge for Kyligence Enterprise. YAfter installation, you can apply for 2 months' trial license on the Kyligence Enterprise interface. It is free in the probation period. After the trial, please contact Kyligence company to purchase the official license.
 
-![Figure 4. KAP in HDInsight Applications](images/kap_in_hdinsight.png)
+![Figure 4. Kyligence Enterprise in HDInsight Applications](images/kap_in_hdinsight.png)
 
 3) After the cluster is created, you will get the Kyligence Enterprise and KyAnalyzer URL from Azure Portal. Clicking them will lead you to the Kyligence Enterprise web portal and KyAnalyzer web portal. You can also get the SSH endpoint of the Edge Node that running Kyligence Enterprise.
 
-![Figure 5. KAP and KyAnalyzer URL](images/kap_kyanalyzerurl.png)
+![Figure 5. Kyligence Enterprise and KyAnalyzer URL](images/kap_kyanalyzerurl.png)
 
 ### **Request Trial License and Login**
 
@@ -66,7 +66,7 @@ select part_dt, sum(price) as total_selled, count(distinct seller_id) as sellers
 
 Kyligence Enterprise will return results quickly. You can run the same query to compare the performance.
 
-![Figure 8. Run Query in KAP](images/query_in_kap.png)
+![Figure 8. Run Query in Kyligence Enterprise](images/query_in_kap.png)
 
 Now you know how to use Kyligence Enterprise to accelerate your data analysis. But writing SQL is still troublesome for most users. You can use KyAnalyzer to analyze the data by drag-and-drop.
 
@@ -212,10 +212,10 @@ kafka dependency: /usr/hdp/2.5.5.3-2/kafka/libs/kafka-clients-0.10.0.2.5.5.3-2.j
 If OK, then restart Kyligence Enterprise service to take effective:
 
 ```
-sudo systemctl restart kap
+sudo systemctl restart Kyligence Enterprise
 ```
 
-When Kyligence Enterprise is restarted, go back to the “Studio” -> “Datasource” page, click “Kafka” button, input the Kafka broker host and port info. Then Kyligcen Enterprise will connect to Kafka, list the topics and then show sample messages, as shown in Figure 16.
+When Kyligence Enterprise is restarted, go back to the “Studio” -> “Datasource” page, click “Kafka” button, input the Kafka broker host and port info. Then Kyligence Enterprise will connect to Kafka, list the topics and then show sample messages, as shown in Figure 16.
 
 ![Figure 16. Kafka Integration](images/kafka_integration.png)
 

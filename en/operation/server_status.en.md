@@ -1,6 +1,6 @@
 ## Server Status ##
 
-Since KAP V2.5.5, users can check the KAP cluster server status in the system page, which is shown in the following figure:
+Since Kyligence Enterprise V2.5.5, users can check the Kyligence Enterprise cluster server status in the system page, which is shown in the following figure:
 
 ![servers status](images/server_status/server_status_1.en.png)
 

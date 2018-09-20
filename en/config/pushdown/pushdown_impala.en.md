@@ -13,11 +13,11 @@ If you need pushdown to Impala, you must have a Impala Thrift Server.
 
 #### Install Hive JDBC
 
-Put all the downloaded jar package into `$KAP_HOME/ext`, so that Kyligence Enterprise can be loaded at startup JDBC Driver
+Put all the downloaded jar package into `$KYLIN_HOME/ext`, so that Kyligence Enterprise can be loaded at startup JDBC Driver
 
 #### Modify kylin.properties
 
-Modify `$KAP_HOME/conf/kylin.properties`, add Hive JDBC configuration
+Modify `$KYLIN_HOME/conf/kylin.properties`, add Hive JDBC configuration
 
 - Configure Hive JDBC driver and Pushdown Runner:
 

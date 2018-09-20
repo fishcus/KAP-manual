@@ -1,6 +1,6 @@
 ## Service Status Detection
 
-Since KAP v2.5.6, service status will be detected every 15 minutes. As shown in the following picture, ADMIN users can view the service status and related information visually on the kAP WEB UI, and diagnose environment problem conveniently.
+Since Kyligence Enterprise v2.5.6, service status will be detected every 15 minutes. As shown in the following picture, ADMIN users can view the service status and related information visually on the kAP WEB UI, and diagnose environment problem conveniently.
 
 Services status turns green for being good, yellow for warnings and red for error. More detailed information can be viewed by hovering above the specific detection item.
 
@@ -36,7 +36,7 @@ You can run the command line `$KYLIN_HOME/bin/kylin.sh io.kyligence.kap.canary.C
 #### Three levels of Service Status 
 
 - *Green:* Good, indicating that the service status is healthy
-- *Yellow:* Warning, indicating that there are some problems which may impact KAP performance.
+- *Yellow:* Warning, indicating that there are some problems which may impact Kyligence Enterprise performance.
 - *Red:* Error or crash, indicating that there is something wrong with the service status or the service throws exception. 
 
 
@@ -51,5 +51,5 @@ You can run the command line `$KYLIN_HOME/bin/kylin.sh io.kyligence.kap.canary.C
 | SparkSqlContextCanary | The time of calculating the sum from 0 to 100 exceeds 10 seconds | The time of calculating the sum from 0 to 100 exceeds 30 seconds |
 | GarbageCanary         | 1. The number of metadata garbage is larger than 50 <br>2. The number of garbage files produced by Cube is larger than 50<br>3. The amount of garbage is larger  than 5G |                                                              |
 | MetaSyncErrorCanary   | Metastore fails to synchronize                                 |                                                              |
-| JobEngineCanary       |                                                              | 1.One of the KAP nodes failed to report Job Engine status<br>2.There is no active Job Engine node |
+| JobEngineCanary       |                                                              | 1.One of the Kyligence Enterprise nodes failed to report Job Engine status<br>2.There is no active Job Engine node |
 

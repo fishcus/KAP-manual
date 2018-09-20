@@ -11,7 +11,7 @@ In v2.1 and higher, Apache Kylin introduces the “Top-N” measure, aiming to p
 
 ## Top-N Query
 
-Let’s start with the default project `learn_kylin` that shipped in KAP binary package as well as pre-loaded in KAP Web GUI. We would use a sample fact table within this project called `kylin_sales`. If you haven’t done that before, follow this tutorial to create it: [Quick Start with Sample Cube](https://kylin.apache.org/docs15/tutorial/kylin_sample.html).
+Let’s start with the default project `learn_kylin` that shipped in Kyligence Enterprise binary package as well as pre-loaded in Kyligence Enterprise Web GUI. We would use a sample fact table within this project called `kylin_sales`. If you haven’t done that before, follow this tutorial to create it: [Quick Start with Sample Cube](https://kylin.apache.org/docs15/tutorial/kylin_sample.html).
 
 The sample fact table “default.kylin_sales” mock the transactions happened in an online marketplace. It has a couple of dimension and measure columns. To be easy-understanding, here we only use four columns: “PART_DT”, “LSTG_SITE_ID”, “SELLER_ID” and “PRICE”. Below table is the description of these columns, with a rough cardinality, the “SELLER_ID” is a high cardinality column.
 
@@ -77,7 +77,7 @@ With the Top-N measure, Kyligence Enterprise will pre-calculate the top entities
 
 The base cuboid only has $730 * 50 = 36.5 k$ rows now. In the measure cell, the Top certain records are stored in a container in descending order, those tail entities have been filtered out.
 
-For the same query, “Top sellers in past 30 days in US” now only need to read 30 rows from storage. The measure object, also called as counter containers will be further aggregated/merged at the storage side, finally only one container is returned. KAP would extract the “SELLER_ID” and “SUM(PRICE)” from it before returns to client. The cost is much lighter than before, the performance is highly improved as well.
+For the same query, “Top sellers in past 30 days in US” now only need to read 30 rows from storage. The measure object, also called as counter containers will be further aggregated/merged at the storage side, finally only one container is returned. Kyligence Enterprise would extract the “SELLER_ID” and “SUM(PRICE)” from it before returns to client. The cost is much lighter than before, the performance is highly improved as well.
 
 
 ## Algorithm

@@ -1,13 +1,13 @@
 ## **Kyligence Enterprise Across-Hadoop-Cluster Migration**
 
-KAP Across-Hadoop-Cluster Migration includes whole KAP instance migration and single Cube migration.
+Kyligence Enterprise Across-Hadoop-Cluster Migration includes whole Kyligence Enterprise instance migration and single Cube migration.
 
 ###Whole Kyligence Enterprise Instance Migration
 
 Whole Kyligence Enterprise instance migration job contains two tasks
 
 + Dump metadata from Source Hadoop Cluster (SHC) and migrate it to HDFS.
-+ ```Distcp``` KAP instance data from SHC to Destination Hadoop Cluster (DHC).
++ ```Distcp``` Kyligence Enterprise instance data from SHC to Destination Hadoop Cluster (DHC).
 
 It leverages script `cluster-migration.sh` to complete these two tasks.
 
@@ -17,7 +17,7 @@ The two clusters can communicate to each other and command ```hadoop distcp``` i
 
 **Usage:**
 
-1. KAP instance has been deployed to both of SHC and DHC with the same `kylin.metadata.url` and `kylin.env.hdfs-working-dir`. Make sure KAP in SHC is stopped.
+1. Kyligence Enterprise instance has been deployed to both of SHC and DHC with the same `kylin.metadata.url` and `kylin.env.hdfs-working-dir`. Make sure Kyligence Enterprise in SHC is stopped.
 2. In SHC, run `bin/cluster-migration.sh backup`
 3. In DHC, run `bin/cluster-migration.sh restore hdfs://SHC-namenode/kylin_working_dir`
 

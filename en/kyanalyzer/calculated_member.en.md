@@ -4,7 +4,7 @@ Calculated Members are members of a dimension group or a measure group that are 
 
 KyAnalyzer can support creating a calculated member to use MDX. 
 
-In the following, we take a KAP sample cube as an example and measure `GMV_SUM` and `TRNS_CNT` to create a new Calculated Member.
+In the following, we take a Kyligence Enterprise sample cube as an example and measure `GMV_SUM` and `TRNS_CNT` to create a new Calculated Member.
 
 1. Click **Add** on the right side of the member panel.
 

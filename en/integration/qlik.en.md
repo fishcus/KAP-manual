@@ -1,6 +1,6 @@
 ## Integration with Qlik Sense
 
-Qlik Sense delivers intuitive platform solutions for self-service data visualization, guided analytics applications, embedded analytics and reporting. It is a new player in the Business Intelligence (BI) tools world, with a high growth since 2013. It has connectors with Hadoop Database (Hive and Impala). Now it can be integrated with KAP. This article will guide you to connect KAP with Qlik Sense.  
+Qlik Sense delivers intuitive platform solutions for self-service data visualization, guided analytics applications, embedded analytics and reporting. It is a new player in the Business Intelligence (BI) tools world, with a high growth since 2013. It has connectors with Hadoop Database (Hive and Impala). Now it can be integrated with Kyligence Enterprise. This article will guide you to connect Kyligence Enterprise with Qlik Sense.  
 
 ### Install Kyligence ODBC Driver
 
@@ -11,7 +11,7 @@ For the installation information, please refer to [Kyligence ODBC Driver tutoria
 For the installation of Qlik Sense, please visit [Qlik Sense Desktop download](https://www.qlik.com/us/try-or-buy/download-qlik-sense).
 
 ### Connection with Qlik Sense
-After configuring your Local DSN and installing Qlik Sense successfully, you may go through the following steps to connect KAP with Qlik Sense.
+After configuring your Local DSN and installing Qlik Sense successfully, you may go through the following steps to connect Kyligence Enterprise with Qlik Sense.
 
 1. From Windows Desktop Shortcut or click `Start` -> `All Applications` -> `Qlik Sense` -> `Qlik Sense Desktop` to open the application `Qlik Sense Desktop`.
 
@@ -35,7 +35,7 @@ After configuring your Local DSN and installing Qlik Sense successfully, you may
 
 5. Configure Direct Query mode
 
-   Given the Peta-byte scale Cube size in a usual KAP production environment, we recommend user to use Direct Query mode in Qlik Sense and avoid importing data into Qlik sense.
+   Given the Peta-byte scale Cube size in a usual Kyligence Enterprise production environment, we recommend user to use Direct Query mode in Qlik Sense and avoid importing data into Qlik sense.
 
    You may be able to enable Direct Query mode by typing `Direct Query` in front of your query script in Script editor.
 
@@ -45,11 +45,11 @@ After configuring your Local DSN and installing Qlik Sense successfully, you may
 
    Once you defined such script, Qlik Sense can generate SQL based on this script for your report.
 
-   It is recommended that you define Dimension and Measure corresponding to the Dimension and Measure in the KAP Cube.  
+   It is recommended that you define Dimension and Measure corresponding to the Dimension and Measure in the Kyligence Enterprise Cube.  
 
    The whole script has been posted for your reference. 
 
-   You may also be able to utilize KAP built-in functions by creating a Native expression, for example: `NATIVE('extract(month from PART_DT)') ` 
+   You may also be able to utilize Kyligence Enterprise built-in functions by creating a Native expression, for example: `NATIVE('extract(month from PART_DT)') ` 
 
    Make sure to update `LIB CONNECT TO 'kylin';` to the DSN you created. 
 
@@ -116,7 +116,7 @@ After configuring your Local DSN and installing Qlik Sense successfully, you may
 
    Select the charts you need, then add dimension and measurement based on your requirements. ![Select the required charts, dimension and measure](images/qlik/add_dimension.png)
 
-   You will get your worksheet and the connection is complete. Your KAP data shows in Qlik Sense now.![View KAP data in Qlik Sense](images/Qlik/report.png)
+   You will get your worksheet and the connection is complete. Your Kyligence Enterprise data shows in Qlik Sense now.![View Kyligence Enterprise data in Qlik Sense](images/Qlik/report.png)
 
    Please note that if you want the report to hit on Cube, you need to create the measure exactly as those are defined in the Cube. For the case of *Kylin_sales_cube* in Learn_kylin project, we use sum(price) as an example. 
 
@@ -155,13 +155,13 @@ After configuring your Local DSN and installing Qlik Sense successfully, you may
 
 ![查看图表](images/Qlik/07_hub_Qlik.PNG)
 
-#### Connect KAP directly in Qlik Sense Hub
+#### Connect Kyligence Enterprise directly in Qlik Sense Hub
 
-1. Create a new application in the `Qlik Sense Hub` through a browser and connect to a KAP data source. The connection method is the same as connecting KAP in `Qlik Sense Desktop`.
+1. Create a new application in the `Qlik Sense Hub` through a browser and connect to a Kyligence Enterprise data source. The connection method is the same as connecting Kyligence Enterprise in `Qlik Sense Desktop`.
 
 ![新建应用](images/Qlik/08_hub_create.PNG)
 
-2. Edit the application you just created and use the data in KAP freely.
+2. Edit the application you just created and use the data in Kyligence Enterprise freely.
 
 ![编辑应用](images/Qlik/09_hub_table.PNG)
 

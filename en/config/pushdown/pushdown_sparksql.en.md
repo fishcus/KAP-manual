@@ -13,11 +13,11 @@ If you need pushdown to 3rd Party SparkSQL, you must have a Spark Thrift Server.
 
 #### Install Hive JDBC
 
-Put all the downloaded jar package into `$KAP_HOME/ext`, so that Kyligence Enterprise can load the JDBC driver at startup.
+Put all the downloaded jar package into `$KYLIN_HOME/ext`, so that Kyligence Enterprise can load the JDBC driver at startup.
 
 #### Modify Kylin.properties
 
-Modify `$KAP_HOME/conf/kylin.properties`, add Hive JDBC configuration.
+Modify `$KYLIN_HOME/conf/kylin.properties`, add Hive JDBC configuration.
 
 - Configure Hive JDBC driver and Pushdown Runner:
 

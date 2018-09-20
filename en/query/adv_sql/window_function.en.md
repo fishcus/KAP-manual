@@ -1,12 +1,12 @@
 ## Window Function
 
-Since KAP v2.1, we've provided window function in KAP to support more complicated query, keeping SQL query simple and work well. Here we are going to introduce how to use this function.
+Since Kyligence Enterprise v2.1, we've provided window function in Kyligence Enterprise to support more complicated query, keeping SQL query simple and work well. Here we are going to introduce how to use this function.
 
 
 
 ### Window Function
 
-Window Functions query supported by KAP is list as follow:
+Window Functions query supported by Kyligence Enterprise is list as follow:
 
 | Operator syntax                      | Description                              |
 | ------------------------------------ | ---------------------------------------- |
@@ -23,7 +23,7 @@ Window Functions query supported by KAP is list as follow:
 
 ### Example
 
-In this section, we would take a dataset defaulted in KAP as data source to practice some typical query mentioned above. Step by step, we will introduce you how to use Window Function in KAP.
+In this section, we would take a dataset defaulted in Kyligence Enterprise as data source to practice some typical query mentioned above. Step by step, we will introduce you how to use Window Function in Kyligence Enterprise.
 
 #### Dataset
 

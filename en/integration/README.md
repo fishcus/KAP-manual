@@ -1,6 +1,6 @@
 ## Connect with BI Tools
 
-This chapter includes integration between KAP and 3rd party BI tools.
+This chapter includes integration between Kyligence Enterprise and 3rd party BI tools.
 
 Following BI tools are covered:
 

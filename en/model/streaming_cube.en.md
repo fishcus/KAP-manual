@@ -45,13 +45,13 @@ Save the cube.
 
 ### Run a Build
 
-You can trigger the build job from web GUI, by clicking “Actions” -> “Build”, or sending a request to KAP RESTful API with ‘curl’ command:
+You can trigger the build job from web GUI, by clicking “Actions” -> “Build”, or sending a request to Kyligence Enterprise RESTful API with ‘curl’ command:
 
 	curl -X PUT --user ADMIN:KYLIN -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/json" -H "Accept-Language: en" -d '{ "sourceOffsetStart": 0, "sourceOffsetEnd": 9223372036854775807, "buildType": "BUILD"}' http://localhost:7070/kylin/api/cubes/{your_cube_name}/build_streaming
 
 Please notice that the API endpoint is different from a normal cube (this URL ends with “build_streaming”).
 
-Here 0 means it is from the last position, and 9223372036854775807 (Long.MAX_VALUE) means to the end position on Kafka topic. If it is the first time to build (no previous segment), KAP will seek the beginning of the topics as the start position.
+Here 0 means it is from the last position, and 9223372036854775807 (Long.MAX_VALUE) means to the end position on Kafka topic. If it is the first time to build (no previous segment), Kyligence Enterprise will seek the beginning of the topics as the start position.
 
 In the “Monitor” page, a new job is generated; Wait it 100% finished.
 

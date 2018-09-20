@@ -11,7 +11,7 @@
    $KYLIN_HOME/bin/kylin.sh stop
    ```
 
-   ![旧版本KAP信息](images/origin_license.cn.png)
+   ![旧版本 Kyligence Enterprise 信息](images/origin_license.cn.png)
 
 2. 安装补丁包修复。系统将会先全量备份旧版本软件包，再进行安装：
 
@@ -23,7 +23,7 @@
    > - `$KYLIN_HOME/logs`和`$KYLIN_HOME/tomcat/logs`不参与备份过程。如果需要备份，您可以手动单独进行备份。
    > - 升级过程不会对`$KYLIN_HOME/conf`，`$KYLIN_HOME/tomcat/conf`，`$KYLIN_HOME/ext`，`$KYLIN_HOME/meta_backups`这四个文件夹进行处理。
 
-3. 重新启动KAP，安装成功。
+3. 重新启动 Kyligence Enterprise，安装成功。
 
    ![升级后版本信息](images/upgrade_license.cn.png)
 

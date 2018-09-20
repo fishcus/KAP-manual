@@ -126,7 +126,7 @@ Qlik Sense
 
    这样，新的工作表创建完成，Kyligence Enterprise 与 Qlik Sense 相连。现在您可以在 Qlik Sense 中查看 Kyligence Enterprise 数据。
 
-   ![在 Qlik Sense 中查看 KAP 数据](images/Qlik/011-view_kap_data.cn.png)
+   ![在 Qlik Sense 中查看 Kyligence Enterprise 数据](images/Qlik/011-view_kap_data.cn.png)
 
    注意，如果要使查询击中 Cube，创建的度量应与 Cube 中定义的度量匹配。例如，在 Learn_kylin 项目的 kylin_sales_cube 中，我们使用 Sum(price)：
 

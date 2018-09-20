@@ -36,7 +36,7 @@ Step 5. Click `Submit` and start table sampling.
 
 Step 6. Click `Monitor` on the left side, you can view table sampling status.
 
-> Notice: If the data source is Kafka, the job for table sampling will not show in the Monitor while KAP will still finish the table sampling.
+> Notice: If the data source is Kafka, the job for table sampling will not show in the Monitor while Kyligence Enterprise will still finish the table sampling.
 
 Step 7. Once you have done sampling, return to *Data Source* section and select specific tables for details.
 

@@ -8,7 +8,7 @@ KAP Plus 2.x 与更高版本之间兼容元数据。因此在从 KAP Plus 2.x �
 
 1. 为了获得更佳的查询性能，升级过程中将对 Cube 和 Segment 进行升级。作为先决条件，**请确保没有处于构建状态的 Segment，构建状态包括等待、运行、错误和暂停**。
 
-2. 停止所有 KAP 服务，确保没有活动的 KAP 进程影响升级。
+2. 停止所有 Kyligence Enterprise 服务，确保没有活动的 Kyligence Enterprise 进程影响升级。
 
 3. 本产品要求 JDK 8 或更高，您可以通过以下命令查看 JDK 版本。如果您的 JDK 版本不满足要求，请留意下面升级文档中的额外步骤。
 
@@ -17,14 +17,14 @@ KAP Plus 2.x 与更高版本之间兼容元数据。因此在从 KAP Plus 2.x �
    ```
 ### 具体升级步骤 ###
 
-1. 停止并确认没有正在运行的 KAP 进程：
+1. 停止并确认没有正在运行的 Kyligence Enterprise 进程：
 
    ```shell
    $KYLIN_HOME/bin/kylin.sh stop
    ps -ef | grep kylin
    ```
 
-2. 备份 KAP 安装目录和元数据：
+2. 备份 Kyligence Enterprise 安装目录和元数据：
 
    ```shell
    cp -r $KYLIN_HOME ${KYLIN_HOME}.backup
@@ -87,7 +87,7 @@ KAP Plus 2.x 与更高版本之间兼容元数据。因此在从 KAP Plus 2.x �
 
 8. 至此升级成功。
 
-   之前备份的 KAP 安装目录和元数据可以安全删除。
+   之前备份的 Kyligence Enterprise 安装目录和元数据可以安全删除。
 
 ### 升级 FAQ ###
 
@@ -126,16 +126,16 @@ bin/kylin.sh io.kyligence.kap.tool.migration.ProjectDictionaryMigrationCLI FIX
 
 **Q：假如升级不成功，如何回滚到原版本？**
 
-如果在升级前有备份 KAP 安装目录和元数据，可以按以下步骤回滚：
+如果在升级前有备份 Kyligence Enterprise 安装目录和元数据，可以按以下步骤回滚：
 
-   * 停止并确认没有正在运行的 KAP 进程：
+   * 停止并确认没有正在运行的 Kyligence Enterprise 进程：
 
      ```shell
      $KYLIN_HOME/bin/kylin.sh stop
      ps -ef | grep kylin
      ```
 
-   * 恢复原 KAP 安装目录
+   * 恢复原 Kyligence Enterprise 安装目录
 
      ```shell
      rm -rf $KYLIN_HOME
@@ -148,7 +148,7 @@ bin/kylin.sh io.kyligence.kap.tool.migration.ProjectDictionaryMigrationCLI FIX
      $KYLIN_HOME/bin/metastore.sh restore {your-backup-metadata-folder}
      ```
 
-   * 回滚完毕，重新启动原 KAP
+   * 回滚完毕，重新启动原 Kyligence Enterprise
 
      ```shell
      $KYLIN_HOME/bin/kylin.sh start

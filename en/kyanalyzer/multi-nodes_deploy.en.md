@@ -6,7 +6,7 @@ This section introduces how to deploy KyAnalyzer to multiple Linux servers (indi
 
 To deploy KyAnalyzer to multiple nodes, do the following: 
 
-Firstly, modify the configuration file *conf/kyanalyzer.properties* for each KyAnalyzer node and respectively set "kap.host" and "kap.port" to the IP address and port of the same KAP server (or configure to multiple Query Servers in one KAP cluster).
+Firstly, modify the configuration file *conf/kyanalyzer.properties* for each KyAnalyzer node and respectively set "kap.host" and "kap.port" to the IP address and port of the same Kyligence Enterprise server (or configure to multiple Query Servers in one Kyligence Enterprise cluster).
 
 Secondly, do the following steps to modify the *repository/configuration.xml* file under KyAnalyzer installation directory of node1:
 

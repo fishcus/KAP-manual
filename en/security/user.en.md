@@ -6,25 +6,25 @@ This section provides an overview of what a user is and how a user can be manage
 
 To use Kyligence Enterprise, a user must log in to the system using a login ID and password. Users are defined in the Kyligence Enterprise built-in metadata and exist across projects. You do not have to define users for every project you create in a single metadata. 
 
-User **ADMIN** is a built-in default user with system admin access permission created with a new KAP metadata. **System admin** user has all access permission for all projects. 
+User **ADMIN** is a built-in default user with system admin access permission created with a new Kyligence Enterprise metadata. **System admin** user has all access permission for all projects. 
 
 ### Access Control List
 
 The **Access Control List (ACL)** is a list of user and access permission that user has in a project. Except for system admin, ACL needs to be granted on a project basis. 
 
-There are fours types of access permission on a project in KAP. They are PROJECT Admin, Management, Operation, and Query. Each access permission defines a list of functionality user may perform in KAP system.
+There are fours types of access permission on a project in Kyligence Enterprise. They are PROJECT Admin, Management, Operation, and Query. Each access permission defines a list of functionality user may perform in Kyligence Enterprise system.
 
 For details on project-level access control and how to grant access on projects, please refer to [Manage Access Permission](acl.en.md) 
 
 ### Manage User
 
-Login to KAP and click `System` button on the navigation bar. The system management page will then show. Next, click `User` bar on the left side to enter user management page. Only system admin could get access to the user management page. 
+Login to Kyligence Enterprise and click `System` button on the navigation bar. The system management page will then show. Next, click `User` bar on the left side to enter user management page. Only system admin could get access to the user management page. 
 
-There are three default users in KAP: ADMIN (system admin), MODELER and ANALYST.
+There are three default users in Kyligence Enterprise: ADMIN (system admin), MODELER and ANALYST.
 
 Once a user is created, the system admin can add, manage, delete and group users on user management page. 
 
-Except for System Admin, Other users need to be granted access permission on project-level in order to use any functionality in KAP. Creating user alone will not grant users any access permission. 
+Except for System Admin, Other users need to be granted access permission on project-level in order to use any functionality in Kyligence Enterprise. Creating user alone will not grant users any access permission. 
 
 ![Manage user](images/user/user_w1.png)
 
@@ -62,7 +62,7 @@ Under user management page, click `…` under `Action`, and choose `Drop`.
 
 System admin could delete users within the page. Please be noted that dropped users cannot be restored. 
 
-When use is dropped from KAP instance entirely, all user's access permission on all projects will be dropped subsequently. This may include project-level, table-level, row-level and column-level access permission if there is any. 
+When use is dropped from Kyligence Enterprise instance entirely, all user's access permission on all projects will be dropped subsequently. This may include project-level, table-level, row-level and column-level access permission if there is any. 
 
 #### Enable/Disable Users
 

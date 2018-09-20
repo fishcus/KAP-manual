@@ -2,7 +2,7 @@
 
 *Table-level Access Control* allows Kyligence Enterprise system admin to control who can access data of Hive or KAFKA tables that have been loaded into Kyligence Enterprise. When a user/group has been revoked of query access to a table, this user/group will not be able to *query* data in this table regardless of through Cube, Table Index or Query Pushdown. The user/group can still query the Cube that has a reference to the forbidden table, as long as the query itself does not refer to the forbidden table. 
 
-When you load the table for the first time into a project or upgrade KAP from a lower version, by default, every user/group has access to all tables that have been loaded into the project. 
+When you load the table for the first time into a project or upgrade Kyligence Enterprise from a lower version, by default, every user/group has access to all tables that have been loaded into the project. 
 
 Table-level Access Control needs to be set by project basis. That means even if you sync the same Hive or Kafka table from data source twice in different projects, table-level access control need to be set independently for those two projects. 
 

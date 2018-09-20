@@ -16,7 +16,7 @@ Kyligence Enterprise 生成的日志文件如下：
 该文件是Kyligence Enterprise的Java进程记录的 GC(Garbage Collection) 日志。为避免多次启动，旧文件被覆盖，该日志使用了进程号作为文件名后缀（如 `kylin.gc.20003.0.current`）。
 
 #### `canary.log`
-该文件是`KAP v2.5.6`版本开始增加的每15分钟进行环境检测功能的日志。另外在命令行进行对每个服务状态检测的结果也将保存在该文件中。
+该文件是`Kyligence Enterprise v2.5.6`版本开始增加的每15分钟进行环境检测功能的日志。另外在命令行进行对每个服务状态检测的结果也将保存在该文件中。
 
 #### `check-env.out`
 该文件是执行`check-env.sh`脚本标准输出的重定向文件。

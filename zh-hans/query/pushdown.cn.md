@@ -16,7 +16,7 @@
 
 - 在 `kylin.properties` 文件中删除 `kylin.query.pushdown.runner-class-name=io.kyligence.kap.storage.parquet.adhoc.PushDownRunnerSparkImpl` 这一配置项前的注释符号，使其生效。
 
-- 重启 KAP
+- 重启 Kyligence Enterprise
 
   ```
   $KYLIN_HOME/bin/kylin.sh stop
