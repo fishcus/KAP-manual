@@ -255,7 +255,7 @@ kylin.security.ldap.service-group-search-base=ou=Groups,dc=example,dc=com
 
 ### Configure Administrator Groups and Default Roles
 
-Kyligence Enterprise allows mapping an LDAP group to the administrator role: In kylin.properties, set "kylin.security.acl.admin-role" to the LDAP group name (case sensitive). In this example, you would like to use the group "admin" to manage all Kyligence Enterprise administrators, then this property should be set as:
+Kyligence Enterprise allows mapping an LDAP group to the administrator role: In kylin.properties, set `kylin.security.acl.admin-role` to the LDAP group name (case sensitive). In this example, you would like to use the group `admin` to manage all Kyligence Enterprise administrators, then this property should be set as:
 
 ```
 kylin.security.acl.admin-role=admin
@@ -265,7 +265,7 @@ When upgrading from KAP 2.5.4 or prior to 2.5.4 or later, please remove the `ROL
 
 ### Enable LDAP
 
-In 	`conf/kylin.properties`, set "kylin.security.profile=ldap"，and then restart Kyligence Enterprise.
+In 	`conf/kylin.properties`, set `kylin.security.profile=ldap`，and then restart Kyligence Enterprise.
 
 If we login Kyligence Enterprise with `jenny` who belongs to group `admin`, `System` menu will be displayed in the navigation bar:
 

@@ -20,7 +20,7 @@
 
 当某用户属于多个用户组时，该用户同时具有从不同用户组赋予的项目级权限；对于行列级权限，用户从多个用户组继承的权限之间是与（AND）的关系。
 
-例如，如果用户A同时属于两个用户组 North_Region 和 East_Region，且这两个用户组分别被限定了行级权限 <code>Region='North'</code>，<code>Region='East'</code>，那么用户 A 会同时继承这两个行级权限，并且两者之间的关系为与（AND），即 <code>Region='North' AND Region ='East'</code>。
+例如，如果用户 A 同时属于两个用户组 North_Region 和 East_Region，且这两个用户组分别被限定了行级权限 <code>Region='North'</code>，<code>Region='East'</code>，那么用户 A 会同时继承这两个行级权限，并且两者之间的关系为与（AND），即 <code>Region='North' AND Region ='East'</code>。
 
 如果用户 A 同时属于两个用户组 North_Region 和 East_Region，且这两个用户组分别被限定了列级权限，例如 North_Region 组不能访问 East_sales 列而 East_Region 组不能访问 North_sales 列，那么用户 A 将不能访问这两列。
 
@@ -65,11 +65,11 @@
 
 #### 修改用户所在组
 
-参见本章[管理用户](security/user.cn.md)。
+参见本章[管理用户](user.cn.md)。
 
 #### 为组赋予权限
 
-参见本章[管理访问权限](security/acl.cn.md)。
+参见本章[管理访问权限](acl.cn.md)。
 
 ### 启用 LDAP 后的用户组管理
 
@@ -77,4 +77,4 @@
 
 ![启用 LDAP 后的用户组管理](images/group/group_w4.png)
 
-有关 LDAP 的更多信息，参见本章 [LDAP 验证](security/ldap.cn.md)。
+有关 LDAP 的更多信息，参见本章 [LDAP 验证](ldap.cn.md)。

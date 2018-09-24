@@ -108,4 +108,4 @@ Once LDAP is enabled, user is read-only and cannot be added, edited, dropped, mo
 
 ![User management when LDAP enabled](images/user/user_w8.png)
 
-For more information on LDAP, please see [LDAP Authentication](security/ldap.en.md) in this chapter.
+For more information on LDAP, please see [LDAP Authentication](ldap.en.md) in this chapter.

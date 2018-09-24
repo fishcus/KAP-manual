@@ -65,11 +65,11 @@ To assign a user to a user group, do the following:
 
 #### Modify User's Group
 
-Please refer to [User Management](security/user.cn.md) in this chapter.
+Please refer to [User Management](user.en.md) in this chapter.
 
 #### Grant Access for Group
 
-Please refer to [Manage Access Permission](security/acl.cn.md) in this chapter.
+Please refer to [Manage Access Permission](acl.en.md) in this chapter.
 
 #### User Group Management when LDAP Enabled
 
@@ -77,4 +77,4 @@ Once LDAP is enabled, user group is read-only and cannot be added, edited, dropp
 
 ![User group management when LDAP enabled](images/group/group_w4.png)
 
-For more information on LDAP, please see [LDAP Authentication](security/ldap.en.md) in this chapter.
+For more information on LDAP, please see [LDAP Authentication](ldap.en.md) in this chapter.

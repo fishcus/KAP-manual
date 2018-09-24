@@ -5,7 +5,7 @@ Kyligence Enterprise 支持与 LDAP 服务器集成完成用户验证。这种�
 ### LDAP 服务器的安装
 启用 LDAP 验证之前，需要一个运行的 LDAP 服务器。如果已经有，联系 LDAP 管理员，以获取必要的信息，如服务器连接信息、人员和组织结构等。
 
-如果没有可用的 LDAP 服务器，需要额外安装。推荐使用 OpenLDAP Server 2.4，它是一个开源的基于 OpenLDAP Public License的实现，并且也是最流行的 LDAP 服务器之一。很多企业 Linux 发行版已经内置了 OpenLDAP 服务器，如果没有，可以从官网下载：http://www.openldap.org/。
+如果没有可用的 LDAP 服务器，需要额外安装。推荐使用 OpenLDAP Server 2.4，它是一个开源的基于 OpenLDAP Public License 的实现，并且也是最流行的 LDAP 服务器之一。很多企业 Linux 发行版已经内置了 OpenLDAP 服务器，如果没有，可以从官网下载：http://www.openldap.org/。
 
 OpenLDAP 服务器的安装，依系统不同而略有区别。这里以 CentOS 6.4 为例进行介绍:  
 
@@ -240,8 +240,8 @@ kylin.security.ldap.service-group-search-base=ou=Groups,dc=example,dc=com
 
 ### 配置管理员群组和默认角色
 
-在 Kyligence Enterprise 中，可将一个 LDAP 群组映射成管理员角色：在 kylin.properties 中，将 "properties
-kylin.security.acl.admin-role" 设置为 LDAP 组名（组名大小写保留原样）。在当前例子中，将 LDAP 中组 `admin` 定义为 Kyligence Enterprise 管理员，那么这里应该设置为:
+在 Kyligence Enterprise 中，可将一个 LDAP 群组映射成管理员角色：在 kylin.properties 中，将 `properties
+kylin.security.acl.admin-role` 设置为 LDAP 组名（组名大小写保留原样）。在当前例子中，将 LDAP 中组 `admin` 定义为 Kyligence Enterprise 管理员，那么这里应该设置为:
 
 ```properties
 kylin.security.acl.admin-role=admin
@@ -251,7 +251,7 @@ kylin.security.acl.admin-role=admin
 
 ### 启用 LDAP
 
-在 conf/kylin.properties 中，设置 "kylin.security.profile=ldap"，然后重启 Kyligence Enterprise。
+在 conf/kylin.properties 中，设置 `kylin.security.profile=ldap`，然后重启 Kyligence Enterprise。
 
 当使用 `admin` 组的 `jenny` 用户登录时，会显示 `系统` 菜单项。
 ![使用管理员组的用户登录](images/ldap/w_1.png)
