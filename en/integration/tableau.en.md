@@ -9,17 +9,14 @@ This section will introduct  two methods available to connect Tableau with Kylig
 
 ### Prerequises
 
-- Install the Kyligence ODBC driver
+- Install the Kyligence ODBC driver. For installation instructions, please refer to [Kyligence ODBC Driver tutorial](../driver/kyligence_odbc.en.md).
 
-> Tips: Instructions refer to [Kyligence ODBC Driver tutorial](../driver/kyligence_odbc.en.md).
 
-- To support detail data query, you need config table index or push down.
+- To support detail data query, you need configure table index or push down.
 
-### Method 1: Quick sync up model by using  TDS import/export function
+### Method 1: Quick Sync Up Model by Using TDS Import/Export Function
 
-After modeling and creating cube, user can export tableau model definition file,
-
-> Remark: Supported from Kyligence Enterprise 3.0.1 version
+After modeling and creating cube, user can export tableau model definition file.
 
 The following detail steps required :
 
@@ -37,9 +34,8 @@ The following detail steps required :
 
 3. In Tableau, check  model import, such as dimension, meseaure etc.
 
-   
 
-### Method 2: Manually build mapping model
+### Method 2: Manually Build Mapping Model
 
 User can connect Kyligence Enterprise through ODBC Driver, and manually mapping model in Tableau
 
@@ -56,7 +52,7 @@ The following detail steps required for mapping data model :
 4. (Or) In the pop-up window, select the existing DSN to connect
 5. In Tableau, you need rebuild data model refer to Kyligence Enterprise. How to create model in Tableau please refer to Tableau official website.
 
-### Other remarks
+### Other Remarks
 
 When you connect Tableau to Kyligence Enterprise, it will send a query which triggers full table scan. This will take a relatively long time to process the query when the dataset is extremely large. There are two ways to avoid this situation
 

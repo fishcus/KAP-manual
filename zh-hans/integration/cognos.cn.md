@@ -6,13 +6,14 @@
 
 ### 前置条件
 
-•Cognos Framework manager 的版本与 Cognos server 的版本一致。
+- Cognos Framework manager 的版本与 Cognos server 的版本一致。
 
-•Framework manager 和 Cognos server使用相同版本ODBC driver（若之前安装了64位的ODBC，需要卸载）
+- Framework manager 和 Cognos server使用相同版本ODBC driver（若之前安装了64位的ODBC，需要卸载）
 
-•DSN 的名字在 Framework manager 和 Cognos server 上一致。
+- DSN 的名字在 Framework manager 和 Cognos server 上一致。
 
-•ODBC driver 版本跟 Kyligence Enterprise 版本的匹配。
+- ODBC driver 版本跟 Kyligence Enterprise 版本的匹配。
+
 
 ### 创建一个Cognos数据源
 
@@ -33,8 +34,8 @@
    如果一切配置正确的话，测试连接会顺利通过。![](images/cognos/7.png)![](images/cognos/8.png)
 
    这样数据源就创建成功了。
-   
-   提示：考虑到本 BI 工具的连接数据源时的探测特性，请调整 kylin.properties 中的 kylin.query.force-limit 参数为1000，表示数据源限制 select * 探测语句返回的记录数为1000。
+
+   > **提示**：考虑到本 BI 工具的连接数据源时的探测特性，为了避免在超大数据量情形下连接数据源响应时间过长，请调整 `kylin.properties` 中的 `kylin.query.force-limit` 参数为1000，表示数据源限制 `select *` 探测语句返回的记录数为1000。
 
 6. 点击`下一步`你可以继续在`元数据向导`中测试表的连接。![](images/cognos/9.png)
 

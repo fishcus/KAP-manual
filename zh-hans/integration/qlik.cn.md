@@ -42,8 +42,9 @@ Qlik Sense
    在常见的 Kyligence Enterprise 生产场景中， Cube 包含 PB 级数据，我们建议用户在 Qlik Sense 中使用 Direct Query 模式，而不用将数据导入 Qlik Sense。
 
    在脚本编辑器中查询脚本的最前面，输入 `Direct Query`，即可启用 Direct Query 模式。 
-   
-   提示：考虑到本 BI 工具的连接数据源时的探测特性，请调整 kylin.properties 中的 kylin.query.force-limit 参数为1000，表示数据源限制 `select *` 探测语句返回的记录数为1000。
+
+   > **提示**：考虑到本 BI 工具的连接数据源时的探测特性，为了避免在超大数据量情形下连接数据源响应时间过长，请调整 `kylin.properties` 中的 `kylin.query.force-limit` 参数为1000，表示数据源限制 `select *` 探测语句返回的记录数为1000。
+   >
 
    下图是以 Learn_kylin 项目中的 kylin_sales_cube 为例，进行 Direct Query 查询的脚本。![脚本](images/Qlik/006-script_run_result.cn.png)
 

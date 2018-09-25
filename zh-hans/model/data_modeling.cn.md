@@ -50,26 +50,26 @@
 
 
 
-### 样例数据集建模
+### 设计模型
 
 在模型编辑页面下，用户可以通过可视化的方式定义事实表 ( Fact Table ) 或维度表 ( Lookup Table )。
 
 具体操作步骤如下：
 
-**步骤一**：定义事实表：
+**步骤一**：定义事实表
 
 1. 从左侧数据源表清单中，将事实表拖至建模画布中央， 本样例数据集中的事实表为 “KYLIN_SALES”
 2. 单击表右上角的**设置**图标，选择表的类型设为**事实表**
 
 
 
-**步骤二**：定义维度表：
+**步骤二**：定义维度表
 
 - 从左侧数据源表清单中，将多个维度表拖至建模画布中央
 
-> 提示：维度表可以基于场景进行重命名，如本样例中, 我们的模型可定义多个维度表如下：
-> “KYLIN_CAL_DT”，“KYLIN_CATEGORY_GROUPINGS”，“KYLIN_ACCOUNT”，“KYLIN_COUNTRY”
-> 由于 “KYLIN_ACCOUNT” 和 “KYLIN_COUNTRY” 表数据既包含卖家账户也包含卖家用户，我们可以分别将其拖出来两次，修改表别名为 “SELLER_ACCOUNT”，“BUYER_ACCOUNT” 以及 “SELLER_COUNTRY” 和 ”BUYER_COUNTRY“
+  > 提示：维度表可以基于场景进行重命名，如本样例中, 我们的模型可定义多个维度表如下：
+  > “KYLIN_CAL_DT”，“KYLIN_CATEGORY_GROUPINGS”，“KYLIN_ACCOUNT”，“KYLIN_COUNTRY”
+  > 由于 “KYLIN_ACCOUNT” 和 “KYLIN_COUNTRY” 表数据既包含卖家账户也包含卖家用户，我们可以分别将其拖出来两次，修改表别名为 “SELLER_ACCOUNT”，“BUYER_ACCOUNT” 以及 “SELLER_COUNTRY” 和 ”BUYER_COUNTRY“
 
 - 单击这些表右上角的**设置**图标，选择表的类型设为**维度表**
 
@@ -77,7 +77,7 @@
 
 
 
-**步骤三：** 对表字段定义维度和度量类型：
+**步骤三：** 对表字段定义维度和度量类型
 
 > 提示：从本产品2.5.4版本开始，支持表字段类型批量定义，并新增系统自动推荐定义设置。
 
@@ -95,7 +95,7 @@
 
 
 
-**步骤四**：建立表与表连接关系：
+**步骤四**：建立表与表连接关系
 
 表与表关系的建立可以通过拖拽表上的列完成。
 
@@ -103,7 +103,7 @@
 
 在弹出窗口我们可以修改连接方式或增加其他字段关联关系。
 
-点击**确认** 按钮保存新建连接
+点击 **确认** 按钮保存新建连接
 
 ![添加表连接](images/model_design_update_cn_4.png)
 
@@ -169,63 +169,48 @@
 
 
 
-### 其他高级设置
+### 其他高级设置：设置维度表快照
 
-#### 定义维度表存储形式
+当维度表小于 300 MB 时，推荐以快照 (Snapshot) 形式存储维表，以简化 Cube 设计和提高系统整体效率。由于系统默认所有维度表都比较小，因此缺省地，所有维度表的快照都被启用。
 
-默认当维度表小于 300M 时，以快照 (snapshot ) 形式存储，以提高查询效率。
-
-
-
-- **维度表以快照形式存储的应用场景**
-  1. 单独对维度表进行明细查询
-  2. 设计 Cube 时将维度表的列设置为衍生维度，并在查询中使用了衍生维度
+- **启用维度表快照的优点**
+  1. 允许单独对维度表进行明细查询
+  2. 设计 Cube 时可将维度表的列设置为衍生维度，并在查询中使用
 
 
 
-- **设置维度表的存储方式**
+- **关闭维度表快照**
 
-    您可以根据自己的使用场景选择是否将维度表以快照形式存储，维度表的数据存储形式可以通过在页面下方的窗口依次单击 “概览” -> “模型" 对显示的维度表进行设置。
-    ![维度表存储形式](images/model_design_update_cn_6.png)
+  当您的维度表过大，比如超过 300 MB 的上限，则需要关闭维度表快照才能顺利构建数据。
 
+  您可以在页面下方的窗口依次单击 “概览” -> “模型" 对显示的维度表进行设置。
 
+  ![维度表存储形式](images/model_design_update_cn_6.png)
 
-> 注意：
->
-> 1. 当维度表大于300MB时，我们通常不建议以快照形式存储。如确实有必要，可在`kylin.properties` 中调整参数 `kylin.snapshot.max-mb` 至更大值。
-> 
-> 2. 300MB 是本产品推荐的维度表以快照存储的大小，请您谨慎修改  `kylin.snapshot.max-mb` 的值，这个值如果被设置的过大，基于这个模型进行设计的 Cube 在构建时，有很大概率会在 Build Dimension Dictionary (在这一步会进行快照的构建) 这一步失败，甚至还会影响整个系统的稳定性。如果您的使用场景必须对超大的维度表设置以快照形式存储，请联系 [Kyligence 技术支持](../introduction/get_support.cn.md )获取解决方案，
-> 
-> 3. 存在重复主键的维度表不能以快照形式存储。
-> 如果您在模型检测的 Check Duplicate Key 或者 Cube 构建的 Build Dimension Dictionary 失败，`kylin.log` 中的报错信息 "java.lang.IllegalStateException: The table:{tableName} Dup key found, key=[..], value1=[...],value2=[...]"，您需要确认报错信息提示的表是否需要以快照形式存储，如果不需要的话，可以取消对这张表的以快照形式存储的设置后，重新进行模型检测，或者重新设计 Cube 并进行构建；如果需要这张维度表以快照形式存储，请您对这张表进行数据清洗，去除重复主键。
+  > 注意：
+  >
+  > 1. 当维度表大于 300 MB 时，我们通常不建议以快照形式存储。如确实有必要，可在`kylin.properties` 中调整参数 `kylin.snapshot.max-mb` 至更大值。
+  > 
+  > 2. 300 MB 是本产品推荐的维度表以快照存储的大小，请您谨慎修改  `kylin.snapshot.max-mb` 的值，这个值如果被设置的过大，基于这个模型进行设计的 Cube 在构建时，有很大概率会在 Build Dimension Dictionary (在这一步会进行快照的构建) 这一步失败，甚至还会影响整个系统的稳定性。如果您的使用场景必须对超大的维度表设置以快照形式存储，请联系 [Kyligence 技术支持](../introduction/get_support.cn.md )获取解决方案，
+  > 
+  > 3. 存在重复主键的维度表不能以快照形式存储。
+  > 如果您在模型检测的 Check Duplicate Key 或者 Cube 构建的 Build Dimension Dictionary 失败，`kylin.log` 中的报错信息 "java.lang.IllegalStateException: The table:{tableName} Dup key found, key=[..], value1=[...],value2=[...]"，您需要确认报错信息提示的表是否需要以快照形式存储，如果不需要的话，可以取消对这张表的以快照形式存储的设置后，重新进行模型检测，或者重新设计 Cube 并进行构建；如果需要这张维度表以快照形式存储，请您对这张表进行数据清洗，去除重复主键。
 
 
 
 - **衍生维度的查询，使用最新的快照**
 
-	多维建模时，用户的维度表可能随着业务场景／业务线变动而变动。
-	
-	如果用户将维度表以快照形式存储，在设计 Cube 时，维度表上的列会默认是衍生维度 (Derived Dimension)。Kyligence Enterprise 在构建 Cube 的 segment 时会在 Build Dimension Dictionary 这一步构建快照，并且同步存储、与对应的 segment 关联。
-	
-	查询时，系统会寻找有效的最新的快照作为所有维度表的版本，示意图如下：
-![快照和 segment 的关联关系](images/model_design_update_cn_10.png)
+  多维建模时，用户的维度表可能随着业务场景／业务线变动而变动。
 
+  如果用户将维度表以快照形式存储，在设计 Cube 时，维度表上的列会默认是衍生维度 (Derived Dimension)。Kyligence Enterprise 在构建 Cube 的 Segment 时会在 Build Dimension Dictionary 这一步构建快照，并且同步存储、与对应的 Segment 关联。
 
+  查询时，系统会寻找有效的最新的快照作为所有维度表的版本，示意图如下：
+  ![快照和 segment 的关联关系](images/model_design_update_cn_8.png)
 
-> 注意：
-> 
-> 1. 如果四月 (Apr.) 的 segment 被删除，对应的快照也将不可用。 Kyligence Enterprise 将选择三月 (Mar.) 的 segment 对应的快照作为维度表的最新版本。此时如果需要更新快照，需要刷新三月的 segment 或者构建四月的 segment。
-> 
-> 2. 如果查询衍生维度或者单独对维表进行明细查询时报错 "No snaphot for table '{tableName}' found on cube segment ..."，说明这张表的快照在最新版本的维度表快照中不存在，建议您更新快照。
+  > 注意：
+  > 
+  > 1. 如果四月 (Apr.) 的 segment 被删除，对应的快照也将不可用。 Kyligence Enterprise 将选择三月 (Mar.) 的 segment 对应的快照作为维度表的最新版本。此时如果需要更新快照，需要刷新三月的 segment 或者构建四月的 segment。
+  > 
+  > 2. 如果查询衍生维度或者单独对维表进行明细查询时报错 "No snaphot for table '{tableName}' found on cube segment ..."，说明这张表的快照在最新版本的维度表快照中不存在，建议您更新快照。
 
-
-
-#### 选择维度及度量
-
-在建立连接后，可在页面下方的设置窗口，继续根据需要选择作为维度 (D: Dimension) 和度量 (M: Measure) 的字段。单击**概览**，将显示维度和度量选项卡。单击维度或度量对应的 `X`号，可删除此维度或度量。通常，时间会用来作为过滤条件，所以一般会选择时间字段。此外，还会选择商品分类、卖家 ID 等字段为维度。
-![选择维度](images/model_design_update_cn_8.png)
-
-
-一般地，“PRICE” 字段用来衡量销售额，”ITEM_COUNT“ 字段用来衡量商品销量，“SELLER_ID” 用来衡量卖家的销售能力。选择度量字段后的结果如下图所示：
-![选择度量](images/model_design_update_cn_9.png)
 

@@ -21,11 +21,10 @@ Depending on your business scenario, you may need to create a new project or sim
 5. In ODBC data source, fill in the DSN name that you created in the previous step. Check `Unicode ODBC`. For Signon `choose no authorization`. Then Click `Test the connection`.![](images/cognos/5.png)![](images/cognos/6.png)If everything set up properly, test the connection will finish successfully.![](images/cognos/7.png)![](images/cognos/8.png)
 
    Now you have the data source created.
-   
-> Tip: When you connect Cognos to Kyligence Enterprise, it will send a query which triggers full table scan. This will take a relatively long time to process the query when the dataset is extremely large. You can adjust parameter `kylin.query.force-limit` in `kylin.properties` to 1000, which indicates that the total records queried by statement `select *` from the data source is limited to 1000.
+
+   > **Note**: When you connect Cognos to Kyligence Enterprise, it will send a query which triggers full table scan. This will take a relatively long time to process the query when the dataset is extremely large. You can adjust parameter `kylin.query.force-limit` in `kylin.properties` to 1000, which indicates that the total records queried by statement `select *` from the data source is limited to 1000.
 
 6. Click `Next`, you may test the connection in the`Metadata Wizard`.![](images/cognos/9.png)
-
 
 
 ### Cognos & Kyligence Enterprise ACL Integration

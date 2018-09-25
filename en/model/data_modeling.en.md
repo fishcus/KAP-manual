@@ -1,113 +1,177 @@
 ## Data Model
 
-Data model is created based on the data source. In this section, we take the Kyligence Enterprise built-in dataset as an example. There are 1 fact table and 6 lookup tables in the data model, connected by foreign keys. In fact, not all columns in the tables are required for analysis, so we only put the required ones into data model. Then we set these columns as dimensions or measures according to the analyst's scenarios. This section mainly includes:
+Data model is a star schema or snowflake schema model based on multi-dimensional OLAP theory. Data model is the basis in Kyligence Enterpries and cubes can be created based on data models.
 
-- [Create Data Model](#create-data-model)
-- [Instructions and Tips](#instructions-and-tips)
-  - [Lookup Table Storage](#lookup-table-storage)
-  - [Select Dimensions and Measures](#select-dimensions-and-measures) 
+In this section, we take Kyligence Enterprise built-in dataset as an example. There are 1 fact table and 6 lookup tables in the data model, connected by foreign keys. Not all columns in the tables are required for analysis, so we only include necessary fields into our data model. Then we set these columns as dimensions or measures according to analysis scenarios. 
 
-### Create Data Model
+Typically data model design includes:
 
-**Step 1**: Open Kyligence Enterprise Web UI, select project `Learn_kylin` in project list located at upper left corner. Then create a new data model on `Model` page.
+- Define a fact table and multiple dimension tables
+- Define how fact table and dimension tables are joined
+- Define dimensions and measures
+
+
+
+### Start Data Model Design
+
+Open Kyligence Enterprise Web UI, select project *learn_kylin* in project list in upper left corner and click **Studio** in the navigation bar on the left, then select **Model** tab.
 
 ![](images/model_design_update_en_1.png)
 
 
 
-**Step 2**: Select the fact table and lookup table for the model (For the storage of lookup table, please refer to [Instructions and Tips](#instructions-and-tips) at the end of this article). The steps are as below:
+###Create / Edit a Data Model
 
-1. To build the following snowflake schema, from the source table list in the left, drag source tables to the canvas of model designer (in the center of page). First, drag   `KYLIN_SALES` table to the canvas;
-2. Click the setting icon at the upper right corner to toggle `kylin_sales` 's table type to fact table;
-3. Select and drag the following lookup tables to the canvas (`KYLIN_CAL_DT`, `KYLIN_CATEGORY_GROUPINGS`,`KYLIN_ACCOUNT`, `KYLIN_COUNTRY`); Where, drag `KYLIN_ACCOUNT` twice and change their names to `SELLER_ACCOUNT` and `BUYER_ACCOUNT` respectively, and drag`KYLIN_COUNTRY` twice and change their names to `SELLER_COUNTRY` and `BUYER_COUNTRY`, respectively.
+- **Create a New Model**
 
-![](images/model_design_update_en_2.png)
+  1. Click **+ Model** button and input the new model name.
+  2. Click **Submit** and enter model desinger page.
 
-**Step 3**: Set dimensions and measures (DM). Since Kyligence Enterprise V2.5.4, you may not only make single selection or batch selections for dimensions and measures, but also use suggestions by the system. In this example, we use the dimensions and measures suggested by the system. The steps are as below. For more operations, please refer to [Instructions and Tips](#instructions-and-tips) at the end of this article.
+  > **Note**: A new model can be saved only when
+  >
+  > 1. at least one fact table is selected.
+  > 2. at least one dimension column is specified.
 
-1. Click the icon `DM` at the upper left corner to expand DM setting toolbar. In this toolbar, the icon `D` is for dimension, `M` for measure, `—`  for disable and `A` indicates dimensions and measures suggested by Kyligence Enterprise.
-2. Select the checkbox at the leftmost of the toolbar to check all columns, and set them as dimension `D` or measure `M`, or select `A` to use suggested dimensions and measures. You may also select and set the columns one by one. In this example, we select the checkbox and choose `A` .
+- **Edit a Model**
 
-![](images/model_design_update_en_3.png)
-
-**Step 4**: Set table join conditions as below. In Kyligence Enterprise V2.4 and above, dragging one dimension and dropping it to a target lookup table can setup join condition among tables. For instance, to set up join condition as “KYLIN_SALES *Inner Join* KYLIN\_CAL\_DT on KYLIN\_SALES.PART_DT=KYLIN\_CAL\_DT.CAL\_DT”, you should drag `PART_DT` from `KYLIN_SALES` to the table`KYLIN_CAL_DT`, the following window will pop up.
-
-![](images/model_design_update_en_4.png)
-
-Set up the following join conditions by referring to the above method:
-
-1. KYLIN_SALES *Inner Join* KYLIN\_CAL\_DT 
-
-   Connect Condition：
-
-   DEFAULT.KYLIN\_SALES.PART_DT = DEFAULT.KYLIN\_CAL\_DT.CAL\_DT
-
-2. KYLIN_SALES *Inner Join* KYLIN\_CATEGORY_GROUPINGS 
-
-   Connect Condition: 
-
-   KYLIN_SALES.LEAF_CATEG_ID=KYLIN\_CATEGORY\_GROUPINGS.LEAF_CATEG_ID
-
-   KYLIN_SALES.LSTG_SITE_ID=KYLIN\_CATEGORY\_GROUPINGS.SITE_ID 
-
-3. KYLIN_SALES *Inner Join* BUYER_ACCOUNT (alias of KYLIN_ACCOUNT)
-
-   Connect Condition: 
-
-   KYLIN_SALES.BUYER_ID=BUYER_ACCOUNT.ACCOUNT_ID 
-
-4. KYLIN_SALES *Inner Join* SELLER_ACCOUNT (alias of KYLIN_ACCOUNT) 
-
-   Connect Condition: 
-
-   KYLIN_SALES.SELLER_ID=SELLER_ACCOUNT.ACCOUNT_ID 
-
-5. BUYER_ACCOUNT (alias of KYLIN_ACCOUNT) *Inner Join* BUYER_COUNTRY(alias of KYLIN\_COUNTRY) 
-
-   Connect Condition: 
-
-   BUYER_ACCOUNT.ACCOUNT_COUNTRY=BUYER_COUNTRY.COUNTRY 
-
-6. SELLER_ACCOUNT (alias of KYLIN_ACCOUNT) *Inner Join* SELLER_COUNTRY(alias of KYLIN\_COUNTRY)
-
-   Connect Condition: 
-
-   SELLER_ACCOUNT.ACCOUNT_COUNTRY=SELLER_COUNTRY.COUNTRY
-
-The result is shown in the following figure (if you click "inner" as join type, it will show you details of this join condition).
-
-![](images/model_design_update_en_5.png)
+  in **Model** tab, click icon **Edit** on one specific model and start to edit a model.
 
 
 
-Computed column is supported in Kyligence Enterprise, which could improve query performance by pre-calculation capability. For more details, please refer to [computed column chapter](../model/computed_column/README.en.md).
+###Design a Data Model
 
-**Step 5**: Click `Save` button, and then select the time partition column. The time partition column is pre-defined, in which the field type supports data, timestamp, string, varchar, integer, bigint.
+In model designer page, you can define fact table and dimension table via drag and drop in Kyligence web UI.
 
-New data comes to Hive through ETL every day in general, based on which Cube is built incrementally. Let's select column `DEFAULT.KYLIN_SALES.PART_DT` as partition column and specify the date format as `yyyy-MM-dd`.
+- **Define Fact Table**
 
-![](images/model_design_update_en_7.png)
-
-Finally, click the button `Submit`, and the data model is created.
-
-### Instructions and Tips
-
-#### Lookup Table Storage
-
-If you want to set the storage of lookup table, click `Overview` and then click `Model`. The Lookup table and Fact table will appear. By default, when the size of lookup table is less than 300M, the table will be stored as snapshot, so as to improve the query efficiency; when it is greater than 300M,  Kyligence Enterprise do not support to store it as snapshot. At this time, if you still want to make it available, you need to change the corresponding configuration in kylin.properties(details refer to Kyligence Support.).
-
-![](images/model_design_update_en_6.png)
+  1. From the source table list in the left, you can directly drag source tables to the canvas of model designer (in the center of page). Here we drag  table *KYLIN_SALES*  to the canvas.
+  2. Click **Setting** icon on the top right corner of *KYLIN_SALES*, select table type as **Fact Table**.
 
 
 
-#### Select Dimensions and Measures
+- **Define Dimension Table**
 
-After setting table join conditions, you may continue selecting dimensions and measures. Click `Overview` to show `Dimension` and `Measure` tabs. Click X followed by the column name to delete the corresponding dimension and measure you do not need. Usually, Date column is selected as filter condition, so it's required. Other columns such as `Category` and `Seller ID` are also selected as dimensions. 
+  1. Drag following lookup tables into the canvas: *KYLIN_CAL_DT*, *KYLIN_CATEGORY_GROUPINGS*,*KYLIN_ACCOUNT*, *KYLIN_COUNTRY*. 
 
-![](images/model_design_update_en_8.png)
+  2. Drag *KYLIN_ACCOUNT* twice and change their names to *SELLER_ACCOUNT* and *BUYER_ACCOUNT* respectively, and drag *KYLIN_COUNTRY* twice and change their names to *SELLER_COUNTRY* and *BUYER_COUNTRY* respectively.
+
+  > **Note**: For some scenarios, one source table might be referenced as dimension table multiple times in one single data model. Kyligence support this scenario via renaming the table name in data model.
+
+  3. Click **Setting** icon on the top right corner of each table, select table type as **Dimension Table**.
+
+  ![](images/model_design_update_en_2.png)
 
 
 
-Select measures from fact table according to business requirement. For instance, `PRICE` is used to measure sales price, `ITEM_COUNT` is used to measure sales amount, etc. Same as dimension summary, measures summary can be view if you click the "measure" tab besides the dimension overview.
+- **Set Dimensions and Measures**
 
-![](images/model_design_update_en_9.png)
+  You can specify either one single column or multiple columns as dimensions or measures. Also you can use auto suggestion by the system and make modifications if necessary. 
+
+  1. Click **DM** icon on top left of the table, you can open/close editing mode of specifying dimensions and measures.
+  2. In editing mode, click the icons in the toolbar to specify dimension or measure.
+     - **D**: Dimension
+     - **M**: Mesure
+     - **— **: Disabled
+     - **A**: Auto Suggestion
+  3. In this example, we specify the dimensions and measures suggested by the system. Check checkbox to enable select all in the toolbar and click icon **A**.
+
+  ![](images/model_design_update_en_3.png)
+
+
+
+- **Set Table Joins**
+
+  Drag one dimension in fact table and drop it to the corresponding lookup table can setup join condition between tables. For instance, to set up a join condition as `KYLIN_SALES Inner Join KYLIN_CAL_DT on KYLIN_SALES.PART_DT = KYLIN_CAL_DT.CAL_DT`, you can drag *PART_DT* from *KYLIN_SALES* to the table *KYLIN_CAL_DT*, then set up the join condition in the pop up shown as below.
+
+  ![](images/model_design_update_en_4.png)
+
+  Set up the following join conditions:
+
+  1. KYLIN_SALES *Inner Join* KYLIN\_CAL\_DT 
+     Join Condition：
+     - DEFAULT.KYLIN\_SALES.PART_DT = DEFAULT.KYLIN\_CAL\_DT.CAL\_DT
+
+  2. KYLIN_SALES *Inner Join* KYLIN\_CATEGORY_GROUPINGS 
+     Join Condition: 
+     - KYLIN_SALES.LEAF_CATEG_ID = KYLIN\_CATEGORY\_GROUPINGS.LEAF_CATEG_ID
+     - KYLIN_SALES.LSTG_SITE_ID = KYLIN\_CATEGORY\_GROUPINGS.SITE_ID 
+
+  3. KYLIN_SALES *Inner Join* BUYER_ACCOUNT (alias of KYLIN_ACCOUNT)
+     Join Condition: 
+     - KYLIN_SALES.BUYER_ID = BUYER_ACCOUNT.ACCOUNT_ID 
+
+  4. KYLIN_SALES *Inner Join* SELLER_ACCOUNT (alias of KYLIN_ACCOUNT) 
+     Join Condition: 
+     - KYLIN_SALES.SELLER_ID = SELLER_ACCOUNT.ACCOUNT_ID 
+
+  5. BUYER_ACCOUNT (alias of KYLIN_ACCOUNT) *Inner Join* BUYER_COUNTRY (alias of KYLIN\_COUNTRY) 
+     Join Condition: 
+     - BUYER_ACCOUNT.ACCOUNT_COUNTRY = BUYER_COUNTRY.COUNTRY 
+
+  6. SELLER_ACCOUNT (alias of KYLIN_ACCOUNT) *Inner Join* SELLER_COUNTRY (alias of KYLIN\_COUNTRY)
+     Join Condition: 
+     - SELLER_ACCOUNT.ACCOUNT_COUNTRY = SELLER_COUNTRY.COUNTRY
+
+  The result is shown as below. If you click **inner** icon on the connnection lines, it will show you details of the join.
+
+  ![](images/model_design_update_en_5.png)
+
+  > **Note**: When you design a data model, you can use computed column to define additional columns calculated based on existing columns. This can acheive more data model flexibility as well as some data wrangling functionalities.  For more details, please refer to [Computed Column](../model/computed_column/README.en.md).
+
+
+
+- **Save Model**
+
+  Click **Save** button, and then select the time partition column. This is an optional setting. For delta data loading scenarios, you need to specify one time partition column to indicate which data should be loaded into cubes. 
+
+  > **Note**: Currently Kyligence Enterprise supports following data type as time partition column: *date*, *timestamp*, *string*, *varchar*, *integer*, *bigint*.
+
+  In our example, we specify column *KYLIN_SALES.PART_DT* as time partition column and specify the date format as `yyyy-MM-dd`.
+
+  ![](images/model_design_update_en_7.png)
+
+Finally, click the button **Submit**, and the data model is created.
+
+
+
+### Advanced: Set Lookup Table Snapshot
+
+When lookup table is less than 300 MB, it is recommended to enable snapshot of lookup table, to simplify cube design and improve overall system efficiency. By default, the system assumes all lookup tables are small and enables snapshot for all lookup tables always.
+
+- **Benefits of Lookup Table Snapshot**
+  - Allows detailed query on lookup tables.
+  - Columns in the dimension table can be set as derived dimentions during cube design.
+
+
+
+- **How to Disable Lookup Table Snapshot**
+
+  If your lookup table is too big, like over 300 MB, please turn off the snapshot feature for the lookup table, in order to successfully build the cube.
+
+  To turn on/off snapshot, click **Overview** and then click **Model** tab. The Lookup table and Fact table will appear. In the **Lookup Table** section, you can speficy whether to store the a lookup table as snapshot.
+
+  ![](images/model_design_update_en_6.png)
+
+  > **Caution**:
+  >
+  > 1. When a lookup table is larger than 300 MB, we don't recommend you to store it as snapshop. But you can still set parameter `kylin.snapshot.max-mb` in `kylin.properties` to modify this when it's really necessary.
+  > 2. When the parameter above is set to be larger than 300 MB, it might cause cube build job fail at step **Build Dimension Dictionary** and hence affect system stability. If you do need to store lookup table as snapshot, please contact [Kyligence Support](http://docs.kyligence.io/books/v3.1/en/introduction/get_support.en.html) for solution.
+  > 3. We cannot successfully store a lookup table as snapshot when there are duplicated keys in dimension table.
+
+
+
+- **How Snapshot is Used for Queries**
+
+  When a lookup table is stored as snapshot, all columns in that table will be taken as derived dimension by default during cube design. Kyligence Enterprise will create and store a snapshot in step **Build Dimension Dictionary** during building a cube segment, so a snapshot is always linked to a specific segment.
+
+  Kyligence Enterprise will always find out latest version of snapshot for queries, as shown below:
+
+  ![model_design_update_en_10](images/model_design_update_en_8.png)
+
+  > **Note**:
+  >
+  > If the segment of April is deleted, the corresponding snapshot will be also deleted and unavailable. Kyligence Enterpries will select the latest snapshot for the segment of March. If you need to refresh snapshot, you can refresh segment of March or April.
+  >
+  > If you encounter error "No snapshot for table {tableName} found on cube segment…", you need to refresh the snapshot by refreshing corresponding segment.
+
+
