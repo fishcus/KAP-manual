@@ -1,5 +1,6 @@
 ## 查询样例
-当 Cube 构建任务完成，系统一般会自动把 Cube 的状态切换为就绪（Ready）。我们以 Kyligence Enterprise 样例数据为例介绍 SQL 查询方式。首先切换到 Insight 页面，在 Web UI 上选择本案例所用的 Kylin_Sample_1 项目。然后根据数据模型的设计，在查询输入框中输入 SQL 语句，然后单击 Submit 按钮。下面给出一下SQL查询的例子和相应的结果介绍。
+当 Cube 构建任务完成，系统一般会自动把 Cube 的状态切换为就绪（Ready）。我们以 Kyligence Enterprise 样例数据为例介绍 SQL 查询方式。首先切换到 **分析**页面，在 Web UI 上选择本案例所用的 *Kylin_Sample_1* 项目。然后根据数据模型的设计，在查询输入框中输入 SQL 语句，然后单击**提交**按钮。下面给出以下 SQL 查询的例子和相应的结果介绍。
+
 ### 单表行数统计
 ```sql
 SELECT COUNT(*) FROM KYLIN_SALES
@@ -8,7 +9,6 @@ SELECT COUNT(*) FROM KYLIN_SALES
 这条 SQL 用于查询 KYLIN_SALES 表中总行数，读者可以同时在 Hive 中执行同样的查询进行性能对比。在笔者的对比中，Hive 查询耗时 29.385 秒，Kyligence Enterprise 查询耗时 0.18 秒。
 
 ### 多表连接
-
 ```sql
 SELECT
 KYLIN_SALES.PART_DT
@@ -35,8 +35,9 @@ KYLIN_SALES.PART_DT
 ,KYLIN_SALES.LSTG_FORMAT_NAME
 ```
 
-这条 SQL 将事实表 KYLIN_SALES 和两张维表根据外键进行了内部连接。在笔者的对比试验中，Hive 查询耗时 34.361 秒，Kyligence Enterprise 查询耗时 0.33 秒。
-### 维度列COUNT_DISTINCT
+这条 SQL 将事实表 KYLIN_SALES 和两张维度表根据外键进行了内部连接。在笔者的对比试验中，Hive 查询耗时 34.361 秒，Kyligence Enterprise 查询耗时 0.33 秒。
+
+### 维度列 COUNT_DISTINCT
 
 ```sql
 SELECT
@@ -49,8 +50,8 @@ ON KYLIN_SALES.LEAF_CATEG_ID = KYLIN_CATEGORY_GROUPINGS.LEAF_CATEG_ID AND KYLIN_
 ```
 
 这条 SQL 对 PART_DT 字段进行了 COUNT_DISTINCT 查询，但是该字段并没有被添加为 COUNT_DISTINCT 的度量。Kyligence Enterprise 会在运行时计算结果。在笔者的对比试验中，Hive 查询耗时 44.911 秒，Kyligence Enterprise 查询耗时 0.12 秒。
-### 全表查询
 
+### 全表查询
 ```sql
 SELECT * FROM KYLIN_SALES
 ```

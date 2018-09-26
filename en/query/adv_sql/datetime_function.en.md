@@ -23,4 +23,4 @@
 | TIMESTAMPADD(timeUnit, integer, datetime) | Returns *datetime* with an interval of (signed) *integer* *timeUnit*s added. Equivalent to ```datetime + INTERVAL 'integer' timeUnit``` | ```select TIMESTAMPADD(month, 1, date'2012-01-01'),date'2012-01-01'``` | ``` 2012-02-01```          |
 | TIMESTAMPDIFF(timeUnit, datetime, datetime2) | Returns the (signed) number of *timeUnit*intervals between *datetime* and *datetime2*. Equivalent to ```(datetime2 - datetime) timeUnit``` | ```select TIMESTAMPDIFF(month, date'2012-01-01', date '2012-02-01')``` | ```1```                    |
 
-**Note**: This function is inapplicable to Computed Column. For the information of computed column, please refer to the section [Computed Column](model/computed_column.en.md) in the chapter of **Modeling**.
+> **Caution**: These functions cannot be applied to **Computed Column**. For details about computed column, please refer to [Computed Column](../../model/computed_column/README.en.md) in the chapter of **Modeling**.

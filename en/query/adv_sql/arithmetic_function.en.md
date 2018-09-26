@@ -27,4 +27,4 @@
 | TAN(numeric)                   | Returns the tangent of *numeric*         | ```select TAN(5)```                      | ```-3.380515006246586```                 |
 | TRUNCATE(numeric1, numeric2)   | Truncates *numeric1* to *numeric2* places right to the decimal point | ```select TRUNCATE(5,2)```               | ```5```                                  |
 
-**Note**: This function is inapplicable to Computed Column. For the information of computed column, please refer to the section [Computed Column](model/computed_column.en.md) in the chapter of **Modeling**.
+> **Caution**: These functions cannot be applied to **Computed Column**. For details about computed column, please refer to [Computed Column](../../model/computed_column/README.en.md) in the chapter of **Modeling**.

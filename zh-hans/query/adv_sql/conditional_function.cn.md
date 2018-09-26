@@ -7,4 +7,4 @@
 | NULLIF(value, value)                     | 如果两个值相同返回 NULL      | For example, `NULLIF(5, 5)` returns ```NULL```; `NULLIF(5, 0)` returns ```5```. |                |
 | COALESCE(value, value [, value ]*)       | 如果第一个值为 NULL，则取第二个值 | `COALESCE(NULL, 5)`                      | ```5```        |
 
-注：此函数不适用于可计算列。有关可计算列，参见**数据建模**一章中的[可计算列](model/computed_column.cn.md)一节。
+> **注意**：此函数不适用于可计算列。有关可计算列，参见**数据建模**一章中的[可计算列](../../model/computed_column/README.cn.md)部分。

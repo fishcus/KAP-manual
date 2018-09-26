@@ -15,4 +15,4 @@
 | INITCAP(string)                          | Returns *string* with the first letter of each word converter to upper case and the rest to lower case. Words are sequences of alphanumeric characters separated by non-alphanumeric characters. | ```select INITCAP('hello world')```      | ```Hello World``` |
 | REPLACE(string1,string2, string3 )       | Replace substring *string2* of *string1* with *string3* | ```select replace(NAME,'China','Hello') from KYLIN_COUNTRY where NAME='China'``` | ```Hello```       |
 
-**Note**: This function is inapplicable to Computed Column. For the information of computed column, please refer to the section [Computed Column](model/computed_column.en.md) in the chapter of **Modeling**.
+> **Caution**: These functions cannot be applied to **Computed Column**. For details about computed column, please refer to [Computed Column](../../model/computed_column/README.en.md) in the chapter of **Modeling**.

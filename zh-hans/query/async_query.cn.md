@@ -109,8 +109,6 @@ curl -X POST -H "Authorization: Basic QURNSU46S1lMSU4=" -H "Content-Type: applic
 curl -X GET -H "Authorization: Basic QURNSU46S1lMSU4=" -H "Content-Type: application/json"  http://master:7070/kylin/api/async_query/43eeb967-e76a-4214-8932-70594d454013/status
 ```
 
-
-
 ### 获取异步查询结果
 
 **GET /kylin/api/async_query/{QUERY_ID}/result**
@@ -131,13 +129,11 @@ curl -X GET -H "Authorization: Basic QURNSU46S1lMSU4=" -H "Content-Type: applica
 curl -X GET -H "Authorization: Basic QURNSU46S1lMSU4=" -H "Content-Type: application/json"  http://master:7070/kylin/api/async_query/43eeb967-e76a-4214-8932-70594d454012/result
 ```
 
-
-
 ### 清理异步查询结果
 
 **DELETE /kylin/api/async_query**
 
-该接口可能会删除还没有被获取结果的查询
+该接口可能会删除还没有获取到结果的查询
 
 #### 返回示例
 

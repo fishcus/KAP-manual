@@ -13,4 +13,4 @@
 | VAR_POP( [ ALL ] value)           | Returns the population variance (square of the population standard deviation) of *numeric* across all input values | SELECT var_pop(ITEM_COUNT) FROM KYLIN_SALES | 33                |
 | VAR_SAMP( [ ALL ] numeric)        | Returns the sample variance (square of the sample standard deviation) of *numeric* across all input values | SELECT var_samp(ITEM_COUNT) FROM KYLIN_SALES | 33                |
 
-**Note**: This function is inapplicable to Computed Column. For the information of computed column, please refer to the section [Computed Column](model/computed_column.en.md) in the chapter of **Modeling**.
+> **Caution**: These functions cannot be applied to **Computed Column**. For details about computed column, please refer to [Computed Column](../../model/computed_column/README.en.md) in the chapter of **Modeling**.

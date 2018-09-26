@@ -13,4 +13,4 @@
 | VAR_POP( [ ALL ] value)           | 返回所有输入值中类型为 *numeric* 的总体方差（总体标准差的平方）    | SELECT var_pop(ITEM_COUNT) FROM KYLIN_SALES | 33                |
 | VAR_SAMP( [ ALL ] numeric)        | 返回所有输入值中类型为 *numeric* 的样本方差（样本标准差的平方）    | SELECT var_samp(ITEM_COUNT) FROM KYLIN_SALES | 33                |
 
-注：此函数不适用于可计算列。有关可计算列，参见**数据建模**一章中的[可计算列](model/computed_column.cn.md)一节。
+> **注意**：此函数不适用于可计算列。有关可计算列，参见**数据建模**一章中的[可计算列](../../model/computed_column/README.cn.md)部分。

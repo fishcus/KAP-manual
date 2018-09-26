@@ -1,11 +1,7 @@
 ## SQL 交集（Intersect）函数
-
 留存率和转化率在互联网的数据分析场景下非常常见。一般来说，留存率的计算需要的就是两个数据集的交集的值，它们具有一些相同的维度（城市，类别等）和一个变化的维度（日期等）。Kyligence Enterprise 支持的留存率类的计算就是通过基于位图算法和 UDAF 算法的 **intersect_count** 函数。本节我们将向您介绍如何使用交集函数。
 
-
-
 ### Intersect 查询语句
-
 SQL **INTERSECT** 从句/操作符用来接合两个 SELECT 语句，且返回的行来自第一个 SELECT 语句中且等同于第二个 SELECT 语句中某一行。也就是说 INTERSECT 只会返回两个 SELECT 语句的结果中共同的行。
 
 对 intersect_count 使用的具体规则描述如下：
@@ -18,20 +14,13 @@ SQL **INTERSECT** 从句/操作符用来接合两个 SELECT 语句，且返回�
 
 `filter Value List` 指向可变维度中的值，且必须列在数组“array[ ]”中；
 
-
-
 ### 查询前提
-
 为了在 Kyligence Enterprise 中应用留存率的计算，sql 查询需要符合以下要求：
 
 - 有且只有一个可变维度；
 - 需要计算的测量值必须已经被设定为可以进行精确 count distinct 计算的度量值（具体方法请见[Count Distinct(精确)查询优化](../../model/cube/count_distinct_precise.cn.md) ）；
 
-
-
-
 ### 示例
-
 请选择默认**数据源** `learn_kylin`，其中表的结构如下：该数据集中有一张事实表（`KYLIN_SALES`）和两张维度表（`KYLIN_CAL_DT` 、`KYLIN_CATEGORY_GROUPINGS`）。请通过**数据样例**来熟悉事实表的结构 `KYLIN_SALES` 以便之后查询使用。
 
 ![](images/wd_datasample.png)
@@ -54,6 +43,4 @@ group by LSTG_FORMAT_NAME
 
 ![](images/intersect_count.1.png)
 
-
-
-注：此函数不适用于可计算列。有关可计算列，参见**数据建模**一章中的[可计算列](model/computed_column.cn.md)一节。
+> **注意**：此函数不适用于可计算列。有关可计算列，参见**数据建模**一章中的[可计算列](../../model/computed_column/README.cn.md)部分。

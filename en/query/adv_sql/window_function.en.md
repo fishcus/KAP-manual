@@ -1,8 +1,5 @@
 ## Window Function
-
 Since Kyligence Enterprise v2.1, we've provided window function in Kyligence Enterprise to support more complicated query, keeping SQL query simple and work well. Here we are going to introduce how to use this function.
-
-
 
 ### Window Function
 
@@ -19,38 +16,26 @@ Window Functions query supported by Kyligence Enterprise is list as follow:
 | LAG(value, offset, default) OVER ()  | Returns *value* evaluated at the row that is *offset* rows before the current row within the partition; if there is no such row, instead returns *default*. Both *offset* and *default* are evaluated with respect to the current row. If omitted, *offset* defaults to 1 and *default* to NULL |
 | NTILE(value) OVER ()                 | Returns an integer ranging from 1 to *value*, dividing the partition as equally as possible |
 
-
-
 ### Example
-
 In this section, we would take a dataset defaulted in Kyligence Enterprise as data source to practice some typical query mentioned above. Step by step, we will introduce you how to use Window Function in Kyligence Enterprise.
 
 #### Dataset
-
 Select a default **Data Source** named as `learn_kylin`, then the table structure would present below: there are one fact table (`KYLIN_SALES`) and two lookup tables (`KYLIN_CAL_DT` and `KYLIN_CATEGORY_GROUPINGS`). Take a minute to check the `KYLIN_SALES` as well as its sample data, and we'll use it later.
 
 ![](images/wd_datasample.png)
 
-
-
 #### Rank Function (row_number, rank, dense_rank, ntile)
-
 Though we have the row column in this table, for most data analysts, generating row number is essential to get some particular results by different partitions. For instance: `select LSTG_FORMAT_NAME, row_number() over(partition by LSTG_FORMAT_NAME)as format_id ,price from kylin_sales`
 
 Then result returns like:
 
 ![](images/wd_row_number.png)
 
-
-
 #### Offset Function (first_value, last_value, lead, lag)
-
 Similar with rank function, offset function would provide access to a row at a given physical offset beyond that position. To get to know the closest date recorded within the table, then you can input: `select price, part_dt, lead(part_dt,1) over(partition by LSTG_FORMAT_NAME) as latest_dt from kylin_sales`
 
-Result would be:
+Result will be:
 
 ![](images/wd_lead_date.png)
 
-
-
-**Note**: This function is inapplicable to Computed Column. For the information of computed column, please refer to the section [Computed Column](model/computed_column.en.md) in the chapter of **Modeling**.
+> **Caution**: These functions cannot be applied to **Computed Column**. For details about computed column, please refer to [Computed Column](../../model/computed_column/README.en.md) in the chapter of **Modeling**.

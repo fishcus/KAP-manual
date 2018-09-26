@@ -1,10 +1,7 @@
-### SQL 分组函数
+## SQL 分组函数
+从 Kyligence Enterprise v2.1 开始，我们提供分组函数 (grouping sets function) 来支持在一条 SQL 查询中完成根据不同索引建的数据聚合。本节将着重介绍如何应用这组函数。
 
-从 KAP v2.1 开始，我们提供分组函数 (grouping sets function) 来支持在一条 SQL 查询中完成根据不同索引建的数据聚合。本节将着重介绍如何应用这组函数。
-
-
-
-## 分组函数简介
+### 分组函数简介
 
 Kyligence Enterprise 中已经支持的分组函数如下：
 
@@ -13,8 +10,6 @@ Kyligence Enterprise 中已经支持的分组函数如下：
 | GROUPING(expression)                     | 如果表达式中的当前维度上卷（总计）返回 1，否则返回 0。 |
 | GROUP_ID()                               | 根据分组键的组合返回一个对应整数。           |
 | GROUPING_ID(expression [, expression ] * ) | 返回一个给定分组表达式的位向量。            |
-
-
 
 #### 示例
 
@@ -32,10 +27,7 @@ Kyligence Enterprise 中已经支持的分组函数如下：
 
 ![](images/grouping_sets.1.png)
 
-
-
 #### Grouping sets 查询语句
-
 如果你希望得到将 `lstg_format_name`(dim2) 维度上卷后的结果，可以通过改写上面的查询语句得到：
 
 ```
@@ -46,10 +38,8 @@ group by grouping sets((LEAF_CATEG_ID, LSTG_FORMAT_NAME), (LEAF_CATEG_ID))
 order by LEAF_CATEG_ID
 ```
 
- 返回结果如下所示：
+返回结果如下所示：
 
 ![](images/grouping_sets.2.png)
 
-
-
-注：此函数不适用于可计算列。有关可计算列，参见**数据建模**一章中的[可计算列](model/computed_column.cn.md)一节。
+> **注意**：此函数不适用于可计算列。有关可计算列，参见**数据建模**一章中的[可计算列](../../model/computed_column/README.cn.md)部分。

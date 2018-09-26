@@ -23,4 +23,4 @@
 | TIMESTAMPADD(timeUnit, integer, datetime) | 返回添加了 *timeUnit*s 为单位的时间 integer 后的日期 *datetime*,返回类型为 *datetime*,等同于 `datetime + INTERVAL 'integer' timeUnit` 。 如示例中的函数返回日期 part_dt 加一个月。 | `select TIMESTAMPADD(month, 1, date'2012-01-01'),date'2012-01-01'` | ` 2012-02-01`          |
 | TIMESTAMPDIFF(timeUnit, datetime, datetime2) | 返回 *datetime* 和 *datetime2* 的时间差，以 timeUnit 为单位返回，等同于 `(datetime2 - datetime) timeUnit` | `select TIMESTAMPDIFF(month, date'2012-01-01', date '2012-02-01')` | `1`                    |
 
-注：此函数不适用于可计算列。有关可计算列，参见**数据建模**一章中的[可计算列](model/computed_column.cn.md)一节。
+> **注意**：此函数不适用于可计算列。有关可计算列，参见**数据建模**一章中的[可计算列](../../model/computed_column/README.cn.md)部分。

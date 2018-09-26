@@ -105,33 +105,33 @@ A, ABS, ABSOLUTE, ACTION, ADA, ADD, ADMIN, AFTER, ALL,ALLOCATE, ALLOW, ALTER, AL
 
 ### 标识符
 
-标识符为 SQL 查询中使用的表名、列名以及其他元数据。没有使用引号的标识符，如 `emp`需要以字母开头并且只能包含字母、数字及下划线。没有使用引号的标识符在查询时会隐式地被转换成**全大写**。
+标识符为 SQL 查询中使用的表名、列名以及其他元数据。没有使用引号的标识符，如 `emp ` 需要以字母开头并且只能包含字母、数字及下划线。没有使用引号的标识符在查询时会隐式地被转换成**全大写**。
 
-带引号的标识符，如 `"Employee Name"`，以双引号开头及结尾。这种标识符基本可以包含任何字符，包括空格或其他标点符号。如果你希望在标识符中包含双引号，使用另一个双引号来将其转义，例如：
+带引号的标识符，如 `"Employee Name"`，以双引号开头及结尾。这种标识符基本可以包含任何字符，包括空格或其他标点符号。如果您希望在标识符中包含双引号，使用另一个双引号来将其转义，例如：
 
 ```"An employee called ""Fred""."```
 
-标识符和引用的对象进行匹配是大小写敏感的。没有使用引号的标识符会隐式地被转换成全大写，如果查询对象在创建时也没有使用引号，它的名字也会被转成全大写，因此标识符和查询对象可以进行匹配。
+标识符和引用的对象进行匹配是大小写敏感的。没有使用引号的标识符会隐式地被转换成全大写，如果查询对象在创建时也没有使用引号，它的名字也会被转换成全大写，因此标识符和查询对象可以进行匹配。
 
 ###转义关键字
 
-如果你的列名或表名是关键字，你需要使用双引号对其进行转义。
+如果您的列名或表名是关键字，您需要使用双引号对其进行转义。
 
 例如表 `AIRLINE` 包含列 `YEAR` 及 `QUARTER`。这两列的列名和 Kyligence Enterprise 的关键字 **YEAR** 和 **QUARTER** 重复。如下图所示，如果用户直接对 `YEAR` 及 `QUARTER` 两列进行查询，查询会返回报错，因为 Kyligence Enterprise 查询引擎无法分辨两列是否为关键字。
 
 ![Column named with reserved words will fail the query](images/spec/1.png)
 
-如上文所述，当你使用双引号对列名进行转义时，匹配标识符和引用的对象是大小写敏感的，Kyligence Enterprise 查询引擎无法查询到使用双引号包裹的小写的列名，因为这些列是用大写存储的。
+如上文所述，当您使用双引号对列名进行转义时，匹配标识符和引用的对象是大小写敏感的，Kyligence Enterprise 查询引擎无法查询到使用双引号包裹的小写的列名，因为这些列是用大写存储的。
 
 ![Query with double-quoted lower case columns will fail ](images/spec/2.png)
 
-这时候我们只要将双引号包裹的列名改为全大写的就可正常查询了。
+这时候我们只要将双引号包裹的列名改为全大写的就可以正常查询了。
 
 ![Query with double-quoted upper case column will return successfully  ](images/spec/4.png)
 
 ### 转义引号
 
-如果你的查询的值中包含单引号，你可以用另一个单引号对查询进行转义。
+如果您查询的值中包含单引号，您可以用另一个单引号对查询进行转义。
 
 ![Escape single quote with another single quote](images/spec/5.png)
 
