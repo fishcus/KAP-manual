@@ -1,4 +1,4 @@
-## 缓存 REST API
+## 缓存 API
 
 > 提示：
 >
@@ -17,12 +17,10 @@
 
 - `PUT http://host:port/kylin/api/cache/announce/{entity}/{cacheKey}/{event}`
 
-
-- URL Parameter
+- URL Parameters
     * `entity` - `必选` `string`，实体，如 "all"，"project_schema" ，"project_data" 或者 "project_acl" 
     * `cacheKey` - `必选` `string` ，缓存键值，比如项目名称
-    * `event` - `必选` `string` ，事件，如 "'create"，"update" 或者 “drop”
-
+    * `event` - `必选` `string` ，事件，如 "create"，"update" 或者 "drop"
 
 - HTTP Header
 	- `Accept: application/vnd.apache.kylin-v2+json`
@@ -33,7 +31,7 @@
 
 ```shell
 curl -X PUT \
-  http://host:port/kylin/api/cache/announce/all/learn_kylin/update \
+  'http://host:port/kylin/api/cache/announce/all/learn_kylin/update' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
   -H 'Accept-Language: cn|en' \
   -H 'Authorization: Basic QURNSU46S1lMSU4=' \
@@ -46,18 +44,15 @@ curl -X PUT \
 
 - `PUT http://host:port/kylin/api/cache/{entity}/{cacheKey}/{event}`
 
-
-- URL Parameter
+- URL Parameters
     * `entity` - `必选` `string`，实体，如 "all"，"project_schema" ，"project_data" 或者 "project_acl" 
     * `cacheKey` - `必选` `string`  ，缓存键值，比如项目名称
-    * `event` - `必选` `string` ，事件，如 "'create"，"update" 或者 “drop”
-
+    * `event` - `必选` `string` ，事件，如 "create"，"update" 或者 "drop"
 
 - HTTP Header
 	- `Accept: application/vnd.apache.kylin-v2+json`
 	- `Accept-Language: cn|en`
 	- `Content-Type: application/json;charset=utf-8`
-
 
 **Curl 请求示例**
 
