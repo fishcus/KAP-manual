@@ -1,8 +1,8 @@
 ## Job API
 
-> Reminder:
+> Reminders:
 >
-> 1. Please read Access and Authentication REST API and understand how authentication works.
+> 1. Please read [Access and Authentication REST API](authentication.en.md) and understand how authentication works.
 > 2. On Curl command line, don't forget to quote the URL if it contains `&` or other special chars.
 
 
@@ -21,23 +21,20 @@
 
 - `GET http://host:port/kylin/api/jobs`
 
-
-- URL Parameter
+- URL Parameters
     - `timeFilter` - `required` `int` , e.g. (LAST ONE DAY: 0, LAST ONE WEEK: 1, LAST ONE MONTH: 2, LAST ONE YEAR: 3, ALL: 4)
     - `jobName` - `optional` `string` , job name
     - `projectName` - `optional` `string` , project name
     - `status` - `optional` `int` , e.g. (NEW: 0, PENDING: 1, RUNNING: 2, STOPPED: 32, FINISHED: 4, ERROR: 8, DISCARDED: 16)
-    - `pageOffset` - `optional` `int` , offset of the returned jobs per page
-    - `pageSize` - `optional` `int`, returned jobs number per page
+    - `pageOffset` - `optional` `int` , offset of returned result, 0 by default
+    - `pageSize` - `optional` `int`, quantity of returned result per page, 10 by default
     - `sortby` -  `optional`  `string`, sort field,  "last_modify" by default
-    - `reverse` - `optional` `boolean`, whether reverse, "true" by default
-
+    - `reverse` - `optional` `boolean`, whether sort reverse, "true" by default
 
 - HTTP Header
-	- `Accept: application/vnd.apache.kylin-v2+json`
-	- `Accept-Language: cn|en`
-	- `Content-Type: application/json;charset=utf-8`
-
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: cn|en`
+  - `Content-Type: application/json;charset=utf-8`
 
 **Curl Request Example**
 
@@ -91,16 +88,13 @@ curl -X GET \
 
 - `GET http://host:port/kylin/api/jobs/{jobId}`
 
-
-- URL Parameter
+- URL Parameters
 	* `jobId` - `required` `string` , Job ID
-
 
 - HTTP Header
 	- `Accept: application/vnd.apache.kylin-v2+json`
 	- `Accept-Language: cn|en`
 	- `Content-Type: application/json;charset=utf-8`
-
 
 **Curl Request Example**
 
@@ -112,7 +106,6 @@ curl -X GET \
   -H 'Authorization: Basic QURNSU46S1lMSU4=' \
   -H 'Content-Type: application/json;charset=utf-8'
 ```
-
 
 **Response Example**
 
@@ -145,33 +138,28 @@ curl -X GET \
 
 
 
-
 ### Get Job Step Output
 
 - `GET http://host:port/kylin/api/jobs/{jobId}/steps/{stepId}/output`
 
-
-- URL Parameter
+- URL Parameters
     * `jobId` - `required` `string` , Job ID
     * `stepId` - `required` `string` , Step ID, which consists of Job ID and step sequence id, eg,.  Job ID is "fb479e54-837f-49a2-b457-651fc50be110", and the step sequence ID is "02",  then the Step ID is "fb479e54-837f-49a2-b457-651fc50be110-02"
-
 
 - HTTP Header
 	- `Accept: application/vnd.apache.kylin-v2+json`
 	- `Accept-Language: cn|en`
 	- `Content-Type: application/json;charset=utf-8`
 
-
 **Curl Request Example**
 
 ```shell
 curl -X GET \
-  http://host:port/kylin/api/jobs/{jobId}/steps/{stepId}/output \
+  'http://host:port/kylin/api/jobs/{jobId}/steps/{stepId}/output' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
   -H 'Accept-Language: cn|en' \
   -H 'Content-Type: application/json;charset=utf-8'
 ```
-
 
 **Response Example**
 
@@ -189,33 +177,28 @@ curl -X GET \
 
 
 
-
 ### Pause a Job
 
 - `PUT http://host:port/kylin/api/jobs/{jobId}/pause`
 
-
-- URL Parameter
+- URL Parameters
 	* `jobId` - `required` `string` , Job ID
-
 
 - HTTP Header
 	- `Accept: application/vnd.apache.kylin-v2+json`
 	- `Accept-Language: cn|en`
 	- `Content-Type: application/json;charset=utf-8`
 
-
 **Curl Request Example**
 
 ```shell
 curl -X PUT \
-  http://host:port/kylin/api/jobs/{jobId}/pause \
+  'http://host:port/kylin/api/jobs/{jobId}/pause' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
   -H 'Accept-Language: cn|en' \
   -H 'Authorization: Basic QURNSU46S1lMSU4=' \
   -H 'Content-Type: application/json;charset=utf-8'
 ```
-
 
 **Response Example**
 
@@ -247,27 +230,23 @@ curl -X PUT \
 
 
 
-
 ### Resume a Job
 
 - `PUT http://host:port/kylin/api/jobs/{jobId}/resume`
 
-
-- URL Parameter
+- URL Parameters
 	* `jobId` - `required` `string` , Job ID
-
 
 - HTTP Header
 	- `Accept: application/vnd.apache.kylin-v2+json`
 	- `Accept-Language: cn|en`
 	- `Content-Type: application/json;charset=utf-8`
 
-
 **Curl Request Example**
 
 ```shell
 curl -X PUT \
-  http://host:port/kylin/api/jobs/{jobId}/resume \
+  'http://host:port/kylin/api/jobs/{jobId}/resume' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
   -H 'Accept-Language: cn|en' \
   -H 'Authorization: Basic QURNSU46S1lMSU4=' \
@@ -303,7 +282,6 @@ curl -X PUT \
 }
 ```
 
-
 - **Response Information**
 
     - `uuid` - Job ID
@@ -325,28 +303,24 @@ curl -X PUT \
 
 - `PUT http://host:port/kylin/api/jobs/{jobId}/cancel`
 
-
-- URL Parameter
+- URL Parameters
 	* `jobId` - `required` `string` , Job ID
-
 
 - HTTP Header
 	- `Accept: application/vnd.apache.kylin-v2+json`
 	- `Accept-Language: cn|en`
 	- `Content-Type: application/json;charset=utf-8`
 
-
 **Curl Request Example**
 
 ```shell
 curl -X PUT \
-  http://host:port/kylin/api/jobs/{jobId}/cancel \
+  'http://host:port/kylin/api/jobs/{jobId}/cancel' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
   -H 'Accept-Language: cn|en' \
   -H 'Authorization: Basic QURNSU46S1lMSU4=' \
   -H 'Content-Type: application/json;charset=utf-8'
 ```
-
 
 **Response Example**
 
@@ -382,7 +356,7 @@ curl -X PUT \
 
 - `DELETE http://host:port/kylin/api/jobs/{jobId}/drop`
 
-- URL Parameter
+- URL Parameters
 	* `jobId` - `required` `string`, Job ID
 
 - HTTP Header
@@ -390,12 +364,11 @@ curl -X PUT \
 	- `Accept-Language: cn|en`
 	- `Content-Type: application/json;charset=utf-8`
 
-
 **Curl Request Example**
 
 ```shell
 curl -X DELETE \
-  http://host:port/kylin/api/jobs/0140b8e1-d74e-4c01-86d0-a114f59ba787/drop \
+  'http://host:port/kylin/api/jobs/0140b8e1-d74e-4c01-86d0-a114f59ba787/drop' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
   -H 'Accept-Language: cn|en' \
   -H 'Authorization: Basic QURNSU46S1lMSU4=' \
