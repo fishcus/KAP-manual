@@ -1,19 +1,18 @@
 ## Access and Authentication API
 
 ### Access Information
-The access prefix of all Kyligence Enterpriese APIs is `/kylin/api`. This prefix is required regardless of which module API is accessed. For example,  accessing all cubes uses API  of `/kylin/api/cubes`, and the correspondingly complete path is `http://host:port/kylin/api/cubes`.
+The access prefix of all Kyligence Enterpriese APIs is `/kylin/api`. This prefix is required regardless of which module API is accessed. For example,  accessing cubes uses API of `/kylin/api/cubes`, and the correspondingly complete path is `http://host:port/kylin/api/cubes`.
+
+
 
 ### Authentication
-All APIs in Kyligence Enterprise are based on [Basic Authentication](http://en.wikipedia.org/wiki/Basic_access_authentication) authentication mechanism. Basic Authentication is a simple access control mechanism, which encodes account and password information based on Base64, and add these information as request headers to HTTP request headers, then the back-end will read account information from the request header for authentication. Take Kyligence Enterprise default account password `ADMIN:KYLIN` as an example, after encoding, the corresponding account password would be `Basic QURNSU46S1lMSU4=`, so the corresponding HTTP header information is `Authorization: Basic QURNSU46S1lMSU4=`. 
+All APIs in Kyligence Enterprise are based on [Basic Authentication](http://en.wikipedia.org/wiki/Basic_access_authentication) authentication mechanism. Basic Authentication is a simple access control mechanism, which encodes account and password information based on Base64. Adding these information as request headers to HTTP request commands,  the back-end will decode the account and password information from the request header for authentication. Take the default account and  password of  Kyligence Enterprise , `ADMIN:KYLIN`, as an example, after encoding, the corresponding authentication information would be `Basic QURNSU46S1lMSU4=`, and the corresponding HTTP header information is `Authorization: Basic QURNSU46S1lMSU4=`. 
 
 
 
 ### Authentication Essentials
 * Add `Authorization` to HTTP header
-* Or users could get authorization through `POST http://localhost:7070/kylin/api/user/authentication` . Once the authentication passes, the authentication information would be stored in cookie files for the following visit. 
-
-
-- `POST http://host:port/kylin/api/user/authentication`
+* Or users could get authorization through `POST http://host:port/kylin/api/user/authentication`. Once the authentication passes, the authentication information would be stored in cookie files for the following visit. 
 
 
 - HTTP Header
@@ -21,7 +20,6 @@ All APIs in Kyligence Enterprise are based on [Basic Authentication](http://en.w
 	- `Accept: application/vnd.apache.kylin-v2+json`
 	- `Accept-Language: cn|en`
 	- `Content-Type: application/json;charset=utf-8`
-
 
 **Curl Request Example**
 
@@ -33,7 +31,6 @@ curl -X POST \
   -H 'Authorization: Basic QURNSU46S1lMSU4=' \
   -H 'Content-Type: application/json;charset=utf-8'
 ```
-
 
 **Response Example**
 
@@ -56,7 +53,6 @@ curl -X POST \
     "msg": ""
 }
 ```
-
 
 
 **JavaScript Authentication Request Example**
