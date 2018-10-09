@@ -1,158 +1,173 @@
 ## Row ACL API
 
-> **Tip**
+> Reminders:
 >
-> Before using API, make sure that you read the previous chapter of [Access and Authentication](authentication.en.md), and know how to add authentication information in API.
->
-> If there exists `&` in your request path, please enclose the URL in quotation marks `""` or add a backslash ahead  `\&`  to avoid being escaped.
+> 1. Please read [Access and Authentication REST API](authentication.en.md) and understand how authentication works.
+> 2. On Curl command line, don't forget to quote the URL if it contains `&` or other special chars.
 
 
-* [Get Row ACL](#get-row-acl)
-* [Add Row ACL](#add-row-acl)
-* [Batch Add Row ACL](#batch-add-row-acl)
-* [Modify Row ACL](#modify-row-acl)
-* [Delete Row ACL](#delete-row-acl)
 
-### Get Row ACL
-`Request Mode GET`
+* [Get Row ACL ](#Get Row ACL )
+* [Grant Row ACL ](#Grant Row ACL )
+* [Grant Row ACL in batch ](#Grant Row ACL in batch )
+* [Update Row ACL](#Update Row ACL)
+* [Revoke Row ACL](#Revoke Row ACL)
 
-`Access Path http://host:port/kylin/api/acl/row/paged/{project}/{table}`
 
-`Accept: application/vnd.apache.kylin-v2+json`
 
-`Accept-Language: cn|en`
+### Get Row ACL 
 
-#### Path Variables
-* project - `required` `string`, project name
-* table - `required` `string`, table name
+- `GET http://host:port/kylin/api/acl/row/paged/{project}/{table}`
 
-#### Request Body
-* pageSize - `optional` `int`, default 10, how many lines would be included in each returned page.
-* pageOffset - `optional` `int`, default 0, get data start subscript.
 
-#### Request Example
-`Request Path:http://host:port/kylin/api/acl/row/paged/learn_kylin/DEFAULT.KYLIN_SALES`
+- URL Parameters
+    * project - `required` `string`, project name
+    * table - `required` `string`, table name
 
-#### Curl Request Example
+
+- HTTP Header
+    - `Accept: application/vnd.apache.kylin-v2+json`
+    - `Accept-Language: cn|en`
+    - `Content-Type: application/json;charset=utf-8`
+
+- HTTP Body
+ 	* `pageSize` - `optional` `int`, quantity of returned result per page, 10 by default
+ 	* `pageOffset` - `optional` `int`, offset of returned result, 0 by default
+
+
+**Curl Request Example**
+
+```shell
+curl -X GET \
+  'http://host:port/kylin/api/acl/row/paged/learn_kylin/DEFAULT.KYLIN_SALES' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Content-Type: application/json;charset=utf-8'
 ```
-curl -X GET -H "Authorization: Basic xxxxxx" -H Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{"pageSize":10，pageOffset":0 }' http://host:port/kylin/api/acl/row/paged/learn_kylin/DEFAULT.KYLIN_SALES
-```
 
-#### Response Information
-- type - the value can only be CLOSED currently, indicating equal =
-- leftExpr - value to be restricted
-- rightExpr - value to be restricted, rightExpr shall be equal to leftExpr
+> Note: The Curl request example returns the row acl of table DEFAULT.KYLIN_SALES of project learn_kylin
 
 
-#### Response Example
-```json
+**Response Example**
+
+```JSON
 {
-  "code":"000",
-  "data":
-    {
-      "size":1,
-      "user":[
-       {
-          "ADMIN":{
-             "ACCOUNT_BUYER_LEVEL":[[1,"333"],[1,"444"],[1,"332323"]],
-             "ACCOUNT_ID":[[1,"123"],[1,"444"],[1,"555"]]}
-          }
-      ],
-      "group":[
-          "ROLE_ADMIN":{
-             "ACCOUNT_BUYER_LEVEL":[[1,"333"],[1,"444"],[1,"332323"]],
-             "ACCOUNT_ID":[[1,"123"],[1,"444"],[1,"555"]]}
-          }
-      ]
+    "code": "000",
+    "data": {
+        "size": 1,
+        "user": [
+            {
+                "ADMIN": {
+                    "PART_DT": [
+                        [
+                            1,
+                            "1"
+                        ]
+                    ]
+                }
+            }
+        ],
+        "group": []
     },
-    "msg":"get column cond list in table"
+    "msg": "get column cond list in table"
 }
 ```
 
-### Add Row ACL
-`Request Mode POST`
 
-`Access Path http://host:port/kylin/api/acl/row/{project}/{type}/{table}/{username}`
 
-`Accept: application/vnd.apache.kylin-v2+json`
+### Grant Row ACL 
 
-`Accept-Language: cn|en`
+- `POST http://host:port/kylin/api/acl/row/{project}/{type}/{table}/{username}`
 
-#### Path Variable
-* project - `required` `string`, project name
-* type - `required` `string`, indicate the type of action, value: user/group
-* table - `required` `string`, table name
-* username - `required` `string`, user name
 
-#### Request Body
-* condsWithColumn - `required` `map`, key-value pairs of column and conditions. For details, see the request body in the following request example.
+- URL Parameters
+    * `project` - `required` `string`, project name
+    * `type` - `required` `string`, operation object, ie.,user or group
+    * `table` - `required` `string`, table name
+    * `username` - `required` `string`, user name
 
-#### Request Example
-`Request Path:http://host:port/kylin/api/acl/row/learn_kylin/user/DEFAULT.KYLIN_SALES/ADMIN`
 
-```
-Request Body:TRANS_ID's values:1,2,3.(TRANS_ID=1 OR TRANS_ID=2 OR TRANS_ID=3)
+- HTTP Header
+    - `Accept: application/vnd.apache.kylin-v2+json`
+    - `Accept-Language: cn|en`
+    - `Content-Type: application/json;charset=utf-8`
 
-{
+
+- HTTP Body
+	* `condsWithColumn` - `required` `map` , the key-value pairs of columns and corresponding row acl, and row acl requires the following parameters,
+    - `type` - "CLOSED", which means "equal to"
+    - `leftExpr` - specified value
+    - `rightExpr` - specified value, `rightExpr` must be equal to `leftExpr`
+
+
+**Curl Request Example**
+
+```shell
+curl -X POST \
+  'http://host:port/kylin/api/acl/row/learn_kylin/user/DEFAULT.KYLIN_SALES/ADMIN' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8' \
+  -d '{
   "condsWithColumn": {
-    "TRANS_ID": [
+    "PART_DT": [
       {
         "type": "CLOSED",
         "leftExpr": "1",
         "rightExpr": "1"
-      },
-      {
-        "type": "CLOSED",
-        "leftExpr": "2",
-        "rightExpr": "2"
-      },
-      {
-        "type": "CLOSED",
-        "leftExpr": "3",
-        "rightExpr": "3"
       }
     ]
   }
+}'
+```
+
+> Note: The Curl Request Example grants row acl on table DEFAULT.KYLIN_SALES on column PART_DT equals to value 1 to user ADMIN.
+
+
+**Response Example**
+
+```JSON
+{
+    "code": "000",
+    "data": "",
+    "msg": "add user row cond list."
 }
 ```
 
-#### Curl Request Example
-```
-curl -X POST -H "Authorization: Basic xxxxxx" -H Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "condsWithColumn":[{type: "CLOSED", leftExpr: "1", rightExpr: "1"}]}' http://host:port/kylin/api/acl/row/learn_kylin/user/DEFAULT.KYLIN_SALES/ADMIN
-```
-
-#### Response Example
-```json
-{"code":"000","data":"","msg":"add user row cond list."}
-```
-
-### Batch Add Row ACL
-`Request Mode POST`
-
-`Access Path http://host:port/kylin/api/acl/row/batch/{project}/{type}/{table}`
-
-`Accept: application/vnd.apache.kylin-v2+json`
-
-`Accept-Language: cn|en`
-
-#### Path Variable
-* project - `required` `string`, project name
-* type - `required` `string`, indicate the type of action, value: user/group
-* table - `required` `string`, table name
 
 
-#### Request Body
-* The request body is a map structure, key is the user name, value is also a map structure which has the column name as key and set of column values as value. For details, see the request body in the following request example.
+### Grant Row ACL in batch 
 
-#### Request Example
-`Request Path:http://host:port/kylin/api/acl/row/batch/learn_kylin/user/DEFAULT.KYLIN_SALES`
+- `POST http://host:port/kylin/api/acl/row/batch/{project}/{type}/{table}`
 
-```
-Request Body:
-LSTG_FORMAT_NAME's values:'Auction','ABIN' and OPS_REGION's value: 'BEIJING' for user ADMIN;
-LSTG_FORMAT_NAME's value:'ABIN' for user ANALYST
 
-{
+- URL Parameters
+* `project` - `required` `string`, project name
+* `type` - `required` `string`, operation object, ie.,user or group
+* `table` - `required` `string`, table name
+
+
+- HTTP Header
+    - `Accept: application/vnd.apache.kylin-v2+json`
+    - `Accept-Language: cn|en`
+    - `Content-Type: application/json;charset=utf-8`
+
+
+- HTTP Body
+	* Key-value pairs of user name and corresponding row acl
+
+
+**Curl Request Example**
+
+```shell
+curl -X POST \
+  'http://host:port/kylin/api/acl/row/batch/{project}/user/DEFAULT.KYLIN_SALES' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8' \
+  -d '  {
 	"ADMIN": {
 		"LSTG_FORMAT_NAME":[
 			"Auction",
@@ -167,103 +182,118 @@ LSTG_FORMAT_NAME's value:'ABIN' for user ANALYST
 			"ABIN"
 		]
 	}
+}'
+```
+
+> Note: The Curl Request Example grants row acl on table DEFAULT.KYLIN_SALES on column LSTG_FORMAT_NAME equaling to' Auction' and 'ABIN' to user ADMIN, also grants  row acl on table DEFAULT.KYLIN_SALES on column LSTG_FORMAT_NAME equaling to 'ABIN' to user ANALYST.
+
+
+**Response Example**
+
+```JSON
+{
+    "code": "000",
+    "data": "",
+    "msg": "2 user row ACL(s) updated"
 }
 ```
 
-#### Curl Request Example
-```
-curl -X POST -H "Authorization: Basic xxxxxx" -H Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "ADMIN": { "LSTG_FORMAT_NAME":["Auction", "ABIN"],"OPS_REGION":["BEIJING"]},"ANALYST": { "LSTG_FORMAT_NAME":["ABIN"]} }' http://host:port/kylin/api/acl/row/batch/learn_kylin/user/DEFAULT.KYLIN_SALES
-```
 
 
-#### Response Example
-```json
-{"code":"000","data":"","msg":"${user_count} user row ACL(s) updated"}
-```
+### Update Row ACL
 
-### Modify Row ACL
-`Request Mode PUT`
+- `PUT http://host:port/kylin/api/acl/row/{project}/{type}/{table}/{username}`
 
-`Access Path http://host:port/kylin/api/acl/row/{project}/{type}/{table}/{username}`
 
-`Accept: application/vnd.apache.kylin-v2+json`
+- URL Parameters
+    * `project` - `required` `string`, project name
+    * `type` - `required` `string`, operation object, ie.,user or group
+    * `table` - `required` `string`, table name
+    * `username` - `required` `string`, user name
 
-`Accept-Language: cn|en`
 
-#### Path Variable
-* project - `required` `string`, project name
-* type - `required` `string`, indicate the type of action, value: user/group
-* table - `required` `string`, table name
-* username - `required` `string`, user name
+- HTTP Header
+    - `Accept: application/vnd.apache.kylin-v2+json`
+    - `Accept-Language: cn|en`
+    - `Content-Type: application/json;charset=utf-8`
 
-#### Request Body
-* condsWithColumn - `required` `map`, key-value pairs of column and conditions. For details, see the request body in the following request example.
 
-#### Request Example
-`Request Path:http://host:port/kylin/api/acl/row/learn_kylin/user/DEFAULT.KYLIN_SALES/ADMIN`
+- HTTP Body
+	* `condsWithColumn` - `required` , key-value pairs of columns and corresponding row acl
 
-```
-Request Body:TRANS_ID's values:1,2,3.(TRANS_ID=1 OR TRANS_ID=2 OR TRANS_ID=3)
 
-{
+**Curl Request Example**
+
+```shell
+curl -X POST \
+  'http://host:port/kylin/api/acl/row/learn_kylin/user/DEFAULT.KYLIN_SALES/ADMIN' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Content-Type: application/json;charset=utf-8' \
+  -d '{
   "condsWithColumn": {
-    "TRANS_ID": [
+    "PART_DT": [
       {
         "type": "CLOSED",
         "leftExpr": "1",
         "rightExpr": "1"
-      },
-      {
-        "type": "CLOSED",
-        "leftExpr": "2",
-        "rightExpr": "2"
-      },
-      {
-        "type": "CLOSED",
-        "leftExpr": "3",
-        "rightExpr": "3"
       }
     ]
   }
+}'
+```
+
+> Note: The Curl Request Example updates the row acl on table DEFAULT.KYLIN_SALES on column PART_DT equaling to '1' to user ADMIN.
+
+
+**Response Example**
+
+```JSON
+{
+    "code": "000",
+    "data": "",
+    "msg": "update user's row cond list"
 }
 ```
 
-#### Curl Request Example
-```
-curl -X PUT -H "Authorization: Basic xxxxxx" -H Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "condsWithColumn":[{type: "CLOSED", leftExpr: "1", rightExpr: "1"}]}' http://host:port/kylin/api/acl/row/learn_kylin/user/DEFAULT.KYLIN_SALES/ADMIN
-```
-
-#### Response Example
-```json
-{"code":"000","data":"","msg":"update user's row cond list"}
-```
-
-### Delete Row ACL
-`Request Mode DELETE`
-
-`Access Path http://host:port/kylin/api/acl/row/{project}/{type}/{table}/{username}`
-
-`Accept: application/vnd.apache.kylin-v2+json`
-
-`Accept-Language: cn|en`
-
-#### Path Variables
-* project - `required` `string`, project name
-* type - `required` `string`, indicate the type of action, value: user/group
-* table - `required` `string`, table name
-* username - `required` `string`, user name
-
-#### Request Body
-
-`Request Path:http://host:port/kylin/api/acl/row/learn_kylin/user/DEFAULT.KYLIN_SALES/ADMIN`
 
 
-#### Curl Request Example
-```
-curl -X DELETE -H "Authorization: Basic xxxxxx" -H Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/acl/row/learn_kylin/user/DEFAULT.KYLIN_SALES/ADMIN
+### Revoke Row ACL
+
+- `DELETE http://host:port/kylin/api/acl/row/{project}/{type}/{table}/{username}`
+
+
+- URL Parameters
+    * `project` - `required` `string`, project name
+    * `type` - `required` `string`, operation object, ie.,user or group
+    * `table` - `required` `string`, table name
+    * `username` - `required` `string`, user name
+
+
+- HTTP Header
+    - `Accept: application/vnd.apache.kylin-v2+json`
+    - `Accept-Language: cn|en`
+    - `Content-Type: application/json;charset=utf-8`
+
+**Curl Request Example**
+
+```shell
+curl -X DELETE \
+  'http://host:port/kylin/api/acl/row/learn_kylin/user/DEFAULT.KYLIN_SALES/ADMIN' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8'
 ```
 
-#### Response Example
-```
-{"code":"000","data":"","msg":"delete user's row cond list"}
+> Note: The Curl Request Example revokes row acl on table DEFAULT.KYLIN_SALES to user ADMIN.
+
+**Response Example**
+
+```JSON
+{
+    "code": "000",
+    "data": "",
+    "msg": "delete user's row cond list"
+}```
 ```
