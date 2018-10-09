@@ -1,17 +1,18 @@
-## Cube REST API
+## Cube API
 
 > 提示：
 >
 > 1. 请确保已阅读前面的[访问及安全认证](authentication.cn.md)章节，了解如何在 REST API 语句中添加认证信息。
 >
-> 2. 如果您的访问路径中含有 `&` 符号时，请在访问路径两端加上引号`""` 或者添加反斜杠 `\` 对 `&` 进行转义。
+> 2. 在 Curl 命令行上，如果您访问的 URL 中含有 `&` 符号，请注意转义，比如在 URL 两端加上引号。
+
 
 
 * [返回多个 Cube](#返回多个 Cube)
 * [返回指定 Cube](#返回指定 Cube)
 * [返回 Cube 描述信息](#返回 Cube 描述信息)
 * [构建 Cube - 日期分区](#构建 Cube - 日期分区)
-* [构建 Cube - 无分区](#构建 Cube - 无分区)
+* [构建 Cube - 全量构建](#构建 Cube - 全量构建)
 * [构建 Cube - 批量构建](#构建 Cube - 批量构建)
 * [克隆 Cube](#克隆 Cube)
 * [启用 Cube](#启用 Cube)
@@ -26,26 +27,24 @@
 
 - `GET http://host:port/kylin/api/cubes`
 
-- URL Parameter
-  * `pageOffset` - `可选` `int` 返回数据起始下标，默认为0
-  * `pageSize` - `可选` `int ` 分页返回对应每页返回多少，默认10
-  * `cubeName` - `可选` `string` 返回名称等于该关键字的 Cube
-  * `exactMatch` - `可选` `boolean` 是否根据 cubeName 完全匹配，默认 `true`
-  * `modelName` - `可选` `string` 返回对应模型名称等于该关键字的 Cube
-  * `projectName` - `可选` `string` 指定返回该项目下 Cube
-  * `sortBy` - `可选` `string` 指定排序字段，默认为 `update_time`
-  * `reverse` - `可选` `boolean` 是否倒序，默认 `true`
-
+- URL Parameters
+  * `pageOffset` - `可选` `int` ，返回数据起始下标，默认为 0
+  * `pageSize` - `可选` `int ` ，分页返回对应每页返回多少，默认为10
+  * `cubeName` - `可选` `string` ， Cube 名称
+  * `exactMatch` - `可选` `boolean` ，是否根据 Cube 名称完全匹配，默认为 `true`
+  * `modelName` - `可选` `string` ，返回对应模型名称等于该关键字的 Cube
+  * `projectName` - `可选` `string` ，项目名称
+  * `sortBy` - `可选` `string` ，指定排序字段，默认为 `update_time`
+  * `reverse` - `可选` `boolean` ，是否倒序，默认为 `true`
 
 - HTTP Header
 	- `Accept: application/vnd.apache.kylin-v2+json`
 	- `Accept-Language: cn|en`
 	- `Content-Type: application/json;charset=utf-8`
 
+**Curl 请求示例**
 
-#### cURL 请求示例
-
-```
+```shell
 curl -X GET \
   'http://host:port/kylin/api/cubes?pageSize=10&modelName=kylin_sales_model' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -54,7 +53,7 @@ curl -X GET \
   -H 'Content-Type: application/json;charset=utf-8'
 ```
 
-#### 响应示例
+**响应示例**
 
 ```JSON
 {
@@ -74,20 +73,17 @@ curl -X GET \
 
 - `GET http://host:port/kylin/api/cubes`
 
-
-- URL Parameter
-  - `cubeName` - `必选` `string` 返回名称等于该关键字的 Cube
-
+- URL Parameters
+  - `cubeName` - `必选` `string`  ，Cube 名称
 
 - HTTP Header
 	- `Accept: application/vnd.apache.kylin-v2+json`
 	- `Accept-Language: cn|en`
 	- `Content-Type: application/json;charset=utf-8`
 
+**Curl 请求示例**
 
-#### cURL 请求示例
-
-```
+```shell
 curl -X GET \
   'http://host:port/kylin/api/cubes?cubeName=kylin_sales_cube' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -96,7 +92,8 @@ curl -X GET \
   -H 'Content-Type: application/json;charset=utf-8'
 ```
 
-#### 响应示例
+**响应示例**
+
 ```JSON
 {
     "code":"000",
@@ -114,30 +111,27 @@ curl -X GET \
 
 - `GET http://host:port/kylin/api/cube_desc/{projectName}/{cubeName}`
 
-
-- URL Parameter
-	* `projectName` - `必选` `string` 项目名称
-	* `cubeName` - `必选` `string` Cube 名称
-
+- URL Parameters
+	* `projectName` - `必选` `string`  ，项目名称
+	* `cubeName` - `必选` `string `， Cube 名称
 
 - HTTP Header
 	- `Accept: application/vnd.apache.kylin-v2+json`
 	- `Accept-Language: cn|en`
 	- `Content-Type: application/json;charset=utf-8`
 
+**Curl 请求示例**
 
-#### cURL 请求示例
-
-```
+```shell
 curl -X GET \
-  http://host:port/kylin/api/cube_desc/learn_kylin/kylin_sales_cube \
+  'http://host:port/kylin/api/cube_desc/learn_kylin/kylin_sales_cube' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
   -H 'Accept-Language: cn|en' \
   -H 'Authorization: Basic QURNSU46S1lMSU4=' \
   -H 'Content-Type: application/json;charset=utf-8'
 ```
 
-#### 响应示例
+**响应示例**
 
 ```JSON
 {
@@ -185,29 +179,26 @@ curl -X GET \
 
 - `PUT http://host:port/kylin/api/cubes/{cubeName}/segments/build`
 
-
-- URL Parameter
-	* `cubeName` - `必选` `string` Cube 名称
-
+- URL Parameters
+	- `cubeName` - `必选` `string` ，Cube 名称
 
 - HTTP Header
 	- `Accept: application/vnd.apache.kylin-v2+json`
 	- `Accept-Language: cn|en`
 	- `Content-Type: application/json;charset=utf-8`
 
-
 - HTTP Body
-	* `startTime` - `必选` `long` 要计算的数据对应起始时间的时间戳，应为 GMT 格式的时间戳，可使用 https://www.epochconverter.com/ 网页进行转换，如`1388534400000`对应`2014-01-01 00:00:00`
-	* `endTime` - `必选` `long` 要计算的数据对应终止时间的时间戳，应为 GMT 格式的时间戳
-	* `buildType` - `必选` `string` 支持的计算类型: 'BUILD'
-	* `mpValues` - `可选` `string` 对应模型的多级分区字段值
+	* `startTime` - `必选` `long` ，开始时间，对应 GMT 格式的时间戳，如`1388534400000`对应`2014-01-01 00:00:00`
+	* `endTime` - `必选` `long` ，结束时间，对应 GMT 格式的时间戳
+	* `buildType` - `必选` `string` ，支持的计算类型，为："BUILD"
+	* `mpValues` - `可选` `string` ，对应模型的多级分区字段值
 
 
-#### cURL 请求示例
+**Curl 请求示例**
 
-```
+```shell
 curl -X PUT \
-  http://host:port/kylin/api/cubes/kylin_sales_cube/segments/build \
+  'http://host:port/kylin/api/cubes/kylin_sales_cube/segments/build' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
   -H 'Accept-Language: cn|en' \
   -H 'Content-Type: application/json;charset=utf-8' \
@@ -218,7 +209,7 @@ curl -X PUT \
 }'
 ```
 
-#### 响应示例
+**响应示例**
 
 ```JSON
 {
@@ -252,28 +243,25 @@ curl -X PUT \
 
 - `PUT http://host:port/kylin/api/cubes/{cubeName}/segments/build`
 
+- URL Parameters
+	* `cubeName` - `必选` `string`，Cube 名称
 
 - HTTP Header
 	- `Content-Type: application/vnd.apache.kylin-v2+json;charset=UTF-8`
 	- `Accept: application/vnd.apache.kylin-v2+json`
 	- `Accept-Language: cn|en`
 
-
-- URL Parameter
-	* `cubeName` - `必选` `string` Cube 名称
-
-
 - HTTP Body
-	* `startTime` - `必选` `long` , 0
-	* `endTime` - `必选` `long`, 0
-	* `buildType` - `必选` `string`, 支持的计算类型: 'BUILD'
+	* `startTime` - `必选` `long` ，开始时间，为 0
+	* `endTime` - `必选` `long`，结束时间，为 0
+	* `buildType` - `必选` `string`，支持的计算类型："BUILD"
 
 
-#### cURL 请求示例
+**Curl 请求示例**
 
-```
+```shell
 curl -X PUT \
-  http://host:port/kylin/api/cubes/{cubeName}/segments/build \
+  'http://host:port/kylin/api/cubes/{cubeName}/segments/build' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
   -H 'Accept-Language: cn|en' \
   -H 'Authorization: Basic QURNSU46S1lMSU4=' \
@@ -285,7 +273,7 @@ curl -X PUT \
 }'
 ```
 
-#### 响应示例
+**响应示例**
 
 ```JSON
 {
@@ -319,28 +307,24 @@ curl -X PUT \
 
 - `PUT http://host:port/kylin/api/cubes/{cubeName}/batch_sync`
 
-
-- URL Parameter
-	* `cubeName` - `必选` `string` Cube 名称
-
+- URL Parameters
+	* `cubeName` - `必选` `string` ，Cube 名称
 
 - HTTP Header
 	- `Accept: application/vnd.apache.kylin-v2+json`
 	- `Accept-Language: cn|en`
 	- `Content-Type: application/json;charset=utf-8`
 
-
 - HTTP Body
-	* `pointList` - `可选` `string` 对应模型的分区的字段值
-	* `rangeList` - `可选` `string` 对应模型的分区的字段值
-	* `mpValues` - `可选` `string` 对应模型的分区的字段值
+	* `pointList` - `可选` `string`  ，对应模型的分区的字段值
+	* `rangeList` - `可选` `string`  ，对应模型的分区的字段值
+	* `mpValues` - `可选` `string` ， 对应模型的分区的字段值
 
+**Curl 请求示例**
 
-#### cURL 请求示例
-
-```
+```shell
 curl -X PUT \
-  http://host:port/kylin/api/cubes/{cubeName}/batch_sync \
+  'http://host:port/kylin/api/cubes/{cubeName}/batch_sync' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
   -H 'Accept-Language: cn|en' \
   -H 'Authorization: Basic QURNSU46S1lMSU4=' \
@@ -348,7 +332,7 @@ curl -X PUT \
   -d '[{"mpValues": "300","pointList": ["1","2","3","4","5","6","7","8","9","10"],"rangeList": [["50","70"],["90","110"]]},{"mpValues": "301","pointList": ["1","2","3","4","5","6","7","8","9","10"],"rangeList": [["20","30"],["30","40"]]}]'
 ```
 
-#### 响应示例
+**响应示例**
 
 ```JSON
 {
@@ -384,31 +368,27 @@ curl -X PUT \
 
 
 
-### 克隆Cube
+### 克隆 Cube
 
 - `PUT http://host:port/kylin/api/cubes/{cubeName}/clone`
 
-
-- URL Parameter
-	* `cubeName` - `必选` `string` 被克隆Cube名称
-
+- URL Parameters
+	- `cubeName` - `必选` `string`， 被克隆的 Cube 名称
 
 - HTTP Header
 	- `Accept: application/vnd.apache.kylin-v2+json`
 	- `Accept-Language: cn|en`
 	- `Content-Type: application/json;charset=utf-8`
 
-
 - HTTP Body
-    * `cubeName` - `必选` `string` 新Cube名称
-    * `project` - `必选` `string` 新项目名称 
+    * `cubeName` - `必选` `string` ，克隆后的 Cube 名称
+    * `project` - `必选` `string`，克隆后的项目名称 
 
+**Curl 请求示例**
 
-#### cURL 请求示例
-
-```
+```shell
 curl -X PUT \
-  http://host:port/kylin/api/cubes/kylin_sales_cube/clone \
+  'http://host:port/kylin/api/cubes/kylin_sales_cube/clone' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
   -H 'Accept-Language: cn|en' \
   -H 'Authorization: Basic QURNSU46S1lMSU4=' \
@@ -418,7 +398,7 @@ curl -X PUT \
 ```
 
 
-#### 响应示例
+**响应示例**
 
 ```JSON
 {
@@ -457,26 +437,23 @@ curl -X PUT \
 
 
 
-### 启用Cube
+### 启用 Cube
 
 - `PUT http://host:port/kylin/api/cubes/{cubeName}/enable`
 
-
-- URL Parameter
-	- `cubeName` - `必选` `string` Cube 名称
-
+- URL Parameters
+	- `cubeName` - `必选` `string` ，Cube 名称
 
 - HTTP Header
 	- `Accept: application/vnd.apache.kylin-v2+json`
 	- `Accept-Language: cn|en`
 	- `Content-Type: application/json;charset=utf-8`
 
+**Curl 请求示例**
 
-#### cURL 请求示例
-
-```
+```shell
 curl -X PUT \
-  http://host:port/kylin/api/cubes/kylin_sales_cube/enable \
+  'http://host:port/kylin/api/cubes/kylin_sales_cube/enable' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
   -H 'Accept-Language: cn|en' \
   -H 'Authorization: Basic QURNSU46S1lMSU4=' \
@@ -484,7 +461,7 @@ curl -X PUT \
 ```
 
 
-#### 响应示例
+**响应示例**
 
 ```JSON
 {
@@ -527,22 +504,19 @@ curl -X PUT \
 
 - `PUT http://host:port/kylin/api/cubes/{cubeName}/disable`
 
-
-- URL Parameter
-	- `cubeName` - `必选` `string` Cube 名称
-
+- URL Parameters
+	- `cubeName` - `必选` `string` ，Cube 名称
 
 - HTTP Header
 	- `Accept: application/vnd.apache.kylin-v2+json`
 	- `Accept-Language: cn|en`
 	- `Content-Type: application/json;charset=utf-8`
 
+**Curl 请求示例**
 
-#### cURL 请求示例
-
-```
+```shell
 curl -X PUT \
-  http://host:port/kylin/api/cubes/kylin_sales_cube/disable \
+  'http://host:port/kylin/api/cubes/kylin_sales_cube/disable' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
   -H 'Accept-Language: cn|en' \
   -H 'Authorization: Basic QURNSU46S1lMSU4=' \
@@ -550,9 +524,9 @@ curl -X PUT \
 ```
 
 
-#### 响应示例
+**响应示例**
 
-```
+```JSON
 {
     "code":"000",
     "data":{
@@ -589,14 +563,12 @@ curl -X PUT \
 
 
 
-### 清理Cube
+### 清理 Cube
 
 - `PUT http://host:port/kylin/api/cubes/{cubeName}/purge`
 
-
-- URL Parameter
-	- `cubeName` - `必选` `string` Cube 名称
-
+- URL Parameters
+	- `cubeName` - `必选` `string`， Cube 名称
 
 - HTTP Header
 	- `Accept: application/vnd.apache.kylin-v2+json`
@@ -604,15 +576,14 @@ curl -X PUT \
 	- `Content-Type: application/json;charset=utf-8`
 
 - HTTP Body
-	* `mpValues` - `可选` `string` 模型多级分区值
-	* `project` - `必选`
+	* `mpValues` - `可选` `string`，模型多级分区值
+	* `project` - `必选` `string` ，项目名称
 
+**Curl 请求示例**
 
-#### cURL 请求示例
-
-```
+```shell
 curl -X PUT \
-  http://host:port/kylin/api/cubes/{cubeName}/purge \
+  'http://host:port/kylin/api/cubes/{cubeName}/purge' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
   -H 'Accept-Language: cn|en' \
   -H 'Authorization: Basic QURNSU46S1lMSU4=' \
@@ -621,9 +592,9 @@ curl -X PUT \
 ```
 
 
-#### 响应示例
+**响应示例**
 
-```
+```JSON
 {
     "code":"000",
     "data":{
@@ -660,32 +631,30 @@ curl -X PUT \
 
 
 
-### 管理Segment
+### 管理 Segment
 
 - `PUT http://host:port/kylin/api/cubes/{cubeName}/segments`
 
 
-- URL Parameter
-	- `cubeName` - `必选` `string` Cube 名称
+- URL Parameters
+	- `cubeName` - `必选` `string` ，Cube 名称
 
 - HTTP Header
 	- `Accept: application/vnd.apache.kylin-v2+json`
 	- `Accept-Language: cn|en`
 	- `Content-Type: application/json;charset=utf-8`
 
-
 - HTTP Body
-    * `buildType`  -  `必选` `string` "MERGE", "REFRESH", "DROP"
-    * `segments`  -  `必选` `string` Segment 名字 数组
-    * `mpValues`  -  `可选` `string` 模型的多级分区值
-    * `force`  -  `可选` `boolean` 是否强制进行操作，"true" 或 "false"
+  * `buildType`  -  `必选` `string` ，操作类型，为 "MERGE", "REFRESH" 或 "DROP"
+  * `segments`  -  `必选` `string[]` ，Segment 名称
+  * `mpValues`  -  `可选` `string`， 模型的多级分区值
+  * `force`  -  `可选` `boolean` ，是否强制进行操作，为 "true" 或 "false"
 
+**Curl 请求示例**
 
-#### cURL 请求示例
-
-```
+```shell
 curl -X PUT \
-  http://host:port/kylin/api/cubes/kylin_sales_cube/segments \
+  'http://host:port/kylin/api/cubes/kylin_sales_cube/segments' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
   -H 'Accept-Language: cn|en' \
   -H 'Authorization: Basic QURNSU46S1lMSU4=' \
@@ -698,7 +667,7 @@ curl -X PUT \
 ```
 
 
-#### 响应示例
+**响应示例**
 
 ```JSON
 {
@@ -710,26 +679,23 @@ curl -X PUT \
 
 
 
-### 导出TDS
+### 导出 TDS
 
 - `GET http://host:port/kylin/api/cubes/{cubeName}/export/tds`
 
-
-- URL Parameter
-	- `cubeName` - `必选` `string` Cube 名称
-
+- URL Parameters
+	- `cubeName` - `必选` `string`， Cube 名称
 
 - HTTP Header
 	- `Accept: application/vnd.apache.kylin-v2+json`
 	- `Accept-Language: cn|en`
 	- `Content-Type: application/json;charset=utf-8`
 
+**Curl 请求示例**
 
-#### cURL 请求示例
-
-```
+```shell
 curl -X GET \
-  http://10.1.2.99:7070/kylin/api/cubes/kylin_sales_cube/export/tds \
+  'http://10.1.2.99:7070/kylin/api/cubes/kylin_sales_cube/export/tds' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
   -H 'Accept-Language: cn|en' \
   -H 'Authorization: Basic QURNSU46S1lMSU4=' \

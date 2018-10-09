@@ -1,673 +1,339 @@
 ## Cube API
 
-> **Tip**
+> Reminders:
 >
-> Before using API, make sure that you read the previous chapter of [Access and Authentication](authentication.en.md), and know how to add authentication information in API.
->
-> If there exists `&` in your request path, please enclose the URL in quotation marks `""` or add a backslash ahead  `\&`  to avoid being escaped.
+> 1. Please read [Access and Authentication REST API](authentication.en.md) and understand how authentication works.
+> 2. On Curl command line, don't forget to quote the URL if it contains `&` or other special chars.
 
-* [List Cubes](#list-cubes)
-* [Get Cube](#get-cube)
-* [Get Cube Descriptor](#get-cube-descriptor)
-* [Build Cube - Date Partition](#build-cube-date-partition)
-* [Build Cube - Non Date Partition](#build-cube-non-date-partition)
-* [Build Cube - No Partition](#build-cube-no-partition)
-* [Build Cube - Batch](#build-cube-in-batch)
-* [Clone Cube](#clone-cube)
-* [Enable Cube](#enable-cube)
-* [Disable Cube](#disable-cube)
-* [Purge Cube](#purge-cube)
-* [Manage Segment](#manage-segment)
-* [Export TDS](#export-tds)
 
-### List Cubes 
-`Request Mode GET`
 
-`Access Path http://host:port/kylin/api/cubes`
+* [Get Cube List](#Get Cube List)
+* [Get Specific Cube](#Get Specific Cube)
+* [Get Cube Description](#Get Cube Description)
+* [Build a Cube with Date Partition](#Build a Cube with Date Partition)
+* [Full Build a Cube ](#Full Build a Cube)
+* [Build a Cube in batch](#Build a Cube in batch)
+* [Clone a Cube](#Clone a Cube)
+* [Enable a Cube](#Enable a Cube)
+* [Disable a Cube](#Disable a Cube)
+* [Purge a Cube](#Purge a Cube)
+* [Manage Segments](#Manage Segments)
+* [Export TDS File](#Export TDS File)
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
 
-`Accept: application/vnd.apache.kylin-v2+json`
 
-`Accept-Language: cn|en`
+### Get Cube List
 
-#### Request Body
-* pageOffset - `optional` `int`, default 0, get data start subscript.
-* pageSize - `optional` `int `, default 10, how many lines would be included in each returned page.
-* cubeName - `optional` `string`, returned name is the keyword related Cube.
-* exactMatch - `optional` `boolean`, default true, specify whether matching exactly based on cubeName.
-* modelName - `optional` `string` returned model name is the keyword's Cube.
-* projectName - `optional` `string`, specify the returned Cube under the project.
-* sortBy - `optional` `string`, default "update_time", specify the sort field.
-* reverse - `optional` `boolean`, default:true.
+- `GET http://host:port/kylin/api/cubes`
 
-#### Request Example
+- URL Parameters
+  * `pageOffset` - `optional` `int` , offset of returned result, 0 by default
+  * `pageSize` - `optional` `int` , quantity of returned result per page, 10 by default
+  * `cubeName` - `optional` `string` ,  cube name
+  * `exactMatch` - `optional` `boolean` , whether matchs cube name exactly, `true` by default
+  * `modelName` - `optional` `string` , corresponding model name
+  * `projectName` - `optional` `string` , project name
+  * `sortBy` - `optional` `string` , sort field,  `update_time` by default
+  * `reverse` - `optional` `boolean` , whether sort reversely,  `true` by default
 
-`Request Path: "http://host:port/kylin/api/cubes?pageOffset=0&pageSize=10&projectName=your_project&cubeName=&sortBy=update_time&reverse=true&exactMatch=false"`
+- HTTP Header
+	- `Accept: application/vnd.apache.kylin-v2+json`
+	- `Accept-Language: cn|en`
+	- `Content-Type: application/json;charset=utf-8`
 
-#### Response Example
-```json
+**Curl Request Example**
+
+```shell
+curl -X GET \
+  'http://host:port/kylin/api/cubes?pageSize=10&modelName=kylin_sales_model' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8'
+```
+
+**Response Example**
+
+```JSON
 {
-    "code": "000",
-    "data":
-        "cubes": [  
-            {
-            "uuid": "8372c3b7-a33e-4b69-83dd-0bb8b1f8117e",
-            "last_modified": 1508487909245,
-            "version": "3.0.0.1",
-            "name": "ci_inner_join_cube",
-            "owner": null,
-            "descriptor": "ci_inner_join_cube",
-            "display_name": null,
-            "cost": 50,
-            "status": "DISABLED",
-            "segments": [],
-            "create_time_utc": 0,
-            "cuboid_bytes": null,
-            "cuboid_bytes_recommend": null,
-            "cuboid_last_optimized": 0,
-            "project": "default",
-            "model": "ci_inner_join_model",
-            "is_streaming": false,
-            "partitionDateColumn": "TEST_KYLIN_FACT.CAL_DT",
-            "partitionDateStart": 0,
-            "isStandardPartitioned": true,
-            "size_kb": 0,
-            "input_records_count": 0,
-            "input_records_size": 0,
-            "is_draft": false,
-            "multilevel_partition_cols": [],
-            "total_storage_size_kb": 0
-            }
-        ],
-        size: 1
-    },
-    msg: ""
-}
-```
-
-#### Curl Example
-
-```
-curl -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json" "http://host:port/kylin/api/cubes?pageOffset=0&pageSize=10&projectName=your_project&cubeName=&sortBy=update_time&reverse=true&exactMatch=false"
-```
-
-### Get Cube 
-
-`Request Mode GET`
-
-`Access Path http://host:port/kylin/api/cubes/{cubeName}`
-
-`Content-Type: application/vnd.apache.kylin-v2+json`
-
-`Accept: application/vnd.apache.kylin-v2+json`
-
-`Accept-Language: cn|en`
-
-#### Path Variable
-* cubeName - `required` `string`, obtained Cube's name.
-
-#### Request Example
-
-`Request Path:  http://host:port/kylin/api/cubes/your_cube`
-
-#### Response Example
-
-```json
-{
-    "code": "000",
+    "code":"000",
     "data":{
-      "uuid": "8372c3b7-a33e-4b69-83dd-0bb8b1f8117e",
-      "last_modified": 1508487909245,
-      "version": "3.0.0.1",
-      "name": "ci_inner_join_cube",
-      "owner": null,
-      "descriptor": "ci_inner_join_cube",
-      "display_name": null,
-      "cost": 50,
-      "status": "DISABLED",
-      "segments": [],
-      "create_time_utc": 0,
-      "cuboid_bytes": null,
-      "cuboid_bytes_recommend": null,
-      "cuboid_last_optimized": 0,
-      "project": "default",
-      "model": "ci_inner_join_model",
-      "is_streaming": false,
-      "partitionDateColumn": "TEST_KYLIN_FACT.CAL_DT",
-      "partitionDateStart": 0,
-      "isStandardPartitioned": true,
-      "size_kb": 0,
-      "input_records_count": 0,
-      "input_records_size": 0,
-      "is_draft": false,
-      "multilevel_partition_cols": [],
-      "total_storage_size_kb": 0
+        "size":3,
+        "cubes":[...]
     },
-    msg: ""
+    "msg":""
+}
+
+```
+
+
+
+### Get Specific Cube
+
+- `GET http://host:port/kylin/api/cubes`
+
+- URL Parameters
+  - `cubeName` - `required` `string`  , cube name
+
+- HTTP Header
+	- `Accept: application/vnd.apache.kylin-v2+json`
+	- `Accept-Language: cn|en`
+	- `Content-Type: application/json;charset=utf-8`
+
+
+**Curl Request Example**
+
+```shell
+curl -X GET \
+  'http://host:port/kylin/api/cubes?cubeName=kylin_sales_cube' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8'
+```
+
+**Response Example**
+
+```JSON
+{
+    "code":"000",
+    "data":{
+        "size":1,
+        "cubes":[...]
+    },
+    "msg":""
 }
 ```
 
-#### Curl Example
 
+
+### Get Cube Description
+
+- `GET http://host:port/kylin/api/cube_desc/{projectName}/{cubeName}`
+
+- URL Parameters
+	* `projectName` - `required` `string`  , project name
+	* `cubeName` - `required` `string `,  cube name
+
+- HTTP Header
+	- `Accept: application/vnd.apache.kylin-v2+json`
+	- `Accept-Language: cn|en`
+	- `Content-Type: application/json;charset=utf-8`
+
+
+**Curl Request Example**
+
+```shell
+curl -X GET \
+  'http://host:port/kylin/api/cube_desc/learn_kylin/kylin_sales_cube' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8'
 ```
-curl -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/cubes/your_cube
-```
 
-### Get Cube Descriptor
-dimensions, measures and etc.
+**Response Example**
 
-`Request Mode GET`
+```JSON
+{
+    "code":"000",
+    "data":{
+        "cube":{
+            "uuid":"0ef9b7a8-3929-4dff-b59d-2100aadc8dbf",
+            "last_modified":1534836872000,
+            "version":"3.0.0.1",
+            "name":"kylin_sales_cube",
+            "is_draft":false,
+            "model_name":"kylin_sales_model",
+            "description":"",
+            "null_string":null,
+            "dimensions":[...],
+            "measures":[...],
+            "rowkey":{...},
+            "hbase_mapping":{...},
+            "aggregation_groups":[...],
+            "signature":null,
+            "notify_list":[...],
+            "status_need_notify":[...],
+            "partition_date_start":1325376000000,
+            "partition_date_end":3153600000000,
+            "auto_merge_time_ranges":[
 
-`Access Path http://host:port/kylin/api/cube_desc/{projectName}/{cubeName}`
-
-`Content-Type: application/vnd.apache.kylin-v2+json`
-
-`Accept: application/vnd.apache.kylin-v2+json`
-
-`Accept-Language: cn|en`
-
-#### Path Variable
-* projectName - `required` `string`, project's name.
-* cubeName - `required` `string`, Cube's name.
-
-#### Request Example
-
-`Request Path:  http://host:port/kylin/api/cube_desc/your_project/your_cube`
-
-#### Response Example
-```sh
-  {
-    "code": "000",
-    "data": {
-        "cube": {
-            "uuid": "3819ad72-3929-4dff-b59d-cd89a01238af",
-            "last_modified": 1508487309851,
-            "version": "3.0.0.1",
-            "name": "ci_inner_join_cube",
-            "is_draft": false,
-            "model_name": "ci_inner_join_model",
-            "description": null,
-            "null_string": null,
-            "dimensions": [
-                {
-                    "name": "CAL_DT",
-                    "table": "TEST_CAL_DT",
-                    "column": "{FK}",
-                    "derived": [
-                        "WEEK_BEG_DT"
-                    ]
-                }            
             ],
-            "measures": [
-                {
-                    "name": "TRANS_CNT",
-                    "function": {
-                        "expression": "COUNT",
-                        "parameter": {
-                            "type": "constant",
-                            "value": "1"
-                        },
-                        "returntype": "bigint"
-                    }
-                },
-                {
-                    "name": "BUYER_CONTACT",
-                    "function": {
-                        "expression": "EXTENDED_COLUMN",
-                        "parameter": {
-                            "type": "column",
-                            "value": "TEST_ORDER.BUYER_ID",
-                            "next_parameter": {
-                                "type": "column",
-                                "value": "BUYER_ACCOUNT.ACCOUNT_CONTACT"
-                            }
-                        },
-                        "returntype": "extendedcolumn(100)"
-                    }
-                },
-                {
-                    "name": "SELLER_CONTACT",
-                    "function": {
-                        "expression": "EXTENDED_COLUMN",
-                        "parameter": {
-                            "type": "column",
-                            "value": "TEST_KYLIN_FACT.SELLER_ID",
-                            "next_parameter": {
-                                "type": "column",
-                                "value": "SELLER_ACCOUNT.ACCOUNT_CONTACT"
-                            }
-                        },
-                        "returntype": "extendedcolumn(100)"
-                    }
-                },
-                {
-                    "name": "TRANS_ID_RAW",
-                    "function": {
-                        "expression": "RAW",
-                        "parameter": {
-                            "type": "column",
-                            "value": "TEST_KYLIN_FACT.TRANS_ID"
-                        },
-                        "returntype": "raw"
-                    }
-                }
-            ],
-            "dictionaries": [
-                {
-                    "column": "TEST_KYLIN_FACT.TEST_COUNT_DISTINCT_BITMAP",
-                    "builder": "org.apache.kylin.dict.global.SegmentAppendTrieDictBuilder"
-                }
-            ],
-            "rowkey": {
-                "rowkey_columns": [
-                    {
-                        "column": "TEST_KYLIN_FACT.SELLER_ID",
-                        "encoding": "int:4",
-                        "isShardBy": false
-                    },
-                    {
-                        "column": "TEST_KYLIN_FACT.ORDER_ID",
-                        "encoding": "int:4",
-                        "isShardBy": false
-                    },
-                    {
-                        "column": "TEST_KYLIN_FACT.CAL_DT",
-                        "encoding": "date",
-                        "isShardBy": false
-                    }                
-                 ]
-            },
-            "hbase_mapping": {
-                "column_family": [
-                    {
-                        "name": "F1",
-                        "columns": [
-                            {
-                                "qualifier": "M",
-                                "measure_refs": [
-                                    "TRANS_CNT",
-                                    "ITEM_COUNT_SUM",
-                                    "GMV_SUM",
-                                    "GMV_MIN",
-                                    "GMV_MAX",
-                                    "COMPUTED_COLUMN_MEASURE"
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "name": "F2",
-                        "columns": [
-                            {
-                                "qualifier": "M",
-                                "measure_refs": [
-                                    "SELLER_HLL",
-                                    "SELLER_FORMAT_HLL",
-                                    "TOP_SELLER",
-                                    "TEST_COUNT_DISTINCT_BITMAP"
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "name": "F3",
-                        "columns": [
-                            {
-                                "qualifier": "M",
-                                "measure_refs": [
-                                    "TEST_EXTENDED_COLUMN",
-                                    "BUYER_CONTACT",
-                                    "SELLER_CONTACT",
-                                    "TRANS_ID_RAW",
-                                    "PRICE_RAW",
-                                    "CAL_DT_RAW"
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            },
-            "aggregation_groups": [
-                {
-                    "includes": [
-                        "TEST_KYLIN_FACT.CAL_DT",
-                        "TEST_KYLIN_FACT.LEAF_CATEG_ID",
-                        "TEST_KYLIN_FACT.LSTG_FORMAT_NAME",
-                        "TEST_KYLIN_FACT.LSTG_SITE_ID",
-                        "TEST_KYLIN_FACT.SLR_SEGMENT_CD",
-                        "TEST_CATEGORY_GROUPINGS.META_CATEG_NAME",
-                        "TEST_CATEGORY_GROUPINGS.CATEG_LVL2_NAME",
-                        "TEST_CATEGORY_GROUPINGS.CATEG_LVL3_NAME",
-                        "TEST_KYLIN_FACT.DEAL_YEAR"
-                    ],
-                    "select_rule": {
-                        "hierarchy_dims": [
-                            [
-                                "TEST_CATEGORY_GROUPINGS.META_CATEG_NAME",
-                                "TEST_CATEGORY_GROUPINGS.CATEG_LVL2_NAME",
-                                "TEST_CATEGORY_GROUPINGS.CATEG_LVL3_NAME",
-                                "TEST_KYLIN_FACT.LEAF_CATEG_ID"
-                            ]
-                        ],
-                        "mandatory_dims": [],
-                        "joint_dims": [
-                            [
-                                "TEST_KYLIN_FACT.LSTG_FORMAT_NAME",
-                                "TEST_KYLIN_FACT.LSTG_SITE_ID",
-                                "TEST_KYLIN_FACT.SLR_SEGMENT_CD",
-                                "TEST_KYLIN_FACT.DEAL_YEAR"
-                            ]
-                        ],
-                        "dim_cap": 1
-                    }
-                },
-                {
-                    "includes": [
-                        "TEST_KYLIN_FACT.CAL_DT",
-                        "TEST_KYLIN_FACT.LEAF_CATEG_ID",
-                        "TEST_KYLIN_FACT.LSTG_FORMAT_NAME",
-                        "TEST_KYLIN_FACT.LSTG_SITE_ID",
-                        "TEST_KYLIN_FACT.SLR_SEGMENT_CD",
-                        "TEST_CATEGORY_GROUPINGS.META_CATEG_NAME",
-                        "TEST_CATEGORY_GROUPINGS.CATEG_LVL2_NAME",
-                        "TEST_CATEGORY_GROUPINGS.CATEG_LVL3_NAME",
-                        "TEST_KYLIN_FACT.SELLER_ID",
-                        "SELLER_ACCOUNT.ACCOUNT_BUYER_LEVEL",
-                        "SELLER_ACCOUNT.ACCOUNT_SELLER_LEVEL",
-                        "SELLER_ACCOUNT.ACCOUNT_COUNTRY",
-                        "SELLER_COUNTRY.NAME",
-                        "TEST_KYLIN_FACT.ORDER_ID",
-                        "TEST_ORDER.TEST_DATE_ENC",
-                        "TEST_ORDER.TEST_TIME_ENC",
-                        "TEST_ORDER.BUYER_ID",
-                        "BUYER_ACCOUNT.ACCOUNT_BUYER_LEVEL",
-                        "BUYER_ACCOUNT.ACCOUNT_SELLER_LEVEL",
-                        "BUYER_ACCOUNT.ACCOUNT_COUNTRY",
-                        "BUYER_COUNTRY.NAME",
-                        "TEST_KYLIN_FACT.SELLER_COUNTRY_ABBR",
-                        "TEST_KYLIN_FACT.BUYER_COUNTRY_ABBR",
-                        "TEST_KYLIN_FACT.SELLER_ID_AND_COUNTRY_NAME",
-                        "TEST_KYLIN_FACT.BUYER_ID_AND_COUNTRY_NAME"
-                    ],
-                    "select_rule": {
-                        "hierarchy_dims": [],
-                        "mandatory_dims": [
-                            "TEST_KYLIN_FACT.CAL_DT"
-                        ],
-                        "joint_dims": [
-                            [
-                                "TEST_CATEGORY_GROUPINGS.META_CATEG_NAME",
-                                "TEST_CATEGORY_GROUPINGS.CATEG_LVL2_NAME",
-                                "TEST_CATEGORY_GROUPINGS.CATEG_LVL3_NAME",
-                                "TEST_KYLIN_FACT.LEAF_CATEG_ID"
-                            ]
-                        ],
-                        "dim_cap": 1
-                    }
-                }
-            ],
-            "signature": "kNACGfzr3/ozZvEsWLNNtg==",
-            "notify_list": null,
-            "status_need_notify": [],
-            "partition_date_start": 0,
-            "partition_date_end": 3153600000000,
-            "auto_merge_time_ranges": null,
-            "volatile_range": 0,
-            "retention_range": 0,
-            "engine_type": 100,
-            "storage_type": 99,
-            "override_kylin_properties": {
-                "kylin.cube.algorithm": "LAYER",
-                "kylin.storage.hbase.owner-tag": "kylin@kylin.apache.org"
-            },
-            "cuboid_black_list": [],
-            "parent_forward": 3,
-            "mandatory_dimension_set_list": []
+            "volatile_range":0,
+            "retention_range":0,
+            "engine_type":100,
+            "storage_type":100,
+            "override_kylin_properties":{...},
+            "cuboid_black_list":[...],
+            "parent_forward":3,
+            "mandatory_dimension_set_list":[...]
         }
     },
-    "msg": ""
+    "msg":""
 }
 ```
 
-#### Curl Example
 
+
+### Build a Cube with Date Partition
+
+- `PUT http://host:port/kylin/api/cubes/{cubeName}/segments/build`
+
+- URL Parameters
+	* `cubeName` - `required` `string` , cube name
+
+- HTTP Header
+	- `Accept: application/vnd.apache.kylin-v2+json`
+	- `Accept-Language: cn|en`
+	- `Content-Type: application/json;charset=utf-8`
+
+- HTTP Body
+	* `startTime` - `required` `long` , start time, corresponding to the timestamp in GMT format,  for example, `1388534400000` corresponding to `2014-01-01 00:00:00`
+	* `endTime` - `required` `long` , end time, corresponding to the timestamp in GMT format
+	* `buildType` - `required` `string` ,supported build type, "BUILD"
+	* `mpValues` - `optional` `string` , multiple partition values of corresponding model
+
+
+**Curl Request Example**
+
+```shell
+curl -X PUT \
+  'http://host:port/kylin/api/cubes/kylin_sales_cube/segments/build' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Content-Type: application/json;charset=utf-8' \
+  -d '{
+	"startTime": 0,
+	"endTime": 1388534400000,
+	"buildType": "BUILD"
+}'
 ```
-curl -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/cube_desc/your_project/your_cube
-```
 
-### Build Cube-Date Partition
-`Request Mode PUT`
+**Response Example**
 
-`Access Path http://host:port/kylin/api/cubes/{cubeName}/segments/build`
-
-`Content-Type: application/vnd.apache.kylin-v2+json`
-
-`Accept: application/vnd.apache.kylin-v2+json`
-
-`Accept-Language: cn|en`
-
-#### Path Variable
-* cubeName - `required` `string`, Cube's name.
-
-#### Request Mode
-* startTime - `required` `long`, the timestamp refers to start time corresponding to the data to be calculated, it should be a GMT form timestamp, e.g. 1388534400000 for 2014-01-01. You may visit https://www.epochconverter.com/ to convert.
-* endTime - `required` `long`, the timestamp refers to end time corresponding to the data to be calculated, it should be a GMT form timestamp.
-* buildType - `required` `string`, supported calculation types: 'BUILD'
-* mpValues - `optional` `string`, the value of field "more partition" corresponding to model.
-
-#### Request Example
-
-```json
-{  
-  "startTime": 0,
-  "endTime": 1388534400000,
-  "buildType": "BUILD",
-  "mpValues": ""
-}
-```
-
-#### Response Example
-```json
+```JSON
 {
-    "code": "000",
-    "data": {
-        "uuid": "3e38d217-0c31-4d9b-9e52-57d10b1e7190",
-        "last_modified": 1508837365452,
-        "version": "3.0.0.1",
-        "name": "BUILD CUBE - ci_inner_join_cube - 0_1388534400000 - GMT+08:00 2017-10-24 17:29:25",
-        "type": "BUILD",
-        "duration": 0,
-        "related_cube": "ci_inner_join_cube",
-        "display_cube_name": "ci_inner_join_cube",
-        "related_segment": "889049e8-5a57-41d8-abcd-3a356d57eea0",
-        "exec_start_time": 0,
-        "exec_end_time": 0,
-        "exec_interrupt_time": 0,
-        "mr_waiting": 0,
-        "steps": [
-            {
-                "interruptCmd": null,
-                "id": "3e38d217-0c31-4d9b-9e52-57d10b1e7190-00",
-                "name": "Create Intermediate Flat Hive Table",
-                "sequence_id": 0,
-                "exec_cmd": null,
-                "interrupt_cmd": null,
-                "exec_start_time": 0,
-                "exec_end_time": 0,
-                "exec_wait_time": 0,
-                "step_status": "PENDING",
-                "cmd_type": "SHELL_CMD_HADOOP",
-                "info": {},
-                "run_async": false
-            }
-        ],
-        "submitter": "ADMIN",
-        "job_status": "PENDING",
-        "progress": 0
+    "code":"000",
+    "data":{
+        "uuid":"83c6cd7a-61ce-4d66-9bd3-fea35487dcf7",
+        "last_modified":1536289966183,
+        "version":"3.0.0.1",
+        "name":"BUILD CUBE - kylin_sales_cube - 20120415114212_20140101000000 - GMT+08:00 2018-09-07 11:12:45",
+        "type":"BUILD",
+        "duration":0,
+        "related_cube":"kylin_sales_cube",
+        "display_cube_name":"kylin_sales_cube",
+        "related_segment":"739453a4-d59d-4a27-af37-d06d16ca17b1",
+        "exec_start_time":0,
+        "exec_end_time":0,
+        "exec_interrupt_time":0,
+        "mr_waiting":0,
+        "steps":[...],
+        "submitter":"ADMIN",
+        "job_status":"PENDING",
+        "progress":0
     },
-    "msg": ""
+    "msg":""
 }
 ```
 
-#### Curl Example
 
-```
-curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "startTime": 0,"endTime": 1388534400000,"buildType": "BUILD","mpValues": "" }' http://host:port/kylin/api/cubes/your_cube/segments/build
-```
 
-### Build Cube-Non Date Partition
+### Full Build a Cube
 
-`Request Mode PUT`
+- `PUT http://host:port/kylin/api/cubes/{cubeName}/segments/build`
 
-`Access Path http://host:port/kylin/api/cubes/{cubeName}/segments/build_by_offset`
+- URL Parameters
+	* `cubeName` - `required` `string`, cube name
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+- HTTP Header
+    - `Accept: application/vnd.apache.kylin-v2+json`
+    - `Accept-Language: cn|en`
+    - `Content-Type: application/json;charset=utf-8`
+	
+- HTTP Body
+	* `startTime` - `required` `long` , start time,  0
+	* `endTime` - `required` `long`, end time,  0
+	* `buildType` - `required` `string`, supported build type, "BUILD"
 
-`Accept: application/vnd.apache.kylin-v2+json`
 
-`Accept-Language: cn|en`
+**Curl Request Example**
 
-#### Path Variable
-
-- cubeName - `required` `string` Cube's name
-
-#### Request Body
-
-- sourceOffsetStart - `required` `long` , start value
-- sourceOffsetEnd - `required` `long`, end value
-- buildType - `required` `string`, supported computing type: 'BUILD'
-- mpValues - `optional` `string`, the value of more partition field for the corresponding model
-
-Build Cube - No Partition
-
-#### Request Example
-
-```json
-{  
-  "startTime": 0,
-  "endTime": 138800,
-  "buildType": "BUILD",
-  "mpValues": ""
-}
+```shell
+curl -X PUT \
+  'http://host:port/kylin/api/cubes/{cubeName}/segments/build' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8' \
+  -d '{
+	"startTime": 0,
+	"endTime": 0,
+	"buildType": "BUILD"
+}'
 ```
 
-#### Response Example
+**Response Example**
 
-(same as "Build Cube - Date Partition")
-
-#### Curl Example
-
-```
-curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "startTime": 0,"endTime": 138800,"buildType": "BUILD","mpValues": "" }' http://host:port/kylin/api/cubes/your_cube/segments/build_by_offset
-```
-
-### Build Cube-No Partition
-
-` Request Mode PUT`
-
-`Access Path http://host:port/kylin/api/cubes/{cubeName}/segments/build`
-
-`Content-Type: application/vnd.apache.kylin-v2+json`
-
-`Accept: application/vnd.apache.kylin-v2+json`
-
-`Accept-Language: cn|en`
-
-#### Path Variable
-
-- cubeName - `required` `string` Cube's name
-
-#### Request Body
-
-- startTime - `required` `long` , 0
-- endTime - `required` `long`,  0
-- buildType - `required` `string`, supported computing type: 'BUILD'
-
-#### Request Example
-
-```json
-{  
-  "startTime": 0,
-  "endTime": 0,
-  "buildType": "BUILD"
-}
-```
-
-#### Response Example
-
-(same as "Build Cube - Date Partition")
-
-#### Curl Example
-
-```
-curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "startTime": 0,"endTime": 0,"buildType": "BUILD" }' http://host:port/kylin/api/cubes/your_cube/segments/build
-```
-
-### Build Cube-In Batch
-
-` Request Mode PUT`
-
-`Access Path http://host:port/kylin/api/cubes/{cubeName}/batch_sync`
-
-`Content-Type: application/vnd.apache.kylin-v2+json`
-
-`Accept: application/vnd.apache.kylin-v2+json`
-
-`Accept-Language: cn|en`
-
-#### Path Variable
-
-* cubeName - `required` `string` Cube's name
-
-#### Request Body
-
-* pointList - `optional` `string` the value of partition field for the corresponding model  structure:List<Long>
-* rangeList - `optional` `string` the value of partition field for the corresponding model  structure:List<Long[]>
-* mpValues - `optional` `string` the value of partition field for the corresponding model
-
-#### Request Example
-
-```json
-[
-    {
-        "mpValues": "300",
-        "pointList": [
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10"
-        ],
-        "rangeList": [["50","70"],["90","110"]]
+```JSON
+{
+    "code":"000",
+    "data":{
+        "uuid":"f055ceaa-4fa0-45ca-b862-ed52b1531ca6",
+        "last_modified":1536302880808,
+        "version":"3.0.0.1",
+        "name":"BUILD CUBE - {cubeName}- FULL_BUILD - GMT+08:00 2018-09-07 14:48:00",
+        "type":"BUILD",
+        "duration":0,
+        "related_cube":"{cubeName}",
+        "display_cube_name":"{cubeName}",
+        "related_segment":"5eda2c50-270c-4913-bf00-d8f006890a34",
+        "exec_start_time":0,
+        "exec_end_time":0,
+        "exec_interrupt_time":0,
+        "mr_waiting":0,
+        "steps":[...],
+        "submitter":"ADMIN",
+        "job_status":"PENDING",
+        "progress":0
     },
-    {
-        "mpValues": "301",
-        "pointList": [
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10"
-        ],
-        "rangeList": [["20","30"],["30","40"]]
-    }
-]
+    "msg":""
+}
 ```
 
-#### Response Example
+### Build a Cube in Batch
 
-```json
+- `PUT http://host:port/kylin/api/cubes/{cubeName}/batch_sync`
+
+- URL Parameters
+	* `cubeName` - `required` `string` , cube name
+
+- HTTP Header
+	- `Accept: application/vnd.apache.kylin-v2+json`
+	- `Accept-Language: cn|en`
+	- `Content-Type: application/json;charset=utf-8`
+
+- HTTP Body
+	* `pointList` - `optional` `string`  , partition values of corresponding model
+	* `rangeList` - `optional` `string`  , partition values of corresponding model
+	* `mpValues` - `optional` `string` ,  partition values of corresponding model
+
+**Curl Request Example**
+
+```shell
+curl -X PUT \
+  'http://host:port/kylin/api/cubes/{cubeName}/batch_sync' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8' \
+  -d '[{"mpValues": "300","pointList": ["1","2","3","4","5","6","7","8","9","10"],"rangeList": [["50","70"],["90","110"]]},{"mpValues": "301","pointList": ["1","2","3","4","5","6","7","8","9","10"],"rangeList": [["20","30"],["30","40"]]}]'
+```
+
+**Response Example**
+
+```JSON
 {
     "code":"000",
     "data":[
@@ -677,302 +343,367 @@ curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apac
             "uuid":"a09442bb-300f-4851-8bd2-2ec0d811dcb6",
             "last_modified":1529400276349,
             "version":"3.0.0.1",
-            "name":"BUILD CUBE - TYRRE - 1_2 - GMT+08:00 2018-06-19 17:24:36",
+            "name":"BUILD CUBE - {cubeName} - 1_2 - GMT+08:00 2018-06-19 17:24:36",
             "type":"BUILD",
             "duration":0,
-            "related_cube":"TYRRE",
-            "display_cube_name":"TYRRE",
+            "related_cube":"{cubeName}",
+            "display_cube_name":"{cubeName}",
             "related_segment":"5ef8d42b-5ed6-4489-b95c-07fe4cf5a2e6",
             "exec_start_time":0,
             "exec_end_time":0,
             "exec_interrupt_time":0,
             "mr_waiting":0,
-            "steps":[
-              {
-                "interruptCmd": null,
-                "id": "3e38d217-0c31-4d9b-9e52-7e4d3b1e7190-00",
-                "name": "Create Intermediate Flat Hive Table",
-                "sequence_id": 0,
-                "exec_cmd": null,
-                "interrupt_cmd": null,
-                "exec_start_time": 0,
-                "exec_end_time": 0,
-                "exec_wait_time": 0,
-                "step_status": "PENDING",
-                "cmd_type": "SHELL_CMD_HADOOP",
-                "info": {},
-                "run_async": false
-              }
-            ],
+            "steps":[...],
             "submitter":"ADMIN",
             "job_status":"PENDING",
             "progress":0.0
         },
-        "msg":""}
+        "msg":""
+        }
     ],
     "msg":""
 }
 ```
 
-#### Curl Example
 
+
+### Clone a Cube
+
+- `PUT http://host:port/kylin/api/cubes/{cubeName}/clone`
+
+
+- URL Parameters
+	* `cubeName` - `required` `string`,  cube name of being cloned
+
+
+- HTTP Header
+	- `Accept: application/vnd.apache.kylin-v2+json`
+	- `Accept-Language: cn|en`
+	- `Content-Type: application/json;charset=utf-8`
+
+
+- HTTP Body
+    * `cubeName` - `required` `string` ,  cube name to be cloned to
+    * `project` - `required` `string`, project name 
+
+
+**Curl Request Example**
+
+```shell
+curl -X PUT \
+  'http://host:port/kylin/api/cubes/kylin_sales_cube/clone' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8' \
+  -d '{"cubeName":"kylin_sales_cube_clone",
+"project":"learn_kylin"}'
 ```
-curl -X PUT -H "Authorization: Basic XXXXXXXXX"  -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '[{"mpValues": "300","pointList": ["1","2","3","4","5","6","7","8","9","10"],"rangeList": [["50","70"],["90","110"]]},{"mpValues": "301","pointList": ["1","2","3","4","5","6","7","8","9","10"],"rangeList": [["20","30"],["30","40"]]}]' http://host:port/kylin/api/cubes/your_cube/batch_sync
-```
 
-### Clone Cube
-
-`Request Mode PUT`
-
-`Access Path http://host:port/kylin/api/cubes/{cubeName}/clone`
-
-`Content-Type: application/vnd.apache.kylin-v2+json`
-
-`Accept: application/vnd.apache.kylin-v2+json`
-
-`Accept-Language: cn|en`
-
-#### Path Variable
-* cubeName - `required` `string`, the name of cloned Cube.
-
-#### Request Body
-* cubeName - `required` `string`, new Cube's name.
-* project - `required` `string`, new project's name. 
-
-
-#### Request Example
-
-```json
-{  
-  "cubeName": "cube_clone",
-  "project": "your_project"
+**Response Example**
+```JSON
+{
+    "code": "000",
+    "data": {
+        "uuid": "88670f47-1ce1-48fb-acf5-3aac63b04ccd",
+        "last_modified": 1536563756734,
+        "version": "3.0.0.1",
+        "name": "kylin_sales_cube_clone",
+        "owner": "ADMIN",
+        "descriptor": "kylin_sales_cube_clone",
+        "display_name": null,
+        "cost": 786,
+        "status": "DISABLED",
+        "segments": [],
+        "create_time_utc": 1536563756859,
+        "cuboid_bytes": null,
+        "cuboid_bytes_recommend": null,
+        "cuboid_last_optimized": 0,
+        "project": "learn_kylin",
+        "model": "kylin_sales_model",
+        "is_streaming": false,
+        "partitionDateColumn": "KYLIN_SALES.PART_DT",
+        "partitionDateStart": 1325376000000,
+        "isStandardPartitioned": true,
+        "size_kb": 0,
+        "input_records_count": 0,
+        "input_records_size": 0,
+        "is_draft": false,
+        "multilevel_partition_cols": [],
+        "total_storage_size_kb": 0
+    },
+    "msg": ""
 }
 ```
 
-#### Response Example
-(same as "Get Cube")
 
-#### Curl Example
 
+### Enable a Cube
+
+- `PUT http://host:port/kylin/api/cubes/{cubeName}/enable`
+
+
+- URL Parameters
+	- `cubeName` - `required` `string` , cube name
+
+
+- HTTP Header
+	- `Accept: application/vnd.apache.kylin-v2+json`
+	- `Accept-Language: cn|en`
+	- `Content-Type: application/json;charset=utf-8`
+
+
+**Curl Request Example**
+
+```shell
+curl -X PUT \
+  'http://host:port/kylin/api/cubes/kylin_sales_cube/enable' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8'
 ```
-curl -X PUT -H "Authorization: Basic XXXXXXXXX"  -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "cubeName": "cube_clone","project": "your_project" }' http://host:port/kylin/api/cubes/cube_name/clone
-```
 
-### Enable Cube
-`Request Mode PUT`
+**Response Example**
 
-`Access Path http://host:port/kylin/api/cubes/{cubeName}/enable`
-
-`Content-Type: application/vnd.apache.kylin-v2+json`
-
-`Accept: application/vnd.apache.kylin-v2+json`
-
-`Accept-Language: cn|en`
-
-#### Path Variable
-* cubeName - `required` `string`, Cube 's name.
-
-#### Request Example
-
-`Request Path: http://host:port/kylin/api/cubes/your_cube/enable`
-
-#### Response Example
-```sh
-{  
-   "uuid":"1eaca32a-a33e-4b69-83dd-0bb8b1f8c53b",
-   "last_modified":1407909046305,
-   "name":"test_kylin_cube_with_slr_ready",
-   "owner":null,
-   "version":null,
-   "descriptor":"test_kylin_cube_with_slr_desc",
-   "display_name":null,
-   "cost":50,
-   "status":"ACTIVE",
-   "segments":[  
-      {
-         "uuid":"4d0200ed-6858-49e3-ae98-bb401387b23f",
-         "name":"19700101000000_20140531160000",
-         "storage_location_identifier":"KYLIN-CUBE-TEST_KYLIN_CUBE_WITH_SLR_READY-19700101000000_20140531160000_BF043D2D-9A4A-45E9-AA59-5A17D3F34A50",
-         "date_range_start":0,
-         "date_range_end":1401552000000,
-         "source_offset_start":0,
-         "source_offset_end":0,
-         "status":"READY",
-         "size_kb":4758,
-         "input_records":6000,
-         "input_records_size":620356,
-         "last_build_time":1407832663227,
-         "last_build_job_id":"2c7a2b63-b052-4a51-8b09-0c24b5792cda",
-         "create_time_utc":1528713225709,
-         "cuboid_shard_nums":{},
-         "total_shards":0,
-         "blackout_cuboids":[],
-         "binary_signature":null,
-         "dictionaries":{  
-            "TEST_CATEGORY_GROUPINGS/CATEG_LVL2_NAME":"/dict/TEST_CATEGORY_GROUPINGS/CATEG_LVL2_NAME/16d8185c-ee6b-4f8c-a919-756d9809f937.dict",
-            "TEST_KYLIN_FACT/LSTG_SITE_ID":"/dict/TEST_SITES/SITE_ID/0bec6bb3-1b0d-469c-8289-b8c4ca5d5001.dict",
-            "TEST_KYLIN_FACT/SLR_SEGMENT_CD":"/dict/TEST_SELLER_TYPE_DIM/SELLER_TYPE_CD/0c5d77ec-316b-47e0-ba9a-0616be890ad6.dict",
-            "TEST_KYLIN_FACT/CAL_DT":"/dict/PREDEFINED/date(yyyy-mm-dd)/64ac4f82-f2af-476e-85b9-f0805001014e.dict",
-            "TEST_CATEGORY_GROUPINGS/CATEG_LVL3_NAME":"/dict/TEST_CATEGORY_GROUPINGS/CATEG_LVL3_NAME/270fbfb0-281c-4602-8413-2970a7439c47.dict",
-            "TEST_KYLIN_FACT/LEAF_CATEG_ID":"/dict/TEST_CATEGORY_GROUPINGS/LEAF_CATEG_ID/2602386c-debb-4968-8d2f-b52b8215e385.dict",
-            "TEST_CATEGORY_GROUPINGS/META_CATEG_NAME":"/dict/TEST_CATEGORY_GROUPINGS/META_CATEG_NAME/0410d2c4-4686-40bc-ba14-170042a2de94.dict"
-         },
-         "snapshots":{  
-            "TEST_CAL_DT":"/table_snapshot/TEST_CAL_DT.csv/8f7cfc8a-020d-4019-b419-3c6deb0ffaa0.snapshot",
-            "TEST_SELLER_TYPE_DIM":"/table_snapshot/TEST_SELLER_TYPE_DIM.csv/c60fd05e-ac94-4016-9255-96521b273b81.snapshot",
-            "TEST_CATEGORY_GROUPINGS":"/table_snapshot/TEST_CATEGORY_GROUPINGS.csv/363f4a59-b725-4459-826d-3188bde6a971.snapshot",
-            "TEST_SITES":"/table_snapshot/TEST_SITES.csv/78e0aecc-3ec6-4406-b86e-bac4b10ea63b.snapshot"
-         }
-      }
-   ],
-   "create_time_utc":0,
-   "cuboid_bytes":null,
-   "cuboid_bytes_recommend":null,
-   "cuboid_last_optimized":0,
-   "project":"default",
-   "model":"ci_left_join_model",
-   "is_streaming":false,
-   "partitionDateColumn":"TEST_KYLIN_FACT.CAL_DT",
-   "partitionDateStart":0,
-   "isStandardPartitioned":true,
-   "size_kb":0,
-   "input_records_count":0,
-   "input_records_size":0,
-   "is_draft":false,
-   "multilevel_partition_cols":[],
-   "total_storage_size_kb":0
+```JSON
+{
+    "code":"000",
+    "data":{
+        "uuid":"f2d467cb-db42-4b53-bb6f-74b35f19b793",
+        "last_modified":1535686103823,
+        "version":"3.0.0.1",
+        "name":"kylin_sales_cube",
+        "owner":"ADMIN",
+        "descriptor":"kylin_sales_cube",
+        "display_name":null,
+        "cost":24,
+        "status":"READY",
+        "segments":[...],
+        "create_time_utc":1535685965861,
+        "cuboid_bytes":null,
+        "cuboid_bytes_recommend":null,
+        "cuboid_last_optimized":0,
+        "project":"learn_kylin",
+        "model":"KYLIN_SALES_MODEL",
+        "is_streaming":false,
+        "partitionDateColumn":null,
+        "partitionDateStart":0,
+        "isStandardPartitioned":false,
+        "size_kb":5,
+        "input_records_count":24,
+        "input_records_size":540,
+        "is_draft":false,
+        "multilevel_partition_cols":[...],
+        "total_storage_size_kb":5
+    },
+    "msg":""
 }
 ```
 
-#### Curl Example
 
-```
-curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/cubes/your_cube/enable
-```
 
-### Disable Cube
+### Disable a Cube
 
-`Request Mode PUT`
+- `PUT http://host:port/kylin/api/cubes/{cubeName}/disable`
 
-`Access Path http://host:port/kylin/api/cubes/{cubeName}/disable`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+- URL Parameters
+	- `cubeName` - `required` `string` , cube name
 
-`Accept: application/vnd.apache.kylin-v2+json`
+- HTTP Header
+	- `Accept: application/vnd.apache.kylin-v2+json`
+	- `Accept-Language: cn|en`
+	- `Content-Type: application/json;charset=utf-8`
 
-`Accept-Language: cn|en`
 
-#### Path Variable
-* cubeName - `required` `string`, Cube's name.
+**Curl Request Example**
 
-#### Request Example
-
-`Request Path: http://host:port/kylin/api/cubes/your_cube/disable`
-
-#### Response Example
-(same as "Enable Cube")
-
-#### Curl Example
-
-```
-curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/cubes/your_cube/disable
+```shell
+curl -X PUT \
+  'http://host:port/kylin/api/cubes/kylin_sales_cube/disable' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8'
 ```
 
-### Purge Cube
-`Request Mode PUT`
 
-`Access Path http://host:port/kylin/api/cubes/{cubeName}/purge`
+**Response Example**
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
-
-`Accept: application/vnd.apache.kylin-v2+json`
-
-`Accept-Language: cn|en`
-
-#### Path Variable
-* cubeName - `required` `string`, Cube's name.
-
-#### Request Body
-
-* mpValues - `optional` `string`, the value of Model Primary Partition.
-
-#### Request Example
-
-```json
-{  
-   "mpValues": ""
+```JSON
+{
+    "code":"000",
+    "data":{
+        "uuid":"f2d467cb-db42-4b53-bb6f-74b35f19b793",
+        "last_modified":1535686103823,
+        "version":"3.0.0.1",
+        "name":"kylin_sales_cube",
+        "owner":"ADMIN",
+        "descriptor":"kylin_sales_cube",
+        "display_name":null,
+        "cost":24,
+        "status":"DISABLED",
+        "segments":[...],
+        "create_time_utc":1535685965861,
+        "cuboid_bytes":null,
+        "cuboid_bytes_recommend":null,
+        "cuboid_last_optimized":0,
+        "project":"learn_kylin",
+        "model":"KYLIN_SALES_MODEL",
+        "is_streaming":false,
+        "partitionDateColumn":null,
+        "partitionDateStart":0,
+        "isStandardPartitioned":false,
+        "size_kb":5,
+        "input_records_count":24,
+        "input_records_size":540,
+        "is_draft":false,
+        "multilevel_partition_cols":[...],
+        "total_storage_size_kb":5
+    },
+    "msg":""
 }
 ```
 
-#### Response Example
-(same as "Enable Cube")
 
-#### Curl Example
 
+### Purge a Cube
+
+- `PUT http://host:port/kylin/api/cubes/{cubeName}/purge`
+
+- URL Parameters
+	- `cubeName` - `required` `string`,  cube name
+
+- HTTP Header
+	- `Accept: application/vnd.apache.kylin-v2+json`
+	- `Accept-Language: cn|en`
+	- `Content-Type: application/json;charset=utf-8`
+
+- HTTP Body
+	* `mpValues` - `optional` `string`, multiple partition values of corresponding model
+	* `project` - `required` `string` , project name
+
+**Curl Request Example**
+
+```shell
+curl -X PUT \
+  'http://host:port/kylin/api/cubes/{cubeName}/purge' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8' \
+  -d '{"mpValues": "", "project": "learn_kylin"}'
 ```
-curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "mpValues": "" }' http://host:port/kylin/api/cubes/your_cube/purge
-```
 
-### Manage Segment
 
-`Request Mode PUT`
+**Response Example**
 
-`Access Path http://host:port/kylin/api/cubes/<cubeName>/segments`
-
-`Content-Type: application/vnd.apache.kylin-v2+json`
-
-`Accept: application/vnd.apache.kylin-v2+json`
-
-`Accept-Language: cn|en`
-
-#### Path Variable
-
-- cubeName - `required` `string`, Cube's name. 
-
-#### Request Body
-
-- buildType - `required` `string`, MERGE, REFRESH, DROP.
-- segments - `required` `string`, segment name‘s array.
-- mpValues - `optional` `string`, Model Primary Partition value.
-- force - `optional` `string`, true or false.
-
-#### Request Example
-
-```json
-{  
-  "buildType": "REFRESH",
-  "segments": [0_1000],
-  "mpValues": "ABIN",
-  "force": false
+```JSON
+{
+    "code":"000",
+    "data":{
+        "uuid":"f2d467cb-db42-4b53-bb6f-74b35f19b793",
+        "last_modified":1535686103823,
+        "version":"3.0.0.1",
+        "name":"{cubeName}",
+        "owner":"ADMIN",
+        "descriptor":"{cubeName}",
+        "display_name":null,
+        "cost":24,
+        "status":"DISABLED",
+        "segments":[...],
+        "create_time_utc":1535685965861,
+        "cuboid_bytes":null,
+        "cuboid_bytes_recommend":null,
+        "cuboid_last_optimized":0,
+        "project":"learn_kylin",
+        "model":"{modelName}",
+        "is_streaming":false,
+        "partitionDateColumn":null,
+        "partitionDateStart":0,
+        "isStandardPartitioned":false,
+        "size_kb":0,
+        "input_records_count":0,
+        "input_records_size":0,
+        "is_draft":false,
+        "multilevel_partition_cols":[...],
+        "total_storage_size_kb":0
+    },
+    "msg":""
 }
 ```
 
-#### Curl Example
 
+
+### Manage Segments
+
+- `PUT http://host:port/kylin/api/cubes/{cubeName}/segments`
+
+
+- URL Parameters
+	- `cubeName` - `required` `string` , cube name
+
+- HTTP Header
+	- `Accept: application/vnd.apache.kylin-v2+json`
+	- `Accept-Language: cn|en`
+	- `Content-Type: application/json;charset=utf-8`
+
+- HTTP Body
+    * `buildType`  -  `required` `string` , supported build type, ie., "MERGE", "REFRESH" or "DROP"
+    * `segments`  -  `required` `string[]` , segment name
+    * `mpValues`  -  `optional` `string`,  multiple partition values of corresponding model
+    * `force`  -  `optional` `boolean` , whether force to operate, ie., "true" or  "false"
+
+
+**Curl Request Example**
+
+```shell
+curl -X PUT \
+  'http://host:port/kylin/api/cubes/kylin_sales_cube/segments' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8' \
+  -d '{"buildType":"REFRESH",
+"segments":["20180908000000,20180909000000"],
+"mpValues":"",
+"force":true
+}'
 ```
-curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json' -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "buildType": "REFRESH", "mpValues": "ABIN", "segments": ["0_1000"], "force": false }' http://host:port/kylin/api/cubes/your_cube/segments
-```
-### Export TDS
-`Request Mode GET`
 
-`Access Path http://host:port/kylin/api/cubes/{cubeName}/export/tds`
 
-`Content-Type: application/vnd.apache.kylin-v2+json`
+**Response Example**
 
-`Accept: application/vnd.apache.kylin-v2+json`
-
-`Accept-Language: cn|en`
-
-#### Path Variable
-- cubeName - `required` `string`,  Cube's name.
-
-#### Request Example
-
-`Request Path: http://host:port/kylin/api/cubes/your_cube/export/tds`
-
-#### Curl Example
-
-```
-curl -X GET -H "Authorization: Basic XXXXXXXXX" -H 'Accept: application/vnd.apache.kylin-v2+json' http://host:port/kylin/api/cubes/your_cube/export/tds
+```JSON
+{
+    "code": "000",
+    "data": [],
+    "msg": ""
+}
 ```
 
+
+
+### Export TDS File
+
+- `GET http://host:port/kylin/api/cubes/{cubeName}/export/tds`
+
+- URL Parameters
+	- `cubeName` - `required` `string`,  cube name
+
+- HTTP Header
+	- `Accept: application/vnd.apache.kylin-v2+json`
+	- `Accept-Language: cn|en`
+	- `Content-Type: application/json;charset=utf-8`
+
+**Curl Request Example**
+
+```shell
+curl -X GET \
+  'http://10.1.2.99:7070/kylin/api/cubes/kylin_sales_cube/export/tds' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8'
+```
