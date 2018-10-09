@@ -1,10 +1,12 @@
-## 模型 REST API
+## 模型 API
 
 > 提示：
 >
 > 1. 请确保已阅读前面的[访问及安全认证](authentication.cn.md)章节，了解如何在 REST API 语句中添加认证信息。
 >
-> 2. 如果您的访问路径中含有 `&` 符号时，请在访问路径两端加上引号`""` 或者添加反斜杠 `\` 对 `&` 进行转义。
+> 2. 在 Curl 命令行上，如果您访问的 URL 中含有 `&` 符号，请注意转义，比如在 URL 两端加上引号。
+
+
 
 * [返回模型](#返回模型)
 * [返回模型描述信息](#返回模型描述信息)
@@ -12,24 +14,27 @@
 * [删除模型](#删除模型)
 * [获取项目下所有可计算列](#获取项目下所有可计算列)
 
+
+
 ### 返回模型
+
 - `GET http://host:port/kylin/api/models`
 
-- URL Parameter
-	* `pageOffset` - `可选` `int` 默认0 返回数据起始下标
-	* `pageSize` - `可选` `int ` 默认10 每页返回多少
-	* `modelName` - `可选` `string` 模型名
-	* `exactMatch` - `可选` `boolean` 是否对 `modelName` 完全匹配，默认`true`
-	* `projectName` - `可选` `string` 项目名
+- URL Parameters
+	* `pageOffset` - `可选` `int`，返回数据起始下标，默认为 0 
+	* `pageSize` - `可选` `int ` ，每页返回多少，默认为 10 
+	* `modelName` - `可选` `string` ，模型名称
+	* `exactMatch` - `可选` `boolean` ，是否对模型名称进行完全匹配，默认为`true`
+	* `projectName` - `可选` `string`， 项目名称
 
 - HTTP Header
 	- `Accept: application/vnd.apache.kylin-v2+json`
 	- `Accept-Language: cn|en`
 	- `Content-Type: application/json;charset=utf-8`
 
-#### cURL 访问示例
+**Curl 请求示例**
 
-```
+```shell
 curl -X GET \
   'http://host:port/kylin/api/models?pageOffset=1' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -38,7 +43,7 @@ curl -X GET \
   -H 'Content-Type: application/json;charset=utf-8'
 ```
 
-#### 响应示例
+**响应示例**
 
 ```JSON
 {
@@ -51,32 +56,33 @@ curl -X GET \
 }
 ```
 
+
+
 ### 返回模型描述信息
 
 - `GET http://host:port/kylin/api/model_desc/{projectName}/{modelName}`
 
-- URL Parameter
-	- `projectName` - `必选` `string` 项目名
-	- `modelName` - `必选` `string` 模型名
+- URL Parameters
+	- `projectName` - `必选` `string` ，项目名称
+	- `modelName` - `必选` `string` ，模型名称
 
 - HTTP Header
 	- `Accept: application/vnd.apache.kylin-v2+json`
 	- `Accept-Language: cn|en`
 	- `Content-Type: application/json;charset=utf-8`
 
-#### cURL 访问示例
+**Curl 请求示例**
 
-```
+```shell
 curl -X GET \
-  http://host:port/kylin/api/model_desc/learn_kylin/kylin_sales_model \
+  'http://host:port/kylin/api/model_desc/learn_kylin/kylin_sales_model' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
   -H 'Accept-Language: cn|en' \
   -H 'Authorization: Basic QURNSU46S1lMSU4=' \
   -H 'Content-Type: application/json;charset=utf-8'
 ```
 
-
-#### 响应示例
+**响应示例**
 
 ```JSON
 {
@@ -109,11 +115,13 @@ curl -X GET \
 ```
 
 
+
 ### 克隆模型
+
 - `PUT http://host:port/kylin/api/models/{modelName}/clone`
 
-- URL Parameter
-	* `modelName` - `必选` `string` 被克隆模型名称
+- URL Parameters
+	* `modelName` - `必选` `string` ，被克隆模型名称
 
 - HTTP Header
 	- `Accept: application/vnd.apache.kylin-v2+json`
@@ -121,14 +129,14 @@ curl -X GET \
 	- `Content-Type: application/json;charset=utf-8`
 
 - HTTP Body
-	* `modelName` - `必选` `string` 克隆后的模型名称
-	* `project` - `必选` `string` 项目名称 
+	* `modelName` - `必选` `string` ，克隆后的模型名称
+	* `project` - `必选` `string` ，项目名称 
 
-#### cURL 访问示例
+**Curl 请求示例**
 
-```
+```shell
 curl -X PUT \
-  http://host:port/kylin/api/models/kylin_sales_model/clone \
+  'http://host:port/kylin/api/models/kylin_sales_model/clone' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
   -H 'Accept-Language: cn|en' \
   -H 'Authorization: Basic QURNSU46S1lMSU4=' \
@@ -136,7 +144,7 @@ curl -X PUT \
   -d '{"modelName":"learn_kylin_model_clone2","project":"learn_kylin"}'
 ```
 
-#### 响应示例
+**响应示例**
 
 ```JSON
 {
@@ -168,35 +176,39 @@ curl -X PUT \
 }
 ```
 
+
+
 ### 删除模型
 
 - `DELETE http://host:port/kylin/api/models/{projectName}/{modelName}`
 
-- URL Parameter	
-	* `projectName` - `必选` `string` 项目名称
-	* `modelName` - `必选` `string` 数据模型名称
+- URL Parameters	
+	* `projectName` - `必选` `string`， 项目名称
+	* `modelName` - `必选` `string` ，模型名称
 	
 - HTTP Header
 	- `Accept: application/vnd.apache.kylin-v2+json`
 	- `Accept-Language: cn|en`
 	- `Content-Type: application/json;charset=utf-8`
 
-#### cURL 请求示例
+**Curl 请求示例**
 
-```
+```shell
 curl -X DELETE \
-  http://host:port/kylin/api/models/learn_kylin/kylin_sales_model_clone \
+  'http://host:port/kylin/api/models/learn_kylin/kylin_sales_model_clone' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
   -H 'Accept-Language: cn|en' \
   -H 'Authorization: Basic QURNSU46S1lMSU4=' \
   -H 'Content-Type: application/vnd.apache.kylin-v2+json;charset=UTF-8'
 ```
 
+
+
 ### 获取项目下所有可计算列
 
 - `GET http://host:port/kylin/api/models/computed_column_usage/{projectName}`
 
-- URL Parameter	
+- URL Parameters	
 	* `projectName` - `必选` `string` 项目名称
 
 - HTTP Header
@@ -204,18 +216,18 @@ curl -X DELETE \
 	- `Accept-Language: cn|en`
 	- `Content-Type: application/json;charset=utf-8`
 
-#### cURL 访问示例
+**Curl 请求示例**
 
-```
+```shell
 curl -X GET \
-  http://host:port/kylin/api/models/computed_column_usage/learn_kylin \
+  'http://host:port/kylin/api/models/computed_column_usage/learn_kylin' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
   -H 'Accept-Language: cn|en' \
   -H 'Authorization: Basic QURNSU46S1lMSU4=' \
   -H 'Content-Type: application/json;charset=utf-8'
 ```
 
-#### 响应示例
+**响应示例**
 
 ```JSON
 {
