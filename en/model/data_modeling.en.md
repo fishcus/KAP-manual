@@ -20,7 +20,7 @@ Open Kyligence Enterprise Web UI, select project *learn_kylin* in project list i
 
 
 
-###Create / Edit a Data Model
+### Create / Edit a Data Model
 
 - **Create a New Model**
 
@@ -38,7 +38,7 @@ Open Kyligence Enterprise Web UI, select project *learn_kylin* in project list i
 
 
 
-###Design a Data Model
+### Design a Data Model
 
 In model designer page, you can define fact table and dimension table via drag and drop in Kyligence web UI.
 
@@ -124,7 +124,7 @@ In model designer page, you can define fact table and dimension table via drag a
 
   Click **Save** button, and then select the time partition column. This is an optional setting. For delta data loading scenarios, you need to specify one time partition column to indicate which data should be loaded into cubes. 
 
-  > **Note**: Currently Kyligence Enterprise supports following data type as time partition column: *date*, *timestamp*, *string*, *varchar*, *integer*, *bigint*.
+  > **Note**: Currently Kyligence Enterprise supports following data type as time partition column: time (time / date / datetime) , integer (integer / tinyint / smallint / bigint / int4 / long8) , and string (varchar / string).
 
   In our example, we specify column *KYLIN_SALES.PART_DT* as time partition column and specify the date format as `yyyy-MM-dd`.
 

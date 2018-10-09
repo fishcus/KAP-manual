@@ -10,8 +10,8 @@ Enhanced partition flexibility, such as multi-tenant usage scenarios. Besides ti
 
 - Basic Concept: the partition column includes the time partition column and multi-partition column. Regarding to multi-partition column, Kyligence Enterprise currently supports to add only one partition (Primary Partition).
 - Common Concepts:
-  - Time Partition Column: supports date or finer granularity time partition. The supported data types include time (time/date/datetime) and integer (integer/tinyint/smallint/bigint/int4/long8).
-  - Multi-Partition Column: the partition dimension except for Time Partition Column. Currently, adding one partition (Primary Partition) is allowed. The supported data types include integer (long/short/int/integer) or string (string/char/varchar);
+  - Time Partition Column: supports date or finer granularity time partition. The supported data types include time (time / date / datetime) , integer (integer / tinyint / smallint / bigint / int4 / long8) , and string (varchar / string);
+  - Multi-Partition Column: the partition dimension except for Time Partition Column. Currently, adding one partition (Primary Partition) is allowed. The supported data types include integer (long / short / int / integer) or string (string / char / varchar);
   - Partition value: the specific value in the primary partition column when being built. The segment is often built incrementally on the partition value.
 
 ### Basic Usage
@@ -20,8 +20,6 @@ Enhanced partition flexibility, such as multi-tenant usage scenarios. Besides ti
 
    + For the general process of model creation, please refer to [Model Design](data_modeling.en.md);
    + For the general process of cube design, please refer to [Create Cube](cube/create_cube.en.md).
-
-   
 
 2. When saving a model, if you select *More Partition* under Time Partition Column, then multi-partition will be created (currently you can add one partition).
 
