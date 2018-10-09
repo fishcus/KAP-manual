@@ -1,36 +1,52 @@
-## 用户组管理 REST API
+## 用户组管理 API
 
-> **提示**
+> 提示：
 >
-> 使用 API 前请确保已阅读前面的[访问及安全认证](authentication.cn.md)章节，知道如何在 API 中添加认证信息。
+> 1. 请确保已阅读前面的[访问及安全认证](authentication.cn.md)章节，了解如何在 REST API 语句中添加认证信息。
 >
-> 当您的访问路径中含有 `&` 符号时，请在 URL 两端加上引号`""` 或者添加反斜杠来避免转义 `\&`。
+> 2. 在 Curl 命令行上，如果您访问的 URL 中含有 `&` 符号，请注意转义，比如在 URL 两端加上引号。
 
 
-* [获取所有用户组](#获取所有用户组)
-* [获取用户组及其用户](#获取用户组及其用户)
+
+* [返回用户组列表](#返回用户组列表)
+* [返回用户组及其用户](#返回用户组及其用户)
+* [返回指定用户组的用户列表](#返回指定用户组的用户列表)
 * [增加用户组](#增加用户组)
 * [删除用户组](#删除用户组)
-* [获取特定用户组下的所有用户](#获取特定用户组下的所有用户)
-* [向用户组中加入用户](#向用户组中加入用户)
+* [更新用户组](#更新用户组)
 
-### 获取所有用户组
-`请求方式 GET`
 
-`访问路径 http://host:port/kylin/api/user_group/groups`
 
-`Accept: application/vnd.apache.kylin-v2+json` 
+### 返回用户组列表
 
-`Accept-Language: cn|en` 
+- `GET http://host:port/kylin/api/user_group/groups`
 
-#### 请求主体
-* project - `必须` `string`，用来判断当前用户是否有拉取所有用户的权限
 
-#### 请求示例
-`请求路径:http://host:port/kylin/api/user_group/groups?project=a`
+- URL Parameters
+	* `project` - `必选` `string`，项目名称，返回该项目下用户组列表
 
-#### 响应示例
-```json
+
+- HTTP Header
+    - `Accept: application/vnd.apache.kylin-v2+json`
+    - `Accept-Language: cn|en`
+    - `Content-Type: application/json;charset=utf-8`
+
+
+**Curl 请求示例**
+
+```shell
+curl -X GET \
+  'http://host:port/kylin/api/user_group/groups?project=learn_kylin' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8'
+```
+
+
+**响应示例**
+
+```JSON
 {
     "code": "000",
     "data": [
@@ -43,207 +59,234 @@
 }
 ```
 
-### 获取用户组及其用户
-`请求方式 GET`
 
-`访问路径 http://host:port/kylin/api/user_group/usersWithGroup`
 
-`Accept: application/vnd.apache.kylin-v2+json` 
+### 返回用户组及其用户
 
-`Accept-Language: cn|en` 
+- `GET http://host:port/kylin/api/user_group/usersWithGroup`
 
-#### 请求参数
-* pageOffset - `可选` `int`
-* pageSize - `可选` `int`
 
-#### 请求示例
-`请求路径: "http://host:port/kylin/api/user_group/usersWithGroup?pageSize=9&pageOffset=0"`
+- URL Parameters
+	* `pageOffset` - `可选` `int`，返回数据的起始下标，默认为 0 
+    * `pageSize` - `可选` `int`，分页返回每页返回的条数，默认为 10
 
-#### Curl 请求示例
-```
-curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{"pageSize":10，"pageOffset":0 }' "http://host:port/kylin/api/user_group/usersWithGroup?pageSize=9&pageOffset=0"
-```
 
-#### 响应示例
-```json
-{
-  "code": "000",
-  "data": {
-    "size": 4,
-    "usersWithGroup": [
-      {
-        "first": "ALL_USERS",
-        "second": [
-          "ADMIN",
-          "ANALYST",
-          "MODELER"
-        ]
-      },
-      {
-        "first": "ROLE_ADMIN",
-        "second": [
-          "ADMIN"
-        ]
-      },
-      {
-        "first": "ROLE_ANALYST",
-        "second": []
-      },
-      {
-        "first": "ROLE_MODELER",
-        "second": []
-      }
-    ]
-  },
-  "msg": "get users with group"
-}
+- HTTP Header
+    - `Accept: application/vnd.apache.kylin-v2+json`
+    - `Accept-Language: cn|en`
+    - `Content-Type: application/json;charset=utf-8`
+
+
+**Curl 请求示例**
+
+```shell
+curl -X GET \
+  'http://host:port/kylin/api/user_group/usersWithGroup?pageSize=1' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8'
 ```
 
-### 增加用户组
-`请求方式 POST`
+**响应示例**
 
-`访问路径 http://host:port/kylin/api/user_group/{groupName}`
-
-`Accept: application/vnd.apache.kylin-v2+json` 
-
-`Accept-Language: cn|en` 
-
-#### 路径变量
-* groupName - `必选` `string` 组名
-
-#### 请求示例
-`请求路径:http://host:port/kylin/api/user_group/g1`
-
-### 删除用户组
-`请求方式 DELETE`
-
-`访问路径 http://host:port/kylin/api/user_group/{groupName}`
-
-`Accept: application/vnd.apache.kylin-v2+json` 
-
-`Accept-Language: cn|en` 
-
-#### 路径变量
-* groupName - `必选` `string` 组名
-
-#### 请求示例
-`请求路径:http://host:port/kylin/api/user_group/g1`
-
-#### Curl 请求示例
-
-```
-curl -X DELETE -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/user_group/g1
-```
-
-
-### 获取特定用户组下的所有用户
-`请求方式 GET`
-
-`访问路径 http://host:port/kylin/api/user_group/groupMembers/{name}`
-
-`Accept: application/vnd.apache.kylin-v2+json` 
-
-`Accept-Language: cn|en` 
-
-#### 路径变量
-* name - `必选` `string` 组名
-
-#### 请求示例
-`请求路径:http://host:port/kylin/api/user_group/groupMembers/ALL_USERS`
-
-#### Curl 请求示例
-```
-curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/user_group/groupMembers/ALL_USERS
-```
-
-#### 响应示例
-```json
+```JSON
 {
     "code": "000",
     "data": {
-        "groupMembers": [
+        "size": 4,
+        "usersWithGroup": [
             {
-                "username": "ADMIN",
-                "password": "$2a$10$T6mhEmdwwwZJPPoON3k7t.9StfCCK1MkxMKNB8ZhsGqg853d5h2cS",
-                "authorities": [
-                    {
-                        "authority": "ROLE_ADMIN"
-                    },
-                    {
-                        "authority": "ALL_USERS"
-                    }
+                "first": "ALL_USERS",
+                "second": [
+                    "ADMIN",
+                    "ANALYST",
+                    "MODELER"
                 ],
-                "disabled": false,
-                "defaultPassword": false,
-                "locked": false,
-                "lockedTime": 0,
-                "wrongTime": 1,
-                "uuid": null,
-                "last_modified": 1511179915000,
-                "version": "3.0.0.1"
-            },
-            {
-                "username": "ANALYST",
-                "password": "$2a$10$Fy9s6NNxVX7YyoVW6cA35ucxgRzw41tdKG9WfyINHBcAAj7bWLPXa",
-                "authorities": [
-                    {
-                        "authority": "ALL_USERS"
-                    }
-                ],
-                "disabled": false,
-                "defaultPassword": true,
-                "locked": false,
-                "lockedTime": 0,
-                "wrongTime": 0,
-                "uuid": null,
-                "last_modified": 1511073720000,
-                "version": "3.0.0.1"
-            },
-            {
-                "username": "MODELER",
-                "password": "$2a$10$GHuQqTyjcymxwAYUJ8B2F.kDG3arZaYVKABNgX1Kh1HrTjV3hqBTS",
-                "authorities": [
-                    {
-                        "authority": "ALL_USERS"
-                    }
-                ],
-                "disabled": false,
-                "defaultPassword": true,
-                "locked": false,
-                "lockedTime": 0,
-                "wrongTime": 0,
-                "uuid": null,
-                "last_modified": 1511073720000,
-                "version": "3.0.0.1"
+                "key": "ALL_USERS",
+                "value": [
+                    "ADMIN",
+                    "ANALYST",
+                    "MODELER"
+                ]
             }
-        ],
-        "size": 3
+        ]
     },
-    "msg": "get groups members"
+    "msg": "get users with group"
 }
 ```
 
-### 向用户组中加入用户
-`请求方式 POST`
 
-`访问路径 http://host:port/kylin/api/user_group/users/{groupName}`
 
-`Accept: application/vnd.apache.kylin-v2+json` 
+### 返回指定用户组的用户列表
 
-`Accept-Language: cn|en` 
+- `GET http://host:port/kylin/api/user_group/groupMembers/{groupName}`
 
-#### 路径变量
-* groupName - `必选` `string` 组名
 
-#### 请求主体
-用户列表，详见下面请求示例中的请求主体
+- URL Parameters
+	* `groupName` - `必选` `string` ，用户组名称
 
-#### 请求示例
-`请求路径:http://host:port/kylin/api/user_group/users/g1`
 
-`请求主体:["ADMIN","ANALYST","MODELER"]`
+- HTTP Header
+    - `Accept: application/vnd.apache.kylin-v2+json`
+    - `Accept-Language: cn|en`
+    - `Content-Type: application/json;charset=utf-8`
 
-#### Curl 请求示例
+
+**Curl 请求示例**
+
+```shell
+curl -X GET \
+  'http://host:port/kylin/api/user_group/groupMembers/ALL_USERS' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8'
 ```
-curl -X POST -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '["ADMIN","ANALYST","MODELER"]' http://host:port/kylin/api/user_group/users/g1
+
+
+**响应示例**
+
+```JSON
+{
+    "code":"000",
+    "data":{
+        "groupMembers":[
+            {
+                "username":"ADMIN",
+ 				"password":"...",
+                "authorities":[...],
+                "disabled":false,
+                "defaultPassword":true,
+                "locked":false,
+                "lockedTime":0,
+                "wrongTime":0,
+                "uuid":"aec35307-8d41-45a0-a942-91d4e92e11e4",
+                "last_modified":1537860587117,
+                "version":"3.0.0.1"
+            }
+        ],
+        "size":1
+    },
+    "msg":"get groups members"
+}
+```
+
+
+
+### 增加用户组
+
+- `POST http://host:port/kylin/api/user_group/{groupName}`
+
+
+- URL Parameters
+	* `groupName` - `必选` `string` ，用户组名称
+
+
+- HTTP Header
+    - `Accept: application/vnd.apache.kylin-v2+json`
+    - `Accept-Language: cn|en`
+    - `Content-Type: application/json;charset=utf-8`
+
+
+**Curl 请求示例**
+
+```shell
+curl -X POST \
+  'http://host:port/kylin/api/user_group/group_test' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8'
+```
+
+**响应示例**
+
+```JSON
+{
+    "code": "000",
+    "data": "",
+    "msg": "add user group"
+}
+```
+
+
+### 删除用户组
+
+- `DELETE http://host:port/kylin/api/user_group/{groupName}`
+
+
+- URL Parameters
+	* `groupName` - `必选` `string` ，用户组名称
+
+
+- HTTP Header
+    - `Accept: application/vnd.apache.kylin-v2+json`
+    - `Accept-Language: cn|en`
+    - `Content-Type: application/json;charset=utf-8`
+
+
+**Curl 请求示例**
+
+```shell
+curl -X DELETE \
+  'http://host:port/kylin/api/user_group/group_test' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8'
+```
+
+**响应示例**
+
+```JSON
+{
+    "code": "000",
+    "data": "",
+    "msg": "del user group"
+}
+```
+
+
+
+### 更新用户组
+
+> 注意：更新用户组并非新增用户到指定用户组，而是覆盖原有的用户列表。
+
+- `POST http://host:port/kylin/api/user_group/users/{groupName}`
+
+
+- URL Parameters
+	* `groupName` - `必选` `string` ，用户组名称
+
+
+- HTTP Header
+    - `Accept: application/vnd.apache.kylin-v2+json`
+    - `Accept-Language: cn|en`
+    - `Content-Type: application/json;charset=utf-8`
+
+- HTTP Body
+	- `必选` `string[]`，用户名称列表
+
+**Curl 请求示例**
+
+```shell
+curl -X POST \
+  'http://host:port/kylin/api/user_group/users/group_test' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8' \
+  -d '["ADMIN","ANALYST"]'
+```
+
+
+**响应示例**
+
+```JSON
+{
+    "code": "000",
+    "data": "",
+    "msg": "modify users in user group"
+}
 ```
