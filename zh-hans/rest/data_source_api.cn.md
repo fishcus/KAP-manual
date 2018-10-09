@@ -1,4 +1,4 @@
-## 数据源 REST API
+## 数据源 API
 
 
 > 提示：
@@ -30,10 +30,9 @@
     * `project` - `必选` `string` ，指定 Hive 表将要加载到哪个项目
     * `tables` - `必选` `string[]` ，指定想要加载的 Hive 表
 
-
 **Curl 请求示例**
 
-```
+```shell
 curl -X POST \
   'http://host:port/kylin/api/tables/load' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -69,11 +68,9 @@ curl -X POST \
 
 - `GET http://host:port/kylin/api/tables`
 
-
-- URL Parameter
+- URL Parameters
     * `project` - `必选` `string` ， 项目名
     * `ext` - `可选` `boolean` ，是否返回表的扩展信息
-
 
 - HTTP Header
 	- `Accept: application/vnd.apache.kylin-v2+json`
@@ -82,7 +79,7 @@ curl -X POST \
 
 **Curl 请求示例**
 
-```
+```shell
 curl -X GET \
   'http://host:port/kylin/api/tables?project=learn_kylin' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -119,11 +116,9 @@ curl -X GET \
 
 - `GET http://host:port/kylin/api/tables/{project}/{tableName}`
 
-
-- URL Parameter
-    * `project` - `可选` `string` ， 项目名
-    * `tableName` - `可选` `string` ， 表名
-
+- URL Parameters
+    * `project` - `可选` `string` ， 项目名称
+    * `tableName` - `可选` `string` ， 表名称
 
 - HTTP Header
 	- `Accept: application/vnd.apache.kylin-v2+json`
@@ -132,7 +127,7 @@ curl -X GET \
 
 **Curl 请求示例**
 
-```
+```shell
 curl -X GET \
   'http://host:port/kylin/api/tables/learn_kylin/kylin_sales' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \

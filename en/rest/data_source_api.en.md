@@ -32,7 +32,7 @@
 
 **Curl Request Example**
 
-```
+```shell
 curl -X POST \
   'http://host:port/kylin/api/tables/load' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -69,7 +69,7 @@ curl -X POST \
 - `GET http://host:port/kylin/api/tables`
 
 
-- URL Parameter
+- URL Parameters
     * `project` - `required` `string` , project name
     * `ext` - `optional` `boolean` , specify whether the  table's extension information is returned
 
@@ -81,7 +81,7 @@ curl -X POST \
 
 **Curl Request Example**
 
-```
+```shell
 curl -X GET \
   'http://host:port/kylin/api/tables?project=learn_kylin' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -119,7 +119,7 @@ curl -X GET \
 - `GET http://host:port/kylin/api/tables/{project}/{tableName}`
 
 
-- URL Parameter
+- URL Parameters
     * `project` - `optional` `string` , project name
     * `tableName` - `optional` `string` , table name
 
@@ -132,7 +132,7 @@ curl -X GET \
 
 **Curl Request Example**
 
-```
+```shell
 curl -X GET \
   'http://host:port/kylin/api/tables/learn_kylin/kylin_sales' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
