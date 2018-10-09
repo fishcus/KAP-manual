@@ -1,44 +1,46 @@
-## 项目级访问权限 REST API
+## 项目级访问控制权限 API
 
-> **提示**
+> 提示：
 >
-> 使用 API 前请确保已阅读前面的[访问及安全认证](authentication.cn.md)章节，知道如何在 API 中添加认证信息。
+> 1. 请确保已阅读前面的[访问及安全认证](authentication.cn.md)章节，了解如何在 REST API 语句中添加认证信息。
 >
-> 当您的访问路径中含有 `&` 符号时，请在 URL 两端加上引号`""` 或者添加反斜杠来避免转义 `\&`。
-
-
-* [获取项目下的用户权限](#获取项目下的用户权限)
-* [赋予用户项目权限](#赋予用户项目权限)
-* [修改用户项目权限](#修改用户项目权限)
-* [收回用户项目权限](#收回用户项目权限)
-
-### 获取项目下的用户权限
-`请求方式 GET`
-
-`访问路径 http://host:port/kylin/api/access/{type}/{uuid}`
-
-`Accept: application/vnd.apache.kylin-v2+json`
-
-`Accept-Language: cn|en`
-
-#### 路径变量
-* type - `必选` `string`，目前来说，type 只能是 ProjectInstance
-* uuid - `必选` `string`，项目的 ID
-
-#### 请求示例
-`请求路径:http://host:port/kylin/api/access/ProjectInstance/2fbca32a-a33e-4b69-83dd-0bb8b1f8c91b`
+> 2. 在 Curl 命令行上，如果您访问的 URL 中含有 `&` 符号，请注意转义，比如在 URL 两端加上引号。
 
 
 
-#### Curl 请求示例 
+* [获取项目级访问控制权限](#获取项目级访问控制权限)
+* [赋予项目级访问控制权限](#赋予项目级访问控制权限)
+* [修改项目级访问控制权限](#修改项目级访问控制权限)
+* [删除项目级访问控制权限](#删除项目级访问控制权限)
 
-``` 
 
-curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json"  http://host:port/kylin/api/access/ProjectInstance/2fbca32a-a33e-4b69-83dd-0bb8b1f8c91b
 
+### 获取项目级访问控制权限
+
+- `GET http://host:port/kylin/api/access/{type}/{uuid}`
+
+- URL Parameters
+    * `type` - `必选` `string`，"ProjectInstance"
+    * `uuid` - `必选` `string`，项目对应的 UUID
+
+- HTTP Header
+    - `Accept: application/vnd.apache.kylin-v2+json`
+    - `Accept-Language: cn|en`
+    - `Content-Type: application/json;charset=utf-8`
+
+**Curl 请求示例**
+
+```shell
+curl -X GET \
+  'http://host:port/kylin/api/access/ProjectInstance/{uuid}' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Content-Type: application/json;charset=utf-8'
 ```
-#### 响应示例
-```json
+
+**响应示例**
+
+```JSON
 {
   "code": "000",
   "data": [
@@ -58,193 +60,149 @@ curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.
 }
 ```
 
-### 赋予用户项目权限
-`请求方式 POST`
-
-`访问路径 http://host:port/kylin/api/access/{type}/{uuid}`
-
-`Accept: application/vnd.apache.kylin-v2+json`
-
-`Accept-Language: cn|en`
-
-#### 路径变量
-* type - `必选` `string`，目前来说，type 只能是 ProjectInstance
-* uuid - `必选` `string`，项目的 ID
-
-#### 请求主体
-* permission - `必选` `string`，在项目上的权限
-* principal - `必选` `string`，principal 为 true
-* sid - `必选` `string`，用户名
-
-#### 请求示例
-`请求路径:http://host:port/kylin/api/access/ProjectInstance/2fbca32a-a33e-4b69-83dd-0bb8b1f8c91b`
-
-`请求主体:{permission: "READ", principal: true, sid: "MODELER"}`
 
 
+### 赋予项目级访问控制权限
 
-#### Curl 请求示例
+- `POST http://host:port/kylin/api/access/{type}/{uuid}`
 
+- URL Parameters
+    * `type` - `必选` `string`，"ProjectInstance"
+    * `uuid` - `必选` `string`，项目对应的 UUID
+
+- HTTP Header
+    - `Accept: application/vnd.apache.kylin-v2+json`
+    - `Accept-Language: cn|en`
+    - `Content-Type: application/json;charset=utf-8`
+
+- HTTP Body
+    * `permission` - `必选` `string`，项目级访问控制权限
+    * `principal` - `必选` `boolean`，是否为用户，"true" 或者 "false"
+    * `sid` - `必选` `string`，用户名称
+
+**Curl 请求示例**
+
+```shell
+curl -X POST \
+  'http://host:port/kylin/api/access/ProjectInstance/{uuid}' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Content-Type: application/json;charset=utf-8' \
+  -d '{
+	"permission": "READ",
+	"principal": true, 
+	"sid": "ANALYST"
+}'
 ```
-curl -X POST -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "permission":"READ", "principal":true，"sid":"MODELER" }' http://host:port/kylin/api/access/ProjectInstance/2fbca32a-a33e-4b69-83dd-0bb8b1f8c91b`
 
-```
+**响应示例**
 
-
-
-
-#### 响应示例
-```json
+```JSON
 {
-  "code": "000",
-  "data": [
-    {
-      "permission": {
-        "mask": 16,
-        "pattern": "...........................A...."
-      },
-      "id": 0,
-      "sid": {
-        "principal": "ADMIN"
-      },
-      "granting": true
-    },
-    {
-      "permission": {
-        "mask": 1,
-        "pattern": "...............................R"
-      },
-      "id": 1,
-      "sid": {
-        "principal": "MODELER"
-      },
-      "granting": true
-    }
-  ],
-  "msg": ""
+    "code": "000",
+    "data": "",
+    "msg": ""
 }
 ```
 
-### 修改用户项目权限
-`请求方式 PUT`
-
-`访问路径 http://host:port/kylin/api/access/{type}/{uuid}`
-
-`Accept: application/vnd.apache.kylin-v2+json`
-
-`Accept-Language: cn|en`
-
-#### 路径变量
-* type - `必选` `string`，目前来说，type 只能是 ProjectInstance
-* uuid - `必选` `string`，项目的 ID
-
-#### 请求主体
-* permission - `必选` `string`，在项目上的权限
-* principal - `必选` `string`，principal 为 true
-* sid - `必选` `string`，用户名
-
-#### 请求示例
-`请求路径:http://host:port/kylin/api/access/ProjectInstance/2fbca32a-a33e-4b69-83dd-0bb8b1f8c91b`
-
-`请求主体:{permission: "READ", principal: true, sid: "MODELER"}`
 
 
+### 修改项目级访问控制权限
 
-#### Curl 请求示例 
+- `PUT http://host:port/kylin/api/access/{type}/{uuid}`
 
-``` 
+- URL Parameters
+    * `type` - `必选` `string`，"ProjectInstance"
+    * `uuid` - `必选` `string`，项目对应的 UUID
 
-curl -X PUT -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "permission":"READ", "principal":true，"sid":"MODELER" }' http://host:port/kylin/api/access/ProjectInstance/2fbca32a-a33e-4b69-83dd-0bb8b1f8c91b`
+- HTTP Header
+    - `Accept: application/vnd.apache.kylin-v2+json`
+    - `Accept-Language: cn|en`
+    - `Content-Type: application/json;charset=utf-8`
 
+- HTTP Body
+    * `permission` - `必选` `string`，项目级访问控制权限
+    * `principal` - `必选` `boolean`，是否为用户，"true" 或者 "false"
+    * `sid` - `必选` `string`，用户名称
+    * `accessEntryId` - `必选` `int`，用户对应的 UUID
+
+
+**Curl 请求示例** 
+
+``` shell
+curl -X PUT \
+  'http://host:port/kylin/api/access/ProjectInstance/{uuid}' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Content-Type: application/json;charset=utf-8' \
+  -d '{
+	"permission": "OPERATION",
+	"principal": true, 
+	"sid": "ANALYST",
+	"accessEntryId": 1
+}'
 ```
-#### 响应示例
-```json
+
+
+**响应示例**
+
+```JSON
 {
-  "code": "000",
-  "data": [
-    {
-      "permission": {
-        "mask": 16,
-        "pattern": "...........................A...."
-      },
-      "id": 0,
-      "sid": {
-        "principal": "ADMIN"
-      },
-      "granting": true
-    },
-    {
-      "permission": {
-        "mask": 1,
-        "pattern": "...............................R"
-      },
-      "id": 1,
-      "sid": {
-        "principal": "MODELER"
-      },
-      "granting": true
-    }
-  ],
-  "msg": ""
+    "code": "000",
+    "data": "",
+    "msg": ""
 }
 ```
 
-### 收回用户项目权限
-`请求方式 DELETE`
-
-`访问路径 http://host:port/kylin/api/access/{type}/{uuid}`
-
-`Accept: application/vnd.apache.kylin-v2+json`
-
-`Accept-Language: cn|en`
-
-#### 路径变量
-* type - `必选` `string`，目前来说，type 只能是 ProjectInstance
-* uuid - `必选` `string`，项目的 ID
-
-#### 请求主体
-* accessEntryId - `必选` `string`，ACL 的序号
-* sid - `必选` `string`，用户名
-
-#### 请求示例
-`请求路径:http://host:port/kylin/api/access/ProjectInstance/2fbca32a-a33e-4b69-83dd-0bb8b1f8c91b`
-
-`请求主体:{permission: "READ", principal: true, sid: "MODELER"}`
 
 
+### 删除项目级访问控制权限
 
-#### Curl 请求示例
+- `DELETE http://host:port/kylin/api/access/{type}/{uuid}`
+
+
+- URL Parameters
+    * `type` - `必选`  `string`，"ProjectInstance"
+    * `uuid` - `必选`  `string`，项目对应的 UUID
+    * `accessEntryId` - `必选` `int`，用户对应的 UUID
+    * `sid` - `必选` `string`，用户名称
+    * `principal` - `必选` `boolean`，是否为用户，"true" 或者 "false"
+
+
+- HTTP Header
+    - `Accept: application/vnd.apache.kylin-v2+json`
+    - `Accept-Language: cn|en`
+    - `Content-Type: application/json;charset=utf-8`
+
+
+- HTTP Body
+    * `accessEntryId` - `必选` `int`，用户对应的 UUID
+    * `sid` - `必选` `string`，用户名称
+    * `principal` - `必选` `boolean`，是否为用户，"true" 或者 "false"
+
+
+**Curl 请求示例**
+
+```shell
+curl -X DELETE \
+  'http://host:port/kylin/api/access/ProjectInstance/{uuid}?accessEntryId=1&sid=ANALYST&principal=true' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Content-Type: application/json;charset=utf-8' \
+  -d '{
+	"principal": true, 
+	"sid": "ANALYST",
+	"accessEntryId": 1
+}'
 ```
-curl -X DELETE -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "accessEntryId":"1", "sid":'admin' }' http://host:port/kylin/api/access/ProjectInstance/2fbca32a-a33e-4b69-83dd-0bb8b1f8c91b
-```
-#### 响应示例
-```json
+
+
+**响应示例**
+
+```JSON
 {
-  "code": "000",
-  "data": [
-    {
-      "permission": {
-        "mask": 16,
-        "pattern": "...........................A...."
-      },
-      "id": 0,
-      "sid": {
-        "principal": "ADMIN"
-      },
-      "granting": true
-    },
-    {
-      "permission": {
-        "mask": 1,
-        "pattern": "...............................R"
-      },
-      "id": 1,
-      "sid": {
-        "principal": "MODELER"
-      },
-      "granting": true
-    }
-  ],
-  "msg": ""
+    "code": "000",
+    "data": "",
+    "msg": ""
 }
 ```

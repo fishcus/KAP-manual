@@ -1,44 +1,45 @@
-## Project ACL API
+## Project ACL  AP
 
-> **Tip**
+> Reminders:
 >
-> Before using API, make sure that you read the previous chapter of [Access and Authentication](authentication.en.md), and know how to add authentication information in API.
->
-> If there exists `&` in your request path, please enclose the URL in quotation marks `""` or add a backslash ahead  `\&`  to avoid being escaped.
+> 1. Please read [Access and Authentication REST API](authentication.en.md) and understand how authentication works.
+> 2. On Curl command line, don't forget to quote the URL if it contains `&` or other special chars.
 
 
-* [Get Project Access](#get-project-access)
-* [Grant Project Access](#grant-project-access)
-* [Modify Project Access](#modify-project-access)
-* [Delete Project Access](#delete-project-access)
 
-### Get Project Access
-`Request Mode GET`
-
-`Access Path http://host:port/kylin/api/access/{type}/{uuid}`
-
-`Accept: application/vnd.apache.kylin-v2+json` 
-
-`Accept-Language: cn|en` 
-
-#### Path Variable
-* type - `required` `string`, currently, type can only be ProjectInstance
-* uuid - `required` `string`, project's ID
-
-#### Request Example
-`Request Path:http://host:port/kylin/api/access/ProjectInstance/2fbca32a-a33e-4b69-83dd-0bb8b1f8c91b`
+* [Get Project ACL](#Get Project ACL)
+* [Grant Project ACL](#Grant Project ACL)
+* [Update Project ACL](#Update Project ACL)
+* [Revoke Project ACL](#Revoke Project ACL)
 
 
-#### Curl Request Example 
 
-``` 
+### Get Project ACL
 
-curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json"  http://host:port/kylin/api/access/ProjectInstance/2fbca32a-a33e-4b69-83dd-0bb8b1f8c91b
+- `GET http://host:port/kylin/api/access/{type}/{uuid}`
 
+- URL Parameters
+    * `type` - `required` `string`, "ProjectInstance"
+    * `uuid` - `required` `string`, project UUID
+
+- HTTP Header
+    - `Accept: application/vnd.apache.kylin-v2+json`
+    - `Accept-Language: cn|en`
+    - `Content-Type: application/json;charset=utf-8`
+
+**Curl Request Example**
+
+```shell
+curl -X GET \
+  'http://host:port/kylin/api/access/ProjectInstance/{uuid}' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Content-Type: application/json;charset=utf-8'
 ```
 
-#### Response Example
-```json
+**Response Example**
+
+```JSON
 {
   "code": "000",
   "data": [
@@ -58,192 +59,149 @@ curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.
 }
 ```
 
-### Grant Project Access
-`Request Mode POST`
-
-`Access Path http://host:port/kylin/api/access/{type}/{uuid}`
-
-`Accept: application/vnd.apache.kylin-v2+json` 
-
-`Accept-Language: cn|en` 
-
-#### Path Variables
-* type - `required` `string`, currently, type can only be ProjectInstance
-* uuid - `required` `string`, project's ID
-
-#### Request Body
-* permission - `required` `string`, permissions on project
-* principal - `required` `string`, principal is true
-* sid - `required` `string`, user name
-
-#### Request Example
-`Request path:http://host:port/kylin/api/access/ProjectInstance/2fbca32a-a33e-4b69-83dd-0bb8b1f8c91b`
-
-`request body:{permission: "READ", principal: true, sid: "MODELER"}`
 
 
+### Grant Project ACL
 
-#### Curl Request Example 
+- `POST http://host:port/kylin/api/access/{type}/{uuid}`
 
-``` 
+- URL Parameters
+    * `type` - `required` `string`, "ProjectInstance"
+    * `uuid` - `required` `string`, project UUID
 
-curl -X POST -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "permission":"READ", "principal":true，"sid:"MODELER" }' http://host:port/kylin/api/access/ProjectInstance/2fbca32a-a33e-4b69-83dd-0bb8b1f8c91b`
+- HTTP Header
+    - `Accept: application/vnd.apache.kylin-v2+json`
+    - `Accept-Language: cn|en`
+    - `Content-Type: application/json;charset=utf-8`
 
+- HTTP Body
+    * `permission` - `required` `string`, project acl
+    * `principal` - `required` `boolean`, user or not, "true" for user and "false" for usergroup
+    * `sid` - `required` `string`, user name
+
+**Curl Request Example**
+
+```shell
+curl -X POST \
+  'http://host:port/kylin/api/access/ProjectInstance/{uuid}' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Content-Type: application/json;charset=utf-8' \
+  -d '{
+	"permission": "READ",
+	"principal": true, 
+	"sid": "ANALYST"
+}'
 ```
 
+**Response Example**
 
-#### Response Example
-```json
+```JSON
 {
-  "code": "000",
-  "data": [
-    {
-      "permission": {
-        "mask": 16,
-        "pattern": "...........................A...."
-      },
-      "id": 0,
-      "sid": {
-        "principal": "ADMIN"
-      },
-      "granting": true
-    },
-    {
-      "permission": {
-        "mask": 1,
-        "pattern": "...............................R"
-      },
-      "id": 1,
-      "sid": {
-        "principal": "MODELER"
-      },
-      "granting": true
-    }
-  ],
-  "msg": ""
+    "code": "000",
+    "data": "",
+    "msg": ""
 }
 ```
 
-### Modify Project Access
-`Request Mode PUT`
-
-`Access Path http://host:port/kylin/api/access/{type}/{uuid}`
-
-`Accept: application/vnd.apache.kylin-v2+json` 
-
-`Accept-Language: cn|en` 
-
-#### Path Variable
-* type - `required` `string`, currently, type can only be ProjectInstance
-* uuid - `required` `string`, project's ID
-
-#### Request Body
-* permission - `required` `string`, permissions on project
-* principal - `required` `string`, principal is true
-* sid - `required` `string`, user name
-
-#### Request Example
-`Request Path:http://host:port/kylin/api/access/ProjectInstance/2fbca32a-a33e-4b69-83dd-0bb8b1f8c91b`
-
-`Request Body:{permission: "READ", principal: true, sid: "MODELER"}`
 
 
-#### Curl Request Example 
+### Update Project ACL
 
-``` 
+- `PUT http://host:port/kylin/api/access/{type}/{uuid}`
 
-curl -X PUT -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "permission":"READ", "principal":true，"sid:"MODELER" }' http://host:port/kylin/api/access/ProjectInstance/2fbca32a-a33e-4b69-83dd-0bb8b1f8c91b`
+- URL Parameters
+    * `type` - `required` `string`, "ProjectInstance"
+    * `uuid` - `required` `string`, project UUID
 
+- HTTP Header
+    - `Accept: application/vnd.apache.kylin-v2+json`
+    - `Accept-Language: cn|en`
+    - `Content-Type: application/json;charset=utf-8`
+
+- HTTP Body
+    * `permission` - `required` `string`, project acl
+    * `principal` - `required` `boolean`, user or not, "true" for user and "false" for usergroup
+    * `sid` - `required` `string`, user name
+    * `accessEntryId` - `required` `int`, user UUID
+
+
+**Curl Request Example** 
+
+``` shell
+curl -X PUT \
+  'http://host:port/kylin/api/access/ProjectInstance/{uuid}' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Content-Type: application/json;charset=utf-8' \
+  -d '{
+	"permission": "OPERATION",
+	"principal": true, 
+	"sid": "ANALYST",
+	"accessEntryId": 1
+}'
 ```
 
 
-#### Response Example
-```json
+**Response Example**
+
+```JSON
 {
-  "code": "000",
-  "data": [
-    {
-      "permission": {
-        "mask": 16,
-        "pattern": "...........................A...."
-      },
-      "id": 0,
-      "sid": {
-        "principal": "ADMIN"
-      },
-      "granting": true
-    },
-    {
-      "permission": {
-        "mask": 1,
-        "pattern": "...............................R"
-      },
-      "id": 1,
-      "sid": {
-        "principal": "MODELER"
-      },
-      "granting": true
-    }
-  ],
-  "msg": ""
+    "code": "000",
+    "data": "",
+    "msg": ""
 }
 ```
 
-### Delete Project Access
-`Request Mode DELETE`
-
-`Access Path http://host:port/kylin/api/access/{type}/{uuid}`
-
-`Accept: application/vnd.apache.kylin-v2+json` 
-
-`Accept-Language: cn|en` 
-
-#### Path Variable
-* type - `required` `string`, currently, type can only be ProjectInstance
-* uuid - `required` `string`, project's ID
-
-#### Request Body
-* accessEntryId - `required` `string`, ACL's serial number
-* sid - `required` `string`, user name
-
-#### Request Example
-`Request Path:http://host:port/kylin/api/access/ProjectInstance/2fbca32a-a33e-4b69-83dd-0bb8b1f8c91b`
 
 
-#### Curl Request Example
+### Revoke Project ACL
+
+- `DELETE http://host:port/kylin/api/access/{type}/{uuid}`
+
+
+- URL Parameters
+    * `type` - `required`  `string`, "ProjectInstance"
+    * `uuid` - `required`  `string`, project UUID
+    * `accessEntryId` - `required` `int`, user UUID
+    * `sid` - `required` `string`, user name
+    * `principal` - `required` `boolean`, user or not, "true" for user and "false" for usergroup
+
+
+- HTTP Header
+    - `Accept: application/vnd.apache.kylin-v2+json`
+    - `Accept-Language: cn|en`
+    - `Content-Type: application/json;charset=utf-8`
+
+
+- HTTP Body
+    * `accessEntryId` - `required` `int`, user UUID
+    * `sid` - `required` `string`, user name
+    * `principal` - `required` `boolean`, user or not, "true" for user and "false" for usergroup
+
+
+**Curl Request Example**
+
+```shell
+curl -X DELETE \
+  'http://host:port/kylin/api/access/ProjectInstance/{uuid}?accessEntryId=1&sid=ANALYST&principal=true' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Content-Type: application/json;charset=utf-8' \
+  -d '{
+	"principal": true, 
+	"sid": "ANALYST",
+	"accessEntryId": 1
+}'
 ```
-curl -X DELETE -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "accessEntryId":"1", "sid":'admin' }' http://host:port/kylin/api/access/ProjectInstance/2fbca32a-a33e-4b69-83dd-0bb8b1f8c91b
-```
 
 
-#### Response Example
-```json
+**Response Example**
+
+```JSON
 {
-  "code": "000",
-  "data": [
-    {
-      "permission": {
-        "mask": 16,
-        "pattern": "...........................A...."
-      },
-      "id": 0,
-      "sid": {
-        "principal": "ADMIN"
-      },
-      "granting": true
-    },
-    {
-      "permission": {
-        "mask": 1,
-        "pattern": "...............................R"
-      },
-      "id": 1,
-      "sid": {
-        "principal": "MODELER"
-      },
-      "granting": true
-    }
-  ],
-  "msg": ""
+    "code": "000",
+    "data": "",
+    "msg": ""
 }
 ```
