@@ -20,45 +20,45 @@
 - `GET http://host:port/kylin/api/access/{type}/{uuid}`
 
 - URL Parameters
-    * `type` - `必选` `string`，"ProjectInstance"
-    * `uuid` - `必选` `string`，项目对应的 UUID
+  - `type` - `必选` `string`，"ProjectInstance"
+  - `uuid` - `必选` `string`，项目对应的 UUID
 
 - HTTP Header
-    - `Accept: application/vnd.apache.kylin-v2+json`
-    - `Accept-Language: cn|en`
-    - `Content-Type: application/json;charset=utf-8`
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
 
-**Curl 请求示例**
+- Curl 请求示例
 
-```shell
-curl -X GET \
-  'http://host:port/kylin/api/access/ProjectInstance/{uuid}' \
-  -H 'Accept: application/vnd.apache.kylin-v2+json' \
-  -H 'Accept-Language: cn|en' \
-  -H 'Content-Type: application/json;charset=utf-8'
-```
+  ```shell
+  curl -X GET \
+    'http://host:port/kylin/api/access/ProjectInstance/{uuid}' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Content-Type: application/json;charset=utf-8'
+  ```
 
-**响应示例**
+- 响应示例
 
-```JSON
-{
-  "code": "000",
-  "data": [
-    {
-      "permission": {
-        "mask": 16,
-        "pattern": "...........................A...."
-      },
-      "id": 0,
-      "sid": {
-        "principal": "ADMIN"
-      },
-      "granting": true
-    }
-  ],
-  "msg": ""
-}
-```
+  ```JSON
+  {
+    "code": "000",
+    "data": [
+      {
+        "permission": {
+          "mask": 16,
+          "pattern": "...........................A...."
+        },
+        "id": 0,
+        "sid": {
+          "principal": "ADMIN"
+        },
+        "granting": true
+      }
+    ],
+    "msg": ""
+  }
+  ```
 
 
 
@@ -67,43 +67,43 @@ curl -X GET \
 - `POST http://host:port/kylin/api/access/{type}/{uuid}`
 
 - URL Parameters
-    * `type` - `必选` `string`，"ProjectInstance"
-    * `uuid` - `必选` `string`，项目对应的 UUID
+  - `type` - `必选` `string`，"ProjectInstance"
+  - `uuid` - `必选` `string`，项目对应的 UUID
 
 - HTTP Header
-    - `Accept: application/vnd.apache.kylin-v2+json`
-    - `Accept-Language: cn|en`
-    - `Content-Type: application/json;charset=utf-8`
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
 
-- HTTP Body
-    * `permission` - `必选` `string`，项目级访问控制权限
-    * `principal` - `必选` `boolean`，是否为用户，"true" 或者 "false"
-    * `sid` - `必选` `string`，用户名称
+- HTTP Body: JSON Object
+  - `permission` - `必选` `string`，项目级访问控制权限
+  - `principal` - `必选` `boolean`，是否为用户，"true" 或者 "false"
+  - `sid` - `必选` `string`，用户名称
 
-**Curl 请求示例**
+- Curl 请求示例
 
-```shell
-curl -X POST \
-  'http://host:port/kylin/api/access/ProjectInstance/{uuid}' \
-  -H 'Accept: application/vnd.apache.kylin-v2+json' \
-  -H 'Accept-Language: cn|en' \
-  -H 'Content-Type: application/json;charset=utf-8' \
-  -d '{
-	"permission": "READ",
-	"principal": true, 
-	"sid": "ANALYST"
-}'
-```
+  ```shell
+  curl -X POST \
+    'http://host:port/kylin/api/access/ProjectInstance/{uuid}' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Content-Type: application/json;charset=utf-8' \
+    -d '{
+  	"permission": "READ",
+  	"principal": true, 
+  	"sid": "ANALYST"
+  }'
+  ```
 
-**响应示例**
+- 响应示例
 
-```JSON
-{
-    "code": "000",
-    "data": "",
-    "msg": ""
-}
-```
+  ```JSON
+  {
+      "code": "000",
+      "data": "",
+      "msg": ""
+  }
+  ```
 
 
 
@@ -112,47 +112,47 @@ curl -X POST \
 - `PUT http://host:port/kylin/api/access/{type}/{uuid}`
 
 - URL Parameters
-    * `type` - `必选` `string`，"ProjectInstance"
-    * `uuid` - `必选` `string`，项目对应的 UUID
+  - `type` - `必选` `string`，"ProjectInstance"
+  - `uuid` - `必选` `string`，项目对应的 UUID
 
 - HTTP Header
-    - `Accept: application/vnd.apache.kylin-v2+json`
-    - `Accept-Language: cn|en`
-    - `Content-Type: application/json;charset=utf-8`
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
 
-- HTTP Body
-    * `permission` - `必选` `string`，项目级访问控制权限
-    * `principal` - `必选` `boolean`，是否为用户，"true" 或者 "false"
-    * `sid` - `必选` `string`，用户名称
-    * `accessEntryId` - `必选` `int`，用户对应的 UUID
-
-
-**Curl 请求示例** 
-
-``` shell
-curl -X PUT \
-  'http://host:port/kylin/api/access/ProjectInstance/{uuid}' \
-  -H 'Accept: application/vnd.apache.kylin-v2+json' \
-  -H 'Accept-Language: cn|en' \
-  -H 'Content-Type: application/json;charset=utf-8' \
-  -d '{
-	"permission": "OPERATION",
-	"principal": true, 
-	"sid": "ANALYST",
-	"accessEntryId": 1
-}'
-```
+- HTTP Body: JSON Object
+  - `permission` - `必选` `string`，项目级访问控制权限
+  - `principal` - `必选` `boolean`，是否为用户，"true" 或者 "false"
+  - `sid` - `必选` `string`，用户名称
+  - `accessEntryId` - `必选` `int`，用户对应的 UUID
 
 
-**响应示例**
+- Curl 请求示例 
 
-```JSON
-{
-    "code": "000",
-    "data": "",
-    "msg": ""
-}
-```
+  ``` shell
+  curl -X PUT \
+    'http://host:port/kylin/api/access/ProjectInstance/{uuid}' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Content-Type: application/json;charset=utf-8' \
+    -d '{
+  	"permission": "OPERATION",
+  	"principal": true, 
+  	"sid": "ANALYST",
+  	"accessEntryId": 1
+  }'
+  ```
+
+
+- 响应示例
+
+  ```JSON
+  {
+      "code": "000",
+      "data": "",
+      "msg": ""
+  }
+  ```
 
 
 
@@ -162,47 +162,47 @@ curl -X PUT \
 
 
 - URL Parameters
-    * `type` - `必选`  `string`，"ProjectInstance"
-    * `uuid` - `必选`  `string`，项目对应的 UUID
-    * `accessEntryId` - `必选` `int`，用户对应的 UUID
-    * `sid` - `必选` `string`，用户名称
-    * `principal` - `必选` `boolean`，是否为用户，"true" 或者 "false"
+  - `type` - `必选`  `string`，"ProjectInstance"
+  - `uuid` - `必选`  `string`，项目对应的 UUID
+  - `accessEntryId` - `必选` `int`，用户对应的 UUID
+  - `sid` - `必选` `string`，用户名称
+  - `principal` - `必选` `boolean`，是否为用户，"true" 或者 "false"
 
 
 - HTTP Header
-    - `Accept: application/vnd.apache.kylin-v2+json`
-    - `Accept-Language: cn|en`
-    - `Content-Type: application/json;charset=utf-8`
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
 
 
-- HTTP Body
-    * `accessEntryId` - `必选` `int`，用户对应的 UUID
-    * `sid` - `必选` `string`，用户名称
-    * `principal` - `必选` `boolean`，是否为用户，"true" 或者 "false"
+- HTTP Body: JSON Object
+  - `accessEntryId` - `必选` `int`，用户对应的 UUID
+  - `sid` - `必选` `string`，用户名称
+  - `principal` - `必选` `boolean`，是否为用户，"true" 或者 "false"
 
 
-**Curl 请求示例**
+- Curl 请求示例
 
-```shell
-curl -X DELETE \
-  'http://host:port/kylin/api/access/ProjectInstance/{uuid}?accessEntryId=1&sid=ANALYST&principal=true' \
-  -H 'Accept: application/vnd.apache.kylin-v2+json' \
-  -H 'Accept-Language: cn|en' \
-  -H 'Content-Type: application/json;charset=utf-8' \
-  -d '{
-	"principal": true, 
-	"sid": "ANALYST",
-	"accessEntryId": 1
-}'
-```
+  ```shell
+  curl -X DELETE \
+    'http://host:port/kylin/api/access/ProjectInstance/{uuid}?accessEntryId=1&sid=ANALYST&principal=true' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Content-Type: application/json;charset=utf-8' \
+    -d '{
+  	"principal": true, 
+  	"sid": "ANALYST",
+  	"accessEntryId": 1
+  }'
+  ```
 
 
-**响应示例**
+- 响应示例
 
-```JSON
-{
-    "code": "000",
-    "data": "",
-    "msg": ""
-}
-```
+  ```JSON
+  {
+      "code": "000",
+      "data": "",
+      "msg": ""
+  }
+  ```

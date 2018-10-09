@@ -21,40 +21,40 @@
 - `GET http://host:port/kylin/api/models`
 
 - URL Parameters
-	* `pageOffset` - `可选` `int`，返回数据起始下标，默认为 0 
-	* `pageSize` - `可选` `int ` ，每页返回多少，默认为 10 
-	* `modelName` - `可选` `string` ，模型名称
-	* `exactMatch` - `可选` `boolean` ，是否对模型名称进行完全匹配，默认为`true`
-	* `projectName` - `可选` `string`， 项目名称
+  - `pageOffset` - `可选` `int`，返回数据起始下标，默认为 0 
+  - `pageSize` - `可选` `int `，每页返回多少，默认为 10 
+  - `modelName` - `可选` `string`，模型名称
+  - `exactMatch` - `可选` `boolean`，是否对模型名称进行完全匹配，默认为`true`
+  - `projectName` - `可选` `string`， 项目名称
 
 - HTTP Header
-	- `Accept: application/vnd.apache.kylin-v2+json`
-	- `Accept-Language: cn|en`
-	- `Content-Type: application/json;charset=utf-8`
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
 
-**Curl 请求示例**
+- Curl 请求示例
 
-```shell
-curl -X GET \
-  'http://host:port/kylin/api/models?pageOffset=1' \
-  -H 'Accept: application/vnd.apache.kylin-v2+json' \
-  -H 'Accept-Language: cn|en' \
-  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
-  -H 'Content-Type: application/json;charset=utf-8'
-```
+  ```shell
+  curl -X GET \
+    'http://host:port/kylin/api/models?pageOffset=1' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json;charset=utf-8'
+  ```
 
-**响应示例**
+- 响应示例
 
-```JSON
-{
-    "code":"000",
-    "data":{
-        "models":[...],
-        "size":12
-    },
-    "msg":""
-}
-```
+  ```JSON
+  {
+      "code":"000",
+      "data":{
+          "models":[...],
+          "size":12
+      },
+      "msg":""
+  }
+  ```
 
 
 
@@ -63,56 +63,56 @@ curl -X GET \
 - `GET http://host:port/kylin/api/model_desc/{projectName}/{modelName}`
 
 - URL Parameters
-	- `projectName` - `必选` `string` ，项目名称
-	- `modelName` - `必选` `string` ，模型名称
+  - `projectName` - `必选` `string`，项目名称
+  - `modelName` - `必选` `string`，模型名称
 
 - HTTP Header
-	- `Accept: application/vnd.apache.kylin-v2+json`
-	- `Accept-Language: cn|en`
-	- `Content-Type: application/json;charset=utf-8`
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
 
-**Curl 请求示例**
+- Curl 请求示例
 
-```shell
-curl -X GET \
-  'http://host:port/kylin/api/model_desc/learn_kylin/kylin_sales_model' \
-  -H 'Accept: application/vnd.apache.kylin-v2+json' \
-  -H 'Accept-Language: cn|en' \
-  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
-  -H 'Content-Type: application/json;charset=utf-8'
-```
+  ```shell
+  curl -X GET \
+    'http://host:port/kylin/api/model_desc/learn_kylin/kylin_sales_model' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json;charset=utf-8'
+  ```
 
-**响应示例**
+- 响应示例
 
-```JSON
-{
-    "code":"000",
-    "data":{
-        "model":{
-            "uuid":"0928468a-9fab-4185-9a14-6f2e7c74823f",
-            "last_modified":1536287374944,
-            "version":"3.0.0.1",
-            "name":"kylin_sales_model",
-            "owner":null,
-            "is_draft":false,
-            "description":"",
-            "fact_table":"DEFAULT.KYLIN_SALES",
-            "lookups":[...],
-            "dimensions":[...],
-            "metrics":[...],
-            "filter_condition":"",
-            "partition_desc":{...},
-            "capacity":"MEDIUM",
-            "multilevel_partition_cols":[...],
-            "computed_columns":[...],
-            "smart_model":false,
-            "smart_model_sqls":[...],
-            "project":"learn_kylin"
-        }
-    },
-    "msg":""
-}
-```
+  ```JSON
+  {
+      "code":"000",
+      "data":{
+          "model":{
+              "uuid":"0928468a-9fab-4185-9a14-6f2e7c74823f",
+              "last_modified":1536287374944,
+              "version":"3.0.0.1",
+              "name":"kylin_sales_model",
+              "owner":null,
+              "is_draft":false,
+              "description":"",
+              "fact_table":"DEFAULT.KYLIN_SALES",
+              "lookups":[...],
+              "dimensions":[...],
+              "metrics":[...],
+              "filter_condition":"",
+              "partition_desc":{...},
+              "capacity":"MEDIUM",
+              "multilevel_partition_cols":[...],
+              "computed_columns":[...],
+              "smart_model":false,
+              "smart_model_sqls":[...],
+              "project":"learn_kylin"
+          }
+      },
+      "msg":""
+  }
+  ```
 
 
 
@@ -121,60 +121,41 @@ curl -X GET \
 - `PUT http://host:port/kylin/api/models/{modelName}/clone`
 
 - URL Parameters
-	* `modelName` - `必选` `string` ，被克隆模型名称
+  - `modelName` - `必选` `string`，被克隆模型名称
 
 - HTTP Header
-	- `Accept: application/vnd.apache.kylin-v2+json`
-	- `Accept-Language: cn|en`
-	- `Content-Type: application/json;charset=utf-8`
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
 
-- HTTP Body
-	* `modelName` - `必选` `string` ，克隆后的模型名称
-	* `project` - `必选` `string` ，项目名称 
+- HTTP Body: JSON Object
+  - `modelName` - `必选` `string`，克隆后的模型名称
+  - `project` - `必选` `string`，项目名称 
 
-**Curl 请求示例**
+- Curl 请求示例
 
-```shell
-curl -X PUT \
-  'http://host:port/kylin/api/models/kylin_sales_model/clone' \
-  -H 'Accept: application/vnd.apache.kylin-v2+json' \
-  -H 'Accept-Language: cn|en' \
-  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
-  -H 'Content-Type: application/json;charset=utf-8' \
-  -d '{"modelName":"learn_kylin_model_clone2","project":"learn_kylin"}'
-```
+  ```shell
+  curl -X PUT \
+    'http://host:port/kylin/api/models/kylin_sales_model/clone' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json;charset=utf-8' \
+    -d '{"modelName":"learn_kylin_model_clone2","project":"learn_kylin"}'
+  ```
 
-**响应示例**
+- 响应示例
 
-```JSON
-{
-    "code":"000",
-    "data":{
-        "modelDescData":"{{
-    "uuid":"2a4fe755-5810-4e41-aa9e-ecb3114b1e0b",
-    "last_modified":1536546593858,
-    "version":"3.0.0.1",
-    "name":"learn_kylin_model_clone2",
-    "owner":"ADMIN",
-    "is_draft":false,
-    "description":"",
-    "fact_table":"DEFAULT.KYLIN_SALES",
-    "lookups":[...],
-    "dimensions":[...],
-    "metrics":[...],
-    "filter_condition":"",
-    "partition_desc":{...},
-    "capacity":"MEDIUM",
-    "multilevel_partition_cols":[...],
-    "computed_columns":[...],
-    "smart_model":false,
-    "smart_model_sqls":[...]
-},
-        "uuid":"2a4fe755-5810-4e41-aa9e-ecb3114b1e0b"
-    },
-    "msg":""
-}
-```
+  ```JSON
+  {
+      "code":"000",
+      "data":{
+          "modelDescData":"...",
+          "uuid":"2a4fe755-5810-4e41-aa9e-ecb3114b1e0b"
+      },
+      "msg":""
+  }
+  ```
 
 
 
@@ -183,24 +164,24 @@ curl -X PUT \
 - `DELETE http://host:port/kylin/api/models/{projectName}/{modelName}`
 
 - URL Parameters	
-	* `projectName` - `必选` `string`， 项目名称
-	* `modelName` - `必选` `string` ，模型名称
+  - `projectName` - `必选` `string`， 项目名称
+  - `modelName` - `必选` `string`，模型名称
 	
 - HTTP Header
-	- `Accept: application/vnd.apache.kylin-v2+json`
-	- `Accept-Language: cn|en`
-	- `Content-Type: application/json;charset=utf-8`
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
 
-**Curl 请求示例**
+- Curl 请求示例
 
-```shell
-curl -X DELETE \
-  'http://host:port/kylin/api/models/learn_kylin/kylin_sales_model_clone' \
-  -H 'Accept: application/vnd.apache.kylin-v2+json' \
-  -H 'Accept-Language: cn|en' \
-  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
-  -H 'Content-Type: application/vnd.apache.kylin-v2+json;charset=UTF-8'
-```
+  ```shell
+  curl -X DELETE \
+    'http://host:port/kylin/api/models/learn_kylin/kylin_sales_model_clone' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json;charset=utf-8'
+  ```
 
 
 
@@ -209,34 +190,34 @@ curl -X DELETE \
 - `GET http://host:port/kylin/api/models/computed_column_usage/{projectName}`
 
 - URL Parameters	
-	* `projectName` - `必选` `string` 项目名称
+  - `projectName` - `必选` `string` 项目名称
 
 - HTTP Header
-	- `Accept: application/vnd.apache.kylin-v2+json`
-	- `Accept-Language: cn|en`
-	- `Content-Type: application/json;charset=utf-8`
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
 
-**Curl 请求示例**
+- Curl 请求示例
 
-```shell
-curl -X GET \
-  'http://host:port/kylin/api/models/computed_column_usage/learn_kylin' \
-  -H 'Accept: application/vnd.apache.kylin-v2+json' \
-  -H 'Accept-Language: cn|en' \
-  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
-  -H 'Content-Type: application/json;charset=utf-8'
-```
+  ```shell
+  curl -X GET \
+    'http://host:port/kylin/api/models/computed_column_usage/learn_kylin' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json;charset=utf-8'
+  ```
 
-**响应示例**
+- 响应示例
 
-```JSON
-{
-    "code": "000",
-    "data": {
-        "THIS_IS_A_COMPUTED_COLUMN": [
-            "kylin_sales_model"
-        ]
-    },
-    "msg": ""
-}
-```
+  ```JSON
+  {
+      "code": "000",
+      "data": {
+          "THIS_IS_A_COMPUTED_COLUMN": [
+              "kylin_sales_model"
+          ]
+      },
+      "msg": ""
+  }
+  ```

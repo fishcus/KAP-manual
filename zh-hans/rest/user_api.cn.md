@@ -21,57 +21,57 @@
 
 
 - URL Parameters
-    * `project` - `可选` `string`，项目名称
-    * `name` - `可选` `string`，用户名称
-    * `isCaseSensitive` - `可选` `bool`，对用户名称的模糊匹配是否区分大小写，默认不区分
-    * `pageOffset` - `可选` `int`，返回数据的起始下标，默认为 0 
-    * `pageSize` - `可选` `int`，分页返回每页返回的条数，默认为 10
+  - `project` - `可选` `string`，项目名称
+  - `name` - `可选` `string`，用户名称
+  - `isCaseSensitive` - `可选` `boolean`，对用户名称的模糊匹配是否区分大小写，默认不区分
+  - `pageOffset` - `可选` `int`，返回数据的起始下标，默认为 0 
+  - `pageSize` - `可选` `int`，分页返回每页返回的条数，默认为 10
 
 
 - HTTP Header
-    - `Accept: application/vnd.apache.kylin-v2+json`
-    - `Accept-Language: cn|en`
-    - `Content-Type: application/json;charset=utf-8`
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
 
 
-**Curl 请求示例**
+- Curl 请求示例
 
-```shell
-curl -X GET \
-  'http://host:port/kylin/api/kap/user/users?pageSize=1&project=learn_kylin' \
-  -H 'Accept: application/vnd.apache.kylin-v2+json' \
-  -H 'Accept-Language: cn|en' \
-  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
-  -H 'Content-Type: application/json;charset=utf-8'
-```
+  ```shell
+  curl -X GET \
+    'http://host:port/kylin/api/kap/user/users?pageSize=1&project=learn_kylin' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json;charset=utf-8'
+  ```
 
 
-**响应示例**
+- 响应示例
 
-```JSON
-{
-    "code": "000",
-    "data": {
-        "size": 4,
-        "users": [
-            {
-                "username": "ADMIN",
-                "password": "$2a$10$UfSim3k3g6mBCPnZULlynuyyV3OVKhy174iOBoNVplZXZJlb2TPRu",
-                "authorities": [...],
-                "disabled": false,
-                "defaultPassword": true,
-                "locked": false,
-                "lockedTime": 0,
-                "wrongTime": 0,
-                "uuid": "aec35307-8d41-45a0-a942-91d4e92e11e4",
-                "last_modified": 1537860587117,
-                "version": "3.0.0.1"
-            }
-        ]
-    },
-    "msg": ""
-}
-```
+  ```JSON
+  {
+      "code": "000",
+      "data": {
+          "size": 4,
+          "users": [
+              {
+                  "username": "ADMIN",
+                  "password": "$2a$10$UfSim3k3g6mBCPnZULlynuyyV3OVKhy174iOBoNVplZXZJlb2TPRu",
+                  "authorities": [...],
+                  "disabled": false,
+                  "defaultPassword": true,
+                  "locked": false,
+                  "lockedTime": 0,
+                  "wrongTime": 0,
+                  "uuid": "aec35307-8d41-45a0-a942-91d4e92e11e4",
+                  "last_modified": 1537860587117,
+                  "version": "3.0.0.1"
+              }
+          ]
+      },
+      "msg": ""
+  }
+  ```
 
 
 
@@ -81,63 +81,63 @@ curl -X GET \
 
 
 - URL Parameters
-	* `userName` - `必选` `string`，用户名称
+  - `userName` - `必选` `string`，用户名称
 
 
 - HTTP Header
-    - `Accept: application/vnd.apache.kylin-v2+json`
-    - `Accept-Language: cn|en`
-    - `Content-Type: application/json;charset=utf-8`
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
 
 
-- HTTP Body
-    * `password` - `必选` `string`，用户密码
-    * `disabled` - `必选` `bool`，是否启用
-    * `authorities` - `必选` `string[]`，用户所属用户组
+- HTTP Body: JSON Object
+  - `password` - `必选` `string`，用户密码
+  - `disabled` - `必选` `bool`，是否启用
+  - `authorities` - `必选` `string[]`，用户所属用户组
 
 
-**Curl 请求示例**
+- Curl 请求示例
 
-```shell
-curl -X POST \
-  'http://host:port/kylin/api/kap/user/test' \
-  -H 'Accept: application/vnd.apache.kylin-v2+json' \
-  -H 'Accept-Language: cn|en' \
-  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
-  -H 'Content-Type: application/json;charset=utf-8' \
-  -d '{
-	"password": "test@Kylingence",
-	"disabled": false, 
-	"authorities": ["ROLE_ADMIN"]
-	
-}'
-```
+  ```shell
+  curl -X POST \
+    'http://host:port/kylin/api/kap/user/test' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json;charset=utf-8' \
+    -d '{
+  	"password": "test@Kylingence",
+  	"disabled": false, 
+  	"authorities": ["ROLE_ADMIN"]
+  	
+  }'
+  ```
 
 
-**响应示例**
+- 响应示例
 
-```JSON
-{
-    "username": "test",
-    "password": "$2a$10$Iw4NYBNW2bCTN3BqCGVfrO5Loesn/UigQxvbBQFebH2fEkFE2gcHy",
-    "authorities": [
-        {
-            "authority": "ROLE_ADMIN"
-        },
-        {
-            "authority": "ALL_USERS"
-        }
-    ],
-    "disabled": false,
-    "defaultPassword": false,
-    "locked": false,
-    "lockedTime": 0,
-    "wrongTime": 0,
-    "uuid": "ffdd3033-d516-4b4f-a7fe-6718280746bb",
-    "last_modified": 1538964238173,
-    "version": "3.0.0.1"
-}
-```
+  ```JSON
+  {
+      "username": "test",
+      "password": "$2a$10$Iw4NYBNW2bCTN3BqCGVfrO5Loesn/UigQxvbBQFebH2fEkFE2gcHy",
+      "authorities": [
+          {
+              "authority": "ROLE_ADMIN"
+          },
+          {
+              "authority": "ALL_USERS"
+          }
+      ],
+      "disabled": false,
+      "defaultPassword": false,
+      "locked": false,
+      "lockedTime": 0,
+      "wrongTime": 0,
+      "uuid": "ffdd3033-d516-4b4f-a7fe-6718280746bb",
+      "last_modified": 1538964238173,
+      "version": "3.0.0.1"
+  }
+  ```
 
 
 
@@ -147,50 +147,50 @@ curl -X POST \
 
 
 - URL Parameters
-	* `userName` - `必选` `string`，用户名称
+  - `userName` - `必选` `string`，用户名称
 
 
-- HTTP Body
-    * `password` - `必选` `string`，用户密码
-    * `disabled` - `必选` `bool`，是否启用
-    * `authorities` - `必选` `string[]`，用户所属用户组
+- HTTP Body: JSON Object
+  - `password` - `必选` `string`，用户密码
+  - `disabled` - `必选` `bool`，是否启用
+  - `authorities` - `必选` `string[]`，用户所属用户组
 
 
-**Curl 请求示例**
+- Curl 请求示例
 
-```shell
-curl -X PUT \
-  'http://host:port/kylin/api/kap/user/test' \
-  -H 'Accept: application/vnd.apache.kylin-v2+json' \
-  -H 'Accept-Language: cn|en' \
-  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
-  -H 'Content-Type: application/json;charset=utf-8' \
-  -d '{
-	"password": "test123.",
-	"disabled": false, 
-	"authorities": ["ROLE_ANALYST"]
-	
-}'
-```
+  ```shell
+  curl -X PUT \
+    'http://host:port/kylin/api/kap/user/test' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json;charset=utf-8' \
+    -d '{
+  	"password": "test123.",
+  	"disabled": false, 
+  	"authorities": ["ROLE_ANALYST"]
+  	
+  }'
+  ```
 
 
-**响应示例**
+- 响应示例
 
-```JSON
-{
-    "username": "test",
-    "password": "$2a$10$M3u5cQztMHg3LIvMFJ4ZY.RidLB9RAw0gBHHV6EBNzEvxMk6Pf69u",
-    "authorities": [...],
-    "disabled": false,
-    "defaultPassword": false,
-    "locked": false,
-    "lockedTime": 0,
-    "wrongTime": 0,
-    "uuid": "4713b0fb-4f4b-4842-af33-863f3b8bc7e2",
-    "last_modified": 1538965388437,
-    "version": "3.0.0.1"
-}
-```
+  ```JSON
+  {
+      "username": "test",
+      "password": "$2a$10$M3u5cQztMHg3LIvMFJ4ZY.RidLB9RAw0gBHHV6EBNzEvxMk6Pf69u",
+      "authorities": [...],
+      "disabled": false,
+      "defaultPassword": false,
+      "locked": false,
+      "lockedTime": 0,
+      "wrongTime": 0,
+      "uuid": "4713b0fb-4f4b-4842-af33-863f3b8bc7e2",
+      "last_modified": 1538965388437,
+      "version": "3.0.0.1"
+  }
+  ```
 
 
 
@@ -200,22 +200,22 @@ curl -X PUT \
 
 
 - URL Parameters
-	* `userName` - `必选` `string`，用户名称
+  - `userName` - `必选` `string`，用户名称
 
 
 - HTTP Header
-    - `Accept: application/vnd.apache.kylin-v2+json`
-    - `Accept-Language: cn|en`
-    - `Content-Type: application/json;charset=utf-8`
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
 
 
-**Curl 请求示例**
+- Curl 请求示例
 
-```shell
-curl -X DELETE \
-  'http://host:port/kylin/api/kap/user/test' \
-  -H 'Accept: application/vnd.apache.kylin-v2+json' \
-  -H 'Accept-Language: cn|en' \
-  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
-  -H 'Content-Type: application/json;charset=utf-8'
-```
+  ```shell
+  curl -X DELETE \
+    'http://host:port/kylin/api/kap/user/test' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json;charset=utf-8'
+  ```

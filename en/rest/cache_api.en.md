@@ -18,27 +18,27 @@
 
 
 - URL Parameters
-    * `entity` - `required` `string`, entity, ie., "all", "project_schema", "project_data" or "project_acl" 
-    * `cacheKey` - `required` `string`, cache key, ie., project name
-    * `event` - `required` `string` , event, ie., "create", "update" or "drop"
+  - `entity` - `required` `string`, entity, ie., "all", "project_schema", "project_data" or "project_acl" 
+  - `cacheKey` - `required` `string`, cache key, ie., project name
+  - `event` - `required` `string`, event, ie., "create", "update" or "drop"
 
 
 - HTTP Header
   - `Accept: application/vnd.apache.kylin-v2+json`
-  - `Accept-Language: cn|en`
+  - `Accept-Language: en`
   - `Content-Type: application/json;charset=utf-8`
 
 
-**Curl Request Example**
+- Curl Request Example
 
-```shell
-curl -X PUT \
-  'http://host:port/kylin/api/cache/announce/all/learn_kylin/update' \
-  -H 'Accept: application/vnd.apache.kylin-v2+json' \
-  -H 'Accept-Language: cn|en' \
-  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
-  -H 'Content-Type: application/json;charset=utf-8'
-```
+  ```shell
+  curl -X PUT \
+    'http://host:port/kylin/api/cache/announce/all/learn_kylin/update' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json;charset=utf-8'
+  ```
 
 
 
@@ -47,22 +47,22 @@ curl -X PUT \
 - `PUT http://host:port/kylin/api/cache/{entity}/{cacheKey}/{event}`
 
 - URL Parameters
-    * `entity` - `required` `string`,entity,ie., "all", "project_schema", "project_data" or "project_acl" 
-    * `cacheKey` - `required` `string`, cache key, ie., project name
-    * `event` - `required` `string`, event, ie., "create", "update" or "drop"
+  - `entity` - `required` `string`,entity,ie., "all", "project_schema", "project_data" or "project_acl" 
+  - `cacheKey` - `required` `string`, cache key, ie., project name
+  - `event` - `required` `string`, event, ie., "create", "update" or "drop"
 
 - HTTP Header
   - `Accept: application/vnd.apache.kylin-v2+json`
-  - `Accept-Language: cn|en`
+  - `Accept-Language: en`
   - `Content-Type: application/json;charset=utf-8`
 
-**Curl Request Example**
+- Curl Request Example
 
-```shell
-curl -X PUT \
-  'http://host:port/kylin/api/cache/project_data/learn_kylin/update' \
-  -H 'Accept: application/vnd.apache.kylin-v2+json' \
-  -H 'Accept-Language: cn|en' \
-  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
-  -H 'Content-Type: application/json;charset=utf-8'
-```
+  ```shell
+  curl -X PUT \
+    'http://host:port/kylin/api/cache/project_data/learn_kylin/update' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json;charset=utf-8'
+  ```

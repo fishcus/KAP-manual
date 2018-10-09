@@ -20,48 +20,48 @@
 
 
 - URL Parameters
-    * `project` - `required` `string`, project name
-    * `table` - `required` `string`, table name
+  - `project` - `required` `string`, project name
+  - `table` - `required` `string`, table name
 
 - HTTP Header
-	- `Accept: application/vnd.apache.kylin-v2+json`
-	- `Accept-Language: cn|en`
-	- `Content-Type: application/json;charset=utf-8`
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
 
 
-- HTTP Body
-    * `pageSize` - `optional` `int`, quantity of returned result per page, 10 by default
-    * `pageOffset` - `optional` `int`,  offset of returned result, 0 by default
+- HTTP Body: JSON Object
+  - `pageSize` - `optional` `int`, quantity of returned result per page, 10 by default
+  - `pageOffset` - `optional` `int`,  offset of returned result, 0 by default
 
 
-**Curl Request Example**
+- Curl Request Example
 
-```shell
-curl -X GET \
-  'http://host:port/kylin/api/acl/table/paged/learn_kylin/DEFAULT.KYLIN_SALES' \
-  -H 'Accept: application/vnd.apache.kylin-v2+json' \
-  -H 'Accept-Language: cn|en' \
-  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
-  -H 'Content-Type: application/json;charset=utf-8'
-```
+  ```shell
+  curl -X GET \
+    'http://host:port/kylin/api/acl/table/paged/learn_kylin/DEFAULT.KYLIN_SALES' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json;charset=utf-8'
+  ```
 
-**Response Example**
+- Response Example
 
-```JSON
-{
-    "code": "000", 
-    "data": {
-        "size": 2, 
-        "user": [
-            "ADMIN"
-        ], 
-        "group": [
-            "ROLE_ADMIN"
-        ]
-    }, 
-    "msg": "get table acl"
-}
-```
+  ```JSON
+  {
+      "code": "000", 
+      "data": {
+          "size": 2, 
+          "user": [
+              "ADMIN"
+          ], 
+          "group": [
+              "ROLE_ADMIN"
+          ]
+      }, 
+      "msg": "get table acl"
+  }
+  ```
 
 
 
@@ -71,93 +71,93 @@ curl -X GET \
 
 
 - URL Parameters
-    * `project` - `required` `string`, project name
-    * `type` - `required` `string`, operation object, ie.,user or group
-    * `table` - `required` `string`, table name
+  - `project` - `required` `string`, project name
+  - `type` - `required` `string`, operation object, ie., user or group
+  - `table` - `required` `string`, table name
 	* `name` - `required` `string`, user name
 
 
 - HTTP Header
-	- `Accept: application/vnd.apache.kylin-v2+json`
-	- `Accept-Language: cn|en`
-	- `Content-Type: application/json;charset=utf-8`
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
 
 
-**Curl Request Example**
+- Curl Request Example
 
-```shell
-curl -X POST \
-  'http://host:port/kylin/api/acl/table/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN' \
-  -H 'Accept: application/vnd.apache.kylin-v2+json' \
-  -H 'Accept-Language: cn|en' \
-  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
-  -H 'Content-Type: application/json;charset=utf-8'
-```
-
-
-**Response Example**
-
-```JSON
-{
-    "code": "000",
-    "data": "",
-    "msg": "grant user table query permission and remove user from table black list."
-}
-```
+  ```shell
+  curl -X POST \
+    'http://host:port/kylin/api/acl/table/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json;charset=utf-8'
+  ```
 
 
+- Response Example
 
-### Grant Table ACL in batch
+  ```JSON
+  {
+      "code": "000",
+      "data": "",
+      "msg": "grant user table query permission and remove user from table black list."
+  }
+  ```
+
+
+
+### Grant Table ACL in Batch
 
 
 - `POST http://host:port/kylin/api/acl/table/batch/{project}/{table}`
 
 
 - URL Parameters
-    * `project` - `required` `string`, project name
-    * `table` - `required` `string`, table name
+  - `project` - `required` `string`, project name
+  - `table` - `required` `string`, table name
 
 
 - HTTP Header
-	- `Accept: application/vnd.apache.kylin-v2+json`
-	- `Accept-Language: cn|en`
-	- `Content-Type: application/json;charset=utf-8`
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
 
 
-- HTTP Body
-    * `sid` - `required` `string`, user name or group name
-    * `principal` - `required` `boolean`, user or not,  "true" for user and "false" for group
+- HTTP Body: JSON Object
+  - `sid` - `required` `string`, user name or group name
+  - `principal` - `required` `boolean`, user or not,  "true" for user and "false" for group
 
 
-**Curl Request Example**
+- Curl Request Example
 
-```shell
-curl -X POST \
-  'http://host:port/kylin/api/acl/table/batch/learn_kylin/DEFAULT.KYLIN_CAL_DT' \
-  -H 'Accept: application/vnd.apache.kylin-v2+json' \
-  -H 'Accept-Language: cn|en' \
-  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
-  -H 'Content-Type: application/json' \
-  -d '[{
-	"sid":"ADMIN",
-	"principal":"true"
-},
-{
-	"sid":"{username}",
-	"principal":"true"
-}
-]'
-```
+  ```shell
+  curl -X POST \
+    'http://host:port/kylin/api/acl/table/batch/learn_kylin/DEFAULT.KYLIN_CAL_DT' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json' \
+    -d '[{
+  	"sid":"ADMIN",
+  	"principal":"true"
+  },
+  {
+  	"sid":"{username}",
+  	"principal":"true"
+  }
+  ]'
+  ```
 
-**Response Example**
+- Response Example
 
-```JSON
-{
-    "code": "000",
-    "data": "",
-    "msg": "batch grant user table query permission and remove user from table black list"
-}
-```
+  ```JSON
+  {
+      "code": "000",
+      "data": "",
+      "msg": "batch grant user table query permission and remove user from table black list"
+  }
+  ```
 
 
 
@@ -167,36 +167,36 @@ curl -X POST \
 
 
 - URL Parameters
-    * `project` - `required` `string`, project name
-    * `type` - `required` `string`, operation object, ie.,user or group
-    * `table` - `required` `string`, table name
-    * `name` - `required` `string`, user name
+  - `project` - `required` `string`, project name
+  - `type` - `required` `string`, operation object, ie., user or group
+  - `table` - `required` `string`, table name
+  - `name` - `required` `string`, user name
 
 
 - HTTP Header
-	- `Accept: application/vnd.apache.kylin-v2+json`
-	- `Accept-Language: cn|en`
-	- `Content-Type: application/json;charset=utf-8`
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
 
 
-**Curl Request Example**
+- Curl Request Example
 
-```shell
-curl -X DELETE \
-  'http://host:port/kylin/api/acl/table/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN' \
-  -H 'Accept: application/vnd.apache.kylin-v2+json' \
-  -H 'Accept-Language: cn|en' \
-  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
-  -H 'Content-Type: application/json;charset=utf-8'
-```
+  ```shell
+  curl -X DELETE \
+    'http://host:port/kylin/api/acl/table/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json;charset=utf-8'
+  ```
 
 
-**Response Example**
+- Response Example
 
-```JSON
-{
-    "code": "000",
-    "data": "",
-    "msg": "revoke user table query permission and add user to table black list."
-}
-```
+  ```JSON
+  {
+      "code": "000",
+      "data": "",
+      "msg": "revoke user table query permission and add user to table black list."
+  }
+  ```

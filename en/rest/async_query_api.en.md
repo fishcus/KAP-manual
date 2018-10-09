@@ -22,50 +22,50 @@
 - `POST http://host:port/kylin/api/async_query`
 
 - HTTP Header
-    - `Accept: application/vnd.apache.kylin-v2+json`
-    - `Accept-Language: cn|en`
-    - `Content-Type: application/json;charset=utf-8`
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
 
-- HTTP Body
-    * `sql` - `required` `string` , SQL statement
-    * `separator` - `optional` `string` , separator of the exported result, which is  "," by default
-    * `offset` - `optional` `int`, offset of query result
-    * `limit` - `optional` `int ` , limit on the quantity of query result
-    * `project` - `required` `string` , project name, "DEFAULT" by default
-
-
-**Curl Request Example**
-
-```shell
-curl -X POST \
-  'http://host:port/kylin/api/async_query' \
-  -H 'Accept: application/vnd.apache.kylin-v2+json' \
-  -H 'Accept-Language: cn|en' \
-  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
-  -H 'Content-Type: application/json;charset=utf-8' \
-  -d '{ "sql":"select * from KYLIN_SALES limit 100", "project":"learn_kylin" }'
-```
+- HTTP Body: JSON Object
+  - `sql` - `required` `string`, SQL statement
+  - `separator` - `optional` `string`, separator of the exported result, which is  "," by default
+  - `offset` - `optional` `int`, offset of query result
+  - `limit` - `optional` `int `, limit on the quantity of query result
+  - `project` - `required` `string`, project name, "DEFAULT" by default
 
 
-**Response Example**
+- Curl Request Example
 
-```JSON
-{
-    "code": "000",
-    "data": {
-        "queryID": "eb3e837f-d826-4670-aac7-2b92fcd0c8fe",
-        "status": "RUNNING",
-        "info": "still running"
-    },
-    "msg": ""
-}
-```
+  ```shell
+  curl -X POST \
+    'http://host:port/kylin/api/async_query' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json;charset=utf-8' \
+    -d '{ "sql":"select * from KYLIN_SALES limit 100", "project":"learn_kylin" }'
+  ```
 
-- **Response Information**
 
-    * `queryID` -  Query ID of the Async Query
-    * `status` - Status, ie.,  "FAILED", "RUNNING"
-    * `info` - Detailed information about the status 
+- Response Example
+
+  ```JSON
+  {
+      "code": "000",
+      "data": {
+          "queryID": "eb3e837f-d826-4670-aac7-2b92fcd0c8fe",
+          "status": "RUNNING",
+          "info": "still running"
+      },
+      "msg": ""
+  }
+  ```
+
+- Response Information
+
+  - `queryID` -  Query ID of the Async Query
+  - `status` - Status, ie.,  "FAILED", "RUNNING"
+  - `info` - Detailed information about the status 
 
 
 
@@ -74,42 +74,42 @@ curl -X POST \
 - `GET http://host:port/kylin/api/async_query/{queryID}/status`
 
 - URL Parameters
-	* `queryID` - `required` `string` , Query ID of the Async Query
+  - `queryID` - `required` `string`, Query ID of the Async Query
 
 - HTTP Header
-    - `Accept: application/vnd.apache.kylin-v2+json`
-    - `Accept-Language: cn|en`
-    - `Content-Type: application/json;charset=utf-8`
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
 
-**Curl Request Example**
+- Curl Request Example
 
-```shell
-curl -X GET \
-  'http://host:port/kylin/api/async_query/{queryID}/status' \
-  -H 'Accept: application/vnd.apache.kylin-v2+json' \
-  -H 'Accept-Language: cn|en' \
-  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
-  -H 'Content-Type: application/json;charset=utf-8'
-```
+  ```shell
+  curl -X GET \
+    'http://host:port/kylin/api/async_query/{queryID}/status' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json;charset=utf-8'
+  ```
 
-**Response Example**
+- Response Example
 
-```JSON
-{
-    "code": "000",
-    "data": {
-        "queryID": "eb3e837f-d826-4670-aac7-2b92fcd0c8fe",
-        "status": "SUCCESSFUL",
-        "info": "await fetching results"
-    },
-    "msg": ""
-}
-```
+  ```JSON
+  {
+      "code": "000",
+      "data": {
+          "queryID": "eb3e837f-d826-4670-aac7-2b92fcd0c8fe",
+          "status": "SUCCESSFUL",
+          "info": "await fetching results"
+      },
+      "msg": ""
+  }
+  ```
 
-- **Response Information**
-    * `queryID` - Query ID of the Async Query
-    * `status` - Status, ie., "SUCCESSFUL" , "RUNNING", "FAILED" and "MISSING" 
-    * `info` - Detailed information about the status
+- Response Information
+  - `queryID` - Query ID of the Async Query
+  - `status` - Status, ie., "SUCCESSFUL" , "RUNNING", "FAILED" and "MISSING" 
+  - `info` - Detailed information about the status
 
 
 
@@ -118,46 +118,46 @@ curl -X GET \
 - `GET http://host:port/kylin/api/async_query/{queryID}/metadata`
 
 - URL Parameters
-	* `queryID` - `required` `string` ,  Query ID of the Async Query
+  - `queryID` - `required` `string`,  Query ID of the Async Query
 
 - HTTP Header
-    - `Accept: application/vnd.apache.kylin-v2+json`
-    - `Accept-Language: cn|en`
-    - `Content-Type: application/json;charset=utf-8`
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
 
-**Curl Request Example**
+- Curl Request Example
 
-```shell
-curl -X GET \
-  'http://host:port/kylin/api/async_query/{queryID}/metadata' \
-  -H 'Accept: application/vnd.apache.kylin-v2+json' \
-  -H 'Accept-Language: cn|en' \
-  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
-  -H 'Content-Type: application/json;charset=utf-8'
-```
+  ```shell
+  curl -X GET \
+    'http://host:port/kylin/api/async_query/{queryID}/metadata' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json;charset=utf-8'
+  ```
 
 
-**Response Example**
+- Response Example
 
-```JSON
-{
-    "code": "000",
-    "data": [
-        [
-            "TRANS_ID",
-            "PART_DT"
-        ],
-        [
-            "BIGINT",
-            "DATE"
-        ]
-    ],
-    "msg": ""
-}
-```
+  ```JSON
+  {
+      "code": "000",
+      "data": [
+          [
+              "TRANS_ID",
+              "PART_DT"
+          ],
+          [
+              "BIGINT",
+              "DATE"
+          ]
+      ],
+      "msg": ""
+  }
+  ```
 
-- **Response Information**
-	* `data` - data includes two  list, the first list is the column name, and the second list is the corresponding data type of the column
+- Response Information
+  - `data` - data includes two  list, the first list is the column name, and the second list is the corresponding data type of the column
 
 
 
@@ -167,37 +167,37 @@ curl -X GET \
 
 
 - URL Parameters
-	* `queryID` - `required` `string` ,  Query ID of the Async Query
+  - `queryID` - `required` `string`,  Query ID of the Async Query
 
 
 - HTTP Header
-    - `Accept: application/vnd.apache.kylin-v2+json`
-    - `Accept-Language: cn|en`
-    - `Content-Type: application/json;charset=utf-8`
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
 
-**Curl Request Example**
+- Curl Request Example
 
-```shell
-curl -X GET \
-  'http://host:port/kylin/api/async_query/{queryID}/filestatus' \
-  -H 'Accept: application/vnd.apache.kylin-v2+json' \
-  -H 'Accept-Language: cn|en' \
-  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
-  -H 'Content-Type: application/json;charset=utf-8'
-```
+  ```shell
+  curl -X GET \
+    'http://host:port/kylin/api/async_query/{queryID}/filestatus' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json;charset=utf-8'
+  ```
 
-**Response Example**
+- Response Example
 
-```JSON
-{
-    "code": "000",
-    "data": 7611,
-    "msg": ""
-}
-```
+  ```JSON
+  {
+      "code": "000",
+      "data": 7611,
+      "msg": ""
+  }
+  ```
 
-- **Response Information**
-	* `data` - total size of the result
+- Response Information
+  - `data` - total size of the result
 
 
 
@@ -207,25 +207,25 @@ curl -X GET \
 
 
 - URL Parameters
-	* `queryID` - `required` `string` ,  Query ID of the Async Query
+  - `queryID` - `required` `string`,  Query ID of the Async Query
 
 - HTTP Header
-    - `Accept: application/vnd.apache.kylin-v2+json`
-    - `Accept-Language: cn|en`
-    - `Content-Type: application/json;charset=utf-8`
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
 
 
-**Curl Request Example**
+- Curl Request Example
 
 
-```shell
-curl -X GET \
-  'http://host:port/kylin/api/async_query/{queryID}/result_download' \
-  -H 'Accept: application/vnd.apache.kylin-v2+json' \
-  -H 'Accept-Language: cn|en' \
-  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
-  -H 'Content-Type: application/json;charset=utf-8'
-```
+  ```shell
+  curl -X GET \
+    'http://host:port/kylin/api/async_query/{queryID}/result_download' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json;charset=utf-8'
+  ```
 
 
 
@@ -236,39 +236,39 @@ curl -X GET \
 
 
 - URL Parameters
-	* `queryID` - `required` `string` ,  Query ID of the Async Query
+  - `queryID` - `required` `string`,  Query ID of the Async Query
 
 
 - HTTP Header
-    - `Accept: application/vnd.apache.kylin-v2+json`
-    - `Accept-Language: cn|en`
-    - `Content-Type: application/json;charset=utf-8`
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
 
 
-**Curl Request Example**
+- Curl Request Example
 
-```shell
-curl -X GET \
-  'http://host:port/kylin/api/async_query/{queryID}/result_path' \
-  -H 'Accept: application/vnd.apache.kylin-v2+json' \
-  -H 'Accept-Language: cn|en' \
-  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
-  -H 'Content-Type: application/json;charset=utf-8'
-```
+  ```shell
+  curl -X GET \
+    'http://host:port/kylin/api/async_query/{queryID}/result_path' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json;charset=utf-8'
+  ```
 
 
-**Response Example**
+- Response Example
 
-```JSON
-{
-    "code": "000",
-    "data": "hdfs://host:8020/{kylin_working_dir}/{kylin_metadata_url}/learn_kylin/async_query_result/eb3e837f-d826-4670-aac7-2b92fcd0c8fe",
-    "msg": ""
-}
-```
+  ```JSON
+  {
+      "code": "000",
+      "data": "hdfs://host:8020/{kylin_working_dir}/{kylin_metadata_url}/learn_kylin/async_query_result/eb3e837f-d826-4670-aac7-2b92fcd0c8fe",
+      "msg": ""
+  }
+  ```
 
-- **Response Information**
-	* `data` -  the HDFS Path in which stores the result file
+- Response Information
+  - `data` -  the HDFS Path in which stores the result file
 
 
 
@@ -278,27 +278,27 @@ curl -X GET \
 
 
 - HTTP Header
-    - `Accept: application/vnd.apache.kylin-v2+json`
-    - `Accept-Language: cn|en`
-    - `Content-Type: application/json;charset=utf-8`
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
 
-**Curl Request Example**
+- Curl Request Example
 
-```shell
-curl -X DELETE \
-  'http://host:port/kylin/api/async_query' \
-  -H 'Accept: application/vnd.apache.kylin-v2+json' \
-  -H 'Accept-Language: cn|en' \
-  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
-  -H 'Content-Type: application/json;charset=utf-8'
-```
+  ```shell
+  curl -X DELETE \
+    'http://host:port/kylin/api/async_query' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json;charset=utf-8'
+  ```
 
-**Response Example**
+- Response Example
 
-```JSON
-{
-    "code": "000",
-    "data": true,
-    "msg": ""
-}
-```
+  ```JSON
+  {
+      "code": "000",
+      "data": true,
+      "msg": ""
+  }
+  ```

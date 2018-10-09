@@ -18,25 +18,25 @@
 - `PUT http://host:port/kylin/api/cache/announce/{entity}/{cacheKey}/{event}`
 
 - URL Parameters
-    * `entity` - `必选` `string`，实体，如 "all"，"project_schema" ，"project_data" 或者 "project_acl" 
-    * `cacheKey` - `必选` `string` ，缓存键值，比如项目名称
-    * `event` - `必选` `string` ，事件，如 "create"，"update" 或者 "drop"
+  - `entity` - `必选` `string`，实体，如 "all"，"project_schema" ，"project_data" 或者 "project_acl" 
+  - `cacheKey` - `必选` `string`，缓存键值，比如项目名称
+  - `event` - `必选` `string`，事件，如 "create"，"update" 或者 "drop"
 
 - HTTP Header
-	- `Accept: application/vnd.apache.kylin-v2+json`
-	- `Accept-Language: cn|en`
-	- `Content-Type: application/json;charset=utf-8`
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
 
-**Curl 请求示例**
+- Curl 请求示例
 
-```shell
-curl -X PUT \
-  'http://host:port/kylin/api/cache/announce/all/learn_kylin/update' \
-  -H 'Accept: application/vnd.apache.kylin-v2+json' \
-  -H 'Accept-Language: cn|en' \
-  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
-  -H 'Content-Type: application/json;charset=utf-8'
-```
+  ```shell
+  curl -X PUT \
+    'http://host:port/kylin/api/cache/announce/all/learn_kylin/update' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json;charset=utf-8'
+  ```
 
 
 
@@ -45,22 +45,22 @@ curl -X PUT \
 - `PUT http://host:port/kylin/api/cache/{entity}/{cacheKey}/{event}`
 
 - URL Parameters
-    * `entity` - `必选` `string`，实体，如 "all"，"project_schema" ，"project_data" 或者 "project_acl" 
-    * `cacheKey` - `必选` `string`  ，缓存键值，比如项目名称
-    * `event` - `必选` `string` ，事件，如 "create"，"update" 或者 "drop"
+  - `entity` - `必选` `string`，实体，如 "all"，"project_schema" ，"project_data" 或者 "project_acl" 
+  - `cacheKey` - `必选` `string`，缓存键值，比如项目名称
+  - `event` - `必选` `string`，事件，如 "create"，"update" 或者 "drop"
 
 - HTTP Header
-	- `Accept: application/vnd.apache.kylin-v2+json`
-	- `Accept-Language: cn|en`
-	- `Content-Type: application/json;charset=utf-8`
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
 
-**Curl 请求示例**
+- Curl 请求示例
 
-```shell
-curl -X PUT \
-  http://host:port/kylin/api/cache/project_data/learn_kylin/update \
-  -H 'Accept: application/vnd.apache.kylin-v2+json' \
-  -H 'Accept-Language: cn|en' \
-  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
-  -H 'Content-Type: application/json;charset=utf-8'
-```
+  ```shell
+  curl -X PUT \
+    http://host:port/kylin/api/cache/project_data/learn_kylin/update \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json;charset=utf-8'
+  ```

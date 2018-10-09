@@ -10,51 +10,51 @@ Kyligence Enterprise 所有的 API 都是基于 [Basic Authentication](http://en
 
 ### 认证要点
 - 在 HTTP 头添加 `Authorization` 信息
-- 或者可以通过 `POST http://host:port/kylin/api/user/authentication` 进行认证，一旦认证通过，接下来对 API 请求基于 cookies 在 HTTP 头中免去 `Authorization `信息
+  - 或者可以通过 `POST http://host:port/kylin/api/user/authentication` 进行认证，一旦认证通过，接下来对 API 请求基于 cookies 在 HTTP 头中免去 `Authorization `信息
 
 
 - HTTP Header
 	- `Authorization:Basic QURNSU46S1lMSU4=`
 	- `Accept: application/vnd.apache.kylin-v2+json`
-	- `Accept-Language: cn|en`
+	- `Accept-Language: en`
 	- `Content-Type: application/json;charset=utf-8`
 
-**Curl 请求示例**
+- Curl 请求示例
 
-```shell
-curl -X POST \
-  'http://host:port/kylin/api/user/authentication' \
-  -H 'Accept: application/vnd.apache.kylin-v2+json' \
-  -H 'Accept-Language: cn|en' \
-  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
-  -H 'Content-Type: application/json;charset=utf-8'
-```
+  ```shell
+  curl -X POST \
+    'http://host:port/kylin/api/user/authentication' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json;charset=utf-8'
+  ```
 
-**响应示例**
+- 响应示例
 
-```JSON
-{
-    "code": "000",
-    "data": {
-        "username": "ADMIN",
-        "password": "$2a$10$blHVMbzIgaw4NUBEGHBgIeCEA9xT8PHMR2eRMX1ylcA6GNEVD4RPS",
-        "authorities": [...],
-        "disabled": false,
-        "defaultPassword": true,
-        "locked": false,
-        "lockedTime": 0,
-        "wrongTime": 1,
-        "uuid": "f5513792-f70b-42f5-b667-abf1d4a3876c",
-        "last_modified": 1535938728227,
-        "version": "3.0.0.1"
-    },
-    "msg": ""
-}
-```
+  ```JSON
+  {
+      "code": "000",
+      "data": {
+          "username": "ADMIN",
+          "password": "$2a$10$blHVMbzIgaw4NUBEGHBgIeCEA9xT8PHMR2eRMX1ylcA6GNEVD4RPS",
+          "authorities": [...],
+          "disabled": false,
+          "defaultPassword": true,
+          "locked": false,
+          "lockedTime": 0,
+          "wrongTime": 1,
+          "uuid": "f5513792-f70b-42f5-b667-abf1d4a3876c",
+          "last_modified": 1535938728227,
+          "version": "3.0.0.1"
+      },
+      "msg": ""
+  }
+  ```
 
 
 
-**JavaScript 认证请求示例**
+### JavaScript 认证请求示例
 
 > 提示：您可以通过如下路径下载 "jquery.base64.js" https://github.com/yckart/jquery.base64.js
 

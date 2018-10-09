@@ -22,41 +22,41 @@
 
 
 - URL Parameters
-	* `project` - `required` `string`, project name
+  - `project` - `required` `string`, project name
 
 
 - HTTP Header
-    - `Accept: application/vnd.apache.kylin-v2+json`
-    - `Accept-Language: cn|en`
-    - `Content-Type: application/json;charset=utf-8`
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
 
 
-**Curl Request Example**
+- Curl Request Example
 
-```shell
-curl -X GET \
-  'http://host:port/kylin/api/user_group/groups?project=learn_kylin' \
-  -H 'Accept: application/vnd.apache.kylin-v2+json' \
-  -H 'Accept-Language: cn|en' \
-  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
-  -H 'Content-Type: application/json;charset=utf-8'
-```
+  ```shell
+  curl -X GET \
+    'http://host:port/kylin/api/user_group/groups?project=learn_kylin' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json;charset=utf-8'
+  ```
 
 
-**Response Example**
+- Response Example
 
-```JSON
-{
-    "code": "000",
-    "data": [
-        "ALL_USERS",
-        "ROLE_ADMIN",
-        "ROLE_ANALYST",
-        "ROLE_MODELER"
-    ],
-    "msg": "get groups"
-}
-```
+  ```JSON
+  {
+      "code": "000",
+      "data": [
+          "ALL_USERS",
+          "ROLE_ADMIN",
+          "ROLE_ANALYST",
+          "ROLE_MODELER"
+      ],
+      "msg": "get groups"
+  }
+  ```
 
 
 
@@ -66,54 +66,54 @@ curl -X GET \
 
 
 - URL Parameters
-	* `pageOffset` - `optional` `int`, offset of returned result, 0 by default
-	* `pageSize` - `optional` `int`, quantity of returned result per page, 10 by default
+  - `pageOffset` - `optional` `int`, offset of returned result, 0 by default
+  - `pageSize` - `optional` `int`, quantity of returned result per page, 10 by default
 
 
 - HTTP Header
-    - `Accept: application/vnd.apache.kylin-v2+json`
-    - `Accept-Language: cn|en`
-    - `Content-Type: application/json;charset=utf-8`
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
 
 
-**Curl Request Example**
+- Curl Request Example
 
-```shell
-curl -X GET \
-  'http://host:port/kylin/api/user_group/usersWithGroup?pageSize=1' \
-  -H 'Accept: application/vnd.apache.kylin-v2+json' \
-  -H 'Accept-Language: cn|en' \
-  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
-  -H 'Content-Type: application/json;charset=utf-8'
-```
+  ```shell
+  curl -X GET \
+    'http://host:port/kylin/api/user_group/usersWithGroup?pageSize=1' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json;charset=utf-8'
+  ```
 
-**Response Example**
+- Response Example
 
-```JSON
-{
-    "code": "000",
-    "data": {
-        "size": 4,
-        "usersWithGroup": [
-            {
-                "first": "ALL_USERS",
-                "second": [
-                    "ADMIN",
-                    "ANALYST",
-                    "MODELER"
-                ],
-                "key": "ALL_USERS",
-                "value": [
-                    "ADMIN",
-                    "ANALYST",
-                    "MODELER"
-                ]
-            }
-        ]
-    },
-    "msg": "get users with group"
-}
-```
+  ```JSON
+  {
+      "code": "000",
+      "data": {
+          "size": 4,
+          "usersWithGroup": [
+              {
+                  "first": "ALL_USERS",
+                  "second": [
+                      "ADMIN",
+                      "ANALYST",
+                      "MODELER"
+                  ],
+                  "key": "ALL_USERS",
+                  "value": [
+                      "ADMIN",
+                      "ANALYST",
+                      "MODELER"
+                  ]
+              }
+          ]
+      },
+      "msg": "get users with group"
+  }
+  ```
 
 
 
@@ -123,53 +123,53 @@ curl -X GET \
 
 
 - URL Parameters
-	* `groupName` - `required` `string` , user group name
+  - `groupName` - `required` `string`, user group name
 
 
 - HTTP Header
-    - `Accept: application/vnd.apache.kylin-v2+json`
-    - `Accept-Language: cn|en`
-    - `Content-Type: application/json;charset=utf-8`
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
 
 
-**Curl Request Example**
+- Curl Request Example
 
-```shell
-curl -X GET \
-  'http://host:port/kylin/api/user_group/groupMembers/ALL_USERS' \
-  -H 'Accept: application/vnd.apache.kylin-v2+json' \
-  -H 'Accept-Language: cn|en' \
-  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
-  -H 'Content-Type: application/json;charset=utf-8'
-```
+  ```shell
+  curl -X GET \
+    'http://host:port/kylin/api/user_group/groupMembers/ALL_USERS' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json;charset=utf-8'
+  ```
 
 
-**Response Example**
+- Response Example
 
-```JSON
-{
-    "code":"000",
-    "data":{
-        "groupMembers":[
-            {
-                "username":"ADMIN",
- 				"password":"...",
-                "authorities":[...],
-                "disabled":false,
-                "defaultPassword":true,
-                "locked":false,
-                "lockedTime":0,
-                "wrongTime":0,
-                "uuid":"aec35307-8d41-45a0-a942-91d4e92e11e4",
-                "last_modified":1537860587117,
-                "version":"3.0.0.1"
-            }
-        ],
-        "size":1
-    },
-    "msg":"get groups members"
-}
-```
+  ```JSON
+  {
+      "code":"000",
+      "data":{
+          "groupMembers":[
+              {
+                  "username":"ADMIN",
+   				"password":"...",
+                  "authorities":[...],
+                  "disabled":false,
+                  "defaultPassword":true,
+                  "locked":false,
+                  "lockedTime":0,
+                  "wrongTime":0,
+                  "uuid":"aec35307-8d41-45a0-a942-91d4e92e11e4",
+                  "last_modified":1537860587117,
+                  "version":"3.0.0.1"
+              }
+          ],
+          "size":1
+      },
+      "msg":"get groups members"
+  }
+  ```
 
 
 
@@ -179,35 +179,35 @@ curl -X GET \
 
 
 - URL Parameters
-	* `groupName` - `required` `string` , user group name
+  - `groupName` - `required` `string`, user group name
 
 
 - HTTP Header
-    - `Accept: application/vnd.apache.kylin-v2+json`
-    - `Accept-Language: cn|en`
-    - `Content-Type: application/json;charset=utf-8`
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
 
 
-**Curl Request Example**
+- Curl Request Example
 
-```shell
-curl -X POST \
-  'http://host:port/kylin/api/user_group/group_test' \
-  -H 'Accept: application/vnd.apache.kylin-v2+json' \
-  -H 'Accept-Language: cn|en' \
-  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
-  -H 'Content-Type: application/json;charset=utf-8'
-```
+  ```shell
+  curl -X POST \
+    'http://host:port/kylin/api/user_group/group_test' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json;charset=utf-8'
+  ```
 
-**Response Example**
+- Response Example
 
-```JSON
-{
-    "code": "000",
-    "data": "",
-    "msg": "add user group"
-}
-```
+  ```JSON
+  {
+      "code": "000",
+      "data": "",
+      "msg": "add user group"
+  }
+  ```
 
 
 ### Delete a user group
@@ -216,35 +216,35 @@ curl -X POST \
 
 
 - URL Parameters
-	* `groupName` - `required` `string` , user group name
+  - `groupName` - `required` `string`, user group name
 
 
 - HTTP Header
-    - `Accept: application/vnd.apache.kylin-v2+json`
-    - `Accept-Language: cn|en`
-    - `Content-Type: application/json;charset=utf-8`
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
 
 
-**Curl Request Example**
+- Curl Request Example
 
-```shell
-curl -X DELETE \
-  'http://host:port/kylin/api/user_group/group_test' \
-  -H 'Accept: application/vnd.apache.kylin-v2+json' \
-  -H 'Accept-Language: cn|en' \
-  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
-  -H 'Content-Type: application/json;charset=utf-8'
-```
+  ```shell
+  curl -X DELETE \
+    'http://host:port/kylin/api/user_group/group_test' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json;charset=utf-8'
+  ```
 
-**Response Example**
+- Response Example
 
-```JSON
-{
-    "code": "000",
-    "data": "",
-    "msg": "del user group"
-}
-```
+  ```JSON
+  {
+      "code": "000",
+      "data": "",
+      "msg": "del user group"
+  }
+  ```
 
 
 
@@ -256,37 +256,37 @@ curl -X DELETE \
 
 
 - URL Parameters
-	* `groupName` - `required` `string` , user group name
+  - `groupName` - `required` `string`, user group name
 
 
 - HTTP Header
-    - `Accept: application/vnd.apache.kylin-v2+json`
-    - `Accept-Language: cn|en`
-    - `Content-Type: application/json;charset=utf-8`
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
 
-- HTTP Body
+- HTTP Body: JSON Object
 	- `required` `string[]`, list of user names
 
 
-**Curl Request Example**
+- Curl Request Example
 
-```shell
-curl -X POST \
-  'http://host:port/kylin/api/user_group/users/group_test' \
-  -H 'Accept: application/vnd.apache.kylin-v2+json' \
-  -H 'Accept-Language: cn|en' \
-  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
-  -H 'Content-Type: application/json;charset=utf-8' \
-  -d '["ADMIN","ANALYST"]'
-```
+  ```shell
+  curl -X POST \
+    'http://host:port/kylin/api/user_group/users/group_test' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json;charset=utf-8' \
+    -d '["ADMIN","ANALYST"]'
+  ```
 
 
-**Response Example**
+- Response Example
 
-```JSON
-{
-    "code": "000",
-    "data": "",
-    "msg": "modify users in user group"
-}
-```
+  ```JSON
+  {
+      "code": "000",
+      "data": "",
+      "msg": "modify users in user group"
+  }
+  ```

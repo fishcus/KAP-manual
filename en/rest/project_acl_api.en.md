@@ -19,45 +19,45 @@
 - `GET http://host:port/kylin/api/access/{type}/{uuid}`
 
 - URL Parameters
-    * `type` - `required` `string`, "ProjectInstance"
-    * `uuid` - `required` `string`, project UUID
+  - `type` - `required` `string`, "ProjectInstance"
+  - `uuid` - `required` `string`, project UUID
 
 - HTTP Header
-    - `Accept: application/vnd.apache.kylin-v2+json`
-    - `Accept-Language: cn|en`
-    - `Content-Type: application/json;charset=utf-8`
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
 
-**Curl Request Example**
+- Curl Request Example
 
-```shell
-curl -X GET \
-  'http://host:port/kylin/api/access/ProjectInstance/{uuid}' \
-  -H 'Accept: application/vnd.apache.kylin-v2+json' \
-  -H 'Accept-Language: cn|en' \
-  -H 'Content-Type: application/json;charset=utf-8'
-```
+  ```shell
+  curl -X GET \
+    'http://host:port/kylin/api/access/ProjectInstance/{uuid}' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Content-Type: application/json;charset=utf-8'
+  ```
 
-**Response Example**
+- Response Example
 
-```JSON
-{
-  "code": "000",
-  "data": [
-    {
-      "permission": {
-        "mask": 16,
-        "pattern": "...........................A...."
-      },
-      "id": 0,
-      "sid": {
-        "principal": "ADMIN"
-      },
-      "granting": true
-    }
-  ],
-  "msg": ""
-}
-```
+  ```JSON
+  {
+    "code": "000",
+    "data": [
+      {
+        "permission": {
+          "mask": 16,
+          "pattern": "...........................A...."
+        },
+        "id": 0,
+        "sid": {
+          "principal": "ADMIN"
+        },
+        "granting": true
+      }
+    ],
+    "msg": ""
+  }
+  ```
 
 
 
@@ -66,43 +66,43 @@ curl -X GET \
 - `POST http://host:port/kylin/api/access/{type}/{uuid}`
 
 - URL Parameters
-    * `type` - `required` `string`, "ProjectInstance"
-    * `uuid` - `required` `string`, project UUID
+  - `type` - `required` `string`, "ProjectInstance"
+  - `uuid` - `required` `string`, project UUID
 
 - HTTP Header
-    - `Accept: application/vnd.apache.kylin-v2+json`
-    - `Accept-Language: cn|en`
-    - `Content-Type: application/json;charset=utf-8`
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
 
-- HTTP Body
-    * `permission` - `required` `string`, project acl
-    * `principal` - `required` `boolean`, user or not, "true" for user and "false" for usergroup
-    * `sid` - `required` `string`, user name
+- HTTP Body: JSON Object
+  - `permission` - `required` `string`, project acl
+  - `principal` - `required` `boolean`, user or not, "true" for user and "false" for usergroup
+  - `sid` - `required` `string`, user name
 
-**Curl Request Example**
+- Curl Request Example
 
-```shell
-curl -X POST \
-  'http://host:port/kylin/api/access/ProjectInstance/{uuid}' \
-  -H 'Accept: application/vnd.apache.kylin-v2+json' \
-  -H 'Accept-Language: cn|en' \
-  -H 'Content-Type: application/json;charset=utf-8' \
-  -d '{
-	"permission": "READ",
-	"principal": true, 
-	"sid": "ANALYST"
-}'
-```
+  ```shell
+  curl -X POST \
+    'http://host:port/kylin/api/access/ProjectInstance/{uuid}' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Content-Type: application/json;charset=utf-8' \
+    -d '{
+  	"permission": "READ",
+  	"principal": true, 
+  	"sid": "ANALYST"
+  }'
+  ```
 
-**Response Example**
+- Response Example
 
-```JSON
-{
-    "code": "000",
-    "data": "",
-    "msg": ""
-}
-```
+  ```JSON
+  {
+      "code": "000",
+      "data": "",
+      "msg": ""
+  }
+  ```
 
 
 
@@ -111,47 +111,47 @@ curl -X POST \
 - `PUT http://host:port/kylin/api/access/{type}/{uuid}`
 
 - URL Parameters
-    * `type` - `required` `string`, "ProjectInstance"
-    * `uuid` - `required` `string`, project UUID
+  - `type` - `required` `string`, "ProjectInstance"
+  - `uuid` - `required` `string`, project UUID
 
 - HTTP Header
-    - `Accept: application/vnd.apache.kylin-v2+json`
-    - `Accept-Language: cn|en`
-    - `Content-Type: application/json;charset=utf-8`
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
 
-- HTTP Body
-    * `permission` - `required` `string`, project acl
-    * `principal` - `required` `boolean`, user or not, "true" for user and "false" for usergroup
-    * `sid` - `required` `string`, user name
-    * `accessEntryId` - `required` `int`, user UUID
-
-
-**Curl Request Example** 
-
-``` shell
-curl -X PUT \
-  'http://host:port/kylin/api/access/ProjectInstance/{uuid}' \
-  -H 'Accept: application/vnd.apache.kylin-v2+json' \
-  -H 'Accept-Language: cn|en' \
-  -H 'Content-Type: application/json;charset=utf-8' \
-  -d '{
-	"permission": "OPERATION",
-	"principal": true, 
-	"sid": "ANALYST",
-	"accessEntryId": 1
-}'
-```
+- HTTP Body: JSON Object
+  - `permission` - `required` `string`, project acl
+  - `principal` - `required` `boolean`, user or not, "true" for user and "false" for usergroup
+  - `sid` - `required` `string`, user name
+  - `accessEntryId` - `required` `int`, user UUID
 
 
-**Response Example**
+- Curl Request Example 
 
-```JSON
-{
-    "code": "000",
-    "data": "",
-    "msg": ""
-}
-```
+  ``` shell
+  curl -X PUT \
+    'http://host:port/kylin/api/access/ProjectInstance/{uuid}' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Content-Type: application/json;charset=utf-8' \
+    -d '{
+  	"permission": "OPERATION",
+  	"principal": true, 
+  	"sid": "ANALYST",
+  	"accessEntryId": 1
+  }'
+  ```
+
+
+- Response Example
+
+  ```JSON
+  {
+      "code": "000",
+      "data": "",
+      "msg": ""
+  }
+  ```
 
 
 
@@ -161,47 +161,47 @@ curl -X PUT \
 
 
 - URL Parameters
-    * `type` - `required`  `string`, "ProjectInstance"
-    * `uuid` - `required`  `string`, project UUID
-    * `accessEntryId` - `required` `int`, user UUID
-    * `sid` - `required` `string`, user name
-    * `principal` - `required` `boolean`, user or not, "true" for user and "false" for usergroup
+  - `type` - `required`  `string`, "ProjectInstance"
+  - `uuid` - `required`  `string`, project UUID
+  - `accessEntryId` - `required` `int`, user UUID
+  - `sid` - `required` `string`, user name
+  - `principal` - `required` `boolean`, user or not, "true" for user and "false" for usergroup
 
 
 - HTTP Header
-    - `Accept: application/vnd.apache.kylin-v2+json`
-    - `Accept-Language: cn|en`
-    - `Content-Type: application/json;charset=utf-8`
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
 
 
-- HTTP Body
-    * `accessEntryId` - `required` `int`, user UUID
-    * `sid` - `required` `string`, user name
-    * `principal` - `required` `boolean`, user or not, "true" for user and "false" for usergroup
+- HTTP Body: JSON Object
+  - `accessEntryId` - `required` `int`, user UUID
+  - `sid` - `required` `string`, user name
+  - `principal` - `required` `boolean`, user or not, "true" for user and "false" for usergroup
 
 
-**Curl Request Example**
+- Curl Request Example
 
-```shell
-curl -X DELETE \
-  'http://host:port/kylin/api/access/ProjectInstance/{uuid}?accessEntryId=1&sid=ANALYST&principal=true' \
-  -H 'Accept: application/vnd.apache.kylin-v2+json' \
-  -H 'Accept-Language: cn|en' \
-  -H 'Content-Type: application/json;charset=utf-8' \
-  -d '{
-	"principal": true, 
-	"sid": "ANALYST",
-	"accessEntryId": 1
-}'
-```
+  ```shell
+  curl -X DELETE \
+    'http://host:port/kylin/api/access/ProjectInstance/{uuid}?accessEntryId=1&sid=ANALYST&principal=true' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Content-Type: application/json;charset=utf-8' \
+    -d '{
+  	"principal": true, 
+  	"sid": "ANALYST",
+  	"accessEntryId": 1
+  }'
+  ```
 
 
-**Response Example**
+- Response Example
 
-```JSON
-{
-    "code": "000",
-    "data": "",
-    "msg": ""
-}
-```
+  ```JSON
+  {
+      "code": "000",
+      "data": "",
+      "msg": ""
+  }
+  ```

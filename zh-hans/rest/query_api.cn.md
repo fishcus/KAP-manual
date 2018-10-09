@@ -19,71 +19,71 @@
 
 - HTTP Header
   - `Accept: application/vnd.apache.kylin-v2+json`
-  - `Accept-Language: cn|en`
+  - `Accept-Language: en`
   - `Content-Type: application/json;charset=utf-8`
 
-- HTTP Body
-  * `sql` - `必选` `string` ，查询的 SQL 语句
-  * `offset` - `可选` `int`， 设置查询从哪一行开始往后返回数据
-  * `limit` - `可选` `int` ，设置从 `offset` 开始返回的行数，不足 `limit` 以实际行数为准
-  * `project` - `可选` `string` ，项目名称，默认为 `DEFAULT`
+- HTTP Body: JSON Object
+  - `sql` - `必选` `string`，查询的 SQL 语句
+  - `offset` - `可选` `int`， 设置查询从哪一行开始往后返回数据
+  - `limit` - `可选` `int`，设置从 `offset` 开始返回的行数，不足 `limit` 以实际行数为准
+  - `project` - `可选` `string`，项目名称，默认为 `DEFAULT`
 
-**Curl 请求示例**
+- Curl 请求示例
 
-```shell
-curl -X POST \
-  'http://host:port/kylin/api/query' \
-  -H 'Accept: application/vnd.apache.kylin-v2+json' \
-  -H 'Accept-Language: cn|en' \
-  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
-  -H 'Content-Type: application/json;charset=utf-8' \
-  -d '{ "sql":"select count(*) from KYLIN_SALES", "project":"learn_kylin" }'
-```
+  ```shell
+  curl -X POST \
+    'http://host:port/kylin/api/query' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json;charset=utf-8' \
+    -d '{ "sql":"select count(*) from KYLIN_SALES", "project":"learn_kylin" }'
+  ```
 
-**响应示例**
+- 响应示例
 
-```JSON
-{
-    "code":"000",
-    "data":{
-        "columnMetas":[...],
-        "results":[...],
-        "cube":"CUBE[name=kylin_sales_cube]",
-        "affectedRowCount":0,
-        "isException":false,
-        "exceptionMessage":null,
-        "queryId":"1ba7490f-8344-41ee-beb7-35e772a0630b",
-        "duration":467,
-        "totalScanCount":731,
-        "totalScanBytes":731,
-        "hitExceptionCache":false,
-        "storageCacheUsed":false,
-        "traceUrl":null,
-        "server":"sandbox.hortonworks.com:7070",
-        "suiteId":null,
-        "lateDecodeEnabled":false,
-        "partial":false,
-        "sparderUsed":false,
-        "timeout":false,
-        "pushDown":false
-    },
-    "msg":""
-}
-```
+  ```JSON
+  {
+      "code":"000",
+      "data":{
+          "columnMetas":[...],
+          "results":[...],
+          "cube":"CUBE[name=kylin_sales_cube]",
+          "affectedRowCount":0,
+          "isException":false,
+          "exceptionMessage":null,
+          "queryId":"1ba7490f-8344-41ee-beb7-35e772a0630b",
+          "duration":467,
+          "totalScanCount":731,
+          "totalScanBytes":731,
+          "hitExceptionCache":false,
+          "storageCacheUsed":false,
+          "traceUrl":null,
+          "server":"sandbox.hortonworks.com:7070",
+          "suiteId":null,
+          "lateDecodeEnabled":false,
+          "partial":false,
+          "sparderUsed":false,
+          "timeout":false,
+          "pushDown":false
+      },
+      "msg":""
+  }
+  ```
 
-- **响应信息**
-	* `columnMetas` - 每个列的元数据信息
-	* `results` - 返回的结果集
-	* `cube` - 这个查询使用的 Cube 名称
-	* `isException` - 这个查询返回是否是异常
-	* `exceptionMessage` - 返回异常对应的内容
-	* `totalScanCount` - 总记录数
-	* `totalScanBytes` - 总字节数
-	* `hitExceptionCache` - 是否来自执行失败的结果缓存
-	* `storageCacheUsed` - 是否来自执行成功的结果缓存
-	* `duration` - 查询消耗时间
-	* `sparderUsed` - 是否使用了 Sparder 查询引擎
-	* `pushDown` - 是否启用查询下压
+- 响应信息
+  - `columnMetas` - 每个列的元数据信息
+  - `results` - 返回的结果集
+  - `cube` - 这个查询使用的 Cube 名称
+  - `isException` - 这个查询返回是否是异常
+  - `exceptionMessage` - 返回异常对应的内容
+  - `totalScanCount` - 总记录数
+  - `totalScanBytes` - 总字节数
+  - `hitExceptionCache` - 是否来自执行失败的结果缓存
+  - `storageCacheUsed` - 是否来自执行成功的结果缓存
+  - `duration` - 查询消耗时间
+  - `sparderUsed` - 是否使用了 Sparder 查询引擎
+  - `pushDown` - 是否启用查询下压
 
 
 
@@ -92,45 +92,45 @@ curl -X POST \
 - `GET http://host:port/kylin/api/tables_and_columns`
 
 - URL Parameters 	
-	* `project` - `必选` `string` ，项目名称
+  - `project` - `必选` `string`，项目名称
 
 - HTTP Header
-	- `Accept: application/vnd.apache.kylin-v2+json`
-	- `Accept-Language: cn|en`
-	- `Content-Type: application/json;charset=utf-8`
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
 
-**Curl 请求示例**
+- Curl 请求示例
 
-```shell
-curl -X GET \
-  'http://host:port/kylin/api/tables_and_columns?project=learn_kylin' \
-  -H 'Accept: application/vnd.apache.kylin-v2+json' \
-  -H 'Accept-Language: cn|en' \
-  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
-  -H 'Content-Type: application/json;charset=utf-8'
-```
+  ```shell
+  curl -X GET \
+    'http://host:port/kylin/api/tables_and_columns?project=learn_kylin' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json;charset=utf-8'
+  ```
 
-**响应示例**
+- 响应示例
 
-```JSON
-{
-    "code":"000",
-    "data":[
-        {
-            "columns":[...],
-            "type":[...],
-            "type_NAME":null,
-            "self_REFERENCING_COL_NAME":null,
-            "ref_GENERATION":null,
-            "table_SCHEM":"DEFAULT",
-            "table_NAME":"KYLIN_ACCOUNT",
-            "table_CAT":"defaultCatalog",
-            "table_TYPE":"TABLE",
-            "remarks":null,
-            "type_CAT":null,
-            "type_SCHEM":null
-        },{...},
-    ],
-    "msg":""
-}
-```
+  ```JSON
+  {
+      "code":"000",
+      "data":[
+          {
+              "columns":[...],
+              "type":[...],
+              "type_NAME":null,
+              "self_REFERENCING_COL_NAME":null,
+              "ref_GENERATION":null,
+              "table_SCHEM":"DEFAULT",
+              "table_NAME":"KYLIN_ACCOUNT",
+              "table_CAT":"defaultCatalog",
+              "table_TYPE":"TABLE",
+              "remarks":null,
+              "type_CAT":null,
+              "type_SCHEM":null
+          },{...},
+      ],
+      "msg":""
+  }
+  ```

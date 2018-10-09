@@ -12,50 +12,51 @@ All APIs in Kyligence Enterprise are based on [Basic Authentication](http://en.w
 
 ### Authentication Essentials
 * Add `Authorization` to HTTP header
-* Or users could get authorization through `POST http://host:port/kylin/api/user/authentication`. Once the authentication passes, the authentication information would be stored in cookie files for the following visit. 
+  * Or users could get authorized through `POST http://host:port/kylin/api/user/authentication`. Once the authentication passes, the authentication information would be stored in cookie files for the following visit. 
 
 
 - HTTP Header
-	- `Authorization:Basic QURNSU46S1lMSU4=`
-	- `Accept: application/vnd.apache.kylin-v2+json`
-	- `Accept-Language: cn|en`
-	- `Content-Type: application/json;charset=utf-8`
+  - `Authorization:Basic QURNSU46S1lMSU4=`
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
 
-**Curl Request Example**
+- Curl Request Example
 
-```
-curl -X POST \
-  'http://host:port/kylin/api/user/authentication' \
-  -H 'Accept: application/vnd.apache.kylin-v2+json' \
-  -H 'Accept-Language: cn|en' \
-  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
-  -H 'Content-Type: application/json;charset=utf-8'
-```
+  ```shell
+  curl -X POST \
+    'http://host:port/kylin/api/user/authentication' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json;charset=utf-8'
+  ```
 
-**Response Example**
+- Response Example
 
-```JSON
-{
-    "code": "000",
-    "data": {
-        "username": "ADMIN",
-        "password": "$2a$10$blHVMbzIgaw4NUBEGHBgIeCEA9xT8PHMR2eRMX1ylcA6GNEVD4RPS",
-        "authorities": [...],
-        "disabled": false,
-        "defaultPassword": true,
-        "locked": false,
-        "lockedTime": 0,
-        "wrongTime": 1,
-        "uuid": "f5513792-f70b-42f5-b667-abf1d4a3876c",
-        "last_modified": 1535938728227,
-        "version": "3.0.0.1"
-    },
-    "msg": ""
-}
-```
+  ```JSON
+  {
+      "code": "000",
+      "data": {
+          "username": "ADMIN",
+          "password": "$2a$10$blHVMbzIgaw4NUBEGHBgIeCEA9xT8PHMR2eRMX1ylcA6GNEVD4RPS",
+          "authorities": [...],
+          "disabled": false,
+          "defaultPassword": true,
+          "locked": false,
+          "lockedTime": 0,
+          "wrongTime": 1,
+          "uuid": "f5513792-f70b-42f5-b667-abf1d4a3876c",
+          "last_modified": 1535938728227,
+          "version": "3.0.0.1"
+      },
+      "msg": ""
+  }
+  ```
 
 
-**JavaScript Authentication Request Example**
+
+### JavaScript Authentication Request Example
 
 > Note:  You can download "jquery.base64.js" at [https://github.com/yckart/jquery.base64.js](https://github.com/yckart/jquery.base64.js)
 
