@@ -1,209 +1,245 @@
-## 列级访问权限 REST API
+## 列级访问控制权限 API
 
-> **提示**
+> 提示：
 >
-> 使用 API 前请确保已阅读前面的[访问及安全认证](authentication.cn.md)章节，知道如何在 API 中添加认证信息。
+> 1. 请确保已阅读前面的[访问及安全认证](authentication.cn.md)章节，了解如何在 REST API 语句中添加认证信息。
 >
-> 当您的访问路径中含有 `&` 符号时，请在 URL 两端加上引号`""` 或者添加反斜杠来避免转义 `\&` 。
+> 2. 在 Curl 命令行上，如果您访问的 URL 中含有 `&` 符号，请注意转义，比如在 URL 两端加上引号。
 
 
-* [获取表中列的黑名单](#获取表下列的黑名单)
-* [添加用户不能访问的列](#添加用户不能访问的列)
-* [批量添加用户不能访问的列](#批量添加用户不能访问的列)
-* [修改用户不能访问的列](#修改用户不能访问的列)
-* [删除用户的列级ACL](#删除用户的列级ACL)
 
-### 获取表中列的黑名单
+* [获取列级访问控制权限](#获取列级访问控制权限)
+* [赋予列级访问控制权限](#赋予列级访问控制权限)
+* [批量赋予列级访问控制权限](#批量赋予列级访问控制权限)
+* [修改列级访问控制权限](#修改列级访问控制权限)
+* [删除列级访问控制权限](#删除列级访问控制权限)
 
-`请求方式 GET`
 
-`访问路径 http://host:port/kylin/api/acl/column/paged/{project}/{table}`
 
-`Accept: application/vnd.apache.kylin-v2+json`
+### 获取列级访问控制权限
 
-`Accept-Language: cn|en`
+- `GET http://host:port/kylin/api/acl/column/paged/{project}/{table}`
 
-#### 路径变量
-* project - `必选` `string`，项目名称
-* table - `必选` `string`，表名称
 
-#### 请求主体
-* pageSize - `可选` `int`, 默认为10 分页返回每页返回的条数
-* pageOffset - `可选` `int`, 默认为0 返回数据的起始下标
+- URL Parameters
+    * `project` - `必选` `string`，项目名称
+    * `table` - `必选` `string`，表名称
 
-#### 请求示例
-`请求路径:http://host:port/kylin/api/acl/column/paged/learn_kylin/DEFAULT.KYLIN_SALES`
 
-#### Curl Request Example
+- HTTP Header
+    - `Accept: application/vnd.apache.kylin-v2+json`
+    - `Accept-Language: cn|en`
+    - `Content-Type: application/json;charset=utf-8`
+
+
+- HTTP Body
+    * `pageSize` - `可选` `int`，每页返回的条数，默认为 10 
+    * `pageOffset` - `可选` `int`，返回数据的偏移量，默认为 0 
+
+
+**Curl 请求示例**
+
+```shell
+curl -X GET \
+  'http://host:port/kylin/api/acl/column/paged/learn_kylin/DEFAULT.KYLIN_CAL_DT' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Content-Type: application/json;charset=utf-8'
 ```
-curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{"pageSize":10，"pageOffset":0 }' http://host:port/kylin/api/acl/column/paged/learn_kylin/DEFAULT.KYLIN_SALES
-```
 
-#### 响应示例
-```json
+**响应示例**
+
+```JSON
 {
-  "code": "000",
-  "size": 2,
-  "data": {
-    "user": [{
-    	"admin": [
-    	  "BUYER_ID",
-    	  "SELLER_ID"
-    	]
-    }],
-    "group": [{
-    	"ADMIN": [
-    	  "BUYER_ID",
-    	  "SELLER_ID"
-    	]
-    }]
-  },
-  "msg": "get column acl"
+    "code": "000",
+    "data": {
+        "size": 0,
+        "user": [],
+        "group": []
+    },
+    "msg": "get column acl"
 }
 ```
 
-### 添加用户不能访问的列
-`请求方式 POST`
 
-`访问路径 http://host:port/kylin/api/acl/column/{project}/{type}/{table}/{username}`
 
-`Accept: application/vnd.apache.kylin-v2+json`
+### 赋予列级访问控制权限
 
-`Accept-Language: cn|en`
+- `POST http://host:port/kylin/api/acl/column/{project}/{type}/{table}/{username}`
 
-#### 路径变量
-* project - `必选` `string`，项目名称
-* type - `必选` `string`，用来表示操作是用户操作还是用户组操作，取值：user/group
-* table - `必选` `string`，表名称
-* username - `必选` `string`，用户名
+- URL Parameters
+    * `project` - `必选` `string`，项目名称
+    * `type` - `必选` `string`，用来表示操作是用户操作还是用户组操作，取值：user/group
+    * `table` - `必选` `string`，表名称
+    * `username` - `必选` `string`，用户名称
 
-#### 请求主体
-* columns - `必选` `string列表` 列名称，详见下面请求示例中的请求主体
+- HTTP Header
+    - `Accept: application/vnd.apache.kylin-v2+json`
+    - `Accept-Language: cn|en`
+    - `Content-Type: application/json;charset=utf-8`
 
-#### 请求示例
-`请求路径:http://host:port/kylin/api/acl/column/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN`
 
-`请求主体:["CAL_DT", "YEAR_BEG_DT"]`
+- HTTP Body
+	* 请求体是 string 列表 ，即需要赋予列级访问权限的列
 
-#### Curl Request Example
+
+**Curl 请求示例**
+
+```shell
+curl -X POST \
+  'http://host:port/kylin/api/acl/column/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8' \
+  -d '["QTR_BEG_DT"]'
 ```
-curl -X POST -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '["YEAR_BEG_DT", "CAL_DT", "QTR_BEG_DT"]' http://host:port/kylin/api/acl/column/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN
-```
 
-#### 响应示例
-```json
-{"code":"000","data":"","msg":"add user to column black list."}
-```
+> 提示：示例 Curl 请求将 ADMIN 用户赋予对表 DEFAULT.KYLIN_CAL_DT 在 QTR_BEG_DT 的列级访问控制权限。
 
-### 批量添加用户不能访问的列
-`请求方式 POST`
 
-`访问路径 http://host:port/kylin/api/acl/column/batch/{project}/{type}/{table}/{username}`
+**响应示例**
 
-`Accept: application/vnd.apache.kylin-v2+json`
-
-`Accept-Language: cn|en`
-
-#### 路径变量
-* project - `必选` `string`，项目名称
-* type - `必选` `string`，用来表示操作是用户操作还是用户组操作，取值：user/group
-* table - `必选` `string`，表名称
-
-#### 请求主体
-* 请求体是一个的map结构，key值为用户名，value值列的集合。详见下面请求示例中的请求主体
-
-#### 请求示例
-`请求路径:http://host:port/kylin/api/acl/column/batch/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN`
-
-```
-请求主体:
-ADMIN的取值为'LSTG_FORMAT_NAME','PART_DT';
-ANALYST的取值为'LSTG_FORMAT_NAME'
-
+```JSON
 {
-	"ADMIN": [
-		"LSTG_FORMAT_NAME",
-		"PART_DT"
-	],
-	"ANALYST": [
-		"LSTG_FORMAT_NAME"
-	]
+    "code": "000",
+    "data": "",
+    "msg": "add user to column black list."
 }
 ```
 
-#### Curl Request Example
-```
-curl -X POST -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "ADMIN": ["LSTG_FORMAT_NAME", "PART_DT"],"ANALYST": ["LSTG_FORMAT_NAME"]}' http://host:port/kylin/api/acl/column/batch/learn_kylin/user/DEFAULT.KYLIN_CAL_DT
-```
-
-#### 响应示例
-```json
-{"code":"000","data":"", "msg":"${user_count} user column ACL(s) updated"}
-```
 
 
-### 修改用户不能访问的列
-`请求方式 PUT`
+### 批量赋予列级访问控制权限
 
-`访问路径 http://host:port/kylin/api/acl/column/{project}/{type}/{table}/{username}`
+- `POST http://host:port/kylin/api/acl/column/batch/{project}/{type}/{table}/{username}`
 
-`Accept: application/vnd.apache.kylin-v2+json`
 
-`Accept-Language: cn|en`
+- URL Parameters
+    * `project` - `必选` `string`，项目名称
+    * `type` - `必选` `string`，用来表示操作是用户操作还是用户组操作，取值：user/group
+    * `table` - `必选` `string`，表名称
 
-#### 路径变量
-* project - `必选` `string`，项目名称
-* type - `必选` `string`，用来表示操作是用户操作还是用户组操作，取值：user/group
-* table - `必选` `string`，表名称
-* username - `必选` `string`，用户名
 
-#### 请求主体
-* columns - `必选` `string列表`，列名称，详见下面请求示例中的请求主体
+- HTTP Header
+    - `Accept: application/vnd.apache.kylin-v2+json`
+    - `Accept-Language: cn|en`
+    - `Content-Type: application/json;charset=utf-8`
 
-#### 请求示例
-`请求路径:http://host:port/kylin/api/acl/column/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN`
 
-`请求主体:["YEAR_BEG_DT", "CAL_DT", "QTR_BEG_DT"]`
+- HTTP Body
+	* 请求体是键值对结构，键为用户名，值为对应的列。
 
-`Accept: application/vnd.apache.kylin-v2+json`
 
-`Accept-Language: cn|en`
+**Curl 请求示例**
 
-#### Curl Request Example
-```
-curl -X PUT -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '["YEAR_BEG_DT", "CAL_DT", "QTR_BEG_DT"]' http://host:port/kylin/api/acl/column/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN
+```shell
+curl -X POST \
+  'http://host:port/kylin/api/acl/column/batch/learn_kylin/user/DEFAULT.KYLIN_SALES' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8' \
+  -d '{
+  "ADMIN": ["TRANS_ID","PART_DT"],
+  "MODELER": ["PRICE"]
+ }'
 ```
 
+> 提示：示例 Curl 请求将 ADMIN 用户赋予对表 DEFAULT.KYLIN_SALES 的 TRANS_ID 和 PART_DT 的列级访问控制权限；将 MODELER 用户赋予对表 DEFAULT.KYLIN_SALES 在 PRICE 的列级访问控制权限。
 
-#### 响应示例
-```json
-{"code":"000","data":"","msg":"update user's black column list"}
+
+**响应示例**
+
+```JSON
+{
+    "code": "000",
+    "data": "",
+    "msg": "2 user column ACL(s) updated"
+}
 ```
 
-### 删除用户的列级ACL
-`请求方式 DELETE`
 
-`访问路径 http://host:port/kylin/api/acl/column/{project}/{type}/{table}/{username}`
+### 修改列级访问控制权限
 
-`Accept: application/vnd.apache.kylin-v2+json`
+- `PUT http://host:port/kylin/api/acl/column/{project}/{type}/{table}/{username}`
 
-`Accept-Language: cn|en`
+- URL Parameters
+    * `project` - `必选` `string`，项目名称
+    * `type` - `必选` `string`，用来表示操作是用户操作还是用户组操作，取值：user/group
+    * `table` - `必选` `string`，表名称
+    * `username` - `必选` `string`，用户名称
 
-#### 路径变量
-* project - `必选` `string`，项目名称
-* type - `必选` `string`，用来表示操作是用户操作还是用户组操作，取值：user/group
-* table - `必选` `string`，表名称
-* username - `必选` `string`，用户名
+- HTTP Header
+    - `Accept: application/vnd.apache.kylin-v2+json`
+    - `Accept-Language: cn|en`
+    - `Content-Type: application/json;charset=utf-8`
 
-#### 请求示例
-`请求路径:http://host:port/kylin/api/acl/column/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN`
 
-#### Curl Request Example
+- HTTP Body
+	* 请求体为 string 列表，即需要修改列级访问权限的列
+
+
+**Curl 请求示例**
+
+```shell
+curl -X PUT \
+  'http://host:port/kylin/api/acl/column/learn_kylin/user/DEFAULT.KYLIN_SALES/ADMIN' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8' \
+  -d '["TRANS_ID"]'
 ```
-curl -X DELETE -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/acl/column/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN
+
+> 提示：示例 Curl 请求将 ADMIN 用户修改对表 DEFAULT.KYLIN_SALES 在 TRANS_ID 的列级访问控制权限。
+
+
+**响应示例**
+
+```JSON
+{
+    "code": "000",
+    "data": "",
+    "msg": "update user's black column list"
+}
 ```
 
-#### 响应示例
+### 删除列级访问控制权限
+
+- `DELETE  http://host:port/kylin/api/acl/column/{project}/{type}/{table}/{username}`
+
+- URL Parameters
+    * `project` - `必选` `string`，项目名称
+    * `type` - `必选` `string`，用来表示操作是用户操作还是用户组操作，取值：user/group
+    * `table` - `必选` `string`，表名称
+    * `username` - `必选` `string`，用户名称
+
+- HTTP Header
+    - `Accept: application/vnd.apache.kylin-v2+json`
+    - `Accept-Language: cn|en`
+    - `Content-Type: application/json;charset=utf-8`
+
+
+**Curl 请求示例**
+
+```shell
+curl -X DELETE \
+  'http://host:port/kylin/api/acl/column/learn_kylin/user/DEFAULT.KYLIN_SALES/ANALYST' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8'
 ```
-{"code":"000","data":"","msg":"delete user from DEFAULT.KYLIN_CAL_DT's column black list"}
+
+> 提示：示例 Curl 请求删除 ANALYST 用户对表 DEFAULT.KYLIN_SALES  的列级访问控制权限。
+
+**响应示例**
+
+```JSON
+{
+    "code": "000",
+    "data": "",
+    "msg": "delete user from DEFAULT.KYLIN_SALES's column black list"
+}
 ```
