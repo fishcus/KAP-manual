@@ -4,15 +4,17 @@
 >
 > 1. 请确保已阅读前面的[访问及安全认证](authentication.cn.md)章节，了解如何在 REST API 语句中添加认证信息。
 >
-> 2. 如果您的访问路径中含有 `&` 符号时，请在访问路径两端加上引号`""` 或者添加反斜杠 `\` 对 `&` 进行转义。
+> 2. 在 Curl 命令行上，如果您访问的 URL 中含有 `&` 符号，请注意转义，比如在 URL 两端加上引号。
+
+
 
 * [查询 Cube 数据](#查询 Cube 数据)
 * [列出可查询的表](#列出可查询的表)
 
 
 
-
 ### 查询 Cube 数据
+
 - `POST http://host:port/kylin/api/query`
 
 - HTTP Header
@@ -20,27 +22,25 @@
   - `Accept-Language: cn|en`
   - `Content-Type: application/json;charset=utf-8`
 
-
 - HTTP Body
-  * `sql` - `必选` `string` 查询的 SQL 语句
-  * `offset` - `可选` `int` 查询默认从第一行返回结果，可以通过该参数设置查询从哪一行开始往后返回数据
-  * `limit` - `可选` `int` 加上 `limit` 参数后会从 `offset` 开始返回对应的行数，不足 `limit` 以实际行数为准
-  * `project` - `可选` `string` 默认为 `DEFAULT`
+  * `sql` - `必选` `string` ，查询的 SQL 语句
+  * `offset` - `可选` `int`， 设置查询从哪一行开始往后返回数据
+  * `limit` - `可选` `int` ，设置从 `offset` 开始返回的行数，不足 `limit` 以实际行数为准
+  * `project` - `可选` `string` ，项目名称，默认为 `DEFAULT`
 
-#### cURL 请求示例
+**Curl 请求示例**
 
-```
+```shell
 curl -X POST \
-  http://host:port/kylin/api/query \
+  'http://host:port/kylin/api/query' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
   -H 'Accept-Language: cn|en' \
   -H 'Authorization: Basic QURNSU46S1lMSU4=' \
   -H 'Content-Type: application/json;charset=utf-8' \
   -d '{ "sql":"select count(*) from KYLIN_SALES", "project":"learn_kylin" }'
-	
 ```
 
-#### 响应示例
+**响应示例**
 
 ```JSON
 {
@@ -71,11 +71,10 @@ curl -X POST \
 }
 ```
 
-- 响应信息
+- **响应信息**
 	* `columnMetas` - 每个列的元数据信息
 	* `results` - 返回的结果集
-	* `cube` - 这个查询使用的 CUBE
-	* `affectedRowCount` - 这个查询关系到的总行数
+	* `cube` - 这个查询使用的 Cube 名称
 	* `isException` - 这个查询返回是否是异常
 	* `exceptionMessage` - 返回异常对应的内容
 	* `totalScanCount` - 总记录数
@@ -83,9 +82,8 @@ curl -X POST \
 	* `hitExceptionCache` - 是否来自执行失败的结果缓存
 	* `storageCacheUsed` - 是否来自执行成功的结果缓存
 	* `duration` - 查询消耗时间
-	* `partial` - 查询结果是否为部分返回，这个取决于请求参数中的 `acceptPartial`
+	* `sparderUsed` - 是否使用了 Sparder 查询引擎
 	* `pushDown` - 是否启用查询下压
-
 
 
 
@@ -93,17 +91,17 @@ curl -X POST \
 
 - `GET http://host:port/kylin/api/tables_and_columns`
 
-- URL Parameter 	
-	* `project` - `必选` `string` 项目名
+- URL Parameters 	
+	* `project` - `必选` `string` ，项目名称
 
 - HTTP Header
 	- `Accept: application/vnd.apache.kylin-v2+json`
 	- `Accept-Language: cn|en`
 	- `Content-Type: application/json;charset=utf-8`
 
-#### cURL 请求示例
+**Curl 请求示例**
 
-```
+```shell
 curl -X GET \
   'http://host:port/kylin/api/tables_and_columns?project=learn_kylin' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -112,7 +110,7 @@ curl -X GET \
   -H 'Content-Type: application/json;charset=utf-8'
 ```
 
-#### 响应示例
+**响应示例**
 
 ```JSON
 {
