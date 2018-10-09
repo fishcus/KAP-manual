@@ -1,8 +1,8 @@
 ## Async Query API
 
-> Reminder:
+> Reminders:
 >
-> 1. Please read Access and Authentication REST API and understand how authentication works.
+> 1. Please read [Access and Authentication REST API](authentication.en.md) and understand how authentication works.
 > 2. On Curl command line, don't forget to quote the URL if it contains `&` or other special chars.
 
 
@@ -21,25 +21,24 @@
 
 - `POST http://host:port/kylin/api/async_query`
 
-
 - HTTP Header
-	- `Content-Type: application/json;charset=utf-8`
-	- `Accept: application/vnd.apache.kylin-v2+json`
-	- `Accept-Language: cn|en`
-
+    - `Accept: application/vnd.apache.kylin-v2+json`
+    - `Accept-Language: cn|en`
+    - `Content-Type: application/json;charset=utf-8`
 
 - HTTP Body
     * `sql` - `required` `string` , SQL statement
     * `separator` - `optional` `string` , separator of the exported result, which is  "," by default
-    * `limit` - `optional` `int ` , limit on the number of result rows
-    * `project` - `required` `string` , project name, which is "DEFAULT" by default
+    * `offset` - `optional` `int`, offset of query result
+    * `limit` - `optional` `int ` , limit on the quantity of query result
+    * `project` - `required` `string` , project name, "DEFAULT" by default
 
 
 **Curl Request Example**
 
 ```shell
 curl -X POST \
-  http://host:port/kylin/api/async_query \
+  'http://host:port/kylin/api/async_query' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
   -H 'Accept-Language: cn|en' \
   -H 'Authorization: Basic QURNSU46S1lMSU4=' \
@@ -74,28 +73,24 @@ curl -X POST \
 
 - `GET http://host:port/kylin/api/async_query/{queryID}/status`
 
-
-- URL Parameter
+- URL Parameters
 	* `queryID` - `required` `string` , Query ID of the Async Query
 
-
 - HTTP Header
-	- `Content-Type: application/json;charset=utf-8`
-	- `Accept: application/vnd.apache.kylin-v2+json`
-	- `Accept-Language: cn|en`
-
+    - `Accept: application/vnd.apache.kylin-v2+json`
+    - `Accept-Language: cn|en`
+    - `Content-Type: application/json;charset=utf-8`
 
 **Curl Request Example**
 
 ```shell
 curl -X GET \
-  http://host:port/kylin/api/async_query/{queryID}/status \
+  'http://host:port/kylin/api/async_query/{queryID}/status' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
   -H 'Accept-Language: cn|en' \
   -H 'Authorization: Basic QURNSU46S1lMSU4=' \
   -H 'Content-Type: application/json;charset=utf-8'
 ```
-
 
 **Response Example**
 
@@ -122,22 +117,19 @@ curl -X GET \
 
 - `GET http://host:port/kylin/api/async_query/{queryID}/metadata`
 
-
-- URL Parameter
+- URL Parameters
 	* `queryID` - `required` `string` ,  Query ID of the Async Query
 
-
 - HTTP Header
-	- `Content-Type: application/json;charset=utf-8`
-	- `Accept: application/vnd.apache.kylin-v2+json`
-	- `Accept-Language: cn|en`
-
+    - `Accept: application/vnd.apache.kylin-v2+json`
+    - `Accept-Language: cn|en`
+    - `Content-Type: application/json;charset=utf-8`
 
 **Curl Request Example**
 
 ```shell
 curl -X GET \
-  http://host:port/kylin/api/async_query/{queryID}/metadata \
+  'http://host:port/kylin/api/async_query/{queryID}/metadata' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
   -H 'Accept-Language: cn|en' \
   -H 'Authorization: Basic QURNSU46S1lMSU4=' \
@@ -174,21 +166,20 @@ curl -X GET \
 - `GET http://host:port/kylin/api/async_query/{queryID}/filestatus`
 
 
-- URL Parameter
+- URL Parameters
 	* `queryID` - `required` `string` ,  Query ID of the Async Query
 
 
 - HTTP Header
-	- `Content-Type: application/json;charset=utf-8`
-	- `Accept: application/vnd.apache.kylin-v2+json`
-	- `Accept-Language: cn|en`
-
+    - `Accept: application/vnd.apache.kylin-v2+json`
+    - `Accept-Language: cn|en`
+    - `Content-Type: application/json;charset=utf-8`
 
 **Curl Request Example**
 
 ```shell
 curl -X GET \
-  http://host:port/kylin/api/async_query/{queryID}/filestatus \
+  'http://host:port/kylin/api/async_query/{queryID}/filestatus' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
   -H 'Accept-Language: cn|en' \
   -H 'Authorization: Basic QURNSU46S1lMSU4=' \
@@ -215,14 +206,13 @@ curl -X GET \
 - `GET http://host:port/kylin/api/async_query/{queryID}/result_download`
 
 
-- URL Parameter
+- URL Parameters
 	* `queryID` - `required` `string` ,  Query ID of the Async Query
 
-
 - HTTP Header
-	- `Content-Type: application/json;charset=utf-8`
-	- `Accept: application/vnd.apache.kylin-v2+json`
-	- `Accept-Language: cn|en`
+    - `Accept: application/vnd.apache.kylin-v2+json`
+    - `Accept-Language: cn|en`
+    - `Content-Type: application/json;charset=utf-8`
 
 
 **Curl Request Example**
@@ -230,7 +220,7 @@ curl -X GET \
 
 ```shell
 curl -X GET \
-  http://host:port/kylin/api/async_query/{queryID}/result_download \
+  'http://host:port/kylin/api/async_query/{queryID}/result_download' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
   -H 'Accept-Language: cn|en' \
   -H 'Authorization: Basic QURNSU46S1lMSU4=' \
@@ -245,21 +235,21 @@ curl -X GET \
 - `GET http://host:port/kylin/api/async_query/{queryID}/result_path`
 
 
-- URL Parameter
+- URL Parameters
 	* `queryID` - `required` `string` ,  Query ID of the Async Query
 
 
 - HTTP Header
-	- `Content-Type: application/json;charset=utf-8`
-	- `Accept: application/vnd.apache.kylin-v2+json`
-	- `Accept-Language: cn|en`
+    - `Accept: application/vnd.apache.kylin-v2+json`
+    - `Accept-Language: cn|en`
+    - `Content-Type: application/json;charset=utf-8`
 
 
 **Curl Request Example**
 
 ```shell
 curl -X GET \
-  http://host:port/kylin/api/async_query/{queryID}/result_path \
+  'http://host:port/kylin/api/async_query/{queryID}/result_path' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
   -H 'Accept-Language: cn|en' \
   -H 'Authorization: Basic QURNSU46S1lMSU4=' \
@@ -288,21 +278,20 @@ curl -X GET \
 
 
 - HTTP Header
-	- `Content-Type: application/json;charset=utf-8`
-	- `Accept: application/vnd.apache.kylin-v2+json`
-	- `Accept-Language: cn|en`
+    - `Accept: application/vnd.apache.kylin-v2+json`
+    - `Accept-Language: cn|en`
+    - `Content-Type: application/json;charset=utf-8`
 
 **Curl Request Example**
 
 ```shell
 curl -X DELETE \
-  http://host:port/kylin/api/async_query \
+  'http://host:port/kylin/api/async_query' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
   -H 'Accept-Language: cn|en' \
   -H 'Authorization: Basic QURNSU46S1lMSU4=' \
   -H 'Content-Type: application/json;charset=utf-8'
 ```
-
 
 **Response Example**
 

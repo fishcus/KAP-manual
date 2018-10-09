@@ -1,4 +1,4 @@
-## 异步查询 REST API
+## 异步查询 API
 
 
 > 提示：
@@ -23,16 +23,15 @@
 
 - `POST http://host:port/kylin/api/async_query`
 
-
 - HTTP Header
-	- `Content-Type: application/json;charset=utf-8`
-	- `Accept: application/vnd.apache.kylin-v2+json`
-	- `Accept-Language: cn|en`
-
+    - `Accept: application/vnd.apache.kylin-v2+json`
+    - `Accept-Language: en,cn`
+    - `Content-Type: application/json;charset=utf-8`
 
 - HTTP Body
     * `sql` - `必选` `string` ，查询语句
     * `separator` - `可选` `string` ，导出结果的分隔符，默认为 ","
+    * `offset` - `可选``int`，查询结果的偏移量
     * `limit` - `可选` `int ` ，从偏移量开始返回对应的行数，不足 limt 以实际行数为准
     * `project` - `必选` `string` ，项目名，默认为 "DEFAULT"
 
@@ -41,7 +40,7 @@
 
 ```shell
 curl -X POST \
-  http://host:port/kylin/api/async_query \
+  'http://host:port/kylin/api/async_query' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
   -H 'Accept-Language: cn|en' \
   -H 'Authorization: Basic QURNSU46S1lMSU4=' \
@@ -76,22 +75,19 @@ curl -X POST \
 
 - `GET http://host:port/kylin/api/async_query/{queryID}/status`
 
-
-- URL Parameter
+- URL Parameters
 	* `queryID` - `必选` `string` ，异步查询的 Query ID
 
-
 - HTTP Header
-	- `Content-Type: application/json;charset=utf-8`
-	- `Accept: application/vnd.apache.kylin-v2+json`
-	- `Accept-Language: cn|en`
-
+    - `Accept: application/vnd.apache.kylin-v2+json`
+    - `Accept-Language: en,cn`
+    - `Content-Type: application/json;charset=utf-8`
 
 **Curl 请求示例**
 
 ```shell
 curl -X GET \
-  http://host:port/kylin/api/async_query/{queryID}/status \
+  'http://host:port/kylin/api/async_query/{queryID}/status' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
   -H 'Accept-Language: cn|en' \
   -H 'Authorization: Basic QURNSU46S1lMSU4=' \
@@ -124,22 +120,20 @@ curl -X GET \
 
 - `GET http://host:port/kylin/api/async_query/{queryID}/metadata`
 
-
-- URL Parameter
+- URL Parameters
 	* `queryID` - `必选` `string` ，异步查询的 Query ID
 
-
 - HTTP Header
-	- `Content-Type: application/json;charset=utf-8`
-	- `Accept: application/vnd.apache.kylin-v2+json`
-	- `Accept-Language: cn|en`
+    - `Accept: application/vnd.apache.kylin-v2+json`
+    - `Accept-Language: en,cn`
+    - `Content-Type: application/json;charset=utf-8`
 
 
 **Curl 请求示例**
 
 ```shell
 curl -X GET \
-  http://host:port/kylin/api/async_query/{queryID}/metadata \
+  'http://host:port/kylin/api/async_query/{queryID}/metadata' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
   -H 'Accept-Language: cn|en' \
   -H 'Authorization: Basic QURNSU46S1lMSU4=' \
@@ -167,7 +161,7 @@ curl -X GET \
 ```
 
 - **响应信息**
-	* `data` - data 中包含两个 list，其中第一个 list 为列名，第二个 list 为对应列的数据类型
+	* `data` - data 中包含两个 list，其中第一个 list 为列名，第二个 list 为列对应的数据类型
 
 
 
@@ -176,21 +170,21 @@ curl -X GET \
 - `GET http://host:port/kylin/api/async_query/{queryID}/filestatus`
 
 
-- URL Parameter
+- URL Parameters
 	* `queryID` - `必选` `string` ，异步查询的 Query ID
 
 
 - HTTP Header
-	- `Content-Type: application/json;charset=utf-8`
-	- `Accept: application/vnd.apache.kylin-v2+json`
-	- `Accept-Language: cn|en`
+    - `Accept: application/vnd.apache.kylin-v2+json`
+    - `Accept-Language: en,cn`
+    - `Content-Type: application/json;charset=utf-8`
 
 
 **Curl 请求示例**
 
 ```shell
 curl -X GET \
-  http://host:port/kylin/api/async_query/{queryID}/filestatus \
+  'http://host:port/kylin/api/async_query/{queryID}/filestatus' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
   -H 'Accept-Language: cn|en' \
   -H 'Authorization: Basic QURNSU46S1lMSU4=' \
@@ -217,14 +211,14 @@ curl -X GET \
 - `GET http://host:port/kylin/api/async_query/{queryID}/result_download`
 
 
-- URL Parameter
+- URL Parameters
 	* `queryID` - `必选` `string` ，异步查询的 Query ID
 
 
 - HTTP Header
-	- `Content-Type: application/json;charset=utf-8`
-	- `Accept: application/vnd.apache.kylin-v2+json`
-	- `Accept-Language: cn|en`
+    - `Accept: application/vnd.apache.kylin-v2+json`
+    - `Accept-Language: en,cn`
+    - `Content-Type: application/json;charset=utf-8`
 
 
 **Curl 请求示例**
@@ -232,7 +226,7 @@ curl -X GET \
 
 ```shell
 curl -X GET \
-  http://host:port/kylin/api/async_query/{queryID}/result_download \
+  'http://host:port/kylin/api/async_query/{queryID}/result_download' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
   -H 'Accept-Language: cn|en' \
   -H 'Authorization: Basic QURNSU46S1lMSU4=' \
@@ -247,21 +241,21 @@ curl -X GET \
 - `GET http://host:port/kylin/api/async_query/{queryID}/result_path`
 
 
-- URL Parameter
+- URL Parameters
 	* `queryID` - `必选` `string` ，异步查询的 Query ID
 
 
 - HTTP Header
-	- `Content-Type: application/json;charset=utf-8`
-	- `Accept: application/vnd.apache.kylin-v2+json`
-	- `Accept-Language: cn|en`
+    - `Accept: application/vnd.apache.kylin-v2+json`
+    - `Accept-Language: en,cn`
+    - `Content-Type: application/json;charset=utf-8`
 
 
 **Curl 请求示例**
 
 ```shell
 curl -X GET \
-  http://host:port/kylin/api/async_query/{queryID}/result_path \
+  'http://host:port/kylin/api/async_query/{queryID}/result_path' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
   -H 'Accept-Language: cn|en' \
   -H 'Authorization: Basic QURNSU46S1lMSU4=' \
@@ -288,17 +282,16 @@ curl -X GET \
 
 - `DELETE http://host:port/kylin/api/async_query`
 
-
 - HTTP Header
-	- `Content-Type: application/json;charset=utf-8`
-	- `Accept: application/vnd.apache.kylin-v2+json`
-	- `Accept-Language: cn|en`
+    - `Accept: application/vnd.apache.kylin-v2+json`
+    - `Accept-Language: en,cn`
+    - `Content-Type: application/json;charset=utf-8`
 
 **Curl 请求示例**
 
 ```shell
 curl -X DELETE \
-  http://host:port/kylin/api/async_query \
+  'http://host:port/kylin/api/async_query' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
   -H 'Accept-Language: cn|en' \
   -H 'Authorization: Basic QURNSU46S1lMSU4=' \
