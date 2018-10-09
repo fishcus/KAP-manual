@@ -3,23 +3,24 @@
 *Computed Column* allows you to pre-define actions like data extraction / transformation / redefinition in modes, it enhances the data semantic abstraction. By replacing runtime calculation with offline cube construction, the pre-calculation capability of Kyligence Enterprise is fully utilized. As a result, query performance could be improved significantly. It's allowed to use Hive UDF in computed columns, so that existing business codes can be reused.
 
 > Caution: 
->   - Computed column is not available when the data source is Kafka.
+>   - Computed column is **ONLY** suppoted when the data source is Hive.
 >   - Please **DO NOT** define an expression with only constants for a computed column.
 
-### Basic Concept and Rules
-
-- Expression: calculating logic. Expression of computed column supports across a fact table or a lookup table.
-- Consistency:
-  - In a project, computed columns' name should be consistent with their expression (computed logic). It means one computed column can be defined once in one project, yet can be reused no matter how many times over different models.
-  - Reuse: computed columns can be reused from one model to another, same position is required. 
-- Position:
-  - Defining a computed column in fact table is highly recommended. In some cases, you can define computed column in special lookup tables, which is not stored as snapshot.
-  - Allow to define different computed columns in different models.
-- More:
+### Basic Concepts and Guidelines
+- Naming convention:
+  - Only letters, digits and underscores are supported. Pure digits or starting with underscores are NOT allowed.
   - Under one project, the name of a computed column cannot duplicate with any other columns in current model.
-  - Access：If a user has been restricted access to the column that is used in the expression of a computed column, the user will not be able to query the computed column either. 
+- Expression: calculating logic. Expression of computed column can contain columns across a fact table and a lookup table.
+- Re-use and reference:
+  - In a project, a computed column can be re-used accross different models. So its name and expression should be unique.
+  - In a new data model, you can re-use computed columns which is already defined in another model on the same table. 
+  - You can define a new computed column based on an existing computed column.
+- Others:
+  - It's highly recommended to define computed column only on fact table, although you can define computed column on lookup tables which are not stored as snapshot.
+  - You can define different computed columns in different models with following the guideline above.
+  - Access control：If a user has restricted access to the column used in the expression of a computed column, then this user will not be able to query the computed column either. 
 
-#### Create Computed Column
+### Create Computed Column
 
 Kyligence Enterprise allows you to define computed columns for each model separately. 
 
@@ -49,7 +50,7 @@ After defining the computed columns in model, you need to use them to build cube
 
 
 
-#### Explicit Query vs. Implicit Query
+### Explicit Query vs. Implicit Query
 
 **Query:** A computed column is logically appended to the table's column list after creation. You can query the computed column as if it was a normal column as long as it is pre-calculated in a cube. 
 
