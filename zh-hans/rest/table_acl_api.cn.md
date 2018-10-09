@@ -1,4 +1,4 @@
-## 表级访问控制权限 REST API
+## 表级访问控制权限 API
 
 > 提示：
 >
@@ -8,19 +8,19 @@
 
 
 
-* [获取用户的表级访问控制权限](#获取用户的表级访问控制权限)
-* [添加用户的表级访问控制权限](#添加用户的表级访问控制权限)
-* [批量添加用户的表级访问控制权限](#批量添加用户的表级访问控制权限)
-* [删除用户的表级访问控制权限](#收回用户的表级查询权限)
+* [获取表级访问控制权限](#获取表级访问控制权限)
+* [赋予表级访问控制权限](#赋予表级访问控制权限)
+* [批量赋予表级访问控制权限](#批量赋予表级访问控制权限)
+* [删除表级访问控制权限](#删除表级访问控制权限)
 
 
 
-### 获取用户的表级访问控制权限
+### 获取表级访问控制权限
 
 - `GET http://host:port/kylin/api/acl/table/paged/{project}/{table}`
 
 
-- URL Parameter
+- URL Parameters
     * `project` - `必选` `string`，项目名称
     * `table` - `必选` `string`，表名称
 
@@ -39,7 +39,7 @@
 
 ```shell
 curl -X GET \
-  http://host:port/kylin/api/acl/table/paged/learn_kylin/DEFAULT.KYLIN_SALES \
+  'http://host:port/kylin/api/acl/table/paged/learn_kylin/DEFAULT.KYLIN_SALES' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
   -H 'Accept-Language: cn|en' \
   -H 'Authorization: Basic QURNSU46S1lMSU4=' \
@@ -66,16 +66,16 @@ curl -X GET \
 
 
 
-### 添加用户的表级访问控制权限
+### 赋予表级访问控制权限
 
 - `POST http://host:port/kylin/api/acl/table/{project}/{type}/{table}/{name}`
 
 
-- URL Parameter
+- URL Parameters
     * `project` - `必选` `string`，项目名称
     * `type` - `必选` `string`，操作对象，取值：user 或 group
     * `table` - `必选` `string`，表名称
-	* `name` - `必选` `string`，用户名
+	* `name` - `必选` `string`，用户名称
 
 
 - HTTP Header
@@ -88,7 +88,7 @@ curl -X GET \
 
 ```shell
 curl -X POST \
-  http://host:port/kylin/api/acl/table/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN \
+  'http://host:port/kylin/api/acl/table/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
   -H 'Accept-Language: cn|en' \
   -H 'Authorization: Basic QURNSU46S1lMSU4=' \
@@ -108,13 +108,13 @@ curl -X POST \
 
 
 
-### 批量添加用户的表级访问控制权限
+### 批量赋予表级访问控制权限
 
 
-- `POST http://host:port/kylin/api/acl/table/batch/{project}/{table:.+}`
+- `POST http://host:port/kylin/api/acl/table/batch/{project}/{table}`
 
 
-- URL Parameter
+- URL Parameters
     * `project` - `必选` `string`，项目名称
     * `table` - `必选` `string`，表名称
 
@@ -127,14 +127,14 @@ curl -X POST \
 
 - HTTP Body
     * `sid` - `必选` `string`，用户或组名
-    * `principal` - `必选` `boolean`，是否为用户
+    * `principal` - `必选` `boolean`，是否为用户，"true" 或者 "false"
 
 
 **Curl 请求示例**
 
-```json
+```shell
 curl -X POST \
-  http://host:port/kylin/api/acl/table/batch/learn_kylin/DEFAULT.KYLIN_CAL_DT \
+  'http://host:port/kylin/api/acl/table/batch/learn_kylin/DEFAULT.KYLIN_CAL_DT' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
   -H 'Accept-Language: cn|en' \
   -H 'Authorization: Basic QURNSU46S1lMSU4=' \
@@ -151,7 +151,8 @@ curl -X POST \
 ```
 
 **响应示例**
-```
+
+```JSON
 {
     "code": "000",
     "data": "",
@@ -161,16 +162,16 @@ curl -X POST \
 
 
 
-### 删除用户的表级访问控制权限
+### 删除表级访问控制权限
 
 - `DELETE http://host:port/kylin/api/acl/table/{project}/{type}/{table}/{name}`
 
 
-- URL Parameter
+- URL Parameters
     * `project` - `必选` `string`，项目名称
     * `type` - `必选` `string`，操作对象，取值：user 或 group
     * `table` - `必选` `string`，表名称
-    * `name` - `必选` `string`，用户名
+    * `name` - `必选` `string`，用户名称
 
 
 - HTTP Header
@@ -183,7 +184,7 @@ curl -X POST \
 
 ```shell
 curl -X DELETE \
-  http://host:port/kylin/api/acl/table/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN \
+  'http://host:port/kylin/api/acl/table/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
   -H 'Accept-Language: cn|en' \
   -H 'Authorization: Basic QURNSU46S1lMSU4=' \

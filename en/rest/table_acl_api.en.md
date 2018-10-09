@@ -1,8 +1,8 @@
 ## Table ACL API
 
-> Reminder:
+> Reminders:
 >
-> 1. Please read Access and Authentication REST API and understand how authentication works.
+> 1. Please read [Access and Authentication REST API](authentication.en.md) and understand how authentication works.
 > 2. On Curl command line, don't forget to quote the URL if it contains `&` or other special chars.
 
 
@@ -19,7 +19,7 @@
 - `GET http://host:port/kylin/api/acl/table/paged/{project}/{table}`
 
 
-- URL Parameter
+- URL Parameters
     * `project` - `required` `string`, project name
     * `table` - `required` `string`, table name
 
@@ -30,7 +30,7 @@
 
 
 - HTTP Body
-    * `pageSize` - `optional` `int`,  returned result number per page, 10 by default
+    * `pageSize` - `optional` `int`, quantity of returned result per page, 10 by default
     * `pageOffset` - `optional` `int`,  offset of returned result, 0 by default
 
 
@@ -38,7 +38,7 @@
 
 ```shell
 curl -X GET \
-  http://host:port/kylin/api/acl/table/paged/learn_kylin/DEFAULT.KYLIN_SALES \
+  'http://host:port/kylin/api/acl/table/paged/learn_kylin/DEFAULT.KYLIN_SALES' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
   -H 'Accept-Language: cn|en' \
   -H 'Authorization: Basic QURNSU46S1lMSU4=' \
@@ -70,7 +70,7 @@ curl -X GET \
 - `POST http://host:port/kylin/api/acl/table/{project}/{type}/{table}/{name}`
 
 
-- URL Parameter
+- URL Parameters
     * `project` - `required` `string`, project name
     * `type` - `required` `string`, operation object, ie.,user or group
     * `table` - `required` `string`, table name
@@ -87,7 +87,7 @@ curl -X GET \
 
 ```shell
 curl -X POST \
-  http://host:port/kylin/api/acl/table/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN \
+  'http://host:port/kylin/api/acl/table/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
   -H 'Accept-Language: cn|en' \
   -H 'Authorization: Basic QURNSU46S1lMSU4=' \
@@ -110,10 +110,10 @@ curl -X POST \
 ### Grant Table ACL in batch
 
 
-- `POST http://host:port/kylin/api/acl/table/batch/{project}/{table:.+}`
+- `POST http://host:port/kylin/api/acl/table/batch/{project}/{table}`
 
 
-- URL Parameter
+- URL Parameters
     * `project` - `required` `string`, project name
     * `table` - `required` `string`, table name
 
@@ -126,14 +126,14 @@ curl -X POST \
 
 - HTTP Body
     * `sid` - `required` `string`, user name or group name
-    * `principal` - `required` `boolean`, "true" for user and "false" for group
+    * `principal` - `required` `boolean`, user or not,  "true" for user and "false" for group
 
 
 **Curl Request Example**
 
 ```shell
 curl -X POST \
-  http://host:port/kylin/api/acl/table/batch/learn_kylin/DEFAULT.KYLIN_CAL_DT \
+  'http://host:port/kylin/api/acl/table/batch/learn_kylin/DEFAULT.KYLIN_CAL_DT' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
   -H 'Accept-Language: cn|en' \
   -H 'Authorization: Basic QURNSU46S1lMSU4=' \
@@ -150,7 +150,8 @@ curl -X POST \
 ```
 
 **Response Example**
-```json
+
+```JSON
 {
     "code": "000",
     "data": "",
@@ -165,7 +166,7 @@ curl -X POST \
 - `DELETE http://host:port/kylin/api/acl/table/{project}/{type}/{table}/{name}`
 
 
-- URL Parameter
+- URL Parameters
     * `project` - `required` `string`, project name
     * `type` - `required` `string`, operation object, ie.,user or group
     * `table` - `required` `string`, table name
@@ -182,7 +183,7 @@ curl -X POST \
 
 ```shell
 curl -X DELETE \
-  http://host:port/kylin/api/acl/table/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN \
+  'http://host:port/kylin/api/acl/table/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
   -H 'Accept-Language: cn|en' \
   -H 'Authorization: Basic QURNSU46S1lMSU4=' \
