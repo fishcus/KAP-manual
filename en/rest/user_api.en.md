@@ -1,222 +1,220 @@
 ## User Management API
 
-> **Tip**
+> Reminders:
 >
-> Before using API, make sure that you read the previous chapter of [Access and Authentication](authentication.en.md), and know how to add authentication information in API.
->
-> If there exists `&` in your request path, please enclose the URL in quotation marks `""` or add a backslash ahead  `\&`  to avoid being escaped.
+> 1. Please read [Access and Authentication REST API](authentication.en.md) and understand how authentication works.
+> 2. On Curl command line, don't forget to quote the URL if it contains `&` or other special chars.
 
 
-* [Get All Users](#get-all-users)
-* [Create User](#create-user)
-* [Modify User](#modify-user)
-* [Delete User](#delete-user)
 
-### Get All Users
-`Request Mode GET`
+* [Get user list](#Get user list)
+* [Create a user](#Create a user)
+* [Modify a user](#Modify a user)
+* [Delete a user](#Delete a user)
 
-`Access Path http://host:port/kylin/api/kap/users/user`
 
-`Accept: application/vnd.apache.kylin-v2+json` 
 
-`Accept-Language: cn|en` 
+### Get user list
 
-#### Request Parameters
-* project - `optional` `string`, determine if the current user has the permission to get all users. If it is blank, the current user shall have Admin permission to get all users.
-* name - `optional` `string`, filter the user list.
-* isCaseSensitive - `optional` `bool`, indicate if the fuzzy matching of the above parameter, name, is case sensitive. It is case insensitive by default. 
-* pageOffset - `optional` `int`
-* pageSize - `optional` `int`
+- `GET http://host:port/kylin/api/kap/users/user`
 
-#### Request Example
-`Request Path: "http://host:port/kylin/api/kap/user/users?pageSize=9&pageOffset=0&project=default"`
 
-#### Curl Request Example
+- URL Parameters
+    * `project` - `optional` `string`, project name
+    * `name` - `optional` `string`, user name
+    * `isCaseSensitive` - `optional` `bool`, whether case sensitive on user name, "false" by default
+	* `pageOffset` - `optional` `int`, offset of returned result, 0 by default
+	* `pageSize` - `optional` `int`, quantity of returned result per page, 10 by default
+
+
+- HTTP Header
+    - `Accept: application/vnd.apache.kylin-v2+json`
+    - `Accept-Language: cn|en`
+    - `Content-Type: application/json;charset=utf-8`
+
+
+**Curl Request Example**
+
+```shell
+curl -X GET \
+  'http://host:port/kylin/api/kap/user/users?pageSize=1&project=learn_kylin' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8'
 ```
-curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" "http://host:port/kylin/api/kap/user/users?pageSize=9&pageOffset=0&project=default"
-```
 
-#### Response Example
-```json
+
+**Response Example**
+
+```JSON
 {
-  "code": "000",
-  "data": {
-    "size": 3,
-    "users": [
-      {
-        "username": "ADMIN",
-        "password": "$2a$10$T6mhEmdwwwZJPPoON3k7t.9StfCCK1MkxMKNB8ZhsGqg853d5h2cS",
-        "authorities": [
-          {
+    "code": "000",
+    "data": {
+        "size": 4,
+        "users": [
+            {
+                "username": "ADMIN",
+                "password": "$2a$10$UfSim3k3g6mBCPnZULlynuyyV3OVKhy174iOBoNVplZXZJlb2TPRu",
+                "authorities": [...],
+                "disabled": false,
+                "defaultPassword": true,
+                "locked": false,
+                "lockedTime": 0,
+                "wrongTime": 0,
+                "uuid": "aec35307-8d41-45a0-a942-91d4e92e11e4",
+                "last_modified": 1537860587117,
+                "version": "3.0.0.1"
+            }
+        ]
+    },
+    "msg": ""
+}
+```
+
+
+
+### Create a user
+
+- `POST http://host:port/kylin/api/kap/user/{userName}`
+
+
+- URL Parameters
+	* `userName` - `required` `string`, user name
+
+
+- HTTP Header
+    - `Accept: application/vnd.apache.kylin-v2+json`
+    - `Accept-Language: cn|en`
+    - `Content-Type: application/json;charset=utf-8`
+
+
+- HTTP Body
+    * `password` - `required` `string`, user password
+    * `disabled` - `required` `bool`, enable the user or not
+    * `authorities` - `required` `string[]`, corresponding user group
+
+
+**Curl Request Example**
+
+```shell
+curl -X POST \
+  'http://host:port/kylin/api/kap/user/test' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8' \
+  -d '{
+	"password": "test@Kylingence",
+	"disabled": false, 
+	"authorities": ["ROLE_ADMIN"]
+	
+}'
+```
+
+
+**Response Example**
+
+```JSON
+{
+    "username": "test",
+    "password": "$2a$10$Iw4NYBNW2bCTN3BqCGVfrO5Loesn/UigQxvbBQFebH2fEkFE2gcHy",
+    "authorities": [
+        {
             "authority": "ROLE_ADMIN"
-          },
-          {
+        },
+        {
             "authority": "ALL_USERS"
-          }
-        ],
-        "disabled": false,
-        "defaultPassword": false,
-        "locked": false,
-        "lockedTime": 0,
-        "wrongTime": 1,
-        "uuid": null,
-        "last_modified": 1511179915000,
-        "version": "3.0.0.1"
-      },
-      {
-        "username": "ANALYST",
-        "password": "$2a$10$Fy9s6NNxVX7YyoVW6cA35ucxgRzw41tdKG9WfyINHBcAAj7bWLPXa",
-        "authorities": [
-          {
-            "authority": "ALL_USERS"
-          }
-        ],
-        "disabled": false,
-        "defaultPassword": true,
-        "locked": false,
-        "lockedTime": 0,
-        "wrongTime": 0,
-        "uuid": null,
-        "last_modified": 1511073720000,
-        "version": "3.0.0.1"
-      },
-      {
-        "username": "MODELER",
-        "password": "$2a$10$GHuQqTyjcymxwAYUJ8B2F.kDG3arZaYVKABNgX1Kh1HrTjV3hqBTS",
-        "authorities": [
-          {
-            "authority": "ALL_USERS"
-          }
-        ],
-        "disabled": false,
-        "defaultPassword": true,
-        "locked": false,
-        "lockedTime": 0,
-        "wrongTime": 0,
-        "uuid": null,
-        "last_modified": 1511073720000,
-        "version": "3.0.0.1"
-      }
-    ]
-  },
-  "msg": ""
+        }
+    ],
+    "disabled": false,
+    "defaultPassword": false,
+    "locked": false,
+    "lockedTime": 0,
+    "wrongTime": 0,
+    "uuid": "ffdd3033-d516-4b4f-a7fe-6718280746bb",
+    "last_modified": 1538964238173,
+    "version": "3.0.0.1"
 }
 ```
 
-### Create User
-`Request Mode POST`
 
-`Access Path http://host:port/kylin/api/kap/user/{userName}`
 
-`Accept: application/vnd.apache.kylin-v2+json` 
+### Modify a user
 
-`Accept-Language: cn|en` 
+- `PUT http://host:port/kylin/api/kap/user/{userName}`
 
-#### Path Variable
-* userName - `required` `string`, user name
 
-#### Request Body
-* username - `required` `string`, user name
-* password - `required` `string`, password
-* disabled - `required` `bool`, enabled or not
-* authorities - `required` `string list`, determine which group the user belongs to
+- URL Parameters
+	* `userName` - `required` `string`, user name
 
-#### Request Example
-`Request Path:http://host:port/kylin/api/kap/user/t`
 
-`Request Body:{username: "t", password: "1qaz@WSX", disabled: false, authorities: ["ROLE_ADMIN"]}`
+- HTTP Body
+    * `password` - `required` `string`, user password
+    * `disabled` - `required` `bool`, enable the user or not
+    * `authorities` - `required` `string[]`, corresponding user group
 
-#### Curl Request Example
+
+**Curl Request Example**
+
+```shell
+curl -X PUT \
+  'http://host:port/kylin/api/kap/user/test' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8' \
+  -d '{
+	"password": "test123.",
+	"disabled": false, 
+	"authorities": ["ROLE_ANALYST"]
+	
+}'
 ```
-curl -X POST -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "username":"test", "password":"KYLIN"，"disabled":false，"authorities":["ROLE_ADMIN"] }' http://host:port/kylin/api/kap/user/t
-```
 
-#### Response Example
-```json
+
+**Response Example**
+
+```JSON
 {
-  "username": "t",
-  "password": "$2a$10$IhAeH0lIBDGI2Qw2lDvehuGQUOXkbYL/BmV/iu7dTpmNt3fUx7QTa",
-  "authorities": [
-    {
-      "authority": "ROLE_ANALYST"
-    }
-  ],
-  "disabled": false,
-  "defaultPassword": false,
-  "locked": false,
-  "lockedTime": 0,
-  "wrongTime": 0,
-  "uuid": null,
-  "last_modified": 1506583927000,
-  "version": "3.0.0.1"
+    "username": "test",
+    "password": "$2a$10$M3u5cQztMHg3LIvMFJ4ZY.RidLB9RAw0gBHHV6EBNzEvxMk6Pf69u",
+    "authorities": [...],
+    "disabled": false,
+    "defaultPassword": false,
+    "locked": false,
+    "lockedTime": 0,
+    "wrongTime": 0,
+    "uuid": "4713b0fb-4f4b-4842-af33-863f3b8bc7e2",
+    "last_modified": 1538965388437,
+    "version": "3.0.0.1"
 }
 ```
 
-### Modify User
-`Request Mode PUT`
 
-`Access Path http://host:port/kylin/api/kap/user/{userName}`
 
-`Accept: application/vnd.apache.kylin-v2+json` 
+### Delete a user
 
-`Accept-Language: cn|en` 
+- `DELETE http://host:port/kylin/api/kap/user/{userName}`
 
-#### Path Variable
-* userName - `required` `string`, user name
 
-#### Request Body
-* username - `required` `string`, user name
-* password - `required` `string`, password
-* disabled - `required` `bool`, enabled or not
-* authorities - `required` `string list`
+- URL Parameters
+	* `userName` - `required` `string`, user name
 
-#### Request Example
-`Request Path:http://host:port/kylin/api/kap/user/t`
 
-`Request Body:{username: "t", password: "1qaz@WSX", disabled: false, authorities: ["ROLE_ADMIN"]}`
+- HTTP Header
+    - `Accept: application/vnd.apache.kylin-v2+json`
+    - `Accept-Language: cn|en`
+    - `Content-Type: application/json;charset=utf-8`
 
-#### Curl Request Example
-```
-curl -X PUT -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "username":"test", "password":"KYLIN"，"disabled":false，"authorities":["ROLE_ADMIN"] }' http://host:port/kylin/api/kap/user/t
-```
 
-#### Response Example
-```json
-{
-  "username": "t",
-  "password": "$2a$10$IhAeH0lIBDGI2Qw2lDvehuGQUOXkbYL/BmV/iu7dTpmNt3fUx7QTa",
-  "authorities": [
-    {
-      "authority": "ROLE_ANALYST"
-    }
-  ],
-  "disabled": false,
-  "defaultPassword": false,
-  "locked": false,
-  "lockedTime": 0,
-  "wrongTime": 0,
-  "uuid": null,
-  "last_modified": 1506583927000,
-  "version": "3.0.0.1"
-}
-```
+**Curl Request Example**
 
-### Delete User
-`Request Mode DELETE`
-
-`Access Path http://host:port/kylin/api/kap/user/{userName}`
-
-`Accept: application/vnd.apache.kylin-v2+json` 
-
-`Accept-Language: cn|en` 
-
-#### Path Variable
-* userName - `required` `string`, user name
-
-#### Request Example
-`Request Path:http://host:port/kylin/api/kap/user/t`
-
-#### Curl Request Example
-```
-curl -X DELETE -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/kap/user/t
+```shell
+curl -X DELETE \
+  'http://host:port/kylin/api/kap/user/test' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8'
 ```

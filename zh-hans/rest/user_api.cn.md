@@ -1,225 +1,221 @@
-## 用户管理 REST API
+## 用户管理 API
 
-> **提示**
+> 提示：
 >
-> 使用 API 前请确保已阅读前面的[访问及安全认证](authentication.cn.md)章节，知道如何在 API 中添加认证信息。
+> 1. 请确保已阅读前面的[访问及安全认证](authentication.cn.md)章节，了解如何在 REST API 语句中添加认证信息。
 >
-> 当您的访问路径中含有 `&` 符号时，请在 URL 两端加上引号`""` 或者添加反斜杠来避免转义 `\&`。
+> 2. 在 Curl 命令行上，如果您访问的 URL 中含有 `&` 符号，请注意转义，比如在 URL 两端加上引号。
 
 
-* [获取所有用户](#获取所有用户)
+
+* [返回用户列表](#返回用户列表)
 * [创建用户](#创建用户)
 * [修改用户](#修改用户)
 * [删除用户](#删除用户)
 
-### 获取所有用户
-`请求方式 GET`
-
-`访问路径 http://host:port/kylin/api/kap/users/user`
-
-`Accept: application/vnd.apache.kylin-v2+json` 
-
-`Accept-Language: cn|en` 
-
-#### 请求参数
-* project - `可选` `string`，用来判断当前用户是否有拉取所有用户的权限，为空时需要全局 admin 权限才能拉取
-* name - `可选` `string`，用来过滤拉取的用户列表
-* isCaseSensitive - `可选` `bool`，表示上面 name 参数的模糊匹配是否为区分大小写，默认不区分大小写
-* pageOffset - `可选` `int`
-* pageSize - `可选` `int`
-
-#### 请求示例
-`请求路径: "http://host:port/kylin/api/kap/user/users?pageSize=9&pageOffset=0&project=default"`
 
 
+### 返回用户列表
 
-#### Curl 请求示例
+- `GET http://host:port/kylin/api/kap/users/user`
+
+
+- URL Parameters
+    * `project` - `可选` `string`，项目名称
+    * `name` - `可选` `string`，用户名称
+    * `isCaseSensitive` - `可选` `bool`，对用户名称的模糊匹配是否区分大小写，默认不区分
+    * `pageOffset` - `可选` `int`，返回数据的起始下标，默认为 0 
+    * `pageSize` - `可选` `int`，分页返回每页返回的条数，默认为 10
+
+
+- HTTP Header
+    - `Accept: application/vnd.apache.kylin-v2+json`
+    - `Accept-Language: cn|en`
+    - `Content-Type: application/json;charset=utf-8`
+
+
+**Curl 请求示例**
+
+```shell
+curl -X GET \
+  'http://host:port/kylin/api/kap/user/users?pageSize=1&project=learn_kylin' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8'
 ```
-curl -X GET -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json"  -H "Content-Type:application/vnd.apache.kylin-v2+json" "http://host:port/kylin/api/kap/user/users?pageSize=9&pageOffset=0&project=default"
-```
-#### 响应示例
-```json
+
+
+**响应示例**
+
+```JSON
 {
-  "code": "000",
-  "data": {
-    "size": 3,
-    "users": [
-      {
-        "username": "ADMIN",
-        "password": "$2a$10$T6mhEmdwwwZJPPoON3k7t.9StfCCK1MkxMKNB8ZhsGqg853d5h2cS",
-        "authorities": [
-          {
-            "authority": "ROLE_ADMIN"
-          },
-          {
-            "authority": "ALL_USERS"
-          }
-        ],
-        "disabled": false,
-        "defaultPassword": false,
-        "locked": false,
-        "lockedTime": 0,
-        "wrongTime": 1,
-        "uuid": null,
-        "last_modified": 1511179915000,
-        "version": "3.0.0.1"
-      },
-      {
-        "username": "ANALYST",
-        "password": "$2a$10$Fy9s6NNxVX7YyoVW6cA35ucxgRzw41tdKG9WfyINHBcAAj7bWLPXa",
-        "authorities": [
-          {
-            "authority": "ALL_USERS"
-          }
-        ],
-        "disabled": false,
-        "defaultPassword": true,
-        "locked": false,
-        "lockedTime": 0,
-        "wrongTime": 0,
-        "uuid": null,
-        "last_modified": 1511073720000,
-        "version": "3.0.0.1"
-      },
-      {
-        "username": "MODELER",
-        "password": "$2a$10$GHuQqTyjcymxwAYUJ8B2F.kDG3arZaYVKABNgX1Kh1HrTjV3hqBTS",
-        "authorities": [
-          {
-            "authority": "ALL_USERS"
-          }
-        ],
-        "disabled": false,
-        "defaultPassword": true,
-        "locked": false,
-        "lockedTime": 0,
-        "wrongTime": 0,
-        "uuid": null,
-        "last_modified": 1511073720000,
-        "version": "3.0.0.1"
-      }
-    ]
-  },
-  "msg": ""
+    "code": "000",
+    "data": {
+        "size": 4,
+        "users": [
+            {
+                "username": "ADMIN",
+                "password": "$2a$10$UfSim3k3g6mBCPnZULlynuyyV3OVKhy174iOBoNVplZXZJlb2TPRu",
+                "authorities": [...],
+                "disabled": false,
+                "defaultPassword": true,
+                "locked": false,
+                "lockedTime": 0,
+                "wrongTime": 0,
+                "uuid": "aec35307-8d41-45a0-a942-91d4e92e11e4",
+                "last_modified": 1537860587117,
+                "version": "3.0.0.1"
+            }
+        ]
+    },
+    "msg": ""
 }
 ```
+
+
 
 ### 创建用户
-`请求方式 POST`
 
-`访问路径 http://host:port/kylin/api/kap/user/{userName}`
-
-`Accept: application/vnd.apache.kylin-v2+json` 
-
-`Accept-Language: cn|en` 
-
-#### 路径变量
-* userName - `必选` `string`，用户名
-
-#### 请求主体
-* username - `必选` `string`，用户名
-* password - `必选` `string`，密码
-* disabled - `必选` `bool`，是否启用
-* authorities - `必选` `string列表`，用户属于哪些组
-
-#### 请求示例
-`请求路径:http://host:port/kylin/api/kap/user/t`
-
-`请求主体:{username: "t", password: "1qaz@WSX", disabled: false, authorities: ["ROLE_ADMIN"]}`
+- `POST http://host:port/kylin/api/kap/user/{userName}`
 
 
+- URL Parameters
+	* `userName` - `必选` `string`，用户名称
 
-#### Curl 请求示例
+
+- HTTP Header
+    - `Accept: application/vnd.apache.kylin-v2+json`
+    - `Accept-Language: cn|en`
+    - `Content-Type: application/json;charset=utf-8`
+
+
+- HTTP Body
+    * `password` - `必选` `string`，用户密码
+    * `disabled` - `必选` `bool`，是否启用
+    * `authorities` - `必选` `string[]`，用户所属用户组
+
+
+**Curl 请求示例**
+
+```shell
+curl -X POST \
+  'http://host:port/kylin/api/kap/user/test' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8' \
+  -d '{
+	"password": "test@Kylingence",
+	"disabled": false, 
+	"authorities": ["ROLE_ADMIN"]
+	
+}'
 ```
-curl -X POST -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "username":"test", "password":"KYLIN"，"disabled":false，"authorities":["ROLE_ADMIN"] }' http://host:port/kylin/api/kap/user/t
-```
-#### 响应示例
-```json
+
+
+**响应示例**
+
+```JSON
 {
-  "username": "t",
-  "password": "$2a$10$IhAeH0lIBDGI2Qw2lDvehuGQUOXkbYL/BmV/iu7dTpmNt3fUx7QTa",
-  "authorities": [
-    {
-      "authority": "ROLE_ANALYST"
-    }
-  ],
-  "disabled": false,
-  "defaultPassword": false,
-  "locked": false,
-  "lockedTime": 0,
-  "wrongTime": 0,
-  "uuid": null,
-  "last_modified": 1506583927000,
-  "version": "3.0.0.1"
+    "username": "test",
+    "password": "$2a$10$Iw4NYBNW2bCTN3BqCGVfrO5Loesn/UigQxvbBQFebH2fEkFE2gcHy",
+    "authorities": [
+        {
+            "authority": "ROLE_ADMIN"
+        },
+        {
+            "authority": "ALL_USERS"
+        }
+    ],
+    "disabled": false,
+    "defaultPassword": false,
+    "locked": false,
+    "lockedTime": 0,
+    "wrongTime": 0,
+    "uuid": "ffdd3033-d516-4b4f-a7fe-6718280746bb",
+    "last_modified": 1538964238173,
+    "version": "3.0.0.1"
 }
 ```
+
+
 
 ### 修改用户
-`请求方式 PUT`
 
-`访问路径 http://host:port/kylin/api/kap/user/{userName}`
-
-`Accept: application/vnd.apache.kylin-v2+json` 
-
-`Accept-Language: cn|en` 
-
-#### 路径变量
-* userName - `必选` `string`，用户名
-
-#### 请求主体
-* username - `必选` `string`，用户名
-* password - `必选` `string`，密码
-* disabled - `必选` `bool`，是否启用
-* authorities - `必选` `string列表`
-
-#### 请求示例
-`请求路径:http://host:port/kylin/api/kap/user/t`
-
-`请求主体:{username: "t", password: "1qaz@WSX", disabled: false, authorities: ["ROLE_ADMIN"]}`
+- `PUT http://host:port/kylin/api/kap/user/{userName}`
 
 
+- URL Parameters
+	* `userName` - `必选` `string`，用户名称
 
-#### Curl 请求示例
+
+- HTTP Body
+    * `password` - `必选` `string`，用户密码
+    * `disabled` - `必选` `bool`，是否启用
+    * `authorities` - `必选` `string[]`，用户所属用户组
+
+
+**Curl 请求示例**
+
+```shell
+curl -X PUT \
+  'http://host:port/kylin/api/kap/user/test' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8' \
+  -d '{
+	"password": "test123.",
+	"disabled": false, 
+	"authorities": ["ROLE_ANALYST"]
+	
+}'
 ```
-curl -X PUT -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" -d '{ "username":"test", "password":"KYLIN"，"disabled":false，"authorities":["ROLE_ADMIN"] }' http://host:port/kylin/api/kap/user/t
-```
-#### 响应示例
-```json
+
+
+**响应示例**
+
+```JSON
 {
-  "username": "t",
-  "password": "$2a$10$IhAeH0lIBDGI2Qw2lDvehuGQUOXkbYL/BmV/iu7dTpmNt3fUx7QTa",
-  "authorities": [
-    {
-      "authority": "ROLE_ANALYST"
-    }
-  ],
-  "disabled": false,
-  "defaultPassword": false,
-  "locked": false,
-  "lockedTime": 0,
-  "wrongTime": 0,
-  "uuid": null,
-  "last_modified": 1506583927000,
-  "version": "3.0.0.1"
+    "username": "test",
+    "password": "$2a$10$M3u5cQztMHg3LIvMFJ4ZY.RidLB9RAw0gBHHV6EBNzEvxMk6Pf69u",
+    "authorities": [...],
+    "disabled": false,
+    "defaultPassword": false,
+    "locked": false,
+    "lockedTime": 0,
+    "wrongTime": 0,
+    "uuid": "4713b0fb-4f4b-4842-af33-863f3b8bc7e2",
+    "last_modified": 1538965388437,
+    "version": "3.0.0.1"
 }
 ```
 
+
+
 ### 删除用户
-`请求方式 DELETE`
 
-`访问路径 http://host:port/kylin/api/kap/user/{userName}`
+- `DELETE http://host:port/kylin/api/kap/user/{userName}`
 
-`Accept: application/vnd.apache.kylin-v2+json` 
 
-`Accept-Language: cn|en` 
+- URL Parameters
+	* `userName` - `必选` `string`，用户名称
 
-#### 路径变量
-* userName - `必选` `string`，用户名
 
-#### 请求示例
-`请求路径:http://host:port/kylin/api/kap/user/t`
+- HTTP Header
+    - `Accept: application/vnd.apache.kylin-v2+json`
+    - `Accept-Language: cn|en`
+    - `Content-Type: application/json;charset=utf-8`
 
-#### Curl 请求示例
-```
-curl -X DELETE -H "Authorization: Basic xxxxxx" -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/vnd.apache.kylin-v2+json" http://host:port/kylin/api/kap/user/t
+
+**Curl 请求示例**
+
+```shell
+curl -X DELETE \
+  'http://host:port/kylin/api/kap/user/test' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: cn|en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8'
 ```
