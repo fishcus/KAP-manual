@@ -24,7 +24,7 @@ OBIEE是Oracle旗下的BI产品，可提供完整的 BI 功能，包括交互式
 
    有关Linux下配置Kyligence ODBC的配置，请参考[Linux下安装与配置Kyligence ODBC驱动](https://docs.oracle.com/middleware/12212/biee/BIEMG/GUID-CCDD9782-BC2A-497A-8ED0-AECA2ECFB3AE.htm#config_native_dbs )中的Configuring Database Connections Using Native ODBC Drivers部分。
 
-   在`obdc.ini`文件中增加的Kyligence数据源格式为：
+   在`odbc.ini`文件中增加的Kyligence数据源格式为：
 
    ```
    [KyligenceDataSource]
