@@ -211,6 +211,8 @@
 
 ### 下载查询结果
 
+> 提示：请确认查询状态为 SUCCESSFUL 之后再调用此接口
+
 - `GET http://host:port/kylin/api/async_query/{queryID}/result_download`
 
 
@@ -236,6 +238,8 @@
     -H 'Content-Type: application/json;charset=utf-8'
   ```
 
+- 响应示例
+	- 返回一个名为 `result.csv` 的文件
 
 
 
@@ -283,6 +287,8 @@
 
 
 ### 删除所有查询结果文件
+
+> 提示：该接口可能会删除还没有获取到结果的查询。
 
 - `DELETE http://host:port/kylin/api/async_query`
 

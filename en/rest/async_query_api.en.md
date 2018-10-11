@@ -74,6 +74,7 @@
 - `GET http://host:port/kylin/api/async_query/{queryID}/status`
 
 - URL Parameters
+
   - `queryID` - `required` `string`, Query ID of the Async Query
 
 - HTTP Header
@@ -118,6 +119,7 @@
 - `GET http://host:port/kylin/api/async_query/{queryID}/metadata`
 
 - URL Parameters
+
   - `queryID` - `required` `string`,  Query ID of the Async Query
 
 - HTTP Header
@@ -157,6 +159,7 @@
   ```
 
 - Response Information
+
   - `data` - data includes two  list, the first list is the column name, and the second list is the corresponding data type of the column
 
 
@@ -197,11 +200,14 @@
   ```
 
 - Response Information
+
   - `data` - total size of the result
 
 
 
 ### Download Query Result
+
+> Note: Please make sure the query status is "SUCCESSFUL" before calling this API.
 
 - `GET http://host:port/kylin/api/async_query/{queryID}/result_download`
 
@@ -226,6 +232,9 @@
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8'
   ```
+  
+- Response Example
+	- returns a document named `result.csv`.
 
 
 
@@ -268,6 +277,7 @@
   ```
 
 - Response Information
+
   - `data` -  the HDFS Path in which stores the result file
 
 
