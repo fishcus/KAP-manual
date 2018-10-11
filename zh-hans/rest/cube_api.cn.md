@@ -19,6 +19,7 @@
 * [禁用 Cube](#禁用 Cube)
 * [清理 Cube](#清理 Cube)
 * [管理 Segment](#管理 Segment)
+* [列出 Segment 中的空洞](#列出 Segment 中的空洞)
 * [导出 TDS](#导出 TDS)
 
 
@@ -74,6 +75,7 @@
 - `GET http://host:port/kylin/api/cubes`
 
 - URL Parameters
+
   - `cubeName` - `必选` `string`，Cube 名称
 
 - HTTP Header
@@ -308,6 +310,7 @@
 - `PUT http://host:port/kylin/api/cubes/{cubeName}/batch_sync`
 
 - URL Parameters
+
   - `cubeName` - `必选` `string`，Cube 名称
 
 - HTTP Header
@@ -373,6 +376,7 @@
 - `PUT http://host:port/kylin/api/cubes/{cubeName}/clone`
 
 - URL Parameters
+
   - `cubeName` - `必选` `string`， 被克隆的 Cube 名称
 
 - HTTP Header
@@ -442,6 +446,7 @@
 - `PUT http://host:port/kylin/api/cubes/{cubeName}/enable`
 
 - URL Parameters
+
   - `cubeName` - `必选` `string`，Cube 名称
 
 - HTTP Header
@@ -505,6 +510,7 @@
 - `PUT http://host:port/kylin/api/cubes/{cubeName}/disable`
 
 - URL Parameters
+
   - `cubeName` - `必选` `string`，Cube 名称
 
 - HTTP Header
@@ -568,6 +574,7 @@
 - `PUT http://host:port/kylin/api/cubes/{cubeName}/purge`
 
 - URL Parameters
+
   - `cubeName` - `必选` `string`， Cube 名称
 
 - HTTP Header
@@ -637,6 +644,7 @@
 
 
 - URL Parameters
+
   - `cubeName` - `必选` `string`，Cube 名称
 
 - HTTP Header
@@ -679,11 +687,74 @@
 
 
 
+### 列出 Segment 中的空洞
+
+> 提示：健康的 Cube 不应存在 Segment 中的空洞
+
+- `GET http://host:port/kylin/api/cubes/{cubeName}/holes`
+
+- URL Parameters
+  - `cubeName` - `必选` `string`, Cube 名称
+  - `mpValues` - `可选` `string`, 多级分区值（只对于多级分区的 Cube 有效）
+
+- HTTP Header
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
+
+- Curl 请求示例
+
+  ```shell
+  curl -X GET \
+    'http://host:port/kylin/api/cubes/kylin_sales_cube/holes ' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json;charset=utf-8'
+  ```
+
+
+- 响应示例
+
+  ```JSON
+  {
+      "data": [{
+      "code": "000",
+          "uuid": null,
+          "name": "20091110000000_20100110000000",
+          "storage_location_identifier": null,
+          "date_range_start": 1257811200000,
+          "date_range_end": 1263081600000,
+          "source_offset_start": 0,
+          "source_offset_end": 0,
+          "status": null,
+          "size_kb": 0,
+          "input_records": 0,
+          "input_records_size": 0,
+          "last_build_time": 0,
+          "last_build_job_id": null,
+          "create_time_utc": 0,
+          "cuboid_shard_nums": {},
+          "total_shards": 0,
+          "blackout_cuboids": [],
+          "binary_signature": null,
+          "dictionaries": null,
+          "global_dictionaries": null,
+          "snapshots": null,
+          "rowkey_stats": [],
+          "project_dictionaries": {},
+          "col_length_info": {}
+      }],
+      "msg": ""
+  }
+  ```
+
 ### 导出 TDS
 
 - `GET http://host:port/kylin/api/cubes/{cubeName}/export/tds`
 
 - URL Parameters
+
   - `cubeName` - `必选` `string`， Cube 名称
 
 - HTTP Header
@@ -701,3 +772,6 @@
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8'
   ```
+
+
+

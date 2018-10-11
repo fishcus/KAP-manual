@@ -18,6 +18,7 @@
 * [Disable a Cube](#Disable a Cube)
 * [Purge a Cube](#Purge a Cube)
 * [Manage Segments](#Manage Segments)
+* [Get Holes in Segments](#Get Holes in Segments)
 * [Export TDS File](#Export TDS File)
 
 
@@ -687,6 +688,69 @@
 
 
 
+### Get Holes in Segments
+
+> Note: A healthy cube should not have holes in segments.
+
+- `GET http://host:port/kylin/api/cubes/{cubeName}/holes`
+
+- URL Parameters
+  - `cubeName` - `required` `string`, cube name
+  - `mpValues` - `optional` `string`, multiple partition values (only applies to multi-partitioned cube)
+
+- HTTP Header
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
+
+- Curl Request Example
+
+  ```shell
+  curl -X GET \
+    'http://host:port/kylin/api/cubes/kylin_sales_cube/holes' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json;charset=utf-8'
+  ```
+
+- Response Example
+
+  ```JSON
+  {
+      "data": [{
+      "code": "000",
+          "uuid": null,
+          "name": "20091110000000_20100110000000",
+          "storage_location_identifier": null,
+          "date_range_start": 1257811200000,
+          "date_range_end": 1263081600000,
+          "source_offset_start": 0,
+          "source_offset_end": 0,
+          "status": null,
+          "size_kb": 0,
+          "input_records": 0,
+          "input_records_size": 0,
+          "last_build_time": 0,
+          "last_build_job_id": null,
+          "create_time_utc": 0,
+          "cuboid_shard_nums": {},
+          "total_shards": 0,
+          "blackout_cuboids": [],
+          "binary_signature": null,
+          "dictionaries": null,
+          "global_dictionaries": null,
+          "snapshots": null,
+          "rowkey_stats": [],
+          "project_dictionaries": {},
+          "col_length_info": {}
+      }],
+      "msg": ""
+  }
+  ```
+
+
+
 ### Export TDS File
 
 - `GET http://host:port/kylin/api/cubes/{cubeName}/export/tds`
@@ -710,3 +774,6 @@
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8'
   ```
+
+
+
