@@ -1,30 +1,31 @@
 ## 算数函数
 
-| 函数语法                       | 描述                                                         | 示例                                                         | 返回值                                                |
-| ------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ----------------------------------------------------- |
-| POWER(numeric1, numeric2)      | 返回以 *numeric1* 为底，以 *numeric2* 为幂的指数             | ```select POWER(2,2)```                                      | ```4.0```                                             |
-| ABS(numeric)                   | 返回 *numeric* 的绝对值                                      | ```select ABS(2)```                                          | ```2```                                               |
-| MOD(numeric1, numeric2)        | 返回 *numeric1* 除以 *numeric2* 的余数，如果 *numeric1*  为负数 则结果也为负数。 | ```select MOD(31,2)```                                       | ```1```                                               |
-| SQRT(numeric)                  | 返回 *numeric* 开平方。                                      | ```select SQRT(2)```                                         | ```1.4142135623730951```                              |
-| LN(numeric)                    | 返回以 *e* 为底 *numeric* 的对数                             | ```select LN(2)```                                           | ```0.6931471805599453```                              |
-| LOG10(numeric)                 | 返回以 10 为底的 *numeric* 的对数                            | ```select LOG10(2)```                                        | ```0.3010299956639812```                              |
-| EXP(numeric)                   | 返回以 *e* 为底，以 *numeric* 为幂的指数。                   | ```select EXP(5)```                                          | ```148.4131591025766```                               |
-| CEIL(numeric)                  | 对 *numeric* 向上取整,返回大于或等于 *numeric* 的最小整数。  | ``select CEIL(2)``                                           | ```2```                                               |
-| FLOOR(numeric)                 | 对 *numeric* 向下取整, 返回小于或等于 *numeric* 的最大整数。 | ```select FLOOR(2)```                                        | ```2```                                               |
-| RAND([seed])                   | 随机生成 0 到 1（包括 0 和 1）之间的 double 型的数字，也可以基于 *seed* 生成随机数字。 | ```select RAND()```  ```select RAND(12)```                   | ```0.012645349183058374```, ```0.41372242023394334``` |
-| RAND_INTEGER([seed, ] numeric) | 随机生成 0 到 *numeric*（包括 0 和 *numeric*）之间的 double 型的数字，也可以基于 *seed* 生成随机数字。 | ```select RAND_INTEGER(50)``` ```select RAND_INTEGER(12,50)``` | ```1```, ```12```                                     |
-| ACOS(numeric)                  | 返回 *numeric* 的反余弦                                      | ```select ACOS(0.8)```                                       | ```0.6435011087932843```                              |
-| ASIN(numeric)                  | 返回 *numeric* 的反正弦                                      | ```select ASIN(0.8)```                                       | ```0.9272952180016123```                              |
-| ATAN(numeric)                  | 返回 *numeric* 的反正切                                      | ```select ATAN(0.8)```                                       | ```0.6747409422235527```                              |
-| ATAN2(numeric, numeric)        | 返回 *numeric* 的反正切                                      | ```select ATAN2(0.2, 0.8)```                                 | ```0.24497866312686414```                             |
-| COS(numeric)                   | 返回 *numeric* 的正弦                                        | ```select COS(5)```                                          | ```0.28366218546322625```                             |
-| COT(numeric)                   | 返回 *numeric* 的余切                                        | ```select COT(5)```                                          | ```-0.2958129155327455```                             |
-| DEGREES(numeric)               | 将 *numeric* 从 弧度转成角度                                 | ```select DEGREES(5)```                                      | ```286.4788975654116```                               |
-| RADIANS(numeric)               | 将 *numeric* 从角度转成弧度                                  | ```select RADIANS(90)```                                     | ```1.5707963267948966```                              |
-| ROUND(numeric1, numeric2)      | 将 *numeric1* 取 *numeric2* 位小数                           | ```select ROUND(5,2)```                                      | ```5```                                               |
-| SIGN(numeric)                  | 返回 *numeric* 的符号                                        | ```select SIGN(5)```                                         | ```1```                                               |
-| SIN(numeric)                   | 返回 *numeric* 的正弦                                        | ```select SIN(5)```                                          | ```-0.9589242746631385```                             |
-| TAN(numeric)                   | 返回 *numeric* 的正切                                        | ```select TAN(5)```                                          | ```-3.380515006246586```                              |
-| TRUNCATE(numeric1, numeric2)   | 将 *numeric1* 截断到 *numeric2*                              | ```select TRUNCATE(5,2)```                                   | ```5```                                               |
 
-> **注意**：此函数不适用于可计算列。有关可计算列，参见**数据建模**一章中的[可计算列](../../model/computed_column/README.cn.md)部分。
+
+| 语法                           | 说明                                                         | 示例                         |
+| ------------------------------ | ------------------------------------------------------------ | ---------------------------- |
+| POWER(numeric1, numeric2)      | 返回数字（numeric1）乘幂（numeric2）的结果                   | ` POWER(5,2)`<br /> = 25.0 |
+| ABS(numeric)                   | 返回数字（numeric）的绝对值                                  | ` ABS(-2)`<br /> = 2   |
+| MOD(numeric1, numeric2)        | 返回被除数（numeric1）与除数（ numeric2）相除的余数， 结果的符号与被除数相同 | ` MOD(-3, 2)`<br /> = -1 |
+| SQRT(numeric)                  | 返回数字（numeric）的平方根                                  | ` SQRT(16)`<br /> = 4.0 |
+| LN(numeric)                    | 返回数字（numeric）的自然对数                                | ` LN(2)`<br /> = 0.6931471805599453 |
+| LOG10(numeric)                 | 返回数字（numeric）以 10 为底的对数                          | ` LOG10(100)`<br /> = 2.0 |
+| EXP(numeric)                   | 返回 e 的 numeric 次幂                                       | ` EXP(1)`<br /> = 2.718281828459045 |
+| CEIL(numeric)                  | 返回大于或者等于数字（numeric）的最小整数                    | ` CEIL(-2.2)` <br /> = -2 |
+| FLOOR(numeric)                 | 返回小于或者等于数字（numeric）的最大整数                    | ` FLOOR(-2.2)`<br /> = -3 |
+| RAND([seed])                   | 生成一个大于等于 0 且小于 1 的随机实数<br />- `seed`：`可选` 用于初始化随机数生成器 | ` RAND(15)`<br /> = 0.45951471073476047 |
+| RAND_INTEGER([seed, ] numeric) | 生成一个大于等于 0 且小于数字（numeric）的整数<br />- `seed`：`可选` 用于初始化随机数生成器 | ` RAND_INTEGER(15,50)`<br /> = 22 |
+| ACOS(numeric)                  | 返回数字（numeric）的反余弦                                  | ` ACOS(0.8)`<br /> = 0.6435011087932843 |
+| ASIN(numeric)                  | 返回数字（numeric）的反正弦                                  | ` ASIN(0.8)`<br /> = 0.9272952180016123 |
+| ATAN(numeric)                  | 返回数字（numeric）的反正切                                  | ` ATAN(0.8)`<br /> = 0.6747409422235527 |
+| ATAN2(numeric1, numeric2)      | 返回坐标 (numeric1, numeric2) 的反正切                       | ` ATAN2(0.2, 0.8)`<br /> = 0.24497866312686414 |
+| COS(numeric)                   | 返回数字（numeric）的正弦                                    | ` COS(5)`<br /> = 0.28366218546322625 |
+| COT(numeric)                   | 返回数字（numeric）的余切                                    | ` COT(5)`<br /> = -0.2958129155327455 |
+| DEGREES(numeric)               | 将弧度（numeric）转成角度                             | ` DEGREES(5)`<br /> = 286.4788975654116 |
+| PI()                           |       返回无限接近 π 的数字                                                     |   ` PI()`<br /> = 3.141592653589793 |
+| RADIANS(numeric)               | 将角度（numeric）转成弧度                              | ` RADIANS(90)`<br /> = 1.5707963267948966 |
+| ROUND(numeric1, numeric2)      | 将数字（numeric1）取数字（numeric2，默认为 0 ）位小数        | ` ROUND(5.55555,2)`<br /> = 5.56 |
+| SIGN(numeric)                  | 返回数字（numeric）的符号                                    | ` SIGN(-5)`<br /> = -1 |
+| SIN(numeric)                   | 返回数字（numeric）的正弦                                    | ` SIN(5)`<br /> = -0.9589242746631385 |
+| TAN(numeric)                   | 返回数字（numeric）的正切                                    | ` TAN(5)`<br /> = -3.380515006246586 |
+| TRUNCATE(numeric1, numeric2)   | 将数字（numeric1）截断到数字（numeric2，默认为 0）              | ` TRUNCATE(5.55555,2)`<br /> = 5.55 |
