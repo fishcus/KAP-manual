@@ -9,7 +9,7 @@ This section will introduct  two methods available to connect Tableau with Kylig
 
 ### Prerequises
 
-- Install the Kyligence ODBC driver. For installation instructions, please refer to [Kyligence ODBC Driver tutorial](../driver/kyligence_odbc.en.md).
+- Install the Kyligence ODBC driver. For installation instructions, please refer to [Kyligence ODBC Driver](../driver/kyligence_odbc.en.md).
 
 
 - To support detail data query, you need configure table index or push down.
@@ -56,11 +56,17 @@ The following detail steps required for mapping data model :
 
 When you connect Tableau to Kyligence Enterprise, it will send a query which triggers full table scan. This will take a relatively long time to process the query when the dataset is extremely large. There are two ways to avoid this situation
 
-**Method 1**: You can download Kyligence Tableau Datasource Customization(TDC) file from account website and config it. This file is a Kyligence specific connection setting file  which help tableau connect better to Kyligence. 
+**Method 1**: You can download **Kyligence Tableau Datasource Customization (TDC)** file from Kyligence download center and apply it to your Tableau. This is a Kyligence specific connection configuration file with some capability customizations   which helps Tableau connect to Kyligence . 
 
-If Tableau is installed, you can just copy it into the required Tableau directory. 
+Tableau provides a way to customize TDC profiles, hence to meet Kyligence Enterprise's specific query specifications. Below are some advantages:
 
-If Tableau is installed, you  can copy this Kyligence specific connection setting for Tableau copy it into the required Tableau directory
+- Effectively reduce ODBC connection time by reducing the times of probing ODBC connection.
+- Provides query specification customization support for Tableau connections and enhance system robustness.
+
+
+Step 1: Download file named Tableau Datasource Customization on [Kyligence Download](http://download.kyligence.io/#/addons).
+
+Step 2: Copy the file into the required Tableau directory. 
 
 - For Tableau Desktop, the default location is:
 
@@ -79,5 +85,7 @@ If Tableau is installed, you  can copy this Kyligence specific connection settin
   Linux enviroment
 
   `/var/opt/tableau/tableau_server/data/tabsvc/vizqlserver/Datasources/`
+
+
 
 **Method 2:** You can set the parameter `kylin.query.force-limit` in `kylin.properties` to limit returned records, such as 1000.
