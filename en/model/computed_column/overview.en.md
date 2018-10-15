@@ -14,7 +14,7 @@
 - **Re-use and reference:**
   - In a project, a computed column can be reused across different models. So its name and expression should be unique.
   - In a new data model, you can re-use computed columns which are already defined in another model on the same table. 
-  - You can define a new computed column based on an existing computed column.
+  - You can define a new computed column based on an existing computed column. This is called nested computed colmun and it can also be reused in another computed column.
 - **Others:**
   - It's highly recommended to define computed column only on the fact table, although you can define computed column on lookup tables which are not stored as snapshots.
   - You can define different computed columns in different models with following the guideline above.
@@ -79,6 +79,8 @@ You can define a new computed column based on an existing computed column, and t
 ![](images/nest_computed_column_en.png)
 
 Click **Check** to validate the expression.
+
+**Note**: Please click the **Check** button before submit, to ensure the validity of the nested computed column expression.
 
 ### Advanced Functions
 
