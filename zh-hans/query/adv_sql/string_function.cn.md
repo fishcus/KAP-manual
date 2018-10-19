@@ -1,18 +1,16 @@
 ## 字符串函数
 
-| 函数语法                                     | 描述                                     | 示例                                       | 返回值               |
-| ---------------------------------------- | -------------------------------------- | ---------------------------------------- | ----------------- |
-| CHAR_LENGTH(string)                      | 返回字符串长度                                | ```select char_length(name) from KYLIN_COUNTRY where name='Fiji'``` | ```4```           |
-| CHARACTER_LENGTH(string)                 | 同 CHAR_LENGTH(*string*)                 | ```select CHARACTER_LENGTH(name) from KYLIN_COUNTRY where name='Fiji'``` | ```4```           |
-| UPPER(string)                            | 返回字符串为全大写                              | ```select UPPER(name) from KYLIN_COUNTRY where name='Fiji'``` | ```FIJI```        |
-| LOWER(string)                            | 返回字符串为全小写                              | ```select LOWER(name) from KYLIN_COUNTRY where name='Fiji'``` | ```fiji```        |
-| POSITION(string1 IN string2)             | 返回 *string1* 在 *string2* 中的位置              | ```select POSITION('ji' in name)  from KYLIN_COUNTRY where name='Fiji'``` | ```3```           |
-| POSITION(string1 IN string2 FROM integer) | 返回 *string1* 在 *string2* 中从指定位置开始起的位置      | ```select POSITION('ji' in name from 1)  from KYLIN_COUNTRY where name='Fiji'``` | ```3```           |
-| TRIM( { BOTH \ LEADING\  TRAILING } string1 FROM string2) | 去掉 *string2* 开头／结尾／两头最长的一个字符串 *string1*   | ```select trim( BOTH 'H' from 'Hello' )``` | ``` ello```       |
-| OVERLAY(string1 PLACING string2 FROM integer [ FOR integer2 ]) | 从 *string1* 第 integer 位开始将字符替换为 *string2*   | ```select OVERLAY (name PLACING 'yes' from 2 for 2) from KYLIN_COUNTRY where name='Fiji'``` | ```Fyesi```       |
-| SUBSTRING(string FROM integer)           | 从第 integer 位开始，取 *string* 的部分字符串。            | ```Select SUBSTRING(name from 3) from KYLIN_COUNTRY where name='Fiji'``` | ```ji```          |
-| SUBSTRING(string FROM integer1 FOR integer2) | 从第 integer1 位开始，取 *string* 中的 integer2 个字符    | ```select SUBSTRING(name from 3 for 2) from KYLIN_COUNTRY where name='Fiji'``` | ``` ji```         |
-| INITCAP(string)                          | 将字符串的首字母 z 换成大写                          | ```select INITCAP('hello world')```      | ```Hello World``` |
-| REPLACE(string1,string2, string3 )       | 将字符串 *string1* 中的字符 *string2* 替换为 *string3* | ```select replace(NAME,'China','Hello') from KYLIN_COUNTRY where NAME='China'``` | ```Hello```       |
+| 语法                                     | 说明                               | 示例                                       |
+| ---------------------------------------- | -------------------------------------- | ---------------------------------------- |
+| CHAR_LENGTH(string)| 返回字符串（string）长度                                | `CHAR_LENGTH('Kyligence')`<br />  = 9 |
+| CHARACTER_LENGTH(string)                 | 返回字符串（string）长度               | `CHARACTER_LENGTH('Kyligence')`<br /> = 9 |
+| UPPER(string)| 返回字符串（string）为全大写   | `UPPER('Kyligence')`<br />  = KYLIGENCE |
+| LOWER(string)| 返回字符串（string）为全小写 | `LOWER('Kyligence')`<br /> = kyligence |
+| POSITION(string1 IN string2)| 返回字符串（string1）在字符串（string2）中的位置 | `POSITION('Kyli' IN 'Kyligence')`<br /> = 1 |
+| TRIM( { BOTH \ LEADING\ TRAILING } string1 FROM string2) | 去掉字符串（string2）开头／结尾／两头最长的一个字符串（string1） | 示例 1：`TRIM(BOTH '6' FROM '666Kyligence66')`<br /> = Kyligence<br /><br />示例 2：`TRIM(LEADING '6' FROM '666Kyligence66')`<br /> = Kyligence66<br /><br />示例 3：`TRIM(TRAILING '6' FROM '666Kyligence66')`<br /> = 666Kyligence |
+| OVERLAY(string1 PLACING string2 FROM integer [ FOR integer2 ])| 从字符串（string1）第 integer 位开始将字符替换为字符串（string2）   | `OVERLAY('666' placing 'KYLIGENCE' FROM 2 for 2)`<br /> = 6KYLIGENCE |
+| SUBSTRING(string FROM integer)| 从第 integer 位开始，取字符串（string）的部分字符串 | `SUBSTRING('Kyligence' FROM 5)`<br /> = gence |
+| SUBSTRING(string FROM integer1 FOR integer2) | 从第 integer1 位开始，取字符串（string）中的 integer2 个字符    | `SUBSTRING('Kyligence' from 5 for 2)`<br /> = ge |
+| INITCAP(string)                          | 将字符串（string）的首字母替换成大写                          | `INITCAP('kyligence')`<br /> = Kyligence |
+| REPLACE(string, search, replacement) | 将字符串（string）中的字符串（search） 替换为字符串（replacement） | ` REPLACE('Kyligence','Kyli','Kyliiiiiii')`<br /> = Kyliiiiiiigence |
 
-> **注意**：此函数不适用于可计算列。有关可计算列，参见**数据建模**一章中的[可计算列](../../model/computed_column/README.cn.md)部分。
