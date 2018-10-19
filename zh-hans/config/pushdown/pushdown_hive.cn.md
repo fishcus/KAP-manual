@@ -1,8 +1,8 @@
-## Hive查询下压
+## Hive 查询下压
 
-本产品使用Hive作为cube的数据源，也可以将其配置为查询下压（Query Pushdown）的备用查询引擎。在未构建cube时，查询下压适用于探索式的分析场景，以及对查询频率不高或者对响应时间无太高要求的查询。
+本产品使用 Hive 作为 Cube 的数据源，也可以将其配置为查询下压（Query Pushdown）的备用查询引擎。在未构建 cube 时，查询下压适用于探索式的分析场景，以及对查询频率不高或者对响应时间无太高要求的查询。
 
-1. 修改配置文件`kylin.properties`打开Query Pushdown注释掉的配置项`kylin.query.pushdown.runner-class-name`，设置为`org.apache.kylin.query.adhoc.PushDownRunnerJdbcImpl`
+1. 修改配置文件`kylin.properties`打开 Query Pushdown 注释掉的配置项`kylin.query.pushdown.runner-class-name`，设置为`org.apache.kylin.query.adhoc.PushDownRunnerJdbcImpl`
 
 2. 在配置文件`kylin.properties`添加如下配置项并重启。其中`kylin.query.pushdown.jdbc.url`，`kylin.query.pushdown.jdbc.driver`和`kylin.query.pushdown.jdbc.username`为必须配置项，其余项若不配置将使用默认配置项。
 

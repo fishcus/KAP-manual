@@ -1,11 +1,6 @@
 ## Configure Spark Build Engine
 There are two build engines available in Kyligence Enterprise to build a cube. They are MapReduce and Spark. By default, MapReduce is effective. But you may also switch the engine to Spark manually. In this section, we will introduce how to configure Spark build engine.
 
-### Prerequisites
-
-- Version 2.5.4 or above installed. In this case, we use Hortonworks HDP 2.4 Sandbox VM.
-
-
 ### Prepare “kylin.env.hadoop-conf-dir”
 
 To run Spark on Yarn, you need specify `HADOOP_CONF_DIR` environment variable, which is the directory that contains the (client side) configuration files for Hadoop. In many Hadoop distributions, the directory is `/etc/hadoop/conf`. But the system not only needs access HDFS, Yarn and Hive, but also HBase, so the default directory might not have all necessary files. In this case, you need create a new directory and then copy or link those client files (core-site.xml, hdfs-site.xml, yarn-site.xml, hive-site.xml and hbase-site.xml) there. In HDP 2.4, there is a conflict between hive-tez and Spark, so you need change the default engine from “tez” to “mr” when copying.
@@ -81,7 +76,7 @@ After the above configurations done, we build a cube with spark to validate the 
 
 ![Choose Spark(Beta) as cubing engine](images/spark1.en.png)
 
- Click + behind **Cube default configuration** to add the following configurations:
+ Click **+ Configuration** behind **Cube Configuration** to add the following configurations:
 
 ![Add configurations](images/spark3.en.png)
 

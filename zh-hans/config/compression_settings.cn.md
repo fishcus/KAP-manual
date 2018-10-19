@@ -1,8 +1,8 @@
 ## 启用压缩
 
-Kyligence Enterprise 在默认状态下不会启用压缩，这是为了保证产品在所有的环境下都能开箱即用。在多数生产环境，一个合适的压缩算法能够使用少量的CPU计算，来降低存储开销和网络开销，提高整体系统运行效率。Kyligence Enterprise 主要有三处使用压缩，分别是Cube数据压缩、Hive 输出压缩和 MR 任务输出压缩。
+Kyligence Enterprise 在默认状态下不会启用压缩，这是为了保证产品在所有的环境下都能开箱即用。在多数生产环境，一个合适的压缩算法能够使用少量的 CPU 计算，来降低存储开销和网络开销，提高整体系统运行效率。Kyligence Enterprise 主要有三处使用压缩，分别是 Cube 数据压缩、Hive 输出压缩和 MR 任务输出压缩。
 
-**注意：所有下述配置需要重启后方能生效。**
+> **注意**：所有下述配置需要重启后方能生效。
 
 ### Cube 数据压缩
 
@@ -17,7 +17,7 @@ kap.storage.columnar.page-compression=SNAPPY
 
 ### Hive 输出压缩
 
-该项压缩通过 `kylin_hive_conf.xml` 进行配置。默认配置为空，即直接使用Hive的默认配置。如想覆盖改配置，请添加下面的参数至 `kylin_hive_conf.xml` 中，或替换掉对应部分。此处以 **SNAPPY** 压缩算法为例：
+该项压缩通过 `kylin_hive_conf.xml` 进行配置。默认配置为空，即直接使用 Hive 的默认配置。如想覆盖改配置，请添加下面的参数至 `kylin_hive_conf.xml` 中，或替换掉对应部分。此处以 **SNAPPY** 压缩算法为例：
 
 ```xml
 <property>

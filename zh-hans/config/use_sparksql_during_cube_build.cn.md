@@ -38,7 +38,7 @@ Kyligence Enterprise在Cube构建过程中，默认应用Hive来做部分预计�
 
 ### 其他说明 ###
 
-SprakSQL配置中，关于Hive客户端的设置如下。这些设置是用来访问Hive元数据和检索Hive表结构等。尽管看起来很相似，但所用目的并不相同。
+SparkSQL配置中，关于Hive客户端的设置如下。这些设置是用来访问Hive元数据和检索Hive表结构等。尽管看起来很相似，但所用目的并不相同。
 
  ```
 # Hive client, valid value [cli, beeline]

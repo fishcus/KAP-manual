@@ -1,9 +1,5 @@
 ## 配置 Spark 构建引擎
-Kyligence Enterprise 中提供两种构建引擎用于构建 Cube。它们分别是：MapReduce 和 Spark。默认情况下，Kyligence Enterprise 使用 MapReduce 来构建 Cube，但是您也可以选择 Spark 作为构建引擎。本文介绍如何配置 Spark 构建引擎。
-
-### 前提条件
-
-- Kyligence Enterprise 2.5.4 或更高版本。在本文中，我们使用 Hortonworks HDP 2.4 Sandbox VM。
+Kyligence Enterprise 中提供两种构建引擎用于构建 Cube。它们分别是：MapReduce 和 Spark。默认情况下，Kyligence Enterprise 使用 MapReduce 来构建 Cube，但是您也可以选择 Spark 作为构建引擎。在本文中，我们使用 Hortonworks HDP 2.4 Sandbox VM 介绍如何配置 Spark 构建引擎。
 
 ### 准备 “kylin.env.hadoop-conf-dir”
 
@@ -80,7 +76,7 @@ kylin.engine.spark-conf.spark.executor.extraJavaOptions=-Dhdp.version=2.4.0.0-16
 
 ![选择 Spark(Beta) 作为构建引擎](images/spark1.cn.png)
 
-点击 Cube 默认配置旁的 + 号，添加以下配置：
+点击 Cube 默认配置旁的 **+** 号，添加以下配置：
 
 kylin.engine.spark.rdd-partition-cut-mb 100
 
