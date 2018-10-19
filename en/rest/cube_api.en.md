@@ -7,19 +7,19 @@
 
 
 
-* [Get Cube List](#Get Cube List)
-* [Get Specific Cube](#Get Specific Cube)
-* [Get Cube Description](#Get Cube Description)
-* [Build a Cube with Date Partition](#Build a Cube with Date Partition)
-* [Full Build a Cube ](#Full Build a Cube)
-* [Build a Cube in batch](#Build a Cube in batch)
-* [Clone a Cube](#Clone a Cube)
-* [Enable a Cube](#Enable a Cube)
-* [Disable a Cube](#Disable a Cube)
-* [Purge a Cube](#Purge a Cube)
-* [Manage Segments](#Manage Segments)
-* [Get Holes in Segments](#Get Holes in Segments)
-* [Export TDS File](#Export TDS File)
+* [Get Cube List](#get-cube-list)
+* [Get Specific Cube](#get-specific-cube)
+* [Get Cube Description](#get-cube-description)
+* [Build a Cube with Date Partition](#build-a-cube-with-date-partition)
+* [Full Build a Cube ](#full-build-a-cube)
+* [Build a Cube in batch](#build-a-cube-in-batch)
+* [Clone a Cube](#clone-a-cube)
+* [Enable a Cube](#enable-a-cube)
+* [Disable a Cube](#disable-a-cube)
+* [Purge a Cube](#purge-a-cube)
+* [Manage Segments](#manage-segments)
+* [Get Holes in Segments](#get-holes-in-segments)
+* [Export TDS File](#export-tds-file)
 
 
 

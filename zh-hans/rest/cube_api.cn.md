@@ -1,6 +1,6 @@
 ## Cube API
 
-> 提示：
+> **提示：**
 >
 > 1. 请确保已阅读前面的[访问及安全认证](authentication.cn.md)章节，了解如何在 REST API 语句中添加认证信息。
 >
@@ -8,19 +8,19 @@
 
 
 
-* [返回多个 Cube](#返回多个 Cube)
-* [返回指定 Cube](#返回指定 Cube)
-* [返回 Cube 描述信息](#返回 Cube 描述信息)
-* [构建 Cube - 日期分区](#构建 Cube - 日期分区)
-* [构建 Cube - 全量构建](#构建 Cube - 全量构建)
-* [构建 Cube - 批量构建](#构建 Cube - 批量构建)
-* [克隆 Cube](#克隆 Cube)
-* [启用 Cube](#启用 Cube)
-* [禁用 Cube](#禁用 Cube)
-* [清理 Cube](#清理 Cube)
-* [管理 Segment](#管理 Segment)
-* [列出 Segment 中的空洞](#列出 Segment 中的空洞)
-* [导出 TDS](#导出 TDS)
+* [返回多个 Cube](#返回多个-Cube)
+* [返回指定 Cube](#返回指定-Cube)
+* [返回 Cube 描述信息](#返回-Cube-描述信息)
+* [构建 Cube - 日期分区](#构建-Cube-日期分区)
+* [构建 Cube - 全量构建](#构建-Cube-全量构建)
+* [构建 Cube - 批量构建](#构建-Cube-批量构建)
+* [克隆 Cube](#克隆-Cube)
+* [启用 Cube](#启用-Cube)
+* [禁用 Cube](#禁用-Cube)
+* [清理 Cube](#清理-Cube)
+* [管理 Segment](#管理-Segment)
+* [列出 Segment 中的空洞](#列出-Segment-中的空洞)
+* [导出 TDS](#导出-TDS)
 
 
 
