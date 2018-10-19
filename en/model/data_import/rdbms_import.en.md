@@ -1,19 +1,24 @@
-### Import RDBMS Data Source
+## Import Data from RDBMS
 
-Our product supports datasets from RDBMS source since version 3.0. 
+Kyligence Enterprise supports RDBMS as data source since version 3.0. 
 
-### Installation
+### Supported RDBMS
+- Greenplum
+- MySQL
+- Microsoft SQL Server
 
-In order to connect with RDBMS datasets, users need to do the preparation work.
+### Prerequisites
 
-- Download RDBMS official JDBC Driver Jar
-- Download Kyligence specific SDK jar package ( get the SDK jar package from Kyligence account site or contact Kyligence Support.)
+You need to follow the steps below to connect to RDBMS:
+
+- Download RDBMS official JDBC Driver
+- Download Kyligence specific data source adaptor from [Kyligence Account](http://download.kyligence.io/#/addons)
 - Copy related jar packages to  `$KYLIN_HOME/ext`. 
 - Copy related jar packages to `<sqoop_installation_directory> /lib`, check global parameters, and add kylin.source.jdbc.sqoop-home=&lt;sqoop_path&gt; to `kylin.properties`. sqoop_path is the file where the sqoop command locates.
 
 ### Connection Configuration
 
-Users can set the following configurations in *project configuration* or *global configuration*:
+Users can set the following configurations in **project configuration** or **global configuration**.
 
 | Parameter                        | Description                        |
 | -------------------------------- | ---------------------------------- |
@@ -29,22 +34,22 @@ To enable query pushdown, following configuration is required:
 
 `kylin.query.pushdown.runner-class-name=io.kyligence.kap.query.pushdown.PushdownRunnerSDKImpl`
 
-### Create Project with RDBMS Data Source
+### Set Up RDBMS Data Source for a Project
 
-Taking Greenplum as an example. We connect Greenplum data source with PostgreSQL JDBC Driver, followings are the steps:
+To set up a RDBMS data source for a specific project, followings are the steps:
 
 1. Log in Kyligence Enterprise Web UI.
 2. Add a new project by clicking the `+` at the top right on Web UI. 
 3. Type `project name` (required) and `descriptions` on the pop up page; click OK to finish.
 4. Select `Data Source` under *Studio* section of your project.
 5. Click the blue `Data Source` button.
-6. Select *RDBMS* as data source (as shown below).
+6. Select **RDBMS** as data source.
 7. Set configuration in project configuration (please refer to supported RDBMS parameter project configuration)
 
 8. Click `NEXT` and enter the *Load RDBMS Table Metadata* page; you can select tables you want from *Hive Table* on the left. 
 9. Click `sync` to synchronize/load the data. 
 
-### Supported RDBMS Parameters in Project Configuration
+### Supported RDBMS and Parameter Settings in Project Configuration
 
 - Basic Configuration
 
@@ -54,14 +59,14 @@ kylin.source.jdbc.user=<username>
 kylin.source.jdbc.pass=<password> 
 ```
 
-- Greenplum Data Source
+- Greenplum
 
 ```properties
 kylin.source.jdbc.driver=com.pivotal.jdbc.GreenplumDriver
 kylin.source.jdbc.dialect=greenplum
 ```
 
-- MySQL Data Source
+- MySQL
 
 ```properties
 kylin.source.jdbc.driver=com.microsoft.sqlserver.jdbc.SQLServerDriver
@@ -69,9 +74,7 @@ kylin.source.jdbc.dialect=mssql
 kylin.source.jdbc.adaptor=io.kyligence.kap.sdk.datasource.adaptor.MssqlAdaptor
 ```
 
-- SQL Server Data Source
-
-  This data source need external SDK, you can get data source SDK from Kyligence account site.
+- Microsoft SQL Server
 
 ```properties
 kylin.source.jdbc.driver=com.microsoft.sqlserver.jdbc.SQLServerDriver
@@ -79,7 +82,7 @@ kylin.source.jdbc.dialect=mssql
 kylin.source.jdbc.adaptor=io.kyligence.kap.sdk.datasource.adaptor.Mssql08Adaptor
 ```
 
-> Tips: Supported SQL SERVER data source has limitations.
+> **Note:** There are several known limitations for Microsoft SQL SERVER.
 >
 > - Not support sub-query with limit clause
 > - Not support 'geometric','geography'
