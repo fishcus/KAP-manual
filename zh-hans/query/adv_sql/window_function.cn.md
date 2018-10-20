@@ -1,41 +1,152 @@
-## 如何在 Kyligence Enterprise 中使用窗口函数
-从 Kyligence Enterprise v2.1 版本后，用户就可以在 Kyligence Enterprise 中使用窗口函数来完成更多复杂的查询，来简化查询过程并且获得更好的统计结果。本节将介绍如何使用这些窗口函数。
+## 窗口函数
+用户可以使用窗口函数来完成更多复杂的查询、简化查询过程并且获得更好的统计结果。
 
-### 窗口函数简介
+Kyligence Enterprise 目前支持两类窗口函数，分别为排名函数和偏移函数。
 
-目前被 Kyligence Enterprise 支持的窗口函数介绍如下：
 
-| 执行语法                                 | 返回描述                                     |
-| ------------------------------------ | :--------------------------------------- |
-| ROW_NUMBER() OVER ()                 | 返回当前行在其分区中的序列数，从 1 算起。                     |
-| RANK() OVER (order by)               | 返回当前行的位置(可能存在间隙)；并列时，RANK 返回值等同于 ROW_NUMBER 返回的第一个值（例：rank：1，2，2，4；row_number：1，2，3，4；）。 |
-| DENSE_RANK() OVER (order by )        | 返回当前行的位置(无间隙)；此函数将计算并列组为同一值。             |
-| FIRST_VALUE(value) OVER ()           | 返回窗口框架中计算行中第一行的值。                        |
-| LAST_VALUE(value) OVER ()            | 返回窗口框架中计算行中最后一行的值。                       |
-| LEAD(value, offset, default) OVER () | 返回分区内当前行的偏移行中向前的偏移值；如果无法返回对应行，则返回默认值替代。偏移值和默认值都是相对于当前行进行的评估后返回。如果省略不设置，则偏移量默认为 1，默认值为空（NULL）。 |
-| LAG(value, offset, default) OVER ()  | 返回分区内当前行的偏移行中向后的偏移值；如果无法返回对应行，则返回默认值替代。偏移值和默认值都是相对于当前行进行的评估后返回。如果省略不设置，则偏移量默认为 1，默认值为空（NULL）。 |
-| NTILE(value) OVER ()                 | 返回从1到该值的整数，尽可能的等分所选分区。                   |
+- 排名函数
 
-### 实例介绍
-本节中，我们将使用 Kyligence Enterprise 中的公开数据集作为数据源来实践上文所述的查询语句。我们将分步介绍如何在 Kyligence Enterprise 中使用窗口函数。
+  - [ROW_NUMBER()](#ROW_NUMBER() OVER window)
+  - [RANK()](#RANK() OVER window)
+  - [DENSE_RANK()](#DENSE_RANK() OVER window)
+  - [NTILE(value)](#NTILE(value) OVER window)
 
-#### 数据源
-在这里我们使用了一个名为 `learn_kylin` 的数据源。点击该数据源，数据源中的表和表结构将陈列开：此数据源中有一张事实表（`KYLIN_SALES`）和两张维度表（`KYLIN_CAL_DT` 和 `KYLIN_CATEGORY_GROUPINGS`）。请认真了解 `KYLIN_SALES` 的表结构以便后文理解。
+- 偏移函数
 
-![](images/wd_datasample.png)
+  - [FIRST_VALUE(value)](#FIRST_VALUE(value) OVER window)
+  - [LAST_VALUE(value)](#LAST_VALUE(value) OVER window)
+  - [LEAD(value, offset, default)](#LEAD(value, offset, default) OVER window)
+  - [LAG(value, offset, default)](#LAG(value, offset, default) OVER window)
 
-#### 排名函数（row_number，rank，dense_rank，ntile）
-在本表中，我们虽然已经具有 ROW 这列来标记行序列数，但对于数据分析师来说，在一般的表中获得不同分区下的行序列非常重要，可以方便了解当前行在分区中的位置。例如： `select price, LSTG_FORMAT_NAME, row_number() over(partition by LSTG_FORMAT_NAME) as format_id from kylin_sales` ，则结果返回了不同的 LSTG_FORMAT_NAME 下，产品价格高低的相对关系。
 
-结果（局部）返回如下：
 
-![](images/wd_row_number.png)
+接下来我们以[样例数据集](../../model/sample_dataset.cn.md) 中的 KYLIN_SALES 为例，介绍每个函数的使用方法。表中字段及其意义如下：
 
-#### 偏移函数（first_value，last_value，lead，lag）
-类似于排名函数，偏移函数可以提供对当前行的一定偏移量的偏移值。比如，要获得离当前日期最近的下一个日期，则可以输入：`select price, part_dt, lead(part_dt,1) over(partition by LSTG_FORMAT_NAME) as latest_dt from kylin_sales`，返回的结果为日期行中偏移一行后的偏移值。
+- PART_DT：订单日期；
+- TRANS_ID：订单号；
+- BUYER_ID：买家 ID；
+- ITEM_COUNT：购买商品个数；
 
-结果（局部）返回如下：
 
-![](images/wd_lead_date.png)
 
-> **注意**：此函数不适用于可计算列。有关可计算列，参见**数据建模**一章中的[可计算列](../../model/computed_column/README.cn.md)部分。
+### ROW_NUMBER() OVER window
+
+- 返回当前行在其分区中的序列数，数字不重复
+
+### RANK() OVER window
+
+- 返回当前行的位置（可能会有序号间隙）
+
+### DENSE_RANK() OVER window
+
+- 返回当前行的位置（无间隙）
+
+
+
+### ROW_NUMBER()，RANK()，DENSE_RANK() 查询示例
+
+> **提示**：使用 RANK() 和 DENSE_RANK() 与 ROW_NUMBER() 在同一条查询语句中，查询每个买家购买商品数最少的前五个订单，进行对比
+```SQL
+SELECT *
+FROM (
+	SELECT ROW_NUMBER() OVER w AS ROW_NUM
+		,RANK() OVER w AS _RANK
+		,DENSE_RANK() OVER w AS D_RANK
+		,TRANS_ID
+		,BUYER_ID
+		,ITEM_COUNT
+		,PART_DT
+	FROM KYLIN_SALES 
+    WINDOW w AS (PARTITION BY BUYER_ID ORDER BY ITEM_COUNT)
+	) T
+WHERE ROW_NUM <= 5
+```
+
+返回示例：
+![](images/rank_and_drank_cn.png)
+
+> **提示**：
+>
+> 对于买家 '10000001' ，购买商品个数为 12 的订单有两条，使用三种排名函数对比如下：
+> 1. 使用 row_number() 函数，序号随机为 2 和 3；购买商品个数为 13 的订单序号为 4
+> 2. 使用 rank() 函数，序号为 2 和 2；购买商品个数为 13 的订单序号为 4（此处存在序号空隙）
+> 3. 使用 dense_rank() 函数，序号为 2 和 2；购买商品个数为 13 的订单序号为 3（此处不÷存在序号空隙）
+
+
+
+
+### NTILE(value) OVER window
+
+- 函数说明
+
+  - 将分区内的有序数据尽量按 value 等分，返回组号
+- 查询示例
+  > **提示**：将每个买家的订单按照购买商品个数等分为3组
+  ```SQL
+  SELECT NTILE(3) OVER w AS N_3
+    ,TRANS_ID
+    ,BUYER_ID
+    ,ITEM_COUNT
+    ,PART_DT
+  FROM KYLIN_SALES
+  WINDOW w AS (PARTITION BY BUYER_ID ORDER BY ITEM_COUNT)
+  ```
+
+- 返回示例
+  ![](images/ntile_cn.png)
+
+
+
+### FIRST_VALUE(value) OVER window
+- 返回窗口框架中计算行中第一行的值
+
+
+### LAST_VALUE(value) OVER window
+- 返回窗口框架中计算行中最后一行的值 
+
+
+### FIRST_VALUE() 和 LAST_VALUE() 查询示例
+> **提示**：查询截止到当前订单，按照日期排序的第一个订单和最后一个订单中购买商品个数
+
+```SQL
+SELECT TRANS_ID
+	,BUYER_ID
+	,ITEM_COUNT
+	,PART_DT
+	,FIRST_VALUE(ITEM_COUNT) OVER w AS F_1
+	,LAST_VALUE(ITEM_COUNT) OVER w AS L_1
+FROM KYLIN_SALES 
+WINDOW w AS (PARTITION BY BUYER_ID ORDER BY PART_DT)
+```
+
+返回示例：
+
+![](images/first_last_value_cn.png)
+
+
+
+### LEAD(value, offset, default) OVER window
+- 返回分区内当前行的偏移行中向前的偏移值
+
+### LAG(value, offset, default) OVER window
+- 返回分区内当前行的偏移行中向后的偏移值；
+
+
+### LEAD() 和 LAG() 查询示例
+> **提示**：查询当前订单和上一个订单、下一个订单的时间
+
+```SQL
+SELECT TRANS_ID
+	,BUYER_ID
+	,ITEM_COUNT
+	,PART_DT
+	,LEAD(PART_DT, 1) OVER w LAST_DT
+	,LAG(PART_DT, 1) OVER w NEXT_DT
+FROM KYLIN_SALES 
+WINDOW w AS (PARTITION BY BUYER_ID ORDER BY PART_DT)
+```
+
+返回示例：
+
+![](images/lead_lag_cn.png)
+
