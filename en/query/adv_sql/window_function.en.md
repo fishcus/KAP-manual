@@ -1,7 +1,7 @@
-## Window Function
+## Window Functions
 Since Kyligence Enterprise v2.1, we've provided window function in Kyligence Enterprise to support more complicated query, keeping SQL query simple and work well. Here we are going to introduce how to use this function.
 
-### Window Function
+### Window Functions
 
 Window Functions query supported by Kyligence Enterprise is list as follow:
 

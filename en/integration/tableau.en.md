@@ -1,8 +1,8 @@
 ## Integration with Tableau
 
-Tableau is one of the most popular business intelligence application. It is very easy to utilize by draging and droping feature which user can simply  interactive data visualization and generate story or reports. 
+Tableau is one of the most popular business intelligence application. It is very easy for users to generate visualized diagrams, stories, and reports for huge amount of data by dragging and dropping features.
 
-This section will introduct  two methods available to connect Tableau with Kyligence Enterprise.
+This section will introduce two methods available to connect Tableau with Kyligence Enterprise.
 
 - Quick Sync up model by using  import/export function
 - Manually build mapping model 
@@ -74,7 +74,7 @@ Step 2: Copy the file into the required Tableau directory.
 
 - For Tableau Server，the default location is： 
 
-  Windows enviroment
+  Windows environment
 
   `Program Files\Tableau\Tableau Server\<version>\bin`
 
@@ -82,7 +82,7 @@ Step 2: Copy the file into the required Tableau directory.
 
   `ProgramData\Tableau\Tableau Server\data\tabsvc\vizqlserver\Datasources`
 
-  Linux enviroment
+  Linux environment
 
   `/var/opt/tableau/tableau_server/data/tabsvc/vizqlserver/Datasources/`
 

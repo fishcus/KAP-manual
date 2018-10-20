@@ -26,7 +26,7 @@ To use customized SQL, click `New Custom SQL` in left panel and type SQL stateme
 ![](images/tableau_9/5.png)
 
 ### Visualization
-Now you can start to enjou analyzing with Tableau 9.1.
+Now you can start to enjoy analyzing with Tableau 9.1.
 ![](images/tableau_9/6.png)
 
 ### Publish to Tableau Server
@@ -34,6 +34,6 @@ If you want to publish local dashboard to a Tableau Server, just expand `Server`
 ![](images/tableau_9/7.png)
 
 ### More
-Please refer to [Kylin and Tableau Tutorial](./tableau.html) for more detail.
+Please refer to [Kylin and Tableau Tutorial](./tableau.html) for more details.
 
 

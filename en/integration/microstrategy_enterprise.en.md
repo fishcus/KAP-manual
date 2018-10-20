@@ -118,6 +118,6 @@ Then search for kyligence at the data source to connect kyligence. Alternatively
     - Query partitioned tables
     - Reports with custom groups
 
-3. If underlying Kyligence data model has left join from fact table to lookup table, in order for Microstrategy to also generate the same left join SQL statement, please follow below MicroStrategy TN to modify VLDB property: [https://community.microstrategy.com/s/article/...](https://community.microstrategy.com/s/article/ka1440000009GrQAAU/KB17514-Using-the-Preserve-all-final-pass-result-elements-VLDB)
+3. If underlying Kyligence data model has left join from fact table to lookup table, in order for MicroStrategy to also generate the same left join SQL statement, please follow below MicroStrategy TN to modify VLDB property: [https://community.microstrategy.com/s/article/...](https://community.microstrategy.com/s/article/ka1440000009GrQAAU/KB17514-Using-the-Preserve-all-final-pass-result-elements-VLDB)
 
 4. By default, MicroStrategy generates SQL query with date filter in a format like 'mm/dd/yyyy'. This format might be different from Kylin's date format. if so, query will error out. You may refer to this article to change the setting in MicroStrategy so that date format MicroStrategy generated will be consistent with Kyligence Enterprise: [https://kyligence.zendesk.com/...](https://kyligence.zendesk.com/hc/en-us/articles/115001690433-Modify-MicroStrategy-query-date-format-to-be-consitent-with-KAP)

@@ -69,7 +69,7 @@ We recommend that you use the following version of the Linux operating system:
 
 ### Recommended Client Configuration
 - CPU: 2.5 GHz Intel Core i7
-- Operatoin System: macOS / windows 7 / windows 10
+- Operating System: macOS / windows 7 / windows 10
 - RAM: 8G or above
 - Browser version:
    + Firefox 60.0.2 or above

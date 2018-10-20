@@ -20,10 +20,10 @@ Easy-to-use web GUI allows user to build data mart in a self-serving manner, wit
 
 * __Extensible Architecture__
 
-Extensible architecture decouples Kyligence Enterprise with computation framework, data source, and storages. Allows flexible choices between alternative technologies like MapReduce and Spark, connects with different data sources and storages. Ensures Kyligence Enterprise can evolve with the best of the big data ecosystem. 
+Extensible architecture decouples Kyligence Enterprise with computation framework, data source, and storages. Allows flexible choices between alternative technologies like MapReduce and Spark, connects with different data sources and storage. Ensures Kyligence Enterprise can evolve with the best of the big data ecosystem. 
 
 
-* __Non-invasive__
+* __Non-Invasive__
 
 Kyligence Enterprise can deploy on a single node of cluster, unpack and run. All interactions to cluster are via standard Hadoop API, minimizing maintenance impact.
 

@@ -8,7 +8,7 @@ First of all, *make sure that you allocate sufficient resources for sandbox*. Fo
 
 When configuring sandbox, we recommend that you use the Bridged Adapter model instead of the NAT model. The Bridged Adapter model will assign an independent IP address to your sandbox, allowing you to choose either local or remote access to Kyligence Enterprise GUI.
 
-To avoid permission problems, we recommend that you use HDP's `root` account to access HDP sandbox. The default password for HDP 2.2 is` hadoop`. Please refer to the [Hortonworks documents](http://zh.hortonworks.com/hadoop-tutorial/learning-the-ropes-of-the-hortonworks-sandbox/) for detailed information about account and passwords for HDP 2.3+. In this section, the a`root` ccount is taken as an example.
+To avoid permission problems, we recommend that you use HDP's `root` account to access HDP sandbox. The default password for HDP 2.2 is` hadoop`. Please refer to the [Hortonworks documents](http://zh.hortonworks.com/hadoop-tutorial/learning-the-ropes-of-the-hortonworks-sandbox/) for detailed information about account and passwords for HDP 2.3+. In this section, the `root` account is taken as an example.
 
 If you need to run Kyligence Enterprise in the HDP 2.2 environment, choose a distribution corresponding to the HBase 0.98; If you need to run Kyligence Enterprise in the HDP2.3+ environment, choose the distribution of HBase 1.x.
 
@@ -21,7 +21,7 @@ ambari-server start
 
 ![](images/quick_installation_for_hdp_hbase.png)
 
-After start, please ensure that `HDFS`, `Yarn`, `Hive`, `HBase`,` Zookeeper` and other components are in normal state and do not have any warning information, as shown in the figure:
+After start, please ensure that `HDFS`, `Yarn`, `Hive`, `HBase`,` Zookeeper` and other components are in normal state and do not have any warning information, as shown in the diagram:
 
 ![](./images/quick_installation_for_hdp.jpg)
 

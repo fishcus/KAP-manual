@@ -7,7 +7,7 @@ It takes four steps to accomplish auto modeling and you can create multiple mode
 
 - [Query Input](#query-input)
 - [Pattern Recognition](#pattern-recognition)
-- [Auto Modeling](#auto modeling)
+- [Auto Modeling](#auto-modeling)
 - [Query Accelerator](#query-accelerator)
   
 

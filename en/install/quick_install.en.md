@@ -144,6 +144,6 @@ ps -ef | grep kylin
 
 ### FAQ
 
-**Q: When I using Beeline to connect Hive, it was failed with the following error message:  Cannot modify xxx at runtime. It is not in list of params that are allowed to be modified at runtime.**
+**Q: When I used Beeline to connect Hive, it was failed with the following error message:  Cannot modify xxx at runtime. It is not in list of params that are allowed to be modified at runtime.**
 
 Please find the `hive.security.authorization.sqlstd.confwhitelist` property in `hive-site.xml` file and add the values according to the error messages. 

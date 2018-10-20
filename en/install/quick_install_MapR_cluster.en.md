@@ -10,7 +10,7 @@ MapR cluster provides more calculation and storage resources than MapR sandbox. 
 
 3. MapR Cluster Node cannot be accessed directly through SSH. It requires MapR Installer as a springboard, and then access through SSH. SSH secret keys stored in ` /opt/mapr/installer/data ` of  MapR Installer node.
 
-4. To access MapR Cluster resources in Mapr Cluster Node, you need to generate mapr_ticket. The generation instruction is `maprlogin password`. If you do not know the current account password, please set the password with `passwd {user}`.
+4. To access MapR Cluster resources in MapR Cluster Node, you need to generate mapr_ticket. The generation instruction is `maprlogin password`. If you do not know the current account password, please set the password with `passwd {user}`.
 
 ### Install Kyligence Enterprise
 
@@ -35,7 +35,7 @@ The MapR environment has its particularity. Please pay attention to the followin
   hadoop fs -chown mapr /kylin
   ```
 
-- When checking the environment, there will be error because the `hdfs` command cannot be found. Please modify the` $KYLIN_HOME/bin/check-2100-os-commands.sh` and annotate the command line of `hdfs`. For an example:
+- When checking the environment, there will be errors because the `hdfs` command cannot be found. Please modify the` $KYLIN_HOME/bin/check-2100-os-commands.sh` and annotate the command line of `hdfs`. For example:
 
   ```shell
   #command -v hdfs    || quit "ERROR: Command 'hdfs' is not accessible..."
@@ -47,7 +47,7 @@ The MapR environment has its particularity. Please pay attention to the followin
   export SPARK_HOME=/opt/mapr/spark/spark-2.1.0
   ```
 
-  If you need to specify the environment dependencies of Hive, its default location is as follows:
+  If you need to specify the environment dependencies of Hive, you can checkout the default location as follow:
 
   ```shell
   export HIVE_CONF=/opt/mapr/hive/hive-2.1/conf
@@ -73,7 +73,7 @@ The MapR environment has its particularity. Please pay attention to the followin
   ln -sfn $KYLIN_HOME/conf/profile_min $KYLIN_HOME/conf/profile
   ```
 
-- If you use Kafka and can't connect to Zookeeper, please note that the default of Zookeeper's service port in the MapR environment is 5181, not 2181. The ports can be confirmed as follows:
+- If you use Kafka and can't connect to Zookeeper, please note that the default of Zookeeper's service port in the MapR environment is 5181, not 2181. The ports can be confirmed as follow:
 
 - ```shell
   netstat -ntl | grep 5181

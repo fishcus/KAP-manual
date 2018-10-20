@@ -28,7 +28,7 @@ Once a Calculated Member is created, it will display on the left side of the pop
 
 In the drop-down menu of **Dimension**, Choose **Measures**. And in the drop-down list of **Format**, select a display format for the Calculated Member.
 
-When you have edited the calculated member, you may click **Add** or **Save to Schema** to save this calculated member. Clicking **Add** will add this calculated member only to your current query, while clicking **Save to Schema** will save this calculated member to the schema of current Cube so as to be reused by other users who create queries from this Cube.
+When you have edited the calculated member, you may click **Add** or **Save to Schema** to save this calculated member. Clicking **Add** will add this calculated member only to your current query, while clicking **Save to Schema** will save this calculated member to the schema of current cube so as to be reused by other users who create queries from this cube.
 
 ![Connection Details](images/calculated_member_4.png)
 

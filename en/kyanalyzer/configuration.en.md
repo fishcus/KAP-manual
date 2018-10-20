@@ -1,6 +1,6 @@
 ## KyAnalyzer Configurations
 
-This section introduces KyAnalyzer's configurations. KyAnalyzer is configurable through the file of kyanalyzer.properties and mondrian.properties under the KyAnalyzer installation directory of *conf*. In the following, we will describe the two configuration files in details:
+This section introduces KyAnalyzer's configurations. KyAnalyzer is configurable through the file of kyanalyzer.properties and mondrian.properties under the KyAnalyzer installation directory of *conf*. In the following, we will describe the two configuration files in detail:
 
 > Tips: Once you modify any of the following configurations, you shall restart KyAnalyzer server to make the modification effect.
 

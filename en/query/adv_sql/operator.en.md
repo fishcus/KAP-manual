@@ -2,7 +2,7 @@
 
 The following are operators applicable to SQL query.
 
-### Comparison Operator 
+### Comparison Operators
 
 | Operator             | Description                               | Syntax                                   | Example                                  |
 | -------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
@@ -22,7 +22,7 @@ The following are operators applicable to SQL query.
 | SIMILAR TO           | Whether string1 matches regular expression string2 | string1 SIMILAR TO string2               | name SIMILAR TO 'frank'                  |
 | NOT SIMILAR TO       | Whether *string1* does not match regular expression *string2* | string1 NOT SIMILAR TO string2           | name NOT SIMILAR TO 'frank'              |
 
-###Logical Operator
+###Logical Operators
 
 | Operator     | Description                               | Syntax                | Example                       |
 | ------------ | ---------------------------------------- | --------------------- | ----------------------------- |
@@ -34,7 +34,7 @@ The following are operators applicable to SQL query.
 | IS TRUE      | Whether *boolean* is TRUE; returns FALSE if *boolean* is UNKNOWN | boolean IS TRUE       | Name ='frank' IS TRUE         |
 | IS NOT TRUE  | Whether *boolean* is not TRUE; returns TRUE if *boolean* is UNKNOWN | boolean IS NOT TRUE   | Name ='frank' IS NOT TRUE     |
 
-###Arithmetic Operator
+###Arithmetic Operators
 
 | Operator | Description                               | Syntax | Example              |
 | -------- | ---------------------------------------- | ------ | -------------------- |

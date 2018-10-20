@@ -98,7 +98,7 @@ Kyligence Enterprise 需要一个状态良好的 Hadoop 集群作为其运行环
 
 我们推荐您使用下述硬件配置：
 
-+ 两路 Intel 至强处理器，6核（或8核）CPU，主频 2.3GHz 或以上
++ 双路 Intel 至强处理器，6核（或8核）CPU，主频 2.3GHz 或以上
 + 64GB ECC DDR3 以上
 + 至少1个 1TB 的 SAS 硬盘（3.5寸），7200RPM，RAID1
 + 至少两个 1GbE 的以太网电口
@@ -117,4 +117,4 @@ Kyligence Enterprise 需要一个状态良好的 Hadoop 集群作为其运行环
 - 内存：8G 或以上
 - 浏览器及版本：
 	+ 火狐 60.0.2 及以上
-	+ 谷歌 67.0.3396 及以上
+	+ 谷歌Chrome 67.0.3396 及以上

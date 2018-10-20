@@ -101,7 +101,7 @@ Thirdly, copy the file *repository/configuration.xml* under node1 to other node,
 
 Fourthly, if you have installed KyAnalyzer and started it, you need to modify the file *repository/data/workspaces/default/workspace.xml* and change < FileSystem > and < PersistenceManager > in it based on the configuration under < Workspace > of < Repository > domain in the above second step. If KyAnalyzer has not been started before, you may ignore this step.
 
-So far, you complete KyAnalyzer multi-node deployment. You may start KyAnalyzer under each node. Each node shares the same metadata.
+So far, you have completed KyAnalyzer multi-node deployment. You may start KyAnalyzer under each node. Each node shares the same metadata.
 
 
 

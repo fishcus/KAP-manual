@@ -15,11 +15,11 @@ Starting with version 3.1.0 of Kyligence Enterprise, project level metadata impo
 
 *Step 2*: On the project management page, select the specific project, click on the rightmost operation column, and select the export function.
 
-*Step 3*: In the pop-up window, the user can select the Cube to be exported for export, and the dependecies model and source data table will be exported.
+*Step 3*: In the pop-up window, the user can select the Cube to be exported for export, and the dependencies model and source data table will be exported.
 
 The name of the exported tarball is: project_project_name_export_time.zip
 
-> Note: The Safar browser may automatically decompress zip files, and users can change browser-related settings to disable automatic decompression.
+> Note: The Safari browser may automatically decompress zip files, and users can change browser-related settings to disable automatic decompression.
 >
 
 All metadata is downloaded to a local directory as a file

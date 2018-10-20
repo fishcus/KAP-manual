@@ -18,7 +18,7 @@ Depending on your business scenario, you may need to create a new project or sim
 
 4. Choose `ODBC` as the connection type. For Isolation Level, choose `Use the default object gateway` ![](images/cognos/4.png)
 
-5. In ODBC data source, fill in the DSN name that you created in the previous step. Check `Unicode ODBC`. For Signon `choose no authorization`. Then Click `Test the connection`.![](images/cognos/5.png)![](images/cognos/6.png)If everything set up properly, test the connection will finish successfully.![](images/cognos/7.png)![](images/cognos/8.png)
+5. In ODBC data source, fill in the DSN name that you created in the previous step. Check `Unicode ODBC`. For Sign-on `choose no authorization`. Then Click `Test the connection`.![](images/cognos/5.png)![](images/cognos/6.png)If everything is set up properly, test the connection will finish successfully.![](images/cognos/7.png)![](images/cognos/8.png)
 
    Now you have the data source created.
 

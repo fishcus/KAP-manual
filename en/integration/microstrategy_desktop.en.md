@@ -8,7 +8,7 @@
 4. Kyligence ODBC Driver 64 bit is installed on your MicroStrategy WorkStation / Desktop machine. 
 For detail on how to download and configure Kyligence ODBC Driver please refer to [Kyligence ODBC Driver tutorial](../driver/kyligence_odbc.en.md)
 
-### Install connector in MicroStrategy Workstation / Desktop:
+### Install Connector in MicroStrategy Workstation / Desktop:
 
 1. Follow the two steps in Web platform configuration to update DBProperties.xml file
 
@@ -60,7 +60,7 @@ For detail on how to download and configure Kyligence ODBC Driver please refer t
 
    ![](images/microstrategy_10_8/desktop_7.png)
 
-6. Now, you are ready to analyze data from Kyligence with drag-and-drop interface in MicrStrategy Desktop.
+6. Now, you are ready to analyze data from Kyligence with drag-and-drop interface in MicroStrategy Desktop.
 
    ![](images/microstrategy_10_8/desktop_8.png)
 

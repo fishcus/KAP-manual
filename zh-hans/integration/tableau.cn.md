@@ -1,7 +1,7 @@
 
 ## 与 Tableau  集成
 
-Tableau 是 Windows 平台上最流行的商业智能工具之一，它操作简介，功能强大，通过简单地拖拽就可以将大量数据体现在可视化图表中。Kyligence Enterprise 提供与 Tableau Desktop 不同的集成方式。
+Tableau 是 Windows 平台上最流行的商业智能工具之一，它操作简洁，功能强大，通过简单地拖拽就可以将大量数据体现在可视化图表中。Kyligence Enterprise 提供与 Tableau Desktop 不同的集成方式。
 
 本小节将介绍 Kyligence Enterprise 与 Tableau Desktop 的2种集成方式。
 

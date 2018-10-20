@@ -1,4 +1,4 @@
-## Apache Zepplin Integration
+## Apache Zeppelin Integration
 
 Apache Zeppelin, an open source data analysis platform, is a top program of Apache; its back-end has multiple components to support a variety of data processing engine, such as Spark, Flink, Lens and so on; and provide notebook type UI to process visualization related operations. Kyligence Enterprise has developed  corresponding Zeppelin modules and merged them with Zeppelin's major branches.  Correspondingly Kyligence Enterprise is accessible with Zeppelin 0.5.6 and subsequent version.
 

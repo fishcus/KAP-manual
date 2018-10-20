@@ -110,7 +110,7 @@ After configuring your Local DSN and installing Qlik Sense successfully, you may
 
 6. Create a new report
 
-   On the top left manu open **App Overview**.![Open App Overview](images/Qlik/go_to_app_overview.png)
+   On the top left menu open **App Overview**.![Open App Overview](images/Qlik/go_to_app_overview.png)
 
    Click **Create new sheet** on the pop-up page.![Create new sheet](images/Qlik/create_new_report.png)
 

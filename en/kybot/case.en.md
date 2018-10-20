@@ -1,15 +1,15 @@
 ## Analysis of KyBot Case
-There is a case that an e-commerce company runs Kyligence Enterprise on over 21 nodes, they want to diagnose the health situation of their cluster and receive some advice on how to optimize the design of the Cube.
-Based on analyzation of a 5-day diagnosis package, which includes 98 Cubes and more than 7000 queries, KyBot locates the bottleneck of the queries and provides with prioritization scheme.
+There is a case that an e-commerce company runs Kyligence Enterprise on over 21 nodes, they want to diagnose the health situation of their clusters and receive some advices on how to optimize the design of the Cube.
+Based on the analysis of a 5-day diagnostic package, which includes 98 cubes and more than 7000 queries, KyBot locates the bottleneck of the queries and provides with prioritization scheme.
 
 
-### Overall situation
+### Overall Situation
 
-- *98* Cubes with total size of *871GB* and the expansion rate is quite low
+- *98* Cubes with total size of *871GB* and the expansion rate is quite low.
 
-- Over *86%* of queries are completed within *1 second*, *98%* queries are completed within 5 seconds, thus the average query performance is pretty great.
+- Over *86%* of queries are completed within *1 second*, *98%* queries are completed within 5 seconds, thus, the average query performance is pretty great.
 
-- The median duration of building a cube is *below 15 mins*, which is within normal range.
+- The median duration of building a cube is *below 15 min*, which is within normal range.
 
 
 ![](images/01-1.png)
@@ -64,7 +64,7 @@ It is evident that the green bar is longer than blue bar, thus the bottleneck is
 3. Add a `Joint aggregation group`, including `SELLER_ID` and `SHOP_NAME`.
 
 ### Optimization Result
-SQL statement hits a more matchable Cuboid, increasing query efficiency a lot, and query nodes' runtime reduces to 0.4s. 
+SQL statement hits a more matchable cuboid, which increases query efficiency a lot, also, query nodes' runtime reduces to 0.4s. 
 
 ### Customer Feedback
 Based on KyBot’s analysis, we optimized the cube correspondingly and increased query nodes' memory. 

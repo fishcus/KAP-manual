@@ -1,5 +1,5 @@
 ## Basic Operations
-Every day, Kyligence Enterprise server accepts multiple Cube building jobs submitted by different customers. Cube building jobs could cost an unacceptable long time or even fail because of improper design or abnormal cluster environment, thus needs more attention from operation personnel. Additionally, after Kyligence Enterprise service running for a period, some data on the HBase or HDFS would become useless, regular cleaning for these storage garbage is required.
+Every day, Kyligence Enterprise server accepts multiple cube building jobs submitted by different customers. Cube building jobs could cost an unacceptable long time or even fail because of improper design or abnormal cluster environment, thus needs more attention from operation personnel. Additionally, after Kyligence Enterprise service running for a period, some data on the HBase or HDFS would become useless, regular cleaning for these storage garbage is required.
 
 ## Operation Tasks
 

@@ -4,7 +4,7 @@
 
 For the installation information, please refer to [Kyligence ODBC Driver tutorial](../driver/kyligence_odbc.en.md).
 
-The Kyligence ODBC Driver needs to be installed in the machine or virtual environment where your Microstrategy Intelligenec Server is installed. 
+The Kyligence ODBC Driver needs to be installed in the machine or virtual environment where your MicroStrategy Intelligence Server is installed. 
 
 ### Setting Database Instance in MicroStrategy
 
@@ -24,7 +24,7 @@ Depending on your business scenario, you may need to create a new project and se
 
 Open up your project, go to schema menu -> warehouse catalog to import the tables your need. 
 
-**NOTE: Microstrategy will send query "select \* from fact\_table" and it'll take a long time if the table size is extremely large. To work around the issue please refer to [Configuration](../config/basic_settings.en.md#kylinqueryforce-limit)**
+**NOTE: MicroStrategy will send query "select \* from fact\_table" and it'll take a long time if the table size is extremely large. To work around the issue please refer to [Configuration](../config/basic_settings.en.md#kylinqueryforce-limit)**
 
 ![](images/microstrategy_10_4/picture7.png)
 
@@ -42,7 +42,7 @@ Create Attribute, Facts and Metric objects
 
 ### Create a Simple Report
 
-Now you can start creating reports with Kylin as Data source.
+Now you can start creating reports with Kylin as data source.
 
 ![](images/microstrategy_10_4/picture4.png)
 
@@ -62,7 +62,7 @@ Now you can start creating reports with Kylin as Data source.
 
 3. Dimension named with Kylin reserved word will cause sql to error out. You may find Kylin reserved word here: [https://calcite.apache.org/docs/reference.html#keywords](https://calcite.apache.org/docs/reference.html#keywords)
 
-4. If underlying Kylin data model has left join from fact table to lookup table, in order for Microstrategy to also generate the same left join in sql, please follow below MicroStrategy TN to modify VLDB property:
+4. If underlying Kylin data model has left join from fact table to lookup table, in order for MicroStrategy to also generate the same left join in sql, please follow below MicroStrategy TN to modify VLDB property:
 
    [https://community.microstrategy.com/s/article/ka1440000009GrQAAU/KB17514-Using-the-Preserve-all-final-pass-result-elements-VLDB](https://community.microstrategy.com/s/article/ka1440000009GrQAAU/KB17514-Using-the-Preserve-all-final-pass-result-elements-VLDB)
 

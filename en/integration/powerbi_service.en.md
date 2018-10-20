@@ -31,7 +31,7 @@ For more configure information, you can refer to [Custom Connectors](https://doc
 
 ### Power BI Service Manage Gateway
 
-1.After logging into Power BI service, you can check the **Allow user's custom data connectors to refresh through this gateway cluster** select box and click the **Apply** button in Gateway page. Then you can add the Kyligence Enterprice connector in Gateway cluster.
+1.After logging into Power BI service, you can check the **Allow user's custom data connectors to refresh through this gateway cluster** select box and click the **Apply** button in Gateway page. Then you can add the Kyligence Enterprise connector in Gateway cluster.
 
 ![allow the custom data connector](images/powerbi/Picture_PBI_SERVIECE_08.png)
 
