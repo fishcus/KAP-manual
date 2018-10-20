@@ -16,6 +16,6 @@ Kyligence Enterprise 支持如下函数：
 
 - [分组函数](grouping_function.cn.md)
 
-- [交集函数](intersect_count.cn.md)
+- [交集函数](intersect_function.cn.md)
 
 - [聚合函数](aggregate_function.cn.md)

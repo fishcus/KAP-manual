@@ -25,5 +25,5 @@ Continue reading:
   - [Type Function](adv_sql/type_function.en.md)
   - [Window Function](adv_sql/window_function.en.md)
   - [Grouping Function](adv_sql/grouping_sets.en.md)
-  - [Intersect Function](adv_sql/intersect_count.en.md)
+  - [Intersect Function](adv_sql/intersect_function.en.md)
   - [Aggregate Function](adv_sql/aggregate_function.en.md)

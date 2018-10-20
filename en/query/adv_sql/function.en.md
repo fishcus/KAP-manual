@@ -16,6 +16,6 @@ Kyligence Enterprise supports the following functions,
 
 - [Grouping Function](grouping_function.en.md)
 
-- [Intersect Function](intersect_count.en.md)
+- [Intersect Function](intersect_function.en.md)
 
 - [Aggregate Function](aggregate_function.en.md)

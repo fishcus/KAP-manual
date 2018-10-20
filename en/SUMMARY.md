@@ -108,8 +108,8 @@
           * [Conditional Function](query/adv_sql/conditional_function.en.md)
           * [Type Function](query/adv_sql/type_function.en.md)
           * [Window Function](query/adv_sql/window_function.en.md)
-          * [Grouping Function](query/adv_sql/grouping_function.en.md)
-          * [Intersect Function](query/adv_sql/intersect_count.en.md)
+          * [Grouping Function](query/adv_sql/grouping_sets.en.md)
+          * [Intersect Function](query/adv_sql/intersect_function.en.md)
           * [Aggregate Function](query/adv_sql/aggregate_function.en.md)
 
 * [KyAnalyzer: BI Tool](kyanalyzer/README.md)
