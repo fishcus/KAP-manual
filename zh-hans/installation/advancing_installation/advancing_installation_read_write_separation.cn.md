@@ -1,7 +1,7 @@
 ## 读写分离部署
-Kyligence Enterprise 读写分离部署需要使用两个 Hadoop 集群，分别称为 **构建集群** 和 **查询集群**。
+要达到最稳定和最佳的查询性能，Kyligence Enterprise 必须拥有独占的查询资源。要做到资源独占，就需要读写分离部署。
 
-即使在普通部署方式下，这两个集群也是“逻辑上”存在的，只是在物理上共用同一个 Hadoop 集群而已。Kyligence Enterprise 使用构建集群进行 Cube 构建等任务，同时使用查询集群进行分布式查询计算。前者中存在很多写操作，而后者中则以只读操作为主。如果您需要完全隔离上述两种工作负载，让它们各自独立运行，避免它们之间的相互影响及其可能引发的性能不稳定，那么可以将 **构建集群（写集群）** 和 **查询集群（读集群）** 分开部署，即读写分离部署。
+读写分离部署将 Kyligence Enterprise 部署在两个 Hadoop 集群上，分别称为 **构建集群** 和 **查询集群**。即使在普通部署方式下，这两个集群也是“逻辑上”存在的，只是在物理上共用同一个 Hadoop 集群而已。Kyligence Enterprise 使用构建集群进行 Cube 构建等任务，同时使用查询集群进行分布式查询计算。前者中存在很多写操作，而后者中则以只读操作为主。如果您需要完全隔离上述两种工作负载，让它们各自独立运行，避免它们之间的相互影响及其可能引发的性能不稳定，那么可以将 **构建集群（写集群）** 和 **查询集群（读集群）** 分开部署，即读写分离部署。
 
 读写分离的部署架构如下图所示。
 ![](advancing_installation_images/advancing_installation_read_write_separation.png)
@@ -20,12 +20,13 @@ Kyligence Enterprise 读写分离部署需要使用两个 Hadoop 集群，分别
 
 4. 在**构建服务器**上，请配置并确认通过 `hdfs` 命令能访问**查询集群** HDFS。
 
-   > 提示：在**构建服务器**上，请确认命令可用：`hadoop fs -ls hdfs://{query-cluster}/`
-   >
-   > 提示：如果启用了 Hadoop HA，您将需要配置查询集群的 Nameservice。
+   > **提示**：
+   > - 在**构建服务器**上，请确认命令可用：`hadoop fs -ls hdfs://{query-cluster}/`。
+   > - 如果启用了 Hadoop HA，您将需要配置查询集群的 Nameservice。
 
 5. 请确认构建集群和查询集群可以在无须额外验证的情况下互相连通。
-   > 提示：您可以尝试从**构建集群**的任一节点上拷贝文件至**查询集群**的任一节点，以验证两个集群之间的安全性和网络连通状况。
+
+   > **提示**：您可以尝试从**构建集群**的任一节点上拷贝文件至**查询集群**的任一节点，以验证两个集群之间的安全性和网络连通状况。
 
 6. 由于构建过程会在两个集群之间移动大量数据，请尽量缩短查询集群和构建集群之间的网络延迟。
 
@@ -39,13 +40,14 @@ Kyligence Enterprise 读写分离部署需要使用两个 Hadoop 集群，分别
 
 1. 首先在**构建服务器**和**查询服务器**上，解压 Kyligence Enterprise 安装包到统一的安装路径下。以下称此安装路径为 `$KYLIN_HOME`。
 
-2. 在**构建服务器**和**查询服务器**上，修改 `$KYLIN_HOME/conf/kylin.properties`，为所有的 Kyligence Enterprise 服务配置相同的元数据仓库和数据存储路径。
+2. 在**构建服务器**和**查询服务器**上，修改 `$KYLIN_HOME/conf/kylin.properties`，为所有的 Kyligence Enterprise 服务配置相同的元数据和数据存储路径。
 
-   > 注意：此处需使用 JDBC 为元数据仓库，请参阅 [JDBC 元数据仓库的相关配置文档](../../config/metastore_jdbc_mysql.cn.md)。
-   > 注意：此处数据存储路径需指向**查询集群** HDFS。
+   > **注意**：
+   >  - 此处需使用关系数据库为元数据存储，请参阅 [基于关系型数据库的 Metastore 的配置](../../config/metastore_jdbc_settings.cn.md)。
+   >  - 此处数据存储路径需指向**查询集群** HDFS。
 
    ```properties
-   # 请参阅 JDBC 元数据仓库的相关配置文档
+   # 请参阅 JDBC 元数据库的相关配置文档
    kylin.metadata.url=...
    
    # 数据存储路径需指向查询集群 HDFS
@@ -58,7 +60,7 @@ Kyligence Enterprise 读写分离部署需要使用两个 Hadoop 集群，分别
 
 3. 在**构建服务器**和**查询服务器**上，修改 `$KYLIN_HOME/conf/kylin.properties`，为所有的 Kyligence Enterprise 服务配置相同的 Hive 数据源。
 
-   > 注意：下例假设 Hive 使用 Beeline 连接方式。如果您使用 Hive CLI 连接方式，请自行调整。
+   > **注意**：以下例子假设 Hive 使用 Beeline 连接方式。如果您使用 Hive CLI 连接方式，请自行调整。
 
    ```properties
    kylin.source.hive.client=beeline
@@ -68,7 +70,7 @@ Kyligence Enterprise 读写分离部署需要使用两个 Hadoop 集群，分别
    # 对于华为 FusionInsight，请打开下面配置
    #kylin.source.hive.table-dir-create-first=true
    ```
-   为了性能考虑，我们假设 Hive 数据源在构建集群中。为了让查询服务器能连接构建集群中的 Hive 服务，**请复制构建集群上的 `hive-site.xml` 到查询服务器的 `$KYLIN_HOME/conf` 目录下**。
+   为了性能考虑，我们假设 Hive 数据源在构建集群中。为了让查询服务器能连接构建集群中的 Hive 服务，**请复制构建集群上的** `hive-site.xml` **到查询服务器的** `$KYLIN_HOME/conf` **目录下**。
 
 4. 在**构建服务器**上，修改 `$KYLIN_HOME/conf/kylin.properties`，设置其工作模式。
 
@@ -95,6 +97,7 @@ Kyligence Enterprise 读写分离部署需要使用两个 Hadoop 集群，分别
 
    - 在**构建服务器**上，修改 `$KYLIN_HOME/conf/kylin.properties`。
      ```properties
+     kap.storage.columnar.spark-conf.spark.yarn.access.namenodes=hdfs://{query-cluster},hdfs://{build-cluster}
      kylin.engine.spark-conf.spark.yarn.access.namenodes=hdfs://{query-cluster},hdfs://{build-cluster}
      ```
 
@@ -105,5 +108,11 @@ Kyligence Enterprise 读写分离部署需要使用两个 Hadoop 集群，分别
          <value>hdfs://{build-cluster}/, hdfs://{query-cluster}/</value>
      </property>
      ```
+7. 使用 pushdown 查询，需拷贝构建集群的 `hive-site.xml` 到查询集群
 
-至此，读写分离配置完毕。请启动 Kyligence Enterprise 查询服务器和构建服务器。
+   - 由于 spark context 启动在 read cluster，所以需要将构建集群的 hive metastore 的`hive-site.xml`复制到查询集群`$KYLIN_HOME/conf`目录下
+8. 运行 sample.sh
+
+   - 构建集群可以直接运行`$KYLIN_HOME/bin/sample.sh`, 查询集群需要指定构建集群的路径`$KYLIN_HOME/bin/sample.sh hdfs://{build-cluster}/tmp/kylin`
+
+至此，读写分离配置完毕，请启动 Kyligence Enterprise 查询服务器和构建服务器。

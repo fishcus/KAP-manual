@@ -11,7 +11,7 @@
 2. 决定安装路径和将要运行 Kyligence Enterprise 的 Linux 账户。下文所有示例都做如下假设：
    - 假设安装路径为 `/usr/local/`。
    - 假设运行 Kyligence Enterprise 的 Linux 账户为 `root`，下文简称 “Linux 账户”。
-   - 在执行时，请留意将上述假设替换为真实的安装路径和 Linux 账户。比如，CDH 沙箱的默认用户是 `cloudera`。
+   > **提示**：在执行时，请留意将上述假设替换为真实的安装路径和 Linux 账户。比如，CDH 沙箱的默认用户是 `cloudera`。
 
 3. 将 Kyligence Enterprise 软件包拷贝至您需要安装的服务器或虚拟机，并解压至安装路径下。
    ```shell
@@ -35,7 +35,7 @@
 
    如果需要，您可以在 `$KYLIN_HOME/conf/kylin.properties` 配置文件中修改 Kyligence Enterprise 工作目录的位置。
 
-   > 注意：如果您没有权限执行上述命令，可以先转至 `hdfs` 账户，然后再次尝试。
+   > **提示**：如果您没有权限执行上述命令，可以先转至 `hdfs` 账户，然后再次尝试。
    >
    > ```shell
    > su hdfs
@@ -62,12 +62,12 @@ kylin.source.hive.client=beeline
 kylin.source.hive.beeline-params=beeline -n root -u 'jdbc:hive2://host:port' --hiveconf hive.exec.compress.output=true --hiveconf dfs.replication=2  --hiveconf hive.security.authorization.sqlstd.confwhitelist.append='mapreduce.job.*|dfs.*'
 ```
 
-注意：若您使用 **HDP** 环境，请确保您的安全配置方案为 `SQLStdAuth` 并且设置为 `true`。并将如下参数写入环境中的 `hive-site.xml`，赋予 Kyligence Enterprise 调整 Hive 执行参数的一定权限：
+> **提示**：若您使用 **HDP** 环境，请确保您的安全配置方案为 `SQLStdAuth` 并且设置为 `true`。并将如下参数写入环境中的 `hive-site.xml`，赋予 Kyligence Enterprise 调整 Hive 执行参数的一定权限：
 
 ```properties
 hive.security.authorization.sqlstd.confwhitelist=dfs.replication|hive.exec.compress.output|hive.auto.convert.join|hive.auto.convert.join.noconditionaltask.*|mapreduce.map.output.compress.codec|mapreduce.output.fileoutputformat.compress.*|mapreduce.job.split.metainfo.maxsize|hive.stats.autogather|hive.merge.*|hive.security.authorization.sqlstd.confwhitelist.*
 ```
-> 更多 Beeline 介绍请查看 [Beeline命令说明](https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Clients#HiveServer2Clients-BeelineCommandOptions)。
+更多 Beeline 介绍请查看 [Beeline命令说明](https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Clients#HiveServer2Clients-BeelineCommandOptions)。
 
 ### 如果您使用 Kerberos
 
@@ -85,7 +85,7 @@ hive.security.authorization.sqlstd.confwhitelist=dfs.replication|hive.exec.compr
 $KYLIN_HOME/bin/kylin.sh start
 ```
 
-> 如果想观察启动的详细进度：
+> **提示**：如果想观察启动的详细进度：
 >
 >
 > ```shell
@@ -103,10 +103,8 @@ ps -ef | grep kylin
 
 当 Kyligence Enterprise 顺利启动后，您可以打开 Web 浏览器，访问 `http://{host}:7070/kylin/`。请将其中的 `host` 替换为具体的机器名、IP 地址或域名，默认端口为 `7070`。默认用户名和密码为 `ADMIN` 和 `KYLIN`。初次登陆后，请遵照密码规则重置管理员密码。
 
-> 密码规则
->
-> - 密码长度至少 8 位
-> - 密码需要包含至少一个数字、字母、及特殊字符（~!@#$%^&*(){}|:"<>?[];',./`）
+- 密码长度至少 8 位
+- 密码需要包含至少一个数字、字母、及特殊字符（~!@#$%^&*(){}|:"<>?[];',./`）
 
 当您成功登录后，可以通过构建 Sample Cube 来验证 Kyligence Enterprise 的功能。具体请参阅[安装验证](../installation_validation.cn.md)。
 
@@ -129,3 +127,4 @@ ps -ef | grep kylin
 **Q：使用 Beeline 连接 Hive时，连接失败，出现如下报错： Cannot modify xxx at runtime. It is not in list of params that are allowed to be modified at runtime**
 
 请在 `hive-site.xml` 文件中，找到 `hive.security.authorization.sqlstd.confwhitelist` 参数，并根据报错提示追加该参数值。
+

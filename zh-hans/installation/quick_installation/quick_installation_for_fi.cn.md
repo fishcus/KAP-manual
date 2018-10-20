@@ -44,7 +44,7 @@ kinit <user_name>
 
    > 提示：您可以在 `$KYLIN_HOME/conf/kylin.properties` 配置文件中修改 Kyligence Enterprise 工作目录的位置。
 
-   注意：如果您所使用的账户在 HDFS 上**没有**读写权限，请先转至 `hdfs` 账户，然后再创建工作目录并授予权限。请您执行下述命令：
+   如果您所使用的账户在 HDFS 上没有读写权限，请先转至`hdfs`账户，然后再创建工作目录并授予权限。执行下述命令：
 
    ```shell
    su hdfs
@@ -55,15 +55,11 @@ kinit <user_name>
    hdfs dfs -chown root /user/root
    ```
 
-5. 请您将 FusionInsight 客户端中 Hive 目录下的 `hivemetastore-site.xml` 文件中**所有配置项**拷贝至 `hive-site.xml` 文件 ，并将该文件拷贝至 `$KYLIN_HOME/conf`。
-
-   ```shell
-   cp $HIVE_HOME/../config/hive-site.xml $KYLIN_HOME/conf/
-   ```
+5. 请您将 FusionInsight 客户端中 Hive 目录的`hivemetastore-site.xml`文件中的所有配置项拷贝至`hive-site.xml`文件中，并将`hive-site.xml`文件拷贝到KE目录下spark的conf目录中。
 
 6. 在 FI Manager 页面中，依次点击 **Hive** - **配置（全部配置）**- **安全** - **白名单**，
 
-   该白名单的配置项名称为：`hive.security.authorization.sqlstd.confwhitelist`，对应的参数值为 `$KYLIN_HOME/conf/kylin_hive_conf.xml` 文件中的所有 Hive 配置项的 key（如`dfs.replication`）及`fs.defaultFS` ， `mapreduce.job.reduces` 的配置项添加至白名单中。
+   该白名单的配置项名称为：`hive.security.authorization.sqlstd.confwhitelist`，再将`$KYLIN_HOME/conf/kylin_hive_conf.xml`文件中的所有 Hive 配置项的 key（如`dfs.replication`）添加至 FI Hive 配置的白名单中。此外，还需要额外将`mapreduce.job.reduces,fs.defaultFS`配置项添加至白名单中。
 
    以下是一个我们实际使用的例子，供您参考。请根据您的 **Hadoop** 环境替换一些参数值。
 
@@ -90,7 +86,19 @@ kinit <user_name>
 > $KYLIN_HOME/bin/check-env.sh
 > ```
 
-注意：对于华为 FI C70，如果运行环境有启用 Kerberos 安全认证，并且集群的`hive-site.xml`的配置`hive.server2.enable.doAs`为false，则需要添加相关的配置项：
+如果检查运行环境时提示缺少 HBase 权限，请您在 FI Manager 页面上创建一个新用户，并将该用户添加至`supergroup`用户组下，分配权限`System_administrator`。然后，请您运行下述命令，将 Kyligence Enterprise 工作目录的所有者更改为该用户：
+
+```shell
+hdfs dfs -chown -R <user_name> <working_directory>
+```
+
+如果检查运行环境时提示未安装 Snappy，您可以自行安装 Snappy，也可以在`$KYLIN_HOME/conf/kylin.properties`配置文件中修改下述与 Snappy 相关的配置项：
+
+```properties
+kylin.storage.hbase.compression-codec=none
+# Kyligence Enterprise.storage.columnar.page-compression=SNAPPY //注释掉该项
+```
+> **注意**：对于华为FI C70，如果运行环境有启用kerberos安全认证，并且集群的`hive-site.xml`的配置`hive.server2.enable.doAs`为false，则需要添加相关的配置项：
 
 ```properties
 kylin.source.hive.table-dir-create-first=true
@@ -118,7 +126,7 @@ $KYLIN_HOME/bin/kylin.sh start
 ps -ef | grep kylin
 ```
 
-### 访问 Kyligence Enterprise GUI
+### 访问 Kyligence Enterprise
 
 当 Kyligence Enterprise 顺利启动后，您可以打开 web 浏览器，访问`http://<host_name>:7070/kylin/`。请将其中`<host_name>`替换为具体的 Host 名、IP 地址或域名。默认端口值为`7070`。默认用户名和密码分别为`ADMIN`和`KYLIN`。
 
