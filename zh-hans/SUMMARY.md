@@ -84,6 +84,7 @@
         * [度量设计-近似Percentile](model/cube/percentile_approx.cn.md)
         * [度量设计-CORR(Beta)](model/cube/corr.cn.md)
         * [明细表索引](model/cube/table_index.cn.md)
+        * [Cube 设计最佳实践和示例](model/cube/cube_design_best_practices.cn.md)
     * [验证SQL](model/verify_sql.cn.md)
     * [构建Cube](model/build_cube.cn.md)
     * [Cube与Segment管理](model/segment_manage.cn.md)

@@ -13,6 +13,7 @@ Continue Reading:
 - [Measure-Precise Distinct Count](count_distinct_precise.en.md)
 - [Measure-Approximate Percentile](percentile_ approx.en.md)
 - [Table Index](table_index.en.md)
+- [Cube Design Best Practices and Examples](cube_design_best_practices.en.md)
 
 
 

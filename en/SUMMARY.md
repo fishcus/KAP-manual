@@ -82,6 +82,7 @@
         * [Measure-Approximate Percentile](model/cube/percentile_approx.en.md)
         * [Measure-CORR(Beta)](model/cube/corr.en.md)
         * [Table Index](model/cube/table_index.en.md)
+        * [Cube Design Best Practices and Examples](model/cube/cube_design_best_practices.en.md)
     * [Verify SQL](model/verify_sql.en.md)
     * [Build Cube](model/build_cube.en.md)
     * [Cube and Segment Management](model/segment_manage.en.md)

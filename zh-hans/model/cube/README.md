@@ -11,5 +11,6 @@
 - [度量设计 - 精确 Distinct Count](count_distinct_precise.cn.md)
 - [度量设计 - 近似 Percentile](percentile_ approx.cn.md)
 - [明细表索引](table_index.cn.md)
+- [Cube 设计最佳实践和示例](cube_design_best_practices.cn.md)
 
 
