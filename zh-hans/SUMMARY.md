@@ -138,7 +138,9 @@
           * [MicroStrategy Secure Enterprise](integration/microstrategy_enterprise.cn.md)
           * [MicroStrategy Workstation/Desktop](integration/microstrategy_desktop.cn.md)
         * [Cognos](integration/cognos.cn.md)
-        * [Qlik Sense](integration/qlik.cn.md)
+        * Qlik
+          * [Qlik Sense Desktop](integration/qlik.cn.md)
+          * [Qlik Sense Enterprise](integration/qlik_enterprise.cn.md)
         * [Smartbi](integration/smartbi.cn.md)
         * [Fanruan](integration/fanruan.cn.md)
         * [SAP BO](integration/sap_bo.cn.md)

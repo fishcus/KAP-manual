@@ -140,7 +140,9 @@
         * MicroStrategy
           * [MicroStrategy Secure Enterprise](integration/microstrategy_enterprise.en.md)
           * [MicroStrategy Workstation/Desktop](integration/microstrategy_desktop.en.md)
-        * [Qlik Sense](integration/qlik.en.md)
+        * Qlik
+          * [Qlik Sense Desktop](integration/qlik.en.md)
+          * [Qlik Sense Enterprise](integration/qlik_enterprise.en.md)
 
 * [REST API](rest/README.md)
     * [Access and Authentication API](rest/authentication.en.md)
