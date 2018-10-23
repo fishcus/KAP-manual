@@ -24,6 +24,6 @@ Continue reading:
   - [Conditional Function](adv_sql/conditional_function.en.md)
   - [Type Function](adv_sql/type_function.en.md)
   - [Window Function](adv_sql/window_function.en.md)
-  - [Grouping Function](adv_sql/grouping_sets.en.md)
+  - [Grouping Function](adv_sql/grouping_function.en.md)
   - [Intersect Function](adv_sql/intersect_function.en.md)
   - [Aggregate Function](adv_sql/aggregate_function.en.md)

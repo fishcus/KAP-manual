@@ -24,6 +24,6 @@
   - [条件函数](adv_sql/conditional_function.cn.md)
   - [类型转换函数](adv_sql/type_function.cn.md)
   - [窗口函数](adv_sql/window_function.cn.md)
-  - [分组函数](adv_sql/grouping_sets.cn.md)
+  - [分组函数](adv_sql/grouping_function.cn.md)
   - [交集函数](adv_sql/intersect_function.cn.md)
   - [聚合函数](adv_sql/aggregate_function.cn.md)
