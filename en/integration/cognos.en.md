@@ -6,6 +6,16 @@ Please refer to this guide [Kyligence ODBC Driver Tutorial](../driver/kyligence_
 
 The Kyligence ODBC driver needs to be installed in the machine or virtual environment where your Cognos Server is installed.
 
+### Prerequisite
+
+- The version of Cognos Framework manager needs to be consistent with Cognos server.
+
+- **The version of 32-bit ODBC Driver needs to be consistent** in Framework manager and Cognos server.
+
+  > If you installed 64-bit ODBC Driver before, please uninstall it at first
+
+- The name of DSN needs to be consistent in both Framework manager and Cognos server.
+
 ### Create a Data Source in Cognos
 
 Depending on your business scenario, you may need to create a new project or simply use an existing project to create the data source for Kyligence Enterprise. In the example, we will start with a new project. 

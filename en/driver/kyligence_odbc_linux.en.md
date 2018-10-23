@@ -24,74 +24,46 @@ Users can download Kyligence ODBC driver (Linux version) from [Kyligence Account
 
 1. Uncompress package
 
-`tar zxf KyligenceODBC_linux.tar.gz`
+   `tar zxf KyligenceODBC_linux.tar.gz`
 
-> *Notice：please donot uncompress Kyligence ODBC Driver under root folder, otherwise BI servers might not be able to access necessary files because of authoriztaion.*
+   > Notice：please donot uncompress Kyligence ODBC Driver under root folder, otherwise BI servers might not be able to access necessary files because of authoriztaion.
 
-2. Setup environment param of third-party libs
+2. Check library dependency
 
-`cd ODBCDriver/`
+   `cd ODBCDriver/`
 
-`source setenv.sh`
+   `ldd libKyligenceODBC64.so`
+   Expect output shall be:
 
-3. Check library dependency
+	```
+    linux-vdso.so.1 =>  (0x00007fffca9eb000)
+    librt.so.1 => /lib64/librt.so.1 (0x00007fe826b3f000)
+    libdl.so.2 => /lib64/libdl.so.2 (0x00007fe82693b000)
+    libm.so.6 => /lib64/libm.so.6 (0x00007fe8266b6000)
+    libpthread.so.0 => /lib64/libpthread.so.0 (0x00007fe826499000)
+    libc.so.6 => /lib64/libc.so.6 (0x00007fe826105000)
+    lib64/ld-linux-x86-64.so.2 (0x00007fe829aac000)
+   ```
 
-`ldd libKyligenceODBC64.so`
-Expect output shall be:
+    Bad output, which has "not found" libraries:
 
-```
-linux-vdso.so.1 =>  (0x00007ffd773f5000)
-libz.so.1 => /lib64/libz.so.1 (0x00007f15a5c38000)
-libdl.so.2 => /lib64/libdl.so.2 (0x00007f15a5a34000)
-libcrypto.so.10 => /usr/local/ODBCDriver/ThirdParty/libcrypto.so.10 (0x00007f15a564f000)
-libssl.so.10 => /usr/local/ODBCDriver/ThirdParty/libssl.so.10 (0x00007f15a53e2000)
-libm.so.6 => /lib64/libm.so.6 (0x00007f15a50e0000)
-libpthread.so.0 => /lib64/libpthread.so.0 (0x00007f15a4ec3000)
-libc.so.6 => /lib64/libc.so.6 (0x00007f15a4b02000)
-/lib64/ld-linux-x86-64.so.2 (0x00007f15a8800000)
-libgssapi_krb5.so.2 => /lib64/libgssapi_krb5.so.2 (0x00007f15a48b6000)
-libkrb5.so.3 => /lib64/libkrb5.so.3 (0x00007f15a45d0000)
-libcom_err.so.2 => /lib64/libcom_err.so.2 (0x00007f15a43cc000)
-libk5crypto.so.3 => /lib64/libk5crypto.so.3 (0x00007f15a419a000)
-libkrb5support.so.0 => /lib64/libkrb5support.so.0 (0x00007f15a3f8a000)
-libkeyutils.so.1 => /lib64/libkeyutils.so.1 (0x00007f15a3d86000)
-libresolv.so.2 => /lib64/libresolv.so.2 (0x00007f15a3b6c000)
-libselinux.so.1 => /lib64/libselinux.so.1 (0x00007f15a3946000)
-libpcre.so.1 => /lib64/libpcre.so.1 (0x00007f15a36e5000)
-liblzma.so.5 => /lib64/liblzma.so.5 (0x00007f15a34c0000)
-```
-
-Bad output, which has "not found" libraries:
-
-```
-linux-vdso.so.1 =>  (0x00007ffd773f5000)
-libz.so.1 => /lib64/libz.so.1 (0x00007f15a5c38000)
-libdl.so.2 => /lib64/libdl.so.2 (0x00007f15a5a34000)
-libcrypto.so.10 => not found
-libssl.so.10 => not found
-libm.so.6 => /lib64/libm.so.6 (0x00007f15a50e0000)
-libpthread.so.0 => /lib64/libpthread.so.0 (0x00007f15a4ec3000)
-libc.so.6 => /lib64/libc.so.6 (0x00007f15a4b02000)
-/lib64/ld-linux-x86-64.so.2 (0x00007f15a8800000)
-libgssapi_krb5.so.2 => /lib64/libgssapi_krb5.so.2 (0x00007f15a48b6000)
-libkrb5.so.3 => /lib64/libkrb5.so.3 (0x00007f15a45d0000)
-libcom_err.so.2 => /lib64/libcom_err.so.2 (0x00007f15a43cc000)
-libk5crypto.so.3 => /lib64/libk5crypto.so.3 (0x00007f15a419a000)
-libkrb5support.so.0 => /lib64/libkrb5support.so.0 (0x00007f15a3f8a000)
-libkeyutils.so.1 => /lib64/libkeyutils.so.1 (0x00007f15a3d86000)
-libresolv.so.2 => /lib64/libresolv.so.2 (0x00007f15a3b6c000)
-libselinux.so.1 => /lib64/libselinux.so.1 (0x00007f15a3946000)
-libpcre.so.1 => /lib64/libpcre.so.1 (0x00007f15a36e5000)
-liblzma.so.5 => /lib64/liblzma.so.5 (0x00007f15a34c0000)
-```
-
-​
+    ```
+    linux-vdso.so.1 =>  not found
+    librt.so.1 => /lib64/librt.so.1 (0x00007fe826b3f000)
+    libdl.so.2 => /lib64/libdl.so.2 (0x00007fe82693b000)
+    libm.so.6 => /lib64/libm.so.6 (0x00007fe8266b6000)
+    libpthread.so.0 => /lib64/libpthread.so.0 (0x00007fe826499000)
+    libc.so.6 => /lib64/libc.so.6 (0x00007fe826105000)
+    lib64/ld-linux-x86-64.so.2 (0x00007fe829aac000)
+	 ```
 
 ### Create DSN (Linux 64bit) using unixODBC
 
 1. Add Kyligence ODBC to config files
 
-   **Driver configuration** – /etc/odbcinst.ini (or /usr/local/etc/odbcinst.ini)
+   > Notice: some BI tools also require the ODBC config files located in their own installation directory, such as **MicroStrategy** in [example section](#Example). Therefore, please set the configurations according to your BI tools.
+
+   **Driver configuration** – /etc/odbcinst.ini
 
    ```
    [{DriverName}]
@@ -105,14 +77,14 @@ liblzma.so.5 => /lib64/liblzma.so.5 (0x00007f15a34c0000)
    Locale=en-US
    ```
 
-   **DSN configuration** – /etc/odbc.ini (or /usr/local/etc/odbc.ini)
+   **DSN configuration** – /etc/odbc.ini 
 
    ```
    [{DSName}]
    Driver = {DriverName}
-   PORT = {KapPort}
-   PROJECT = {KapProject}
-   SERVER = {KapUrl}
+   PORT = {KE_Port}
+   PROJECT = {KE_Project}
+   SERVER = {KE_Url}
    ```
 
    Sample config: 
@@ -162,59 +134,57 @@ liblzma.so.5 => /lib64/liblzma.so.5 (0x00007f15a34c0000)
    1 rows fetched
    ```
 
+### Example
 
-
-### Trouble shooting
-
-1. SQL cannot connect       
-
-   a. check the configurations are correct including odbc.ini and odbcinst.ini
-   b. make sure execute source setenv.sh
-
-2. (11560) Unable to locate SQLGetPrivateProfileString function.
-
-   This can be solved by following command:   
-
-   `export LD_PRELOAD=/usr/lib/libodbcinst.so`
-
-### Sample:
-
-#### Create DSN in MicroStrategy Linux Intelligence Server
+Here we use **MicroStrategy Linux Intelligence Server** as an example to illustrate how to create DSN.
 
 1. From a Linux console window, browse to HOME_PATH, where HOME_PATH is the MicroStrategy Installation directory.
-
 2. Open the ODBC.ini file to add new DSN to connect. 
 
-```
-[DSN_Name]
-ConnectionType=Direct
-Driver=<ODBC_HOME>/libKyligenceODBC64.so
-PORT=<PORT_NUMBER>
-PROJECT=<PROJECT_NAME>
-SERVER=<SERVER_NAME>
-```
-3. To Map the DSN with ODBC, add below setting on the top of your ODBC.ini file. 
+    ```
+    [DSN_Name]
+    ConnectionType=Direct
+    Driver=<ODBC_HOME>/libKyligenceODBC64.so
+    PORT=<PORT_NUMBER>
+    PROJECT=<PROJECT_NAME>
+    SERVER=<SERVER_NAME>
+    ```
 
-```
-[ODBC Data Sources]
-<DSN_Name>=KyligenceODBC
-```
+1. To Map the DSN with ODBC, add below setting on the top of your ODBC.ini file. 
 
-For example, you may configure your connection to DSN name "EAT1_WH" as below.
+    ```
+    [ODBC Data Sources]
+    <DSN_Name>=KyligenceODBC
+    ```
 
-```
-[ODBC Data Sources]
-KyligenceDataSource=KyligenceODBC
+    For example, you may configure your connection to DSN name "EAT1_WH" as below.
 
-[EAT_WH1]
-ConnectionType=Direct
-Driver=/home/kylin/ODBCDriver/libKyligenceODBC64.so
-PORT=57070
-PROJECT=mstr
-SERVER=http://106.75.137.52
-```
-4. After you finished configuring the DSN, it is recommended that you restart your MSTR Intelligence Server so that the new created DSN will be taked into effective in MicroStrategy. 
-5. You can then connect to your MicroStrategy Linux I-Server and create a new database instance based on the DSN.
+    ```
+    [ODBC Data Sources]
+    KyligenceDataSource=KyligenceODBC
+
+    [EAT_WH1]
+    ConnectionType=Direct
+    Driver=/home/kylin/ODBCDriver/libKyligenceODBC64.so
+    PORT=57070
+    PROJECT=mstr
+    SERVER=http://106.75.137.52
+    ```
+
+1. After you finished configuring the DSN, it is recommended that you restart your MSTR Intelligence Server so that the new created DSN will be taked into effective in MicroStrategy. 
+2. You can then connect to your MicroStrategy Linux I-Server and create a new database instance based on the DSN.
+
+### FAQ
+
+**Q: If isql test failed, what should I do?**
+
+Please check the configurations are correct including odbc.ini and odbcinst.ini
+
+**Q: Error message with (11560) Unable to locate SQLGetPrivateProfileString function.**
+
+Please run the following command to resolve this problem:   
+
+`export LD_PRELOAD=/usr/lib/libodbcinst.so`
 
 
 

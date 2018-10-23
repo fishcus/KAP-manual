@@ -32,73 +32,44 @@
 
    > 注意：请不要将 ODBC 安装文件放在 root 目录下，否则会因为读写权限问题可能导致BI Server访问失败。
 
-2. 设置第三方库的环境变量
+2. 检查库的依赖
 
    `cd ODBCDriver/`
-
-   `source setenv.sh`
-
-3. 检查库的依赖
 
    `ldd libKyligenceODBC64.so`
 
    如果检查成功，您将会看到如下输出：
 
    ```
-   linux-vdso.so.1 =>  (0x00007ffd773f5000)
-   libz.so.1 => /lib64/libz.so.1 (0x00007f15a5c38000)
-   libdl.so.2 => /lib64/libdl.so.2 (0x00007f15a5a34000)
-   libcrypto.so.10 => /usr/local/ODBCDriver/ThirdParty/libcrypto.so.10 (0x00007f15a564f000)
-   libssl.so.10 => /usr/local/ODBCDriver/ThirdParty/libssl.so.10 (0x00007f15a53e2000)
-   libm.so.6 => /lib64/libm.so.6 (0x00007f15a50e0000)
-   libpthread.so.0 => /lib64/libpthread.so.0 (0x00007f15a4ec3000)
-   libc.so.6 => /lib64/libc.so.6 (0x00007f15a4b02000)
-   /lib64/ld-linux-x86-64.so.2 (0x00007f15a8800000)
-   libgssapi_krb5.so.2 => /lib64/libgssapi_krb5.so.2 (0x00007f15a48b6000)
-   libkrb5.so.3 => /lib64/libkrb5.so.3 (0x00007f15a45d0000)
-   libcom_err.so.2 => /lib64/libcom_err.so.2 (0x00007f15a43cc000)
-   libk5crypto.so.3 => /lib64/libk5crypto.so.3 (0x00007f15a419a000)
-   libkrb5support.so.0 => /lib64/libkrb5support.so.0 (0x00007f15a3f8a000)
-   libkeyutils.so.1 => /lib64/libkeyutils.so.1 (0x00007f15a3d86000)
-   libresolv.so.2 => /lib64/libresolv.so.2 (0x00007f15a3b6c000)
-   libselinux.so.1 => /lib64/libselinux.so.1 (0x00007f15a3946000)
-   libpcre.so.1 => /lib64/libpcre.so.1 (0x00007f15a36e5000)
-   liblzma.so.5 => /lib64/liblzma.so.5 (0x00007f15a34c0000)
+   linux-vdso.so.1 =>  (0x00007fffca9eb000)
+   librt.so.1 => /lib64/librt.so.1 (0x00007fe826b3f000)
+   libdl.so.2 => /lib64/libdl.so.2 (0x00007fe82693b000)
+   libm.so.6 => /lib64/libm.so.6 (0x00007fe8266b6000)
+   libpthread.so.0 => /lib64/libpthread.so.0 (0x00007fe826499000)
+   libc.so.6 => /lib64/libc.so.6 (0x00007fe826105000)
+   lib64/ld-linux-x86-64.so.2 (0x00007fe829aac000)
    ```
 
    如果检查失败，依赖库不存在，您将看到如下输出：
 
    ```
-   linux-vdso.so.1 =>  (0x00007ffd773f5000)
-   libz.so.1 => /lib64/libz.so.1 (0x00007f15a5c38000)
-   libdl.so.2 => /lib64/libdl.so.2 (0x00007f15a5a34000)
-   libcrypto.so.10 => not found
-   libssl.so.10 => not found
-   libm.so.6 => /lib64/libm.so.6 (0x00007f15a50e0000)
-   libpthread.so.0 => /lib64/libpthread.so.0 (0x00007f15a4ec3000)
-   libc.so.6 => /lib64/libc.so.6 (0x00007f15a4b02000)
-   /lib64/ld-linux-x86-64.so.2 (0x00007f15a8800000)
-   libgssapi_krb5.so.2 => /lib64/libgssapi_krb5.so.2 (0x00007f15a48b6000)
-   libkrb5.so.3 => /lib64/libkrb5.so.3 (0x00007f15a45d0000)
-   libcom_err.so.2 => /lib64/libcom_err.so.2 (0x00007f15a43cc000)
-   libk5crypto.so.3 => /lib64/libk5crypto.so.3 (0x00007f15a419a000)
-   libkrb5support.so.0 => /lib64/libkrb5support.so.0 (0x00007f15a3f8a000)
-   libkeyutils.so.1 => /lib64/libkeyutils.so.1 (0x00007f15a3d86000)
-   libresolv.so.2 => /lib64/libresolv.so.2 (0x00007f15a3b6c000)
-   libselinux.so.1 => /lib64/libselinux.so.1 (0x00007f15a3946000)
-   libpcre.so.1 => /lib64/libpcre.so.1 (0x00007f15a36e5000)
-   liblzma.so.5 => /lib64/liblzma.so.5 (0x00007f15a34c0000)
+   linux-vdso.so.1 =>  not found
+   librt.so.1 => /lib64/librt.so.1 (0x00007fe826b3f000)
+   libdl.so.2 => /lib64/libdl.so.2 (0x00007fe82693b000)
+   libm.so.6 => /lib64/libm.so.6 (0x00007fe8266b6000)
+   libpthread.so.0 => /lib64/libpthread.so.0 (0x00007fe826499000)
+   libc.so.6 => /lib64/libc.so.6 (0x00007fe826105000)
+   lib64/ld-linux-x86-64.so.2 (0x00007fe829aac000)
    ```
 
-   
 
 ### 设置ODBC DSN 
 
+1. 将 Kyligence ODBC 添加入配置文件
 
+   > **注意：**一些BI工具需要ODBC配置文件放置在自己的安装目录下，如[样例说明](#样例说明)中的**MicroStrategy**。因此请您根据所使用的BI工具进行配置。
 
-1. 将Kyligence ODBC添加入配置文件
-
-   **ODBC驱动配置文件** – /etc/odbcinst.ini (或者 /usr/local/etc/odbcinst.ini)
+   **ODBC驱动配置文件** – /etc/odbcinst.ini 
 
    ```
    [{DriverName}]
@@ -112,14 +83,14 @@
    Locale=en-US
    ```
 
-   **DSN配置文件** – /etc/odbc.ini (or /usr/local/etc)
+   **DSN配置文件** – /etc/odbc.ini 
 
    ```
    [{DSName}]
    Driver = {DriverName}
-   PORT = {KapPort}
-   PROJECT = {KapProject}
-   SERVER = {KapUrl}
+   PORT = {KE_Port}
+   PROJECT = {KE_Project}
+   SERVER = {KE_Url}
    ```
 
    样例配置： 
@@ -148,7 +119,7 @@
    SERVER = http://kapdemo.chinaeast.cloudapp.chinacloudapi.cn
    ```
 
-   > *注：请确认odbc.ini 文件中的 DSN 名称和 BI桌面环境下配置的DSN名称完全一致，保证BI应用由桌面客户端发布至服务器端时连接正常*
+   > **注意：**请确认 odbc.ini 文件中的 DSN 名称和 BI桌面环境下配置的DSN名称完全一致，保证BI应用由桌面客户端发布至服务器端时连接正常
 
 2. 使用命令行工具"isql DSN [UID '[PWD]']测试连接
 
@@ -169,26 +140,11 @@
    1 rows fetched
    ```
 
-### 故障排查
+### 样例说明
 
-1. SQL无法连接错误      
+这里我们以 **MicroStrategy Linux Intelligence Server** 为例，介绍如何创建DSN。
 
-   a. 检查ODBC配置文件和DSN配置文件是否正确
-   b. 确认已执行命令行
-
-   `source setenv.sh`
-
-2. (11560) Unable to locate SQLGetPrivateProfileString function.
-
-   此错误可以运行命令行解决：  
-
-   `export LD_PRELOAD=/usr/lib/libodbcinst.so`
-
-### 样例:
-
-#### 在MicroStrategy Linux Intelligence Server上创建DSN
-
-1. 在Linux shell下，浏览至Microstrategy的安装目录。
+1. 在Linux shell下，浏览至Microstrategy的**安装目录**。
 
 2. 打开文件ODBC.ini，按如下格式添加DSN配置信息。
 
@@ -213,7 +169,7 @@
    ```
    [ODBC Data Sources]
    KyligenceDataSource=KyligenceODBC
-
+   
    [EAT_WH1]
    ConnectionType=Direct
    Driver=/home/kylin/ODBCDriver/libKyligenceODBC64.so
@@ -226,4 +182,15 @@
 
 5. 现在您就可以在MicroStrategy Linux I-Server上使用该DSN创建新的数据库连接了。
 
-   
+
+### FAQ
+
+**Q: isql测试连接失败**   
+
+请检查ODBC配置文件和DSN配置文件是否正确
+
+**Q: 报错提示：(11560) Unable to locate SQLGetPrivateProfileString function.**
+
+请您运行以下命令：  
+
+`export LD_PRELOAD=/usr/lib/libodbcinst.so`

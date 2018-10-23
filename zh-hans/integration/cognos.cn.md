@@ -6,13 +6,13 @@
 
 ### 前置条件
 
-- Cognos Framework manager 的版本与 Cognos server 的版本一致。
+- Cognos Framework manager 的版本与 Cognos server 的版本需要一致。
 
-- Framework manager 和 Cognos server使用相同版本ODBC driver（若之前安装了64位的ODBC，需要卸载）
+- Framework manager 和 Cognos server 需要使用**相同版本的 32位 ODBC Driver**。
 
-- DSN 的名字在 Framework manager 和 Cognos server 上一致。
+  > 若之前安装了64位的ODBC Driver，需要先进行卸载
 
-- ODBC driver 版本跟 Kyligence Enterprise 版本的匹配。
+- DSN 的名字在 Framework manager 和 Cognos server 需要一致。
 
 
 ### 创建一个Cognos数据源
