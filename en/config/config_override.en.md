@@ -1,14 +1,20 @@
 ## Configuration Overriding
 
-Some of the configuration properties in `$KYLIN_HOME/conf/` could be overridden through Kyligence Enterprise GUI. Configuration overriding has two scopes: project level and cube level. The priority order can be stated as: cube level configurations > project level configurations > configuration files.  
+Some of the configuration properties in `$KYLIN_HOME/conf/` could be overridden through Kyligence Enterprise GUI. Configuration overriding has two scopes: Project level and Cube level. The priority order can be stated as: Cube level configurations > Project level configurations > configuration files.  
+
+Configuration files as below on ``$KYLIN_HOME/conf``:
+``kylin.properties``,``kylin_hive_conf.xml``,``kylin_job_conf.xml`` and ``kylin_job_conf_inmem.xml``.
 
 ### Project-level Configuration Overriding
 
-At the Project Management page, open the edit page for one of projects, user could add configuration properties, which would override property values in configuration files, as the figure below shown: 
+The user could open the edit page for one of the projects on the Project Management Page and add configuration properties which could override property values in configuration files, as the figure below shown:
 
-![override_project](images/override_project.en.png)
+![override_project](images/override_project_1.en.png)
 
-The configuration of kylin.query.force-limit can be overridden at project level.
+![override_project](images/override_project_2.en.png)
+
+The configuration of ``kylin.query.force-limit`` can be overridden at Project level.
+
 
 ### Cube-level Configuration Overriding
 
@@ -18,19 +24,13 @@ The configuration of kylin.query.disable-cube-noagg-sql can be overridden at Cub
 
 ### Overriding Properties In kylin.properties
 
-The configurations below can be overridden at cube level and project level.
+The configurations in ``kylin.properties`` list below can be overridden at Cube level and Project level.
 
-
-
+- All parameter start with `kylin.engine.mr.config-override.`, default is empty string;
 - `kylin.cube.cuboid-scheduler`, default is org.apache.kylin.cube.cuboid.DefaultCuboidScheduler;
 - `kylin.cube.algorithm`, default is auto, other valid values include inmem, layer;
 - `kylin.cube.algorithm.layer-or-inmem-threshold`, default is 7;
-- `kylin.cube.aggrgroup.max-combination`, default is 4096;
-
-> Note: **DO NOT** set this parameter over 10000. Otherwise it will consume a lot of CPU and memory resources when calculating the dimension combination, may lead to browser unstable or Kyligence Enterprise Instance crash. If there are a number of dimensions in the Cube, it is recommended to set multiple Aggregation Groups (AGG). 
-
 - `kylin.cube.aggrgroup.is-mandatory-only-valid`, default is false;
-- `kylin.engine.mr.config-override.`, default is empty string;
 - `kylin.engine.mr.reduce-input-mb`, default is 500;
 - `kylin.engine.mr.max-reducer-number`, default is 500;
 - `kylin.engine.mr.mapper-input-rows`, default is 1000000;
@@ -43,20 +43,39 @@ The configurations below can be overridden at cube level and project level.
 - `kylin.storage.hbase.min-region-count`, default is 1;
 - `kylin.storage.hbase.max-region-count`, default is 500;
 - `kylin.storage.partition.max-scan-bytes`, default is 3221225472, i.e. 3G;
+- `kylin.cube.aggrgroup.max-combination`, default is 4096;
+
+  > **Note:** **DO NOT** set this parameter over 10000. Otherwise it will consume a lot of CPU and memory resources when calculating the dimension combination, may lead to browser unstable or Kyligence Enterprise Instance crash. If there exist a lot of dimensions in the Cube, it is recommended to set multiple Aggregation Groups (AGG).
 
 
-### Overriding Properties in kylin_hive_conf.xml
+### Overriding Properties in `kylin_hive_conf.xml`
 
-Kyligence Enterprise allows overriding properties in kylin_hive_conf.xml through Kyligence Enterprise Web GUI. Replace original values by the following Key-Value format：
+Kyligence Enterprise allows overriding properties in `kylin_hive_conf.xml` through Kyligence Enterprise Web GUI. Replace original values by the following Key-Value format：
+
+**Cube level**:
 
 kylin.hive.config.override *key* = *value*
 
 ![override_cube](images/override_hive.en.png)
 
-### Overriding Properties In kylin_job_conf.xml And kylin_job_conf_inmem.xml
+**Project level**:
 
-Kyligence Enterprise allows overriding kylin_job_conf.xml and kylin_job_conf_inmem.xml through Kyligence Enterprise Web GUI. Replace original values by the following Key/Value format：
+kylin.hive.config.override.*key* = *value*
+
+![override_cube](images/override_hive_project.en.png)
+
+### Overriding Properties In `kylin_job_conf.xml` And `kylin_job_conf_inmem.xml`
+
+Kyligence Enterprise allows overriding ``kylin_job_conf.xml`` and ``kylin_job_conf_inmem.xml`` through Kyligence Enterprise Web GUI. Replace original values by the following Key-Value format：
+
+**Cube level**:
 
 kylin.job.mr.config.override *key* = *value*
 
 ![override_cube](images/override_job.en.png)
+
+**Project level**:
+
+kylin.job.mr.config.override.*key* = *value*
+
+![override_cube](images/override_job_project.en.png)
