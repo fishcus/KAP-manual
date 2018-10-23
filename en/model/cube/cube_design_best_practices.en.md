@@ -1,6 +1,6 @@
 ## Cube Design Best Practices and Examples ##
 
-Cube design is not a trivial task especially for big data sets. Some settings, like dictionary encoding and lookup table snapshot, are not suggested to apply on extremely large data sets. To help you get deep knowledge into your data and design a good cube, Kyligence Enterprise provides tools like table sampling and model check which should be adopted whenever possible.
+Cube design is not a trivial task especially for big datasets. Some settings, like dictionary encoding and lookup table snapshot, are not suggested to apply on extremely large datasets. To help you get deep knowledge into your data and design a good cube, Kyligence Enterprise provides tools like table sampling and model check which should be adopted whenever possible.
 
 In this guide, we will explain some best practices of how to design a good cube, using the sample data as an example.
 
@@ -18,7 +18,7 @@ Typically table statistics will answer questions like the following and these nu
 
 To get the statistics of your tables:
 
-1. Go to **Data Source** panel. From the left navigation, select **Studio** -> **Overview** -> **Data Source**.
+1. Go to **Data Source** panel. From the left navigation bar, select **Studio** -> **Overview** -> **Data Source**.
 2. To collect statistical information of a table, select it in the table list and then click **Sampling** button on  top right of the panel.
    - In the popup, click **Submit** to launch a sampling job on the table.
    - The job can take a few minutes to complete depending on the size of the table and the capacity of your cluster. You can see its progress in **Monitor** panel.
@@ -41,7 +41,7 @@ To get the statistics of your tables:
 
 Details about creating a model is explained in the [Data Model](../data_modeling.en.md) chapter. Here we just highlight one decision point that causes more problems than others.
 
-The decision point is whether or not to create snapshots for lookup tables. The system assumes lookup tables are relatively small, which is true in most cases. That is why, by default, the system creates snapshots for all lookup tables. And this gives a few benefits:
+The decision point is whether to create snapshots for lookup tables or not. The system assumes lookup tables are relatively small, which is true in most cases. That is why, by default, the system creates snapshots for all lookup tables. And this brings a few benefits:
 
 - With snapshot, a lookup table can be queried directly (without always joining with a fact table). Take the sample data as an example, the following queries requires a snapshot to run:
   ```sql
@@ -50,7 +50,7 @@ The decision point is whether or not to create snapshots for lookup tables. The 
   select count(*), ACCOUNT_COUNTRY
   from TEST_ACCOUNT group by ACCOUNT_COUNTRY;
   ```
-- With snapshot, you can define derived dimensions in cube.
+- With snapshot, you can define derived dimensions in cubes.
 
   However, if your lookup table is too big, e.g. over 300 MB, you will encounter error during cube build, complaining the table is too big to take a snapshot.
 
@@ -58,7 +58,7 @@ The decision point is whether or not to create snapshots for lookup tables. The 
 
 - Exclude big lookup tables for snapshots in model definition.
 
-  How big is too big? The system measures the table by data size, however it is not clear until cube is built. By experience, you should **watch out for any lookup table over 1 millions rows**.
+  How big is too big? The system measures the table by data size, however, it is not clear until cube is built. By experience, you should **watch out for any lookup table over 1 millions rows**.
 
   To exclude a lookup table for snapshot, in the bottom of edit model page, find **Overview** and then the **Model** tab, uncheck the snapshot checkbox in the lookup table list.
 
@@ -85,7 +85,7 @@ Please refer to [Model Check](../model_check.en.md) chapter for how to perform t
 
 ### Create Cube
 
-We are now ready to show why and how the above preparations can help cube design. Please refer to [Create Cube](create_cube.en.md)  chapter for detailed operations. Here are a few best pratices to pay attention as you design a cube.
+We are now ready to show why and how the above preparations can help cube design. Please refer to [Create Cube](create_cube.en.md)  chapter for detailed operations. Here are a few best practices to pay attention as you design a cube.
 
 - **Deciding Normal or Derived Dimensions**
 
@@ -110,9 +110,9 @@ We are now ready to show why and how the above preparations can help cube design
 
 - **Deciding Rowkey Encodings**
 
-  Another setting that often brings troubles to a newbie is rowkey encoding. The trap here is **dictionary encoding is NOT applicable to Ultra-High-Cardinality (UHC) columns**. The bar of UHC is 1 millions by experience. That is why knowning the cardinality of columns is so important.
+  Another setting that often brings troubles to a newbie is rowkey encoding. The trap here is **dictionary encoding is NOT applicable to Ultra-High-Cardinality (UHC) columns**. The bar of UHC is 1 millions by experience. That is why knowing the cardinality of columns is so important.
 
-  The guidline of choosing rowkey encoding is as following:
+  The guideline of choosing rowkey encoding is as following:
 
   - Start with `date`, `time`, and `dictionary` encoding. Date and time have their own specific encodings. For numbers and strings with cardinality under 1 millions, `dictionary` is usually the most efficient encoding.
   - For UHC columns, if they are numbers, choose `integer` or `double` encoding.
@@ -135,7 +135,7 @@ We are now ready to show why and how the above preparations can help cube design
 
   3. Low cardinality dimensions.
 
-     Orgnize dimensions **in cardinality's descending order** can help to calculate the cube more efficiently.
+     Organize dimensions **in cardinality's descending order** can help to calculate the cube more efficiently.
 
 
 ### Test the Cube Using a Small Piece of Data
