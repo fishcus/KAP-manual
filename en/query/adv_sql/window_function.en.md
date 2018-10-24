@@ -7,17 +7,17 @@ Kyligence Enterprise currently supports two kinds of window functions, namely, r
 
 - Rank Function
 
-  - [ROW_NUMBER()](#ROW_NUMBER() OVER window)
-  - [RANK()](#RANK() OVER window)
-  - [DENSE_RANK()](#DENSE_RANK() OVER window)
-  - [NTILE(value)](#NTILE(value) OVER window)
+  - [ROW_NUMBER()](#ROW_NUMBER()-OVER-window)
+  - [RANK()](#RANK()-OVER-window)
+  - [DENSE_RANK()](#DENSE_RANK()-OVER-window)
+  - [NTILE(value)](#NTILE(value)-OVER-window)
 
 - Offset Function
 
-  - [FIRST_VALUE(value)](#FIRST_VALUE(value) OVER window)
-  - [LAST_VALUE(value)](#LAST_VALUE(value) OVER window)
-  - [LEAD(value, offset, default)](#LEAD(value, offset, default) OVER window)
-  - [LAG(value, offset, default)](#LAG(value, offset, default) OVER window)
+  - [FIRST_VALUE(value)](#FIRST_VALUE(value)-OVER-window)
+  - [LAST_VALUE(value)](#LAST_VALUE(value)-OVER-window)
+  - [LEAD(value, offset, default)](#LEAD(value,-offset,-default)-OVER-window)
+  - [LAG(value, offset, default)](#LAG(value,-offset,-default)-OVER-window)
 
 
 
@@ -82,16 +82,19 @@ Response Example:
 
   - Returns an integer ranging from 1 to value, dividing the partition as equally as possible
 - Query Example
+
   > **Note**: Divide every buyer's orders into 3 groups according to the quanlity of purchased goods.
-  ```SQL
-  SELECT NTILE(3) OVER w AS N_3
-    ,TRANS_ID
-    ,BUYER_ID
-    ,ITEM_COUNT
-    ,PART_DT
-  FROM KYLIN_SALES
-  WINDOW w AS (PARTITION BY BUYER_ID ORDER BY ITEM_COUNT)
-  ```
+
+
+```SQL
+SELECT NTILE(3) OVER w AS N_3
+	,TRANS_ID
+	,BUYER_ID
+	,ITEM_COUNT
+	,PART_DT
+FROM KYLIN_SALES
+WINDOW w AS (PARTITION BY BUYER_ID ORDER BY ITEM_COUNT)
+```
 
 - Response Example
   ![](images/ntile_en.png)

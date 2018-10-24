@@ -6,17 +6,17 @@ Kyligence Enterprise 目前支持两类窗口函数，分别为排名函数和�
 
 - 排名函数
 
-  - [ROW_NUMBER()](#ROW_NUMBER() OVER window)
-  - [RANK()](#RANK() OVER window)
-  - [DENSE_RANK()](#DENSE_RANK() OVER window)
-  - [NTILE(value)](#NTILE(value) OVER window)
+  - [ROW_NUMBER()](#ROW_NUMBER()-OVER-window)
+  - [RANK()](#RANK()-OVER-window)
+  - [DENSE_RANK()](#DENSE_RANK()-OVER-window)
+  - [NTILE(value)](#NTILE(value)-OVER-window)
 
 - 偏移函数
 
-  - [FIRST_VALUE(value)](#FIRST_VALUE(value) OVER window)
-  - [LAST_VALUE(value)](#LAST_VALUE(value) OVER window)
-  - [LEAD(value, offset, default)](#LEAD(value, offset, default) OVER window)
-  - [LAG(value, offset, default)](#LAG(value, offset, default) OVER window)
+  - [FIRST_VALUE(value)](#FIRST_VALUE(value)-OVER-window)
+  - [LAST_VALUE(value)](#LAST_VALUE(value)-OVER-window)
+  - [LEAD(value, offset, default)](#LEAD(value,-offset,-default)-OVER-window)
+  - [LAG(value, offset, default)](#LAG(value,-offset,-default)-OVER-window)
 
 
 
@@ -82,7 +82,9 @@ WHERE ROW_NUM <= 5
   - 将分区内的有序数据尽量按 value 等分，返回组号
 - 查询示例
   > **提示**：将每个买家的订单按照购买商品个数等分为3组
-  ```SQL
+  
+
+```SQL
   SELECT NTILE(3) OVER w AS N_3
     ,TRANS_ID
     ,BUYER_ID
@@ -90,7 +92,7 @@ WHERE ROW_NUM <= 5
     ,PART_DT
   FROM KYLIN_SALES
   WINDOW w AS (PARTITION BY BUYER_ID ORDER BY ITEM_COUNT)
-  ```
+```
 
 - 返回示例
   ![](images/ntile_cn.png)
