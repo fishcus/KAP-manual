@@ -8,9 +8,9 @@ Microsoft Power BI Desktop 是由微软推出的一款商业智能的专业分�
 
 ### 安装 Kyligence Enterprise Data Connector for PowerBI 插件
 
-如果您的 Power BI Desktop 版本>= **2018年10月版本（2.63)** 则您不需要手动安装插件，因为自该版本起Kyligence成为其内置的认证数据源。
+如果您的 Power BI Desktop 版本>= **2018年10月版本(2.63)** 则您不需要手动安装插件，因为自该版本起Kyligence成为其内置的认证数据源。
 
-如果您的 Power BI Desktop 版本< **2018年10月版本（2.63)**，您可以按照一下步骤安装Kyligence Enterprise Data Connector for PowerBI 插件：
+如果您的 Power BI Desktop 版本< **2018年10月版本(2.63)**，您可以按照以下步骤安装 Kyligence Enterprise Data Connector for PowerBI 插件：
 
 1. 在 [Kyligence Account 页面](http://account.kyligence.io)下载 Kyligence Enterprise Data Connector for PowerBI 插件。
 
