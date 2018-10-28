@@ -1,6 +1,6 @@
 ## LDAP Authentication
 
-Kyligence Enterprise supports integration with LDAP servers for user authentication. This validation is achieved through the Spring Security framework, so it has a good versatility. Before enabling LDAP authentication, please contact your LDAP administrator for required information.
+Kyligence Enterprise supports integration with LDAP servers for user authentication. You can achieve the validation through the Spring Security framework which has a good versatility, also you can achieve the LDAP validation through Active Directory Service. Before enabling LDAP authentication, please contact your LDAP administrator for required information.
 
 ### Setup LDAP Server
 
@@ -204,13 +204,22 @@ Verify New Password
 LDAP Administrator password
 ```
 
+### Configure LDAP Service With Mirosoft Azure Active Directory Service 
+
+In addition to using a local LDAP server, Kyligence Enterprise also supports LDAP validation through the Active Directory service. For example you can achieve the LDAP validation through Microsoft Azure Active Directory Service which requires the following pre-work before authentication:
+
+1. You can subscribe and create a Azure Active Directory (referred to as AD) (**Tips**: you can also use existing Azure AD to finish the validation.) The installation and configuration information, please refer to following link for details: [ Azure Active Directory Setup](https://docs.microsoft.com/en-us/azure/active-directory/fundamentals/active-directory-access-create-new-tenant)
+
+2. After the Azure AD Service configuration is complete, you can setup the Azure AD domain service, which provides the managed domains service, you can refer this guide [Azure AD Domain Configuration](https://docs.microsoft.com/en-us/azure/active-directory-domain-services/active-directory-ds-overview) for Configuration.
+
+3. After finished the Azure AD Service configuration, you can configure users and groups on Azure AD UI page, also you can configure the Organizational Unit(OU) through the Azure AD Domain Services managed domain, you can refer this guide [Azure AD domain service create ou](https://docs.microsoft.com/en-us/azure/active-directory-domain-services/active-directory-ds-admin-guide-create-ou) for configuration.
 
 ### Configure LDAP Information in Kyligence Enterprise
 
 First, in `conf/kylin.properties`, configure the URL of the LDAP server and the username and password (if the LDAP server is not anonymous). For security reason, the password here need be encrypted with AES, you can run the below command to get the encrypted password:
 
 ```shell
-${KYLIN_HOME}/bin/kylin.sh io.kyligence.kap.tool.general.CryptTool AES *your_password*
+${KYLIN_HOME}/bin/kylin.sh io.kyligence.kap.tool.general.CryptTool AES your_password
 # ${crypted_password}
 ```
 

@@ -1,6 +1,6 @@
 ## LDAP 验证
 
-Kyligence Enterprise 支持与 LDAP 服务器集成完成用户验证。这种验证是通过 Spring Security 框架实现的，所以具有良好的通用性。在启用 LDAP 验证之前，建议您联系 LDAP 管理员，以获取必要的信息。
+Kyligence Enterprise 支持与 LDAP 服务器集成完成用户验证。您可以通过使用具有良好通用性的 Spring Security 框架实现的实现认证，也可以使用 Active Directory 服务实现 LDAP 验证。在启用 LDAP 验证之前，建议您联系 LDAP 管理员，以获取必要的信息。
 
 ### LDAP 服务器的安装
 启用 LDAP 验证之前，需要一个运行的 LDAP 服务器。如果已经有，联系 LDAP 管理员，以获取必要的信息，如服务器连接信息、人员和组织结构等。
@@ -188,13 +188,22 @@ objectClass: top
 ```shell
 ldappasswd -xWD cn=Manager,dc=example,dc=com -S cn=jenny,ou=People,dc=example,dc=com
 ```
+### 配置 Microsoft Azure Active Directory 服务进行 LDAP 验证
+
+除了使用本地 LDAP 服务器，Kyligence Enterprise 也支持通过云端 Active Directory 服务进行 LDAP 的验证，以 Microsoft Azure Active Directory 服务为验证场景，认证前需要进行以下的前置工作：
+ 
+1. 您需要进行 Azure Active Directory（简称 AD）的订阅以及创建（提示：您也可以使用已有的 Azure AD），您可以参考[ Azure Active Directory 配置文档](https://docs.microsoft.com/zh-cn/azure/active-directory/fundamentals/active-directory-access-create-new-tenant) 完成创建和配置。
+
+2. 安装 Azure AD 域服务。域服务提供托管域服务，例如域加入和 LDAP 服务，您可以参考 [Azure AD 域服务配置文档](https://docs.microsoft.com/zh-cn/azure/active-directory-domain-services/active-directory-ds-overview)中的步骤来进行 Azure AD 域服务的创建和相关的配置。
+
+3. 配置好 Microsoft Azure AD 域服务后，在 Azure AD UI 上进行组和用户的配置以调整组织架构。您也可以参考 [Azure AD 在托管域上创建 OU](https://docs.microsoft.com/zh-cn/azure/active-directory-domain-services/active-directory-ds-admin-guide-create-ou) 进行用户的调整。
 
 ### 在 Kyligence Enterprise 中配置 LDAP 服务器的信息
 
 首先，在 conf/kylin.properties 中，需要配置 LDAP 服务器的 URL，必要的用户名和密码（如果 LDAP Server 不是匿名访问）。为安全起见，这里的密码是需要加密（加密算法 AES），您可以运行下面的命令来获得加密后的密码：
 
 ```shell
-${KYLIN_HOME}/bin/kylin.sh io.kyligence.kap.tool.general.CryptTool AES *your_password*
+${KYLIN_HOME}/bin/kylin.sh io.kyligence.kap.tool.general.CryptTool AES your_password
 # ${crypted_password}
 ```
 
