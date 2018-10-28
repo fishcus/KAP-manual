@@ -6,24 +6,24 @@ Qlik Sense delivers intuitive platform solutions for self-service data visualiza
 
 For the installation information, please refer to [Kyligence ODBC Driver tutorial](../driver/kyligence_odbc.en.md).
 
-#### Install Qlik Sense
+### Install Qlik Sense
 
 For the installation of Qlik Sense, please visit [Qlik Sense Desktop download](https://www.qlik.com/us/try-or-buy/download-qlik-sense).
 
 ### Connection with Qlik Sense
 After configuring your Local DSN and installing Qlik Sense successfully, you may go through the following steps to connect Kyligence Enterprise with Qlik Sense.
 
-1. From Windows Desktop Shortcut or click `Start` -> `All Applications` -> `Qlik Sense` -> `Qlik Sense Desktop` to open the application `Qlik Sense Desktop`.
+1. From Windows Desktop Shortcut or click **Start** -> **All Applications**-> **Qlik Sense** -> **Qlik Sense Desktop** to open the application **Qlik Sense Desktop**.
 
-2. Input your Qlik account to login, then the following dialog will pop up. Click `Create A New App`.![Create New Application](images/qlik/welcome_to_qlik_desktop.png)
+2. Input your Qlik account to login, then the following dialog will pop up. Click **Create A New App**.![Create New Application](images/qlik/welcome_to_qlik_desktop.png)
 
-   You may specify any name different from existing applications and then open this application. In this example, we name it as “Kylinfortesting".![Specify a unique name](images/qlik/create_new_application.png)
+   You may specify any name different from existing applications and then open this application. In this example, we name it as *Kylinfortesting*.![Specify a unique name](images/qlik/create_new_application.png)
 
-3. There are two choices in the Application View. Please select the bottom `Script Editor`.![Select Script Editor](images/qlik/script_editor.png)
+3. There are two choices in the Application View. Please select the bottom **Script Editor**.![Select Script Editor](images/qlik/script_editor.png)
 
-   The Data Load Editor window shows. Click `Create New Connection` in the upper right of this page.![Create New Data Connection](images/qlik/create_data_connection.png)
+   The Data Load Editor window shows. Click **Create New Connection** in the upper right of this page.![Create New Data Connection](images/qlik/create_data_connection.png)
 
-   Select `DSN` you have created, ignore the account information, and then click `Create`. ![ODBC Connection](images/qlik/odbc_connection.png)
+   Select **DSN** you have created, ignore the account information, and then click **Create**. ![ODBC Connection](images/qlik/odbc_connection.png)
 
 4. Change the default scripts of "TimeFormat", "DateFormat" and "TimestampFormat" to:
 
@@ -41,7 +41,7 @@ After configuring your Local DSN and installing Qlik Sense successfully, you may
 
    > **Note**: When you connect Qlik to Kyligence Enterprise, it will send a query which triggers full table scan. This will take a relatively long time to process the query when the dataset is extremely large. You can adjust parameter `kylin.query.force-limit` in `kylin.properties` to 1000, which indicates that the total records queried by statement `select *` from the data source is limited to 1000.
    
-   Below is the screenshot of such Direct Query script against *kylin_sales_cube* in *Learn_kylin* project.![Script](images/Qlik/script_run_result.PNG)
+   Below is the screenshot of such Direct Query script against *kylin_sales_cube* in *learn_kylin* project.![Script](images/Qlik/script_run_result.PNG)
 
    Once you defined such script, Qlik Sense can generate SQL based on this script for your report.
 
@@ -108,17 +108,17 @@ After configuring your Local DSN and installing Qlik Sense successfully, you may
 
    Click **Load Data** on the upper right of the window, Qlik Sense will then send out inspection query to test the connection based on the script.![Load Data](images/qlik/load_data.png)
 
-6. Create a new report
+6. Create a new report.
 
    On the top left menu open **App Overview**.![Open App Overview](images/Qlik/go_to_app_overview.png)
 
    Click **Create new sheet** on the pop-up page.![Create new sheet](images/Qlik/create_new_report.png)
 
-   Select the charts you need, then add dimension and measurement based on your requirements. ![Select the required charts, dimension and measure](images/qlik/add_dimension.png)
+   Select the charts you need, then add dimension and measure based on your requirements. ![Select the required charts, dimension and measure](images/qlik/add_dimension.png)
 
    You will get your worksheet and the connection is complete. Your Kyligence Enterprise data shows in Qlik Sense now.![View Kyligence Enterprise data in Qlik Sense](images/Qlik/report.png)
 
-   Please note that if you want the report to hit on Cube, you need to create the measure exactly as those are defined in the Cube. For the case of *Kylin_sales_cube* in Learn_kylin project, we use sum(price) as an example. 
+   Please note that if you want the report to hit on Cube, you need to create the measure exactly as those are defined in the Cube. For the case of *Kylin_sales_cube* in *learn_kylin* project, we use sum(price) as an example. 
 
 ![Create Measure that can hit on Cube](images/Qlik/measure.png)
 
@@ -131,41 +131,41 @@ After configuring your Local DSN and installing Qlik Sense successfully, you may
 
 ![进入QMC](images/Qlik/01-licenses.PNG)
 
-2. Select `QMC` -> `License and tokens` -> `User access allocations` -> `Allocate` to add the current user and enable the use of `Qlik Sense Hub`.
+2. Select **QMC** -> **License and tokens** -> **User access allocations** -> **Allocate** to add the current user and enable the use of **Qlik Sense Hub**.
 
 ![开启qlik hub](images/Qlik/02-user_access.PNG)
 
-3. Select the `Apps` module in QMC
+3. Select the **Apps** module in QMC
 
 ![选择APPS](images/Qlik/03-apps.PNG)
 
-4. Select the Apps module in QMC and select `Import` to import the application created by `Qlik Sense Desktop` locally.
+4. Select the Apps module in QMC and select **Import** to import the application created by **Qlik Sense Desktop** locally.
 
 ![导入APP](images/Qlik/04-add_apps.PNG)
 
-5. Select `Publish` to publish applications that have just been imported or previously existed.
+5. Select **Publish** to publish applications that have just been imported or previously existed.
 
 ![发布APP](images/Qlik/05-publish_app.PNG)
 
-6. Enter `Qlik Sense Hub`, you can find the application just released in the `Streams` module. If you just import it and not publish it, the application exists in the `Personal` module.
+6. Enter **Qlik Sense Hub**, you can find the application just released in the **Streams** module. If you just import it and not publish it, the application exists in the **Personal** module.
 
 ![进入APP](images/Qlik/06_hub_app.PNG)
 
-7. Go to the KAP_QLIK application just released to view the charts created in `Qlik Sense Desktop`.
+7. Go to the KAP_QLIK application just released to view the charts created in **Qlik Sense Desktop**.
 
 ![查看图表](images/Qlik/07_hub_Qlik.PNG)
 
 #### Connect Kyligence Enterprise directly in Qlik Sense Hub
 
-1. Create a new application in the `Qlik Sense Hub` through a browser and connect to a Kyligence Enterprise data source. The connection method is the same as connecting Kyligence Enterprise in `Qlik Sense Desktop`.
+1. Create a new application in the **Qlik Sense Hub** through a browser and connect to a Kyligence Enterprise data source. The connection method is the same as connecting Kyligence Enterprise in **Qlik Sense Desktop**.
 
 ![新建应用](images/Qlik/08_hub_create.PNG)
 
-2. Edit the application you just created and use the data in Kyligence Enterprise freely.
+2. Edit the application you just created and use the data in Kyligence Enterprise.
 
 ![编辑应用](images/Qlik/09_hub_table.PNG)
 
-3. Edit the chart and make it the same way as in `Qlik Sense Desktop`.
+3. Edit the chart and make it the same way as in **Qlik Sense Desktop**.
 
 ![编辑图表](images/Qlik/10_hub_complete.PNG)
 

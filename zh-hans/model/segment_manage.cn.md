@@ -34,7 +34,6 @@
 
   - **Ready（启用）**：设计完成且经过构建的cube，此时cube包含segment且可以查询，无法直接删除或清理。除查看Cube描述信息外，该状态支持操作如下：
 
-    - 查看cube(查看cube描述信息)
     - 验证SQL
     - 构建
     - 禁用（将具有ready cube转化为disable状态）

@@ -4,7 +4,7 @@ When build completes, the status of cube will become "Ready", meaning it is read
 
 > Note: In production, it is more common to connect Kyligence Enterprise via a programming interface, like Rest API or ODBC/JDBC. However Kyligence Enterprise also provides a query UI to facilitate simple SQL ability mostly for demo and testing.
 
-To run a query, first select the `Kylin_Sample_1` project, and then go to the "Insight" page. Find a big input box where you can enter SQL according to the relational data model. Click "Submit" button to run a query.Below is a few SQL examples and their result.  
+To run a query, first select the *learn_kylin* project, and then go to the **Insight** page. Find a big input box where you can enter SQL according to the relational data model. Click **Submit** button to run a query.Below is a few SQL examples and their result.  
 
 ### Row Count of a Single Table
 

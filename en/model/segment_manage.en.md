@@ -35,6 +35,7 @@ There are 4 types of Cubes built, which can be viewed in the `Status` column of 
     > Notice: When cubes are re-disabled after they are enabled, you will not be able to edit dimensions and measures. If you need to edit dimensions and metrics, you need to redesign and build a new cube.
 
 - *Ready:* A cube with Ready status means it has a segment and can be queried, but cannot be deleted or purged directly. Common executable actions includes: 
+
   + Validate SQL
   + Edit
   + Disable (Convert a Ready cube to Disable) 
