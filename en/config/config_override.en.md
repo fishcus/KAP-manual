@@ -27,25 +27,49 @@ The configuration of kylin.query.disable-cube-noagg-sql can be overridden at Cub
 The configurations in ``kylin.properties`` list below can be overridden at Cube level and Project level.
 
 - All parameter start with `kylin.engine.mr.config-override.`, default is empty string;
+
 - `kylin.cube.cuboid-scheduler`, default is org.apache.kylin.cube.cuboid.DefaultCuboidScheduler;
+
 - `kylin.cube.algorithm`, default is auto, other valid values include inmem, layer;
+
 - `kylin.cube.algorithm.layer-or-inmem-threshold`, default is 7;
+
 - `kylin.cube.aggrgroup.is-mandatory-only-valid`, default is false;
+
 - `kylin.engine.mr.reduce-input-mb`, default is 500;
+
 - `kylin.engine.mr.max-reducer-number`, default is 500;
+
 - `kylin.engine.mr.mapper-input-rows`, default is 1000000;
+
 - `kylin.hbase.default.compression.codec`, default is none, other valid values include snappy, lzo, gzip, lz4;
+
 - `kylin.job.sampling-percentage`, default is 100;
+
 - `kylin.snapshot.max-cache-entry`, default is 500;
+
 - `kylin.snapshot.max-mb`, default is 300;
+
 - `kylin.storage.hbase.region-cut-gb`, default is 5.0;
+
 - `kylin.storage.hbase.hfile-size-gb`, default is 2.0;
+
 - `kylin.storage.hbase.min-region-count`, default is 1;
+
 - `kylin.storage.hbase.max-region-count`, default is 500;
+
 - `kylin.storage.partition.max-scan-bytes`, default is 3221225472, i.e. 3G;
+
 - `kylin.cube.aggrgroup.max-combination`, default is 4096;
 
   > **Note:** **DO NOT** set this parameter over 10000. Otherwise it will consume a lot of CPU and memory resources when calculating the dimension combination, may lead to browser unstable or Kyligence Enterprise Instance crash. If there exist a lot of dimensions in the Cube, it is recommended to set multiple Aggregation Groups (AGG).
+
+- `kylin.source.hive.flat-table-storage-format`, default is SEQUENCEFILE, other valid value is TEXTFILE;
+
+- `kylin.source.hive.flat-table-field-delimiter`, default is ‘ \u001F’, other valid values are ‘\t’, ‘\n’;
+
+  > **Note: Only** when `kylin.source.hive.flat-table-storage-format`=TEXTFILE, the system would apply the configuration  `kylin.source.hive.flat-table-field-delimiter`
+
 
 
 ### Overriding Properties in `kylin_hive_conf.xml`
