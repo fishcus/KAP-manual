@@ -15,7 +15,7 @@
 
 
 
-### Get Model List
+### Get Model Description List
 
 - `GET http://host:port/kylin/api/models`
 
@@ -57,9 +57,9 @@
 
 
 
-### Get Model Description
+### Get Model Description by Project Name and Model Name
 
-- `GET http://host:port/kylin/api/model_desc/{projectName}/{modelName}`
+- `GET http://host:port/kylin/api/models/{projectName}/{modelName}`
 
 - URL Parameters
   - `projectName` - `required` `string`, project name
@@ -74,7 +74,7 @@
 
   ```shell
   curl -X GET \
-    'http://host:port/kylin/api/model_desc/learn_kylin/kylin_sales_model' \
+    'http://host:port/kylin/api/models/learn_kylin/kylin_sales_model' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \

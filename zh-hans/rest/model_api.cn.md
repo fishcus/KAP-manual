@@ -16,7 +16,7 @@
 
 
 
-### 返回模型
+### 返回模型描述信息列表
 
 - `GET http://host:port/kylin/api/models`
 
@@ -58,9 +58,9 @@
 
 
 
-### 返回模型描述信息
+### 按项目名和模型名返回模型描述信息
 
-- `GET http://host:port/kylin/api/model_desc/{projectName}/{modelName}`
+- `GET http://host:port/kylin/api/models/{projectName}/{modelName}`
 
 - URL Parameters
   - `projectName` - `必选` `string`，项目名称
@@ -75,7 +75,7 @@
 
   ```shell
   curl -X GET \
-    'http://host:port/kylin/api/model_desc/learn_kylin/kylin_sales_model' \
+    'http://host:port/kylin/api/models/learn_kylin/kylin_sales_model' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
