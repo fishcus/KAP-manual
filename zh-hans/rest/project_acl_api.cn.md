@@ -35,6 +35,7 @@
     'http://host:port/kylin/api/access/ProjectInstance/{uuid}' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8'
   ```
 
@@ -87,6 +88,7 @@
     'http://host:port/kylin/api/access/ProjectInstance/{uuid}' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8' \
     -d '{
   	"permission": "READ",
@@ -134,6 +136,7 @@
     'http://host:port/kylin/api/access/ProjectInstance/{uuid}' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8' \
     -d '{
   	"permission": "OPERATION",
@@ -188,6 +191,7 @@
     'http://host:port/kylin/api/access/ProjectInstance/{uuid}?accessEntryId=1&sid=ANALYST&principal=true' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8' \
     -d '{
   	"principal": true, 
