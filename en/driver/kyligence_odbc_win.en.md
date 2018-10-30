@@ -18,9 +18,9 @@ In this section, we will take Windows 7 as an example to introduce how to instal
 
 2. Apply and [Download](http://account.kyligence.io) Kyligence ODBC driver, and install it.
 
-   For 32-bit application, please install and use kyligence_odbc.x86.exe.
+   - For 32-bit application, please install and use kyligence_odbc.x86.exe
 
-   For 64-bit application, Please install and use kyligence_odbc.x64.exe.
+   - For 64-bit application, Please install and use kyligence_odbc.x64.exe
 
 ## Configure the DSN
 

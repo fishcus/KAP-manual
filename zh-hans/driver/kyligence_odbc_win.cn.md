@@ -17,9 +17,9 @@
 1. 如果机器上已经安装过 Kyligence ODBC 驱动程序，首先卸载已有 Kyligence ODBC 驱动程序。
 2. 在 [Kyligence Account 页面](http://account.kyligence.io)申请下载 Kyligence ODBC 驱动程序，并运行安装。
 
--     32 位应用程序：请安装使用 kyligence_odbc.x86.exe
+   - 32 位应用程序：请安装使用 kyligence_odbc.x86.exe
 
--     64 位应用程序：请安装使用 kyligence_odbc.x64.exe
+   - 64 位应用程序：请安装使用 kyligence_odbc.x64.exe
 
 
 ## 配置 DSN

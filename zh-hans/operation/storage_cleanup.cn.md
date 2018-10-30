@@ -34,4 +34,4 @@ $KYLIN_HOME/bin/kylin.sh io.kyligence.kap.tool.storage.KapGarbageCleanupCLI [--d
 - `--delete true`：指定这个参数来执行真正的数据删除
 
 
-第一次执行该工具时建议省去`--delete true`参数，这样会只列出所有可以被清理的资源供用户核对，而并不实际进行删除操作。当用户确认无误后，再添加 ```--delete true``` 参数执行删除。另外建议总是在在清理垃圾前备份元数据，以备不时之需。
+第一次执行该工具时建议省去`--delete true`参数，这样会只列出所有可以被清理的资源供用户核对，而并不实际进行删除操作。当用户确认无误后，再添加 ```--delete true``` 参数执行删除。另外建议总是在清理垃圾前备份元数据，以备不时之需。
