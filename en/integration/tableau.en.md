@@ -1,13 +1,13 @@
 ## Integration with Tableau
 
-Tableau is one of the most popular business intelligence application. It is very easy for users to generate visualized diagrams, stories, and reports for huge amount of data by dragging and dropping features.
+Tableau is one of the most popular business intelligence applications. It is very easy for users to generate visualized diagrams, stories, and reports on huge amount of data via drag and drop.
 
 This section will introduce two methods available to connect Tableau with Kyligence Enterprise.
 
-- Quick Sync up model by using  import/export function
+- Quick sync up model by using Kyligence Enterprise TDS export function
 - Manually build mapping model 
 
-### Prerequises
+### Prerequisites
 
 - Install the Kyligence ODBC driver. For installation instructions, please refer to [Kyligence ODBC Driver](../driver/kyligence_odbc.en.md).
 
@@ -16,9 +16,7 @@ This section will introduce two methods available to connect Tableau with Kylige
 
 ### Method 1: Quick Sync Up Model by Using TDS Import/Export Function
 
-After modeling and creating cube, user can export tableau model definition file.
-
-The following detail steps required :
+After modeling and creating cube, you can export cube definition as Tableau model definition file in Kyligence Enterprise and import it in Tableau. Please follow the steps below:
 
 1. Export Tableau Data source(TDS) file from Kyligence Enterprise
 
@@ -32,12 +30,12 @@ The following detail steps required :
    - In the pop-up window, enter authorization information.
    - Click **OK** 
 
-3. In Tableau, check  model import, such as dimension, meseaure etc.
+3. In Tableau, check model import, such as dimension, meseaure etc.
 
 
 ### Method 2: Manually Build Mapping Model
 
-User can connect Kyligence Enterprise through ODBC Driver, and manually mapping model in Tableau
+You can connect Kyligence Enterprise through ODBC Driver, and manually map Kyligence model in Tableau
 
 The following detail steps required for mapping data model :
 
