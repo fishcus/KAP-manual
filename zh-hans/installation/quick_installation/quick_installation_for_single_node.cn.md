@@ -6,7 +6,7 @@
 
 ### 下载安装 Kyligence Enterprise
 
-1. 获取 Kyligence Enterprise 软件包。您可以访问 [Kyligence Enterprise Release Notes](../../release/README.md)，选择适合您的版本。
+1. 获取 Kyligence Enterprise 软件包。您可以访问 [发行说明](../../release/README.md)，选择适合您的版本。
 
 2. 决定安装路径和将要运行 Kyligence Enterprise 的 Linux 账户。下文所有示例都做如下假设：
    - 假设安装路径为 `/usr/local/`。
