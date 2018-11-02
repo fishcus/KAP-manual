@@ -144,7 +144,7 @@
         * Qlik
           * [Qlik Sense Desktop](integration/qlik.en.md)
           * [Qlik Sense Enterprise](integration/qlik_enterprise.en.md)
-
+        * [OBIEE](integration/obiee_12c.en.md)
 * [REST API](rest/README.md)
     * [Access and Authentication API](rest/authentication.en.md)
     * [Data Source  API](rest/data_source_api.en.md)
