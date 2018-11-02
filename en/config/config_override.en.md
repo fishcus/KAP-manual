@@ -86,7 +86,7 @@ kylin.hive.config.override *key* = *value*
 
 kylin.hive.config.override.*key* = *value*
 
-![override_cube](images/override_hive_project.en.png)
+![override_project](images/override_hive_project.en.png)
 
 ### Overriding Properties In `kylin_job_conf.xml` And `kylin_job_conf_inmem.xml`
 
@@ -102,4 +102,4 @@ kylin.job.mr.config.override *key* = *value*
 
 kylin.job.mr.config.override.*key* = *value*
 
-![override_cube](images/override_job_project.en.png)
+![override_project](images/override_job_project.en.png)

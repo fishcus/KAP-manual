@@ -71,7 +71,7 @@ kylin.hive.config.override *key* = *value*
 
 kylin.hive.config.override.*key* = *value*
 
-![override_cube](images/override_hive_project.cn.png)
+![override_project](images/override_hive_project.cn.png)
 
 
 
@@ -89,4 +89,4 @@ kylin.job.mr.config.override *key* = *value*
 
 kylin.job.mr.config.override.*key* = *value*
 
-![override_cube](images/override_job_project.cn.png)
+![override_project](images/override_job_project.cn.png)
