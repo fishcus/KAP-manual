@@ -75,7 +75,7 @@
   - `Content-Type: application/json;charset=utf-8`
 
 - HTTP Body: JSON Object
-  - `permission` - `required` `string`, project acl
+  - `permission` - `required` `string`, project acl. eg.,("READ" for "Query","ADMINISTRATION" for "ADMIN","OPERATION" for "OPERATION" and "MANAGEMENT" for "MANAGEMENT")
   - `principal` - `required` `boolean`, user or not, "true" for user and "false" for usergroup
   - `sid` - `required` `string`, user name
 
@@ -120,7 +120,7 @@
   - `Content-Type: application/json;charset=utf-8`
 
 - HTTP Body: JSON Object
-  - `permission` - `required` `string`, project acl
+  - `permission` - `required` `string`, project acl. eg.,("READ" for "Query","ADMINISTRATION" for "ADMIN","OPERATION" for "OPERATION" and "MANAGEMENT" for "MANAGEMENT" )
   - `principal` - `required` `boolean`, user or not, "true" for user and "false" for usergroup
   - `sid` - `required` `string`, user name
   - `accessEntryId` - `required` `int`, user UUID
@@ -163,10 +163,6 @@
 - URL Parameters
   - `type` - `required`  `string`, "ProjectInstance"
   - `uuid` - `required`  `string`, project UUID
-  - `accessEntryId` - `required` `int`, user UUID
-  - `sid` - `required` `string`, user name
-  - `principal` - `required` `boolean`, user or not, "true" for user and "false" for usergroup
-
 
 - HTTP Header
   - `Accept: application/vnd.apache.kylin-v2+json`
@@ -175,6 +171,7 @@
 
 
 - HTTP Body: JSON Object
+  - `permission` - `required` `string`, project acl. eg.,("READ" for "Query","ADMINISTRATION" for "ADMIN","OPERATION" for "OPERATION" and "MANAGEMENT" for "MANAGEMENT")
   - `accessEntryId` - `required` `int`, user UUID
   - `sid` - `required` `string`, user name
   - `principal` - `required` `boolean`, user or not, "true" for user and "false" for usergroup
@@ -182,17 +179,22 @@
 
 - Curl Request Example
 
+> Note: the following curl request example will delete "query" permission  of user group "ROLE_ANALYST" on project "learn_kylin"
+
+
   ```shell
-  curl -X DELETE \
-    'http://host:port/kylin/api/access/ProjectInstance/{uuid}?accessEntryId=1&sid=ANALYST&principal=true' \
-    -H 'Accept: application/vnd.apache.kylin-v2+json' \
-    -H 'Accept-Language: en' \
-    -H 'Content-Type: application/json;charset=utf-8' \
-    -d '{
-  	"principal": true, 
-  	"sid": "ANALYST",
-  	"accessEntryId": 1
-  }'
+  curl -X PUT \
+  'http://host:port/kylin/api/access/ProjectInstance/{uuid}?accessEntryId=0&sid=ROLE_MODELER&principal=false' \
+  -H 'accept: application/vnd.apache.kylin-v2+json' \
+  -H 'accept-language: en' \
+  -H 'authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'content-type: application/json;charset=utf-8' \
+  -d '{
+	"permission":"READ",
+	"principal": true, 
+	"sid": "ROLE_ANALYST",
+	"accessEntryId": 0
+}'
   ```
 
 

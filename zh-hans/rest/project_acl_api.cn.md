@@ -77,7 +77,7 @@
   - `Content-Type: application/json;charset=utf-8`
 
 - HTTP Body: JSON Object
-  - `permission` - `必选` `string`，项目级访问控制权限
+  - `permission` - `必选` `string`，项目级访问控制权限，对应关系如下："READ" 对应 "Query"；"ADMINISTRATION" 对应 "ADMIN"；"OPERATION" 对应 "OPERATION"；"MANAGEMENT" 对应 "MANAGEMENT"  
   - `principal` - `必选` `boolean`，是否为用户，"true" 或者 "false"
   - `sid` - `必选` `string`，用户名称
 
@@ -123,8 +123,7 @@
   - `Content-Type: application/json;charset=utf-8`
 
 - HTTP Body: JSON Object
-  - `permission` - `必选` `string`，项目级访问控制权限
-  - `principal` - `必选` `boolean`，是否为用户，"true" 或者 "false"
+  - `permission` - `必选` `string`，项目级访问控制权限，对应关系如下："READ" 对应 "Query"；"ADMINISTRATION" 对应 "ADMIN"；"OPERATION" 对应 "OPERATION"；"MANAGEMENT" 对应 "MANAGEMENT"  - `principal` - `必选` `boolean`，是否为用户，"true" 或者 "false"
   - `sid` - `必选` `string`，用户名称
   - `accessEntryId` - `必选` `int`，用户对应的 UUID
 
@@ -167,9 +166,6 @@
 - URL Parameters
   - `type` - `必选`  `string`，"ProjectInstance"
   - `uuid` - `必选`  `string`，项目对应的 UUID
-  - `accessEntryId` - `必选` `int`，用户对应的 UUID
-  - `sid` - `必选` `string`，用户名称
-  - `principal` - `必选` `boolean`，是否为用户，"true" 或者 "false"
 
 
 - HTTP Header
@@ -179,6 +175,7 @@
 
 
 - HTTP Body: JSON Object
+  - `permission` - `必选` `string`，项目级访问控制权限，对应关系如下："READ" 对应 "Query"；"ADMINISTRATION" 对应 "ADMIN"；"OPERATION" 对应 "OPERATION"；"MANAGEMENT" 对应 "MANAGEMENT"
   - `accessEntryId` - `必选` `int`，用户对应的 UUID
   - `sid` - `必选` `string`，用户名称
   - `principal` - `必选` `boolean`，是否为用户，"true" 或者 "false"
@@ -186,18 +183,21 @@
 
 - Curl 请求示例
 
+> 提示：如下 Curl 请求将删除用户组 ROLE_ANALYST 对 learn_kylin 的 QUERY 项目级访问控制权限
+
   ```shell
-  curl -X DELETE \
-    'http://host:port/kylin/api/access/ProjectInstance/{uuid}?accessEntryId=1&sid=ANALYST&principal=true' \
-    -H 'Accept: application/vnd.apache.kylin-v2+json' \
-    -H 'Accept-Language: en' \
-    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
-    -H 'Content-Type: application/json;charset=utf-8' \
-    -d '{
-  	"principal": true, 
-  	"sid": "ANALYST",
-  	"accessEntryId": 1
-  }'
+curl -X PUT \
+  'http://host:port/kylin/api/access/ProjectInstance/{uuid}?accessEntryId=0&sid=ROLE_MODELER&principal=false' \
+  -H 'accept: application/vnd.apache.kylin-v2+json' \
+  -H 'accept-language: en' \
+  -H 'authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'content-type: application/json;charset=utf-8' \
+  -d '{
+	"permission":"READ",
+	"principal": true, 
+	"sid": "ROLE_ANALYST",
+	"accessEntryId": 0
+}'
   ```
 
 
