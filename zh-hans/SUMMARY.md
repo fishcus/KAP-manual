@@ -64,6 +64,7 @@
         * [导入 Hive 数据源](model/data_import/hive_import.cn.md)
         * [导入 Kafka 数据源](model/data_import/kafka_import.cn.md)
         * [导入 RDBMS 数据源](model/data_import/rdbms_import.cn.md)
+        * [导入Impala 数据源](model/data_import/impala_import.cn.md)
         * [基数 Hive 数据文件的近实时数据导入 (Beta)](model/data_import/file_import.cn.md)
     * [数据采样](model/data_sampling.cn.md)
     * [设计模型](model/data_modeling.cn.md)

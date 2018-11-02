@@ -8,5 +8,6 @@
 
 3. [导入RDBMS 数据源](rdbms_import.cn.md)
 
-4. [基数 Hive 数据文件的近实时数据导入 (Beta)](file_import.cn.md)
+4. [导入Impala 数据源](impala_import.cn.md)
 
+5. [基数 Hive 数据文件的近实时数据导入 (Beta)](file_import.cn.md)

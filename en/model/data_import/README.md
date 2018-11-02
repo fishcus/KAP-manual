@@ -8,7 +8,9 @@ This section introduces how to import Hive data source and Kafka data source:
 
 3. [Import RDBMS Data Source](rdbms_import.en.md)
 
-4. [Near Realtime Data Import using Hive Data Files (Beta)](file_import.en.md)
+4. [Import Impala Data Source](impala_import.en.md)
+
+5. [Near Realtime Data Import using Hive Data Files (Beta)](file_import.en.md)
 
     
 

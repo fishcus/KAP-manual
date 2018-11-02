@@ -62,6 +62,7 @@
         * [Import Hive Data Source](model/data_import/hive_import.en.md)
         * [Import Kafka Data Source](model/data_import/kafka_import.en.md)
         * [Import RDBMS Data Source](model/data_import/rdbms_import.en.md)
+        * [Import Impala Data Source](model/data_import/impala_import.en.md)
         * [Near Real-time Data Import using Hive Data Files (Beta)](model/data_import/file_import.en.md)
     * [Data Sampling](model/data_sampling.en.md)
     * [Model Design](model/data_modeling.en.md)
