@@ -2,9 +2,7 @@
 
 ### 概述
 
-本小节基于本产品自带的数据集，介绍模型设计的基本思想和相关步骤。
-
-
+本章节将基于样例数据集，介绍模型设计的基本思想和相关步骤。
 
 ### 什么是模型设计
 
@@ -187,7 +185,7 @@
 
   ![维度表存储形式](images/model_design_update_cn_6.png)
 
-  > 注意：
+  > **注意：**
   >
   > 1. 当维度表大于 300 MB 时，我们通常不建议以快照形式存储。如确实有必要，可在`kylin.properties` 中调整参数 `kylin.snapshot.max-mb` 至更大值。
   > 
@@ -198,19 +196,8 @@
 
 
 
-- **衍生维度的查询，使用最新的快照**
+- **缓慢变化维度（Slowly Changing Dimension）**
 
-  多维建模时，用户的维度表可能随着业务场景／业务线变动而变动。
-
-  如果用户将维度表以快照形式存储，在设计 Cube 时，维度表上的列会默认是衍生维度 (Derived Dimension)。Kyligence Enterprise 在构建 Cube 的 Segment 时会在 Build Dimension Dictionary 这一步构建快照，并且同步存储、与对应的 Segment 关联。
-
-  查询时，系统会寻找有效的最新的快照作为所有维度表的版本，示意图如下：
-  ![快照和 segment 的关联关系](images/model_design_update_cn_8.png)
-
-  > 注意：
-  > 
-  > 1. 如果四月 (Apr.) 的 segment 被删除，对应的快照也将不可用。 Kyligence Enterprise 将选择三月 (Mar.) 的 segment 对应的快照作为维度表的最新版本。此时如果需要更新快照，需要刷新三月的 segment 或者构建四月的 segment。
-  > 
-  > 2. 如果查询衍生维度或者单独对维表进行明细查询时报错 "No snaphot for table '{tableName}' found on cube segment ..."，说明这张表的快照在最新版本的维度表快照中不存在，建议您更新快照。
+  在多维分析场景中，维度表会时不时的发生变化，业界称之为缓慢变化维并有着一套成熟的理论。对于启用了 snapshot 存储的维度表，Kyligence Enterprise 支持定义其衍生维度的缓慢变化维处理方法，以支持不同的分析需求。更多细节请参考[缓慢变化维度](data_modeling_SCD.cn.md).
 
 

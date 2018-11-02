@@ -160,18 +160,10 @@ When lookup table is less than 300 MB, it is recommended to enable snapshot of l
 
 
 
-- **How Snapshot is Used for Queries**
+- **Slow Changing Dimension (SCD)**
 
-  When a lookup table is stored as snapshot, all columns in that table will be taken as derived dimension by default during cube design. Kyligence Enterprise will create and store a snapshot in step **Build Dimension Dictionary** during building a cube segment, so a snapshot is always linked to a specific segment.
+  In most multi-dimensional OLAP scenarios, lookup table might change unpredictably, rather than according to a regular schedule. For snapshot enabled lookup tables, Kyligence Enterprise supports defining SCD types for all derived dimensions on this lookup table.
 
-  Kyligence Enterprise will always find out latest version of snapshot for queries, as shown below:
-
-  ![model_design_update_en_10](images/model_design_update_en_8.png)
-
-  > **Note**:
-  >
-  > If the segment of April is deleted, the corresponding snapshot will be also deleted and unavailable. Kyligence Enterpries will select the latest snapshot for the segment of March. If you need to refresh snapshot, you can refresh segment of March or April.
-  >
-  > If you encounter error "No snapshot for table {tableName} found on cube segment…", you need to refresh the snapshot by refreshing corresponding segment.
+  For more details, please refer to [Slowly Changing Dimension](data_modeling_SCD.en.md).
 
 
