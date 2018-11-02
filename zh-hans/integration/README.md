@@ -6,24 +6,30 @@
 
 [Tableau](tableau.cn.md)
 
-[Excel ](excel_2016.cn.md)
+[Excel ](excel_2018.cn.md)
 
-[Power BI](powerbi.cn.md)
+Power BI
+
+* [Power BI Desktop](powerbi_desktop.cn.md)
+* [Power BI Service](powerbi_service.cn.md)
 
 [Apache Zeppelin](zeppelin.cn.md)
 
 [Cognos](cognos.cn.md)
 
-[MicroStrategy](microstrategy_10_4.cn.md)
+MicroStrategy
+
+* [MicroStrategy Secure Enterprise](microstrategy_enterprise.cn.md)
+* [MicroStrategy Workstation / Desktop](microstrategy_desktop.cn.md)
 
 [Qlik Sense](qlik.cn.md)
 
 [Smartbi](smartbi.cn.md)
 
-[Fanruan](fanruan.cn.md)
+[FineReport](fanruan.cn.md)
 
-[SAP BO](sap_bo.cn.md)
+[SAP BusinessOjects](sap_bo.cn.md)
 
-[OBIEE](obiee.cn.md)
+[OBIEE](obiee_12c.cn.md)
 
 

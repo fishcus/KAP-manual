@@ -1,4 +1,4 @@
-## 与OBIEE集成
+## 与OBIEE 11g 集成
 
 OBIEE是Oracle旗下的BI产品，可提供完整的 BI 功能，包括交互式信息板、完全即席的主动式智能和警报、企业和财务报表、实时预测智能以及离线分析等。本文将分步介绍使用OBIEE11g连接Kyligence Enterprise的方法。
 
