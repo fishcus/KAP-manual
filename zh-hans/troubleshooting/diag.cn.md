@@ -62,6 +62,11 @@
 
 ### FAQ
 
-**Q:如果遇到内存分配不够，导致打包失败怎么办？**
+**Q: 如果遇到内存分配不够，导致打包失败怎么办？**
 
 请您修改 `$KYLIN_HOME/kybot/setenv.sh` 内的 `KYBOT_JVM_SETTINGS` 参数。然后重新启动 Kyligence Enterprise 并再次执行打包任务。
+
+**Q: 如果遇到打包超时怎么办？**
+
+请您修改 `$KYLIN_HOME/kybot/kybot-client.properties` 中的 `kybot.package.timeout.seconds` 参数。该参数默认为600秒，请您适当调大该参数后重新打包。
+

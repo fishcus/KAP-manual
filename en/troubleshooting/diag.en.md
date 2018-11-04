@@ -64,5 +64,8 @@ Kyligence Enterprise provides two options to dealing with Diagnostic Packages, o
 
 **Q: If I failed to generate diagnostic packages because the allocated memory is insufficient. What should I do?**
 
-Please change the `KYBOT_JVM_SETTINGS` parameters in `$KYLIN_HOME/kybot/setenv.sh`. Then restart Kyligence Enterprise and try again.
+Please change the `KYBOT_JVM_SETTINGS` parameter in `$KYLIN_HOME/kybot/setenv.sh`. Then restart Kyligence Enterprise and try again.
 
+**Q: If I failed to generate diagnostic packages because of timeout.** 
+
+Please change the `kybot.package.timeout.seconds` parameter in `$KYLIN_HOME/kybot/kybot-client.properties` and try again. The default value of this parameter is 600 seconds.
