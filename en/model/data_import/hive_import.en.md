@@ -45,7 +45,7 @@ hive> select count(*) from kylin_sales;
 
 ![](images/dataimport_3.png)
 
-7. Click `NEXT` and enter the *Load Hive Table Metadata* page; you can select tables you want from *Hive Table* on the left.
+7. Click `NEXT` and enter the *Load Hive Table Metadata* page; you can select tables you want from *Hive Table* on the left. Keyword search is also supported.
 
 8. Click `sync` to load the data. 
 

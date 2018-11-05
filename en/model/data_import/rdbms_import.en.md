@@ -27,7 +27,6 @@ Users can set the following configurations in **project configuration** or **glo
 | kylin.source.jdbc.user           | JDBC Connection Username           |
 | kylin.source.jdbc.pass           | JDBC Connection Password           |
 | kylin.source.jdbc.dialect        | Dialect to the Data Source         |
-| kylin.source.default             | Type of Data Source (16 for RDBMS) |
 | kylin.source.jdbc.adaptor        | JDBC Data Source Adaptor           |
 
 To enable query pushdown, following configuration is required:
@@ -45,8 +44,7 @@ To set up a RDBMS data source for a specific project, followings are the steps:
 5. Click the blue `Data Source` button.
 6. Select **RDBMS** as data source.
 7. Set configuration in project configuration (please refer to supported RDBMS parameter project configuration)
-
-8. Click `NEXT` and enter the *Load RDBMS Table Metadata* page; you can select tables you want from *Hive Table* on the left. 
+8. Click `NEXT` and enter the *Load RDBMS Table Metadata* page; you can select tables you want from *RDBMS Table* on the left. Keyword search is also supported.
 9. Click `sync` to synchronize/load the data. 
 
 ### Supported RDBMS and Parameter Settings in Project Configuration

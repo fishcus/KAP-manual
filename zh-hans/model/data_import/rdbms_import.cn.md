@@ -27,7 +27,6 @@
 | kylin.source.jdbc.user           | JDBC连接用户名                            |
 | kylin.source.jdbc.pass           | JDBC连接密码                              |
 | kylin.source.jdbc.dialect        | JDBC方言                                  |
-| kylin.source.default             | JDBC使用的数据源种类（RDBMS种类代码为16） |
 | kylin.source.jdbc.adaptor        | JDBC连接的数据源对应的适配器              |
 
 如果需要开启查询下压，还需要配置以下参数：
@@ -47,7 +46,7 @@ Kyligence Enterprise 可以通过如下步骤，为特定项目设置 RDBMS 数�
 5. 点击蓝色的**数据源**按钮；
 6. 在弹出窗口中，选择 **RDBMS**作为数据源类型；
 7. 在项目配置中添加数据源参数配置(可参考相关受支持的RDBMS参数项目配置参考)
-8. 点击**下一步**按钮，进入**加载表元数据**窗口，用户可按需在左侧表清单中，单击选中需要建模的表。
+8. 点击**下一步**按钮，进入**加载表元数据**窗口，用户可按需在左侧表清单中，单击选中需要建模的表，也支持输入关键字进行搜索。
 9. 点击右下方**同步**按钮进行加载。
 
 ### 支持的 RDBMS 连接参数项目配置参考
