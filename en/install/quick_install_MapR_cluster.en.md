@@ -2,7 +2,7 @@
 
 MapR cluster provides more calculation and storage resources than MapR sandbox. In the meantime, there are some differences in configuration. 
 
-### Prepare Environment
+### Prerequisite
 
 1. For the MapR Cluster environment, we use the MapR Converged Community Edition 6.0a1 in AWS Marketplace. [Click](https://aws.amazon.com/marketplace/pp/B010GJS5WO?qid=1522845995210&sr=0-4&ref_=srh_res_product_title) to find more information.
 
@@ -20,63 +20,70 @@ For detailed steps, please refer to [Quick install](.\quick_install.en.md). Pay 
 
 ### Particularity of the MapR Environment
 
-The MapR environment has its particularity. Please pay attention to the following steps when implementing the installation steps:
+The MapR environment is different with others. Please pay attention to the following steps when implementing the installation steps:
 
-- The file system of MapR is `maprfs://`, so the working directory of Kyligence Enterprise should be set as:
-
-  ```properties
-  kylin.env.hdfs-working-dir=maprfs:///kylin
-  ```
-
-- The file operation command in MapR is `hadoop fs`instead of `hdfs dfs`. Please replace it by yourself when the file is operated, such as:
+- The file operation command in MapR is `hadoop fs` instead of `hdfs dfs`. Please replace it by yourself and here we use  `/kylin` as an example:
 
   ```shell
   hadoop fs -mkdir /kylin
   hadoop fs -chown mapr /kylin
   ```
+- The file system of MapR is `maprfs://`, so some properties in `$KYLIN_HOME/conf/kylin.properties` should be changed as:
 
-- When checking the environment, there will be errors because the `hdfs` command cannot be found. Please modify the` $KYLIN_HOME/bin/check-2100-os-commands.sh` and annotate the command line of `hdfs`. For example:
-
-  ```shell
-  #command -v hdfs    || quit "ERROR: Command 'hdfs' is not accessible..."
+  ```properties
+  kylin.env.hdfs-working-dir=maprfs:///kylin
+  kylin.engine.spark-conf.spark.eventLog.dir=maprfs:///kylin/spark-history
+  kylin.engine.spark-conf.spark.history.fs.logDirectory=maprfs:///kylin/spark-history
   ```
 
-- Due to the special nature of the MapR environment, you need to use spark in the MapR environment. Please set SPARK_HOME to the location of spark in the MapR environment as follows:
 
-  ```shell
-  export SPARK_HOME=/opt/mapr/spark/spark-2.1.0
-  ```
-
-  If you need to specify the environment dependencies of Hive, you can checkout the default location as follow:
+- If you need to specify the environment dependencies of Hive, the default locations are as follows:
 
   ```shell
   export HIVE_CONF=/opt/mapr/hive/hive-2.1/conf
   ```
 
-### Common Problems in the MapR Environment
+* Please specify the environment dependencies of Spark before you start Kyligence Enterprise, such as:
 
-- If you use HBase as Metastore and errors can't be solved easily, you can consider using MySQL as Metastore storage. Details refer to [Use JDBC to connect MySQL as metastore](..\config\metastore_jdbc_mysql.en.md).
-
-- If the spark-context task is failed on YARN at startup and shows `requestedVirtualCores > maxVirtualCores` error,  `yarn.scheduler.maximum-allocation-vcores` configuration parameters in `yarn-site.xml`can be adjusted:
-
-  ```xml
-  <property>
-      <name>yarn.scheduler.maximum-allocation-vcores</name>
-      <value>24</value>
-  </property>
+  ```shell
+  export SPARK_HOME=/opt/mapr/spark/spark-2.1.0
   ```
 
-   Or set `conf/profile` to `min_profile` to reduce the need for YARN Vcore:
+* To consider that using HBase as Metastore and errors can't be solved easily, using MySQL as Metastore is recommended. More details refer to [Use MySQL as Metastore](../config/metastore_jdbc_mysql.en.md).
 
-- ```shell
-  rm -f $KYLIN_HOME/conf/profile
-  ln -sfn $KYLIN_HOME/conf/profile_min $KYLIN_HOME/conf/profile
-  ```
+### FAQ
 
-- If you use Kafka and can't connect to Zookeeper, please note that the default of Zookeeper's service port in the MapR environment is 5181, not 2181. The ports can be confirmed as follow:
+**Q: If the spark-context task is failed on YARN at startup and shows error with requestedVirtualCores > maxVirtualCores.**
 
-- ```shell
-  netstat -ntl | grep 5181
-  netstat -ntl | grep 2181
-  ```
+Please adjust `yarn.scheduler.maximum-allocation-vcores` configuration parameters in `yarn-site.xml`:
 
+```xml
+<property>
+    <name>yarn.scheduler.maximum-allocation-vcores</name>
+    <value>24</value>
+</property>
+```
+
+Or set `conf/profile` to `min_profile` to reduce the need for YARN Vcore:
+
+```shell
+rm -f $KYLIN_HOME/conf/profile
+ln -sfn $KYLIN_HOME/conf/profile_min $KYLIN_HOME/conf/profile
+```
+
+**Q: If you use Kafka and can't connect to Zookeeper.**
+
+Please note that the default of Zookeeper's service port in the MapR environment is 5181, not 2181. The ports can be confirmed as follows:
+
+```shell
+netstat -ntl | grep 5181
+netstat -ntl | grep 2181
+```
+
+**Q: When checking the environment, there is an error with `hdfs` command cannot be found.** 
+
+Please modify the` $KYLIN_HOME/bin/check-2100-os-commands.sh` and annotate the command line of `hdfs`, such as:
+
+```shell
+#command -v hdfs    || quit "ERROR: Command 'hdfs' is not accessible..."
+```
