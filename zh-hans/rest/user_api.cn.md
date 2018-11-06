@@ -17,7 +17,7 @@
 
 ### 返回用户列表
 
-- `GET http://host:port/kylin/api/kap/users/user`
+- `GET http://host:port/kylin/api/kap/user/users`
 
 
 - URL Parameters

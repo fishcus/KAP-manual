@@ -16,7 +16,7 @@
 
 ### Get User List
 
-- `GET http://host:port/kylin/api/kap/users/user`
+- `GET http://host:port/kylin/api/kap/user/users`
 
 
 - URL Parameters
