@@ -22,11 +22,14 @@ MicroStrategy
 * [MicroStrategy Secure Enterprise](microstrategy_enterprise.cn.md)
 * [MicroStrategy Workstation / Desktop](microstrategy_desktop.cn.md)
 
-[Qlik Sense](qlik.cn.md)
+Qlik
+
+ * [Qlik Sense Desktop](qlik.cn.md)
+ * [Qlik Sense Enterprise](qlik_enterprise.cn.md)
 
 [Smartbi](smartbi.cn.md)
 
-[FineReport](fanruan.cn.md)
+[Fanruan](fanruan.cn.md)
 
 [SAP BusinessOjects](sap_bo.cn.md)
 

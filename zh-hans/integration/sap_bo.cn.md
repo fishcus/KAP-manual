@@ -1,4 +1,4 @@
-## 与SAP BO集成
+## 与 SAP BusinessOjects 集成
 
 SAP BusinessObjects（SAP BO）是SAP公司旗下的商务智能产品，自Kyligence Enterprise3.0版本开始，支持与SAP BO 进行集成。
 本文将分步介绍SAP BO Web Intelligence 4.1与Kyligence Enterprise连接的方法。

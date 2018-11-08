@@ -144,7 +144,7 @@
           * [Qlik Sense Enterprise](integration/qlik_enterprise.cn.md)
         * [Smartbi](integration/smartbi.cn.md)
         * [Fanruan](integration/fanruan.cn.md)
-        * [SAP BO](integration/sap_bo.cn.md)
+        * [SAP BusinessOjects](integration/sap_bo.cn.md)
         * [OBIEE](integration/obiee_12c.cn.md)
 
 * [REST API](rest/README.md)

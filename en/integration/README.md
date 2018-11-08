@@ -22,5 +22,9 @@ MicroStrategy
 * [MicroStrategy Secure Enterprise](microstrategy_enterprise.en.md)
 * [MicroStrategy Workstation / Desktop](microstrategy_desktop.en.md)
 
-[Qlik Sense](qlik.en.md)
+Qlik
+
+* [Qlik Sense Desktop](qlik.en.md)
+* [Qlik Sense Enterprise](qlik_enterprise.en.md)
+
 

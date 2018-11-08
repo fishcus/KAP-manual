@@ -1,6 +1,6 @@
 ## 与 OBIEE 集成
 
-OBIEE 是 Oracle 旗下的 BI 产品，可提供完整的 BI 功能，包括交互式信息板、完全即席的主动式智能和警报、企业和财务报表、实时预测智能以及离线分析等。本文将分步介绍使用 OBIEE 连接 Kyligence Enterprise 的方法。
+Oracle Business Intelligence Enterprise Edition (OBIEE) 是 Oracle 旗下的 BI 产品，可提供完整的 BI 功能，包括交互式信息板、完全即席的主动式智能和警报、企业和财务报表、实时预测智能以及离线分析等。本文将分步介绍使用 OBIEE 连接 Kyligence Enterprise 的方法。
 
 ### 前提条件
 - Kyligence Enterprise 版本高于 3.0
