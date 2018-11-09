@@ -66,6 +66,7 @@
         * [Near Real-time Data Import using Hive Data Files (Beta)](model/data_import/file_import.en.md)
     * [Data Sampling](model/data_sampling.en.md)
     * [Model Design](model/data_modeling.en.md)
+    * [Slowly Changing Dimension](model/data_modeling_SCD.en.md)
     * [Multi-partition Model](model/multi_partition.en.md)
     * [Model Advisor](model/auto_modeling.en.md)
     * [Computed Column](model/computed_column/README.en.md)

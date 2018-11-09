@@ -68,6 +68,7 @@
         * [基数 Hive 数据文件的近实时数据导入 (Beta)](model/data_import/file_import.cn.md)
     * [数据采样](model/data_sampling.cn.md)
     * [设计模型](model/data_modeling.cn.md)
+    * [缓慢变化维度](model/data_modeling_SCD.cn.md)
     * [多级分区模型](model/multi_partition.cn.md)
     * [模型推荐](model/auto_modeling.cn.md)
     * [可计算列](model/computed_column/README.cn.md)
