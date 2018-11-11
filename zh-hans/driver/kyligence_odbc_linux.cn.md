@@ -1,42 +1,60 @@
-# Linux下安装与配置Kyligence ODBC驱动
+# Linux 下安装与配置 Kyligence ODBC 驱动
 
-在本文中，我们将向您介绍如何在Linux系统下安装和配置Kyligence ODBC驱动（Linux版本)
+在本文中，我们将向您介绍如何在 Linux 系统下安装和配置 Kyligence ODBC 驱动（Linux 版本)
 
 ### 安装库的依赖
 
-我们建议您使用unixODBC(http://www.unixodbc.org/) 作为驱动管理器来管理ODBC连接信息。
+我们建议您使用 unixODBC(http://www.unixodbc.org/) 作为驱动管理器来管理 ODBC 连接信息。
 
-对于不同的Linux系统：
+> **注意：** 由于64位 unixODBC 将会覆盖32位 unixODBC 的一些依赖库，这将会导致在使用32位 unixODBC 驱动时会出现依赖库的冲突，可能无法正常使用32位 Kyligence ODBC 驱动。因此，若您要使用 Linux 32 位版本的 Kyligence ODBC 驱动，需要卸载环境中的64位 unixODBC。
 
-1. Redhat和CentOS环境, 可参考如下命令安装
+对于不同的 Linux 系统：
 
-      `sudo yum install unixODBC-devel -y` 	
+1. Redhat 和 CentOS 环境, 请参考如下操作安装
 
-2. Ubuntu环境，可参考如下命令安装
+      * 若您需要使用64位 Kyligence ODBC 驱动，您可以直接使用以下命令进行64位 unixODBC 的安装
 
-   `sudo apt-get install unixODBC-devel`
+        `sudo yum install unixODBC-devel -y`
+
+      * 若您需要使用32位 Kyligence ODBC 驱动，建议您依次使用以下命令进行32位 unixODBC 的安装
+
+        `sudo yum install unixODBC.i686 -y`
+
+        `sudo yum install unixODBC-devel.i686 -y`
+
+2. Ubuntu 环境，请参考如下操作安装
+
+   * 若您需要使用64位 Kyligence ODBC 驱动，您可以直接使用以下命令进行64位unixODBC的安装
+
+     `sudo apt-get install unixODBC-devel`
+
+   * 若您需要使用32位 Kyligence ODBC 驱动，建议您依次使用以下命令进行32位unixODBC的安装
+     `sudo apt-get install unixODBC.i686`
+
+     `sudo apt-get install unixODBC-devel.i686`
 
 
 
-### 下载ODBC驱动程序
+### 下载 ODBC 驱动程序
 
-用户可以在 [Kyligence Account](http://account.kyligence.io) 申请下载 Kyligence ODBC Driver (Linux版本）安装包
+您可以在 [Kyligence Account](http://account.kyligence.io) 申请下载 Kyligence ODBC Driver (Linux版本）安装包。
 
 
-
-### 安装ODBC驱动程序
+### 安装 ODBC 驱动程序
 
 1. 解压下载的压缩包
 
    `tar -zxf KyligenceODBC_linux.tar.gz`
 
-   > 注意：请不要将 ODBC 安装文件放在 root 目录下，否则会因为读写权限问题可能导致BI Server访问失败。
+   > **注意：** 请不要将 ODBC 安装文件放在 root 目录下，否则会因为读写权限问题可能导致 BI Server 访问失败。
 
 2. 检查库的依赖
 
    `cd ODBCDriver/`
 
    `ldd libKyligenceODBC64.so`
+
+   > **提示：** 使用32位的 Kyligence ODBC 驱动请使用`ldd libKyligenceODBC32.so`命令检查库的依赖。
 
    如果检查成功，您将会看到如下输出：
 
@@ -67,7 +85,7 @@
 
 1. 将 Kyligence ODBC 添加入配置文件
 
-   > **注意：**一些BI工具需要ODBC配置文件放置在自己的安装目录下，如[样例说明](#样例说明)中的**MicroStrategy**。因此请您根据所使用的BI工具进行配置。
+   > **提示：** 一些 BI 工具需要 ODBC 配置文件放置在自己的安装目录下，如[样例说明](#样例说明)中的 **MicroStrategy**。因此请您根据所使用的 BI 工具进行配置。
 
    **ODBC驱动配置文件** – /etc/odbcinst.ini 
 
@@ -119,9 +137,9 @@
    SERVER = http://kapdemo.chinaeast.cloudapp.chinacloudapi.cn
    ```
 
-   > **注意：**请确认 odbc.ini 文件中的 DSN 名称和 BI桌面环境下配置的DSN名称完全一致，保证BI应用由桌面客户端发布至服务器端时连接正常
+   > **注意：** 请确认 `odbc.ini` 文件中的 DSN 名称和 BI 桌面环境下配置的 DSN 名称完全一致，保证 BI 应用由桌面客户端发布至服务器端时连接正常
 
-2. 使用命令行工具"isql DSN [UID '[PWD]']测试连接
+2. 使用命令行工具`isql DSN [UID '[PWD]']`测试连接
 
    `isql KyligenceDataSource ADMIN 'KYLIN'`
 
@@ -142,11 +160,11 @@
 
 ### 样例说明
 
-这里我们以 **MicroStrategy Linux Intelligence Server** 为例，介绍如何创建DSN。
+这里我们以 **MicroStrategy Linux Intelligence Server** 为例，介绍如何创建 DSN。
 
-1. 在Linux shell下，浏览至Microstrategy的**安装目录**。
+1. 在 Linux shell 下，浏览至 Microstrategy 的**安装目录**。
 
-2. 打开文件ODBC.ini，按如下格式添加DSN配置信息。
+2. 打开文件`ODBC.ini`，按如下格式添加 DSN 配置信息。
 
    ```
    [DSN_Name]
@@ -157,14 +175,14 @@
    SERVER=<SERVER_NAME>
    ```
 
-3. 添加如下配置信息，映射DSN至ODBC。 
+3. 添加如下配置信息，映射 DSN 至 ODBC。 
 
    ```
    [ODBC Data Sources]
    <DSN_Name>=KyligenceODBC
    ```
 
-   以下就是一个名为“EAT1_WH"的DSN配置样例：
+   以下就是一个名为 *EAT1_WH* 的 DSN 配置样例：
 
    ```
    [ODBC Data Sources]
@@ -178,16 +196,86 @@
    SERVER=http://106.75.137.52
    ```
 
-4. 完成DSN配置后，我们建议您重启Microstrategy Intelligence Server，确保刚创建的DSN已经生效。 
+4. 完成 DSN 配置后，我们建议您重启 Microstrategy Intelligence Server，确保刚创建的 DSN 已经生效。 
 
-5. 现在您就可以在MicroStrategy Linux I-Server上使用该DSN创建新的数据库连接了。
+5. 现在您就可以在 MicroStrategy Linux I-Server 上使用该 DSN 创建新的数据库连接了。
 
 
 ### FAQ
 
-**Q: isql测试连接失败**   
+**Q: isql 测试连接失败**   
 
-请检查ODBC配置文件和DSN配置文件是否正确
+请使用`isql -v DSN [UID '[PWD]']`获取更多报错信息，然后根据报错检查 ODBC 配置文件和 DSN 配置文件是否正确。
+
+以下为一个`SERVER` 配置项错误写为`SEVER`后，系统无法正确识别`SERVER`配置项的样例：
+
+输入命令`isql -v KyligenceDataSource ADMIN 'KYLIN'`
+
+您可以看到报错：
+
+```
+[08001][unixODBC][Simba][ODBC](10380) Unable to establish connection with data source. Missing settings: {[SERVER]}
+[ISQL]ERROR: Could not SQLConnect
+```
+
+
+
+**Q:isql测试连接报错 "Can't open lib '/usr/local/ODBCDriver/libKyligenceODBC32.so' : file not found"，但是文件实际在对应目录下存在**
+
+这通常是因为环境中有64位 unixODBC 导致依赖库冲突，需要彻底卸载64位 unixODBC。您可以通过运行`odbcinst -j`命令查看 unixODBC 的相关安装信息。
+
+若安装了32位 unixODBC，您可以看到如下结果：
+
+```
+unixODBC 2.2.14
+DRIVERS............: /etc/odbcinst.ini
+SYSTEM DATA SOURCES: /etc/odbc.ini
+FILE DATA SOURCES..: /etc/ODBCDataSources
+USER DATA SOURCES..: /root/.odbc.ini
+SQLULEN Size.......: 4
+SQLLEN Size........: 4
+SQLSETPOSIROW Size.: 2
+```
+
+若安装了64位 unixODBC，您可以看到如下结果：
+
+```
+unixODBC 2.2.14
+DRIVERS............: /etc/odbcinst.ini
+SYSTEM DATA SOURCES: /etc/odbc.ini
+FILE DATA SOURCES..: /etc/ODBCDataSources
+USER DATA SOURCES..: /root/.odbc.ini
+SQLULEN Size.......: 8
+SQLLEN Size........: 8
+SQLSETPOSIROW Size.: 8
+```
+
+**Q: 如何卸载 unixODBC**
+
+首先您需要使用命令`yum list installed | grep unixODBC`查看您安装的 unixODBC 包名；其次，您需要使用`sudo yum remove {package name}`命令进行卸载。
+
+这里以卸载64位 unixODBC 为例：
+
+输入命令`yum list installed | grep unixODBC `，您可以看到以下信息：
+
+```
+unixODBC.x86_64           2.2.14-14.el6           @base
+unixODBC-devel.x86_64     2.2.14-14.el6           @base
+```
+
+接下来依次使用以下命令，完成64位 unixODBC 的卸载：
+
+```
+sudo yum remove unixODBC-devel.x86_64
+```
+
+```
+sudo yum remove unixODBC.x86_64
+```
+
+
+
+
 
 **Q: 报错提示：(11560) Unable to locate SQLGetPrivateProfileString function.**
 

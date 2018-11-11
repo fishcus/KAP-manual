@@ -9,7 +9,7 @@ Kyligence ODBC Driver is a part of Kyligence Enterprise Product line. The valid 
 Currently, Kyligence ODBC Driver has following versions:
 
 - ​Windows 64bit/32bit
-- Linux 64bit (Beta)
+- Linux 64bit/32bit
 
 
 
