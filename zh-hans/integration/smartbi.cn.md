@@ -13,7 +13,7 @@ Smartbi Insight 通过JDBC连接 Kyligence Enterprise，所以首先需要在Sma
 
 2.1 获取 Kyligence JDBC 驱动程序：
 
-请参考 [Kyligence JDBC 驱动程序说明](http://docs.kyligence.io/books/v2.5/zh-cn/driver/jdbc.cn.html)
+请参考 [Kyligence JDBC 驱动程序说明](../driver/jdbc.cn.html)
 
 2.2 向 Smartbi Insight 增加 JDBC 驱动程序：
 

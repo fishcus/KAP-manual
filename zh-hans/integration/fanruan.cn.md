@@ -14,7 +14,7 @@
 
 1.  获取 Kyligence JDBC 驱动程序
 
-   请参考 [Kyligence JDBC 驱动程序说明](http://docs.kyligence.io/books/v2.5/zh-cn/driver/jdbc.cn.html)。
+   请参考 [Kyligence JDBC 驱动程序说明](../driver/jdbc.cn.html)。
 
 2. 向 FineBI 增加 JDBC 驱动程序
 
@@ -72,7 +72,7 @@
 
 1. 获取 Kyligence JDBC 驱动程序
 
-   请参考 [Kyligence JDBC 驱动程序说明](http://docs.kyligence.io/books/v2.5/zh-cn/driver/jdbc.cn.html)。
+   请参考 [Kyligence JDBC 驱动程序说明](../driver/jdbc.cn.html)。
 
 2. 向 FineReport 增加 JDBC 驱动程序
 

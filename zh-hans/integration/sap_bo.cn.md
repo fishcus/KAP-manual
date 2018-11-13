@@ -1,13 +1,13 @@
 ## 与 SAP BusinessOjects 集成
 
 SAP BusinessObjects（SAP BO）是SAP公司旗下的商务智能产品，自Kyligence Enterprise3.0版本开始，支持与SAP BO 进行集成。
-本文将分步介绍SAP BO Web Intelligence 4.1与Kyligence Enterprise连接的方法。
+本文将分步介绍 SAP BO Web Intelligence 4.1 与 Kyligence Enterprise 连接的方法。
 
-### 配置ODBC及DSN
+### 配置 ODBC 及 DSN
 
-有关Kyligence ODBC的配置，请参考[Windows下安装与配置Kyligence ODBC驱动](http://docs.kyligence.io/v3.0/zh-cn/driver/kyligence_odbc_win.cn.html)。
+有关 Kyligence ODBC 的配置，请参考[Windows下安装与配置Kyligence ODBC驱动](../driver/kyligence_odbc_win.cn.html)。
 
-### 使用Universe设计工具进行建模
+### 使用 Universe 设计工具进行建模
 
 1. **管理数据连接**
 
@@ -21,11 +21,11 @@ SAP BusinessObjects（SAP BO）是SAP公司旗下的商务智能产品，自Kyli
 
    ![选择下一步](images/SAP_BO/add_connection_next.png)
 
-   1.2 选择Generic ODBC 数据源。
+   1.2 选择 Generic ODBC 数据源。
 
    ![选择数据源](images/SAP_BO/generic_odbc.png)
 
-   1.3 输入用户名、密码和DSN名称即可。
+   1.3 输入用户名、密码和 DSN 名称即可。
 
    ![输入用户名等](images/SAP_BO/define_connection.png)
 
@@ -55,7 +55,7 @@ SAP BusinessObjects（SAP BO）是SAP公司旗下的商务智能产品，自Kyli
 
    ![修改连接](images/SAP_BO/universe_connection.png)
 
-### 在Rich client中创建报表
+### 在 Rich client 中创建报表
 
    选择Universe为数据源，使用新建的Universe即可。把需要分析的字段拖动到右侧，点击运行查询
 
@@ -89,29 +89,18 @@ SAP BusinessObjects（SAP BO）是SAP公司旗下的商务智能产品，自Kyli
 
    ![运行查询](images/SAP_BO/4.4.png)
 
-   ***方法二 在universe上修改***
+   ***方法二 在 universe 上修改***
 
-   在universe里编辑Conenction
+   在 universe 里编辑 Conenction
 
    ![运行查询](images/SAP_BO/4.5.png)
 
-   修改DSN为需要的DSN，然后保存即可。
+   修改 DSN 为需要的 DSN，然后保存即可。
 
-### 一些注意事项
+### FAQ
 
-BO发出的查询都会带上schema,包括default database，而default在Kyligence Enterprise查询中是一个关键字不能使用default.table的形式的查询语句。
--->解决方式：在**kylin.properties**中把**kylin.query.escape-default-keyword**设为true，Kyligence Enterprise会自动为default转为"DEFAULT"。
-
-
-​    
-
-
-​    
-
-
-
-
-
+**Q: BO 发出的查询都会带上 schema,包括 default database，而 default 在 Kyligence Enterprise 查询中是一个关键字不能使用 default.table 的形式的查询语句。**
+解决方法：在**kylin.properties**中把`kylin.query.escape-default-keyword`设为 true，Kyligence Enterprise 会自动为 default 转为"DEFAULT"。
 
 
 

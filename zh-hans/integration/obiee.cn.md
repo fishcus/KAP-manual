@@ -20,7 +20,7 @@ OBIEE是Oracle旗下的BI产品，可提供完整的 BI 功能，包括交互式
 
    在client端和server端都需要安装Kylignece ODBC并配置DSN，且两端的DSN名称应**保持一致**。
 
-   有关Windows下Kyligence ODBC的配置，请参考[Windows下安装与配置Kyligence ODBC驱动](http://docs.kyligence.io/v3.0/zh-cn/driver/kyligence_odbc_win.cn.html)。
+   有关Windows下Kyligence ODBC的配置，请参考[Windows下安装与配置Kyligence ODBC驱动](../driver/kyligence_odbc_win.cn.html)。
 
    有关Linux下配置Kyligence ODBC的配置，请参考[Linux下安装与配置Kyligence ODBC驱动](https://docs.oracle.com/middleware/11119/biee/BIEMG/deploy_rpd.htm#CHDFEEHC)中的Configuring Database Connections Using Native ODBC Drivers部分。
 
