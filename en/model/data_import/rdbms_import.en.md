@@ -14,7 +14,7 @@ You need to follow the steps below to connect to RDBMS:
 - Download RDBMS official JDBC Driver
 - Download Kyligence specific data source adaptor from [Kyligence Account](http://download.kyligence.io/#/addons)
 - Copy related jar packages to  `$KYLIN_HOME/ext`. 
-- Copy related jar packages to `<sqoop_installation_directory> /lib`, check global parameters, and add kylin.source.jdbc.sqoop-home=&lt;sqoop_path&gt; to `kylin.properties`. sqoop_path is the file where the sqoop command locates.
+- Copy related jar packages to `<sqoop_installation_directory> /lib`, check global parameters, and add `kylin.source.jdbc.sqoop-home=<sqoop_path>` to `kylin.properties`. <sqoop_path> is the file where the sqoop command locates.
 
 ### Connection Configuration
 
@@ -68,7 +68,7 @@ kylin.source.jdbc.dialect=greenplum
 
 ```properties
 kylin.source.jdbc.driver=com.microsoft.sqlserver.jdbc.SQLServerDriver
-kylin.source.jdbc.dialect=mssql
+kylin.source.jdbc.dialect=mysql
 kylin.source.jdbc.adaptor=io.kyligence.kap.sdk.datasource.adaptor.MssqlAdaptor
 ```
 
@@ -76,7 +76,7 @@ kylin.source.jdbc.adaptor=io.kyligence.kap.sdk.datasource.adaptor.MssqlAdaptor
 
 ```properties
 kylin.source.jdbc.driver=com.microsoft.sqlserver.jdbc.SQLServerDriver
-kylin.source.jdbc.dialect=mssql
+kylin.source.jdbc.dialect=mssql08
 kylin.source.jdbc.adaptor=io.kyligence.kap.sdk.datasource.adaptor.Mssql08Adaptor
 ```
 
@@ -88,7 +88,7 @@ kylin.source.jdbc.adaptor=io.kyligence.kap.sdk.datasource.adaptor.Mssql08Adaptor
 
 In project configuration, your database password configured in `kylin.source.jdbc.pass` is automatically hidden and encrpted, as shown below:
 
-![sd](images/rdbms_project_pass.png)
+![](images/rdbms_project_pass.png)
 
 * **In System Configuration**
 
@@ -109,7 +109,7 @@ The **System** page you can also configure RDBMS data source at system level. To
    ![](images/rdbms_system_pass.png)
 
 
-> **Note:** There are several known limitations for Microsoft SQL SERVER.
+> **Note:** There are several known limitations for Microsoft SQL SERVER 2012.
 >
 > - Not support sub-query with limit clause
 > - Not support 'geometric','geography'
