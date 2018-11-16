@@ -7,7 +7,7 @@
 ![](images/buildcube_0.png)
 
 第二步，在弹出的Cube构建确认对话框中确认Cube的分段时间列（Partition Date Column）是DEFAULT.KYLIN_SALES.PART_DT，以及起始时间是2012-01-01 00:00:00。在Kyligence Enterprise中，一次构建会为Cube产生一个新的Segment，每次的SQL查询都会访问一个或多个符合条件的Segment；我们需要尽可能地让一个Segment更好地适用于查询条件，因此我们可以按年构建，即每个年份构建一个Segment。在这个例子中，我们输入结束日期为2013-01-01 00:00:00。设置完成后单击**提交**按钮。
-> 注意：增量构建是具体按年构建还是按月构建应该根据实际的业务需求、ETL时效及数据量大小而定。如果一次构建的数据量过大，可能导致构建时间过长，或出现内存溢出等异常。在当前的样例数据中，数据量较小，按年构建是可以顺利完成的。
+> **注意：**增量构建是具体按年构建还是按月构建应该根据实际的业务需求、ETL时效及数据量大小而定。如果一次构建的数据量过大，可能导致构建时间过长，或出现内存溢出等异常。在当前的样例数据中，数据量较小，按年构建是可以顺利完成的。
 
 ![](images/buildcube_1.png)
 
@@ -27,11 +27,17 @@
 
 
 
-### 常见问题答疑
+### 常见问题
 
-1. 在构建Cube时，如果遇到 killed by admin错误。
+**问：Kyligence Enterprise 有没有构建任务并发数限制？如果提交构建任务时，超出了系统允许的并发数怎么办？**
 
-这个问题主要是由于使用Sandbox时，MR任务请求的内存过多，从而被YARN拒绝导致的。您可以通过修改“conf/kylin_job_conf_inmem.xml”配置，调低请求的内存大小来解决这个问题。​
+Kyligence Enterprise 有构建任务并发数限制，默认为**10**，可以通过修改系统配置文件`kylin.properties`中的参数`kylin.job.max-concurrent-jobs` 来更改。
+
+提交新构建任务时，如果超出了系统允许的任务并发数限制，那么该提交的构建任务会进入任务队列。当有运行的任务完成时， Kyligence Enterprise 会以先进先出(FIFO)的方式调度队列中的任务执行。
+
+**问：在构建Cube时，如果遇到 "killed by admin" 错误。**
+
+这个问题主要是由于使用 Sandbox 时，MR 任务请求的内存过多，从而被 YARN 拒绝导致的。您可以通过修改 `conf/kylin_job_conf_inmem.xml`配置，调低请求的内存大小来解决这个问题。
 
 ```properties
 <property>
