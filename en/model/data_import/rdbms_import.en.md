@@ -3,9 +3,11 @@
 Kyligence Enterprise supports RDBMS as data source since version 3.0. 
 
 ### Supported RDBMS
-- Greenplum
-- MySQL
-- Microsoft SQL Server
+| Data source | Version | Recommended driver |
+| - | - | - |
+| Greenplum | Greenplum 5.3.0 | - |
+| MySQL | 5.5, 5.6, 5.7 | mysql 5.1.41 |
+| Microsoft SQL Server | SQLServer2008, SQLServer2012 | sqlserver08:4-4.0 |
 
 ### Prerequisites
 
@@ -14,7 +16,7 @@ You need to follow the steps below to connect to RDBMS:
 - Download RDBMS official JDBC Driver
 - Download Kyligence specific data source adaptor from [Kyligence Account](http://download.kyligence.io/#/addons)
 - Copy related jar packages to  `$KYLIN_HOME/ext`. 
-- Copy related jar packages to `<sqoop_installation_directory> /lib`, check global parameters, and add `kylin.source.jdbc.sqoop-home=<sqoop_path>` to `kylin.properties`. <sqoop_path> is the file where the sqoop command locates.
+- Copy related jar packages to `<sqoop_installation_directory> /lib`, check global parameters, and add `kylin.source.jdbc.sqoop-home=<sqoop_path>` to `kylin.properties`. <sqoop_path> is the directory where the sqoop is installed
 
 ### Connection Configuration
 
@@ -109,7 +111,7 @@ The **System** page you can also configure RDBMS data source at system level. To
    ![](images/rdbms_system_pass.png)
 
 
-> **Note:** There are several known limitations for Microsoft SQL SERVER 2012.
+> **Note:** There are several known limitations for Microsoft SQL SERVER 2008.
 >
 > - Not support sub-query with limit clause
 > - Not support 'geometric','geography'
