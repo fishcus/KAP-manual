@@ -11,30 +11,6 @@ Excel 通过 SSAS 接口连接 MDX Service，协议使用 XMLA。MDX Service 将
 1. 安装部署 MDX Service
 
 2. 安装 Excel 2007 版及以上
-> 注意：
->
-> 如果您使用的 Excel 版本是2016，需要修改系统默认的 MSOLAP 版本，修改方式如下：
->
-> 1. 在安装 Excel 的环境中，访问[下载链接](https://www.microsoft.com/zh-CN/download/details.aspx?id=35580) 点击下载，选择下载项目 `SQL_AS_OLEDB.msi` （根据Windows系统选择64位或32位），然后安装。
->
-> 2. 在安装 Excel 的环境中，创建一个文本文件，将以下内容复制到文件中，最后将文件名重命名为 edit.reg，然后运行此文件。
->
->
-> ```
-> Windows Registry Editor Version 5.00
->
-> [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Office\ClickToRun\REGISTRY\MACHINE\Software\Classes\MSOLAP]
->
-> @="MSOLAP 11.0 OLE DB Provider"
->
-> [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Office\ClickToRun\REGISTRY\MACHINE\Software\Classes\MSOLAP\CLSID]
->
-> @="{308FF259-8671-4df4-B66C-9851BFACF446}"
->
-> [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Office\ClickToRun\REGISTRY\MACHINE\Software\Classes\MSOLAP\CurVer]
->
-> @="MSOLAP.5"
-> ```
 
 ### 部署 MDX Service
 + 下载 [MDX Service ](http://download.kyligence.io)二进制包（在**扩展包**标签页中），并拷贝至您的环境中。

@@ -11,26 +11,6 @@ Excel connect to MDX Service through SSAS interface, using XMLA protocol. MDX Se
 1. Install MDX Service
 
 2. Excel version is 2007 or above
-> Notice:
-> 
-> If Excel version is 2016, you may need to change the default MSOLAP version, modify it as follows
-> 
-> ① Access [here](https://www.microsoft.com/zh-CN/download/details.aspx?id=35580) in your Excel environment, then click `download` and select `SQL_AS_OLEDB.msi` (choose 64/32 bit according to your windows version), and then install it.
->
-> ② Create a txt file in your Excel environment, then paste the following script to the file and rename it to `edit.reg`, and then run it.
->
-> ```
->Windows Registry Editor Version 5.00
->
->[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Office\ClickToRun\REGISTRY\MACHINE\Software\Classes\MSOLAP]
->@="MSOLAP 11.0 OLE DB Provider"
->
->[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Office\ClickToRun\REGISTRY\MACHINE\Software\Classes\MSOLAP\CLSID]
->@="{308FF259-8671-4df4-B66C-9851BFACF446}"
->
->[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Office\ClickToRun\REGISTRY\MACHINE\Software\Classes\MSOLAP\CurVer]
->@="MSOLAP.5"
-> ```
 
 ### Deploy MDX Service
 
