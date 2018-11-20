@@ -107,7 +107,7 @@ Group by pay_type, buyer_id
 
 
 
-### 层级维度 （Hierachy Dimension）
+### 层级维度 （Hierarchy Dimension）
 
 用户选择的维度中常常会出现具有层级关系的维度。例如对于国家（country）、省份（province）和城市（city）这三个维度，从上而下来说国家／省份／城市之间分别是一对多的关系。也就是说，用户对于这三个维度的查询可以归类为以下三类：
 
