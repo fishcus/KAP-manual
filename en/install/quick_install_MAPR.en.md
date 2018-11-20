@@ -14,13 +14,17 @@ To avoid permission issue in the sandbox, you can use MapR's  *mapr* account thr
 
 ### Install Kyligence Enterprise
 
-After setting up the environment, installing Kyligence Enterprise is very simple.
+After setting up the environment, installing Kyligence Enterprise is very simple. For detailed steps, please refer to [Quick install](.\quick_install.en.md). 
 
-For detailed steps, please refer to [Quick install](.\quick_install.en.md).  Please pay attention to the following particularity in MapR environment.
+Please **DO PAY ATTENTION** to the following instructions.
 
-### Particularity of the MapR Environment
+>**Caution:** Currently **only MySQL** is supported as metastore. For how to set up MySQL as metastore, please refer to [Use MySQL as Metastore](../config/metastore_jdbc_mysql.en.md).
 
-The MapR environment is different with others. Please pay attention to the following steps when implementing the installation steps:
+### Special Instructions for MapR Environment
+
+The MapR environment is a little bit different with other Hadoop distributions. Please pay attention to the following steps when install Kyligence Enterprise on MapR:
+
+> **Note:** Please set environment variable `KYLIN_HOME` to be the folder path where Kyligence Enterprise is unpacked, which will be used in further illustration.
 
 - The file operation command in MapR is `hadoop fs` instead of `hdfs dfs`. Please replace it by yourself and here we use  `/kylin` as an example:
 
@@ -28,6 +32,7 @@ The MapR environment is different with others. Please pay attention to the follo
   hadoop fs -mkdir /kylin
   hadoop fs -chown mapr /kylin
   ```
+
 - The file system of MapR is `maprfs://`, so some properties in `$KYLIN_HOME/conf/kylin.properties` should be changed as:
 
   ```properties
@@ -36,6 +41,15 @@ The MapR environment is different with others. Please pay attention to the follo
   kylin.engine.spark-conf.spark.history.fs.logDirectory=maprfs:///kylin/spark-history
   ```
 
+  In addition to this, please add the following properties in `$KYLIN_HOME/conf/kylin_hive_conf.xml` and `$KYLIN_HOME/conf/kylin_job_conf.xml`. 
+
+  ```xml
+    <property>
+           <name>fs.default.name</name>
+           <value>maprfs:///</value>
+           <description> Disable Hive's auto merge</description>
+    </property>
+  ```
 
 - If you need to specify the environment dependencies of Hive, the default locations are as follows:
 
@@ -43,13 +57,20 @@ The MapR environment is different with others. Please pay attention to the follo
   export HIVE_CONF=/opt/mapr/hive/hive-2.1/conf
   ```
 
-* Please specify the environment dependencies of Spark before you start Kyligence Enterprise, such as:
+* Please specify the environment dependencies of Spark and execute the following commands before you start Kyligence Enterprise. Please replace the example path with your actual Spark path.
 
   ```shell
-  export SPARK_HOME=/opt/mapr/spark/spark-2.1.0
+  export SPARK_HOME=/opt/mapr/spark/spark-2.2.1
+  cp -rf $SPARK_HOME $KYLIN_HOME
+  cp -rf $KYLIN_HOME/spark/jars/spark-sql_2.11-2.2.1-kylin-*.jar $KYLIN_HOME/spark-2.2.1/jars
+  cp -rf $KYLIN_HOME/spark/jars/spark-catalyst_2.11-2.2.1-kylin-*.jar $KYLIN_HOME/spark-2.2.1/jars
+  rm -rf $KYLIN_HOME/spark-2.2.1/jars/spark-catalyst_2.11-2.2.1-mapr-*.jar
+  rm -rf $KYLIN_HOME/spark-2.2.1/jars/spark-sql_2.11-2.2.1-mapr-*.jar
+  rm -rf $KYLIN_HOME/spark
+  mv $KYLIN_HOME/spark-2.2.1 $KYLIN_HOME/spark
   ```
 
-* To consider that using HBase as Metastore and errors can't be solved easily, using MySQL as Metastore is recommended. More details refer to [Use MySQL as Metastore](../config/metastore_jdbc_mysql.en.md).
+* Using MySQL as Metastore is **only supported** in current version. More details refer to [Use MySQL as Metastore](../config/metastore_jdbc_mysql.en.md).
 
 ### FAQ
 

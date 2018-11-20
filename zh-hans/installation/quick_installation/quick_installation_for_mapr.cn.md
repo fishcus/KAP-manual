@@ -14,13 +14,15 @@
 
 ### 快速安装 Kyligence Enterprise
 
-准备好了环境之后，安装 Kyligence Enterprise 十分简单。
+准备好了环境之后，安装 Kyligence Enterprise 十分简单，详细步骤请看[在单节点上快速安装 Kyligence Enterprise](quick_installation_for_single_node.cn.md)，同时请**务必留意**下述 MapR 环境下的特别注意事项。
 
-详细步骤请看[在单节点上快速安装 Kyligence Enterprise](quick_installation_for_single_node.cn.md)，并留意下述的 MapR 特殊性。
+> **注意：** 目前在 MapR 上安装 Kyligence Enterprise **仅支持**使用 MySQL 作为元数据存储。详情参考：[基于 MySQL 的 Metastore 配置](../../config/metastore_jdbc_mysql.cn.md)。
 
-### MapR 环境的特殊性
+### MapR 环境下的特别注意事项
 
-MapR 环境有它的特殊性，在执行安装步骤时，请留意以下不同：
+MapR 环境有它的特殊性，在执行安装步骤时，请留意以下事项：
+
+> **提示：** 我们将环境变量 `KYLIN_HOME` 的值设为 Kyligence Enterprise 解压后的路径，便于后面进行说明。
 
 - MapR 中的文件操作命令为 `hadoop fs`，而不是 `hdfs dfs`。请在文件操作时自行替换，这里工作目录以`/kylin` 为例：
    ```shell
@@ -36,19 +38,34 @@ MapR 环境有它的特殊性，在执行安装步骤时，请留意以下不同
    kylin.engine.spark-conf.spark.history.fs.logDirectory=maprfs:///kylin/spark-history
    ```
 
+   同时还需要对 `$KYLIN_HOME/conf/kylin_hive_conf.xml` 及 `$KYLIN_HOME/conf/kylin_job_conf.xml` 中均添加以下参数：
+
+   ```xml
+    <property>
+           <name>fs.default.name</name>
+           <value>maprfs:///</value>
+           <description> Disable Hive's auto merge</description>
+     </property>
+   ```
+
 - 如果需要指定 Hive 的环境依赖，请进行以下操作，默认位置如下：
 
    ```shell
    export HIVE_CONF=/opt/mapr/hive/hive-2.1/conf
    ```
 
-* 请在启动 Kyligence Enterprise 前，指定 Spark 的环境变量，这里以默认位置作为示范：
+* 请在启动 Kyligence Enterprise 前，拷贝部分 Spark jar 到 `$KYLIN_HOME` 下，请您根据环境中的 Spark 地址进行替换。
 
   ```shell
-  export SPARK_HOME=/opt/mapr/spark/spark-2.1.0
+  export SPARK_HOME=/opt/mapr/spark/spark-2.2.1
+  cp -rf $SPARK_HOME $KYLIN_HOME
+  cp -rf $KYLIN_HOME/spark/jars/spark-sql_2.11-2.2.1-kylin-*.jar $KYLIN_HOME/spark-2.2.1/jars
+  cp -rf $KYLIN_HOME/spark/jars/spark-catalyst_2.11-2.2.1-kylin-*.jar $KYLIN_HOME/spark-2.2.1/jars
+  rm -rf $KYLIN_HOME/spark-2.2.1/jars/spark-catalyst_2.11-2.2.1-mapr-*.jar
+  rm -rf $KYLIN_HOME/spark-2.2.1/jars/spark-sql_2.11-2.2.1-mapr-*.jar
+  rm -rf $KYLIN_HOME/spark
+  mv $KYLIN_HOME/spark-2.2.1 $KYLIN_HOME/spark
   ```
-
-* 考虑到使用 HBase 做为 Metastore 出现各种错误不好排查，我们建议您使用 MySQL 作为 Metastore 存储。详情参考：[基于 MySQL 的 Metastore 配置](../../config/metastore_jdbc_mysql.cn.md)。
 
 ### FAQ
 
