@@ -8,7 +8,7 @@ Qlik Sense is a new generation of business intelligence software that provides c
 * Download **Kyligence Data Connector for Qlik** on the Kyligence download webpage, unzip and copy it into the Qlik installed directory(/QlikData/sense/client), keep the folder name as *KyligenceDataConnectorForQlik*.
 
 
-### Modify the config
+### Modify The Config
 
 You can find a file named `KE_METADATA_LOADER.qvf` in the unziped plugin folder. Upload it in **QMC-APP** and copy its app id.
 ![import QVF file](images/Qlik/qse-001.png)
@@ -55,3 +55,10 @@ Click the first entrance, start your trip to create an app based on the cube.
 
 Now, you can analyze the data in Kyligence Enterprise in the generated app.
 ![make insights](images/Qlik/qse-014.png)
+
+
+### Limitations
+
+1. For **Qlik Direct Query Mode**, **Join As** is not supported, so cube based on that kind of model cannot be loaded into Qlik.
+2. When making insights in QLik, if you drag dimension first, Qlik will send a detailed query to Kyligence and report an error. So it is recommended to drag a measure first.
+3. You can sync measures defined in Kyligence using Kyligence Data Connector for Qlik, but only the basic measures will be sync to Qlik for now, like *Count*, *SUM*, *MAX*, *MIN*.

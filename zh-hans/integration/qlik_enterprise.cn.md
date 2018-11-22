@@ -58,3 +58,9 @@ https://[安装 Qlik 的机器的 hostname]/resources/KyligenceDataConnectorForQ
 
 现在，您可以在生成的 App 中分析 Kyligence 中的数据了：
 ![制作报表](images/Qlik/qse-014.png)
+
+### 已知限制
+
+1. Qlik Direct Query 模式不支持 ***Join As*** 语法， 因此通过表别名的方式多次 Join 同一张表的模型和 cube 无法被 Qlik 加载。
+2. 在 Qlik 中制作可视化报表时，如果先拖拽维度，Qlik 会给 Kyligence 发送一个维度的明细查询，导致前端产生一个报错。因此我们建议您先拖拽度量，再拖拽维度，避免产生报错。
+3. 使用 Kyligence Data Connector for Qlik 可以同步在 Kyligence 中定义好的 Measure，但目前只能同步部分基础 Measure，包括 *Count*，*SUM*，*MAX*，*MIN* 等。
