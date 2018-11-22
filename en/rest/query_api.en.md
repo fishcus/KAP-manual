@@ -7,12 +7,12 @@
 
 
 
-* [Query the Cube](#Query the Cube)
-* [List all tables that can be queried](#List all tables that can be queried)
+* [Query the Cube](#Query-the-Cube)
+* [List all tables that can be queried](#List-all-tables-that-can-be-queried)
 
 
 
-### Query the Cube
+### Query the Cube {#Query-the-Cube}
 
 - `POST http://host:port/kylin/api/query`
 
@@ -86,7 +86,7 @@
 
 
 
-### List all tables that can be queried
+### List all tables that can be queried {#List-all-tables-that-can-be-queried}
 
 - `GET http://host:port/kylin/api/tables_and_columns`
 

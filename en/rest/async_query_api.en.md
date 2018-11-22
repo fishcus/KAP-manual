@@ -7,17 +7,17 @@
 
 
 
-* [Submit Async Query](#Submit Async Query)
-* [Request Query Status](#Request Query Status)
-* [Request Query Metadata Info](#Request Query Metadata Info)
-* [Request Query Result File Status](#Request Query Result File Status)
-* [Download Query Result](#Download Query Result)
-* [Request Query HDFS Path](#Request Query HDFS Path)
-* [Delete All Query Result Files](#Delete All Query Result Files)
+* [Submit Async Query](#Submit-Async-Query)
+* [Request Query Status](#Request-Query-Status)
+* [Request Query Metadata Info](#Request-Query-Metadata-Info)
+* [Request Query Result File Status](#Request-Query-Result-File-Status)
+* [Download Query Result](#Download-Query-Result)
+* [Request Query HDFS Path](#Request-Query-HDFS-Path)
+* [Delete All Query Result Files](#Delete-All-Query-Result-Files)
 
 
 
-### Submit Async Query
+### Submit Async Query   {#Submit-Async-Query}
 
 - `POST http://host:port/kylin/api/async_query`
 
@@ -69,7 +69,7 @@
 
 
 
-### Request Query Status
+### Request Query Status   {#Request-Query-Status}
 
 - `GET http://host:port/kylin/api/async_query/{queryID}/status`
 
@@ -114,7 +114,7 @@
 
 
 
-### Request Query Metadata Info
+### Request Query Metadata Info {#Request-Query-Metadata-Info}
 
 - `GET http://host:port/kylin/api/async_query/{queryID}/metadata`
 
@@ -164,7 +164,7 @@
 
 
 
-### Request Query Result File Status
+### Request Query Result File Status {#Request-Query-Result-File-Status}
 
 - `GET http://host:port/kylin/api/async_query/{queryID}/filestatus`
 
@@ -205,7 +205,7 @@
 
 
 
-### Download Query Result
+### Download Query Result {#Download-Query-Result}
 
 > Note: Please make sure the query status is "SUCCESSFUL" before calling this API.
 
@@ -239,7 +239,7 @@
 
 
 
-### Request Query HDFS Path
+### Request Query HDFS Path  {#Request-Query-HDFS-Path}
 
 - `GET http://host:port/kylin/api/async_query/{queryID}/result_path`
 
@@ -282,7 +282,7 @@
 
 
 
-### Delete All Query Result Files
+### Delete All Query Result Files  {#Delete-All-Query-Result-Files}
 
 - `DELETE http://host:port/kylin/api/async_query`
 

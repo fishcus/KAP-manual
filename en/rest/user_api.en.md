@@ -7,15 +7,15 @@
 
 
 
-* [Get user list](#Get user list)
-* [Create a user](#Create a user)
-* [Modify a user](#Modify a user)
-* [Delete a user](#Delete a user)
+* [Get user list](#Get-user-list)
+* [Create a user](#Create-a-user)
+* [Modify a user](#Modify-a-user)
+* [Delete a user](#Delete-a-user)
 
 
 
-### Get User List
-
+### Get User List {#Get-user-list}
+ 
 - `GET http://host:port/kylin/api/kap/user/users`
 
 
@@ -74,7 +74,7 @@
 
 
 
-### Create a User
+### Create a User {#Create-a-user}
 
 - `POST http://host:port/kylin/api/kap/user/{userName}`
 
@@ -140,7 +140,7 @@
 
 
 
-### Modify a User
+### Modify a User {#Modify-a-user}
 
 - `PUT http://host:port/kylin/api/kap/user/{userName}`
 
@@ -193,7 +193,7 @@
 
 
 
-### Delete a User
+### Delete a User {#Delete-a-user}
 
 - `DELETE http://host:port/kylin/api/kap/user/{userName}`
 

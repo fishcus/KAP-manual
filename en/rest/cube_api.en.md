@@ -23,7 +23,7 @@
 
 
 
-### Get Cube List
+### Get Cube List    {#get-cube-list}
 
 - `GET http://host:port/kylin/api/cubes`
 
@@ -69,7 +69,7 @@
 
 
 
-### Get Specific Cube
+### Get Specific Cube   {#get-specific-cube}
 
 - `GET http://host:port/kylin/api/cubes`
 
@@ -108,7 +108,7 @@
 
 
 
-### Get Cube Description
+### Get Cube Description  {#get-cube-description}
 
 - `GET http://host:port/kylin/api/cube_desc/{projectName}/{cubeName}`
 
@@ -177,7 +177,7 @@
 
 
 
-### Build a Cube with Date Partition
+### Build a Cube with Date Partition  {#build-a-cube-with-date-partition}
 
 - `PUT http://host:port/kylin/api/cubes/{cubeName}/segments/build`
 
@@ -190,7 +190,7 @@
   - `Content-Type: application/json;charset=utf-8`
 
 - HTTP Body: JSON Object
-  - `startTime` - `required` `long`, start time, corresponding to the timestamp in GMT format,  for example, `1388534400000` corresponding to `2014-01-01 00:00:00`
+  - `startTime` - `required` `long`, start time, corresponding to the timestamp in GMT format,  for example, `1388534400000` corresponding to `2014-01-01 00:00:00`，[Unix Timestamp Conversion Tools](https://www.epochconverter.com/) can be used to convert date to timestamp
   - `endTime` - `required` `long`, end time, corresponding to the timestamp in GMT format
   - `buildType` - `required` `string`,supported build type, "BUILD"
   - `mpValues` - `optional` `string`, multiple partition values of corresponding model
@@ -250,7 +250,7 @@
 
 
 
-### Full Build a Cube
+### Full Build a Cube   {#full-build-a-cube}
 
 - `PUT http://host:port/kylin/api/cubes/{cubeName}/segments/build`
 
@@ -312,7 +312,7 @@
   }
   ```
 
-### Build a Cube in Batch
+### Build a Cube in Batch {#build-a-cube-in-batch}
 
 - `PUT http://host:port/kylin/api/cubes/{cubeName}/batch_sync`
 
@@ -378,7 +378,7 @@
 
 
 
-### Clone a Cube
+### Clone a Cube  {#clone-a-cube}
 
 - `PUT http://host:port/kylin/api/cubes/{cubeName}/clone`
 
@@ -449,7 +449,7 @@
 
 
 
-### Enable a Cube
+### Enable a Cube {#enable-a-cube}
 
 - `PUT http://host:port/kylin/api/cubes/{cubeName}/enable`
 
@@ -514,7 +514,7 @@
 
 
 
-### Disable a Cube
+### Disable a Cube  {#disable-a-cube}
 
 - `PUT http://host:port/kylin/api/cubes/{cubeName}/disable`
 
@@ -579,7 +579,7 @@
 
 
 
-### Purge a Cube
+### Purge a Cube  {#purge-a-cube}
 
 - `PUT http://host:port/kylin/api/cubes/{cubeName}/purge`
 
@@ -648,7 +648,7 @@
 
 
 
-### Manage Segments
+### Manage Segments {#manage-segments}
 
 - `PUT http://host:port/kylin/api/cubes/{cubeName}/segments`
 
@@ -697,7 +697,7 @@
 
 
 
-### Get Holes in Segments
+### Get Holes in Segments   {#get-holes-in-segments}
 
 > Note: A healthy cube should not have holes in segments.
 
@@ -760,13 +760,15 @@
 
 
 
-### Export TDS File
+### Export TDS File   {#export-tds-file}
 
 - `GET http://host:port/kylin/api/cubes/{cubeName}/export/tds`
 
 - URL Parameters
 
   - `cubeName` - `required` `string`,  cube name
+  - `windowUrl` - `optional` `string`, url of Kyligence Enterprise windows, for example, `http://localhost:7070/kylin`, and the default value is none.
+  - `containTableIndex` - `optional` `boolean`, whether includes the columns set to table index, the default value is `false`
 
 - HTTP Header
   - `Accept: application/vnd.apache.kylin-v2+json`

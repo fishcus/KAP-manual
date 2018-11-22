@@ -7,15 +7,15 @@
 
 
 
-* [Get Row ACL ](#Get Row ACL )
-* [Grant Row ACL ](#Grant Row ACL )
-* [Grant Row ACL in batch ](#Grant Row ACL in batch )
-* [Update Row ACL](#Update Row ACL)
-* [Revoke Row ACL](#Revoke Row ACL)
+* [Get Row ACL ](#Get-Row-ACL)
+* [Grant Row ACL ](#Grant-Row-ACL)
+* [Grant Row ACL in batch](#Grant-Row-ACL-in-batch)
+* [Update Row ACL](#Update-Row-ACL)
+* [Revoke Row ACL](#Revoke-Row-ACL)
 
 
 
-### Get Row ACL 
+### Get Row ACL  {#Get-Row-ACL}
 
 - `GET http://host:port/kylin/api/acl/row/paged/{project}/{table}`
 
@@ -75,7 +75,7 @@
 
 
 
-### Grant Row ACL 
+### Grant Row ACL  {#Grant-Row-ACL}
 
 - `POST http://host:port/kylin/api/acl/row/{project}/{type}/{table}/{username}`
 
@@ -137,7 +137,7 @@
 
 
 
-### Grant Row ACL in Batch 
+### Grant Row ACL in Batch  {#Grant-Row-ACL-in-batch}
 
 - `POST http://host:port/kylin/api/acl/row/batch/{project}/{type}/{table}`
 
@@ -200,7 +200,7 @@
 
 
 
-### Update Row ACL
+### Update Row ACL {#Update-Row-ACL}
 
 - `PUT http://host:port/kylin/api/acl/row/{project}/{type}/{table}/{username}`
 
@@ -256,7 +256,7 @@
 
 
 
-### Revoke Row ACL
+### Revoke Row ACL {#Revoke-Row-ACL}
 
 - `DELETE http://host:port/kylin/api/acl/row/{project}/{type}/{table}/{username}`
 

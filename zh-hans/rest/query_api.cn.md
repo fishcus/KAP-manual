@@ -8,12 +8,12 @@
 
 
 
-* [查询 Cube 数据](#查询-Cube-数据)
+* [查询 Cube 数据](#查询Cube数据)
 * [列出可查询的表](#列出可查询的表)
 
 
 
-### 查询 Cube 数据
+### 查询 Cube 数据   {#查询Cube数据}
 
 - `POST http://host:port/kylin/api/query`
 

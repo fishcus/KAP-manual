@@ -7,16 +7,16 @@
 
 
 
-* [Get user group list](#Get user group list)
-* [Get user group and its user list](#Get user group and its user list)
-* [Get user list of specified user group](#Get user list of specified user group)
-* [Add a user group](#Add a user group)
-* [Delete a user group](#Delete a user group)
-* [Update a user group](#Update a user group)
+* [Get user group list](#Get-user-group-list)
+* [Get user group and its user list](#Get-user-group-and-its-user-list)
+* [Get user list of specified user group](#Get-user-list-of-specified-user-group)
+* [Add a user group](#Add-a-user-group)
+* [Delete a user group](#Delete-a-user-group)
+* [Update a user group](#Update-a-user-group)
 
 
 
-### Get user group list
+### Get user group list {#Get-user-group-list}
 
 - `GET http://host:port/kylin/api/user_group/groups`
 
@@ -60,7 +60,7 @@
 
 
 
-### Get user group and its user list
+### Get user group and its user list {#Get-user-group-and-its-user-list}
 
 - `GET http://host:port/kylin/api/user_group/usersWithGroup`
 
@@ -117,7 +117,7 @@
 
 
 
-### Get user list of specified user group
+### Get user list of specified user group {#Get-user-list-of-specified-user-group}
 
 - `GET http://host:port/kylin/api/user_group/groupMembers/{groupName}`
 
@@ -173,7 +173,7 @@
 
 
 
-### Add a user group
+### Add a user group {#Add-a-user-group}
 
 - `POST http://host:port/kylin/api/user_group/{groupName}`
 
@@ -210,7 +210,8 @@
   ```
 
 
-### Delete a user group
+
+### Delete a user group {#Delete-a-user-group}
 
 - `DELETE http://host:port/kylin/api/user_group/{groupName}`
 
@@ -248,7 +249,7 @@
 
 
 
-### Update a user group
+### Update a user group {#Update-a-user-group}
 
 > Note: Updating a user group replaces the original user list in the specified user group rather than adding new users to it.
 

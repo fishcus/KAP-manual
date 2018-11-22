@@ -7,15 +7,15 @@
 
 
 
-* [Get Model List](#Get Model List)
-* [Get Model Description](#Get Model Description)
-* [Clone a Model](#Clone a Model)
-* [Drop a Model](#Drop a Model)
-* [Get all Computed Columns in a project](#Get all Computed Columns in a project)
+* [Get Model List](#Get-Model-List)
+* [Get Model Description](#Get-Model-Description)
+* [Clone a Model](#Clone-a-Model)
+* [Drop a Model](#Drop-a-Model)
+* [Get all Computed Columns in a project](#Get-all-Computed-Columns-in-a-project)
 
 
 
-### Get Model Description List
+### Get Model Description List {#Get-Model-List}
 
 - `GET http://host:port/kylin/api/models`
 
@@ -57,7 +57,7 @@
 
 
 
-### Get Model Description by Project Name and Model Name
+### Get Model Description by Project Name and Model Name {#Get-Model-Description}
 
 - `GET http://host:port/kylin/api/models/{projectName}/{modelName}`
 
@@ -115,7 +115,7 @@
 
 
 
-### Clone a Model
+### Clone a Model {#Clone-a-Model}
 
 - `PUT http://host:port/kylin/api/models/{modelName}/clone`
 
@@ -158,7 +158,7 @@
 
 
 
-### Drop a Model
+### Drop a Model {#Drop-a-Model}
 
 - `DELETE http://host:port/kylin/api/models/{projectName}/{modelName}`
 
@@ -184,7 +184,7 @@
 
 
 
-### Get all Computed Columns in a project
+### Get all Computed Columns in a project {#Get-all-Computed-Columns-in-a-project}
 
 - `GET http://host:port/kylin/api/models/computed_column_usage/{projectName}`
 

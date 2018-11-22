@@ -9,13 +9,13 @@
 
 
 
-* [加载 Hive 表](#加载-Hive-表)
-* [返回多个 Hive 表](#返回多个-Hive-表)
-* [返回 Hive 表信息](#返回-Hive-表信息)
+* [加载 Hive 表](#加载Hive表)
+* [返回多个 Hive 表](#返回多个Hive表)
+* [返回 Hive 表信息](#返回Hive表信息)
 
 
 
-### 加载 Hive 表
+### 加载 Hive 表   {#加载Hive表}
 
 - `POST http://host:port/kylin/api/tables/load`
 
@@ -64,7 +64,7 @@
 
 
 
-### 返回多个 Hive 表
+### 返回多个 Hive 表   {#返回多个Hive表}
 
 - `GET http://host:port/kylin/api/tables`
 
@@ -112,7 +112,7 @@
 
 
 
-### 返回 Hive 表信息
+### 返回 Hive 表信息   {#返回Hive表信息}
 
 - `GET http://host:port/kylin/api/tables/{project}/{tableName}`
 

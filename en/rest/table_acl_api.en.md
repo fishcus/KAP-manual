@@ -7,14 +7,14 @@
 
 
 
-* [Get Table ACL](#Get Table ACL)
-* [Grant Table ACL](#Grant Table ACL)
-* [Grant Table ACL in batch](#Grant Table ACL in batch)
-* [Revoke Table ACL](#Revoke Table ACL)
+* [Get Table ACL](#Get-Table-ACL)
+* [Grant Table ACL](#Grant-Table-ACL)
+* [Grant Table ACL in batch](#Grant-Table-ACL-in-batch)
+* [Revoke Table ACL](#Revoke-Table-ACL)
 
 
 
-### Get Table ACL
+### Get Table ACL {#Get-Table-ACL}
 
 - `GET http://host:port/kylin/api/acl/table/paged/{project}/{table}`
 
@@ -65,7 +65,7 @@
 
 
 
-### Grant Table ACL
+### Grant Table ACL {#Grant-Table-ACL}
 
 - `POST http://host:port/kylin/api/acl/table/{project}/{type}/{table}/{name}`
 
@@ -107,7 +107,7 @@
 
 
 
-### Grant Table ACL in Batch
+### Grant Table ACL in Batch {#Grant-Table-ACL-in-batch}
 
 
 - `POST http://host:port/kylin/api/acl/table/batch/{project}/{table}`
@@ -161,7 +161,7 @@
 
 
 
-### Revoke Table ACL
+### Revoke Table ACL {#Revoke-Table-ACL}
 
 - `DELETE http://host:port/kylin/api/acl/table/{project}/{type}/{table}/{name}`
 

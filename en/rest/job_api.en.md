@@ -7,17 +7,17 @@
 
 
 
-* [Get Job List](#Get Job List)
-* [Get Job Information](#Get Job Information)
-* [Get Job Step Output](#Get Job Step Output)
-* [Pause a Job](#Pause a Job)
-* [Resume a Job](#Resume a Job)
-* [Cancel a Job](#Cancel a Job)
-* [Drop a Job](#Drop a Job)
+* [Get Job List](#Get-Job-List)
+* [Get Job Information](#Get-Job-Information)
+* [Get Job Step Output](#Get-Job-Step-Output)
+* [Pause a Job](#Pause-a-Job)
+* [Resume a Job](#Resume-a-Job)
+* [Cancel a Job](#Cancel-a-Job)
+* [Drop a Job](#Drop-a-Job)
 
 
 
-### Get Job List
+### Get Job List {#Get-Job-List}
 
 - `GET http://host:port/kylin/api/jobs`
 
@@ -84,7 +84,7 @@
 
 
 
-### Get Job Information
+### Get Job Information {#Get-Job-Information}
 
 - `GET http://host:port/kylin/api/jobs/{jobId}`
 
@@ -138,7 +138,7 @@
 
 
 
-### Get Job Step Output
+### Get Job Step Output {#Get-Job-Step-Output}
 
 - `GET http://host:port/kylin/api/jobs/{jobId}/steps/{stepId}/output`
 
@@ -177,7 +177,7 @@
 
 
 
-### Pause a Job
+### Pause a Job {#Pause-a-Job}
 
 - `PUT http://host:port/kylin/api/jobs/{jobId}/pause`
 
@@ -230,7 +230,7 @@
 
 
 
-### Resume a Job
+### Resume a Job {#Resume-a-Job}
 
 - `PUT http://host:port/kylin/api/jobs/{jobId}/resume`
 
@@ -299,7 +299,7 @@
 
 
 
-### Cancel a Job
+### Cancel a Job {#Cancel-a-Job}
 
 - `PUT http://host:port/kylin/api/jobs/{jobId}/cancel`
 
@@ -352,7 +352,7 @@
 
 
 
-### Drop a Job
+### Drop a Job {#Drop-a-Job}
 
 - `DELETE http://host:port/kylin/api/jobs/{jobId}/drop`
 

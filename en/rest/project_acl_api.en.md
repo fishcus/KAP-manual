@@ -7,14 +7,14 @@
 
 
 
-* [Get Project ACL](#Get Project ACL)
-* [Grant Project ACL](#Grant Project ACL)
-* [Update Project ACL](#Update Project ACL)
-* [Revoke Project ACL](#Revoke Project ACL)
+* [Get Project ACL](#Get-Project-ACL)
+* [Grant Project ACL](#Grant-Project-ACL)
+* [Update Project ACL](#Update-Project-ACL)
+* [Revoke Project ACL](#Revoke-Project-ACL)
 
 
 
-### Get Project ACL
+### Get Project ACL {#Get-Project-ACL}
 
 - `GET http://host:port/kylin/api/access/{type}/{uuid}`
 
@@ -61,7 +61,7 @@
 
 
 
-### Grant Project ACL
+### Grant Project ACL {#Grant-Project-ACL}
 
 - `POST http://host:port/kylin/api/access/{type}/{uuid}`
 
@@ -106,7 +106,7 @@
 
 
 
-### Update Project ACL
+### Update Project ACL {#Update-Project-ACL}
 
 - `PUT http://host:port/kylin/api/access/{type}/{uuid}`
 
@@ -155,7 +155,7 @@
 
 
 
-### Revoke Project ACL
+### Revoke Project ACL {#Revoke-Project-ACL}
 
 - `DELETE http://host:port/kylin/api/access/{type}/{uuid}`
 

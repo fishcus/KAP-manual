@@ -7,12 +7,12 @@
 
 
 
-* [Purge Cluster Cache](#Purge Cluster Cache)
-* [Purge Single Node Cache](#Purge Single Node Cache)
+* [Purge Cluster Cache](#Purge-Cluster-Cache)
+* [Purge Single Node Cache](#Purge-Single-Node-Cache)
 
 
 
-### Purge Cluster Cache
+### Purge Cluster Cache {#Purge-Cluster-Cache}
 
 - `PUT http://host:port/kylin/api/cache/announce/{entity}/{cacheKey}/{event}`
 
@@ -42,7 +42,7 @@
 
 
 
-### Purge Single Node Cache
+### Purge Single Node Cache {#Purge-Single-Node-Cache}
 
 - `PUT http://host:port/kylin/api/cache/{entity}/{cacheKey}/{event}`
 

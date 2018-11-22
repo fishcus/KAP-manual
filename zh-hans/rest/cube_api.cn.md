@@ -8,23 +8,23 @@
 
 
 
-* [返回多个 Cube](#返回多个-Cube)
-* [返回指定 Cube](#返回指定-Cube)
-* [返回 Cube 描述信息](#返回-Cube-描述信息)
-* [构建 Cube - 日期分区](#构建-Cube-日期分区)
-* [构建 Cube - 全量构建](#构建-Cube-全量构建)
-* [构建 Cube - 批量构建](#构建-Cube-批量构建)
-* [克隆 Cube](#克隆-Cube)
-* [启用 Cube](#启用-Cube)
-* [禁用 Cube](#禁用-Cube)
-* [清理 Cube](#清理-Cube)
-* [管理 Segment](#管理-Segment)
-* [列出 Segment 中的空洞](#列出-Segment-中的空洞)
-* [导出 TDS](#导出-TDS)
+* [返回多个 Cube](#返回多个Cube)
+* [返回指定 Cube](#返回指定Cube)
+* [返回 Cube 描述信息](#返回Cube描述信息)
+* [构建 Cube - 日期分区](#构建Cube日期分区)
+* [构建 Cube - 全量构建](#构建Cube全量构建)
+* [构建 Cube - 批量构建](#构建Cube批量构建)
+* [克隆 Cube](#克隆Cube)
+* [启用 Cube](#启用Cube)
+* [禁用 Cube](#禁用Cube)
+* [清理 Cube](#清理Cube)
+* [管理 Segment](#管理Segment)
+* [列出 Segment 中的空洞](#列出Segment中的空洞)
+* [导出 TDS](#导出TDS)
 
 
 
-### 返回多个 Cube
+### 返回多个 cube     {#返回多个Cube}
 
 - `GET http://host:port/kylin/api/cubes`
 
@@ -70,7 +70,7 @@
 
 
 
-### 返回指定 Cube
+### 返回指定 Cube    {#返回指定Cube}
 
 - `GET http://host:port/kylin/api/cubes`
 
@@ -109,7 +109,7 @@
 
 
 
-### 返回 Cube 描述信息
+### 返回 Cube 描述信息   {#返回Cube描述信息}
 
 - `GET http://host:port/kylin/api/cube_desc/{projectName}/{cubeName}`
 
@@ -177,7 +177,7 @@
 
 
 
-### 构建 Cube - 日期分区
+### 构建 Cube - 日期分区  {#构建Cube日期分区}
 
 - `PUT http://host:port/kylin/api/cubes/{cubeName}/segments/build`
 
@@ -190,7 +190,7 @@
   - `Content-Type: application/json;charset=utf-8`
 
 - HTTP Body: JSON Object
-  - `startTime` - `必选` `long`，开始时间，对应 GMT 格式的时间戳，如`1388534400000`对应`2014-01-01 00:00:00`
+  - `startTime` - `必选` `long`，开始时间，对应 GMT 格式的时间戳，如`1388534400000`对应`2014-01-01 00:00:00`，推荐使用[在线时间戳转换](https://www.epochconverter.com/)对时间进行处理。
   - `endTime` - `必选` `long`，结束时间，对应 GMT 格式的时间戳
   - `buildType` - `必选` `string`，支持的计算类型，为："BUILD"
   - `mpValues` - `可选` `string`，对应模型的多级分区字段值
@@ -251,7 +251,7 @@
 
 
 
-### 构建 Cube - 全量构建
+### 构建 Cube - 全量构建   {#构建Cube全量构建}
 
 - `PUT http://host:port/kylin/api/cubes/{cubeName}/segments/build`
 
@@ -315,7 +315,7 @@
 
 
 
-### 构建 Cube - 批量构建
+### 构建 Cube - 批量构建  {#构建Cube批量构建}
 
 - `PUT http://host:port/kylin/api/cubes/{cubeName}/batch_sync`
 
@@ -381,7 +381,7 @@
 
 
 
-### 克隆 Cube
+### 克隆 Cube  {#克隆Cube}
 
 - `PUT http://host:port/kylin/api/cubes/{cubeName}/clone`
 
@@ -451,7 +451,7 @@
 
 
 
-### 启用 Cube
+### 启用 Cube   {#启用Cube}
 
 - `PUT http://host:port/kylin/api/cubes/{cubeName}/enable`
 
@@ -515,7 +515,7 @@
 
 
 
-### 禁用 Cube
+### 禁用 Cube  {#禁用Cube}
 
 - `PUT http://host:port/kylin/api/cubes/{cubeName}/disable`
 
@@ -579,7 +579,7 @@
 
 
 
-### 清理 Cube
+### 清理 Cube   {#清理Cube}
 
 - `PUT http://host:port/kylin/api/cubes/{cubeName}/purge`
 
@@ -648,7 +648,7 @@
 
 
 
-### 管理 Segment
+### 管理 Segment   {#管理Segment}
 
 - `PUT http://host:port/kylin/api/cubes/{cubeName}/segments`
 
@@ -697,7 +697,7 @@
 
 
 
-### 列出 Segment 中的空洞
+### 列出 Segment 中的空洞  {#列出Segment中的空洞}
 
 > 提示：健康的 Cube 不应存在 Segment 中的空洞
 
@@ -759,13 +759,18 @@
   }
   ```
 
-### 导出 TDS
+
+
+### 导出 TDS   {#导出TDS}
 
 - `GET http://host:port/kylin/api/cubes/{cubeName}/export/tds`
 
 - URL Parameters
 
   - `cubeName` - `必选` `string`， Cube 名称
+  - `windowUrl` - `可选` `string`，使用浏览器打开 Kyligence Enterprise 的 URL 前缀，如 `http://localhost:7070/kylin`，默认值为空
+  - `containTableIndex` - `可选` `boolean`，是否包含 table index 的列，默认值为 `false`
+
 
 - HTTP Header
   - `Accept: application/vnd.apache.kylin-v2+json`

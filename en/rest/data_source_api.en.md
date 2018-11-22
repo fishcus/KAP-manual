@@ -8,13 +8,13 @@
 
 
 
-* [Load Hive Table](#Load Hive Table)
-* [Get Multiple Hive Table](#Get Multiple Hive Table)
-* [Get Hive Table Information](#Get Hive Table Information)
+* [Load Hive Table](#Load-Hive-Table)
+* [Get Multiple Hive Table](#Get-Multiple-Hive-Table)
+* [Get Hive Table Information](#Get-Hive-Table-Information)
 
 
 
-### Load Hive Table
+### Load Hive Table {#Load-Hive-Table}
 
 - `POST http://host:port/kylin/api/tables/load`
 
@@ -64,7 +64,7 @@
 
 
 
-### Get Multiple Hive Table
+### Get Multiple Hive Table {#Get-Multiple-Hive-Table}
 
 - `GET http://host:port/kylin/api/tables`
 
@@ -114,7 +114,7 @@
 
 
 
-### Get Hive Table Information
+### Get Hive Table Information {#Get-Hive-Table-Information}
 
 - `GET http://host:port/kylin/api/tables/{project}/{tableName}`
 
