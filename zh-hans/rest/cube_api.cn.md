@@ -194,6 +194,14 @@
   - `endTime` - `必选` `long`，结束时间，对应 GMT 格式的时间戳
   - `buildType` - `必选` `string`，支持的计算类型，为："BUILD"
   - `mpValues` - `可选` `string`，对应模型的多级分区字段值
+  - `force` - `可选` `boolean`，强制提交任务选项，默认值false
+
+  > **提示：**如果您的源数据随时可能发生更新，并且需要同步刷新 Cube 数据，可以使用强制提交任务选项，一步完成刷新 cube 数据，系统将自动对现有的 cube segment 或任务进行相应处理：
+  >
+  > - 如果 cube 中不存在时间区间相同的 segment，系统中也没有相应的正在运行或在队列中等待的任务，那么该任务会正常提交。
+  > - 如果 cube 中存在已经构建成功的时间区间相同的 segment，任务提交后会变成相应的 cube 刷新任务。
+  > - 如果 cube 中存在构建失败的时间区间相同的 segment，系统将会终止（discard）该任务，并提交新的任务。
+  > - 如果系统中存在正在运行或在队列中等待的构建任务，系统将自动终止（discard）当前任务，并提交新任务。
 
 
 - Curl 请求示例
@@ -208,7 +216,8 @@
     -d '{
   	"startTime": 0,
   	"endTime": 1388534400000,
-  	"buildType": "BUILD"
+  	"buildType": "BUILD",
+  	"force": false
   }'
   ```
 

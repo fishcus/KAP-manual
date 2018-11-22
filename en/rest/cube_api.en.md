@@ -194,6 +194,14 @@
   - `endTime` - `required` `long`, end time, corresponding to the timestamp in GMT format
   - `buildType` - `required` `string`,supported build type, "BUILD"
   - `mpValues` - `optional` `string`, multiple partition values of corresponding model
+  - `force` - `optional` `boolean`, force submit mode, default is false
+
+  > **Note：**If your source data gets updated frequently and you need to refresh corresponding cube data accordingly, you can use this "force" option to build the segment in one step. Kyligence Enterprise will handle existing cube segment or job **with exactly the same time partition** automatically explained as below:
+  >
+  > - When there is no existing job or cube segment with the same time partition, this job will be sumitted without any special handling.
+  > - When the cube contains the same successfully built segment, the new job will become a cube segment refresh job.
+  > - When the cube contains a failed job with status error for this same segment, Kyligence Enterprise will discard the failed job before sumitting the new job.
+  > - When the cube contains a running job or a pending job in the queue for the same segment, Kyligence Enterprise will discard the job before sumitting the new job.
 
 
 - Curl Request Example
@@ -207,7 +215,8 @@
     -d '{
   	"startTime": 0,
   	"endTime": 1388534400000,
-  	"buildType": "BUILD"
+  	"buildType": "BUILD",
+  	"force": false
   }'
   ```
 
