@@ -1,0 +1,1 @@
+## Using Microsoft SQL Server as Metastore

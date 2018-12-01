@@ -1,0 +1,1 @@
+## Connect Kyligence from BI Tools

@@ -1,0 +1,1 @@
+## MicroStrategy Workstation/Desktop

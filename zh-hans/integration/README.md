@@ -1,4 +1,4 @@
-## BI常见工具连接Kyligence Enterprise
+## 与 BI 工具集成
 
 本章将介绍如何使用第三方BI工具与Kyligence Enterprise连接。
 

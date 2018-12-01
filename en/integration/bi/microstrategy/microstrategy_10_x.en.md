@@ -1,0 +1,1 @@
+## MicroStrategy 10.x

@@ -1,1 +1,1 @@
-* Copyright by Kyligence Inc. *
+* 文档版权归Kyligence Inc. 所有 *

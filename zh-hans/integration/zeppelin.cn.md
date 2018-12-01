@@ -1,4 +1,4 @@
-## Apache Zepplin 集成
+## 与 Apache Zeppelin 集成
 
 Apache Zeppelin 是一个开源的数据分析平台，为Apache顶级项目。后端以插件形式支持多种数据处理引擎，如Spark, Flink,Lens等，同时提供了notebook式的UI进行可视化相关的操作。Kyligence Enterprise对应开发了自己的Zeppelin模块，现已经合并到Zeppelin主分支中，对应在Zeppelin 0.5.6及后续版本中都可以对接使用Kyligence Enterprise,通过Zeppelin访问Kyligence Enterprise的数据。
 

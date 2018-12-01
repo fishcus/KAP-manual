@@ -1,5 +1,5 @@
-## SQL 语法规范
-Kyligence Enterprise 支持ANSI SQL 2003*，以下列举了支持的基本 SQL 语句。
+## SQL 规范参考
+Kyligence Enterprise 支持ANSI SQL 2003，以下列举了支持的基本 SQL 语句。
 
 ### 支持语法
 
