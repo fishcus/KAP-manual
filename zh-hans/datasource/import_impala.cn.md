@@ -1,6 +1,8 @@
-## 导入 Implala 数据源
+## 导入 Impala 数据源
 
-本产品从 3.2 版本开始支Impala作为数据源。
+本产品从 3.2 版本开始支持 Impala 作为数据源。
+
+
 
 ### 准备工作
 
@@ -9,7 +11,9 @@
 - 下载官方 [Impala JDBC 驱动程序](https://www.cloudera.com/downloads/connectors/impala/jdbc/2-6-4.html)。
 - 下载 Kyligence 特定的数据源适配器 (下载链接：[Kyligence Account](http://download.kyligence.io/#/addons))。
 - 拷贝相关 jar 包放置在`$KYLIN_HOME/ext`目录下。
-- 拷贝相关 jar 包放置 sqoop 安装目录的 lib 目录下, 并检查全局参数。在`kylin.properties`中添加 kylin.source.jdbc.sqoop-home=&lt;sqoop_path&gt;，其中sqoop_path为sqoop命令所在的文件。
+- 拷贝相关 jar 包放置 sqoop 安装目录的 lib 目录下, 并检查全局参数。在`kylin.properties`中添加 `kylin.source.jdbc.sqoop-home=<sqoop_path>`，其中 sqoop_path 为 sqoop 命令所在的文件。
+
+
 
 
 ### 连接参数配置
@@ -32,16 +36,31 @@
 kylin.query.pushdown.runner-class-name=io.kyligence.kap.query.pushdown.PushdownRunnerSDKImpl
 ```
 
+
+
 ### 为项目设置 Impala 数据源
 
 Kyligence Enterprise 可以通过如下步骤，为特定项目设置 Impala 数据源：
 
-1. 登录本产品的Web UI。
-2. 主界面顶端左侧的项目管理工具栏中，点击加号 **“＋” ** 以新建项目。
-3. 在弹出的窗口中，输入**项目名称** （必选）和 **项目描述**, 点击 **确定** 按钮，完成项目创建。
-4. 进入具体项目**建模** 功能，选择 **数据源** 选项卡。
-5. 点击蓝色的**数据源**按钮。
-6. 在弹出窗口中，选择 **RDBMS**作为数据源类型。
-7. 在项目配置中添加数据源参数配置(可参考连接参数配置)。
-8. 点击**下一步**按钮，进入**加载表元数据**窗口，用户可按需在左侧表清单中，单击选中需要建模的表。
-9. 点击右下方**同步**按钮进行加载。
+**步骤一**：打开 Kyligence Enterprise 的 Web UI，在主界面的顶端是项目的管理工具栏，点击“＋”即可如下图所示创建一个新的项目。
+
+![新建项目](images/rdbms_import.cn.png)
+
+**步骤二**：进入具体项目**建模**功能，选择**数据源**选项卡；点击蓝色的**数据源**按钮，在弹出窗口中，选择 **RDBMS **作为数据源类型；​    ![选择RDBMS数据源](images/rdbms_import2.cn.png)
+
+**步骤三**：在项目配置中添加数据源参数配置(可参考连接参数配置)。
+
+```properties
+kylin.source.jdbc.sqoop-home=/usr/hdp/current/sqoop-client
+kylin.source.jdbc.driver=io.kyligence.kap.impala.jdbc41.WrappedDriver
+kylin.source.jdbc.connection-url=jdbc:impala-wrapped://HOST:PORT/DATABASE
+kylin.source.jdbc.user=<username>
+kylin.source.jdbc.pass=<password>
+kylin.source.jdbc.dialect=impala
+kylin.source.default=16
+kylin.source.jdbc.adaptor=io.kyligence.kap.impala.jdbc41.WrappedDriver
+```
+
+**步骤四**：配置完成之后，就可以通过 Kyligence Enterprise 界面连接 Impala 数据源了。
+
+**步骤五**：进入**加载表元数据**窗口，用户可按需在左侧表清单中，单击选中需要建模的表，也支持输入关键字进行搜索。点击右下方**同步**按钮进行加载。
