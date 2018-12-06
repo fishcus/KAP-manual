@@ -61,4 +61,4 @@ kylin.source.jdbc.adaptor=io.kyligence.kap.sdk.datasource.adaptor.MssqlAdaptor
 > - 不支持含 limit 子查询
 > - 不支持空间查询 如 'geometric', 'geography'
 > - 不支持 INITCAP, MEDIAN, STDDEV_POP, FIRST_VALUE 等高阶统计函数
-> - 不支持开窗函数，如 avg/count/max/min/sum over() 等语法
+> - 不支持窗口函数，如 avg/count/max/min/sum over() 等语法

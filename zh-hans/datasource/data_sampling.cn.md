@@ -1,4 +1,4 @@
-## 数据采样
+ n## 数据采样
 
 本小节将介绍 Kyligence Enterprise 中的数据采样功能和使用。
 
