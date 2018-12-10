@@ -1,18 +1,18 @@
-## Window Function
+## Window Functions
 
 User can use window function to achieve queries that are more complicated, to simplify the query process and obtain better statistics results.
 
 Kyligence Enterprise currently supports two kinds of window functions, namely, rank function and offset function.
 
 
-- Rank Function
+- Rank Functions
 
   - [ROW_NUMBER()](#ROW_NUMBER()-OVER-window)
   - [RANK()](#RANK()-OVER-window)
   - [DENSE_RANK()](#DENSE_RANK()-OVER-window)
   - [NTILE(value)](#NTILE(value)-OVER-window)
 
-- Offset Function
+- Offset Functions
 
   - [FIRST_VALUE(value)](#FIRST_VALUE(value)-OVER-window)
   - [LAST_VALUE(value)](#LAST_VALUE(value)-OVER-window)

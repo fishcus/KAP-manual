@@ -1,7 +1,6 @@
-
 ## Grouping Function
 
-Users can use grouping function to aggregate data grouping by different keys in one SQL statements.
+Users can use grouping function to aggregate data grouping by different keys in one SQL statement.
 
 
 Kyligence Enterprise supports the following grouping function,

@@ -36,3 +36,8 @@ Kyligence Enterprise 的分析页面即为查询页面。点击**分析**标签�
 
 ![](images/insight/insight_show_result.png)
 
+### 其他执行SQL查询的方式
+
+- [与BI工具集成](../integration/README.md)
+
+- [REST API](../rest/README.md)

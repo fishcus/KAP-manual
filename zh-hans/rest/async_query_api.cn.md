@@ -32,7 +32,7 @@
   - `sql` - `必选` `string`，查询语句
   - `separator` - `可选` `string`，导出结果的分隔符，默认为 ","
   - `offset` - `可选` `int`，查询结果的偏移量
-  - `limit` - `可选` `int `，从偏移量开始返回对应的行数，不足 limt 以实际行数为准
+  - `limit` - `可选` `int `，从偏移量开始返回对应的行数，不足 limit 以实际行数为准
   - `project` - `必选` `string`，项目名，默认为 "DEFAULT"
 
 

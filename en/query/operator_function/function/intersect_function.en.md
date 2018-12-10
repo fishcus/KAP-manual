@@ -1,6 +1,6 @@
 ## Intersect Function
 
-Users can use intersection function to calculate the value of the intersection of two data sets, with some same dimensions and one varied dimension, to analyze the rentention or conversion rates.
+Users can use intersection function to calculate the value of the intersection of two data sets, with some same dimensions and one varied dimension, to analyze the retention or conversion rates.
 
 Kyligence Enterprise supports the following intersection function,
 

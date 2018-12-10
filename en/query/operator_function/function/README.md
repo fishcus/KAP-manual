@@ -1,9 +1,3 @@
-# Operators and Functions
+## Functions
 
-This chapter will introduce more operators and functions that applicable to SQL statements.
-
-Continue reading:
-
-[Operators](operator.en.md)
-
-[Functions](function.en.md)
+This chapter will introduce functions that applicable to SQL statements.
