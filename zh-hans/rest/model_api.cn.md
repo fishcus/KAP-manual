@@ -8,7 +8,7 @@
 
 
 
-* [返回模型](#返回模型)
+* [返回模型列表](#返回模型列表)
 * [返回模型描述信息](#返回模型描述信息)
 * [克隆模型](#克隆模型)
 * [删除模型](#删除模型)
@@ -16,7 +16,7 @@
 
 
 
-### 返回模型描述信息列表
+### 返回模型列表
 
 - `GET http://host:port/kylin/api/models`
 
@@ -24,7 +24,7 @@
   - `pageOffset` - `可选` `int`，返回数据起始下标，默认为 0 
   - `pageSize` - `可选` `int `，每页返回多少，默认为 10 
   - `modelName` - `可选` `string`，模型名称
-  - `exactMatch` - `可选` `boolean`，是否对模型名称进行完全匹配，默认为`true`
+  - `exactMatch` - `可选` `boolean`，是否对模型名称进行完全匹配，默认为 `true`
   - `projectName` - `可选` `string`， 项目名称
 
 - HTTP Header
@@ -34,18 +34,18 @@
 
 - Curl 请求示例
 
-  ```shell
+```shell
   curl -X GET \
     'http://host:port/kylin/api/models?pageOffset=1' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8'
-  ```
+```
 
 - 响应示例
 
-  ```JSON
+```JSON
   {
       "code":"000",
       "data":{
@@ -54,11 +54,11 @@
       },
       "msg":""
   }
-  ```
+```
 
 
 
-### 按项目名和模型名返回模型描述信息
+### 返回模型描述信息
 
 - `GET http://host:port/kylin/api/models/{projectName}/{modelName}`
 
@@ -73,18 +73,18 @@
 
 - Curl 请求示例
 
-  ```shell
+```shell
   curl -X GET \
     'http://host:port/kylin/api/models/learn_kylin/kylin_sales_model' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8'
-  ```
+```
 
 - 响应示例
 
-  ```JSON
+```JSON
   {
       "code":"000",
       "data":{
@@ -112,7 +112,7 @@
       },
       "msg":""
   }
-  ```
+```
 
 
 
@@ -134,7 +134,7 @@
 
 - Curl 请求示例
 
-  ```shell
+```shell
   curl -X PUT \
     'http://host:port/kylin/api/models/kylin_sales_model/clone' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -142,11 +142,11 @@
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8' \
     -d '{"modelName":"learn_kylin_model_clone2","project":"learn_kylin"}'
-  ```
+```
 
 - 响应示例
 
-  ```JSON
+```JSON
   {
       "code":"000",
       "data":{
@@ -155,7 +155,7 @@
       },
       "msg":""
   }
-  ```
+```
 
 
 
@@ -174,14 +174,14 @@
 
 - Curl 请求示例
 
-  ```shell
+```shell
   curl -X DELETE \
     'http://host:port/kylin/api/models/learn_kylin/kylin_sales_model_clone' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8'
-  ```
+```
 
 
 
@@ -199,18 +199,18 @@
 
 - Curl 请求示例
 
-  ```shell
+```shell
   curl -X GET \
     'http://host:port/kylin/api/models/computed_column_usage/learn_kylin' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8'
-  ```
+```
 
 - 响应示例
 
-  ```JSON
+```JSON
   {
       "code": "000",
       "data": {
@@ -220,4 +220,4 @@
       },
       "msg": ""
   }
-  ```
+```

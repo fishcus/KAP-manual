@@ -36,19 +36,19 @@
 
 - Curl 请求示例
 
-  ```shell
+```shell
   curl -X GET \
     'http://host:port/kylin/api/kap/user/users?pageSize=1&project=learn_kylin' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8'
-  ```
+```
 
 
 - 响应示例
 
-  ```JSON
+```JSON
   {
       "code": "000",
       "data": {
@@ -71,7 +71,7 @@
       },
       "msg": ""
   }
-  ```
+```
 
 
 
@@ -98,7 +98,7 @@
 
 - Curl 请求示例
 
-  ```shell
+```shell
   curl -X POST \
     'http://host:port/kylin/api/kap/user/test' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -111,12 +111,12 @@
   	"authorities": ["ROLE_ADMIN"]
   	
   }'
-  ```
+```
 
 
 - 响应示例
 
-  ```JSON
+```JSON
   {
       "username": "test",
       "password": "$2a$10$Iw4NYBNW2bCTN3BqCGVfrO5Loesn/UigQxvbBQFebH2fEkFE2gcHy",
@@ -137,7 +137,7 @@
       "last_modified": 1538964238173,
       "version": "3.0.0.1"
   }
-  ```
+```
 
 
 
@@ -158,7 +158,7 @@
 
 - Curl 请求示例
 
-  ```shell
+```shell
   curl -X PUT \
     'http://host:port/kylin/api/kap/user/test' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -171,12 +171,12 @@
   	"authorities": ["ROLE_ANALYST"]
   	
   }'
-  ```
+```
 
 
 - 响应示例
 
-  ```JSON
+```JSON
   {
       "username": "test",
       "password": "$2a$10$M3u5cQztMHg3LIvMFJ4ZY.RidLB9RAw0gBHHV6EBNzEvxMk6Pf69u",
@@ -190,7 +190,7 @@
       "last_modified": 1538965388437,
       "version": "3.0.0.1"
   }
-  ```
+```
 
 
 
@@ -211,11 +211,11 @@
 
 - Curl 请求示例
 
-  ```shell
+```shell
   curl -X DELETE \
     'http://host:port/kylin/api/kap/user/test' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8'
-  ```
+```

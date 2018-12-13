@@ -30,18 +30,18 @@
 
 - Curl 请求示例
 
-  ```shell
+```shell
   curl -X GET \
     'http://host:port/kylin/api/access/ProjectInstance/{uuid}' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8'
-  ```
+```
 
 - 响应示例
 
-  ```JSON
+```JSON
   {
     "code": "000",
     "data": [
@@ -59,7 +59,7 @@
     ],
     "msg": ""
   }
-  ```
+```
 
 
 
@@ -83,7 +83,7 @@
 
 - Curl 请求示例
 
-  ```shell
+```shell
   curl -X POST \
     'http://host:port/kylin/api/access/ProjectInstance/{uuid}' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -95,17 +95,17 @@
   	"principal": true, 
   	"sid": "ANALYST"
   }'
-  ```
+```
 
 - 响应示例
 
-  ```JSON
+```JSON
   {
       "code": "000",
       "data": "",
       "msg": ""
   }
-  ```
+```
 
 
 
@@ -130,7 +130,7 @@
 
 - Curl 请求示例 
 
-  ``` shell
+``` shell
   curl -X PUT \
     'http://host:port/kylin/api/access/ProjectInstance/{uuid}' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -143,18 +143,18 @@
   	"sid": "ANALYST",
   	"accessEntryId": 1
   }'
-  ```
+```
 
 
 - 响应示例
 
-  ```JSON
+```JSON
   {
       "code": "000",
       "data": "",
       "msg": ""
   }
-  ```
+```
 
 
 
@@ -185,7 +185,7 @@
 
 > 提示：如下 Curl 请求将删除用户组 ROLE_ANALYST 对 learn_kylin 的 QUERY 项目级访问控制权限
 
-  ```shell
+```shell
 curl -X PUT \
   'http://host:port/kylin/api/access/ProjectInstance/{uuid}?accessEntryId=0&sid=ROLE_MODELER&principal=false' \
   -H 'accept: application/vnd.apache.kylin-v2+json' \
@@ -198,15 +198,15 @@ curl -X PUT \
 	"sid": "ROLE_ANALYST",
 	"accessEntryId": 0
 }'
-  ```
+```
 
 
 - 响应示例
 
-  ```JSON
+```JSON
   {
       "code": "000",
       "data": "",
       "msg": ""
   }
-  ```
+```

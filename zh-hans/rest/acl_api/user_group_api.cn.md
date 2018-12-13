@@ -34,19 +34,19 @@
 
 - Curl 请求示例
 
-  ```shell
+```shell
   curl -X GET \
     'http://host:port/kylin/api/user_group/groups?project=learn_kylin' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8'
-  ```
+```
 
 
 - 响应示例
 
-  ```JSON
+```JSON
   {
       "code": "000",
       "data": [
@@ -57,7 +57,7 @@
       ],
       "msg": "get groups"
   }
-  ```
+```
 
 
 
@@ -79,18 +79,18 @@
 
 - Curl 请求示例
 
-  ```shell
+```shell
   curl -X GET \
     'http://host:port/kylin/api/user_group/usersWithGroup?pageSize=1' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8'
-  ```
+```
 
 - 响应示例
 
-  ```JSON
+```JSON
   {
       "code": "000",
       "data": {
@@ -114,7 +114,7 @@
       },
       "msg": "get users with group"
   }
-  ```
+```
 
 
 
@@ -135,19 +135,19 @@
 
 - Curl 请求示例
 
-  ```shell
+```shell
   curl -X GET \
     'http://host:port/kylin/api/user_group/groupMembers/ALL_USERS' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8'
-  ```
+```
 
 
 - 响应示例
 
-  ```JSON
+```JSON
   {
       "code":"000",
       "data":{
@@ -170,7 +170,7 @@
       },
       "msg":"get groups members"
   }
-  ```
+```
 
 
 
@@ -191,24 +191,24 @@
 
 - Curl 请求示例
 
-  ```shell
+```shell
   curl -X POST \
     'http://host:port/kylin/api/user_group/group_test' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8'
-  ```
+```
 
 - 响应示例
 
-  ```JSON
+```JSON
   {
       "code": "000",
       "data": "",
       "msg": "add user group"
   }
-  ```
+```
 
 
 ### 删除用户组
@@ -228,24 +228,24 @@
 
 - Curl 请求示例
 
-  ```shell
+```shell
   curl -X DELETE \
     'http://host:port/kylin/api/user_group/group_test' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8'
-  ```
+```
 
 - 响应示例
 
-  ```JSON
+```JSON
   {
       "code": "000",
       "data": "",
       "msg": "del user group"
   }
-  ```
+```
 
 
 
@@ -270,7 +270,7 @@
 
 - Curl 请求示例
 
-  ```shell
+```shell
   curl -X POST \
     'http://host:port/kylin/api/user_group/users/group_test' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -278,15 +278,15 @@
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8' \
     -d '["ADMIN","ANALYST"]'
-  ```
+```
 
 
 - 响应示例
 
-  ```JSON
+```JSON
   {
       "code": "000",
       "data": "",
       "msg": "modify users in user group"
   }
-  ```
+```

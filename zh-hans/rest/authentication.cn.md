@@ -21,18 +21,18 @@ Kyligence Enterprise 所有的 API 都是基于 [Basic Authentication](http://en
 
 - Curl 请求示例
 
-  ```shell
+```shell
   curl -X POST \
     'http://host:port/kylin/api/user/authentication' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8'
-  ```
+```
 
 - 响应示例
 
-  ```JSON
+```JSON
   {
       "code": "000",
       "data": {
@@ -50,7 +50,7 @@ Kyligence Enterprise 所有的 API 都是基于 [Basic Authentication](http://en
       },
       "msg": ""
   }
-  ```
+```
 
 
 

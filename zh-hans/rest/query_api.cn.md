@@ -30,7 +30,7 @@
 
 - Curl 请求示例
 
-  ```shell
+```shell
   curl -X POST \
     'http://host:port/kylin/api/query' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -38,52 +38,54 @@
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8' \
     -d '{ "sql":"select count(*) from KYLIN_SALES", "project":"learn_kylin" }'
-  ```
+```
 
 - 响应示例
 
-  ```JSON
-  {
-      "code":"000",
-      "data":{
-          "columnMetas":[...],
-          "results":[...],
-          "cube":"CUBE[name=kylin_sales_cube]",
-          "affectedRowCount":0,
-          "isException":false,
-          "exceptionMessage":null,
-          "queryId":"1ba7490f-8344-41ee-beb7-35e772a0630b",
-          "duration":467,
-          "totalScanCount":731,
-          "totalScanBytes":731,
-          "hitExceptionCache":false,
-          "storageCacheUsed":false,
-          "traceUrl":null,
-          "server":"sandbox.hortonworks.com:7070",
-          "suiteId":null,
-          "lateDecodeEnabled":false,
-          "partial":false,
-          "sparderUsed":false,
-          "timeout":false,
-          "pushDown":false
-      },
-      "msg":""
-  }
-  ```
+```JSON
+{
+    "code":"000",
+    "data":{
+        "columnMetas":[...],
+        "results":[...],
+        "cube":"CUBE[name=kylin_sales_cube]",
+        "affectedRowCount":0,
+        "isException":false,
+        "exceptionMessage":null,
+        "queryId":"26f5cbe0-7dbd-4c07-aaf2-831a86016eb5",
+        "duration":2403,
+        "totalScanCount":0,
+        "totalScanBytes":0,
+        "hitExceptionCache":false,
+        "storageCacheUsed":false,
+        "traceUrl":null,
+        "server":"sandbox.hortonworks.com:7070",
+        "suiteId":null,
+        "timeout":false,
+        "lateDecodeEnabled":false,
+        "pushDown":false,
+        "sparderUsed":true
+    },
+    "msg":""
+}
+```
 
 - 响应信息
   - `columnMetas` - 每个列的元数据信息
   - `results` - 返回的结果集
-  - `cube` - 这个查询使用的 Cube 名称
+  - `cube` - 使用的查询引擎
   - `isException` - 这个查询返回是否是异常
   - `exceptionMessage` - 返回异常对应的内容
-  - `totalScanCount` - 总记录数
-  - `totalScanBytes` - 总字节数
+  - `queryId` - 查询 ID
+  - `duration` - 查询耗时
+  - `totalScanCount` - 总扫描行数
+  - `totalScanBytes` - 总扫描字节数
   - `hitExceptionCache` - 是否来自执行失败的结果缓存
   - `storageCacheUsed` - 是否来自执行成功的结果缓存
-  - `duration` - 查询消耗时间
+  - `server` - 在启用了负载平衡的环境中，执行查询的服务器
+  - `timeout` - 查询是否超时
+  - `pushDown` - 查询是否下压到其他引擎
   - `sparderUsed` - 是否使用了 Sparder 查询引擎
-  - `pushDown` - 是否启用查询下压
 
 
 
@@ -101,18 +103,18 @@
 
 - Curl 请求示例
 
-  ```shell
+```shell
   curl -X GET \
     'http://host:port/kylin/api/tables_and_columns?project=learn_kylin' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8'
-  ```
+```
 
 - 响应示例
 
-  ```JSON
+```JSON
   {
       "code":"000",
       "data":[
@@ -133,4 +135,4 @@
       ],
       "msg":""
   }
-  ```
+```

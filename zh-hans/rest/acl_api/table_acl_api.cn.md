@@ -37,18 +37,18 @@
 
 - Curl 请求示例
 
-  ```shell
+```shell
   curl -X GET \
     'http://host:port/kylin/api/acl/table/paged/learn_kylin/DEFAULT.KYLIN_SALES' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8'
-  ```
+```
 
 - 响应示例
 
-  ```JSON
+```JSON
   {
       "code": "000"，
       "data": {
@@ -62,7 +62,7 @@
       }，
       "msg": "get table acl"
   }
-  ```
+```
 
 
 
@@ -86,25 +86,25 @@
 
 - Curl 请求示例
 
-  ```shell
+```shell
   curl -X POST \
     'http://host:port/kylin/api/acl/table/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8'
-  ```
+```
 
 
 - 响应示例
 
-  ```JSON
+```JSON
   {
       "code": "000",
       "data": "",
       "msg": "grant user table query permission and remove user from table black list."
   }
-  ```
+```
 
 
 
@@ -132,7 +132,7 @@
 
 - Curl 请求示例
 
-  ```shell
+```shell
   curl -X POST \
     'http://host:port/kylin/api/acl/table/batch/learn_kylin/DEFAULT.KYLIN_CAL_DT' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -148,17 +148,17 @@
   	"principal":"true"
   }
   ]'
-  ```
+```
 
 - 响应示例
 
-  ```JSON
+```JSON
   {
       "code": "000",
       "data": "",
       "msg": "batch grant user table query permission and remove user from table black list"
   }
-  ```
+```
 
 
 
@@ -182,22 +182,22 @@
 
 - Curl 请求示例
 
-  ```shell
+```shell
   curl -X DELETE \
     'http://host:port/kylin/api/acl/table/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8'
-  ```
+```
 
 
 - 响应示例
 
-  ```JSON
+```JSON
   {
       "code": "000",
       "data": "",
       "msg": "revoke user table query permission and add user to table black list."
   }
-  ```
+```

@@ -19,12 +19,13 @@
 * [禁用 Cube](#禁用Cube)
 * [清理 Cube](#清理Cube)
 * [管理 Segment](#管理Segment)
-* [列出 Segment 中的空洞](#列出Segment中的空洞)
+* [列出 Cube 中的空洞](#列出Cube中的空洞)
+* [填充 Cube 中的空洞](#填充Cube中的空洞)
 * [导出 TDS](#导出TDS)
 
 
 
-### 返回多个 cube     {#返回多个Cube}
+### 返回多个 Cube     {#返回多个Cube}
 
 - `GET http://host:port/kylin/api/cubes`
 
@@ -45,18 +46,18 @@
 
 - Curl 请求示例
 
-  ```shell
+```shell
   curl -X GET \
     'http://host:port/kylin/api/cubes?pageSize=10&modelName=kylin_sales_model' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8'
-  ```
+```
 
 - 响应示例
 
-  ```JSON
+```JSON
   {
       "code":"000",
       "data":{
@@ -66,7 +67,7 @@
       "msg":""
   }
   
-  ```
+```
 
 
 
@@ -85,18 +86,18 @@
 
 - Curl 请求示例
 
-  ```shell
+```shell
   curl -X GET \
     'http://host:port/kylin/api/cubes?cubeName=kylin_sales_cube' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8'
-  ```
+```
 
 - 响应示例
 
-  ```JSON
+```JSON
   {
       "code":"000",
       "data":{
@@ -105,7 +106,7 @@
       },
       "msg":""
   }
-  ```
+```
 
 
 
@@ -124,18 +125,18 @@
 
 - Curl 请求示例
 
-  ```shell
+```shell
   curl -X GET \
     'http://host:port/kylin/api/cube_desc/learn_kylin/kylin_sales_cube' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8'
-  ```
+```
 
 - 响应示例
 
-  ```JSON
+```JSON
   {
       "code":"000",
       "data":{
@@ -173,7 +174,7 @@
       },
       "msg":""
   }
-  ```
+```
 
 
 
@@ -190,23 +191,23 @@
   - `Content-Type: application/json;charset=utf-8`
 
 - HTTP Body: JSON Object
-  - `startTime` - `必选` `long`，开始时间，对应 GMT 格式的时间戳，如`1388534400000`对应`2014-01-01 00:00:00`，推荐使用[在线时间戳转换](https://www.epochconverter.com/)对时间进行处理。
+  - `startTime` - `必选` `long`，开始时间，对应 GMT 格式的时间戳，如 `1388534400000` 对应 `2014-01-01 00:00:00` ，推荐使用[在线时间戳转换](https://www.epochconverter.com/)对时间进行处理。
   - `endTime` - `必选` `long`，结束时间，对应 GMT 格式的时间戳
   - `buildType` - `必选` `string`，支持的计算类型，为："BUILD"
   - `mpValues` - `可选` `string`，对应模型的多级分区字段值
   - `force` - `可选` `boolean`，强制提交任务选项，默认值false
 
-  > **提示：**如果您的源数据随时可能发生更新，并且需要同步刷新 Cube 数据，可以使用强制提交任务选项，一步完成刷新 cube 数据，系统将自动对现有的 cube segment 或任务进行相应处理：
+  > **提示：** 如果您的源数据随时可能发生更新，并且需要同步刷新 Cube 数据，可以使用**强制提交任务**选项，一步完成刷新 Cube 数据工作，系统将自动对现有的 Cube Segment 或任务进行相应处理：
   >
-  > - 如果 cube 中不存在时间区间相同的 segment，系统中也没有相应的正在运行或在队列中等待的任务，那么该任务会正常提交。
-  > - 如果 cube 中存在已经构建成功的时间区间相同的 segment，任务提交后会变成相应的 cube 刷新任务。
-  > - 如果 cube 中存在构建失败的时间区间相同的 segment，系统将会终止（discard）该任务，并提交新的任务。
-  > - 如果系统中存在正在运行或在队列中等待的构建任务，系统将自动终止（discard）当前任务，并提交新任务。
+  > - 如果 Cube 中不存在时间区间相同的 Segment，系统中也没有相应的正在运行或在队列中等待的任务，那么该任务会正常提交。
+  > - 如果 Cube 中存在已经构建成功的时间区间相同的 Segment，任务提交后会变成相应的 Cube 刷新任务。
+  > - 如果 Cube 中存在构建失败的时间区间相同的 Segment，系统将会终止该任务，并提交新的任务。
+  > - 如果系统中存在正在运行或在队列中等待的构建任务，系统将自动终止当前任务，并提交新任务。
 
 
 - Curl 请求示例
 
-  ```shell
+```shell
   curl -X PUT \
     'http://host:port/kylin/api/cubes/kylin_sales_cube/segments/build' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -219,11 +220,11 @@
   	"buildType": "BUILD",
   	"force": false
   }'
-  ```
+```
 
 - 响应示例
 
-  ```JSON
+```JSON
   {
       "code":"000",
       "data":{
@@ -247,7 +248,7 @@
       },
       "msg":""
   }
-  ```
+```
 
 
 
@@ -271,7 +272,7 @@
 
 - Curl 请求示例
 
-  ```shell
+```shell
   curl -X PUT \
     'http://host:port/kylin/api/cubes/{cubeName}/segments/build' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -283,11 +284,11 @@
   	"endTime": 0,
   	"buildType": "BUILD"
   }'
-  ```
+```
 
 - 响应示例
 
-  ```JSON
+```JSON
   {
       "code":"000",
       "data":{
@@ -311,7 +312,7 @@
       },
       "msg":""
   }
-  ```
+```
 
 
 
@@ -335,7 +336,7 @@
 
 - Curl 请求示例
 
-  ```shell
+```shell
   curl -X PUT \
     'http://host:port/kylin/api/cubes/{cubeName}/batch_sync' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -343,11 +344,11 @@
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8' \
     -d '[{"mpValues": "300","pointList": ["1","2","3","4","5","6","7","8","9","10"],"rangeList": [["50","70"],["90","110"]]},{"mpValues": "301","pointList": ["1","2","3","4","5","6","7","8","9","10"],"rangeList": [["20","30"],["30","40"]]}]'
-  ```
+```
 
 - 响应示例
 
-  ```JSON
+```JSON
   {
       "code":"000",
       "data":[
@@ -377,7 +378,7 @@
       ],
       "msg":""
   }
-  ```
+```
 
 
 
@@ -400,7 +401,7 @@
 
 - Curl 请求示例
 
-  ```shell
+```shell
   curl -X PUT \
     'http://host:port/kylin/api/cubes/kylin_sales_cube/clone' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -409,12 +410,12 @@
     -H 'Content-Type: application/json;charset=utf-8' \
     -d '{"cubeName":"kylin_sales_cube_clone",
   "project":"learn_kylin"}'
-  ```
+```
 
 
 - 响应示例
 
-  ```JSON
+```JSON
   {
       "code": "000",
       "data": {
@@ -447,7 +448,7 @@
       },
       "msg": ""
   }
-  ```
+```
 
 
 
@@ -466,19 +467,19 @@
 
 - Curl 请求示例
 
-  ```shell
+```shell
   curl -X PUT \
     'http://host:port/kylin/api/cubes/kylin_sales_cube/enable' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8'
-  ```
+```
 
 
 - 响应示例
 
-  ```JSON
+```JSON
   {
       "code":"000",
       "data":{
@@ -511,7 +512,7 @@
       },
       "msg":""
   }
-  ```
+```
 
 
 
@@ -530,19 +531,19 @@
 
 - Curl 请求示例
 
-  ```shell
+```shell
   curl -X PUT \
     'http://host:port/kylin/api/cubes/kylin_sales_cube/disable' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8'
-  ```
+```
 
 
 - 响应示例
 
-  ```JSON
+```JSON
   {
       "code":"000",
       "data":{
@@ -575,7 +576,7 @@
       },
       "msg":""
   }
-  ```
+```
 
 
 
@@ -598,7 +599,7 @@
 
 - Curl 请求示例
 
-  ```shell
+```shell
   curl -X PUT \
     'http://host:port/kylin/api/cubes/{cubeName}/purge' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -606,12 +607,12 @@
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8' \
     -d '{"mpValues": "", "project": "learn_kylin"}'
-  ```
+```
 
 
 - 响应示例
 
-  ```JSON
+```JSON
   {
       "code":"000",
       "data":{
@@ -644,7 +645,7 @@
       },
       "msg":""
   }
-  ```
+```
 
 
 
@@ -670,7 +671,7 @@
 
 - Curl 请求示例
 
-  ```shell
+```shell
   curl -X PUT \
     'http://host:port/kylin/api/cubes/kylin_sales_cube/segments' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -682,24 +683,88 @@
   "mpValues":"",
   "force":true
   }'
-  ```
+```
 
 
 - 响应示例
 
-  ```JSON
+```JSON
   {
       "code": "000",
       "data": [],
       "msg": ""
   }
-  ```
+```
 
 
 
 ### 列出 Segment 中的空洞  {#列出Segment中的空洞}
 
 > 提示：健康的 Cube 不应存在 Segment 中的空洞
+
+- `GET http://host:port/kylin/api/cubes/{cubeName}/holes`
+
+- URL Parameters
+  - `cubeName` - `必选` `string`, Cube 名称
+  - `mpValues` - `可选` `string`, 多级分区值（只对于多级分区的 Cube 有效）
+
+- HTTP Header
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
+
+- Curl 请求示例
+
+```shell
+  curl -X GET \
+    'http://host:port/kylin/api/cubes/kylin_sales_cube/holes ' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json;charset=utf-8'
+```
+
+
+- 响应示例
+
+```JSON
+  {
+      "data": [{
+      "code": "000",
+          "uuid": null,
+          "name": "20091110000000_20100110000000",
+          "storage_location_identifier": null,
+          "date_range_start": 1257811200000,
+          "date_range_end": 1263081600000,
+          "source_offset_start": 0,
+          "source_offset_end": 0,
+          "status": null,
+          "size_kb": 0,
+          "input_records": 0,
+          "input_records_size": 0,
+          "last_build_time": 0,
+          "last_build_job_id": null,
+          "create_time_utc": 0,
+          "cuboid_shard_nums": {},
+          "total_shards": 0,
+          "blackout_cuboids": [],
+          "binary_signature": null,
+          "dictionaries": null,
+          "global_dictionaries": null,
+          "snapshots": null,
+          "rowkey_stats": [],
+          "project_dictionaries": {},
+          "col_length_info": {}
+      }],
+      "msg": ""
+  }
+```
+
+
+
+### 列出 Cube 中的空洞  {#列出Cube中的空洞}
+
+> **提示：** 生产系统上健康的 Cube 不应存在空洞，意味着 Cube 中的 Segment 应该在分区列上是连续的。
 
 - `GET http://host:port/kylin/api/cubes/{cubeName}/holes`
 
@@ -761,6 +826,34 @@
 
 
 
+### 填充 Cube 中的空洞  {#填充Cube中的空洞}
+
+> **提示:** 对于基于非流式数据源构建的 Cube, 系统将根据空洞的范围正常提交构建任务; 对于基于流式数据源构建的 Cube, 请确保补洞前, 流式数据源中的数据没有过期或删除, 否侧填充空洞构建任务将会失败。
+
+- `PUT http://host:port/kylin/api/cubes/{cubeName}/holes`
+
+- URL Parameters
+  - `cubeName` - `必选` `string`, Cube 名称
+  - `mpValues` - `可选` `string`, 多级分区值（只对于多级分区的 Cube 有效）
+
+- HTTP Header
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
+
+- Curl 请求示例
+
+  ```shell
+  curl -X PUT \
+    'http://host:port/kylin/api/cubes/kylin_sales_cube/holes ' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json;charset=utf-8'
+  ```
+
+
+
 ### 导出 TDS   {#导出TDS}
 
 - `GET http://host:port/kylin/api/cubes/{cubeName}/export/tds`
@@ -779,14 +872,14 @@
 
 - Curl 请求示例
 
-  ```shell
+```shell
   curl -X GET \
     'http://host:port/kylin/api/cubes/kylin_sales_cube/export/tds' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8'
-  ```
+```
 
 
 
