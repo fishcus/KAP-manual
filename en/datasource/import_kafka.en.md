@@ -14,7 +14,7 @@ It is unnecessary to deploy Kafka Broker and Kyligence Enterprise in the same no
 
 In this article, we assume that user has not installed Kafka Broker, and has not deployed and/or started Kafka Broker. The user who has installed Kafka Broker can skip this step.
 
-```shell
+```sh
 curl -s 
 https://archive.apache.org/dist/kafka/0.10.1.0/kafka_2.10-0.10.1.0.tgz | tar -xz -C /usr/local/
 cd /usr/local/kafka_2.10-0.10.1.0/
@@ -23,7 +23,7 @@ cd /usr/local/kafka_2.10-0.10.1.0/
 
 Please make sure that the environment variable `KAFKA_HOME` has been exported successfully before Kyligence Enterprise starts.
 
-```Shell
+```sh
 export KAFKA_HOME=/usr/local/kafka_2.10-0.10.1.0
 ```
 
@@ -39,13 +39,13 @@ export KAFKA_HOME=/usr/local/kafka_2.10-0.10.1.0
 
 Firstly, we create a topic named as "kylindemo":
 
-```shell
+```sh
 ./bin/kafka-topics.sh --create --zookeeper 127.0.0.1:2181 --replication-factor 1 --partitions 3 --topic kylindemo
 ```
 
 Secondly, we need to start a producer to continuously put sample data into this topic. Kyligence Enterprise has a Producer to produce data. Here we presume Kyligence Enterprise is installed under ${KYLIN_HOME}.
 
-```shell
+```sh
 cd $KYLIN_HOME
 ./bin/kylin.sh 
 org.apache.kylin.source.kafka.util.KafkaSampleProducer --topic kylindemo --broker 127.0.0.1:9092
@@ -53,7 +53,7 @@ org.apache.kylin.source.kafka.util.KafkaSampleProducer --topic kylindemo --broke
 
 This tool sends 100 records to Kafka per second. Please keep it running during this tutorial. You can check the sample messages by running kafka-console-consumer.sh.
 
-```shell
+```sh
 cd $KAFKA_HOME
 bin/kafka-console-consumer.sh --bootstrap-server 127.0.0.1:9092 --topic kylindemo --from-beginning
 ```

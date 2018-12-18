@@ -12,7 +12,7 @@ Kyligence Enterprise 支持 Hive 作为默认的输入数据源。
 
 该可执行脚本为 **sample.sh** ，其默认存放路径为系统安装目录下的 **/bin** 目录
 
-```shell
+```sh
 $KYLIN_HOME/bin/sample.sh
 ```
 
@@ -22,19 +22,19 @@ $KYLIN_HOME/bin/sample.sh
 
 脚本执行成功之后，可在服务器终端执行 **hive** 命令行，进入 hive，并执行查询语句验证导入正常。
 
-```shell
+```sh
 hive
 ```
 
 可检查已导入hive的表清单
 
-```shell
+```sh
 hive> show tables;
 ```
 
 可检查导入hive的具体表
 
-```shell
+```sh
 hive> select count(*) from kylin_sales;
 ```
 

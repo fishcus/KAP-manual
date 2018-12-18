@@ -16,7 +16,7 @@ On the *System* page, you can also configure RDBMS data source at the system lev
 
 **Step 1:** Execute the command below in directory `$KYLIN_HOME/tomcat/webapps/kylin/WEB-INF/lib` to encrypt the password:
 
-```shell
+```sh
 java -classpath kap.jar:spring-beans-4.3.10.RELEASE.jar:spring-core-4.3.10.RELEASE.jar:commons-codec-1.7.jar org.apache.kylin.rest.security.PasswordPlaceholderConfigurer AES yourpassword
 ```
 

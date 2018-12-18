@@ -13,7 +13,7 @@ Kafka Broker 无需与本产品部署在同一个节点上。
 
 本例中，假设用户没有安装过 Kafka Broker，包含了将 Kafka Broker 部署到本机以及启动的过程，已经安装过 Kafka Broker 的用户可以跳过该步骤。
 
-```shell
+```sh
 curl -s https://archive.apache.org/dist/kafka/0.10.1.0/kafka_2.10-0.10.1.0.tgz | tar -xz -C /usr/local/
 cd /usr/local/kafka_2.10-0.10.1.0/
 ./bin/kafka-server-start.sh config/server.properties &
@@ -21,7 +21,7 @@ cd /usr/local/kafka_2.10-0.10.1.0/
 
 务必确保产品实例启动前，已经将 `KAFKA_HOME` 变量正确导出，操作如下。
 
-```shell
+```sh
 export KAFKA_HOME=/usr/local/kafka_2.10-0.10.1.0
 ```
 
@@ -35,19 +35,19 @@ export KAFKA_HOME=/usr/local/kafka_2.10-0.10.1.0
 
 通过以下命令，我们创建一个名为 "kylindemo" 的 topic。
 
-```shell
+```sh
 ./bin/kafka-topics.sh --create --zookeeper 127.0.0.1:2181 --replication-factor 1 --partitions 3 --topic kylindemo
 ```
 
 接着，我们需要启动一个产生消息流的工具，持续往 topic 中导入数据。本产品提供了一个简单的 Producer 工具用于产生数据。
 
-```shell
+```sh
 cd $KYLIN_HOME
 ./bin/kylin.sh org.apache.kylin.source.kafka.util.KafkaSampleProducer --topic kylindemo --broker 127.0.0.1:9092
 ```
 这个工具每秒会向 Kafka 中发送100条消息。在学习本教程的过程中，请保持本程序持续运行。同时，你可以使用 Kafka 自带的 Consumer 来检查消息是否成功导入。
 
-```shell
+```sh
 cd $KAFKA_HOME
 bin/kafka-console-consumer.sh --bootstrap-server 127.0.0.1:9092 --topic kylindemo --from-beginning
 ```

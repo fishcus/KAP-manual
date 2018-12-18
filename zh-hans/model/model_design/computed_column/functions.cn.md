@@ -8,6 +8,8 @@
 - [条件函数](#条件函数)
 - [字符串函数](#字符串函数)
 
+
+
 ### 算术函数
 
 | 函数语法                                     |                    描述                    | 示例                                       |
@@ -51,6 +53,8 @@
 | greatest(T v1, T v2, ...)                |               返回一列值中的最大值。                | greatest(5,10,15)                        |
 | least(T v1, T v2, ...)                   |               返回一列值中的最小值。                | least(5,10,15)                           |
 
+
+
 ### 日期函数
 
 | 函数语法                                     | 描述                                       | 示例                                       |
@@ -80,11 +84,15 @@
 | months_between(date1, date2)             | 返回 date1 与 date2 之间相差的月份， 如果 date1>date2，则返回正值，如果 date1<date2，则返回负值。 | months_between('2013-02-28 10:30:00', '2012-10-30') |
 | date_format(date/timestamp/string ts, string fmt) | 按指定格式返回日期。                               | date_format('2015-04-08', 'y')           |
 
+
+
 ### 类型转换函数
 
 | 函数语法                 | 描述                                       | 示例                  |
 | -------------------- | ---------------------------------------- | ------------------- |
 | cast(expr as <type>) | 将表达式 expr 转换为 type 类型，例如 cast(‘1’ as BIGINT)。如果转换不成功，则返回 null；非空字符串转换为 boolean，返回 true。 | cast('1' as BIGINT) |
+
+
 
 ### 条件函数
 
@@ -95,6 +103,8 @@
 | nvl(T value, T default_value)  | value 为 null 时，返回 default_value；否则返回 value。 | nvl(null, 30)     |
 | COALESCE(T v1, T v2, ...)      | 返回第一个不为 null 的值；都为 null 时，返回 null。       | COALESCE(null,30) |
 | assert_true(boolean condition) | 当条件不为 true 时，抛出异常；否则返回 Null。             | assert_true (2<1) |
+
+
 
 ### 字符串函数
 

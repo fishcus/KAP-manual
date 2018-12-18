@@ -12,7 +12,7 @@ You can import the Kyligence Enterprise built-in sample data into Hive using exe
 
 The script is `sample.sh`. Its default storage path is the bin directory under `KYLIN_HOME`
 
-```shell
+```sh
 $KYLIN_HOME/bin/sample.sh
 ```
 
@@ -28,13 +28,13 @@ hive
 
 Check the imported hive tables
 
-```shell
+```sh
 hive> show tables;
 ```
 
 Check the details of imported hive tables
 
-```shell
+```sh
 hive> select count(*) from kylin_sales;
 ```
 

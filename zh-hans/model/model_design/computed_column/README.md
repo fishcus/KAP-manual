@@ -2,8 +2,7 @@
 
 本节介绍本产品中支持的可计算列，包括可计算列使用方法以及可计算列支持的函数。
 
-- [可计算列简介](overview.cn.md)
-- [可计算列支持的函数](functions.cn.md)
+
 
 
 ## 可计算列 (Computed Column)
@@ -13,6 +12,8 @@
 > **注意：**
 >   - 可计算列仅支持 Hive 数据源。
 >   - 请勿在可计算列中使用仅包含常量的表达式，以免查询出错。
+
+
 
 ### 基本概念与使用方法
 - **命名：**
@@ -27,6 +28,8 @@
   - 建议您将可计算列定义在事实表上，在一些特殊情况下，也支持定义在非 snapshot 存储的维度表。
   - 在不同模型中，可以定义不同的可计算列，同时也要遵循上述复用的原则。
   - 权限：如果用户在某列上的列级权限受到限制，该列被用来包含在某可计算列中，则该用户也不能查询这个可计算列。
+
+
 
 ### 创建可计算列
 
@@ -93,6 +96,8 @@ select sum(price * item_count) from kylin_sales
 
 被下压到下层SQL on Hadoop引擎进行计算。
 
+
+
 ### 显式查询 vs. 隐式查询
 
 **显示查询**：在上面的查询例子中，直接查询可计算列
@@ -123,6 +128,8 @@ select sum(price * item_count) from kylin_sales。
 
 > **提示：**隐式查询默认**开启**状态，如果要关闭它，可以全局配置文件`KYLIN_HOME/conf/kylin.properties`中移除参数 `kylin.query.transformers=io.kyligence.kap.query.util.ConvertToComputedColumn` 
 
+
+
 ### 嵌套可计算列
 
 可计算列的表达式里，可以嵌套其它可计算列。嵌套时支持的表达式规范，与可计算列支持的表达式规范一致。
@@ -139,6 +146,8 @@ select sum(price * item_count) from kylin_sales。
 
 **注意**：请在提交可计算列之前点击`校验`按钮，以保证嵌套可计算列表达式的正确性。
 
+
+
 ### 高级函数的使用
 
 由于可计算列的计算是直接下沉到数据源进行处理的，而当前 Hive 是本产品的默认数据源，因此可计算列的表达式定义默认需要以 Hive SQL 的语法为准。
@@ -147,6 +156,8 @@ select sum(price * item_count) from kylin_sales。
 
 欲在可计算列中使用更多的函数，请在下面链接中参考 Hive SQL 函数的使用规范：
 https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF#LanguageManualUDF-StringFunctions
+
+
 
 ### 使用案例
 

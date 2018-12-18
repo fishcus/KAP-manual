@@ -15,7 +15,7 @@
 本产品可以在**系统**页面配置系统级参数。为了防止在此页面上密码的明文显示，本产品提供了加密工具，将数据库密码进行加密处理后，在写入配置中。加密步骤如下：
 **步骤一**：在 `$KYLIN_HOME/tomcat/webapps/kylin/WEB-INF/lib` 目录下运行如下命令，就可得到加密后的密码：
 
-```shell
+```sh
 java -classpath kap.jar:spring-beans-4.3.10.RELEASE.jar:spring-core-4.3.10.RELEASE.jar:commons-codec-1.7.jar org.apache.kylin.rest.security.PasswordPlaceholderConfigurer AES yourpassword
 ```
 

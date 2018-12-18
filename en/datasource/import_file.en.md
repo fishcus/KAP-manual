@@ -6,7 +6,7 @@ This feature is still in **Beta** state. It requires users to have a good unders
 
 
 
-### Problem Background
+### Background
 
 Traditionally, the Hive data import is scheduled by a fixed period (e.g., daily). It requires a whole day's data be ready in Hive before the import can start, which causes a one-day delay before new data can serve queries. Hence, it cannot satisfy many near real-time analytics scenarios.
 
@@ -37,23 +37,23 @@ Then, to merge all segments in the 6 am, that is A, B, and D, we need to specify
 
 
 
-### Usage
+### How To
 
 1. Prepare Data Files
 
-   - Create a new fact table in Hive. It is only for the description of data schema. Any data inside the fact table will be ignored.
+    - Create a new fact table in Hive. It is only for the description of data schema. Any data inside the fact table will be ignored.
 
-     > Note: Please don't use partition column on this fact table, or it will cause problems to later data import.
+     > **Note:** Please don't use partition column on this fact table, or it will cause problems to later data import.
 
-   - Prepare a few data files that can be loaded into the Hive fact table.
+    - Prepare a few data files that can be loaded into the Hive fact table.
 
-   - As a test, try to copy the data files to the storage location of the Hive table, then query from Hive command line. The query result should contain the records from the data files.
+    - As a test, try to copy the data files to the storage location of the Hive table, then query from Hive command line. The query result should contain the records from the data files.
 
 2. Create Model and Cube
 
    - With the above Hive fact table, create a model as usual. Please refer to [the model design guide](../data_modeling.en.md) for more information.
 
-     > Note: Please don't use lookup table in the model yet. It is not supported at the moment.
+> **Note:** Please don't use lookup table in the model yet. It is not supported at the moment.
 
    - Create a cube based on the model above. Please refer to [the cube guide](../cube/create_cube.en.md) for more information.
 
@@ -63,7 +63,7 @@ Then, to merge all segments in the 6 am, that is A, B, and D, we need to specify
      kap.source.hive.file-incremental-mount-script=/{KE-install-dir}/bin/file-incr-load-prepare-hive.sh
      ```
 
-     > Note: Please replace the `{KE-install-dir}` in the above example with the install location of Kyligence Enterprise. The `file-incr-load-prepare-hive.sh` will be called at the beginning of data import. In this script, a new temporary Hive table will be cloned from the model fact table and under which the given data files will be mounted.
+     > **Note:** Please replace the `{KE-install-dir}` in the above example with the install location of Kyligence Enterprise. The `file-incr-load-prepare-hive.sh` will be called at the beginning of data import. In this script, a new temporary Hive table will be cloned from the model fact table and under which the given data files will be mounted.
 
 3. Import Data
 
@@ -98,7 +98,7 @@ Given new Hive data files, build a new cube segment and load data into it.
 
   - `files` - `required` `string[]`, the absolute paths of the new data files on HDFS.
 
-  - > Note: In order to prevent unintentional duplicated data, the system doesn't allow one file to be imported multiple times into a cube.
+  - > **Note:** In order to prevent unintentional duplicated data, the system doesn't allow one file to be imported multiple times into a cube.
 
 - Curl Request Example
 
