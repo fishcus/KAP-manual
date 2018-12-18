@@ -21,7 +21,6 @@
    ```bash
    java -version
    ```
-
    如果您的 JDK 版本不满足要求，请参考 [如何在低版本 JDK 上运行](../../appendix/run_on_jdk7.cn.md)
 
 3. 停止所有 Kyligence Enterprise 服务，确保没有活动的 Kyligence Enterprise 进程影响升级。
@@ -47,35 +46,31 @@
 
 - 备份安装目录
 
-您可以通过如下命令执行安装目录的备份：
 
-```sh
-	cp -r $KYLIN_HOME ${KYLIN_HOME}.backup
-```
+  您可以通过如下命令执行安装目录的备份：
 
-- 备份 Cube 数据
+  ```sh
+  cp -r $KYLIN_HOME ${KYLIN_HOME}.backup
+  ```
 
-因为主要版本的升级可能会影响已有 Cube 数据，为了保证数据的最大安全性和可用性，我们推荐您对存储在 HDFS 上的 Cube 数据进行备份。
+- 备份 Cube 数据（仅对主要版本升级）
 
-a.请先确认您 HDFS 上空间足够，您可以通过以下命令查询 HDFS 上内存使用情况：
+  因为主要版本的升级可能会影响已有 Cube 数据，为了保证数据的最大安全性和可用性，我们推荐您对存储在 HDFS 上的 Cube 数据进行备份。
 
-```sh
-	hdfs dfs -df -h /
-```
+  - 请先确认您 HDFS 上空间足够，您可以通过以下命令查询 HDFS 上内存使用情况：
+    ```sh
+    hdfs dfs -df -h /
+    ```
+  - 通过以下命令确认 Kyligence Enterprise 工作目录的大小：
+    > 提示：工作目录由配置文件中的 `$KYLIN_HOME/conf/kylin.properties` 的 `kylin.env.hdfs-working-dir` 参数指定，默认值为 `/kylin`
+    ```sh
+    hdfs dfs -du -h /kylin
+    ```
+  - 确认 HDFS 有足够内存支持拷贝 Kyligence Enterprise 工作目录，执行 Cube 数据备份
+    ```sh
+    hdfs dfs -cp /kylin /kylin_temp
+    ```
 
-b.通过以下命令确认 Kyligence Enterprise 工作目录的大小：
-
-> 提示：工作目录由配置文件中的 `$KYLIN_HOME/conf/kylin.properties` 的 `kylin.env.hdfs-working-dir` 参数指定，默认值为 `/kylin`
-
-```sh
-	hdfs dfs -du -h /
-```
-
-c.确认 HDFS 有足够内存支持拷贝 Kyligence Enterprise 工作目录，执行 Cube 数据备份
-
-```sh
-	hdfs dfs -cp /kylin /kylin_temp
-```
 
 
 
@@ -84,8 +79,8 @@ c.确认 HDFS 有足够内存支持拷贝 Kyligence Enterprise 工作目录，�
 解压缩新版本的 Kyligence Enterprise 安装包，更新 `KYLIN_HOME` 环境变量：
 
 ```sh
-   tar -zxvf Kyligence-Enterprise-{version-env}.tar.gz
-   export KYLIN_HOME={path_to_your_unpack_folder}
+tar -zxvf Kyligence-Enterprise-{version-env}.tar.gz
+export KYLIN_HOME={your-unpack-folder}
 ```
 
 
@@ -94,87 +89,87 @@ c.确认 HDFS 有足够内存支持拷贝 Kyligence Enterprise 工作目录，�
 
 > 提示：以下使用 `$OLD_KYLIN_HOME` 代表升级前的安装目录，`KYLIN_HOME` 代表升级后的安装目录。
 
-1.快速配置
+- 快速配置
 
-Kyligence Enterprise 中提供了两套配置参数：`$KYLIN_HOME/conf/profile_prod/` 和 `$KYLIN_HOME/conf/profile_min/`。前者是默认方案，适用于实际生产环境；后者使用较少的资源，适用于沙箱等资源有限的环境。如果您的单点环境资源有限，可以切换到 `profile_min` 配置。
+  Kyligence Enterprise 中提供了两套配置参数：`$KYLIN_HOME/conf/profile_prod/` 和 `$KYLIN_HOME/conf/profile_min/`。前者是默认方案，适用于实际生产环境；后者使用较少的资源，适用于沙箱等资源有限的环境。如果您的单点环境资源有限，可以切换到 `profile_min` 配置。
 
-```shell
+  ```shell
   rm $KYLIN_HOME/conf/profile
   ln -s $KYLIN_HOME/conf/profile_min $KYLIN_HOME/conf/profile
-```
+  ```
 
-2.更新配置文件
+- 更新配置文件
 
-> **注意**：为了保证您享用到新版本的新特性，请**不要**直接使用旧的配置文件夹覆盖新的配置文件夹。
+  > **注意**：为了保证您享用到新版本的新特性，请**不要**直接使用旧的配置文件夹覆盖新的配置文件夹。
 
-* 与构建任务有关的配置文件可以覆盖，您可以执行如下命令使用之前的任务有关的配置文件
+  - 与构建任务有关的配置文件可以覆盖，您可以执行如下命令使用之前的任务有关的配置文件
 
-```sh
-	cp $OLD_KYLIN_HOME/conf/kylin_*.xml $KYLIN_HOME/conf/
-```
+    ```sh
+    cp $OLD_KYLIN_HOME/conf/kylin_*.xml $KYLIN_HOME/conf/
+    ```
 
-* 将 `$OLD_KYLIN_HOME/conf/` 目录下的 `setenv.sh` 中的配置修改手动在 `$KYLIN_HOME/conf/` 目录下的对应文件进行配置修改。
+  - 将 `$OLD_KYLIN_HOME/conf/` 目录下的 `setenv.sh` 中的配置修改手动在 `$KYLIN_HOME/conf/` 目录下的对应文件进行配置修改。
 
-> 提示：对于 KAP 2.3 及以下版本，`setenv.sh` 文件所在路径发生了改变，在 Kyligence Enterprise 中该文件位于 `$KYLIN_HOME/conf/` 目录下。
+    > 提示：对于 KAP 2.3 及以下版本，`setenv.sh` 文件所在路径发生了改变，在 Kyligence Enterprise 中该文件位于 `$KYLIN_HOME/conf/` 目录下。
 
-* 将 `$OLD_KYLIN_HOME/conf/` 目录下的 `kylin.properties` 中的配置修改手动在 `$KYLIN_HOME/conf/` 目录下的对应文件进行配置修改。
+  - 将 `$OLD_KYLIN_HOME/conf/` 目录下的 `kylin.properties` 中的配置修改手动在 `$KYLIN_HOME/conf/` 目录下的对应文件进行配置修改。
 
-> 提示：如果需要使用已有的元数据，您可以在 `$KYLIN_HOME/conf/kylin.properties` 按照之前配置文件进行修改，如下：
->
->```properties
->  kylin.metadata.url = {your_kylin_metadata_url}
->```
+    > 提示：如果需要使用已有的元数据，您可以在 `$KYLIN_HOME/conf/kylin.properties` 按照之前配置文件进行修改，如下：
+    >
+    > ```properties
+    > kylin.metadata.url = {your_kylin_metadata_url}
+    > ```
 
-3.如果您当前集群部署是通过 Redis 实现多个 Kyligence Enterprise 实例的 Session 共享，您还需要修改 Tomcat 配置文件，如下：
+- 如果您当前集群部署是通过 Redis 实现多个 Kyligence Enterprise 实例的 Session 共享，您还需要修改 Tomcat 配置文件，如下：
 
-* 将 Redis 相关的 jar 包放置在 `$KYLIN_HOME/tomcat/lib/` 路径下，如下：
+  - 将 Redis 相关的 jar 包放置在 `$KYLIN_HOME/tomcat/lib/` 路径下，如下：
 
-```sh
-	cp $OLD_KYLIN_HOME/tomcat/lib/{jedis-2.0.0.jar,commons-pool2-2.2.jar,tomcat-redis-session-manager-1.2-tomcat-7-java-7.jar} $KYLIN_HOME/tomcat/lib/
-```
+    ```sh
+    cp $OLD_KYLIN_HOME/tomcat/lib/{jedis-2.0.0.jar,commons-pool2-2.2.jar,tomcat-redis-session-manager-1.2-tomcat-7-java-7.jar} $KYLIN_HOME/tomcat/lib/
+    ```
 
-* 覆盖 Tomcat 配置文件，如下：
+  - 覆盖 Tomcat 配置文件，如下：
 
-```sh
-	cp $OLD_KYLIN_HOME/tomcat/context.xml $KYLIN_HOME/tomcat/context.xml
-```
+    ```sh
+    cp $OLD_KYLIN_HOME/tomcat/context.xml $KYLIN_HOME/tomcat/context.xml
+    ```
 
 
 
 ### 启动 Kyligence Enterprise
 
-
+执行如下命令启动：
 ```sh
-	$KYLIN_HOME/bin/kylin.sh start
+$KYLIN_HOME/bin/kylin.sh start
 ```
 
 > 提示：从 KAP 2.x 升级 Kyligence Enterprise 3.x 时，在**第一次启动**会对元数据进行升级，升级时间取决于您的数据大小，可能达到一个小时或更久。我们推荐您在升级前先通过 `$KYLIN_HOME/bin/metastore.sh clean [--delete true]` 进行元数据清理，减少无用的元数据，使得升级元数据时间变短。
-> * 元数据升级成功后将会提示
->```
->	Segments have been upgraded successfully.
->```
-> * 失败则会提示
+> 
+> 元数据升级成功后将会提示
 > ```
-	Upgrade failed. Please try to run
-	bin/kylin.sh io.kyligence.kap.tool.migration.ProjectDictionaryMigrationCLI FIX
-	to fix.
+> Segments have been upgraded successfully.
+> ```
+> 失败则会提示
+> ```
+> Upgrade failed. Please try to run
+>   bin/kylin.sh io.kyligence.kap.tool.migration.ProjectDictionaryMigrationCLI FIX
+> to fix.
 > ```
 
 
 
-### （推荐）测试升级后 Kyligence Enterprise 是否正常工作
+### 测试升级后 Kyligence Enterprise 是否正常工作
 
 > 提示：
-> 1) 如果升级后有任何问题，请及时通过 [Support Portal](https://support.kyligence.io/#/) 联系 Kyligence 技术支持以寻求帮助。
-> 2) 在测试期间，请**不要**执行垃圾清理操作以保证最大程度的数据安全性。
+> - 如果升级后有任何问题，请及时通过 [Support Portal](https://support.kyligence.io/#/) 联系 Kyligence 技术支持以寻求帮助。
+> - 在测试期间，请**不要**执行垃圾清理操作以保证最大程度的数据安全性。
 
-1.确认 Kyligence Enterprise Web UI 能够正常显示、登录。
+1. 确认 Kyligence Enterprise Web UI 能够正常显示、登录。
 
-2.进行构建、查询等基本操作，观察是否能正常工作及耗时是否正常。
+2. 进行构建、查询等基本操作，观察是否能正常工作及耗时是否正常。
+   如果您升级前存在一些需要新版本修复的问题，请升级后及时测试新版本是否解决了您的问题。
 
-> 提示：如果您升级前存在一些需要新版本修复的问题，请升级后及时测试新版本是否解决了您的问题。
-
-3.检验集成 Kyligence Enterprise 的第三方系统是否能够成功工作，如使用 JDBC 进行查询的客户端、如调用 REST API 进行查询的客户端、如 BI 工具等。
+3. 检验集成 Kyligence Enterprise 的第三方系统是否能够成功工作，如使用 JDBC 进行查询的客户端、如调用 REST API 进行查询的客户端、如 BI 工具等。
 
 
 
@@ -188,42 +183,32 @@ Kyligence Enterprise 中提供了两套配置参数：`$KYLIN_HOME/conf/profile_
 
 > **注意：** 请确保您在升级后遇到的问题已经联系过 Kyligence 技术支持、 Kyligence 技术支持无法对您的问题提供有效的解决方案且这个问题影响您的核心使用，再选择回滚。
 
-1.停止并确认没有正在运行的 Kyligence Enterprise 进程：
+1. 停止并确认没有正在运行的 Kyligence Enterprise 进程：
+  ```sh
+  $KYLIN_HOME/bin/kylin.sh stop
+  ps -ef | grep kylin
+  ```
 
-```sh
-	$KYLIN_HOME/bin/kylin.sh stop
-	ps -ef | grep kylin
-```
+2. 恢复原 Kyligence Enterprise 安装目录，更新 `KYLIN_HOME` 环境变量：
+  ```sh
+  rm -rf $KYLIN_HOME
+  cp -r $OLD_KYLIN_HOME.backup $OLD_KYLIN_HOME
+  cd $OLD_KYLIN_HOME
+  export KYLIN_HOME=`pwd`
+  ```
 
-2.恢复原 Kyligence Enterprise 安装目录，更新 `KYLIN_HOME` 环境变量：
+3. 恢复元数据
+  ```sh
+  $KYLIN_HOME/bin/metastore.sh restore {your_backup_metadata_folder}
+  ```
 
-```sh
-	rm -rf $KYLIN_HOME
-	cp -r $OLD_KYLIN_HOME.backup $OLD_KYLIN_HOME
-	cd $OLD_KYLIN_HOME
-	export KYLIN_HOME=`pwd`
-```
+4. （可选）恢复 Cube 数据
+  ```sh
+  hdfs dfs -rmr /kylin
+  hdfs dfs -cp /kylin_temp /kylin
+  ```
 
-3.恢复元数据
-
-```sh
-	$KYLIN_HOME/bin/metastore.sh restore {path_to_your_backup_metadata_folder}
-```
-
-
-4.（可选）恢复 Cube 数据
-
-```sh
-	hdfs dfs -rmr /kylin
-	hdfs dfs -cp /kylin_temp /kylin
-```
-
-
-5.启动 Kyligence Enterprise
-
-```sh
-	$KYLIN_HOME/bin/kylin.sh start
-```
-
-
-
+5. 启动 Kyligence Enterprise
+  ```sh
+  $KYLIN_HOME/bin/kylin.sh start
+  ```
