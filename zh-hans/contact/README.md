@@ -6,7 +6,7 @@
 
 加入我们：[talent@kyligence.io](mailto:talent@kyligence.io)
 
-产品问题反馈：[support@kyligence.io](mailto:support@kyligence.io)
+产品问题反馈：[Kyligence 支持中心](https://support.kyligence.io/#/)
 
 微信公众号：kyligence
 

@@ -179,6 +179,6 @@
     * [Apply License](appendix/apply_license.en.md)       
     * [FAQ](appendix/faq.en.md)       
     * [Sample Dataset](appendix/sample_dataset.en.md)      
-    * [Terminologies](appendix/terminology.en.md)     
+    * [Terminologies](appendix/terminology.en.md)
     * [Run Kyligence Enterprise on JDK 7](appendix/run_on_jdk7.en.md)     
 * [Contact Us](contact/README.md)

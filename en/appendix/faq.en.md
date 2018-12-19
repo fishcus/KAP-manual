@@ -6,23 +6,19 @@ The following a list of frequently asked questions about Kyligence Enterprise.
 
 **Q: What is the maximum number of dimensions that Kyligence Enterprise can support?**
 
-A: It can be a lot. The multidimensional cube that Kyligence Enterprise supports has a "physical" limit of dimensions which is 62. However user can go beyond the limit by using the dimension table and defining "Derived" dimensions. This can support hundreds of dimensions in this way. It is generally recommended that the physical dimensions of the cube (excluding the derived dimensions) be less than 15 assuming the dimensions are mostly independent. When there are more dimensions, it is important to analyze query patterns and relationships between columns, to take advantage of aggregation groups and fine tune the dimensions using "Mandatory", "Hierarchy", and "Joint" concepts. With these methods, the exlposion of dimension combinations becomes controllable, and so is the time and space cost of cube build.
-
-**Q: Can the dimension be dynamically increased or reduced ?**
-
-A: When adding or subtracting dimensions, the cube needs to be recalculated. If you don't want to recalculate the history cube, one way is to define a new cube, make a combination of the old and new cubes (Hybrid), and let them respond to queries together.
+A: It can be a lot. The multidimensional cube that Kyligence Enterprise supports has a "physical" limit of dimensions which is 62. However, user can go beyond the limit by using the dimension table and defining "Derived" dimensions. This can support hundreds of dimensions in this way. It is generally recommended that the physical dimensions of the cube (excluding the derived dimensions) be less than 15 assuming the dimensions are mostly independent. When there are more dimensions, it is important to analyze query patterns and relationships between columns, to take advantage of aggregation groups and fine tune the dimensions using **Mandatory**, **Hierarchy**, and **Joint** concepts. With these methods, the explosion of dimension combinations becomes controllable in building time and space cost.
 
 **Q: How long does it take to build a cube? Sometimes it is slow, how to optimize?**
 
-A: The time of cube build is usually from tens of minutes to hours. It depends on the amount of data, model complexity, dimension cardinality, and cluster computing power. Optimization is often case by case. Be free to contact our customer support for help.
+A: The time of cube build is usually from tens of minutes to hours. It depends on the amount of data, model complexity, dimension cardinality, and cluster computing power. Optimization is often case by case. Be free to contact our [customer support](https://support.kyligence.io/#/) for help.
 
-**Q: How to deal with Out of Memory (OOM) problem that happends during cube build?**
+**Q: How to deal with Out of Memory (OOM) problem that happens during cube build?**
 
 A: It depends on the step where the OOM error occurs. If it is the "Build Dictionary" step, then perhaps an ultra-high cardinality dimension is using the dictionary encoding. You can change it to other encodings, like integer encoding, if that is the case. If the OOM happens during the "Build Cube" steps, you may need to give more memory to the MapReduce jobs (the config file is `conf/kylin_job_conf.xml`). If you are using the "InMem" cube build mode, try switch to the "Layered" mode which consumes less memory (set `kylin.cube.algorithm=layer` in `conf/kylin.properties`).
 
 **Q: What is the difference between Derived dimension and Normal dimension?**
 
-A: Unlike normal dimension, a derived dimension does not participate in the dimension combination calculation. Instead, the "Foreign Key" of derived dimension involves in the combination calculation, which reduces the total number of dimension combinations. When querying, the query of dervied dimension will be converted to the FK dimension first, and as the result, it is often slower than a normal dimension.
+A: Unlike normal dimension, a derived dimension does not participate in the dimension combination calculation. Instead, the "Foreign Key" of derived dimension involves in the combination calculation, which reduces the total number of dimension combinations. When querying, the query of derived dimension will be converted to the FK dimension first, and as the result, it is often slower than a normal dimension.
 
 **Q: Does the sequence of Hierarchy Dimension matters?**
 
@@ -30,11 +26,11 @@ A: Yes it matters. In side a hierarchy, the dimensions must be declared in the o
 
 **Q: How to model multiple fact tables?**
 
-A: You can define one cube for each fact table, and use sub-query to query these tables together. Or use Hive view to join multiple fact tables into a wide table, then use this wide table to define models and cubes. Queries should be written aginst the wide table.
+A: You can define one cube for each fact table, and use sub-query to query these tables together. Or use Hive view to join multiple fact tables into a wide table, then use this wide table to define models and cubes. Queries should be written based on the wide table.
 
 **Q: Does the number of segments affect the query performance? Can a large segment split into smaller ones?**
 
-A: The number of segments affects query performance to some extent, since every segment file must be scanned to complete a query. It is recommended to perform segment merge on a regular basis in order to control the total number of segments. For this reason, a large segment does not need to split into smaller ones because it queries faster.
+A: The number of segments affects query performance to some extent, since a query will be completed by scanned every segment files. It is recommended to perform segment merge on a regular basis in order to control the total number of segments. For this reason, please properly plan the granularity of segment building.
 
 **Q: What if the source table schema changes?**
 
@@ -42,7 +38,7 @@ A: Adding new fields is not a problem, however deleting or modifying fields may 
 
 **Q: How to load data from traditional relational databases?**
 
-A: Use tools, like Apache Sqoop, to import data from RDBMS to Hive first.
+A: Since Kyligence Enterprise v3.0, using RDBMS as data source is supported. For more details, please refer to [Import Data from RDBMS](../datasource/rdbms_datasource/README.md).
 
 **Q: Does this product support snowflake model?**
 
@@ -50,17 +46,17 @@ A: Yes, it does.
 
 **Q: Can a query involves columns across multiple Aggregation Groups?**
 
-A: The purpose of Aggreation Group is to reduce dimension combinations. For best performance,  query should happen within one Aggregation Group. If multiple groups are queried together, post aggregation needs to be done on top of the base cuboid, which will impact the performance of query.
+A: The purpose of Aggreation Group is to reduce dimension combinations. For best performance,  query should happen within one Aggregation Group. If multiple groups are queried together, post aggregation needs to be done on top of the base cuboid, which will impact the performance.
 
 **Q: Is it better to create a large flat table in Hive rather than using a star model?**
 
-A: There is no difference between the two in terms of build performance. However using a star model opens the opportunity of derived dimension. It gives more flexibility when you want to balance the storage and query performance.
+A: There is no difference between the two in terms of build performance. However a star model supports derived dimension. It gives more flexibility when you want to balance the storage and query performance.
 
 **Q: How compression settings helps cube build?**
 
 A: When the data volume grows, the network I/O often becomes a system bottleneck. Turning on compression allows each I/O operation to process more data, and compression can improve the performance of network transfers. Although it takes some CPU time to compress and decompress, usually the compression time is less than the network time if data is not compressed. And as a result, enabling compression let the entire MR job complete faster.
 
-To set the compression configuration, please refer to [compression settings](../config/compression_settings.en.md) section.
+To set the compression configuration, please refer to [compression settings](../installation/config/compression_config.en.md) section.
 
 ### Query Engine
 
@@ -100,7 +96,7 @@ A: You can add `explain plan for` in front of a query to get its execution plan.
 
 **Q: Does this product support fuzzy query?**
 
-A: Support `like` as a filter.
+A: Using `like` as a filter is supported and it is recommended to use **fuzzy** index for those columns. For more details, please refer to [Table Index](../model/cube_design/table_index.en.md). 
 
 **Q: What SQL standard and SQL functions are supported?**
 

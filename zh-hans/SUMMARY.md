@@ -180,5 +180,5 @@
     * [常见问题](appendix/faq.cn.md)       
     * [样例数据集](appendix/sample_dataset.cn.md)      
     * [词汇表](appendix/terminology.cn.md)     
-    * [如何在低版本 JDK 上运行](appendix/run_on_jdk7.cn.md)     
+    * [如何在低版本 JDK 上运行 Kyligence Enterprise](appendix/run_on_jdk7.cn.md)     
 * [联系我们](contact/README.md)

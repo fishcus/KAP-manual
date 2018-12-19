@@ -1,48 +1,36 @@
 ## Apply License
 
-
-
-
-
-
-
-License is a necessary condition for using Kyligence Enterprise. After installation and deployment, you need to apply for a license to use Kyligence Enterprise. The license for Kyligence Enterprise has a probation permit (two months) and a formal permit. The following is a detailed introduction of the application process and specific operation of the Kyligence Enterprise license.
+License is a prerequisite to use Kyligence Enterprise. There are two types of license, which are trial, with 2 months period, and official license. The following is a detailed introduction of the application process and specific operation of the Kyligence Enterprise license.
 
 ### Application Process
 
+1. Please login [Kyligence Account Center](http://account.kyligence.io/) with your account. If you do not have an account, please sign up first.
+
+   ![Kyligence Account Center](images/account_center.en.png)
+
+2. After login, please apply the trial license by filling an application form. The trial license will be sent to you by e-mail, if the application is approved. 
+
+### Application for Official License
+
+1. If you want to purchase an **Official License** of Kyligence Enterprise, please generate a **License Request File**. You can Click  **Help  -> About Kyligence Enterprise** in Kyligence Enterprise. 
 
 
-1. Use your account to login to [Kyligence Account Center](http://account.kyligence.io/). If you do not have an account, please sign up first.
+   ![About Kyligence Enterprise](images/about.en.png)
 
-   ![Kyligence Account Center](images/license_1.en.png)
+2. And then click **Generate License Request File**. 
 
-2. After login, select the trial license to be applied and fill in an application form. We will examine your application and pass the trial license to you by e-mail.
+   ![License Request File](images/license_generate.en.png)
 
-![Evaluation License Application](images/license_2.en.png)
+3. Contact your account manager and provide the above **License Request File**. Our account manager will assist you in completing the remaining official license application process.
 
- 
+### Update License File
 
-### Application for Formal License
+After received the license file (Trial License or Official License) and installed Kyligence Enterprise, please upload it to enable Kyligence Enterprise.
 
-1. If you want to purchase *Official License* of Kyligence Enterprise, you need to provide *License Request File*. Click *Help -> About Kyligence Enterprise* in Kyligence Enterprise. 
+In Kyligence Enterprise login page, click **Help -> Update License**, you will see **Update License** window. Click **Browse** and select the license file and then click **Submit** to upload it to Kyligence Enterprise; Or you can paste the license content directly into the text box and click **Submit**.
 
+![Upload License File](images/license_upload.en.png)
 
-   ![Official License Application](images/license_3.en.png)
+If the license need to be updated, it can also be carried out by the above methods.
 
-2.    And then click *Generate License Request File*. 
-
-   ![Request License File](images/license_4.en.png)
-
-3. Contact your account manager and provide the above *License Request File*. Our account manager will assist you in completing the remaining official license application process.
-
-### Load and Updatae License File
-
-After receiving the LICENSE file (Evaluation License or Official License) and installing Kyligence Enterprise, you need to load the LICENSE file to make Kyligence Enterprise effective. To load the file, do the following:
-
-In Kyligence Enterprise login page, click *Help -> Upload License*, you will see *Upload License* window. Click *Browse* and locate the place which you save the LICENSE file. And then click *Open -> Submit* to upload it to Kyligence Enterprise; Or you can copy the text in the license file directly into the manual input text box and click Submit.
-
-![Upload License File](images/license_5.en.png)
-
-If the license is to be updated, it can also be carried out by the above methods.
-
-> Notice: If the license expires, you will not be able to log in to Kyligence Enterprise. It is necessary to update the license first before returning to normal use.
+> Notice: If the license has expired, you will not be able to login Kyligence Enterprise.
