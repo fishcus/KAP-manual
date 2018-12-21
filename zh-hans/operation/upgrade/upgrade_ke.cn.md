@@ -4,7 +4,7 @@
 
 > 提示：从 3.x 开始，Kyligence Analytics Platform (KAP) 正式改名为 Kyligence Enterprise。
 
-升级分为**主要版本**的升级和**次要版本**的升级。版本号前两位发生变化的是主要版本的升级，如 KAP 2.x 升级到 Kyligence Enterprise 3.x，如 Kyligence Enterprise 3.1.x 升级到 Kyligence Enterprise 3.2.x。反之，版本号前两位不发生变化则是次要版本升级，如 Kyligence Enterprise 3.1.3 升级到 Kyligence Enterprise 3.2.2。
+升级分为**主要版本**的升级和**次要版本**的升级。版本号前两位发生变化的是主要版本的升级，如 KAP 2.x 升级到 Kyligence Enterprise 3.x，如 Kyligence Enterprise 3.1.x 升级到 Kyligence Enterprise 3.2.x。反之，版本号前两位不发生变化则是次要版本升级，如 Kyligence Enterprise 3.2.1 升级到 Kyligence Enterprise 3.2.2。
 
 次要版本之间兼容元数据，因此升级只需要覆盖软件包、更新配置文件即可；主要版本之间可能需要升级元数据、或者对已有的 Cube 数据进行升级，建议备份元数据和 Cube 数据以保证数据的最大安全性。
 
@@ -46,7 +46,6 @@
 
 - 备份安装目录
 
-
   您可以通过如下命令执行安装目录的备份：
 
   ```sh
@@ -87,7 +86,11 @@ export KYLIN_HOME={your-unpack-folder}
 
 ### 更新配置文件
 
-> 提示：以下使用 `$OLD_KYLIN_HOME` 代表升级前的安装目录，`KYLIN_HOME` 代表升级后的安装目录。
+> 提示：
+>
+> 1. 以下使用 `$OLD_KYLIN_HOME` 代表升级前的安装目录，`KYLIN_HOME` 代表升级后的安装目录。
+>
+> 2. 为了保证您享用到新版本的新特性，请**不要**直接使用旧的配置文件夹覆盖新的配置文件夹。
 
 - 快速配置
 
@@ -98,21 +101,22 @@ export KYLIN_HOME={your-unpack-folder}
   ln -s $KYLIN_HOME/conf/profile_min $KYLIN_HOME/conf/profile
   ```
 
-- 更新配置文件
+- 将之前版本 `conf/` 目录下的 `setenv.sh` 中的配置修改手动在新版本中的对应文件进行修改。
 
-  > **注意**：为了保证您享用到新版本的新特性，请**不要**直接使用旧的配置文件夹覆盖新的配置文件夹。
+  > 提示：对于 KAP 2.3 及以下版本，`setenv.sh` 文件所在路径发生了改变，在 Kyligence Enterprise 中该文件位于 `$KYLIN_HOME/conf/` 目录下。
 
-  - 与构建任务有关的配置文件可以覆盖，您可以执行如下命令使用之前的任务有关的配置文件
+  - 与构建任务有关的配置文件可以覆盖，您可以执行如下命令使用之前版本的配置文件：
 
     ```sh
     cp $OLD_KYLIN_HOME/conf/kylin_*.xml $KYLIN_HOME/conf/
     ```
 
-  - 将 `$OLD_KYLIN_HOME/conf/` 目录下的 `setenv.sh` 中的配置修改手动在 `$KYLIN_HOME/conf/` 目录下的对应文件进行配置修改。
+  - 在新版本的 `conf/` 目录下，备份 ` kylin.properties` ，并将之前版本的 `kylin.properties` 拷贝至当前目录。
 
-    > 提示：对于 KAP 2.3 及以下版本，`setenv.sh` 文件所在路径发生了改变，在 Kyligence Enterprise 中该文件位于 `$KYLIN_HOME/conf/` 目录下。
-
-  - 将 `$OLD_KYLIN_HOME/conf/` 目录下的 `kylin.properties` 中的配置修改手动在 `$KYLIN_HOME/conf/` 目录下的对应文件进行配置修改。
+    ```sh
+    mv $KYLIN_HOME/conf/kylin.properties $KYLIN_HOME/conf/kylin.properties.template
+    cp $OLD_KYLIN_HOME/conf/kylin.properties $KYLIN_HOME/conf/
+    ```
 
     > 提示：如果需要使用已有的元数据，您可以在 `$KYLIN_HOME/conf/kylin.properties` 按照之前配置文件进行修改，如下：
     >
