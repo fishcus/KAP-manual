@@ -3,7 +3,7 @@
 Apache Zeppelin 是一个开源的数据分析平台，为Apache顶级项目。后端以插件形式支持多种数据处理引擎，如Spark, Flink,Lens等，同时提供了notebook式的UI进行可视化相关的操作。Kyligence Enterprise对应开发了自己的Zeppelin模块，现已经合并到Zeppelin主分支中，对应在Zeppelin 0.5.6及后续版本中都可以对接使用Kyligence Enterprise,通过Zeppelin访问Kyligence Enterprise的数据。
 
 ### Zeppelin架构简介
-如下图所示，Zeppelin客户端通过HTTP Rest和Websocket两种方式与服务端交互，在server端Zeppelin支持可插拔的Interpreter(解释器)，以Kyin为例，只需要开发Kylin的Interpreter集成进Zeppelin便可以基于Zeppelin客户端与Kylin服务端进行通信，访问Kylin相关数据。
+如下图所示，Zeppelin客户端通过HTTP Rest和Websocket两种方式与服务端交互，在server端Zeppelin支持可插拔的Interpreter(解释器)，以Kyin为例，只需要开发Kylin的解释器并集成进Zeppelin，便可以基于Zeppelin客户端与Kylin服务端进行通信，访问Kylin相关数据。
 
 ![](images/zeppelin/zeppelin_arc.png)
 
@@ -50,7 +50,7 @@ Zeppelin的前端有自己的schema，所以KylinInterpreter需要把Kyligence E
 ![](images/zeppelin/zeppelin_config.png)
 
 * 查询
-打开Notebook创建一个新的note，在该note中输入SQL，注意针对Kyligence Enterprise的查询需要在SQL前面加上 ‘％kylin’，Zeppelin后端需要知道对应用哪个Interpreter去处理查询。效果如下图，可以拖拽维度和度量灵活获取自己想要的结果。
+打开Notebook创建一个新的note，在该note中输入SQL，注意针对Kyligence Enterprise的查询需要在SQL前面加上 ‘％kylin’，Zeppelin后端需要知道对应用哪个解释器去处理查询。效果如下图，可以拖拽维度和度量灵活获取自己想要的结果。
 
 ![](images/zeppelin/zeppelin_query.png)
 
