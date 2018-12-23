@@ -1,71 +1,61 @@
-## Kyligence Enterprise 2.5 发布声明
+## Kyligence Enterprise 2.5 Release Note
 
-近期我们发布了Kyligence Enterprise v2.5，在该版本中，全面增强了企业级安全特性，配备了全新的**多层级细粒度权限**系统， 满足了企业客户、集团客户对数据安全及用户权限的精细化管控需求。同时，Kyligence Enterprise v2.5 丰富了智能化的建模体验，支持通过SQL自动生成模型，支持**多种存储优化策略**。另外，新增的**SQL验证**功能，支持对业务分析需求变化的快速响应。
+Kyligence Enterprise v2.5 is general available recently. This release introduces **multi-level access control and fine granularity**, which enhance enterprises security entirely and satisfie the requirements of enterprise customers and group customers for fine granularity access control and user permissions. Meanwhile, Kyligence Enterprise v2.5 enriches intelligent modeling assistance, enables to generate models automatically through SQL patterns, and supports **various storage optimization strategies**. In addition,  introducing a new highlight, **SQL validation**, enable the quick response to the varied business analysis demand.
 
+### Enhanced Enterprise-level Security
 
+**Multi-level Access Control**
 
-### 企业级安全增强
+Kyligence Enterprise v2.5 provides a comprehensive access control system. Control your data access on different granularity as project level, table level, column level and row level.
 
-**多层级权限管控**
+**Project-level and Table-level Access Control**
 
-简洁而完整的权限系统，从粗粒度到细粒度的访问权限都可以得到差异化的管控。
+Project-level Access Control allows to manage the different-level permissions based on a user's role. In the same project, now you can use Table-level Access Control to differentially configure the access to the source table. Project-level Access Control and Table-level Access Control can offer a unified and flexible permission control that works for different subsidiaries, departments, business units under one system. 
 
-**项目级与表级权限**
+**Row/Column-level Access Control**
 
-项目级别的访问权限，可以基于用户角色进行不同程度的管控。在同一项目中，增加了表级权限控制，方便用户对源表的访问权限进行差异化的配置。作为企业级的多用户数据库，项目级和表级权限管控满足了同一系统下的多个子公司、职能部门、业务群体的统一而灵活的权限需求。
+Fine granularity row/column access control grains the permission to cell level, satisfies the requirements for enterprise-level users to isolate the business data and the customer personal information.
 
-**行列级权限**
+### Intelligent Modeling Experiences 
 
-在表级权限下，支持细粒度的行列级权限管控，将权限配置细化到单元格级别，满足了企业用户对业务数据，客户个人信息等进行隔离的需求。
+**Model Recommendation**
 
+The new release supports automatic model generation through SQL. Once a source table is imported, the model will be generated through SQL automatically, which achieves one-click generation from SQL to model. 
 
+**Rapid SQL Validation**
 
-### **智能化的建模体验**
+Without buliding, Kyligence Enterprise V2.5 can rapidly validate if a model meets the needs of business query SQL after modeling, thus responding to the changing business analysis requirements fastly. 
 
-**模型推荐**
+**Various Cube Optimization Strategies**
 
-支持通过SQL自动生成模型。导入源表后，即可通过输入SQL自动创建模型，实现了从SQL到模型的一键生成。
+Cube optimizer offers various strategies. Priority Strategy takes full advantages of data's logical relations to optimize Cube, thus satisfying the needs of flexible query scenarios. Business Priority Strategy is business oriented, which can accelerate the specified SQL and support the general report query modes with the minimum storage cost. Mixed Optimization Strategy supports two or more requirements and can meet the needs of various optimization scenarios. 
 
-**快速验证SQL**
+### Other Improvements
 
-无需构建，建模后即可快速验证模型是否满足业务查询SQL，快速响应业务分析需求变化。
+The new release also provides much richer sample data and streaming data model, facilitating to rapidly validate the integration with streaming data source. 
 
-**多种Cube优化策略**
+KyAnalyzer reads the Kyligence Enterprise license directly and does not require a separate license file.
 
-Cube优化器提供了多种优化策略， 其中优先策略，充分利用数据自身的逻辑关系优化Cube，满足灵活查询场景；业务优先策略，定向加速指定SQL，用最小的存储成本支持常见的报表查询模式；综合优化策略，支持以上两种需求，满足了多种优化场景。
+### Hadoop Distribution Support
 
+Certificated distributions：
 
+* Cloudera CDH 5.7/5.8/5.9/5.11/5.12
+  
+* MapR 5.2.1
 
-**其他更新与改进还包括**
+Compatible distributions：
 
-提供更丰富的样例数据，流式数据模型，方便快速验证与流式数据源的集成
+* HBase 0.98+，Hive 0.14+
 
-KyAnalyzer无需单独提供许可证，可直接读取Kyligence Enterprise的许可证
+* Hortonworks HDP 2.2/2.4
 
+* Azure HDInsight 3.4~3.6 
 
+* AWS EMR 5.1~5.7
 
-### Hadoop发行版支持
+* Huawei FusionInsight C60/C70
 
-  产品认证：
+### Download
 
-  	Cloudera CDH 5.7/5.8/5.9/5.11/5.12
-  	
-  	MapR 5.2.1
-
-  兼容性测试：
-
-  	HBase 0.98+，Hive 0.14+
-
-  	Hortonworks HDP 2.2/2.4
-
-  	Azure HDInsight 3.4~3.6 
-
-  	AWS EMR 5.1~5.7
-
-  	华为 FusionInsight C60/C70
-
-
-
-### **产品下载**
-
-Kyligence Enterprise v2.5已经开放下载试用，更多产品信息请见[Kyligence Enterprise产品页面](http://kyligence.io/zh/enterprise-zh/)。
+Kyligence Enterprise V2.5 is available for download. Please visit [Kyligence Enterprise Products](http://kyligence.io/products-list/) for more information.

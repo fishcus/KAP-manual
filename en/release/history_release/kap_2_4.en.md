@@ -1,82 +1,74 @@
 ## Kyligence Enterprise 2.4 Release Notes
 
-近期我们发布了Kyligence Enterprise v2.4，在该版本中，Kyligence Enterprise全面升级为**HOLAP（Hybrid OLAP）**架构，进一步支持主流SQL on Hadoop技术，满足更多分析场景。同时Kyligence Enterprise v2.4丰富了语义层的表达能力，支持了**雪花模型（Snowflake）**， 引入了**可计算列（Computed Column）**，以支持用户将复杂的商业逻辑转化为合适的数据模型 。
+In this release, Kyligence Enterprise has envolved from MOLAP (Multidimensional OLAP) to **HOLAP** (Hybrid OLAP) , which supports popular SQL on Hadoop technologies in multiple analytics scenarios. Furthermore, Kyligence Enterprise 2.4 has extended its semantic layer by introducing **Snowflake** schema and **Computed Column**, transferring complex business logic to data model accurately.
 
 
 
-#### **引入HOLAP(Hybrid OLAP)**
+### **Introduced HOLAP (Hybrid OLAP)**
 
-**查询下压**
+**Query Pushdown** 
 
-**查询下压**特性使得Kyligence Enterprise能够将Kylin Cube不支持的查询下压到其他SQL引擎，内置支持Spark SQL及Hive，未来将进一步支持其他SQL on Hadoop技术。在Kyligence Enterprise可以支持高性能的亚秒级聚合查询的同时，进一步满足了灵活的探索式分析（Ad-Hoc）需求。
+Query Pushdown routes the query that can’t be answered by Cube to underlying SQL engine. Kyligence Enterprise has embedded Spark SQL and Hive as its pushdown engines, and other SQL on Hadoop engines will be coming in following releases. Kyligence Enterprise supports mission-critical and exploratory analytics (Ad-Hoc) by leveraging cube-based sub-second performance query and pushdown-based query respectively.
 
-![Beyond OLAP](images/KAP24/Query_pushdown_CN.png)
+**Seamless Integration with SQL on Hadoop** 
 
-**无缝对接SQL on Hadoop技术**
-
-Kyligence Enterprise支持与用户原有SQL on Hadoop技术的无缝对接，重用原有技术的分析能力，带来数据访问层的透明加速能力，结合Kyligence Enterprise的预计算加速能力，为用户提供海量数据的交互式分析，为BI集成提供统一的查询接口和接入方式。
+Kyligence Enterprise seamlessly integrates with existing SQL on Hadoop and reuses existing analytics capability. Kyligence Enterprise brings the transparent speedup power to data access layer and empowers the unified query gateway for all BI applications. By taking full advantage of pre-calculation technology, Kyligence Enterprise enables BI to analyze massive data interactively and fills the gap between BI and Hadoop.
 
 
 
-#### **增强的数据建模**
+### **Enhanced Data Modeling**
 
-**KyStudio 建模中心**
+**KyStudio: New Data Modeling Tool**
 
-全新视觉体验，更直观的、可拖拽式的数据建模流程，支持分析师自助地完成元数据导入、模型设计、Cube构建等工作，使建模过程更流畅。
+KyStudio is an intuitive model structure that brings new visual experience. With drag-and-drop modeling process, KyStudio enables the analysts to load metadata, design model/cube, build cube, and process works more smoothly through a self-served interface.
 
-![KyStudio](images/KAP24/24_kystudio.png)
+**Model Health Inspection**
 
-**模型健康检测**
+Model Health Inspection can figure out the potential modeling issues, such as primary-foreign key mismatch and data skew. The inspection result guides users to improve the model design directly and efficiently.
 
-模型健康度检测在构建之前发现主外键不匹配、数据分布不均衡等建模隐患，清晰的检测结果帮助用户有效定位模型设计问题。
+**Cube Optimizer**
 
-**Cube 优化器**
+Cube Optimizer will first analyze source data characters and inputted SQL patterns, and then suggests cube design that includes dimensions, aggregation group settings, measurement settings, encoding algorithms, and rowkey orders. This method reduces the modeling learning curve and helps users to follow the modeling steps by simple clicks.
 
-Cube优化器根据源数据特征和用户常用SQL模式，推荐出优化的Cube维度组合，度量配置，聚合组规则，字典编码算法和Rowkey排序。Cube优化器降低了建模的学习曲线，帮助用户迅速上手掌握建模核心。
+**Efficient Cubing**
 
-![Cube_optimizer](images/KAP24/CN_release_note_optimizer.png)
-
-**高效的Cube剪枝**
-
-基于用户定义的最大维度组合数（指用户查询时用到的维度列个数）进行剪枝，大量减少低效的Cube维度组合开销，缩短Cube构建时间，解决了Cube维度组合爆炸难题。部分案例中，可以节省90%的Cube存储资源。
+Kyligence Enterprise offers the efficient cubing by following the Max Dimension Combination (the biggest usage of dimension combination number during queries) setting defined by users. The efficient cubing algorithm avoids the rarely-used cube build, reduces the cubing time, and resolves the cube explosion problem. In some real-cases, it saves over 90% storage
 
 
 
-#### 语义层丰富
+### Enriched Semantic Layer
 
-**可计算列**
+**Computed Column**
 
-支持用户自定义可计算列（Computed Column），将数据的抽取／转换／重定义等操作预先定义在模型中，增强数据模型语义层。将自定义计算列预置在模型中提前计算，以充分利用Kyligence Enterprise的预计算能力，进一步提升查询效率。可计算列支持Hive UDF，可以重用已有的业务逻辑和代码。
+The semantic layer is enriched by introducing computed column technology. Kyligence Enterprise allows users to define computed column on the original source table to extract/transform/redefine the original column into a new virtual column. The computed column works like other original column which will be pre-calculated during cubing phase. The computed column enables analysts to do data clean/transform all by themselves without their IT teams. It also improves the query performance by pre-calculated the filter condition. Hive User Defined Function(UDF) is supported on computed column, and this allows users to reuse existing code and libraries. 
 
-![ Computed Column](images/KAP24/Computed_Column_CN.png)
+**Support Snowflake**
 
-**Snowflake 雪花模型**
-
-在星型模型基础上，进一步支持了雪花模型，增强了模型对于复杂商业场景的支持。
-
-#### 
-
-#### 简化系统运维  
-
-**安装环境检测** 
-
-提供全面的安装检测脚本，检查环境依赖有效性、权限、版本等多个问题，直观地提示潜在问题并辅以解决方法。
-
-**新的元数据存储方式**
-
-支持MySQL等关系型数据库作为元数据存储介质，将metadata迁移到关系型数据库，遵从集群管理原有的数据库备份与恢复的运维规范，由于不再依赖HBase作为元数据存储，降低了管理员运维数据库的成本和风险。
-
-**Cube构建调度器**
-
-支持在Cube中设置按计划自动增量构建。减少手工运维，使分析师可以自助的调度Cube构建，简化了Cube增量构建运维工作，实现全自动化运维。全新调度器还可以与Kafka流式构建一起使用，改进流式Cube的运维体验和可靠性。
+With both star schema and snowflake schema supported, Kyligence Enterprise provides a hold of complex business logic.
 
 
 
-#### **Kylin核心引擎与兼容性**
+### **Easy to DevOps**
 
-**Apache Kylin 升级到2.0**
+**Installation Environment Inspection**
 
-Kyligence Enterprise 基于Apache Kylin内核，与Apache Kylin完全兼容，本次升级基于Apache Kylin 2.0，完整公告参见Kylin官方网站。主要功能如下：
+Full environment check scripts are provided. It inspects the environment dependency, permission, version, and other necessary resources. The inspection result will indicate the potential issues and provide solutions before Kyligence Enterprise starts.
+
+**New Metadata Storage**
+
+Relational databases, such as MySQL, can be used as the Kyligence Enterprise metadata store. By moving the metadata from HBase to relational database, the database operation strategies are followed. Without HBase, the total operation cost and risks are reduced dramatically.
+
+**Cube Building Scheduler**
+
+Cube Building Scheduler enables users to build the cube on schedule. It reduces the operating cost and enables analysts to build the cube by themselves with automatic scheduler service. Offering better operating experience and reliability, the Cube Build Scheduler works well with Kafka in streaming cubing case.
+
+
+
+### **Kylin Core and Compatibility**
+
+**Upgrade Apache Kylin to 2.0**
+
+Kyligence Enterprise is built upon Apache Kylin core and is 100% compatible with Apache Kylin. Kyligence Enterprise 2.4 upgrades Apache Kylin to 2.0, and the complete Kylin release notes could be found on the [Kylin website](http://kylin.apache.org/blog/2017/02/25/v2.0.0-beta-ready/). The highlight features including:
 
 KYLIN-2467: Support TPCH queries
 
@@ -88,50 +80,50 @@ KYLIN-2351: Support cloud-based storage
 
 
 
-**其他更新与改进还包括**
+**More enhancement and bug-fix**
 
-KYLIN-2521: 升级Apache Calcite到1.12版本，支持更多日期函数
+KYLIN-2521: Upgrade Apache Calcite to 1.12
 
-KYLIN-490: 支持多列的Distinct Count
+KYLIN-490: Support Distinct Count for multiple columns
 
-表索引支持多列有序索引，提速明细查询
+Table Index supports multiple sorted by/shard by definitions, improves the detailed query
 
-更新构建引擎，减少构建过程小文件IO次数，加速构建
+Build engine upgraded, reduces the IO cost, and accelerates the cubing 
 
-优化诊断日志时间范围的选择，减少诊断包大小
+Allow to set the time range for KyBot diagnostic package, reduces the log size
 
-支持模型和Cube临时保存为草稿，改善建模体验
+Support save model and cube as draft, improve the modeling experience
 
-集群环境支持基于ZooKeeper的服务发现，减少手工配置失误
+Support cluster service discovery based on ZooKeeper, eliminates the manual mistakes. 
 
-支持自定义指标精度
+Support customized measure precision 
 
-简易配置升级，所有配置向后兼容，升级过程仅需用老版本conf目录覆盖新的安装包即可
+Easy to upgrade, all configurations are back-compatible
 
-KyAnalyzer集成 Kyligence Enterprise 权限管理机制
-
-
-
-#### Hadoop发行版支持
-
-  产品认证：
-
-  	Cloudera CDH 5.7/ 5.8/ 5.11/ 5.12
-
-  兼容性测试：
-
-  	HBase 0.98+，Hive 0.14+
-
-  	Hortonworks HDP 2.2/ 2.4
-
-  	Microsoft HDInsight
-
-  	Amazon EMR
-
-  	华为 FusionInsight C60/C70
+KyAnalyzer access control is integrated with Kyligence Enterprise backend
 
 
 
-#### **产品下载**
+### Hadoop Distribution Support
 
-Kyligence Enterprise已经开放下载试用，更多产品信息请见[Kyligence Enterprise产品页面](http://kyligence.io/zh/)。
+Certificated distributions ：
+
+* Cloudera CDH 5.7/5.8/5.11/5.12
+
+Compatible distributions：
+
+* HBase 0.98+，Hive 0.14+
+
+* Hortonworks HDP 2.2/2.4
+
+* Microsoft HDInsight
+
+* Amazon EMR
+
+* Huawei FusionInsight C60/C70
+
+
+
+### **Download**
+
+The Kyligence Enterprise 2.4 is available for download, please visit[ Kyligence Enterprise Product ](http://kyligence.io/products/#kap)for more details.

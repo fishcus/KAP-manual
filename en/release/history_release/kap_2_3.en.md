@@ -1,62 +1,55 @@
-## 	Kyligence Enterprise 2.3 发行说明
+## Kyligence Enterprise 2.3 Release Notes
 
-### Kyligence Enterprise 2.3新功能
+### Intelligent Modeling Assistant
 
-下面将介绍Kyligence Enterprise 2.3新引进的特征和功能更新
+* In the modeling phase, Kyligence Enterprise could provide users with proper dimension/measure settings according to its resource data structure in order to simplify modeling process and improve system usability. 
+* Enhance data source statistics collecting efficiency. Kyligence Enterprise can offer a lightweight sampling and stats collecting on extra large tables, providing data feature for modeling.
 
-#### 智能的辅助建模
+### Fully Optimized Storage Engine KyStorage
 
-1. 在模型构建时，Kyligence Enterprise将根据数据源表结构特征智能地为用户推荐不同的维度和度量设置，极大地简化了建模的操作，提升系统易用性。
-2. 提升源数据采样的效率，支持超大规模表的轻量级采样与统计，为建模过程提供数据特征采样支持。
+* Built-in tuning tools, which can automatically suggest optimal allocation according to cluster environment, so as to utilize cluster resource and improve query efficiency.
+* Enable snappy compression in storage by default, saving more storage space.
+* Push down filter to enhance filtering query efficiency by 20%.
+* Dynamic allocating of query node(Spark node) and computing resource, support self-adaptive resource allocation according to query request load level.
 
-#### 全面优化存储引擎KyStorage
+### Refined Kafka Topic Load Process
 
-1. 内置配置调优工具，自动根据集群环境规模，推荐最优配置，从而充分利用集群并行化资源，提升查询效率。
-2. 默认启用snappy存储压缩，更加节省存储空间。
-3. 下压过滤算子，提升过滤类查询效率20%以上。
-4. 支持动态分配查询节点（即Spark节点）计算资源，允许根据查询请求负载程度自适应分配集群资源。
+Enhance Kafka as a core data source, support one-click load Topic and streaming data sampling, in order to provide customers with convenient integration solution.  
 
-#### 改进的Kafka Topic导入流程
+### Asynchronous Export Massive Result Set
 
-提升Kafka为核心数据源，支持一键式Topic导入，支持流数据采样，方便用户集成流数据解决方案。
+Support asynchronous query request, check query schedule and export 10 million level result set, so that Kyligence Enterprise can be applied as data pre-treatment system.
 
-#### 支持超大结果集异步导出
+### Other Updates
 
-允许用户提交异步查询请求，检查查询进度，支持导出千万级别以上查询结果集，Kyligence Enterprise可以用于数据预处理系统。
+- Optimize diagnostic package generating and support one-click upload KyBot diagnostic package.
+- One-click promoting from Kylin to Kyligence Enterprise.
+- Better Cube expansion ratio computing method.
+- Integration accessibility to Spark clusters in user environments and desired cluster management.
+- Support various Cloud Hadoop file systems used as Kylin working directory.
 
+### 
 
-#### 其它更新还包括
+### Hadoop Distribution Support
 
-- 简化诊断包生成和上传流程，支持一键上传KyBot诊断包。
-- 简化Kylin到Kyligence Enterprise迁移过程，支持一键式升级。
-- 升级Cube膨胀率计算方法，新方法更合理，数据用户可验证。
-- 支持集成用户环境的Spark集群，简化了集群的管理。
-- 支持多种云端Hadoop文件系统作为Kylin工作目录。
+Certificated distributions:
 
-#### Hadoop发行版支持
+* Cloudera CDH 5.7/5.8
 
-  产品认证：
+Compatible distributions:
 
-  	Cloudera CDH 5.7/5.8/5.9
+* HBase 0.98+，Hive 0.14+
 
-  兼容性测试：
+* Hortonworks HDP 2.2/2.3/2.4/2.5
 
-  	HBase 0.98+，Hive 0.14+
+* Microsoft HDInsight
 
-  	Hortonworks HDP 2.2/2.3/2.4/2.5
+* Amazon EMR
 
-  	Microsoft HDInsight
+* Huawei FusionInsight C50/C60
 
-  	Amazon EMR
+* AsiaInfo OCDP 2.4
 
-  	华为 FusionInsight C50/C60
-
-  	亚信 OCDP 2.4
-
-  
-
-### 下载地址
+### Download link
 
 [http://kyligence.io/kyligence-analytics-platform/](http://kyligence.io/kyligence-analytics-platform/)
-
-

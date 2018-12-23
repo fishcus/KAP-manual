@@ -1,70 +1,71 @@
-## 	Kyligence Enterprise 2.1 发行说明
+## Kyligence Enterprise 2.1 Release Notes
 
-### Kyligence Enterprise 2.1新功能
+### KyStorage: Columnar Storage Engine
 
-下面的段落将介绍Kyligence Enterprise 2.1新引进的功能
+KyStorage, is a HDFS based columnar storage engine developed by Kyligence with independent intellectual property. The main updates including:
 
-#### Hadoop发行版支持
+* Support raw data query. KyStorage breaks the limitation of traditional OLAP engine on querying aggregation data only, provides fully support for the raw data query.
 
-产品认证：
+* Optimize the wide table support. It reduces the data modeling difficulty, thus would offer better service for data-exploratory analysis scenarios.
 
-​	Cloudera CDH 5.7/5.8
+* Optimize coding algorithm for sparse columns and other such scenarios.  
 
-兼容性测试：
+### KyAnalyzer: Agile Self-serve OLAP BI Tool
 
-​	HBase 0.98+，Hive 0.14+
+KyAnalyzer is a multi-dimension agile BI tool developed by Kyligence. The main updates including:
 
-​	Hortonworks HDP 2.2/2.3/2.4
+* Realize sync Kyligence Enterprise/Kylin data model by one click. The process of metadata synchronization is optimized and there is no need to redefine Data Source.
+* Support Distinct Count query／TopN query
+* Support report sharing and export
 
-​	Microsoft HDInsight
+### KyBot Client Integration
 
-​	Amazon EMR
+KyBot is an online intelligent diagnosis and optimization service provided by Kyligence, which provides monitoring, cube optimizing, intelligent diagnosis and ticket service. 
 
-​	华为 FusionInsight C50/C60
+KyBot client aims to simplify the operating and maintaining information collection by administrator to reduce operation cost. Kyligence Enterprise 2.1 integrated KyBot client.
 
-​	亚信 OCDP 2.4
+### More Enterprise-Level Features
 
-#### Apache Kylin Core 升级
+* Support cell level access control. Kyligence Enterprise 2.1 breaks the limitation that Apache Kylin can only support the project and cube level access control. It provides cell level access control capability, allows integrating with user existing AAA system, thus managing the access rights for rows, columns, and cells.
+* Support Percentile and more advanced analysis functions
 
-Kyligence Enterprise基于Apache Kylin内核引擎，与Apache Kylin完全兼容，本次发布基于1.5.4.1版本，完整发布公告参见[链接](http://kylin.apache.org/docs15/release_notes.html)。主要新功能如下：
 
-1. 支持SQL Window操作
-2. 支持SQL Grouping Sets操作
-3. 优化TopN度量，支持更多维度
 
-#### KyStorage 列式存储引擎
+### Apache Kylin Core Upgrade
 
-KyStorage是Kyligence基于HDFS全新研发的拥有自主知识产权的列式存储引擎。
+Kyligence Enterprise is based on core engine of the Apache Kylin, thus is totally compatible with the Apache Kylin. This release is based on the Apache Kylin 1.5.4.1. Please find the complete release announcement through the [Link](http://kylin.apache.org/docs15/release_notes.html). The highlight features including:
 
-本次更新主要功能如下：
+* Support SQL Window action
 
-1. 支持明细数据查询。KyStorage突破了传统OLAP引擎仅能查询聚合数据的局限，全面地支持了明细数据的查询。
-2. 优化了对宽表的支持。降低了数据建模的难度，更好地服务数据探索式分析场景。
-3. 针对稀疏列等场景优化了编码算法。
+* Support SQL Grouping Sets action
 
-#### KyAnalyzer 敏捷BI工具
+* Optimize TopN measure; support more dimensions
 
-KyAnalyzer是Kyligence研发的敏捷BI自助多维分析工具。
 
-本次主要更新如下：
 
-1. 优化了元数据同步的流程，实现了数据模型一键同步，不再需要重新定义Data Source。
-2. 支持Distinct Count／TopN的查询
-3. 支持报表分享和导出
+### Hadoop Distribution Support
 
-#### KyBot客户端整合
+Certificated distributions:
 
-KyBot是Kyligence提供的在线智能诊断和优化服务，为Apache Kylin和Kyligence Enterprise系统提供监控、性能优化、智能诊断服务。
+* Cloudera CDH 5.7/5.8
 
-KyBot客户端简化运维人员收集运行状态信息，降低运维成本。Kyligence Enterprise 2.1集成了KyBot客户端。
+Compatible distributions:
 
-#### 更多企业级功能更新
+* HBase 0.98+, Hive 0.14+
 
-1. 支持单元格级别访问控制。突破传统Kylin只能支持项目和Cube级别的访问权限控制，提供单元格级别的访问控制能力，允许与用户已有账号、权限、组织结构系统深度集成，从而实现对行、列、单元格的访问权限管理。
-2. 支持Percentile等高级分析函数
+* Hortonworks HDP 2.2/2.3/2.4
 
-### 下载地址
+* Microsoft HDInsight
+
+* Amazon EMR
+
+* Huawei FusionInsight C50/C60
+
+* AsiaInfo OCDP 2.4
+
+
+
+### Download link
 
 [http://kyligence.io/kyligence-analytics-platform/](http://kyligence.io/kyligence-analytics-platform/)
-
 

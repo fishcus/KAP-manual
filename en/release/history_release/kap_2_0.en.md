@@ -1,55 +1,69 @@
-## Kyligence Enterprise 2.0 发行说明
+## Kyligence Enterprise 2.0 Release Notes
 
-### Kyligence Enterprise 2.0新功能
+### KyStorage: Columnar Storage Engine
 
-下面的段落将介绍Kyligence Enterprise 2.0新引进的功能
+KyStorage is a columnar storage engine based on HDFS and developed by Kyligence with independent intellectual property. The main updates including:
 
-#### Hadoop发行版支持
+* Compared with Apache Kylin, Kyligence Enterprise improves query performance from 3 to 40 times and reduces over 50%  storage space.
 
-产品认证：Cloudera CDH 5.7
+* It supports multiplexed indexes, specially optimizes for ultra-high cardinality dimensions and complex filtering conditions.
 
-兼容性测试：HBase 0.98+，Hive 0.14+；Hortonworks HDP 2.2/2.3/2.4；Microsoft HDInsight；Amazon EMR
+### KyAnalyzer: Agile Self-serve OLAP BI Tool
 
-#### Apache Kylin Core 升级
+KyAnalyzer is a self-serve agile BI tool developed by Kyligence. The main updates including:
 
-Kyligence Enterprise基于Apache Kylin内核引擎，与Apache Kylin完全兼容，本次发布基于1.5.3版本，完整发布公告参见[链接](http://kylin.apache.org/docs15/release_notes.html)。
+* Sync Cube's definition from Kyligence Enterprise/Apache Kylin
 
-主要新功能如下：
+* Online metadata editor 
 
-1. 支持精确去重度量
-2. 支持全局字典编码
-3. 支持Cube级别配置重写
-4. 精简JDBC依赖
-5. 通过标准Hadoop API获取任务状态
+* Kylin-mondrian component designed for Kyligence Enterprise/Apache Kylin
 
-#### KyStorage 列式存储引擎
+* Integrate authentication with Kyligence Enterprise/Apache Kylin
 
-KyStorage是Kyligence基于HDFS全新研发的拥有自主知识产权的列式存储引擎。
+* Support MDX syntax
 
-主要新功能如下：
+### More Enterprise Level Features
 
-1. 将存储引擎从HBase透明替换为KyStorage，相对*Apache Kylin*查询性能有几倍到几十倍的提升，存储空间节省超过50%
-2. 支持多路复合索引，针对超高基数维度、复杂过滤条件等的场景进行了专门优化。
+* Build-in Out of box user management; allow quick configuration of user accounts and access
 
-#### KyAnalyzer 敏捷BI工具
+* Internationalize support. It supports both Chinese and English version as well as extensible language packages. 
 
-KyAnalyzer是Kyligence研发的敏捷BI自助多维分析工具。
-
-主要新功能如下：
-
-1. 支持导入Kyligence Enterprise中的Cube定义
-2. 提供元数据编辑器，允许在线编辑所导入的Cube定义
-3. 发布Kyligence Enterprise兼容的kylin-mondrian插件
-4. 集成了Kyligence Enterprise访问认证系统
-5. 支持MDX语法
-
-#### 更多企业级功能更新
-
-1. 开箱即用的用户管理。内置用户友好的管理界面，快速配置用户账号和权限，实现开箱即用。
-2. 支持多国语言。支持中英两种语言，支持可扩展语言包。
-3. Job引擎高可用。支持基于ZooKeeper的Job引擎高可用，自动恢复。
+* Support Job Server high availability. It supports Job Server high availability built on Zookeeper and is automatically restored. 
 
 
-### 下载地址
+
+### Apache Kylin Core Upgrade
+
+Kyligence Enterprise is based on core engine of Apache Kylin, thus is totally compatible with the Apache Kylin. This release is based on the Apache Kylin 1.5.3. Please find the complete release announcement through the [link](http://kylin.apache.org/docs15/release_notes.html). The highlight features including:
+
+- Realize accurate distinct count function
+
+- Support global dictionary encoding
+
+- Support Cube level configuration overriding
+- Simplify JDBC dependency
+- Retrieve task status by standard API Hadoop
+
+
+
+### Hadoop Distribution Certification Support
+
+Certificated distributions: 
+
+* Cloudera CDH 5.7
+
+Compatible distributions: 
+
+* HBase 0.98+, Hive 0.14+
+
+* Hortonworks HDP 2.2/2.3/2.4
+
+* Microsoft HDInsight
+
+* Amazon EMR
+
+
+
+### Download link
 
 http://kyligence.io/kyligence-analytics-platform/
