@@ -3,7 +3,7 @@
 
 ### 安装 Kyligence ODBC 驱动程序
 
-有关安装信息，参考页面 [Kyligence ODBC 驱动程序教程](../driver/kyligence_odbc.cn.md)。
+有关安装信息，参考页面 [Kyligence ODBC 驱动程序教程](../../driver/odbc/README.md)。
 
 Kyligence ODBC Driver需要安装在MicroStrategy Intelligence Server所在的服务器上。
 
@@ -11,39 +11,39 @@ Kyligence ODBC Driver需要安装在MicroStrategy Intelligence Server所在的�
 
 打开MicroStrategy Developer，使用有管理员权限的账户登录到需要连接Kyligence Enterprise的项目源。登陆后，点击菜单->Administration->Configuration manager->Database Instance，创建新的database instance来连接到上文创建的本地ODBC连接。数据库的连接类型请选用Generic DBMS。
 
-![](images/microstrategy_10_4/picture1.png)
+![](../../images/microstrategy_10_4/picture1.png)
 
 
 
 根据你的项目环境的不同，你可能会需要将该database instance设置为已有项目的主数据源或非主数据源，或者你可以创建一个新的项目并设置该database instance为之数据源。你可以通过右键点击一个项目，选择project configuration->database instance来设置。
 
-![](images/microstrategy_10_4/picture5.png)
+![](../../images/microstrategy_10_4/picture5.png)
 
-![](images/microstrategy_10_4/picture6.png)
+![](../../images/microstrategy_10_4/picture6.png)
 
 ### 导入Logical Table
 
 打开你的项目，选择菜单->Schema-> Warehouse Catalog导入你需要的Kyligence Enterprise数据源的表。
 
-**注意：Microstrategy 会发送查询"select \* from fact\_table"，如果被查询表格数据量太大，Microstrategy 可能需要等待很长时间拿到返回结果。请参见[配置](../config/basic_settings.cn.md#kylinqueryforce-limit)对Kyligence Enterprise进行配置绕过该问题。**
+**注意：MicroStrategy 会发送查询"select \* from fact\_table"，如果被查询表格数据量太大，MicroStrategy 可能需要等待很长时间拿到返回结果。请参见[配置](../../../installation/config/configuration.cn.md#kylinqueryforce-limit)对Kyligence Enterprise进行配置绕过该问题。**
 
-![](images/microstrategy_10_4/picture7.png)
+![](../../images/microstrategy_10_4/picture7.png)
 
-![](images/microstrategy_10_4/picture8.png)
+![](../../images/microstrategy_10_4/picture8.png)
 
 ### 建立Schema Objects 和Public Objects
 
 建立一些Attribute，Fact和Metric用以建立测试报表
 
-![](images/microstrategy_10_4/picture2.png)
+![](../../images/microstrategy_10_4/picture2.png)
 
-![](images/microstrategy_10_4/picture3.png)
+![](../../images/microstrategy_10_4/picture3.png)
 
 ### 创建一个简单的测试报表
 
 现在你可以创建一张简单的报表测试你的Kylin数据源了
 
-![](images/microstrategy_10_4/picture4.png)
+![](../../images/microstrategy_10_4/picture4.png)
 
 ### 使用MicroStrategy连接Kyligence Enterprise的最佳实践
 

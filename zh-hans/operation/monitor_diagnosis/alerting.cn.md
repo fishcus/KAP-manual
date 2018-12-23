@@ -11,7 +11,7 @@ kylin.job.notification-mail-port=your-smtp-port
 kylin.job.notification-mail-username=your-smtp-account  # 设置该项为邮件的SMTP登录用户名
 kylin.job.notification-mail-password=your-smtp-pwd  # 设置该项为邮件的SMTP登录密码
 kylin.job.notification-mail-sender=your-sender-address  # 设置该项为邮件的发送邮箱地址
-kylin.job.notification-admin-emails=adminstrator-address  </pre>
+kylin.job.notification-admin-emails=administrator-address  </pre>
 
 设置完毕后，**重新启动Kyligence Enterprise** 使配置生效。
 

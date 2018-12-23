@@ -1,4 +1,4 @@
-## OBIEE 12c
+## Integrate with OBIEE 12c
 
 Oracle Business Intelligence Enterprise Edition (OBIEE) is Oracle's BI product that provides complete BI capabilities, including interactive dashboards, full-featured proactive intelligence and alerts, enterprise and financial reporting, real-time predictive intelligence, and offline analysis. This article walks you through the steps to connect to Kyligence Enterprise using OBIEE.
 

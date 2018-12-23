@@ -14,7 +14,7 @@
 
 1.  获取 Kyligence JDBC 驱动程序
 
-   请参考 [Kyligence JDBC 驱动程序说明](../driver/jdbc.cn.html)。
+   请参考 [Kyligence JDBC 驱动程序说明](../driver/jdbc.cn.md)。
 
 2. 向 FineBI 增加 JDBC 驱动程序
 
@@ -28,36 +28,36 @@
 
    在主页面选择 数据配置->数据连接管理，点击新建数据连接，选择 APACHE-KYLIN。
 
-   ![新建数据连接](images/fineruan/01.jpeg)
+   ![新建数据连接](../images/fineruan/01.jpeg)
 
-   ![新建数据源](images/fineruan/02.jpeg)
+   ![新建数据源](../images/fineruan/02.jpeg)
 
 2. 保存数据源
 
    将服务器IP地址等信息填写到连接字符串（字符串格式为:jdbc:kylin://&lt;hostname&gt;:&lt;port&gt;/&lt;project_name&gt;) 然后点击测试连接，测试成功后点击确定保存数据源连接。
 
-   ![保存数据源](images/fineruan/03.jpeg)
+   ![保存数据源](../images/fineruan/03.jpeg)
 
 - **新建业务包**
 
   在主页面选择数据配置->业务包管理，选择FineDirect方式，新建一个业务包。
 
-  ![新建业务包](images/fineruan/04.jpeg)
+  ![新建业务包](../images/fineruan/04.jpeg)
 
   将需要的表添加到业务包中 。
 
-  ![业务包添加表](images/fineruan/05.jpeg)
+  ![业务包添加表](../images/fineruan/05.jpeg)
 
 
 - **制作仪表板**
 
   在主页面选择仪表板->新建仪表板，新建一个仪表板。
 
-  ![新建仪表板](images/fineruan/06.jpeg)
+  ![新建仪表板](../images/fineruan/06.jpeg)
 
   编辑仪表板，自由使用Kyligence Enterprise中的数据。
 
-  ![新建仪表板](images/fineruan/07.jpeg)
+  ![新建仪表板](../images/fineruan/07.jpeg)
 
 ### 与 FineReport 集成
 
@@ -72,7 +72,7 @@
 
 1. 获取 Kyligence JDBC 驱动程序
 
-   请参考 [Kyligence JDBC 驱动程序说明](../driver/jdbc.cn.html)。
+   请参考 [Kyligence JDBC 驱动程序说明](../driver/jdbc.cn.md)。
 
 2. 向 FineReport 增加 JDBC 驱动程序
 
@@ -82,31 +82,31 @@
 
   在主页面选择服务器->定义数据连接，选择新建 JDBC 数据源。
 
-  ![新建数据连接](images/fineruan/08.jpeg)
+  ![新建数据连接](../images/fineruan/08.jpeg)
 
-  ![新建数据源](images/fineruan/09.jpeg)
+  ![新建数据源](../images/fineruan/09.jpeg)
 
   选择数据库类型为 Others ,驱动器填写：org.apache.kylin.jdbc.Driver，URL填写：jdbc:kylin://\<hostname\>:\<port\>/\<project_name\>，填写用户名、密码，然后点击测试连接，连接成功后点击确定保存。
 
-  ![新建数据源](images/fineruan/10.jpeg)
+  ![新建数据源](../images/fineruan/10.jpeg)
 
 
 - **建立 Kyligence Enterprise 数据集**
 
   在主页面选择服务器->服务器数据集，选择新建 数据库查询 ,数据源选择Kyligence Enterprise的数据源，然后将编辑查询语句。
 
-  ![新建数据源](images/fineruan/11.jpeg)
+  ![新建数据源](../images/fineruan/11.jpeg)
 
-  ![新建数据源](images/fineruan/12.jpeg)
+  ![新建数据源](../images/fineruan/12.jpeg)
 
 
 -  **制作报表**
 
   在主页面选择文件->新建聚合报表，选择Kyligence Enterprise的数据集，编辑报表，自由使用Kyligence Enterprise中的数据。
 
-  ![新建数据源](images/fineruan/13.jpeg)
+  ![新建数据源](../images/fineruan/13.jpeg)
 
-  ![新建数据源](images/fineruan/14.jpeg)
+  ![新建数据源](../images/fineruan/14.jpeg)
 
 
 

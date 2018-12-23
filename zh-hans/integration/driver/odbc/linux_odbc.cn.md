@@ -162,7 +162,7 @@
 
 这里我们以 **MicroStrategy Linux Intelligence Server** 为例，介绍如何创建 DSN。
 
-1. 在 Linux shell 下，浏览至 Microstrategy 的**安装目录**。
+1. 在 Linux shell 下，浏览至 MicroStrategy 的**安装目录**。
 
 2. 打开文件`ODBC.ini`，按如下格式添加 DSN 配置信息。
 
@@ -196,7 +196,7 @@
    SERVER=http://106.75.137.52
    ```
 
-4. 完成 DSN 配置后，我们建议您重启 Microstrategy Intelligence Server，确保刚创建的 DSN 已经生效。 
+4. 完成 DSN 配置后，我们建议您重启 MicroStrategy Intelligence Server，确保刚创建的 DSN 已经生效。 
 
 5. 现在您就可以在 MicroStrategy Linux I-Server 上使用该 DSN 创建新的数据库连接了。
 

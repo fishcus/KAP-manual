@@ -119,7 +119,7 @@ kylin.job.notification-mail-port=your-smtp-port
 kylin.job.notification-mail-username=your-smtp-account
 kylin.job.notification-mail-password=your-smtp-pwd
 kylin.job.notification-mail-sender=your-sender-address
-kylin.job.notification-admin-emails=adminstrator-address
+kylin.job.notification-admin-emails=administrator-address
 ```
 
 之后请重启 Kyligence Enterprise 以使得上述配置项生效。

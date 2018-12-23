@@ -33,11 +33,11 @@
 
 2. 切换至**系统 DSN** 选项卡，单击**添加**，在弹出的驱动程序选择框中选择 **KyligenceODBCDriver**，然后单击**完成**按钮。
 
-   ![ODBC 数据源管理器](images/01.png)
+   ![ODBC 数据源管理器](../images/01.png)
 
 3. 在弹出的对话框中输入 Kyligence Enterprise 服务器信息，如图所示：
 
-   ![DSN 设置](images/02.png)
+   ![DSN 设置](../images/02.png)
 
    其中，各项参数介绍如下：
 
@@ -52,7 +52,7 @@
 
 4. 单击 **Test** 按钮，连接成功后，将显示如下对话框。
 
-   ![连接成功](images/03.png)
+   ![连接成功](../images/03.png)
 
 ## 是否需要开启catalog层
 
@@ -72,5 +72,5 @@ DRIVER={KyligenceODBCDriver};SERVER=locahost;PORT=7070;PROJECT=learn_kylin
 
 ## 特别提醒
 
-如果用户希望在其他应用程序中使用 Kyligence ODBC 驱动程序连接 本产品，可访问本手册[ 与BI 工具连接](../integration/README.md)章节，了解相关信息。
+如果用户希望在其他应用程序中使用 Kyligence ODBC 驱动程序连接 本产品，可访问本手册[ 与BI 工具连接](../../bi/README.md)章节，了解相关信息。
 

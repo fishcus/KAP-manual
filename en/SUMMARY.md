@@ -116,7 +116,7 @@
              * [OBIEE 11g](integration/bi/obiee/obiee_11g.en.md) 
              * [OBIEE 12c](integration/bi/obiee/obiee_12c.en.md) 
          * [SAP Business Objects](integration/bi/sap_bo.en.md)   
-         * [Smartbi](integration/bi/smartbi.en.md) 
+         * [SmartBI](integration/bi/SmartBI.en.md) 
          * [Fanruan](integration/bi/fanruan.en.md)
      * [Apache Zeppelin](integration/zeppelin.en.md)
      * [Using Excel](integration/excel.en.md)       

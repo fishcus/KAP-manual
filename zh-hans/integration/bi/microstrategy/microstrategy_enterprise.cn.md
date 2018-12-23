@@ -9,7 +9,7 @@ Kyligence 目前支持 MicroStrategy Secure Enterprise 10.8及更高版本。
 - 已经安装 MicroStrategy Secure Enterprise 10.8或更高版本。
 - 已经安装 Kyligence Enterprise 。
 - 已经在安装 MicroStrategy Intelligence Server 的机器上安装了 JDK 1.8或更高版本。
-- 已经在安装 MicroStrategy Intelligence Server 的机器上安装了64位的 Kyligence ODBC 驱动程序。 有关如何下载和配置 Kyligence ODBC 驱动程序的详细信息，请参阅 Kyligence Enterprise用户手册中 [Kyligence ODBC 驱动程序教程](../driver/kyligence_odbc.cn.md)章节。
+- 已经在安装 MicroStrategy Intelligence Server 的机器上安装了64位的 Kyligence ODBC 驱动程序。 有关如何下载和配置 Kyligence ODBC 驱动程序的详细信息，请参阅 Kyligence Enterprise用户手册中 [Kyligence ODBC 驱动程序教程](../../driver/odbc/README.md)章节。
 
 
 ### 为MicroStrategy Intelligence Server 安装Kyligence 连接器 
@@ -22,21 +22,21 @@ Kyligence 目前支持 MicroStrategy Secure Enterprise 10.8及更高版本。
 
 3. 启动 MicroStrategy Developer 并登录到2-tier项目源。 转到数据库实例管理器，并编辑您已连接到Kyligence数据源的实例。点击位于 “ 数据库连接类型” 旁边的 “ 升级” 按钮，如下所示：
 
-   ![](images/microstrategy_10_8/database_instances.png)
+   ![](../../images/microstrategy_10_8/database_instances.png)
 
 4. 出现以下窗口。浏览文件，使得数据库类型脚本文件指向在**步骤1**中获得的 ”Database_KAP.PDS“ 文件。单击 “加载” 按钮，如下图所示：
 
-   ![](images/microstrategy_10_8/load.png)
+   ![](../../images/microstrategy_10_8/load.png)
 
 5. 现在左侧窗格中的可用数据库类型中出现了 Kyligence。 使用箭头按钮将 "Kyligence" 对象从左侧窗格移动到右侧，如下图所示：
 
-   ![](images/microstrategy_10_8/add_database.png)
+   ![](../../images/microstrategy_10_8/add_database.png)
 
 6. 单击确定。“Kyligence 2.x”现在显示为可用的数据库连接类型。 
 
    在数据库实例管理器中选择 “Kyligence 2.x”。
 
-   ![](images/microstrategy_10_8/select_kyligence.png)
+   ![](../../images/microstrategy_10_8/select_kyligence.png)
 
 7. 点击确定并保存数据库实例。
 
@@ -62,7 +62,7 @@ Kyligence 目前支持 MicroStrategy Secure Enterprise 10.8及更高版本。
 
 #### 在 MicroStrategy Web 中安装 Kyligence Connector
 
-接下来需要在 MicrStrategy 集群中所有的 MicrStrategy Web 计算机中完成如下的配置：
+接下来需要在 MicroStrategy 集群中所有的 MicroStrategy Web 计算机中完成如下的配置：
 
 1. 将 DBproperties 文件和 AddConnector.jar 文件复制到运行MicroStrategy Web的机器。 并将文件的所在路径记为<location1>。
 
@@ -95,16 +95,16 @@ Kyligence 目前支持 MicroStrategy Secure Enterprise 10.8及更高版本。
 
    * 默认情况下，数据导入主页中的图标是如下所示数据库的常规图标：
 
-     ![](images/microstrategy_10_8/default_icon.png)
+     ![](../../images/microstrategy_10_8/default_icon.png)
 
    * 要自定义图标，请将KyligenceConnectorFiles.zip中的图标文件放到`<MSTR_WEB_SERVER>\javascript\ mojo\css\images\DI\connectors\` 路径中。
 
-     ![](images/microstrategy_10_8/ky_icon.png)
+     ![](../../images/microstrategy_10_8/ky_icon.png)
 
 
 然后在数据源处搜索 Kyligence 来连接 Kyligence，或者可以在 **Hadoop** 连接类别下找到 Kyligence。
 
- ![](images/microstrategy_10_8/datasource_ky.png)
+ ![](../../images/microstrategy_10_8/datasource_ky.png)
 
 ### 使用 MicroStrategy 连接 Kyligence Enterprise 的最佳实践
 
