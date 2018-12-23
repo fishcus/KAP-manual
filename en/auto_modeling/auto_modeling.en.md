@@ -27,8 +27,6 @@ The first step in Auto Modeling is **Query Input**: in this page, you can **Impo
 
 ![Import from query history](images/query_history/query_history.en.png)
 
-
-
 > **Note**:
 >
 > 1. The type of Query History includes Pushdown and Slow.

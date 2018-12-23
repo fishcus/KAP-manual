@@ -68,9 +68,9 @@
 DRIVER={KyligenceODBCDriver};SERVER=locahost;PORT=7070;PROJECT=learn_kylin
 ```
 
-<!--请将SERVER，PORT及PROJECT中的信息替换成您所使用的本产品的信息。-->
+> **提示：**请将SERVER，PORT及PROJECT中的信息替换成您所使用的本产品的信息。
 
 ## 特别提醒
 
-如果用户希望在其他应用程序中使用 Kyligence ODBC 驱动程序连接 本产品，可访问本手册[ 与BI 工具连接](../../bi/README.md)章节，了解相关信息。
+如果用户希望在其他应用程序中使用 Kyligence ODBC 驱动程序连接本产品，可访问本手册[ 与BI 工具连接](../../bi/README.md)章节，了解相关信息。
 

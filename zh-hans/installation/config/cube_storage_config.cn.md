@@ -1,7 +1,7 @@
 ## Cube 存储引擎配置
 
 
-Kyligence Enterprise 将所有的 Cube数据都保存在 KyStorage，一种基于HDFS的列式存储之上。在查询时，Kyligence Enterprise 使用 [Spark](http://spark.apache.org)，具体而言是 Spark on Yarn 模式来读取 Cube，并做可能的存储层预聚合。一个或者多个 Spark executor 作为长进程启动，用来接收可能的 Cube 访问。对于生产环境部署，请仔细阅读本文档并保证您的 executors 已经正确配置。
+Kyligence Enterprise 将所有的 Cube数据都保存在 Kyligence 专利列式存储引擎中，它是一种基于HDFS的列式存储。在查询时，Kyligence Enterprise 使用 [Spark](http://spark.apache.org) 来读取 Cube，并做可能的存储层预聚合。一个或者多个 Spark executor 作为长进程启动，用来接收可能的 Cube 访问。对于生产环境部署，请仔细阅读本文档并保证您的 executors 已经正确配置。
 
 Kyligence Enterprise 将Spark的二进制包和配置文件打包至 `$KYLIN_HOME/spark/` 目录。理论上可以直接在 `$KYLIN_HOME/spark/conf/` 路径下按照 [Spark 参数配置](http://spark.apache.org/docs/latest/configuration.html) 来修改 Spark 自带的所有配置。但是我们不推荐这种方式，因为从运维的便捷性考虑所有Kyligence Enterprise相关的配置都应限制在`$KYLIN_HOME/conf/`路径下。
 

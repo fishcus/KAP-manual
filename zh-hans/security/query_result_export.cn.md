@@ -5,3 +5,4 @@
 1. 设置 `kap.web.export.allow.admin` 为 `false` 后，将关闭 ADMIN 用户对查询结果的导出权限。ADMIN 用户登陆后，在 Insight 页面将不显示导出按钮。
 2. 设置 `kap.web.export.allow.other` 为 `false` 后，将关闭非 ADMIN 用户对查询结果的导出权限。非 ADMIN 用户登陆后，在 Insight 页面将不显示导出按钮。
 
+

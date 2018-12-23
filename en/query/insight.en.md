@@ -1,7 +1,6 @@
 ## Execute SQL Statements in Web UI
 
-### Query Page Overview
-Click **Insight** on the navigation header, all query-able tables will be listed on the left side of page. The tables will be shown only after the related cube is ready. Enter SQL in textbox on the right side of page, query result will be shown at the below textbox.
+Open  Kyligence Enterprise Web UI, click **Insight** on the navigation header, all query-able tables will be listed on the left side of page. The tables will be shown only after the related cube is ready. Enter SQL in textbox on the right side of page, query result will be shown at the below textbox.
 
 
 * **F** - Fact table 
@@ -10,7 +9,7 @@ Click **Insight** on the navigation header, all query-able tables will be listed
 ![](images/insight/insight_list_tables.png)
 
 
-### Query the SQL Statements
+### Execute SQL Queries
 
 Enter a select query and click **Submit**, you will see query results. Note the **Limit** field at the bottom right of the page. If there's no limit clause in your SQL statement, the system will apply a default limit value, which is 500. You can uncheck the checkbox in front of the limit field, if you want to disable the limit utterly.
 
@@ -41,7 +40,7 @@ Kyligence Enterprise displays query result in table by default, the result data 
 
 ![](images/insight/insight_show_result.png)
 
-### Other ways to execute SQL statements
+### Other ways to execute SQL queries
 
 - [Integration with BI tools](../integration/README.md)
 

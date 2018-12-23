@@ -69,8 +69,8 @@ Some BI tools support connect data source with ODBC connection string. In that c
 DRIVER={KyligenceODBCDriver};SERVER=locahost;PORT=7070;PROJECT=learn_kylin
 ```
 
-Please replace SERVER, PORT and PROJECT with your Kyligence Enterprise settings.
+> **Note:** Please replace *SERVER*, *PORT* and *PROJECT* with your Kyligence Enterprise settings.
 
-## Special Reminder
+## Other Reminders
 
 If you want to use Kyligence ODBC driver to connect to Kyligence Enterprise in other client applications, the configuration is similar to this example. For more information, please see [Connect with BI tools](../../bi/README.md) chapter of Kyligence Enterprise Manual.

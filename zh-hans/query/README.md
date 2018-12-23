@@ -1,3 +1,3 @@
 # SQL 查询
 
-本章将介绍一些常用的 SQL 查询功能。
+本章将介绍如何在 Kyligence Enterprise 中执行 SQL 查询语句，以及 Kyligence  Enteprise 支持的 SQL 语法和使用规范。

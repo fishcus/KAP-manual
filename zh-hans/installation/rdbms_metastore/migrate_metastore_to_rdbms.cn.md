@@ -22,3 +22,4 @@
    $KYLIN_HOME/bin/metastore.sh restore {path_to_backup}
    ```
 
+

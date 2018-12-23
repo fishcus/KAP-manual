@@ -1,6 +1,5 @@
 # Summary
 
-* [Kyligence Enterprise Manual](README.md)
 * [Overview](introduction/README.md)
 * [Quick Start](quickstart/README.md)
 * [Installation and Configuration](installation/README.md)
@@ -58,7 +57,7 @@
     * [Cube Design](model/cube_design/README.md)   
         * [Cube Design Basics](model/cube_design/create_cube.en.md)
         * [Aggregation Group](model/cube_design/aggregation_group.en.md)   
-        * [Cuboid Pruning](model/cube_design/cuboid_pruning.en.md) 
+        * [Maximum Dimension Combination](model/cube_design/cuboid_pruning.en.md) 
         * [Cube Optimizer](model/cube_design/cube_optimizer.en.md) 
         * [Measures](model/cube_design/measure_design/README.md)    
             * [TopN](model/cube_design/measure_design/topn.en.md)
@@ -97,7 +96,7 @@
          * [Kyligence ODBC Driver](integration/driver/odbc/README.md)  
             * [Windows](integration/driver/odbc/win_odbc.en.md)
             * [Linux](integration/driver/odbc/linux_odbc.en.md)
-     * [Connect Kyligence from BI Tools](integration/bi/tableau/README.md)    
+     * [Connect Kyligence from BI Tools](integration/bi/README.md)    
          * [Tableau](integration/bi/tableau/README.md) 
             * [Tableau 8.x](integration/bi/tableau/tableau_8.en.md)
             * [Tableau 9.x](integration/bi/tableau/tableau_9.en.md)
@@ -118,7 +117,7 @@
          * [SAP Business Objects](integration/bi/sap_bo.en.md)   
          * [SmartBI](integration/bi/SmartBI.en.md) 
          * [Fanruan](integration/bi/fanruan.en.md)
-     * [Apache Zeppelin](integration/zeppelin.en.md)
+         * [Apache Zeppelin](integration/bi/zeppelin.en.md)
      * [Using Excel](integration/excel.en.md)       
  * [Security](security/README.md)           
      * [User Management](security/user_management.en.md)        
