@@ -166,15 +166,15 @@ Qlik Sense 是新一代自助式数据可视化工具。它是一款完整的商
 
 1. 通过浏览器在 **Qlik Sense Hub** 中新建应用，连接到 Kyligence Enterprise 数据源，连接方法同在 **Qlik Sense Desktop** 中连接 Kyligence Enterprise。
 
-![新建应用](images/Qlik/08_hub_create.PNG)
+![新建应用](../../images/Qlik/08_hub_create.PNG)
 
 2. 编辑刚才创建的应用，自由使用 Kyligence Enterprise 中的数据。
 
-![编辑应用](images/Qlik/09_hub_table.PNG)
+![编辑应用](../../images/Qlik/09_hub_table.PNG)
 
 3. 编辑图表，制作方法和在 **Qlik Sense Desktop** 中一样。
 
-![编辑图表](images/Qlik/10_hub_complete.PNG)
+![编辑图表](../../images/Qlik/10_hub_complete.PNG)
 
 
 
