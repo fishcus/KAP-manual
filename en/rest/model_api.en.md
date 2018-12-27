@@ -15,7 +15,7 @@
 
 
 
-### Get Model List {#Get-Model-List}
+### Get Model Description List {#Get-Model-List}
 
 - `GET http://host:port/kylin/api/models`
 
@@ -33,7 +33,7 @@
 
 - Curl Request Example
 
-  ```shell
+  ```sh
   curl -X GET \
     'http://host:port/kylin/api/models?pageOffset=1' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -57,7 +57,7 @@
 
 
 
-### Get Model Description {#Get-Model-Description}
+### Get Model Description by Project Name and Model Name {#Get-Model-Description}
 
 - `GET http://host:port/kylin/api/models/{projectName}/{modelName}`
 
@@ -72,7 +72,7 @@
 
 - Curl Request Example
 
-  ```shell
+  ```sh
   curl -X GET \
     'http://host:port/kylin/api/models/learn_kylin/kylin_sales_model' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -133,7 +133,7 @@
 
 - Curl Request Example
 
-  ```shell
+  ```sh
   curl -X PUT \
     'http://host:port/kylin/api/models/kylin_sales_model/clone' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -165,7 +165,7 @@
 - URL Parameters
   - `projectName` - `required` `string`,  project name
   - `modelName` - `required` `string`, model name
-	
+  
 - HTTP Header
   - `Accept: application/vnd.apache.kylin-v2+json`
   - `Accept-Language: en`
@@ -173,7 +173,7 @@
 
 - Curl Request Example
 
-  ```shell
+  ```sh
   curl -X DELETE \
     'http://host:port/kylin/api/models/learn_kylin/kylin_sales_model_clone' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -188,7 +188,7 @@
 
 - `GET http://host:port/kylin/api/models/computed_column_usage/{projectName}`
 
-- URL Parameters	
+- URL Parameters  
 
   - `projectName` - `required` `string` project name
 
@@ -199,7 +199,7 @@
 
 - Curl Request Example
 
-  ```shell
+  ```sh
   curl -X GET \
     'http://host:port/kylin/api/models/computed_column_usage/learn_kylin' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \

@@ -36,7 +36,7 @@
 
 - Curl Request Example
 
-  ```shell
+  ```sh
   curl -X POST \
     'http://host:port/kylin/api/async_query' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -84,7 +84,7 @@
 
 - Curl Request Example
 
-  ```shell
+  ```sh
   curl -X GET \
     'http://host:port/kylin/api/async_query/{queryID}/status' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -129,7 +129,7 @@
 
 - Curl Request Example
 
-  ```shell
+  ```sh
   curl -X GET \
     'http://host:port/kylin/api/async_query/{queryID}/metadata' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -180,7 +180,7 @@
 
 - Curl Request Example
 
-  ```shell
+  ```sh
   curl -X GET \
     'http://host:port/kylin/api/async_query/{queryID}/filestatus' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -224,7 +224,7 @@
 - Curl Request Example
 
 
-  ```shell
+  ```sh
   curl -X GET \
     'http://host:port/kylin/api/async_query/{queryID}/result_download' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -234,7 +234,7 @@
   ```
   
 - Response Example
-	- returns a document named `result.csv`.
+  - returns a document named `result.csv`.
 
 
 
@@ -256,7 +256,7 @@
 
 - Curl Request Example
 
-  ```shell
+  ```sh
   curl -X GET \
     'http://host:port/kylin/api/async_query/{queryID}/result_path' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -294,7 +294,7 @@
 
 - Curl Request Example
 
-  ```shell
+  ```sh
   curl -X DELETE \
     'http://host:port/kylin/api/async_query' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \

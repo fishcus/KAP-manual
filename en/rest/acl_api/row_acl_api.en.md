@@ -37,7 +37,7 @@
 
 - Curl Request Example
 
-  ```shell
+  ```sh
   curl -X GET \
     'http://host:port/kylin/api/acl/row/paged/learn_kylin/DEFAULT.KYLIN_SALES' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -102,7 +102,7 @@
 
 - Curl Request Example
 
-  ```shell
+  ```sh
   curl -X POST \
     'http://host:port/kylin/api/acl/row/learn_kylin/user/DEFAULT.KYLIN_SALES/ADMIN' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -160,7 +160,7 @@
 
 - Curl Request Example
 
-  ```shell
+  ```sh
   curl -X POST \
     'http://host:port/kylin/api/acl/row/batch/{project}/user/DEFAULT.KYLIN_SALES' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -168,20 +168,20 @@
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8' \
     -d '  {
-  	"ADMIN": {
-  		"LSTG_FORMAT_NAME":[
-  			"Auction",
-  			"ABIN"
-  		],
-  		"OPS_REGION":[
-  			"BEIJING"
-  		]
-  	},
-  	"ANALYST": {
-  		"LSTG_FORMAT_NAME":[
-  			"ABIN"
-  		]
-  	}
+    "ADMIN": {
+      "LSTG_FORMAT_NAME":[
+        "Auction",
+        "ABIN"
+      ],
+      "OPS_REGION":[
+        "BEIJING"
+      ]
+    },
+    "ANALYST": {
+      "LSTG_FORMAT_NAME":[
+        "ABIN"
+      ]
+    }
   }'
   ```
 
@@ -222,7 +222,7 @@
 
 - Curl Request Example
 
-  ```shell
+  ```sh
   curl -X POST \
     'http://host:port/kylin/api/acl/row/learn_kylin/user/DEFAULT.KYLIN_SALES/ADMIN' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -275,7 +275,7 @@
 
 - Curl Request Example
 
-  ```shell
+  ```sh
   curl -X DELETE \
     'http://host:port/kylin/api/acl/row/learn_kylin/user/DEFAULT.KYLIN_SALES/ADMIN' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \

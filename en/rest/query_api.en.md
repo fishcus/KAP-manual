@@ -29,7 +29,7 @@
 
 - Curl Request Example
 
-```shell
+  ```sh
   curl -X POST \
     'http://host:port/kylin/api/query' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -37,11 +37,11 @@
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8' \
     -d '{ "sql":"select count(*) from KYLIN_SALES", "project":"learn_kylin" }'
-```
+  ```
 
 - Response Example
 
-```JSON
+  ```JSON
   {
       "code":"000",
       "data":{
@@ -68,7 +68,7 @@
       },
       "msg":""
   }
-```
+  ```
 
 - Response Information
   - `columnMetas` - metadata information of the columns
@@ -104,18 +104,18 @@
 
 - Curl Request Example
 
-```shell
+  ```sh
   curl -X GET \
     'http://host:port/kylin/api/tables_and_columns?project=learn_kylin' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8'
-```
+  ```
 
 - Response Example
 
-```JSON
+  ```JSON
   {
       "code":"000",
       "data":[
@@ -136,4 +136,4 @@
       ],
       "msg":""
   }
-```
+  ```

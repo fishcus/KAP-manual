@@ -30,7 +30,7 @@
 
 - Curl 请求示例
 
-```shell
+  ```sh
   curl -X POST \
     'http://host:port/kylin/api/query' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -38,11 +38,11 @@
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8' \
     -d '{ "sql":"select count(*) from KYLIN_SALES", "project":"learn_kylin" }'
-```
+  ```
 
 - 响应示例
 
-```JSON
+  ```JSON
 {
     "code":"000",
     "data":{
@@ -68,7 +68,7 @@
     },
     "msg":""
 }
-```
+  ```
 
 - 响应信息
   - `columnMetas` - 每个列的元数据信息
@@ -103,18 +103,18 @@
 
 - Curl 请求示例
 
-```shell
+  ```sh
   curl -X GET \
     'http://host:port/kylin/api/tables_and_columns?project=learn_kylin' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8'
-```
+  ```
 
 - 响应示例
 
-```JSON
+  ```JSON
   {
       "code":"000",
       "data":[
@@ -135,4 +135,4 @@
       ],
       "msg":""
   }
-```
+  ```

@@ -36,7 +36,7 @@
 
 - Curl Request Example
 
-  ```shell
+  ```sh
   curl -X GET \
     'http://host:port/kylin/api/acl/table/paged/learn_kylin/DEFAULT.KYLIN_SALES' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -74,7 +74,7 @@
   - `project` - `required` `string`, project name
   - `type` - `required` `string`, operation object, ie., user or group
   - `table` - `required` `string`, table name
-	* `name` - `required` `string`, user name
+  - `name` - `required` `string`, user name
 
 
 - HTTP Header
@@ -85,7 +85,7 @@
 
 - Curl Request Example
 
-  ```shell
+  ```sh
   curl -X POST \
     'http://host:port/kylin/api/acl/table/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -131,7 +131,7 @@
 
 - Curl Request Example
 
-  ```shell
+  ```sh
   curl -X POST \
     'http://host:port/kylin/api/acl/table/batch/learn_kylin/DEFAULT.KYLIN_CAL_DT' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -139,12 +139,12 @@
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json' \
     -d '[{
-  	"sid":"ADMIN",
-  	"principal":"true"
+    "sid":"ADMIN",
+    "principal":"true"
   },
   {
-  	"sid":"{username}",
-  	"principal":"true"
+    "sid":"{username}",
+    "principal":"true"
   }
   ]'
   ```
@@ -181,7 +181,7 @@
 
 - Curl Request Example
 
-  ```shell
+  ```sh
   curl -X DELETE \
     'http://host:port/kylin/api/acl/table/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \

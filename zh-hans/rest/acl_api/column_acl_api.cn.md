@@ -39,18 +39,18 @@
 
 - Curl 请求示例
 
-```shell
+  ```sh
   curl -X GET \
     'http://host:port/kylin/api/acl/column/paged/learn_kylin/DEFAULT.KYLIN_CAL_DT' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8'
-```
+  ```
 
 - 响应示例
 
-```JSON
+  ```JSON
   {
       "code": "000",
       "data": {
@@ -60,7 +60,7 @@
       },
       "msg": "get column acl"
   }
-```
+  ```
 
 
 
@@ -86,7 +86,7 @@
 
 - Curl 请求示例
 
-```shell
+  ```sh
   curl -X POST \
     'http://host:port/kylin/api/acl/column/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -94,20 +94,20 @@
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8' \
     -d '["QTR_BEG_DT"]'
-```
+  ```
 
   > 提示：示例 Curl 请求将 ADMIN 用户赋予对表 DEFAULT.KYLIN_CAL_DT 在 QTR_BEG_DT 的列级访问控制权限。
 
 
 - 响应示例
 
-```JSON
+  ```JSON
   {
       "code": "000",
       "data": "",
       "msg": "add user to column black list."
   }
-```
+  ```
 
 
 
@@ -134,7 +134,7 @@
 
 - Curl 请求示例
 
-```shell
+  ```sh
   curl -X POST \
     'http://host:port/kylin/api/acl/column/batch/learn_kylin/user/DEFAULT.KYLIN_SALES' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -145,20 +145,20 @@
     "ADMIN": ["TRANS_ID","PART_DT"],
     "MODELER": ["PRICE"]
    }'
-```
+  ```
 
   > 提示：示例 Curl 请求将 ADMIN 用户赋予对表 DEFAULT.KYLIN_SALES 的 TRANS_ID 和 PART_DT 的列级访问控制权限；将 MODELER 用户赋予对表 DEFAULT.KYLIN_SALES 在 PRICE 的列级访问控制权限。
 
 
 - 响应示例
 
-```JSON
+  ```JSON
   {
       "code": "000",
       "data": "",
       "msg": "2 user column ACL(s) updated"
   }
-```
+  ```
 
 
 
@@ -184,7 +184,7 @@
 
 - Curl 请求示例
 
-```shell
+  ```sh
   curl -X PUT \
     'http://host:port/kylin/api/acl/column/learn_kylin/user/DEFAULT.KYLIN_SALES/ADMIN' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -192,20 +192,20 @@
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8' \
     -d '["TRANS_ID"]'
-```
+  ```
 
   > 提示：示例 Curl 请求将 ADMIN 用户修改对表 DEFAULT.KYLIN_SALES 在 TRANS_ID 的列级访问控制权限。
 
 
 - 响应示例
 
-```JSON
+  ```JSON
   {
       "code": "000",
       "data": "",
       "msg": "update user's black column list"
   }
-```
+  ```
 
 
 
@@ -227,23 +227,23 @@
 
 - Curl 请求示例
 
-```shell
+  ```sh
   curl -X DELETE \
     'http://host:port/kylin/api/acl/column/learn_kylin/user/DEFAULT.KYLIN_SALES/ANALYST' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8'
-```
+  ```
 
   > 提示：示例 Curl 请求删除 ANALYST 用户对表 DEFAULT.KYLIN_SALES  的列级访问控制权限。
 
 - 响应示例
 
-```JSON
+  ```JSON
   {
       "code": "000",
       "data": "",
       "msg": "delete user from DEFAULT.KYLIN_SALES's column black list"
   }
-```
+  ```

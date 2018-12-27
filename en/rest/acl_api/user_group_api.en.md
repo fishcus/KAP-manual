@@ -33,7 +33,7 @@
 
 - Curl Request Example
 
-  ```shell
+  ```sh
   curl -X GET \
     'http://host:port/kylin/api/user_group/groups?project=learn_kylin' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -78,7 +78,7 @@
 
 - Curl Request Example
 
-  ```shell
+  ```sh
   curl -X GET \
     'http://host:port/kylin/api/user_group/usersWithGroup?pageSize=1' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -134,7 +134,7 @@
 
 - Curl Request Example
 
-  ```shell
+  ```sh
   curl -X GET \
     'http://host:port/kylin/api/user_group/groupMembers/ALL_USERS' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -153,7 +153,7 @@
           "groupMembers":[
               {
                   "username":"ADMIN",
-   				"password":"...",
+          "password":"...",
                   "authorities":[...],
                   "disabled":false,
                   "defaultPassword":true,
@@ -190,7 +190,7 @@
 
 - Curl Request Example
 
-  ```shell
+  ```sh
   curl -X POST \
     'http://host:port/kylin/api/user_group/group_test' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -228,7 +228,7 @@
 
 - Curl Request Example
 
-  ```shell
+  ```sh
   curl -X DELETE \
     'http://host:port/kylin/api/user_group/group_test' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -266,12 +266,12 @@
   - `Content-Type: application/json;charset=utf-8`
 
 - HTTP Body: JSON Object
-	- `required` `string[]`, list of user names
+  - `required` `string[]`, list of user names
 
 
 - Curl Request Example
 
-  ```shell
+  ```sh
   curl -X POST \
     'http://host:port/kylin/api/user_group/users/group_test' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \

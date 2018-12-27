@@ -38,7 +38,7 @@
 
 - Curl 请求示例
 
-```shell
+  ```sh
   curl -X POST \
     'http://host:port/kylin/api/async_query' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -46,12 +46,12 @@
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8' \
     -d '{ "sql":"select * from KYLIN_SALES limit 100", "project":"learn_kylin" }'
-```
+  ```
 
 
 - 响应示例
 
-```JSON
+  ```JSON
   {
       "code": "000",
       "data": {
@@ -61,7 +61,7 @@
       },
       "msg": ""
   }
-```
+  ```
 
 - 响应信息
 
@@ -86,19 +86,19 @@
 
 - Curl 请求示例
 
-```shell
+  ```sh
   curl -X GET \
     'http://host:port/kylin/api/async_query/{queryID}/status' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8'
-```
+  ```
 
 
 - 响应示例
 
-```JSON
+  ```JSON
   {
       "code": "000",
       "data": {
@@ -108,7 +108,7 @@
       },
       "msg": ""
   }
-```
+  ```
 
 - 响应信息
   - `queryID` - 异步查询的 Query ID
@@ -132,19 +132,19 @@
 
 - Curl 请求示例
 
-```shell
+  ```sh
   curl -X GET \
     'http://host:port/kylin/api/async_query/{queryID}/metadata' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8'
-```
+  ```
 
 
 - 响应示例
 
-```JSON
+  ```JSON
   {
       "code": "000",
       "data": [
@@ -159,7 +159,7 @@
       ],
       "msg": ""
   }
-```
+  ```
 
 - 响应信息
 
@@ -184,24 +184,24 @@
 
 - Curl 请求示例
 
-```shell
+  ```sh
   curl -X GET \
     'http://host:port/kylin/api/async_query/{queryID}/filestatus' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8'
-```
+  ```
 
 - 响应示例
 
-```JSON
+  ```JSON
   {
       "code": "000",
       "data": 7611,
       "msg": ""
   }
-```
+  ```
 
 - 响应信息
 
@@ -229,14 +229,14 @@
 - Curl 请求示例
 
 
-```shell
+  ```sh
   curl -X GET \
     'http://host:port/kylin/api/async_query/{queryID}/result_download' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8'
-```
+  ```
 
 - 响应示例
 	- 返回一个名为 `result.csv` 的文件
@@ -260,25 +260,25 @@
 
 - Curl 请求示例
 
-```shell
+  ```sh
   curl -X GET \
     'http://host:port/kylin/api/async_query/{queryID}/result_path' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8'
-```
+  ```
 
 
 - 响应示例
 
-```JSON
+  ```JSON
   {
       "code": "000",
       "data": "hdfs://host:8020/{kylin_working_dir}/{kylin_metadata_url}/learn_kylin/async_query_result/eb3e837f-d826-4670-aac7-2b92fcd0c8fe",
       "msg": ""
   }
-```
+  ```
 
 - 响应信息
 
@@ -299,22 +299,22 @@
 
 - Curl 请求示例
 
-```shell
+  ```sh
   curl -X DELETE \
     'http://host:port/kylin/api/async_query' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8'
-```
+  ```
 
 
 - 响应示例
 
-```JSON
+  ```JSON
   {
       "code": "000",
       "data": true,
       "msg": ""
   }
-```
+  ```

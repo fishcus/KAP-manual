@@ -35,7 +35,7 @@
 
 - Curl Request Example
 
-  ```shell
+  ```sh
   curl -X GET \
     'http://host:port/kylin/api/kap/user/users?pageSize=1&project=learn_kylin' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -97,7 +97,7 @@
 
 - Curl Request Example
 
-  ```shell
+  ```sh
   curl -X POST \
     'http://host:port/kylin/api/kap/user/test' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -105,10 +105,10 @@
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8' \
     -d '{
-  	"password": "test@Kylingence",
-  	"disabled": false, 
-  	"authorities": ["ROLE_ADMIN"]
-  	
+    "password": "test@Kylingence",
+    "disabled": false, 
+    "authorities": ["ROLE_ADMIN"]
+    
   }'
   ```
 
@@ -157,7 +157,7 @@
 
 - Curl Request Example
 
-  ```shell
+  ```sh
   curl -X PUT \
     'http://host:port/kylin/api/kap/user/test' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -165,10 +165,10 @@
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8' \
     -d '{
-  	"password": "test123.",
-  	"disabled": false, 
-  	"authorities": ["ROLE_ANALYST"]
-  	
+    "password": "test123.",
+    "disabled": false, 
+    "authorities": ["ROLE_ANALYST"]
+    
   }'
   ```
 
@@ -210,7 +210,7 @@
 
 - Curl Request Example
 
-  ```shell
+  ```sh
   curl -X DELETE \
     'http://host:port/kylin/api/kap/user/test' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \

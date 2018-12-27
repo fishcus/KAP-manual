@@ -29,14 +29,14 @@
 
 - Curl 请求示例
 
-```shell
+  ```sh
   curl -X PUT \
     'http://host:port/kylin/api/cache/announce/all/learn_kylin/update' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8'
-```
+  ```
 
 
 
@@ -56,11 +56,11 @@
 
 - Curl 请求示例
 
-```shell
+  ```sh
   curl -X PUT \
     http://host:port/kylin/api/cache/project_data/learn_kylin/update \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8'
-```
+  ```

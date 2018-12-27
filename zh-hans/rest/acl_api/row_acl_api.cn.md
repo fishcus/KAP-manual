@@ -38,21 +38,21 @@
 
 - Curl 请求示例
 
-```shell
+  ```sh
   curl -X GET \
     'http://host:port/kylin/api/acl/row/paged/learn_kylin/DEFAULT.KYLIN_SALES' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8'
-```
+  ```
 
   > 提示：示例 Curl 请求返回 learn_kylin 项目下，表 DEFAULT.KYLIN_SALES 的行级访问控制权限。
 
 
 - 响应示例
 
-```JSON
+  ```JSON
   {
       "code": "000",
       "data": {
@@ -73,7 +73,7 @@
       },
       "msg": "get column cond list in table"
   }
-```
+  ```
 
 
 
@@ -104,7 +104,7 @@
 
 - Curl 请求示例
 
-```shell
+  ```sh
   curl -X POST \
     'http://host:port/kylin/api/acl/row/learn_kylin/user/DEFAULT.KYLIN_SALES/ADMIN' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -122,20 +122,20 @@
       ]
     }
   }'
-```
+  ```
 
   > 提示：示例 Curl 请求赋予用户 ADMIN 对表 DEFAULT.KYLIN_SALES 在 PART_DT 值为 1 的行级访问控制权限。
 
 
 - 响应示例
 
-```JSON
+  ```JSON
   {
       "code": "000",
       "data": "",
       "msg": "add user row cond list."
   }
-```
+  ```
 
 
 
@@ -162,7 +162,7 @@
 
 - Curl 请求示例
 
-```shell
+  ```sh
   curl -X POST \
     'http://host:port/kylin/api/acl/row/batch/{project}/user/DEFAULT.KYLIN_SALES' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -185,20 +185,20 @@
   		]
   	}
   }'
-```
+  ```
 
   > 提示：示例 Curl 请求赋予用户 ADMIN 对表 DEFAULT.KYLIN_SALES 在行 LSTG_FORMAT_NAME 取值为 'Auction' 和 'ABIN'，OPS_REGION 取值为 'BEIJING' 的行级访问控制权限，同时赋予用户 ANALYST 对表 DEFAULT.KYLIN_SALES 在行 LSTG_FORMAT_NAME 取值为 'ABIN' 的行级访问控制权限。
 
 
 - 响应示例
 
-```JSON
+  ```JSON
   {
       "code": "000",
       "data": "",
       "msg": "2 user row ACL(s) updated"
   }
-```
+  ```
 
 
 
@@ -226,7 +226,7 @@
 
 - Curl 请求示例
 
-```shell
+  ```sh
   curl -X POST \
     'http://host:port/kylin/api/acl/row/learn_kylin/user/DEFAULT.KYLIN_SALES/ADMIN' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -244,20 +244,20 @@
       ]
     }
   }'
-```
+  ```
 
   > 提示：示例 Curl 请求修改用户 ADMIN 对表 DEFAULT.KYLIN_SALES 在 PART_DT 取值为 '1' 的行级访问控制权限。
 
 
 - 响应示例
 
-```JSON
+  ```JSON
   {
       "code": "000",
       "data": "",
       "msg": "update user's row cond list"
   }
-```
+  ```
 
 
 
@@ -281,23 +281,23 @@
 
 - Curl 请求示例
 
-```shell
+  ```sh
   curl -X DELETE \
     'http://host:port/kylin/api/acl/row/learn_kylin/user/DEFAULT.KYLIN_SALES/ADMIN' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8'
-```
+  ```
 
   > 提示：示例 Curl 请求删除用户 ADMIN 对表 DEFAULT.KYLIN_SALES 的行级访问控制权限。
 
 - 响应示例
 
-```JSON
+  ```JSON
   {
       "code": "000",
       "data": "",
       "msg": "delete user's row cond list"
-  }```
-```
+  }  ```
+  ```

@@ -21,18 +21,18 @@ Kyligence Enterprise 所有的 API 都是基于 [Basic Authentication](http://en
 
 - Curl 请求示例
 
-```shell
+  ```sh
   curl -X POST \
     'http://host:port/kylin/api/user/authentication' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8'
-```
+  ```
 
 - 响应示例
 
-```JSON
+  ```JSON
   {
       "code": "000",
       "data": {
@@ -50,7 +50,7 @@ Kyligence Enterprise 所有的 API 都是基于 [Basic Authentication](http://en
       },
       "msg": ""
   }
-```
+  ```
 
 
 
@@ -58,7 +58,7 @@ Kyligence Enterprise 所有的 API 都是基于 [Basic Authentication](http://en
 
 > 提示：您可以通过如下路径下载 "jquery.base64.js" https://github.com/yckart/jquery.base64.js
 
-```javascript
+  ```javascript
 var authorizationCode = $.base64('encode', 'NT_USERNAME' + ":" + 'NT_PASSWORD');
 
 $.ajaxSetup({
@@ -68,9 +68,9 @@ $.ajaxSetup({
     'Accept': 'application/vnd.apache.kylin-v2+json'
    }
 });
-```
+  ```
 
-```javascript
+  ```javascript
 $.ajaxSetup({
       headers: { 
         'Authorization': 'Basic eWFu**********X***ZA==', 
@@ -90,6 +90,6 @@ $.ajaxSetup({
     request.fail(function( jqXHR, textStatus ) {
        alert( "Request failed: " + textStatus );
   });
-```
+  ```
 
 

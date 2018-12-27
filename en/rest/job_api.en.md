@@ -38,7 +38,7 @@
 
 - Curl Request Example
 
-  ```shell
+  ```sh
   curl -X GET \
     'http://host:port/kylin/api/jobs?timeFilter=0&pageSize=1' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -98,7 +98,7 @@
 
 - Curl Request Example
 
-  ```shell
+  ```sh
   curl -X GET \
     http://host:port/kylin/api/jobs/{jobId} \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -153,7 +153,7 @@
 
 - Curl Request Example
 
-  ```shell
+  ```sh
   curl -X GET \
     'http://host:port/kylin/api/jobs/{jobId}/steps/{stepId}/output' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -191,7 +191,7 @@
 
 - Curl Request Example
 
-  ```shell
+  ```sh
   curl -X PUT \
     'http://host:port/kylin/api/jobs/{jobId}/pause' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -244,7 +244,7 @@
 
 - Curl Request Example
 
-  ```shell
+  ```sh
   curl -X PUT \
     'http://host:port/kylin/api/jobs/{jobId}/resume' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -313,7 +313,7 @@
 
 - Curl Request Example
 
-  ```shell
+  ```sh
   curl -X PUT \
     'http://host:port/kylin/api/jobs/{jobId}/cancel' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -366,7 +366,7 @@
 
 - Curl Request Example
 
-  ```shell
+  ```sh
   curl -X DELETE \
     'http://host:port/kylin/api/jobs/0140b8e1-d74e-4c01-86d0-a114f59ba787/drop' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \

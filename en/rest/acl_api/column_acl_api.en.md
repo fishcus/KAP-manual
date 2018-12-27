@@ -38,7 +38,7 @@
 
 - Curl Request Example
 
-  ```shell
+  ```sh
   curl -X GET \
     'http://host:port/kylin/api/acl/column/paged/learn_kylin/DEFAULT.KYLIN_CAL_DT' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -84,7 +84,7 @@
 
 - Curl Request Example
 
-  ```shell
+  ```sh
   curl -X POST \
     'http://host:port/kylin/api/acl/column/learn_kylin/user/DEFAULT.KYLIN_CAL_DT/ADMIN' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -132,7 +132,7 @@
 
 - Curl Request Example
 
-  ```shell
+  ```sh
   curl -X POST \
     'http://host:port/kylin/api/acl/column/batch/learn_kylin/user/DEFAULT.KYLIN_SALES' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -182,7 +182,7 @@
 
 - Curl Request Example
 
-  ```shell
+  ```sh
   curl -X PUT \
     'http://host:port/kylin/api/acl/column/learn_kylin/user/DEFAULT.KYLIN_SALES/ADMIN' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
@@ -225,7 +225,7 @@
 
 - Curl Request Example
 
-  ```shell
+  ```sh
   curl -X DELETE \
     'http://host:port/kylin/api/acl/column/learn_kylin/user/DEFAULT.KYLIN_SALES/ANALYST' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
