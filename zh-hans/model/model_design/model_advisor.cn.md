@@ -8,18 +8,18 @@
 
 第一步，首先将可能需要用到的表都同步至需要的项目中。
 
-![auto_sync_table](images/auto modeling/auto_sync_table.png)
+![同步表](images/auto modeling/auto_sync_table.png)
 
 第二步，将需要作为事实表的表拖入中央，并指定为事实表。点击事实表工具栏的 “SQL”，将弹出一个可供输入查询语句的窗口。
 
-![fact_table](images/auto modeling/fact_table.png)
+![设置事实表](images/auto modeling/fact_table.png)
 
-![sql_window](images/auto modeling/sql_window.png)
+![输入SQL语句](images/auto modeling/sql_window.png)
 
 第三步，输入你希望创建出来的模型能满足的查询语句，然后点击 “检测” 来确认这些 SQL 可以被正确的识别并输入 Kyligence Enterprise 的计算引擎。如果全部正确识别，则如下图所示。
 
-![valid_SQL](images/auto modeling/valid_SQL.png)
+![正确的 SQL 语句](images/auto modeling/valid_SQL.png)
 
 第四步，提交已经通过检测的 SQL，之后你将得到一个已经被补全的模型，如下图所示。如果您对这个模型还有更多的修改，需要添加 SQL 语句，则可以酌情重复前面三步直至您满意。
 
-![auto_modeling](images/auto modeling/auto_modeling.png)
+![自动补全的模型](images/auto modeling/auto_modeling.png)

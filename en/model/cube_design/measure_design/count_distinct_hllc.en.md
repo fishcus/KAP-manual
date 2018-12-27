@@ -14,13 +14,13 @@ Before using count distinct query, you need to clarify if the target column is r
 
 ### Approximate Count Distinct Setting
 
-Firstly, after creating a new Cube and ensure all dimensions selected, then click `Measures+` on the lower left corner to start measures setting.  
+Firstly, after creating a new Cube and ensure all dimensions selected, then click `+ Add Measure` on the lower left corner to start measures setting.  
 
-![](../images/count_distinct/cd_measures_add.png)
+![Add measures](../images/count_distinct/cd_measures_add.png)
 
 Next, choose the column desired from `Param Value` and COUNT_DISTINCT from `Expression`. Here be careful to select accuracy requirement from `Return Type`.  this product offers both approximate count distinct function and precise count distinct function. To get the pre-calculated approximate count distinct value, you should select  `Return Type: Error Rate<*%` based on HyperLogLog algorithm, which would return a nearly result if you don't require a particularly precise result and have limited storage resource. 
 
-![](../images/count_distinct/cd_measures_add.png)
+![Add approximate COUNT_DISTINCT measure](../images/count_distinct/cd_measures_edit.png)
 
 
 
@@ -34,7 +34,7 @@ INNER JOIN PART on XXX=XX
 INNER JOIN CUSTOMER on XXXX=XX
 ```
 
-![](../images/count_distinct/cd_measures_add.3.png)
+![Set Multiple Columns Count Distinct](../images/count_distinct/cd_measures_add.3.png)
 
 Follow the [Cube Design Basics](../create_cube.en.md) instructions for the rest steps, the Cube would be ready after you setting segments on the [Build Cube](../../build_cube.en.md) section.
 

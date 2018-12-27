@@ -12,7 +12,7 @@ Count distinct 是一个对大多数数据分析师都很常用的函数。本�
 
 首先在创建新 Cube 的界面，点击左下角**添加度量**来开始新度量的设置。
 
-![](../images/count_distinct_pre/CountDistinctPre_cn_add.png)
+![添加度量](../images/count_distinct_pre/CountDistinctPre_cn_add.png)
 
 
 
@@ -20,11 +20,11 @@ Count distinct 是一个对大多数数据分析师都很常用的函数。本�
 
 > Count distinct 精确查询因为使用位图算法，所以需要消耗的资源也较多，在使用 count distinct 精确查询计算具有**亿级**基数的表时，请咨询[Kyligence技术支持](../../introduction/get_support.cn.md)评估集群资源是否充足。
 
-![](../images/count_distinct_pre/CountDistinctPre_cn_edit.png)
+![添加精确 COUNT_DISTINCT 度量](../images/count_distinct_pre/CountDistinctPre_cn_edit.png)
 
 产品在默认状态下会将值编码进 Cube segment 级的字典。设置 count distinct 精确查询时，被设置的列的值都会被编码进 **全局目录** 来确保一个值只被编码为一个 ID，即使是在不同的 segment 中。
 
-当 Cube 中已有一列（例如：城市）被设置为 count distinct 精确查询的度量时，与该列具有层级关系的列（例如：省份／国家），可以直接**复用**该列的编码。设置时，依然在返回类型里选择 **Precisely** 且勾选☑️复用的复选框。
+当 Cube 中已有一列（例如：城市）被设置为 count distinct 精确查询的度量时，与该列具有层级关系的列（例如：省份／国家），可以直接**复用**该列的编码。设置时，依然在返回类型里选择 **Precisely** 且勾选复用的复选框。
 
 
 

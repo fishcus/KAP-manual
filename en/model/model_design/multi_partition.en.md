@@ -35,5 +35,5 @@ Enhanced partition flexibility, such as multi-tenant usage scenarios. Besides ti
 
 4. When a cube is built, if the cube has multi-partition column, you need to choose multi-partition column and the corresponding time partition column.
 
-   ![Save multi-partition model](images/cube.en.png)
+   ![Set partition value](images/cube.en.png)
 

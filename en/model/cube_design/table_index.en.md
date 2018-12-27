@@ -8,11 +8,11 @@ This product provides table index to support querying on raw data. For customize
 
 The procedure of creating table index is embedded in the procedure of cube creation. As the graph shows, click *+Cube* button to start a general cube creation procedure. When you get the 5th step of Cube creation wizard (in versions higher than 2.4): *Table Index*, you can find a check box of *Config Table Index*, which is unchecked by default: 
 
-![](images/table_index/table_index_disable.png)
+![Creating cube process](images/table_index/table_index_disable.png)
 
 Click the check box to enable table index. After that you can find details of table index configuration. Each row refers to possible configurations of one column in raw data table. 
 
-![](images/table_index/table_index_enable.png)
+![Set table index](images/table_index/table_index_enable.png)
 
 Select appropriate columns in *SortBy* and *ShardBy*, and click the drop down list to set is as SortBy or ShardBy. Also, choose an appropriate encoding for every column. Complete the Cube creation procedure. After building the Cube, you can query for corresponding raw data. 
 
@@ -24,7 +24,7 @@ Setting a certain column as SortBy or ShardBy reasonably could substantially inc
 
 When you configure table index, you should set at least 1 column as SortBy. Those columns will be listed below the table index configuration, which looks like: 
 
-![](images/table_index/table_index_sortby.png)
+![SortBy column](images/table_index/table_index_sortby.png)
 
 Columns set as SortBy will indicate the order of raw data. You can drag one of them up or down to change their order. 
 
@@ -42,7 +42,7 @@ Select an appropriate ShardBy column could distribute raw data into multiple sha
 
 You can click *Encoding* drop down list of each column in table index configuration page to set encoding for that column, as shown below: 
 
-![](images/table_index/table_index_encode.png)
+![Set encoding in table index](images/table_index/table_index_encode.png)
 
 
 1. "orderedbytes" is designed for all types. It keeps data's order when encoding. It's the default encoding type in most cases.
@@ -63,7 +63,7 @@ Notice: "dict" encoding is NOT supported in table index.
 
 You can click *Index* drop down list of each column in table index configuration page to set index type for that column, as shown below: 
 
-![](images/table_index/table_index_index.png)
+![Choose index type](images/table_index/table_index_index.png)
 
 1. "discrete" index is the default index. It supports fast match of equal condition, but will degrade to table scan when processing ">" or "<" condition. 
 

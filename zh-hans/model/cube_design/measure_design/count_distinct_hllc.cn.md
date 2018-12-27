@@ -16,15 +16,15 @@ Count distinct 是一个对大多数数据分析师都很常用的函数。本�
 
 首先在创建新 Cube 的界面，点击左下角 **添加度量** 来开始新度量的设置。
 
-![](../images/count_distinct/CountDistinct_cn_add.png)
+![添加度量](../images/count_distinct/CountDistinct_cn_add.png)
 
 然后，在编辑度量窗口从 **表达式** 选择 **COUNT_DISTINCT**，并从 **参数值** 下拉列表中选择目标列。
 
-![](../images/count_distinct/CountDistinct_cn_edit.png)
+![添加 Approximate COUNT_DISTINCT 度量](../images/count_distinct/CountDistinct_cn_edit.png)
 
 之后请谨慎选择 **返回类型** 中的误差选项。如需要得到某列的近似查询预计算值，您应选择基于 HyperLogLog 算法的返回类型: **Error rate< x%** ，这种近似查询能够在有限的存储资源条件下，返回一个相对准确的查询结果。
 
-![](../images/count_distinct/CountDistinct_errorrate.png)
+![选择误差范围](../images/count_distinct/CountDistinct_errorrate.png)
 
 
 
@@ -38,7 +38,7 @@ INNER JOIN PART on XXX=XX
 INNER JOIN CUSTOMER on XXXX=XX
 ```
 
-![](../images/count_distinct/CountDistinct_cn_multi.png)
+![设置多列 Count Distinct](../images/count_distinct/CountDistinct_cn_multi.png)
 
 创建 Cube 的后续步骤请参见 [基本 Cube 设计](../create_cube.cn.md) 。当您按照 [构建 Cube](../../build_cube.cn.md) 的介绍，完成 Cube 的构建后，该 Cube 即准备完毕。
 

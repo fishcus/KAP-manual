@@ -28,7 +28,7 @@
 
 **步骤三：** 选中需要检测的模型，点击右角的菜单，点击**检测**功能
 
-![](images/model_check.png)
+![检测模型](images/model_check.png)
 
 
 
@@ -44,7 +44,7 @@
 - 调整采样范围：在选定的时间段内数据只进行部分检测，比如，50%比例表示每两条数据只检测一条，以此类推。
 
 
-![](images/model_check_sampling.png)
+![检测设置](images/model_check_sampling.png)
 
 **步骤五：** 设置都完成后，点击**提交**按钮，则开始检测任务。
 

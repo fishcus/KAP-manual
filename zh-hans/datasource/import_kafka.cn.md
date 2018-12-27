@@ -60,7 +60,7 @@ bin/kafka-console-consumer.sh --bootstrap-server 127.0.0.1:9092 --topic kylindem
 
 **步骤一**：启动产品, 从 Web GUI 登录, 新建一个项目。选择数据源为 Kafka。
 
-![](images/kafka_import.cn.png)
+![选择数据源](images/kafka_import.cn.png)
 
 **步骤二**：输入 Broker 集群信息，注意：这里 Host 要填写实际 IP 地址，是 YARN 集群上运行的 Job 可以访问的地址。
 

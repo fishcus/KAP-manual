@@ -8,26 +8,26 @@ You might be wondering when you design a cube/model: will this cube/model be abl
 
 Step 1, after you finish cube/model design and save it, you can do the ***verify SQL*** action from action list on the cube/model.
 
-![](images/verify_sql/model_action.png)
+![Check SQL in model](images/verify_sql/model_action.png)
 
-![](images/verify_sql/cube_action.png)
+![Check SQL in Cube](images/verify_sql/cube_action.png)
 
 
 
 Step 2, paste or manually enter SQLs you want to verify, which are often queried. 
 
-![](images/verify_sql/SQL_input.png)
+![Enter SQL](images/verify_sql/SQL_input.png)
 
 
 
 Step 3, click ***verify*** and this action may take a while. If the cube/model is designed appropriately, it can answer all entered queries, you will get the following result.
 
-![](images/verify_sql/SQL_valid.png)
+![Check finished](images/verify_sql/SQL_valid.png)
 
 
 
 Step 4, if there are queries cannot pass the verification test, it will be listed after "x". You can click the "x" to get details about ***why*** this query cannot work and ***how*** to refine SQL or cube/model to make it work.
 
-![](images/verify_sql/show_error.png)
+![Failed SQL](images/verify_sql/show_error.png)
 
-![](images/verify_sql/error_details.png)
+![Failed SQL](images/verify_sql/error_details.png)

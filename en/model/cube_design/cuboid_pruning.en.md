@@ -34,11 +34,11 @@ Considering the performance in cube build, the base cuboid and *some cuboid* wil
 
 We'll introduce how to leverage the tool in this section. It locates in Dimension Optimizations section of Cube dimension design, the second step of the whole Cube design process.
 
-![](images/cuboid_pruning_1.png)
+![MDC is disable by default](images/cuboid_pruning_1.png)
 
 As shown above, the default value is 0 which means MDC is disable. To enable MDC, enter a positive number. For example, input 4 and click **Apply**. 
 
-![](images/cuboid_pruning_2.png)
+![Set Max Dimension Combination](images/cuboid_pruning_2.png)
 
 The cuboid number is reduced from 161 to 141 in this case. It's because the cuboids containing more than 4 dimensions are ignored except for base cuboid.
 

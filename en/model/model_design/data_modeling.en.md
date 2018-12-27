@@ -17,7 +17,7 @@ Typically data model design includes:
 
 Open Kyligence Enterprise Web UI, select project *learn_kylin* in project list in upper left corner and click **Studio** in the navigation bar on the left, then select **Model** tab.
 
-![](images/model_design_model_list.png)
+![Create model](images/model_design_model_list.png)
 
 
 
@@ -60,7 +60,7 @@ In model designer page, you can define fact table and dimension table via drag a
 
 3. Click **Setting** icon on the top right corner of each table, select table type as **Dimension Table**.
 
-![](images/model_design_tables.png)
+![Set fact table and lookup table](images/model_design_tables.png)
 
 
 
@@ -76,7 +76,7 @@ You can specify either one single column or multiple columns as dimensions or me
 - **A**: Auto Suggestion
 3. In this example, we specify the dimensions and measures suggested by the system. Check checkbox to enable select all in the toolbar and click icon **A**.
 
-![](images/model_design_tables_a.png)
+![Set dimension and measure](images/model_design_tables_a.png)
 
 
 
@@ -84,7 +84,7 @@ You can specify either one single column or multiple columns as dimensions or me
 
 Drag one dimension in fact table and drop it to the corresponding lookup table can setup join condition between tables. For instance, to set up a join condition as `KYLIN_SALES Inner Join KYLIN_CAL_DT on KYLIN_SALES.PART_DT = KYLIN_CAL_DT.CAL_DT`, you can drag *PART_DT* from *KYLIN_SALES* to the table *KYLIN_CAL_DT*, then set up the join condition in the pop up shown as below.
 
-![](images/model_design_join.png)
+![Add join condition](images/model_design_join.png)
 
 Set up the following join conditions:
 
@@ -122,7 +122,7 @@ Join Condition:
 
 The result is shown as below. If you click **inner** icon on the connnection lines, it will show you details of the join.
 
-![](images/model_design_tables_joined.png)
+![Connected tables](images/model_design_tables_joined.png)
 
 > **Note**: When you design a data model, you can use computed column to define additional columns calculated based on existing columns. This can acheive more data model flexibility as well as some data wrangling functionalities.  For more details, please refer to [Computed Column](computed_column/README.md).
 
@@ -136,7 +136,7 @@ Click **Save** button, and then select the time partition column. This is an opt
 
 In our example, we specify column *KYLIN_SALES.PART_DT* as time partition column and specify the date format as `yyyy-MM-dd`.
 
-![](images/model_design_save.png)
+![Save model](images/model_design_save.png)
 
 Finally, click the button **Submit**, and the data model is created.
 
@@ -158,7 +158,7 @@ If your lookup table is too big, like over 300 MB, please turn off the snapshot 
 
 To turn on/off snapshot, click **Overview** and then click **Model** tab. The Lookup table and Fact table will appear. In the **Lookup Table** section, you can speficy whether to store the a lookup table as snapshot.
 
-![](images/model_design_update_en_6.png)
+![Turn on/off snapshot](images/model_design_update_en_6.png)
 
 > **Caution**:
 >

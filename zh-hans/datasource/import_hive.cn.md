@@ -48,15 +48,15 @@ hive> select count(*) from kylin_sales;
 
 **步骤二**：进入具体项目**建模**功能，选择**数据源**选项卡；点击蓝色的**数据源**按钮，在弹出窗口中，选择 **RDBMS **作为数据源类型；
 
-![](images/import_hive_1.cn.png)
+![选择数据源](images/import_hive_1.cn.png)
 
 **步骤三**：点击 **下一步** 按钮，进入 **加载 Hive 表元数据** 窗口，用户可按需在左侧的 Hive 表清单中，单击选中需要建模的表，也支持输入关键字进行搜索
 
 **步骤四**：点击右下方 **同步** 按钮进行加载
 
-![](images/import_hive_2.cn.png)
+![加载数据](images/import_hive_2.cn.png)
 > 提示：默认不勾选**表采样**， 您可以根据需要自行设置是否采样和采样比例。
 
 **步骤五**：同步完成后，可以在 **建模** 界面的 **数据源** 面板中，选中具体加载的表，查看表的详细信息。
 
-![](images/import_hive_3.cn.png)
+![详细信息](images/import_hive_3.cn.png)

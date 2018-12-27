@@ -24,13 +24,13 @@
 
 **步骤三：** 下方左侧选中待采样的具体表后， 点击表详细信息右上角的**采样**按钮。
 
-![](images/tablesampling_cn.png)
+![点击采样按钮](images/tablesampling_cn.png)
 
 
 
 **步骤四：** 调整**采样比例**。在弹出的对话框，用户可按需调整该表采样范围比例，默认为100%全表采样。
 
-![](images/tablesampling_cn_percentage.png)
+![设置采样比例](images/tablesampling_cn_percentage.png)
 
 > 提示：如果项目没有加载表的元数据，可以点击**数据源**按钮，在弹出的**加载元数据**窗口中，选择一个或**多个表**，并统一指定表采样的比例
 
@@ -57,10 +57,10 @@
 - 特征数据
 - 采样数据
 
-![](images/tablesampling_cn_column.png)
+![列](images/tablesampling_cn_column.png)
 
-![](images/tablesampling_cn_extend.png)
+![扩展信息](images/tablesampling_cn_extend.png)
 
-![](images/tablesampling_cn_sample.png)
+![特征数据](images/tablesampling_cn_sample.png)
 
-![](images/tablesampling_cn_statistics.png)
+![采样数据](images/tablesampling_cn_statistics.png)

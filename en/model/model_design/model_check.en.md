@@ -12,11 +12,11 @@ The procedure includes the following three steps:
 
 **Step1.** Launch Kyligence Enterprise and go to the UI page，select a project, such as *learn_kylin*,  then click **Studio** in the left nav bar, after that click **Model** tab.
 
-![](images/model_check/24_model_diagnose_1.png)
+![Create model](images/model_check/24_model_diagnose_1.png)
 
 **Step2.** For the models already exist, such as kylin_sales_model, click the menu on the upper right corner and click **Check** button.
 
-![](images/model_check/24_model_diagnose_2.png)
+![Check model](images/model_check/24_model_diagnose_2.png)
 
 **Step3. Configuration**
 
@@ -24,7 +24,7 @@ Time Range. It asks for selecting a start time and end time if the partition col
 
 Sampling percentage. It means it only checks the data in the given ratio, such as 50% will check one line in each two lines.
 
-![](images/model_check/25_model_check.png)
+![Check setting](images/model_check/25_model_check.png)
 
 **Step4.** After all configurations are done, click **Submit** button and it starts a model checking job. The job status could be observed in **Monitor** page.
 
@@ -32,11 +32,11 @@ Sampling percentage. It means it only checks the data in the given ratio, such a
 
 If you create or edit a model, after clicking **save**, it will show a checkbox to ask you whether to start a model checking job and it's checked by default.
 
-![](images/model_check/25_model_save.png)
+![Save model](images/model_check/25_model_save.png)
 
 If the model checking job is finished without any exceptions, you can observe the checking result in the model list. In this case, checking result is healthy. But there might be other checking status and details if the model has some issues.
 
-![](images/model_check/24_model_diagnose_6.png)
+![Healthy model](images/model_check/24_model_diagnose_6.png)
 
 As mentioned in the beginning, the model check includes 3 different check tasks:
 

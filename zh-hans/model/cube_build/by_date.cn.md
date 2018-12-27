@@ -1,7 +1,4 @@
-## 构建 Cube
-
-在创建好 Cube 之后，只有对 Cube 进行构建，才能利用它执行 SQL 查询。本文以本产品自带样例数据为例，介绍 Cube 构建的过程。
-
+## 按“日期/时间”构建
 
 
 ### 初次构建
@@ -48,14 +45,14 @@ Kyligence Enterprise 有构建任务并发数限制，默认为**10**，可以�
 
 ```properties
 <property>
-	<name>mapreduce.map.memory.mb</name>
-	<value>1072</value>
-	<description></description>
+<name>mapreduce.map.memory.mb</name>
+<value>1072</value>
+<description></description>
 </property>
 <property>
-    <name>mapreduce.map.java.opts</name>
-    <value>-Xmx800m</value>
-    <description></description>
+<name>mapreduce.map.java.opts</name>
+<value>-Xmx800m</value>
+<description></description>
 </property>
 ```
 

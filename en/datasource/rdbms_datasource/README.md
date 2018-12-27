@@ -8,7 +8,7 @@
 
 In project configuration, your database password configured in `kylin.source.jdbc.pass` is automatically hidden and encrypted, as shown below:
 
-![](../images/rdbms_project_pass.png)
+![Project configuration](../images/rdbms_project_pass.png)
 
 - **In System Configuration**
 
@@ -26,4 +26,4 @@ java -classpath kap.jar:spring-beans-4.3.10.RELEASE.jar:spring-core-4.3.10.RELEA
 
 **Step 2:** Configure property `kylin.source.jdbc.pass` on the *System* page with the encrypted password, which will be automatically recognized.
 
-![](../images/rdbms_system_pass.png)
+![System Configuration](../images/rdbms_system_pass.png)

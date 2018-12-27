@@ -29,10 +29,10 @@
 
 3. 在**一级分区列**中，指定分区列所在的**表名**和指定分区**列名**
 
-   ![Save multi-partition model](images/multi_partition_model.cn.png)
+   ![保存多级分区列](images/multi_partition_model.cn.png)
 
    ​
 4. Cube 构建时，已有多级分区列的cube需要选择多级分区列与对应的时间分区列；
 
-   ![Save multi-partition model](images/multi_partition_cube.cn.png)
+   ![设置多级分区列值](images/multi_partition_cube.cn.png)
 

@@ -4,7 +4,7 @@ Start from V2.5, Kyligence Enterprise provides a *multi-preference based Cube Op
 
 In the second step of Cube creation, you may find this function.
 
-![](images/Cube_optimizer/updated_en_0.png)
+![Creating cube process](images/Cube_optimizer/updated_en_0.png)
 
 
 
@@ -12,7 +12,7 @@ In the second step of Cube creation, you may find this function.
 
 According to the best practices of Cube tuning, optimizer analyzes statistics of source data and SQL patterns, and suggests a optimized Cube design, which includes:
 
-![](images/Cube_optimizer/updated_en_2.png)
+![Data Oriented](images/Cube_optimizer/updated_en_2.png)
 
 - ***Optimization Strategy***: 
   - Data Oriented: Optimizer would mainly digest source data feature to suggest one aggregate group, which optimizes all dimensions from a model. Cubes which follows data-oriented strategy are suitable to serve flexible queries.
@@ -46,11 +46,11 @@ Step 1, Implement model check on a data model. Skip the model check if it has al
 
 Step 2, To create a cube with this model, please click "Collect SQL patterns" under "Cube Info" tab, then paste your SQL statements. For multiple SQLs, use ';' for separation.
 
-![](images/Cube_optimizer/suggestion_sql.png)
+![Enter SQLs](images/Cube_optimizer/suggestion_sql.png)
 
 Step 3, Click the blue "Dimensions" button on "Dimensions" tab and then the dimension window will pop up. You can select *SQL output* to get suggested dimensions from *SQL patterns*, or select dimensions manually. All default dimension types(normal/derived) are suggested by Cube Optimizer. 
 
-![](images/Cube_optimizer/dimension.png)
+![Set dimensions](images/Cube_optimizer/dimension.png)
 
 
 
@@ -58,7 +58,7 @@ Step 4, Click "Optimize" button under "Dimension Optimizations" section, aggrega
 
 Step 5, Click "SQL Output" button under "Measures" tab, Optimizer will fill in recommended measures from SQL patterns.
 
-![](images/Cube_optimizer/suggestion_measure.png)
+![Set measures](images/Cube_optimizer/suggestion_measure.png)
 
 
 

@@ -43,13 +43,13 @@ To set up Impala data source for a specific project, followings are the steps:
 
 **Step 1:** Log in to Kyligence Enterprise Web UI, then add a new project by clicking the `+` at the top right on Web UI. Type project name (required) and descriptions on the pop-up page; click `OK` to finish creating a project.
 
-![](images/dataimport_1.png)
+![Create project](images/dataimport_1.png)
 
 
 
 **Step 2:** Select `Data Source` under *Studio* section of your project. Click the blue `Data Source` button and select **RDBMS** as data source (as shown below).
 
-![](images/rdbms_import2.en.png)
+![Select Data Source](images/rdbms_import2.en.png)
 
 **Step 3:** Set configuration in project configuration.
 

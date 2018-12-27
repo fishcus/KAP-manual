@@ -48,11 +48,11 @@
 
 在创建 Cube 的时候，您也可以选择可计算列 `total_amount` 和 `deal_year` 作为 Cube 的维度或者度量。
 
-![](images/computed_column_view.png)
+![添加可计算列](images/computed_column_view.png)
 
 其次，需要填写如下内容：
 
-![](images/computed_column_define.png)
+![设置可计算列](images/computed_column_define.png)
 
 + **列名**：定义可计算列的名称。
 
@@ -62,11 +62,11 @@
 
 最后，提交保存后，从模型视图就能观察到新加的计算列`total_amount`了：
 
-![](images/computed_column_cn.4.png)
+![表格中的可计算列](images/computed_column_cn.4.png)
 
 此外，在模型中定义完可计算列后，需要在创建 Cube 添加维度/度量的时候选入可计算列。可计算列被预计算后，才能体现性能优势。
 
-![](images/computed_column_cn.3.png)
+![设置维度](images/computed_column_cn.3.png)
 
 ### 可计算列查询
 
@@ -136,11 +136,11 @@ select sum(price * item_count) from kylin_sales。
 
 1. 定义一个可计算列 *TOTAL_AMOUNT*，点击**提交**。
 
-![](images/computed_column_define.png)
+![添加可计算列](images/computed_column_define.png)
 
 2. 定义可计算列 *DOUBLE_TOTAL_AMOUNT*，并在表达式中引用第一个可计算列。
 
-![](images/nest_computed_column.png)
+![引用可计算列](images/nest_computed_column.png)
 
 点击**验证**检查嵌套表达式，表达式是有效的。
 

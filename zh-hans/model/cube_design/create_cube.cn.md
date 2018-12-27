@@ -5,7 +5,7 @@
 
 打开产品的 Web UI，首先选择 “learn_kylin” 项目，这里我们创建一个新的 Cube 命名为 “kylin_sales_cube_1”。
 
-![](images/createcube.png)
+![添加 Cube](images/createcube.png)
 
 
 
@@ -13,7 +13,7 @@
 
 单击提交后，您将会在界面上方，看到创建一个 Cube 的全部流程。
 
-![](images/createcube_process.png)
+![创建 Cube 的流程](images/createcube_process.png)
 
 
 
@@ -41,7 +41,7 @@
 
 最终，维度的设置结果如下图所示：
 
-![](images/createcube_dimension.png)
+![设置维度](images/createcube_dimension.png)
 
 本产品提供丰富的工具来优化 Cube 中的维度组合。在**维度优化**设置里，您可以看到聚合组 ( AGG )，Rowkey 和最大组合维度数（ MDC ）的设置。通过合理的配置聚合组和最大组合维度数，Cuboid 的数量可以被大大减少。相关更多信息，请参见[维度聚合组](aggregation_group.cn.md)和 [Cuboid 剪枝](cuboid_pruning.cn.md)。
 
@@ -49,7 +49,7 @@
 
 优化后的结果如下图所示：
 
-![](images/createcube_optimize.png)
+![一键优化维度](images/createcube_optimize.png)
 
 Rowkey 的顺序对于查询性能来说至关重要，一般把最常出现在过滤条件中的列放置在 Rowkey 的前面，在这个案例中，我们首先把 “PART_DT” 放在 Rowkey 的第一位。接下来，按照层级把商品分类的字段跟随其后。由于参与 Cuboid 生成的维度都会作为 Rowkey，因此我们需要把这些列添加为 Rowkey 当中。
 
@@ -66,7 +66,7 @@ Rowkey 的顺序对于查询性能来说至关重要，一般把最常出现在�
 在这个案例中，我们除了把 “LSTG_FORMAT_NAME” 设置为 “fixed_length” 类型（长度为12）外，将其余的 Rowkey 都设置为 “dict” 编码。 
 
 Rowkey 设置的结果应该如下：
-![](images/createcube_rowkey.png)
+![设置 Rowkeys](images/createcube_rowkey.png)
 
 
 
@@ -83,7 +83,7 @@ Rowkey 设置的结果应该如下：
 
 其次，我们还需要通过 COUNT(DISTINCT SELLER_ID) 考量卖家个数。根据前面章节的介绍，Kyligence Enterprise 默认使用 HyperLogLog 算法进行 COUNT_DISTINCT 的计算，该算法是个近似算法，在创建度量时需要选择一个近似度，本案例对精确性要求不高，为了提升查询性能，我们选择精度较低的 “Error Rate < 9.75%”。同样的，我们再创建一个 COUNT(DISTINCT LSTG_FORMAT_NAME) 的度量考量不同条件下的交易类型。
 
-![](images/createcube_measure_hll.png)
+![编辑度量](images/createcube_measure_hll.png)
 
 在销售业务分析的场景中，往往需要挑选出销售业绩最好的商家，这时候就需要 TOP-N 的度量了。在这个例子中，我们会选出 SUM(PRICE) 最高的一些 ”SELLER_ID“，实际上就是执行如下的SQL语句：
 
@@ -94,10 +94,10 @@ ORDER BY SUM(PRICE)
 ```
 因此，我们创建一个TOP-N的度量，选择PRICE字段作为SUM/ORDER BY字段，选择SELLER_ID字段作为GROUP BY字段，并选择TOPN(100)作为度量的精度。
 
-![](images/createcube_measure_topn.png)
+![TOPN 度量](images/createcube_measure_topn.png)
 最终添加的度量如下图所示：
 
-![](images/createcube_measures.png)
+![Measure 列表](images/createcube_measures.png)
 
 
 
@@ -105,7 +105,7 @@ ORDER BY SUM(PRICE)
 
 **触发自动合并的时间阈值 (Auto Merge Threshold) **：一般的，一个销售统计的 SQL 查询往往会按周、月进行过滤和聚合，所以我们可以设置 Cube 自动按周或月进行自动合并，设置**触发自动合并的时间阈值 (Auto Merge Threshold) **如下所示：
 
-![](images/createcube_merge.png)
+![合并设置](images/createcube_merge.png)
 
 **保留时间阈值**：对于时间久远的不需要再被查询的 Segment，Kyligence Enterprise 通过设置**保留时间阈值**可以自动清除这些 Segment，以节省磁盘空间。每当构建新的 Segment时，Kyligence Enterprise 会自动检查老的 Segment，当这些 Segment 的结束日期与当前最新 Segment 的结束日期的差值大于**保留时间阈值**，则会被清除。如设置为1年，最新的 Cube 构建到当天，那么结束日期是一年以前的 Segment 会被清除。
 
@@ -139,4 +139,4 @@ ORDER BY SUM(PRICE)
 
 最终，Cube 的创建就完成了。我们可以刷新 Cube 列表，从中可以看到新创建的Cube了。因为新创建的 Cube 没有被构建过，是不能被查询的，所以状态仍然是 “DISABLED”。
 
-![](images/createcube_cube_list.png)
+![Cube 列表](images/createcube_cube_list.png)

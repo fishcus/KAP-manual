@@ -24,13 +24,13 @@ Step 2. Click the `Studio` on the navigation bar and select *Data Source*  to se
 
 Step 3. Select the sample tables and click `Sampling` in the upper right.
 
-![](images/collect_statistics.1.png)
+![Click Sampling button](images/collect_statistics.1.png)
 
 
 
 Step 4. Adjust sample size; Drag the sampling bar to adjust the sample size in the pop-up window; Kyligence Enterprise scans the whole table by default.
 
-![](images/collect_statistics.2.png)
+![Adjust the sample size](images/collect_statistics.2.png)
 
 > Notice: Click Data Source and select one or multiple tables to adjust sample size if metadata is not loaded.
 >
@@ -51,13 +51,13 @@ A detailed statistical sampling includes the following information; you can swit
 - Feature Data
 - Sample Data
 
-![](images/collect_statistics.3.png)
+![Column](images/collect_statistics.3.png)
 
-![](images/collect_statistics.4.png)
+![Extend Information](images/collect_statistics.4.png)
 
-![](images/collect_statistics.5.png)
+![Feature Data](images/collect_statistics.5.png)
 
-![](images/collect_statistics.6.png)
+![Sample Data](images/collect_statistics.6.png)
 
 
 

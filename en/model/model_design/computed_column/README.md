@@ -34,11 +34,11 @@ Later when you create a cube, you can add computed columns `total_amount` and `d
 
 You can create computed columns by clicking the icon as the arrow points to:
 
-![](images/computed_column_view.png)
+![Add computed columns](images/computed_column_view.png)
 
 The following information is required:
 
-![](images/computed_column_define.png)
+![Set computed column](images/computed_column_define.png)
 
 - **Column**: Display the name of the created computed column.
 - **Expression**: Definition of the computed column. Columns in the expression can refer to any table in the current model, however, you have to make sure the column reference complies to **Table.Column**.
@@ -46,11 +46,11 @@ The following information is required:
 
 After successfully submitting and saving the computed column, you will see the new column `total_amount` appearing in the table:
 
-![](images/computed_column_en.4.png)
+![Computed column in table](images/computed_column_en.4.png)
 
 After defining the computed columns in model, you need to use them to build cube (either as dimension or measure), so that computed column can be pre-calculated and performance improvement can be observed.
 
-![](images/computed_column_en.3.png)
+![Set dimension](images/computed_column_en.3.png)
 
 
 
@@ -78,11 +78,11 @@ You can define a new computed column based on an existing computed column, and t
 
 1. Define a computed column named *TOTAL_AMOUNT*, click **Submit**
 
-![](images/computed_column_define.png)
+![Create computed column](images/computed_column_define.png)
 
 2. Define a computed column named *DOUBLE_TOTAL_AMOUNT*, and refer to *TOTAL_AMOUNT* in the expression.
 
-![](images/nest_computed_column_en.png)
+![Nested computed column](images/nest_computed_column_en.png)
 
 Click **Check** to validate the expression.
 

@@ -30,13 +30,13 @@ Using Greenplum as an example, we connect Greenplum data source with Greenplum D
 
 **Step 2:** In Kyligence Enterprise, project is the workspace of tables, models and cubes. To create a sample project, open the web UI of Kyligence Enterprise and click the plus icon at the top to create a new project like below.
 
-![](../images/dataimport_1.png)
+![Create project](../images/dataimport_1.png)
 
 **Step 3:** Select the project you just created on the upper corner of the web UI, all our following operations will be within the project.
 
 > **Note:** If you want to use Greenplum as the data source, you need to choose RDBMS in the current version.
 
-![select data source](../images/rdbms_import2.en.png)
+![Select data source](../images/rdbms_import2.en.png)
 
 **Step 4:** Set following configuration in project configuration:
 
@@ -59,10 +59,10 @@ kylin.source.jdbc.sqoop-home=/usr/hdp/current/sqoop-client/bin
 
 Greenplum tables need to be synchronized into Kyligence Enterprise before they can be used. To make things easy, we synchronize by using the following button to load tables.
 
-![synchronize table's metadata](../images/rdbms_import3.en.png)
+![Synchronize table's metadata](../images/rdbms_import3.en.png)
 
 In the dialog box, expand the ssb schema and select the desired five tables.
 
-![table sampling](../images/rdbms_import4.en.png)
+![Table sampling](../images/rdbms_import4.en.png)
 
 After importing, the system will automatically scan the tables to collect basic statistics of the data. Wait a few minutes we can view the details under the "Data Source" tab.

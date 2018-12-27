@@ -8,7 +8,7 @@
 
 在项目配置页，当添加了 `kylin.source.jdbc.pass` 配置时，参数的值将会自动进行隐藏处理，如下图：
 
-![](../images/rdbms_project_pass.png)
+![项目级配置](../images/rdbms_project_pass.png)
 
 * **全局配置**
 
@@ -23,4 +23,4 @@ java -classpath kap.jar:spring-beans-4.3.10.RELEASE.jar:spring-core-4.3.10.RELEA
 
 **步骤二**：在**系统**页面配置参数 `kylin.source.jdbc.pass` 时，使用密文密码，系统会自动识别进行后续的处理。
 
-![](../images/rdbms_system_pass.png)
+![全局配置](../images/rdbms_system_pass.png)

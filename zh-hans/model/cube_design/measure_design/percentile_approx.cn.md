@@ -27,7 +27,7 @@ GROUP BY seller_id
 
 首先，在新建 Cube 界面，点击左下角**添加度量**来添加新的度量。
 
-![添加度量页面](../images/percentile_approximate/1.cn.png)
+![添加度量](../images/percentile_approximate/1.cn.png)
 
 第二步，输入度量名称，选择 **PERCENTILE_APPROX** 为表达式，选择参数值，然后根据需要选择返回类型 'percentile(100)'、'percentile(1000)' 或 'percentile(10000)'。这里的返回类型即上述语法中的 B，值越大，结果的精确度越高。
 

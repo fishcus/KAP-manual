@@ -38,7 +38,7 @@ SELECT SELLER_ID, SUM(PRICE) FROM KYLIN_SALES
 
 **方法2**: 为了得到同样的查询结果。如果在创建 Cube 时，对需要的 Top-N 进行了预计算则查询会更加高效。在创建 Cube 时，对所需的度量进行如下编辑，则可以在 Cube 构建时完成对目标列的预计算。如果 Cube 已被建立且没有对目标列进行过 Top-N 预计算，则需要重新建立 Cube。度量编辑界面如下：
 
-![](../images/topN_cn_measure_edit.png)
+![添加 Top-N 度量](../images/topN_cn_measure_edit.png)
 
 
 

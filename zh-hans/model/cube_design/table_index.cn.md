@@ -8,11 +8,11 @@
 
 表索引的创建流程嵌套在 Cube 创建流程内。如图所示，点击创建 Cube 的按钮，进入 Cube 创建向导的第5步（以2.4以上版本为准）——表索引，可以观察到配置表索引的选项，默认状态下未被勾选：
 
-![](images/table_index/table_index_disable.png)
+![创建 Cube 流程](images/table_index/table_index_disable.png)
 
 勾选表索引选项以启用表索引。勾选后可以看到表索引设置的详细情况。其中每一行的内容是对数据表中某一列可以进行的配置：
 
-![](images/table_index/table_index_enable.png)
+![设置表索引](images/table_index/table_index_enable.png)
 
 在 SortBy 和 ShardBy 中选择适当的列，点击下拉列表将其设置为 SortBy 或 ShardBy，并为每一列选择适当的编码方式。完成 Cube 创建流程。构建该 Cube 之后，即可对相应数据进行明细查询。
 
@@ -24,7 +24,7 @@
 
 在设置表索引时，用户需要将至少1列设置为 SortBy。被设置为 SortBy 的列将显示在表索引各列设置信息的下方，如图所示：
 
-![](images/table_index/table_index_sortby.png)
+![SortBy 列](images/table_index/table_index_sortby.png)
 
 对于所有被设置为 SortBy 的列，明细数据将按照这些列的顺序依次进行排序。用户可以拖拽其中一列并向上或向下以改变它们的顺序。
 
@@ -42,7 +42,7 @@ SortBy 列表中的第1列编码必须为 “integer”，“date” 或 “time
 
 在表索引设置页中，点击每一字段对应的编码下拉列表 ，可以为该字段的列选择编码，如图所示：
 
-![](images/table_index/table_index_encode.png)
+![表索引设置编码](images/table_index/table_index_encode.png)
 
 1. “orderedbytes” 可用于所有类型。它会在编码时保持数据的顺序。它也是大多数情况下的默认的编码。
 2. “var” 类似于 “orderedbytes”，除了它不会保存顺序 信息。因此该编码不建议使用，请用 “orderedbytes” 代替。 
@@ -62,7 +62,7 @@ SortBy 列表中的第1列编码必须为 “integer”，“date” 或 “time
 
 在明细表设置页中，点击每一字段对应的索引下拉列表 ，可以为该字段的列选择索引类型，如图所示：
 
-![](images/table_index/table_index_index.png)
+![选择索引类型](images/table_index/table_index_index.png)
 
 1. “discrete” 索引是默认索引。该索引可以支持快速匹配相等查询，在大于或小于查询时，会退化为全表查询。
 

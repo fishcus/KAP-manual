@@ -4,7 +4,7 @@ This chapter introduces how to design a cube, using sample data (*learn_kylin*) 
 
 Open the web UI, select project *learn_kylin* in project list in upper left corner. We will create a new cube named *kylin_sales_cube_1*.
 
-![](images/cube_design_basics/createcube.png)
+![Create Cube](images/cube_design_basics/createcube.png)
 
 
 
@@ -12,7 +12,7 @@ Open the web UI, select project *learn_kylin* in project list in upper left corn
 
 Click **Add Cube** on model *kylin_sales_model* and input cube name *kylin_sales_cube_1*. Click **Submit** button to continue. Then you will get to the cube design wizard which will guide you through all the steps.
 
-![](images/cube_design_basics/createcube_process.png)
+![Create cube process](images/cube_design_basics/createcube_process.png)
 
 
 
@@ -39,7 +39,7 @@ Basic rules for defining dimensions in a cube is explained as below:
 
 The dimension setting result is shown as below:
 
-![](images/cube_design_basics/createcube_dimension.png)
+![Set dimension](images/cube_design_basics/createcube_dimension.png)
 
 Kyligence Enterprise provides several means to optimize cube's storage size and query performance through **Dimension Optimization** settings, including **Aggregation Group (AGG)**, **Rowkey** and **Max Dimension Combination (MDC)**. The number of cuboids can be greatly reduced by setting a proper AGG and MDC. For more details, please refer to [Aggregation Group](aggregation_group.en.md) and [Cuboid Pruning](cuboid_pruning.en.md).
 
@@ -47,7 +47,7 @@ Here we recommend to use the **Optimize** button. It will do the dimension optim
 
 The optimization setting for our sample cube is shown as below:
 
-![](images/cube_design_basics/createcube_optimize.png)
+![Optimize dimension](images/cube_design_basics/createcube_optimize.png)
 
 Rowkey specifies how dimensions are organized and stored together. The order of dimensions specified in rowkey can greatly affect the query performance, so we recommned to set these dimensions which are frequently used in query filters as first or second. In our example, we will set *PART_DT* as the first dimenions in rowkey.
 
@@ -67,7 +67,7 @@ There're multiple dimensions in our example, and we need to set encoding type fo
 
 The rowkey setting result is shown as below:
 
-![](images/cube_design_basics/createcube_rowkey.png)
+![Set rowkeys](images/cube_design_basics/createcube_rowkey.png)
 
 > **Note**: Columns in lookup tables can be set as normal dimension or derived dimension, if snapshot is enabled for the lookup table. Normnal dimensions are stored in cube, while derived dimensions are stored in snapshots. For more information, please refer to [Set Lookup Table Snapshot](../model_design/data_modeling.en.md#advanced-set-lookup-table-snapshot).
 
@@ -89,7 +89,7 @@ Also we need to count number of sellers by defining another measure `COUNT(DISTI
 
 Kyligence also implements HyperLogLog algorithm - an approximation algorithm, for counting high-cardinality columns with much higher query performance.  If accuracy is not that so critical in some cases, you can choose this algorithm and specify an error rate, e.g. in our case we set *Error Rate < 9.75%*. Similarly we also create another measure `COUNT(DISTINCT LSTG_FORMAT_NAME)`.
 
-![](images/cube_design_basics/createcube_measure_hll.png)
+![Edit Measure](images/cube_design_basics/createcube_measure_hll.png)
 
 - **TOP N**
 
@@ -105,11 +105,11 @@ In Kyligence Enterprise, we can define a TOP-N measure to acheive this with much
 
 We create a TOP-N measure, select *KYLIN_SALES.PRICE* column in **ORDER/SUM by Column** and select *SELLER_ID* in **GROUP BY**. Select *TOPN(100)* as the measure accuracy.
 
-![](images/cube_design_basics/createcube_measure_topn.png)
+![TOPN Measure](images/cube_design_basics/createcube_measure_topn.png)
 
 Finally, all the measures are defined as blow:
 
-![](images/cube_design_basics/createcube_measures.png)
+![Measure list](images/cube_design_basics/createcube_measures.png)
 
 
 
@@ -117,7 +117,7 @@ Finally, all the measures are defined as blow:
 
 **Auto Merge Threshhold**: Usually filter and aggregation conditions of a SQL query are based on dates like months or weeks. Hence, cube is set to automatically merge on a weekly/monthly basis, which means cube segments will be merged every 7 days. The settings are as bellow:
 
-![](images/cube_design_basics/createcube_merge.png)
+![Merge setting](images/cube_design_basics/createcube_merge.png)
 
 **Retention Threshold**: For some old and not-used segments, the system can remove these segments automatically by configuring the retention threshold. For each new segment already built, the system will check whether the old segments should be removed at the same time. The rule is if the time range between the latest segment's end date and the old segment's end date exceeds the retention threshold. For example, if the Retention Threshold is 1 year, and the latest segment's end date is today. Any old segments whose end dates before the today of the last year will be removed. 
 
@@ -153,4 +153,4 @@ Please confirm all the information and click **Save** if everything is settled. 
 
 Finally a cube is successfully created. This new cube will be shown in cube list. But its status is *disabled* due to it has no data built into this cube.
 
-![](images/cube_design_basics/createcube_cube_list.png)
+![Cube list](images/cube_design_basics/createcube_cube_list.png)

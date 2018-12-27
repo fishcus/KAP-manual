@@ -4,7 +4,7 @@
 
 在 Cube 创建的第二步**编辑维度**的页面上，可以找到该功能。
 
-![](images/Cube_optimizer/updated_cn_0.png)
+![Cube 创建流程](images/Cube_optimizer/updated_cn_0.png)
 
 
 
@@ -58,7 +58,7 @@
 
 第三步，在”维度“步骤下，打开”编辑维度“页面，可以通过点击“推荐维度”获得优化器根据 SQL 输出的维度。另外，您也可以勾选希望添加到 Cube 的维度。维度类型的默认值也是优化器的推荐结果，如下图所示。
 
-![](images/Cube_optimizer/updated_cn_5.png)
+![编辑维度](images/Cube_optimizer/updated_cn_5.png)
 
 
 
@@ -66,7 +66,7 @@
 
 第五步，在”度量“页单击”推荐度量“按钮，优化器推荐出的度量会自动填充在维度列表中。
 
-![](images/Cube_optimizer/CN_measure.png)
+![设置度量](images/Cube_optimizer/CN_measure.png)
 
 第六步，基于实际业务需求，用户可以对推荐的维度、聚合组、RowKey、度量等进行优化，然后保存。
 

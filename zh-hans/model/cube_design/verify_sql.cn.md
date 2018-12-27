@@ -8,20 +8,20 @@
 
 第一步，当你设计好一个模型或 Cube，保存该模型／Cube 后可以在右上角点击“验证 SQL”。
 
-![](images/verify_sql/action.png)
+![模型验证 SQL](images/verify_sql/action.png)
 
-![](images/verify_sql/cube_action.png)
+![Cube 验证 SQL](images/verify_sql/cube_action.png)
 
 第二步，在弹出的输入框中粘贴你希望验证的查询语句（SQL）。
 
-![](images/verify_sql/sql_input.png)
+![输入 SQL](images/verify_sql/sql_input.png)
 
 第三步，输入完点击左下角的校验并等待校验结果。如果设计合理，可以良好的回答所有查询语句（SQL），展示如下图。
 
-![](images/verify_sql/sql_valid.png)
+![通过验证](images/verify_sql/sql_valid.png)
 
 第四步，如果验证 SQL 有未通过的部分，则可以通过点击该条查询前端的 “x”，了解设计模型或 Cube 的具体方法，来满足该查询。
 
-![](images/verify_sql/show_error.png)
+![验证失败的 SQL](images/verify_sql/show_error.png)
 
-![](images/verify_sql/error_details.png)
+![验证失败的 SQL](images/verify_sql/error_details.png)
