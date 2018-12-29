@@ -1,7 +1,4 @@
-## Build Cube
-
-After cube is created, it has to be built to serve queries. We will use Kyligence Enterprise sample data to show the process of cube building.
-
+## Build by Date/Time
 
 
 ### First Build
@@ -50,14 +47,14 @@ This is mainly because in a sandbox environment, there're not enough resource (m
 
 ```properties
 <property>
-	<name>mapreduce.map.memory.mb</name>
-	<value>1072</value>
-	<description></description>
+<name>mapreduce.map.memory.mb</name>
+<value>1072</value>
+<description></description>
 </property>
 <property>
-	<name>mapreduce.map.java.opts</name>
-	<value>-Xmx800m</value>
-	<description></description>
+<name>mapreduce.map.java.opts</name>
+<value>-Xmx800m</value>
+<description></description>
 </property>
 ```
 
