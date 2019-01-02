@@ -135,7 +135,7 @@
     * [日常维护](operation/routine_ops/README.md)       
         * [基本运维](operation/routine_ops/basic_ops.cn.md)     
         * [元数据检查](operation/routine_ops/metadata_check.cn.md)     
-        * [系统元数据备份与恢复](operation/routine_ops/metadata_backup_restore.cn.md)    
+        * [元数据备份与恢复](operation/routine_ops/metadata_backup_restore.cn.md)    
         * [项目级元数据导入导出](operation/routine_ops/project_metadata_export_import.cn.md)    
         * [垃圾清理](operation/routine_ops/garbage_clean.cn.md)      
         * [跨集群迁移](operation/routine_ops/cluster_migration.cn.md)     
