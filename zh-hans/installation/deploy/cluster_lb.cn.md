@@ -1,7 +1,7 @@
 ## 集群部署与负载均衡
 
 
-Kyligence Enterprise 实例是无状态的服务，所有的状态信息都存储在 metastore（如HBase，JDBC 数据库）中。因此，您可以启用多个 Kyligence Enterprise 节点以部署负载均衡集群，使各个节点分担查询压力且互为备份，从而提高服务的可用性，其部署架构如图所示：
+Kyligence Enterprise 实例是无状态的服务，所有的状态信息都存储在元数据库中（如 HBase，JDBC 数据库）中。因此，您可以启用多个 Kyligence Enterprise 节点以部署负载均衡集群，使各个节点分担查询压力且互为备份，从而提高服务的可用性，其部署架构如图所示：
 
 ![](advancing_installation_images/advancing_installation_cluster.png)
 
@@ -40,19 +40,15 @@ Nginx 在默认情况下将以轮询的方式分发请求。如果一个 Kyligen
 如果您需要回避 ip_hash 可能导致的 Kyligence Enterprise 实例的负载不均衡（例如只有少量应用服务器频繁访问 Kyligence Enterprise，导致大部分查询请求被分发给少数 Kyligence Enterprise 实例），您应当在 Kyligence Enterprise 中进行相关配置，将 Session 信息保存至 Redis 集群（或 MySQL、MemCache 等）中，实现多个 Kyligence Enterprise 实例的 Session 共享。为此，您只需要简单修改 Tomcat 配置文件即可，步骤如下：
 
 1. 执行下述命令以下载 Redis 相关的 jar 包并将其放置在`$KYLIN_HOME/tomcat/lib/`路径下：
-
-   ```shell
+   ```sh
    wget http://central.maven.org/maven2/redis/clients/jedis/2.0.0/jedis-2.0.0.jar
    wget http://central.maven.org/maven2/org/apache/commons/commons-pool2/2.2/commons-pool2-2.2.jar
    wget https://github.com/downloads/jcoleman/tomcat-redis-session-manager/tomcat-redis-session-manager-1.2-tomcat-7-java-7.jar
    ```
-
-
-2. 在`$KYLIN_HOME/tomcat/context.xml`中添加如下内容：
+2. 在`$KYLIN_HOME/tomcat/conf/context.xml`中添加如下内容：
 
    ```xml
    <Valve className="com.radiadesign.catalina.session.RedisSessionHandlerValve" />
    <Manager className="com.radiadesign.catalina.session.RedisSessionManager" host="localhost" port="6379" database="0" maxInactiveInterval="60"/>
    ```
-
    其中，host 和 port 指向所使用的 Redis 集群的地址。

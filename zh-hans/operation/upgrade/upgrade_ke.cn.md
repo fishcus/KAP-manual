@@ -96,7 +96,7 @@ export KYLIN_HOME={your-unpack-folder}
 
   Kyligence Enterprise 中提供了两套配置参数：`$KYLIN_HOME/conf/profile_prod/` 和 `$KYLIN_HOME/conf/profile_min/`。前者是默认方案，适用于实际生产环境；后者使用较少的资源，适用于沙箱等资源有限的环境。如果您的单点环境资源有限，可以切换到 `profile_min` 配置。
 
-  ```shell
+  ```sh
   rm $KYLIN_HOME/conf/profile
   ln -s $KYLIN_HOME/conf/profile_min $KYLIN_HOME/conf/profile
   ```
@@ -106,13 +106,11 @@ export KYLIN_HOME={your-unpack-folder}
   > 提示：对于 KAP 2.3 及以下版本，`setenv.sh` 文件所在路径发生了改变，在 Kyligence Enterprise 中该文件位于 `$KYLIN_HOME/conf/` 目录下。
 
   - 与构建任务有关的配置文件可以覆盖，您可以执行如下命令使用之前版本的配置文件：
-
     ```sh
     cp $OLD_KYLIN_HOME/conf/kylin_*.xml $KYLIN_HOME/conf/
     ```
 
-  - 在新版本的 `conf/` 目录下，备份 ` kylin.properties` ，并将之前版本的 `kylin.properties` 拷贝至当前目录。
-
+  - 在新版本的 `conf/` 目录下，备份 `kylin.properties` ，并将之前版本的 `kylin.properties` 拷贝至当前目录。
     ```sh
     mv $KYLIN_HOME/conf/kylin.properties $KYLIN_HOME/conf/kylin.properties.template
     cp $OLD_KYLIN_HOME/conf/kylin.properties $KYLIN_HOME/conf/
@@ -127,15 +125,13 @@ export KYLIN_HOME={your-unpack-folder}
 - 如果您当前集群部署是通过 Redis 实现多个 Kyligence Enterprise 实例的 Session 共享，您还需要修改 Tomcat 配置文件，如下：
 
   - 将 Redis 相关的 jar 包放置在 `$KYLIN_HOME/tomcat/lib/` 路径下，如下：
-
     ```sh
     cp $OLD_KYLIN_HOME/tomcat/lib/{jedis-2.0.0.jar,commons-pool2-2.2.jar,tomcat-redis-session-manager-1.2-tomcat-7-java-7.jar} $KYLIN_HOME/tomcat/lib/
     ```
 
   - 覆盖 Tomcat 配置文件，如下：
-
     ```sh
-    cp $OLD_KYLIN_HOME/tomcat/context.xml $KYLIN_HOME/tomcat/context.xml
+    cp $OLD_KYLIN_HOME/tomcat/conf/context.xml $KYLIN_HOME/tomcat/context.xml
     ```
 
 
