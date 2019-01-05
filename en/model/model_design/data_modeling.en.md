@@ -136,6 +136,8 @@ Click **Save** button, and then select the time partition column. This is an opt
 
 In our example, we specify column *KYLIN_SALES.PART_DT* as time partition column and specify the date format as `yyyy-MM-dd`.
 
+Filter condition is an additional data filter besides time partition and more partition (if defined) during data loading. E.g. you can filter out these records with null values or speciifc records according to your business rules.
+
 ![Save model](images/model_design_save.png)
 
 Finally, click the button **Submit**, and the data model is created.
