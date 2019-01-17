@@ -1,6 +1,8 @@
+
+
 ## 最大维度组合数
 
-聚合组以及其他的高级优化功能很好得解决了 Cuboid 数量爆炸问题，但为了达到优化效果用户需要对数据模型有一定了解，这对于初级用户有一定使用难度。这一章将介绍一种简单的 Cuboid 剪枝工具——基于最大维度组合数的 Cuboid 剪枝（MDC）。这个剪枝方法能够避免生成大的 Cuboid（包含 dimension 数目过多的 Cuboid），从而减少生成 Cube 的开销。该剪枝方法适用的场景为大多数查询语句访问的维度不多于 N 的情况，这里的 N 是可以配置的 MDC 参数。
+聚合组以及其他的高级优化功能很好得解决了 Cuboid 数量爆炸问题，但为了达到优化效果用户需要对数据模型有一定了解，这对于初级用户有一定使用难度。这一章将介绍一种简单的 Cuboid 剪枝工具——最大维度组合数（MDC），MDC 表示一个 Cuboid 能够包含的最大维度数。这个剪枝方法能够避免生成大的 Cuboid（包含 dimension 数目过多的 Cuboid），从而减少生成 Cube 的开销。该剪枝方法适用的场景为大多数查询语句访问的维度不多于 N 的情况，这里的 N 是可以配置的 MDC 参数。
 
 
 
@@ -16,7 +18,7 @@ select count(*) from table group by column_mandatory, column_joint1, column_join
 
 
 
-### 自动剪枝原理图 ###
+### 剪枝原理图 ###
 
 ![Cuboid 生成图](images/cuboid_mdc.cn.png)
 
@@ -30,17 +32,31 @@ select count(*) from table group by column_mandatory, column_joint1, column_join
 
 
 
-### 功能开启 ###
+### 设置最大维度组合数（MDC）
 
-这一小节将介绍如何开启该剪枝工具。
+这一小节将介绍如何设置最大维度组合数。在 Cube 维度设计页中，用户可以设置 Cube 级别的最大维度组合数和聚合组级别的 MDC，如下图所示。在输入框中输入大于或等于 0 的整数，并点击 **应用** 按钮，即保存了 MDC 设置。
 
-该剪枝工具位于 Cube 维度设计页的维度优化中，如下图所示。默认值为0，意思为关闭 MDC 剪枝。在输入框中输入一个正整数再点击 Apply 即可开启 MDC 剪枝功能。该正整数为一个 Cuboid 能够包含的最多的维度数。
+![最大维度组合数](images/mdc.png)
 
-![MDC 剪枝默认关闭](images/cuboid_pruning_1.png)
+Cube 级别的最大维度组合数作用于所有聚合组，聚合组级别的 MDC只对聚合组生效。聚合组级别优先级高于 Cube级别。具体设置的规则如下：
 
-该例子中维度数目从161下降为141，除了 Base Cuboid，包含多余4个维度的 Cuboid 都被剪裁掉了。
+1. 若聚合组级别的 MDC 设置为0，此聚合组的 MDC 将会被 Cube 级别 MDC 覆盖。
 
-![设置最大维度组合数](images/cuboid_pruning_2.png)
+   ![MDC 覆盖](images/agg-group-3.png)
+
+   保存 Cube 后，再次编辑 Cube 时可以看到聚合组的 MDC 变为与 Cube 级别 MDC 一致。
+
+   ![MDC 覆盖](images/agg-group-4.png)
+
+2. 若聚合组级别的 MDC 设置为大于0的整数，此聚合组的 Cuboid 维度数只被聚合组级别的 MDC 所限制。
+
+3. 若 Cube 级别的 MDC 设置为0或者留空，意味着用户关闭了 Cube 级别的 MDC 设置。此时 MDC 为0的聚合组生成的 Cuboid 中维度数量不受限制。MDC 非零的聚合组级别 MDC 不受影响。
+
+
+
+根据上图的例子，设置 Cube 级别的 MDC 为2，保留聚合组级别的 MDC 为0并保存 Cube 。再次编辑 Cube，可以看到聚合组的 Cuboid 数量从4095下降为78，总的 Cuboid 变为113。除了 Base Cuboid，包含多于2个维度的 Cuboid 都被剪裁掉了。
+
+![MDC 剪枝](images/mdc_agg_0.png)
 
 
 
