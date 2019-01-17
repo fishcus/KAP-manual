@@ -1,52 +1,91 @@
-## 使用 SparkSQL
+## 构建 Cube 过程中使用 SparkSQL
 
-Kyligence Enterprise在Cube构建过程中，默认应用Hive来做部分预计算。SparkSQL在Hive上有更好的性能，所以使用Spark SQL可能会在特定步骤中提高构建速度。
+Kyligence Enterprise 在 Cube 构建过程中，默认应用 Hive 来做部分预计算。SparkSQL 在 Hive 上有更好的性能，所以使用 Spark SQL 可能会在特定步骤中提高构建速度。
 
+![SparkSQL 构建步骤](../images/sparksql_flat_table.cn.png)
 
+### 配置 SparkSQL
 
-![SparkSQL构建Cube的步骤](images/use_sparksql_during_cube_build/sparksql_flat_table.png)
+**HDP / CDH / FusionInsight 平台：**
 
+请按照下列步骤，在 Cube 的构建中启用 SparkSQL：
 
+1. 创建一个用于存放 Hadoop 客户端配置文件的目录，来保证 Kyligence Enterprise 能够访问所有需要的服务。
 
-在构建Cube中，使用SparkSQL需要一个运行中的Spark Thrift server。（如果您不确定是否有可用的Spark Thrift server，请咨询您的Hadoop管理员。）
+   ```shell
+   mkdir $KYLIN_HOME/hadoop-conf
+   ln -s $HADOOP_CONF_DIR/core-site.xml $KYLIN_HOME/hadoop-conf/core-site.xml
+   ln -s $HADOOP_CONF_DIR/hdfs-site.xml $KYLIN_HOME/hadoop-conf/hdfs-site.xml
+   ln -s $HADOOP_CONF_DIR/yarn-site.xml $KYLIN_HOME/hadoop-conf/yarn-site.xml
+   ln -s $HBASE_HOME/hbase-site.xml $KYLIN_HOME/hadoop-conf/hbase-site.xml
+   cp /$HIVE_HOME/conf/hive-site.xml $KYLIN_HOME/hadoop-conf/hive-site.xml
+   ```
 
-请按照下列步骤，在Cube的构建中启用SparkSQL：
+   > 注意：在某些发行版中，如 HDP 2.4，您还需要在 `hive-site.xml` 文件中将 Hive 的默认引擎由 `tez` 修改为 `mr`。
+   >
+   > ```xml
+   > <property>
+   > 	<name>hive.execution.engine</name>
+   > 	<value>mr</value>
+   > </property>
+   > ```
 
-1. 首先，请准备一个可以被用作Cube构建的Spark Thrift server。
-2. 根据您的环境，在`conf/kylin.propertier`如下设置：
+2. 在`$KYLIN_HOME/conf/kylin.properties`进行如下设置：
 
-   ```  kylin.source.hive.enable-sparksql-for-table-ops=true
+   ```
    kylin.source.hive.enable-sparksql-for-table-ops=true
-   kylin.source.hive.sparksql-beeline-shell=/path/to/spark-client/bin/beeline
-   kylin.source.hive.sparksql-beeline-params=-u jdbc:hive2://localhost:10000;principal=Spark-Kerberos-Principal
    ```
 
-需要注意的是对于JDBC URL，`localhost:10000`需要被替换为您自己的Thrift server的地址和端口；当集群在安全模式下，会需要配置`principal`参数。
 
-3. 关闭Kyligence Enterprise，并运行环境检测脚本（check-env.sh）来检查相关配置是否生效。
 
-   ```sh
-   bin/kylin.sh stop
-   bin/check-env.sh
+**MapR 平台：**
+
+请按照下列步骤，在 Cube 的构建中启用 SparkSQL：
+
+1. 拷贝环境中 `$HIVE_HOME/conf` 目录下的 `hive-site.xml` 文件至系统环境中的 `$SPARK_HOME/conf` 目录下，并删除 Hive 的默认引擎参数。
+
+   ```shell
+   cp /$HIVE_HOME/conf/hive-site.xml $SPARK_HOME/conf/hive-site.xml
+   vi $SPARK_HOME/hadoop-conf/hive-site.xml
+   # Delete "hive.execution.engine" property
    ```
 
-   该环境检测，将会通过连接Spark Thrift server并且进行一些SQL操作来验证上面的一些设置。如果出现错误，您可以使用如下命令行来寻找故障。该命令行应该可以正常连接 Thrift server。
+2. 修改`$SPARK_HOME/conf` 目录下的 `spark-default.conf` 文件，并添加配置属性 `spark.yarn.dist.files`。
 
-   ```${kylin.source.hive.sparksql-beeline-shell} ${kylin.source.hive.sparksql-beeline-params}```
+   ```shell
+   vi $SPARK_HOME/conf/spark-default.conf
+   # spark.yarn.dist.files  $SPARK_HOME/hive-site.xml
+   ```
 
-4. 重启Kyligence Enterprise后，设置应生效。
+   > 注意：请将这里的` $SPARK_HOME/hive-site.xml` 替换为绝对路径
 
-### 其他说明 ###
+3. 在 `$KYLIN_HOME/conf/kylin.properties` 进行如下设置：
 
-SparkSQL配置中，关于Hive客户端的设置如下。这些设置是用来访问Hive元数据和检索Hive表结构等。尽管看起来很相似，但所用目的并不相同。
+   ```
+   kylin.source.hive.enable-sparksql-for-table-ops=true
+   ```
 
- ```
-# Hive client, valid value [cli, beeline]
-kylin.source.hive.client=cli
+### 验证 SparkSQL
 
-# Absolute path to beeline shell, can be set to spark beeline instead of the default hive beeline on PATH
-#kylin.source.hive.beeline-shell=beeline
+当配置完上述配置后，可以运行 Kyligence Enterprise 自带的检测脚本来验证是否配置成功。
 
-# Parameters for beeline client, only necessary if hive client is beeline
-#kylin.source.hive.beeline-params=-u jdbc:hive2://localhost:10000
- ```
+```shell
+$KYLIN_HOME/bin/spark-test.sh test
+```
+
+当您看到如下输出时，代表已经配置成功。
+
+```shell
+...
+Starting test spark with conf
+...
+====================================
+Testing spark-sql...
+19/01/16 07:55:50 WARN ObjectStore: Version information not found in metastore. hive.metastore.schema.verification is not enabled so recording the schema version 1.2.0
+19/01/16 07:55:51 WARN ObjectStore: Failed to get database default, returning NoSuchObjectException
+19/01/16 07:56:02 WARN Utils: Your hostname, maprdemo resolves to a loopback address: 127.0.0.1; using 10.1.2.223 instead (on interface eth0)
+19/01/16 07:56:02 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+Time taken: 1.597 seconds
+...
+```
+
