@@ -10,7 +10,7 @@ Kyligence Enterprise 在 Cube 构建过程中，默认应用 Hive 来做部分�
 
 请按照下列步骤，在 Cube 的构建中启用 SparkSQL：
 
-1. 创建一个用于存放 Hadoop 客户端配置文件的目录，来保证 Kyligence Enterprise 能够访问所有需要的服务。
+1. 要在 Yarn 上运行 Spark，需要指定环境变量 `HADOOP_CONF_DIR`，即用于存放 Hadoop 客户端配置文件的目录。在许多 Hadoop 发行版中，该目录通常为`/etc/hadoop/conf`。因此我们推荐您在 Kyligence Enterprise 的根目录下创建一个目录并链接这些配置文件，来保证 Kyligence Enterprise 能够访问所有需要的服务。
 
    ```shell
    mkdir $KYLIN_HOME/hadoop-conf
@@ -32,17 +32,29 @@ Kyligence Enterprise 在 Cube 构建过程中，默认应用 Hive 来做部分�
 
 2. 在`$KYLIN_HOME/conf/kylin.properties`进行如下设置：
 
-   ```
+   ```properties
    kylin.source.hive.enable-sparksql-for-table-ops=true
+   kylin.env.hadoop-conf-dir=$KYLIN_HOME/hadoop-conf
    ```
 
-
+   > 注意：请将这里的 ` $KYLIN_HOME/hive-site.xml` 替换为绝对路径
 
 **MapR 平台：**
 
 请按照下列步骤，在 Cube 的构建中启用 SparkSQL：
 
 > 注意：如果您在配置 SparkSQL 前已经启动过 Kyligence Enterprise，请将下文中的 `$SPARK_HOME` 替换为本产品根目录下的 spark 目录 （`$KYLIN_HOME/spark`）。
+
+
+1. 要在 Yarn 上运行 Spark，需要指定环境变量 `HADOOP_CONF_DIR`，即用于存放 Hadoop 客户端配置文件的目录。在许多 Hadoop 发行版中，该目录通常为`/etc/hadoop/conf`。因此我们推荐您在 Kyligence Enterprise 的根目录下创建一个目录并链接这些配置文件，来保证 Kyligence Enterprise 能够访问所有需要的服务。
+
+   ```shell
+   mkdir $KYLIN_HOME/hadoop-conf
+   ln -s $HADOOP_CONF_DIR/core-site.xml $KYLIN_HOME/hadoop-conf/core-site.xml
+   ln -s $HADOOP_CONF_DIR/hdfs-site.xml $KYLIN_HOME/hadoop-conf/hdfs-site.xml
+   ln -s $HADOOP_CONF_DIR/yarn-site.xml $KYLIN_HOME/hadoop-conf/yarn-site.xml
+   cp /$HIVE_HOME/conf/hive-site.xml $KYLIN_HOME/hadoop-conf/hive-site.xml
+   ```
 
 1. 拷贝环境中 `$HIVE_HOME/conf` 目录下的 `hive-site.xml` 文件至系统环境中的 `$SPARK_HOME/conf` 目录下，并删除 Hive 的默认引擎参数。
 
@@ -52,7 +64,7 @@ Kyligence Enterprise 在 Cube 构建过程中，默认应用 Hive 来做部分�
    # Delete "hive.execution.engine" property
    ```
 
-2. 修改`$SPARK_HOME/conf` 目录下的 `spark-default.conf` 文件，并添加配置属性 `spark.yarn.dist.files`。
+1. 修改`$SPARK_HOME/conf` 目录下的 `spark-default.conf` 文件，并添加配置属性 `spark.yarn.dist.files`。
 
    ```shell
    vi $SPARK_HOME/conf/spark-default.conf
@@ -61,13 +73,16 @@ Kyligence Enterprise 在 Cube 构建过程中，默认应用 Hive 来做部分�
 
    > 注意：请将这里的` $SPARK_HOME/hive-site.xml` 替换为绝对路径
 
-3. 在 `$KYLIN_HOME/conf/kylin.properties` 进行如下设置：
+1. 在 `$KYLIN_HOME/conf/kylin.properties` 进行如下设置：
 
-   ```
+   ```properties
    kylin.source.hive.enable-sparksql-for-table-ops=true
+   kylin.env.hadoop-conf-dir=$KYLIN_HOME/hadoop-conf
    ```
 
-4. 启动 Kyligence Enterprise
+   > 注意：请将这里的` $KYLIN_HOME/hadoop-conf` 替换为绝对路径
+
+1. 启动 Kyligence Enterprise
 
    ```sh
    $KYLIN_HOME/bin/kylin.sh start
