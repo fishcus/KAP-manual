@@ -43,20 +43,20 @@ in **Model** tab, click icon **Edit** on one specific model and start to edit a 
 
 In model designer page, you can define fact table and dimension table via drag and drop in Kyligence web UI.
 
-- **Define Fact Table**
+**Step 1. Define Fact Table**
 
 1. From the source table list in the left, you can directly drag source tables to the canvas of model designer (in the center of page). Here we drag  table *KYLIN_SALES*  to the canvas.
 2. Click **Setting** icon on the top right corner of *KYLIN_SALES*, select table type as **Fact Table**.
 
 
 
-- **Define Dimension Table**
+**Step 2. Define Dimension Table**
 
-1. Drag following lookup tables into the canvas: *KYLIN_CAL_DT*, *KYLIN_CATEGORY_GROUPINGS*,*KYLIN_ACCOUNT*, *KYLIN_COUNTRY*. 
+1. Drag following lookup tables into the canvas: *KYLIN_CAL_DT*, *KYLIN_CATEGORY_GROUPINGS*, *KYLIN_ACCOUNT*, *KYLIN_COUNTRY*. 
 
 2. Drag *KYLIN_ACCOUNT* twice and change their names to *SELLER_ACCOUNT* and *BUYER_ACCOUNT* respectively, and drag *KYLIN_COUNTRY* twice and change their names to *SELLER_COUNTRY* and *BUYER_COUNTRY* respectively.
 
-> **Note**: For some scenarios, one source table might be referenced as dimension table multiple times in one single data model. Kyligence support this scenario via renaming the table name in data model.
+   > **Note**: For some scenarios, one source table might be referenced as dimension table multiple times in one single data model. Kyligence support this scenario via renaming the table name in data model.
 
 3. Click **Setting** icon on the top right corner of each table, select table type as **Dimension Table**.
 
@@ -64,7 +64,7 @@ In model designer page, you can define fact table and dimension table via drag a
 
 
 
-- **Set Dimensions and Measures**
+**Step 3. Set Dimensions and Measures**
 
 You can specify either one single column or multiple columns as dimensions or measures. Also you can use auto suggestion by the system and make modifications if necessary. 
 
@@ -80,7 +80,7 @@ You can specify either one single column or multiple columns as dimensions or me
 
 
 
-- **Set Table Joins**
+**Step 4. Set Table Joins**
 
 Drag one dimension in fact table and drop it to the corresponding lookup table can setup join condition between tables. For instance, to set up a join condition as `KYLIN_SALES Inner Join KYLIN_CAL_DT on KYLIN_SALES.PART_DT = KYLIN_CAL_DT.CAL_DT`, you can drag *PART_DT* from *KYLIN_SALES* to the table *KYLIN_CAL_DT*, then set up the join condition in the pop up shown as below.
 
@@ -128,17 +128,31 @@ The result is shown as below. If you click **inner** icon on the connnection lin
 
 
 
-- **Save Model**
+**Step 5. Save Model**
 
-Click **Save** button, and then select the time partition column. This is an optional setting. For delta data loading scenarios, you need to specify one time partition column to indicate which data should be loaded into cubes. 
-
-> **Note**: Currently Kyligence Enterprise supports following data type as time partition column: time (time / date / datetime) , integer (integer / tinyint / smallint / bigint / int4 / long8) , and string (varchar / string).
-
-In our example, we specify column *KYLIN_SALES.PART_DT* as time partition column and specify the date format as `yyyy-MM-dd`.
-
-Filter condition is an additional data filter besides time partition and more partition (if defined) during data loading. E.g. you can filter out these records with null values or speciifc records according to your business rules.
+Click **Save** button, and then a pop-up window appears.
 
 ![Save model](images/model_design_save.png)
+
+1. Incremental Data Loading
+
+   In this example, the data in table “KYLIN_SALES” grows day by day. Thus we choose **By Date/Time** which means the data would be built by date columns. In our example, we specify column *KYLIN_SALES.PART_DT* as time partition column and specify the date format as `yyyy-MM-dd HH:mm:ss`.
+
+   Currently Kyligence Enterprise supports following data type as time partition column: time (time / date / datetime) , integer (integer / tinyint / smallint / bigint / int4 / long8) , and string (varchar / string).
+
+   > Notice: This product supports different methods to build data, for more information please check [Build Cube](../cube_build/README.md).
+
+2. Cube Partition
+
+   Cube Partition enhances partition flexibility. Taking multi-tenant scenario as an example, it's rather helpful to build data from different regions. The supported data types include integer (long / short / int / integer) or string (string / char / varchar).
+
+   > Notice: to specify which data would be loaded into cube, the user should enter partiton value in the cube build confirm page.![Set partition value](images/cube_partition.png)
+
+3. Data Filter Condition
+
+   Filter condition is an additional data filter besides time partition and more partition (if defined) during data loading. E.g. you can filter out these records with null values or specific records according to your business rules.
+
+**Step 5. Save Model**
 
 Finally, click the button **Submit**, and the data model is created.
 
@@ -146,34 +160,34 @@ Finally, click the button **Submit**, and the data model is created.
 
 ### Advanced: Set Lookup Table Snapshot
 
-When lookup table is less than 300 MB, it is recommended to enable snapshot of lookup table, to simplify cube design and improve overall system efficiency. By default, the system assumes all lookup tables are small and enables snapshot for all lookup tables always.
+When lookup table is less than 300 MB, we suggest you to enable snapshot of lookup table, to simplify cube design and improve overall system efficiency. If the model has already finished data sampling, the size of tables would be estimated according to the sampling statistics. The table whose size is lower than 300 MB would be stored as snapshots.
 
 - **Benefits of Lookup Table Snapshot**
-- Allows detailed query on lookup tables.
-- Columns in the dimension table can be set as derived dimentions during cube design.
+  1. Allows detailed query on lookup tables.
+  2. Columns in the dimension table can be set as derived dimentions during cube design.
 
 
 
 - **How to Disable Lookup Table Snapshot**
 
-If your lookup table is too big, like over 300 MB, please turn off the snapshot feature for the lookup table, in order to successfully build the cube.
+  If your lookup table is too big, like over 300 MB, please turn off the snapshot feature for the lookup table, in order to successfully build the cube.
 
-To turn on/off snapshot, click **Overview** and then click **Model** tab. The Lookup table and Fact table will appear. In the **Lookup Table** section, you can speficy whether to store the a lookup table as snapshot.
+  To turn on/off snapshot, click **Overview** and then click **Model** tab. The Lookup table and Fact table will appear. In the **Lookup Table** section, you can speficy whether to store the a lookup table as snapshot.
 
-![Turn on/off snapshot](images/model_design_update_en_6.png)
+  ![Turn on/off snapshot](images/model_design_update_en_6.png)
 
-> **Caution**:
->
-> 1. When a lookup table is larger than 300 MB, we don't recommend you to store it as snapshop. But you can still set parameter `kylin.snapshot.max-mb` in `kylin.properties` to modify this when it's really necessary.
-> 2. When the parameter above is set to be larger than 300 MB, it might cause cube build job fail at step **Build Dimension Dictionary** and hence affect system stability. If you do need to store lookup table as snapshot, please contact [Kyligence Support](../introduction/get_support.en.md) for solution.
-> 3. We cannot successfully store a lookup table as snapshot when there are duplicated keys in dimension table.
+  > **Caution**:
+  >
+  > 1. When a lookup table is larger than 300 MB, we don't recommend you to store it as snapshop. But you can still set parameter `kylin.snapshot.max-mb` in `kylin.properties` to modify this when it's really necessary.
+  > 2. When the parameter above is set to be larger than 300 MB, it might cause cube build job fail at step **Build Dimension Dictionary** and hence affect system stability. If you do need to store lookup table as snapshot, please contact [Kyligence Support](../introduction/get_support.en.md) for solution.
+  > 3. We cannot successfully store a lookup table as snapshot when there are duplicated keys in dimension table.
 
 
 
 - **Slow Changing Dimension (SCD)**
 
-In most multi-dimensional OLAP scenarios, lookup table might change unpredictably, rather than according to a regular schedule. For snapshot enabled lookup tables, Kyligence Enterprise supports defining SCD types for all derived dimensions on this lookup table.
+  In most multi-dimensional OLAP scenarios, lookup table might change unpredictably, rather than according to a regular schedule. For snapshot enabled lookup tables, Kyligence Enterprise supports defining SCD types for all derived dimensions on this lookup table.
 
-For more details, please refer to [Slowly Changing Dimension](scd.en.md).
+  For more details, please refer to [Slowly Changing Dimension](scd.en.md).
 
 

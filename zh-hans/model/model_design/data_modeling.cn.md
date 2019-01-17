@@ -140,32 +140,37 @@
 下图是设置好之后的界面（单击连接中的 "Inner" 标志，可以展开连接具体内容）：
 ![建立表连接](images/model_design_update_cn_5.png)
 
+> 提示：本产品还支持添加可计算列，充分利用了产品预计算能力，进一步提升查询性能，更多设置详情请参考[可计算列章节](computed_column/README.md)。
 
-
-> 提示：本产品还支持添加可计算列，充分利用了产品预计算能力，进一步提升查询性能，更多设置详情请参考[可计算列章节](computed_column/README.md)
-
-**步骤五**：完成模型定义后， 单击右下角**保存**按钮
-
-**步骤六：**设置分区列：
-
-
-在保存时， 系统弹出窗口（如下图所示），用户可以设置分区字段列。分区列是可选项，如果不设置，则留空。
-
-本产品自带时间分区列定义，字段类型可以支持时间型（time／date／datetime），也支持整数型（integer / tinyint / smallint / bigint / int4 / long8），以及字符型（varchar / string）
-
-> 提示：本样例中，假设 “KYLIN_SALES” 表事实表的销售数据与日俱增的，我们表的 “PART_DT” 字段为时间分区列， 选择 yyyy-MM-dd 为其时间格式。我们选择增量构建方式构建 Cube
-
-过滤条件是 Cube 构建时除分区列（包含默认时间分区列和一级分区列）的取数条件，比如您可以过滤掉空值数据或符合特定条件的数据。
+**步骤五**：完成模型定义后， 单击右下角**保存**按钮，系统弹出窗口（如下图所示）。
 
 ![保存模型](images/model_design_update_cn_7.png)
 
-**步骤七**：单击**提交**按钮，到此数据模型就创建成功了。
+1. 增量构建
+
+   本样例中，“KYLIN_SALES” 表事实表的销售数据是与日俱增的，在这里选择按日期/时间构建方式。表的 “PART_DT” 字段为时间分区列， 选择好时间格式。时间分区列定义，字段类型可以支持时间型（time／date／datetime），也支持整数型（integer / tinyint / smallint / bigint / int4 / long8），以及字符型（varchar / string）。
+
+   > 提示：本产品提供了多种增量构建的方式，更多信息请参考[构建 Cube](../cube_build/README.md)。
+
+2. Cube 分区
+
+   用户可以设置 Cube 分区。若设置了 Cube 分区的列，Cube 可以按构建时指定的分区值进行构建。Cube 分区可以增强分区灵活性， 比如多租户的使用场景中，除了时间之外，经常按照不同机构或地区来进行构建。Cube 分区列目前支持整数或字符串类型（long / short / int /integer / string / char / varchar）。
+
+   若设置此模型的 Cube 分区列为 `KYLIN_SALES.OPS_REGION`  ，基于此模型设计的 Cube 构建时需要设定分区值。Cube 将在此分区值上构建 segment。
+
+   ![设置分区列值](images/cube_partition.cn.png)
+
+3. 数据筛选条件
+
+   过滤条件是 Cube 构建时除时间分区列和分区列的取数条件，比如您可以过滤掉空值数据或符合特定条件的数据。
+
+**步骤六**：单击**提交**按钮，到此数据模型就创建成功了。
 
 
 
 ### 其他高级设置：设置维度表快照
 
-当维度表小于 300 MB 时，推荐以快照 (Snapshot) 形式存储维表，以简化 Cube 设计和提高系统整体效率。由于系统默认所有维度表都比较小，因此缺省地，所有维度表的快照都被启用。
+当维度表小于 300 MB 时，我们建议以快照 (Snapshot) 形式存储维表，以简化 Cube 设计和提高系统整体效率。若模型已经完成了表采样，系统将会根据表采样的结果对维表的大小进行估算，并对小于300 MB 的维表开启快照形式存储。
 
 - **启用维度表快照的优点**
   1. 允许单独对维度表进行明细查询
@@ -185,7 +190,7 @@
   >
   > 1. 当维度表大于 300 MB 时，我们通常不建议以快照形式存储。如确实有必要，可在`kylin.properties` 中调整参数 `kylin.snapshot.max-mb` 至更大值。
   > 
-  > 2. 300 MB 是本产品推荐的维度表以快照存储的大小，请您谨慎修改  `kylin.snapshot.max-mb` 的值，这个值如果被设置的过大，基于这个模型进行设计的 Cube 在构建时，有很大概率会在 Build Dimension Dictionary (在这一步会进行快照的构建) 这一步失败，甚至还会影响整个系统的稳定性。如果您的使用场景必须对超大的维度表设置以快照形式存储，请联系 [Kyligence 技术支持](../introduction/get_support.cn.md )获取解决方案，
+  > 2. 300 MB 是本产品推荐的维度表以快照存储的大小，请您谨慎修改  `kylin.snapshot.max-mb` 的值，这个值如果被设置的过大，基于这个模型进行设计的 Cube 在构建时，有很大概率会在 Build Dimension Dictionary (在这一步会进行快照的构建) 这一步失败，甚至还会影响整个系统的稳定性。如果您的使用场景必须对超大的维度表设置以快照形式存储，请联系 [Kyligence 技术支持](../introduction/get_support.cn.md )获取解决方案。
   > 
   > 3. 存在重复主键的维度表不能以快照形式存储。
   > 如果您在模型检测的 Check Duplicate Key 或者 Cube 构建的 Build Dimension Dictionary 失败，`kylin.log` 中的报错信息 "java.lang.IllegalStateException: The table:{tableName} Dup key found, key=[..], value1=[...],value2=[...]"，您需要确认报错信息提示的表是否需要以快照形式存储，如果不需要的话，可以取消对这张表的以快照形式存储的设置后，重新进行模型检测，或者重新设计 Cube 并进行构建；如果需要这张维度表以快照形式存储，请您对这张表进行数据清洗，去除重复主键。

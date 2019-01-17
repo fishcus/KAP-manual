@@ -12,27 +12,21 @@ In addition to Full Build, Build by date/time, Build by file, and streaming buil
 
    ![Save model](images/customize_build_save_model.png)
 
-2. Java Class for Customized Incremental Buil
+2. Java Class for Customized Incremental Build and Class Initialization Parameter
 
-   User needs to enter the class name of the Java class used to implement the custom incremental build. The Java class should inherit from the parent class io.kyligence....cubbuild and implement its build method. The mapping of build parameters to data selection is implemented in the build method.
-
-   [Example Java Class]
-
-3. Class Initialization Parameter
+   User needs to enter the class name of the Java class used to implement the custom incremental build. The Java class should be put under path $KYLIN_HOME/ext. After putting it under the right path,  the user should restart the system to enable this Java class.
 
    User passes the corresponding parameters according to the above Java class to implement a custom incremental build. Multiple parameters are separated by commas.
 
-4. Set Cube Partition
+3. Set Cube Partition
 
    The cube will be built incrementally based on the specific column if the cube partition is enabled.
 
    ![Cube partition](images/customize_build_save_model_partition.png)
 
-5. After click the **Submit** button, the model is all set.
+4. After click the **Submit** button, the model is all set.
 
+   > **Note:** Cube build, segments refresh and merge can only be conducted in REST API. See [Cube API](../../rest/cube_api.en.md) for details.
 
-
-**Note:** Cube build, segments refresh and merge can only be conducted in REST API. See [Cube API](../../rest/cube_api.en.md) for details.
-
-
+5. After the build API is sent, you can see the corresponding job running in the Monitor page. The segment will be listed under the cube after the build job is finished. 
 

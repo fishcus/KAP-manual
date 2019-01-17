@@ -23,6 +23,7 @@
 - `PUT http://host:port/kylin/api/cubes/{cubeName}/segments/build`
 
 - URL Parameters
+
   - `cubeName` - `必选` `string`，Cube 名称
 
 - HTTP Header
@@ -33,7 +34,11 @@
 - HTTP Body: JSON Object
   - `startTime` - `必选` `long`，开始时间，为 0
   - `endTime` - `必选` `long`，结束时间，为 0
+
   - `buildType` - `必选` `string`，支持的计算类型："BUILD"
+
+  - `mpValues` - `可选` `string`，对应模型的分区字段值
+  - `force` - `可选` `boolean`，强制提交任务选项，默认值false
 
 
 - Curl 请求示例
@@ -183,12 +188,24 @@ curl -X PUT \
 
   - `files` - `必选` `string[]`, 新增数据文件在 HDFS 中的绝对路径列表。
 
-  - > 注意：为了防止意外的重复数据，系统不允许在同一个 Cube 中重复加载同一个数据文件。
+    > 注意：为了防止意外的重复数据，系统不允许在同一个 Cube 中重复加载同一个数据文件。
+
+  - `mpValues` - `可选` `string`，对应模型的分区字段值
+  - `force` - `可选` `boolean`，强制提交任务选项，默认值false
 
 - Curl 请求示例
 
   ```bash
-  curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/json;charset=utf-8" -H "Accept: application/vnd.apache.kylin-v2+json"  -d '{"startOffset":2018042210000, "buildType":"BUILD", "files":["/sample/path/file1"]}' http://localhost:port/kylin/api/cubes/{cubeName}/segments/build_by_files
+  curl -X PUT \
+  	-H "Authorization: Basic XXXXXXXXX" \
+  	-H "Content-Type: application/json;charset=utf-8" \
+  	-H "Accept: application/vnd.apache.kylin-v2+json" \
+  	-d '{
+  	"startOffset":2018042210000, 
+  	"buildType":"BUILD", 
+  	"files":["/sample/path/file1"]
+  	}' 
+  	http://localhost:port/kylin/api/cubes/cubeName/segments/build_by_files
   ```
 
 - 响应示例
@@ -239,10 +256,10 @@ curl -X PUT \
 
   - `sourceOffsetStart` - `必选` `long`，构建开始偏移量。０指的是Cube开始构建的偏移量
   - `sourceOffsetEnd` - `必选` `long`，构建结束偏移量。9223372036854775807指的是Long.MAX_VALUE的值，指的是Kyligence Enterprise的构建会用到Topic中目前为止拥有的所有消息。
-  - `buildType` - `必选` `string`，支持的计算类型，为："BUILD"
   - `mpValues` - `可选` `string`，对应模型的分区字段值
+  - `force` - `可选` `boolean`，强制提交任务选项，默认值false
+  - `buildType` - `必选` `string`，支持的计算类型，为："BUILD"
 
-  > 注意：API是以"_streaming"结尾的，这跟常规构建中以"build"结尾不同。
 
 * Curl 请求示例
 
@@ -307,6 +324,8 @@ curl -X PUT \
   - `sourceOffsetStart` - `必选` `long`, Segment 区间的起始值。
   - `sourceOffsetEnd` - `可选` `long`, Segment 区间的结束值。
   - `buildType` - `必选` `string`, 支持的构建类型为 `BUILD`。
+  - `mpValues` - `可选` `string`，对应模型的分区字段值。
+  - `force` - `可选` `boolean`，强制提交任务选项，默认值false
 
 - Curl 请求示例
 
@@ -350,12 +369,14 @@ curl -X PUT \
         "progress": 0
     },
     "msg": ""
-}
+  }
   ```
 
 
 
 ### 构建 Cube - 批量构建  {#构建Cube批量构建}
+
+> **注意**：目前批量构建的方式只针对支持按日期/时间增量构建的模型。后续我们将会开放对其他构建方式的批量构建。
 
 - `PUT http://host:port/kylin/api/cubes/{cubeName}/batch_sync`
 
@@ -372,6 +393,7 @@ curl -X PUT \
   - `pointList` - `可选` `string`，对应模型的分区的字段值
   - `rangeList` - `可选` `string`，对应模型的分区的字段值
   - `mpValues` - `可选` `string`， 对应模型的分区的字段值
+  - `force` - `可选` `boolean`，强制提交任务选项，默认值false
 
 - Curl 请求示例
 
