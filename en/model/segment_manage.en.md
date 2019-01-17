@@ -16,7 +16,6 @@
 
   There are 4 types of Cubes built, which can be viewed in the `Status` column of the Cube list, and the rightmost `Actions` for Cube operation management.
   * *Draft*: A cube that has not been officially saved. You can continue to edit, delete, and view the cube (see the cube description).
-
   * *Disable:* A cube with Disable status means it cannot be queried. The status will be converted to Ready automatically when it is built. Common executable actions includes:
 
     * Validate SQL
@@ -30,8 +29,6 @@
     * Backup (Backup a cube's metadata), 
     * Edit cube's details (view or edit a cube's json).
 
-    > Notice: When cubes are re-disabled after they are enabled, you will not be able to edit dimensions and measures. If you need to edit dimensions and metrics, you need to redesign and build a new cube.
-
   * *Ready:* A cube with Ready status means it has a segment and can be queried, but cannot be deleted or purged directly. Common executable actions includes: 
 
     * Validate SQL
@@ -40,8 +37,13 @@
     * Clone (Copy a cube, without copy a segment) 
     * View Cube (View a cube's description) 
     * Backup (Backup a cube's metadata) 
+  * *DESCBROKEN*: A cube with Broken status means it is abnormal because its metadata is broken.
 
-  * **DESCBROKEN**: A cube with Broken status means it is abnormal because its metadata is broken.
+  > *Notice:* 
+  >
+  > 1. When cubes are disabled after they are enabled, the user cannot modify the definition of dimensions and measures, or add/remove dimensions and measures. If you need to edit dimensions and metrics, you need to redesign and build a new cube.
+  > 2. When cubes are disabled after they are enabled,  the user can edit dimension description, measure description, Refresh Setting and Cube Configuration/Job Related Configuration/Hive Related Configuration in the Advanced Setting step.
+  > 3. User can edit dimension description and measure description in a *DESCBROKEN* cube.
 
 
 
