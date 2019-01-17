@@ -42,11 +42,13 @@ Kyligence Enterprise 在 Cube 构建过程中，默认应用 Hive 来做部分�
 
 请按照下列步骤，在 Cube 的构建中启用 SparkSQL：
 
+> 注意：如果您在配置 SparkSQL 前已经启动过 Kyligence Enterprise，请将下文中的 `$SPARK_HOME` 替换为本产品根目录下的 spark 目录 （`$KYLIN_HOME/spark`）。
+
 1. 拷贝环境中 `$HIVE_HOME/conf` 目录下的 `hive-site.xml` 文件至系统环境中的 `$SPARK_HOME/conf` 目录下，并删除 Hive 的默认引擎参数。
 
    ```shell
    cp /$HIVE_HOME/conf/hive-site.xml $SPARK_HOME/conf/hive-site.xml
-   vi $SPARK_HOME/hadoop-conf/hive-site.xml
+   vi $SPARK_HOME/conf/hive-site.xml
    # Delete "hive.execution.engine" property
    ```
 
@@ -54,7 +56,7 @@ Kyligence Enterprise 在 Cube 构建过程中，默认应用 Hive 来做部分�
 
    ```shell
    vi $SPARK_HOME/conf/spark-default.conf
-   # spark.yarn.dist.files  $SPARK_HOME/hive-site.xml
+   # spark.yarn.dist.files  $SPARK_HOME/conf/hive-site.xml
    ```
 
    > 注意：请将这里的` $SPARK_HOME/hive-site.xml` 替换为绝对路径
@@ -63,6 +65,12 @@ Kyligence Enterprise 在 Cube 构建过程中，默认应用 Hive 来做部分�
 
    ```
    kylin.source.hive.enable-sparksql-for-table-ops=true
+   ```
+
+4. 启动 Kyligence Enterprise
+
+   ```sh
+   $KYLIN_HOME/bin/kylin.sh start
    ```
 
 ### 验证 SparkSQL

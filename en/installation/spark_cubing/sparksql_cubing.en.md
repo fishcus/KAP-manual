@@ -40,11 +40,13 @@ Follow the steps below to enable SparkSQL during cube build:
 
 Follow the steps below to enable SparkSQL during cube build:
 
+> Note: If the Kyligence Enterprise has been started before configuring SparkSQL, please export the `$KYLIN_HOME/spark` as the `SPARK_HOME`.
+
 1. Copy the `hive-site.xml` file from `$HIVE_HOME/conf` to `$SPARK_HOME/conf` in your Hadoop environment and delete the default engine property.
 
    ```shell
    cp /$HIVE_HOME/conf/hive-site.xml $SPARK_HOME/conf/hive-site.xml
-   vi $SPARK_HOME/hadoop-conf/hive-site.xml
+   vi $SPARK_HOME/conf/hive-site.xml
    # Delete "hive.execution.engine" property
    ```
 
@@ -52,13 +54,19 @@ Follow the steps below to enable SparkSQL during cube build:
 
    ```shell
    vi $SPARK_HOME/conf/spark-default.conf
-   # spark.yarn.dist.files  $SPARK_HOME/hive-site.xml
+   # spark.yarn.dist.files  $SPARK_HOME/conf/hive-site.xml
    ```
 
 3. Set below configuration in `$KYLIN_HOME/conf/kylin.properties`.
 
    ```
    kylin.source.hive.enable-sparksql-for-table-ops=true
+   ```
+
+4. Start Kyligence Enterprise
+
+   ```sh
+   $KYLIN_HOME/bin/kylin.sh start
    ```
 
 ### Verify SparkSQL
