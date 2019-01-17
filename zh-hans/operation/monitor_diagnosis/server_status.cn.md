@@ -2,7 +2,7 @@
 
 在 Kyligence Enterprise 2.5.5及之后的版本中，用户可以在系统页面下的服务器列表看到 Kyligence Enterprise 集群的服务器状态，如下图所示：
 
-![服务器状态页面](images/server_status/server_status_1.cn.png)
+![服务器状态页面](images/server_status_1.cn.png)
 
 ### 服务器类型 ###
 
@@ -12,7 +12,7 @@
 
 * Query Node：负责充当查询引擎的节点。
 
-  更多相关信息可以查看手册中关于[任务引擎高可用](../installation/advancing_installation/advancing_installation_ha.cn.md)和[负载均衡与集群部署](../installation/advancing_installation/advancing_installation_load_balance.cn.md)的部分。
+  更多相关信息可以查看手册中关于[服务发现及任务引擎高可用](../../installation/deploy/ha.cn.md)和[集群部署与负载均衡](../../installation/deploy/cluster_lb.cn.md)的部分。
 
 ### 服务器状态 ###
 
