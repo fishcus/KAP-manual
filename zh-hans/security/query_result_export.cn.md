@@ -1,4 +1,4 @@
-## 配置用户查询结果的导出权限
+## 管理查询结果导出权限
 
  系统管理员可以通过配置 `conf/kylin.properties` 下的 `kap.web.export.allow.admin` 和 `kap.web.export.allow.other` 两个配置项来设置查询用户的查询结果导出权限。
 

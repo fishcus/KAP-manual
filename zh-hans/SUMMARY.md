@@ -128,7 +128,7 @@
     * [管理用户组](security/group_management.cn.md)       
     * [管理访问权限](security/acl.cn.md)     
     * [管理数据访问权限](security/data_acl/README.md)      
-        * [表级访问权限](security/data_acl/cell_acl.cn.md)
+        * [表级访问权限](security/data_acl/table_acl.cn.md)
         * [行级访问权限](security/data_acl/row_acl.cn.md)
         * [列级访问权限](security/data_acl/column_acl.cn.md)
     * [管理查询结果导出权限](security/query_result_export.cn.md)      

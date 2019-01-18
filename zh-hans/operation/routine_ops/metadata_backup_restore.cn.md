@@ -1,4 +1,4 @@
-##  元数据备份与恢复
+##  数据备份与恢复
 
 Kyligence Enterprise 实例是无状态的服务，所有的状态信息都存储元数据中，因此备份与恢复元数据是运维工作中一个至关重要的环节，可以在由于误操作导致整个实例或某个 Cube 异常时将 Kyligence Enterprise 快速从备份中恢复出来。
 
@@ -13,31 +13,31 @@ Kyligence Enterprise 实例是无状态的服务，所有的状态信息都存�
 
 | 元数据             | 说明                                               | 系统级别 | 项目级别 | Cube 级别 |
 | ------------------ | -------------------------------------------------- | -------- | -------- | --------- |
-| UUID               | 元数据标识                                         | √        |          |           |
-| acl                | 数据访问控制信息                                   | √        |          |           |
-| bad_query          | 慢查询信息                                         | √        |          |           |
-| cube               | Cube 实例的基本信息                                | √        |          |           |
-| cube_desc          | Cube 结构定义信息                                  | √        |          |           |
-| cube_statistics    | Cube 实例的统计信息                                | √        |          |           |
-| cube_stats_info    | Cube 的一些信息                                    | √        |          |           |
-| dict               | 使用字典编码方式的列的字典                         | √        |          |           |
-| execute            | 构建任务的信息                                     | √        |          |           |
-| execute_output     | 构建任务对应的步骤信息                             | √        |          |           |
-| history            | 集群的一些历史信息                                 | √        |          |           |
-| kafka              | Kafka 数据源表的一些信息                           | √        |          |           |
-| model_desc         | 模型的描述信息                                     | √        |          |           |
-| model_stats        | 模型的统计信息                                     | √        |          |           |
-| project            | 项目有关信息，如项目中包含的表名、模型名和 Cube 名 | √        |          |           |
+| UUID               | 元数据标识                                         | √        | √        | √         |
+| acl                | 数据访问控制信息                                   | √        | √        |           |
+| bad_query          | 慢查询信息                                         | √        | √        |           |
+| cube               | Cube 实例的基本信息                                | √        | √        | √         |
+| cube_desc          | Cube 结构定义信息                                  | √        | √        | √         |
+| cube_statistics    | Cube 实例的统计信息                                | √        | √        |           |
+| cube_stats_info    | Cube 的一些信息                                    | √        | √        |           |
+| dict               | 使用字典编码方式的列的字典                         | √        | √        |           |
+| execute            | 构建任务的信息                                     | √        | √        |           |
+| execute_output     | 构建任务对应的步骤信息                             | √        | √        |           |
+| history            | 集群的一些历史信息                                 | √        | √        |           |
+| kafka              | Kafka 数据源表的一些信息                           | √        | √        |           |
+| model_desc         | 模型的描述信息                                     | √        | √        | √         |
+| model_stats        | 模型的统计信息                                     | √        | √        |           |
+| project            | 项目有关信息，如项目中包含的表名、模型名和 Cube 名 | √        | √        | √         |
 | query              | 保存的查询                                         | √        |          |           |
-| raw_table_desc     | 表索引的描述信息                                   | √        |          |           |
-| raw_table_instance | 表索引实例                                         | √        |          |           |
-| scheduler          | 自动调度                                           | √        |          |           |
-| streaming          | 流式数据有关的表信息                               | √        |          |           |
-| table              | 表有关的信息                                       | √        |          |           |
-| table_exd          | 表的扩展信息                                       | √        |          |           |
-| table_snapshot     | 维表快照                                           | √        |          |           |
-| user               | 用户信息                                           | √        |          |           |
-| user_group         | 用户组信息                                         | √        |          |           |
+| raw_table_desc     | 表索引的描述信息                                   | √        | √        |           |
+| raw_table_instance | 表索引实例                                         | √        | √        |           |
+| scheduler          | 自动调度                                           | √        | √        |           |
+| streaming          | 流式数据有关的表信息                               | √        | √        |           |
+| table              | 表有关的信息                                       | √        | √        | √         |
+| table_exd          | 表的扩展信息                                       | √        | √        | √         |
+| table_snapshot     | 维表快照                                           | √        | √        |           |
+| user               | 用户信息                                           | √        | √        |           |
+| user_group         | 用户组信息                                         | √        | √        |           |
 
 
 
@@ -75,7 +75,7 @@ Kyligence Enterprise 实例是无状态的服务，所有的状态信息都存�
     ```sh
     $KYLIN_HOME/bin/metastore.sh backup-cube CUBE_NAME PATH_TO_LOCAL_META_DIR
     ```
-    其中，`CUBE_NAME` 为需要备份的 Cube 名称，如 kylin_sales_cube；`PATH_TO_LOCAL_META_DIR` 表示备份的元数据保存路径
+    其中，`CUBE_NAME` 为需要备份的 Cube 名称，如 kylin_sales_cube；`PATH_TO_LOCAL_META_DIR` 表示备份的元数据保存路径。
 
 - 通过**用户界面**进行元数据备份
   > 提示：备份成功后，界面会有弹出框提示备份的元数据的存放地址。
@@ -88,34 +88,28 @@ Kyligence Enterprise 实例是无状态的服务，所有的状态信息都存�
 	在**建模**--> **Cube** 页面，选择需要备份的 Cube，点击**操作**-->**备份**。
 
 
-> 提示：
->
->
->
 
 ### 元数据恢复    {#metadata_restore}
 
 Kyligence Enterprise 中需要用**命令行**进行元数据恢复。
 
-- 系统级别的元数据恢复
+**注意：**恢复操作时，会用本地元数据覆盖远端元数据，所以请确认从备份到恢复期间，Kyligence Enterprise 处于关闭或者无活动（包括构建任务）状态，否则从备份到恢复之间的其它元数据改变会因此而丢失。如果希望 Kyligence Enterprise 服务不受影响，请使用**项目级别**或者 **Cube 级别**的元数据恢复。
 
-​```shell
-$KYLIN_HOME/bin/metastore.sh restore /path_to_backup
-```
-- 项目级别的元数据恢复
+- 恢复**系统级别**的元数据
 
-​```shell
-$KYLIN_HOME/bin/metastore.sh restore-project project_name /path_to_backup
-```
+  ```sh
+  $KYLIN_HOME/bin/metastore.sh restore /path_to_backup
+  ```
+- 恢复**项目级别**的元数据--
 
-- cube级别的元数据恢复
+  ```sh
+  $KYLIN_HOME/bin/metastore.sh restore-project project_name /path_to_backup
+  ```
 
-```shell
-$KYLIN_HOME/bin/metastore.sh restore-cube project_name /path_to_backup
-```
+- 恢复 **Cube 级别**的元数据
 
-> 注意: 
->
-> project_name表示项目名称，path_to_backup表示恢复路径；
->
-> 恢复操作时，会用本地元数据覆盖远端元数据，所以请确认从备份到恢复期间，Kyligence Enterprise 处于关闭／无活动（包括构建任务）状态，否则从备份到恢复之间的其它元数据改变会因此而丢失。如果希望 Kyligence Enterprise 服务不受影响，请使用project级别或者cube级别的元数据恢复。
+  ```sh
+  $KYLIN_HOME/bin/metastore.sh restore-cube project_name /path_to_backup
+  ```
+
+  其中，`project_name` 表示项目名称，`/path_to_backup` 表示恢复路径。

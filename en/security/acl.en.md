@@ -1,1 +1,82 @@
 ## System Access Control List
+
+When a user/group uses Kyligence Enterprise, whether the user/group can access a project and use some functionalities within the project is determined by project-level access control, there are four types of access permission roles set at the project-level in Kyligence Enterprise. They are *Admin*, *Management*, *Operation* and *Query*. Each role defines a list of functions user/group may perform in Kyligence Enterprise system. 
+
+- *Query*: designed to be used by analysts who only need access permission to query tables/cubes in the project.
+- *Operation*: designed to be used by operation team in a corporate/organization who need permission to maintain the Cube. *Operation* access permission includes *Query*.
+- *Management*: designed to be used by Modeler or Designer who is fully knowledgeable of business meaning of the data/model, Cube and will be in charge of Model and Cube design. *Management* access permission includes *Operation*, and *Query*.
+- *Admin*: Designed to fully manage the project. *Admin* access permission includes *Management*, *Operation* and *Query*.
+
+Access permissions are independent between different projects. 
+
+### How Access Permission is Determined
+
+Once project-level access permission has been set for a user/group, access permission on data source, model and Cube will be inherited based on the access permission role defined on project-level. For detailed functionalities, each access permission role can have access to, see table below. 
+
+| Functionality                                                | SYSTEM ADMIN | PROJECT Admin | Management | Operation | Query |
+| ------------------------------------------------------------ | ------------ | ------------- | ---------- | --------- | ----- |
+| Add/Delete  project                                          | Yes          | No            | No         | No        | No    |
+| Edit/Back up  project                                        | Yes          | Yes           | No         | No        | No    |
+| View project  Detail                                         | Yes          | Yes           | Yes        | Yes       | Yes   |
+| Add, edit,  Delete project access                            | Yes          | Yes           | No         | No        | No    |
+| View System  Dashboard                                       | Yes          | Yes           | Yes        | Yes       | Yes   |
+| View Studio                                                  | Yes          | Yes           | Yes        | Yes       | Yes   |
+| View Data  Source page                                       | Yes          | Yes           | Yes        | No        | No    |
+| Load, unload,reload data source                              | Yes          | Yes           | No         | No        | No    |
+| configure  KAFKA data source                                 | Yes          | yes           | No         | No        | No    |
+| View table,  row, and column-level access control            | Yes          | Yes           | Yes        | No        | No    |
+| Add, modify,  delete table, row and column-level access control | Yes          | Yes           | No         | No        | No    |
+| View Model  page                                             | Yes          | Yes           | Yes        | Yes       | Yes   |
+| view models                                                  | Yes          | Yes           | Yes        | Yes       | Yes   |
+| add, edit, clone, delete model. perform model health check   | Yes          | Yes           | Yes        | No        | No    |
+| View cube page                                               | Yes          | Yes           | Yes        | Yes       | Yes   |
+| view cube detail                                             | Yes          | Yes           | Yes        | Yes       | Yes   |
+| Edit Cube  Description                                       | Yes          | Yes           | Yes        | No        | No    |
+| Add,  enable/disable, clone, purge cube                      | Yes          | Yes           | Yes        | No        | No    |
+| Build, manage  Cube                                          | Yes          | Yes           | Yes        | Yes       | No    |
+| Add, edit,  delete Cube                                      | Yes          | Yes           | Yes        | No        | No    |
+| View, edit and  delete Cube draft                            | Yes          | Yes           | Yes        | No        | No    |
+| View Insight  page                                           | Yes          | Yes           | Yes        | Yes       | Yes   |
+| Query Insight  page                                          | Yes          | Yes           | Yes        | Yes       | Yes   |
+| View Monitor  page                                           | Yes          | Yes           | Yes        | Yes       | No    |
+| View System  page                                            | Yes          | No            | No         | No        | No    |
+| Manage system                                                | Yes          | No            | No         | No        | No    |
+| Manage user/group                                            | Yes          | No            | No         | No        | No    |
+
+
+
+Additionally, when Query Pushdown is enabled, *Query* access permission on a project allows users/groups to issue push down queries on all tables in the project even though no cube could answer these queries. It's impossible if a user/group is not yet granted *Query* permission at project-level.
+
+### Manage Access Permission at Project-level
+
+#### Grant Access 
+
+![Grant access](images/acl/w_1.png)
+
+Follow below steps to grant access at project-level: 
+
+1. Click on project icon on the right side of project list on the navigation bar.
+2. Expand a project on the project list.
+3. Click `Access` menu  and then click `+Grant` menu to grant access for a user/group.
+4. Fill in a user name/group name, access permission and click `Submit`. 
+
+![Grant access for a user/group](images/acl/w_2.png)
+
+#### Modify Access
+
+Follow below steps to modify access at project-level: 
+
+1. Click on project icon on the right side of project list on the navigation bar.
+2. Expand a project on the project list.
+3. Click `Access` menu and click `Edit` 
+4. Modify user/group's access permission and click `Submit`. 
+
+####Revoke Access
+
+Follow below steps to revoke access at project-level: 
+
+1. Click on project icon on the right side of project list on the navigation bar.
+2. Expand a project on the project list.
+3. click `Access` menu, choose a user/group, and then click `Delete` .
+
+When user/group's project access permission has been revoked, all access permission on this project will be revoked/dropped subsequently, this may include table-level, row-level and column-level if there is any. 

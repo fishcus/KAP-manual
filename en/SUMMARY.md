@@ -128,7 +128,7 @@
      * [User Group Management](security/group_management.en.md)       
      * [System Access Control List](security/acl.en.md)     
      * [Data Access Control](security/data_acl/README.md)      
-        * [Table-level Access Control](security/data_acl/cell_acl.en.md)
+        * [Table-level Access Control](security/data_acl/table_acl.en.md)
         * [Row-level Access Control](security/data_acl/row_acl.en.md)
         * [Column-level Access Control](security/data_acl/column_acl.en.md)
     * [Data Export Access Control](security/query_result_export.en.md)      
