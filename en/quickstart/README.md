@@ -83,7 +83,7 @@ After Kyligence Enterprise is started, open web GUI at `http://{host}:7070/kylin
 - At least 8 characters.
 - Contains at least one number, one letter, and one special character (~!@#$%^&*(){}|:"<>?[];',./`).
 
-Now, you can verify the installation by building a sample cube. Please continue to [Install Validation](install_validate.en.md).
+Now, you can verify the installation by building a sample cube. Please continue to [Install Validation](../installation/install_uninstall/install_validation.en.md).
 
 ### Stop Kyligence Enterprise
 

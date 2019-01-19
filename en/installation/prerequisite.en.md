@@ -1,4 +1,4 @@
-## Prerequisite of Kyligence Enterprise
+## Prerequisite
 
 For better system performance and stability, we recommend that you run Kyligence Enterprise on a dedicated Hadoop cluster. Each server in the cluster should be configured with HDFS, YARN, MapReduce, Hive, Kafka and so on. Among them, HDFS, Yarn, MapReduce, Hive, and Zookeeper are mandatory components.
 
@@ -10,7 +10,7 @@ Kyligence Enterprise, and the Hadoop nodes that it runs on top of, require:
 
 - JDK 8 (64 bit) or above
 
-If your Hadoop cluster is based on JDK 7, please refer to [How to Run Kyligence Enterprise on Lower Version JDK](about_low_version_jdk.en.md).
+If your Hadoop cluster is based on JDK 7, please refer to [Run Kyligence Enterprise on JDK 7](../appendix/run_on_jdk7.en.md).
 
 ### Account Authority
 

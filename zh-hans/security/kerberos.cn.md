@@ -109,11 +109,11 @@ Kerberos 是一种支持票证身份验证的安全协议。如果 Kyligence Ent
        >
        > `{principal}` 为访问 Hive Metastore 需要的 principal，如 `hive/hadoop.hadoop.com@HADOOP.COM` 
 
-**非华为 FusionInsight 平台**
+**CDH / HDP 平台**
 
 1. 在安装 YARN NodeManager 的节点上，添加 Kerberos 对应的用户。如 Kerberos 用户是 `kylin`，则在 NodeManager 所在的节点的操作系统也应存在 `kylin` 用户。
 
-2. 将认证所需 keytab 文件放到 `$KYLIN_HOME/conf` 目录下。 
+2. 将认证所需 `keytab` 文件放到 `$KYLIN_HOME/conf` 目录下。 
 
 3. 在 `$KYLIN_HOME/conf/kylin.properties` 中设置 如下Kerberos 相关参数。
 
@@ -124,6 +124,62 @@ Kerberos 是一种支持票证身份验证的安全协议。如果 Kyligence Ent
    kap.kerberos.keytab={your_keytab_name} 
    ```
 
+4. 拷贝 `{hadoop_conf}/mapred-site.xml` 文件至 `$KYLIN_HOME/conf` 目录下，同时在该文件中添加以下配置：
+
+   ```xml
+   <property>
+       <name>mapreduce.job.complete.cancel.delegation.tokens</name>
+       <value>false</value>
+   </property>
+   ```
+
+5. 如果您使用了读写分离部署方式，请在 `$KYLIN_HOME/conf/kylin.properties` 中添加
+
+   ```properties
+   kap.storage.columnar.spark-conf.spark.yarn.access.namenodes=hdfs://readcluster,hdfs://writecluster
+   ```
+
+> 注意：对于 CDH 平台，还需要获取 Hadoop 环境中的 jar 包并**删除替换** `$KYLIN_HOME/spark/jars` 目录下对应的 Hadoop jar 包。
+
+- 查找环境中的 Hadoop 相关 jar 包
+
+  ```Shell
+  find /{hadoop_lib} | grep hadoop
+  ```
+
+- 备份 `$KYLIN_HOME/spark/` 目录
+
+  ```shell
+  cp -r $KYLIN_HOME/spark ${KYLIN_HOME}.spark_backup
+  ```
+
+- 拷贝 Hadoop 相关 jar 包至`$KYLIN_HOME/spark/jars`
+
+- 实际拷贝请以您环境中实际存在的 jar 包为准，该表格以 **hadoop 2.7为例作为参考**。
+
+| 替换前的 Hadoop jar                         | 替换后的 Hadoop jar                                    |
+| ------------------------------------------- | ------------------------------------------------------ |
+| hadoop-annotations-2.6.5.jar                | hadoop-annotations-2.7.2.jar                           |
+| hadoop-auth-2.6.5.jar                       | hadoop-auth-2.7.2.jar                                  |
+| hadoop-client-2.6.5.jar                     | hadoop-client-2.7.2.jar                                |
+| hadoop-common-2.6.5.jar                     | hadoop-common-2.7.2.jar                                |
+| hadoop-hdfs-2.6.5.jar                       | hadoop-hdfs-2.7.2.jar                                  |
+| hadoop-mapreduce-client-app-2.6.5.jar       | hadoop-mapreduce-client-app-2.7.2.jar                  |
+| hadoop-mapreduce-client-common-2.6.5.jar    | hadoop-mapreduce-client-common-2.7.2.jar               |
+| hadoop-mapreduce-client-core-2.6.5.jar      | hadoop-mapreduce-client-core-2.7.2.jar                 |
+| hadoop-mapreduce-client-jobclient-2.6.5.jar | hadoop-mapreduce-client-jobclient-2.7.2.jar            |
+| hadoop-mapreduce-client-shuffle-2.6.5.jar   | hadoop-mapreduce-client-shuffle-2.7.2.jar              |
+| hadoop-yarn-api-2.6.5.jar                   | hadoop-yarn-api-2.7.2.jar                              |
+| hadoop-yarn-client-2.6.5.jar                | hadoop-yarn-client-2.7.2.jar                           |
+| hadoop-yarn-common-2.6.5.jar                | hadoop-yarn-common-2.7.2.jar                           |
+| hadoop-yarn-server-common-2.6.5.jar         | hadoop-yarn-server-common-2.7.2.jar                    |
+| hadoop-yarn-server-web-proxy-2.6.5.jar      | hadoop-yarn-server-web-proxy-2.7.2.jar                 |
+|                                             | hadoop-archives-2.7.2.jar                              |
+|                                             | hadoop-aws-2.7.2.jar                                   |
+|                                             | hadoop-hdfs-client-2.7.2.jar                           |
+|                                             | hadoop-hdfs-colocation-2.7.2.jar                       |
+|                                             | hadoop-yarn-server-applicationhistoryservice-2.7.2.jar |
+|                                             | hadoop-yarn-server-resourcemanager-2.7.2.jar           |
 ### FAQ
 
 **Q: 华为 FI C70 环境配置 Kerberos 后，环境检测未通过**

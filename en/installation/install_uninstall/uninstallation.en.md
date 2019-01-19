@@ -1,4 +1,4 @@
-## Uninstall Kyligence Enterprise
+## Uninstall
 In this section, we will show you the steps to uninstall Kyligence Enterprise.
 
 The complete steps to uninstall Kyligence Enterprise and remove all relevant data are as follows:
