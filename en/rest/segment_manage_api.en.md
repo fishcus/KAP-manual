@@ -7,14 +7,14 @@
 
 
 
-* [Merge/Refresh/Drop Segments](#manage-segments)
+* [Merge/Refresh/Delete Segments](#manage-segments)
 * [File Datasource: Merge All Consecutive Segments (by Hour)](#File-Datasource-Merge-All-Consecutive-Segments-by-Hour)
 * [File Datasource: Merge Segment using Customized Range](#File-Datasource-Merge-Segment-using-Customized-Range)
 * [File Datasource: Refresh a Segment](#File-Datasource-Refresh-a-Segment)
 
 
 
-### Merge/Refresh/Drop Segments {#manage-segments}
+### Merge/Refresh/Delete Segments {#manage-segments}
 
 - `PUT http://host:port/kylin/api/cubes/{cubeName}/segments`
 

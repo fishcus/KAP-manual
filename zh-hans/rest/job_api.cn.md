@@ -24,13 +24,38 @@
 - `GET http://host:port/kylin/api/jobs`
 
 - URL Parameters
-  - `timeFilter` - `必选` `int`，时间范围。对应关系如下：“最近一天” ：0 ；“最近一周” ： 1；"最近一月" ：2；"最近一年" ：3；"所有" ：4
+  - `timeFilter` - `必选` `int`，时间范围。对应关系如下：
+
+    | 时间范围 | 值   |
+    | -------- | ---- |
+    | 最近一天 | 0    |
+    | 最近一周 | 1    |
+    | 最近一月 | 2    |
+    | 最近一年 | 3    |
+    | 所有     | 4    |
+
   - `jobName` - `可选` `string`，任务名称
+
   - `projectName` - `可选` `string`，项目名称
-  - `status` - `可选` `int`，任务状态，对应关系如下：" NEW"：0；"PENDING"：1；"RUNNING"：2；"STOPPED"：32 ；"FINISHED"： 4；"ERROR"：8；"DISCARDED"： 16
+
+  - `status` - `可选` `int`，任务状态，对应关系如下：
+
+    | 任务状态  | 值   |
+    | --------- | ---- |
+    | NEW       | 0    |
+    | PENDING   | 1    |
+    | RUNNING   | 2    |
+    | FINISHED  | 4    |
+    | ERROR     | 8    |
+    | DISCARDED | 16   |
+    | STOPPED   | 32   |
+
   - `pageOffset` - `可选` `int`，每页返回的任务的偏移量
+
   - `pageSize` - `可选` `int`，每页返回的任务数量
+
   - `sortby` -  `可选`  `string`，排序字段，默认为 "last_modify"
+
   - `reverse` - `可选` `boolean`，是否倒序，默认为 "true"
 
 - HTTP Header
@@ -91,6 +116,7 @@
 - `GET http://host:port/kylin/api/jobs/{jobId}`
 
 - URL Parameters
+
   - `jobId` - `必选` `string`，任务对应的 Job ID
 
 - HTTP Header
@@ -190,6 +216,7 @@
 - `PUT http://host:port/kylin/api/jobs/{jobId}/pause`
 
 - URL Parameters
+
   - `jobId` - `必选` `string`，任务对应的 Job ID
 
 - HTTP Header
@@ -245,6 +272,7 @@
 - `PUT http://host:port/kylin/api/jobs/{jobId}/resume`
 
 - URL Parameters
+
   - `jobId` - `必选` `string`，任务对应的 Job ID
 
 - HTTP Header
@@ -316,6 +344,7 @@
 - `PUT http://host:port/kylin/api/jobs/{jobId}/cancel`
 
 - URL Parameters
+
   - `jobId` - `必选` `string`，任务对应的 Job ID
 
 - HTTP Header
@@ -370,6 +399,7 @@
 - `DELETE http://host:port/kylin/api/jobs/{jobId}/drop`
 
 - URL Parameters
+
   - `jobId` - `必选` `string`，任务对应的 Job ID
 
 - HTTP Header
