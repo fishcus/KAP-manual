@@ -166,12 +166,11 @@
 
   若设置此模型的 Cube 分区列为 *KYLIN_SALES.OPS_REGION*  ，基于此模型设计的 Cube 构建时需要设定分区值。Cube 将在此分区值上构建 segment。
 
-![设置分区列值](images/cube_partition.cn.png)
+  ![设置分区列值](images/cube_partition.cn.png)
 
 - 数据筛选条件
 
   过滤条件是 Cube 构建时除时间分区列和分区列的取数条件，比如您可以过滤掉空值数据或符合特定条件的数据。
-
 
 
 **步骤六**：单击**提交**按钮，到此数据模型就创建成功了。
