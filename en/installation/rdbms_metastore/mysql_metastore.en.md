@@ -16,7 +16,7 @@ The following steps illustrate how to connect MySQL as metastore. Here is an exa
 
    > If the metadata name doesn't exist, it will be automatically created it in MySQL. Otherwise, Kyligence Enterprise will use the existing ones.
 
-   For example: `kylin.metadata.url=kylin_default_instance@jdbc,url=jdbc:mysql://localhost:3306/kylin,username=root,password=,maxActive=10,maxIdle=10`.
+   For example: `kylin.metadata.url=kylin_default_instance@jdbc,url=jdbc:mysql://localhost:3306/kylin,username=root,password=,maxActive=20,maxIdle=20`.
 
    If you need to use MySQL cluster for load balance, please add the parameter in the connect string. For example,
 

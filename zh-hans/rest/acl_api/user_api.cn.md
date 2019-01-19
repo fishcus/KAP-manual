@@ -12,6 +12,9 @@
 * [创建用户](#创建用户)
 * [修改用户](#修改用户)
 * [删除用户](#删除用户)
+* [返回用户拥有的项目及表权限](#返回用户拥有的项目及表权限)
+* [返回用户拥有的行级权限](#返回用户拥有的行级权限)
+* [返回用户拥有的列级权限](#返回用户拥有的列级权限)
 
 
 
@@ -106,7 +109,7 @@
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8' \
     -d '{
-  	"password": "test@Kylingence",
+  	"password": "test@Kyligence",
   	"disabled": false, 
   	"authorities": ["ROLE_ADMIN"]
   	
@@ -218,4 +221,139 @@
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8'
+  ```
+
+
+
+### 返回用户拥有的项目及表权限
+
+* `GET http://host:port/kylin/api/access/{userName}`
+
+* URL Parameters
+
+  * `userName` - `必选` `string`，用户名称
+* HTTP Header
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
+
+* Curl 请求示例
+
+  ```shell
+  curl -X GET \
+  'http://host:port/kylin/api/access/ADMIN' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8'
+  ```
+
+* 响应示例
+
+  ```json
+  {
+      "code":"000",
+      "data":[
+          {
+              "project_name":"test1",
+              "table_name":[
+                  "KAP.KYLIN_ACCOUNT",
+                  "KAP.KYLIN_CAL_DT",
+                  "KAP.KYLIN_SALES",
+                  "KAP.KYLIN_COUNTRY",
+                  "KAP.KYLIN_CATEGORY_GROUPINGS"
+              ]
+          }
+      ],
+      "msg":""
+  }
+  ```
+
+
+### 返回用户拥有的行级权限
+
+* `GET http://host:port/kylin/api/access/{userName}/{projectName}/{tableName}/row`
+
+* URL Parameters
+
+  - `userName` - `必选` `string`，用户名称
+  - `projectName` - `必选` `string`，项目名称
+  - `tableName` - `必选` `string`，表名称
+
+* HTTP Header
+
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
+
+* Curl 请求示例
+
+  ```shell
+  curl -X GET \
+  'http://host:port/kylin/api/access/ADMIN/learn_kylin/DEFAULT.KYLIN_SALES/row' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8'
+  ```
+
+- 响应示例
+
+  ```json
+  {
+      "code":"000",
+      "data":{
+          "white_list":"(PART_DT=DATE '2012-01-01')",
+          "user_name":"ADMIN",
+          "project_name":"learn_kylin",
+          "table_name":"DEFAULT.KYLIN_SALES"
+      },
+      "msg":""
+  }
+  ```
+
+
+
+### 返回用户拥有的列级权限
+
+* `GET http://host:port/kylin/api/access/{userName}/{projectName}/{tableName}/column`
+
+* URL Parameters
+
+  - `userName` - `必选` `string`，用户名称
+  - `projectName` - `必选` `string`，项目名称
+  - `tableName` - `必选` `string`，表名称
+
+* HTTP Header
+
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
+
+* Curl 请求示例
+
+  ```shell
+  curl -X GET \
+  'http://host:port/kylin/api/access/ADMIN/learn_kylin/DEFAULT.KYLIN_SALES/column' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8'
+  ```
+
+- 响应示例
+
+  ```json
+  {
+      "code":"000",
+      "data":{
+          "black_list":[
+              "TRANS_ID"
+          ],
+          "user_name":"ADMIN",
+          "project_name":"learn_kylin",
+          "table_name":"DEFAULT.KYLIN_SALES"
+      },
+      "msg":""
+  }
   ```

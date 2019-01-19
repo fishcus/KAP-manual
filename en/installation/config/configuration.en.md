@@ -140,7 +140,7 @@ kylin.job.notification-mail-port=your-smtp-port
 kylin.job.notification-mail-username=your-smtp-account
 kylin.job.notification-mail-password=your-smtp-pwd
 kylin.job.notification-mail-sender=your-sender-address
-kylin.job.notification-admin-emails=adminstrator-address
+kylin.job.notification-admin-emails=administrator-address
 ```
 
 Restart Kyligence Enterprise server to take effective. 
