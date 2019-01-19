@@ -53,6 +53,7 @@
             * [可计算列支持的函数](model/model_design/computed_column/functions.cn.md)
         * [模型推荐](model/model_design/model_advisor.cn.md) 
         * [模型检测](model/model_design/model_check.cn.md)
+        * [基于流式数据的模型设计](model/model_design/model_streaming.cn.md)
     * [设计 Cube](model/cube_design/README.md)   
         * [基本 Cube 设计](model/cube_design/create_cube.cn.md)
         * [维度聚合组](model/cube_design/aggregation_group.cn.md)   

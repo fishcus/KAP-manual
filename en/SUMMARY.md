@@ -53,6 +53,7 @@
             * [Supported Functions](model/model_design/computed_column/functions.en.md)
         * [Model Advisor](model/model_design/model_advisor.en.md) 
         * [Model Check](model/model_design/model_check.en.md)
+        * [Model Design Based on Streaming Data](model/model_design/model_streaming.en.md)
     * [Cube Design](model/cube_design/README.md)   
         * [Cube Design Basics](model/cube_design/create_cube.en.md)
         * [Aggregation Group](model/cube_design/aggregation_group.en.md)   
