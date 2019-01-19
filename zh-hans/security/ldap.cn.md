@@ -1,75 +1,56 @@
 ## LDAP 验证
 
-Kyligence Enterprise 支持与 LDAP 服务器集成完成用户验证。您可以通过使用具有良好通用性的 Spring Security 框架实现的实现认证，也可以使用 Active Directory 服务实现 LDAP 验证。在启用 LDAP 验证之前，建议您联系 LDAP 管理员，以获取必要的信息。
+Kyligence Enterprise 支持与 LDAP 服务集成用于实现用户验证。
 
-### LDAP 服务器的安装
-启用 LDAP 验证之前，需要一个运行的 LDAP 服务器。如果已经有，联系 LDAP 管理员，以获取必要的信息，如服务器连接信息、人员和组织结构等。
+本章的目录结构如下：
 
-如果没有可用的 LDAP 服务器，需要额外安装。推荐使用 OpenLDAP Server 2.4，它是一个开源的基于 OpenLDAP Public License 的实现，并且也是最流行的 LDAP 服务器之一。很多企业 Linux 发行版已经内置了 OpenLDAP 服务器，如果没有，可以从官网下载：http://www.openldap.org/。
+- [准备工作](#pre)
+  - [OpenLDAP 的安装](#open-ldap)
+  - [配置 Microsoft Azure Active Directory 服务](#azure-ad)
+- 具体配置
+  - 
+
+
+### 准备工作 {#pre}
+
+启用 LDAP 验证之前，需要一个运行的 LDAP 服务器，请您联系 LDAP 管理员以获取必要的信息，如服务器连接信息、人员和组织结构等。
+
+### OpenLDAP 的安装 {#open-ldap}
+
+
+如果没有可用的 LDAP 服务器，需要额外安装。推荐使用 OpenLDAP Server 2.4，它是一个开源的、基于 OpenLDAP Public License 的实现，并且也是最流行的 LDAP 服务器之一。很多企业 Linux 发行版已经内置了 OpenLDAP 服务器，如果没有，可以从官网下载：http://www.openldap.org/。
 
 OpenLDAP 服务器的安装，依系统不同而略有区别。这里以 CentOS 6.4 为例进行介绍:  
 
-* 安装之前检查
+- 检查是否已经安装
+  ```sh
+  sudo find / -name openldap*
+  ```
 
-```shell
-sudo find / -name openldap*
-```
-如果没有安装，使用 yum 安装：
+- 如果没有安装，使用 yum 安装：
+  ```sh
+  sudo yum install -y openldap openldap-servers openldap-clients
+  ```
 
-```shell
-sudo yum install -y openldap openldap-servers openldap-clients
-```
-
-* 安装以后进行配置
-
-```shell
-cp /usr/share/openldap-servers/slapd.conf.obsolete /etc/openldap/slapd.conf
-cp /usr/share/openldap-servers/DB_CONFIG.example /var/lib/ldap/DB_CONFIG
-mv /etc/openldap/slapd.d{,.bak}
-```
-
-修改 slapd.conf，以给 example.com 公司配置为例，步骤如下：
-
-1．设置目录树的后缀
-
-找到语句：
-
-```
-suffix "dc=my-domain,dc=com"
-```
-将其改为：
-
-```
-suffix "dc=example,dc=com"
-```
-
-2．该语句设置 LDAP 管理员的 DN
-
-找到语句：
-
-```
-rootdn "cn=Manager,dc=my-domain,dc=com"
-```
-将其改为：
-
-```
-rootdn "cn=Manager,dc=example,dc=com"
-```
-
-3．设置 LDAP 管理员的口令
-
-找到语句：
-
-```
-rootpw secret
-```
+- 配置
+  ```sh
+  cp /usr/share/openldap-servers/slapd.conf.obsolete /etc/openldap/slapd.conf
+  cp /usr/share/openldap-servers/DB_CONFIG.example /var/lib/ldap/DB_CONFIG
+  mv /etc/openldap/slapd.d{,.bak}
+  ```
+  修改 `slapd.conf`，以给 example.com 公司配置为例，步骤如下：
+  - 设置目录树的后缀
+    将 `suffix "dc=my-domain,dc=com"` 修改为：`suffix "dc=example,dc=com"`   - 设置 LDAP 管理员的 DN
+    将 `rootdn "cn=Manager,dc=my-domain,dc=com"` 修改为：`rootdn "cn=Manager,dc=example,dc=com"`
+  - 设置 LDAP 管理员的口令
+    修改 `rootpw	secret`，将 `secret` 使用明文密码代替；
 
 要创建一个新的加密密码，使用下面的命令：
 
 ```
 slappasswd
 ```
-输入要设置的密码，加密值会被输出在 shell 界面。然后将此值拷贝在 rootpw 这一行，如：
+输入要设置的密码，加密值会被输出在 sh 界面。然后将此值拷贝在 rootpw 这一行，如：
 
 ```
 rootpw {SSHA}vv2y+i6V6esazrIv70xSSnNAJE18bb2u
@@ -77,20 +58,20 @@ rootpw {SSHA}vv2y+i6V6esazrIv70xSSnNAJE18bb2u
 
 4．为配置文件修改权限
 
-```shell
+```sh
 chown ldap.ldap /etc/openldap/*
 chown ldap.ldap /var/lib/ldap/*
 ```
 
 5．新建目录 /etc/openldap/cacerts
 
-```shell
+```sh
 mkdir /etc/openldap/cacerts
 ```
 
 6．重启系统，然后开启服务
 
-```shell
+```sh
 sudo service slapd start
 ```
 
@@ -176,7 +157,7 @@ objectClass: top
 
 8．通过命令导入
 
-```shell
+```sh
 /usr/bin/ldapadd -x -W -D "cn=Manager,dc=example,dc=com" -f example.ldif
 ```
 提示输入密码，输入管理员的密码，导入成功。
@@ -185,13 +166,13 @@ objectClass: top
 
 管理员可以使用如下命令强制修改用户密码，过程中需要输入新密码、确认新密码、输入管理员密码
 
-```shell
+```sh
 ldappasswd -xWD cn=Manager,dc=example,dc=com -S cn=jenny,ou=People,dc=example,dc=com
 ```
-### 配置 Microsoft Azure Active Directory 服务进行 LDAP 验证
+### 配置 Microsoft Azure Active Directory 服务 {#azure-ad}
 
 除了使用本地 LDAP 服务器，Kyligence Enterprise 也支持通过云端 Active Directory 服务进行 LDAP 的验证，以 Microsoft Azure Active Directory 服务为验证场景，认证前需要进行以下的前置工作：
- 
+
 1. 您需要进行 Azure Active Directory（简称 AD）的订阅以及创建（提示：您也可以使用已有的 Azure AD），您可以参考[ Azure Active Directory 配置文档](https://docs.microsoft.com/zh-cn/azure/active-directory/fundamentals/active-directory-access-create-new-tenant) 完成创建和配置。
 
 2. 安装 Azure AD 域服务。域服务提供托管域服务，例如域加入和 LDAP 服务，您可以参考 [Azure AD 域服务配置文档](https://docs.microsoft.com/zh-cn/azure/active-directory-domain-services/active-directory-ds-overview)中的步骤来进行 Azure AD 域服务的创建和相关的配置。
@@ -202,7 +183,7 @@ ldappasswd -xWD cn=Manager,dc=example,dc=com -S cn=jenny,ou=People,dc=example,dc
 
 首先，在 conf/kylin.properties 中，需要配置 LDAP 服务器的 URL，必要的用户名和密码（如果 LDAP Server 不是匿名访问）。为安全起见，这里的密码是需要加密（加密算法 AES），您可以运行下面的命令来获得加密后的密码：
 
-```shell
+```sh
 ${KYLIN_HOME}/bin/kylin.sh io.kyligence.kap.tool.general.CryptTool AES your_password
 # ${crypted_password}
 ```
