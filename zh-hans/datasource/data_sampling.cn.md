@@ -26,13 +26,13 @@
 
 **步骤三：** 下方左侧选中待采样的具体表后， 点击表详细信息右上角的**采样**按钮。
 
-![点击采样按钮](images/tablesampling_cn.png)
+![点击采样按钮](images/table_sampling.png)
 
 
 
 **步骤四：** 调整**采样比例**和**表采样记录数上限**。在弹出的对话框，用户可按需调整该表采样范围比例和设置采样上限，默认为100%全表采样，最高不超过20 000 000行。
 
-![设置采样比例](images/tablesampling_cn_percentage.png)
+![设置采样比例](images/table_sampling_percentage.png)
 
 > 提示：
 >
@@ -55,10 +55,10 @@
 - 特征数据
 - 采样数据
 
-![列](images/tablesampling_cn_column.png)
+![列](images/table_sampling_column.png)
 
-![扩展信息](images/tablesampling_cn_extend.png)
+![扩展信息](images/table_sampling_extend.png)
 
-![特征数据](images/tablesampling_cn_sample.png)
+![特征数据](images/table_sampling_sample.png)
 
-![采样数据](images/tablesampling_cn_statistics.png)
+![采样数据](images/table_sampling_statistics.png)

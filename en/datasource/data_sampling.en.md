@@ -24,13 +24,13 @@ Step 2. Click the `Studio` on the navigation bar and select *Data Source*  to se
 
 Step 3. Select the sample tables and click `Sampling` in the upper right.
 
-![Click Sampling button](images/collect_statistics.1.png)
+![Click Sampling button](images/table_sampling.png)
 
 
 
 Step 4. Adjust sample percentage and upper limit for sampling data records. Drag the sampling bar to adjust the sample percentage in the pop-up window; Kyligence Enterprise scans the whole table by default, i.e. sampling percentage is set to 100% and the upper limit is 20,000,000.
 
-![Adjust the sample size](images/tablesampling_percentage.png)
+![Adjust the sample size](images/table_sampling_percentage.png)
 
 > Notice: 
 >
@@ -53,13 +53,13 @@ A detailed statistical sampling includes the following information; you can swit
 - Statistics, which is the feature data
 - Sample Data
 
-![Column](images/collect_statistics.3.png)
+![Column](images/table_sampling_column.png)
 
-![Extend Information](images/collect_statistics.4.png)
+![Extend Information](images/table_sampling_extend.png)
 
-![Feature Data](images/collect_statistics.5.png)
+![Feature Data](images/table_sampling_sample.png)
 
-![Sample Data](images/collect_statistics.6.png)
+![Sample Data](images/table_sampling_statistics.png)
 
 
 

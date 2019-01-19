@@ -68,13 +68,13 @@ bin/kafka-console-consumer.sh --bootstrap-server 127.0.0.1:9092 --topic kylindem
 
 **步骤三**：点击 √ 确认 Broker 后，点击 **获取该集群信息** -> **kylindemo**， Kafka 的采样消息会出现在右边，点击 **Convert**。
 
-![获取 Broker 集群信息](images/kafka_info.cn.png)
+![获取 Broker 集群信息](images/kafka_info.png)
 
 **步骤四**：您需要为流式数据源定义一个表名，本产品将消息流中的数据作为此表的数据。这张数据表将作为后续创建模型和查询的事实表。本例将表命名为 "KAFKA_TABLE_1" 。
-![为流式数据源定义表名](images/kafka_name.cn.png)
+![为流式数据源定义表名](images/kafka_name.png)
 
 **步骤五**：检查表结构是否正确，**确保至少有一列被选择为timestamp**。
-![至少一列为 timestamp](images/kafka_check_timestamp.cn.png)
+![至少一列为 timestamp](images/kafka_check_timestamp.png)
 
 **步骤六**：设置解析器
 
@@ -91,7 +91,7 @@ bin/kafka-console-consumer.sh --bootstrap-server 127.0.0.1:9092 --topic kylindem
 >
 > 另一种是org.apache.kylin.source.kafka.DateTimeParser，它根据给定的 tsPattern，将 String 类型的时间表达式解析成 timestamp；如果没有指定 tsPattern，默认使用 "yyyy-MM-dd HH:mm:ss"。
 
-![设置解析器](images/kafka_parser.cn.png)
+![设置解析器](images/kafka_parser.png)
 
 **步骤七**：点击**提交**。至此，您完成了将 Kafka 输出的消息流定义为事实表。
 
