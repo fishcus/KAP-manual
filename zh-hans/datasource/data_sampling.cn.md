@@ -2,6 +2,8 @@
 
 本小节将介绍 Kyligence Enterprise 中的数据采样功能和使用。
 
+
+
 ### 什么是**采样**?
 
 本产品中采样功能主要支持用户针对数据源中的表，进行抽样统计，包括分析具体表相关列的基数和样例格式等。 
@@ -24,27 +26,23 @@
 
 **步骤三：** 下方左侧选中待采样的具体表后， 点击表详细信息右上角的**采样**按钮。
 
-![点击采样按钮](images/tablesampling_cn.png)
+![点击采样按钮](images/table_sampling.png)
 
 
 
-**步骤四：** 调整**采样比例**。在弹出的对话框，用户可按需调整该表采样范围比例，默认为100%全表采样。
+**步骤四：** 调整**采样比例**和**表采样记录数上限**。在弹出的对话框，用户可按需调整该表采样范围比例和设置采样上限，默认为100%全表采样，最高不超过20 000 000行。
 
-![设置采样比例](images/tablesampling_cn_percentage.png)
+![设置采样比例](images/table_sampling_percentage.png)
 
-> 提示：如果项目没有加载表的元数据，可以点击**数据源**按钮，在弹出的**加载元数据**窗口中，选择一个或**多个表**，并统一指定表采样的比例
-
-
-
-> 注意：表的采样比例可选范围分别为20%－40%－60%－80%－100%，采样比例越高，则采样结果越准确，但可能耗用较多资源。用户可根据实际资源配置情况进行调整（参见[推荐配置](../config/recommend_settings.cn.md)）
+> 提示：
+>
+> 1. 如果项目没有加载表的元数据，可以点击**数据源**按钮，在弹出的**加载元数据**窗口中，选择一个或**多个表**，并统一指定表采样的比例。
+> 2. 表的采样比例可选范围分别为20%－40%－60%－80%－100%，采样比例越高，则采样结果越准确，但可能耗用较多资源。用户可根据实际资源配置情况进行调整（参见[推荐配置](../config/recommend_settings.cn.md)）。
+> 3. 最终采样行数可能跟采样比例算出来的行数或表采样的上限不一致，这是由于为了保证表采样的可靠性，系统内有最低的表采样行数限制，此行数限制是不可更改的。
 
 **步骤五：** 点击**提交**按钮，开始采样任务
 
 **步骤六：** 点击左侧导航栏的 **监控** 模块，观察数据源采样任务进度。
-
-> 提示：采样任务名称格式： SAMPLING TABLE-Database Name.Table Name-Job Start Time。
-
-
 
 > 注意：对Kafka数据源进行采样时，不触发采样任务，但是仍会完成采样。
 
@@ -57,10 +55,10 @@
 - 特征数据
 - 采样数据
 
-![列](images/tablesampling_cn_column.png)
+![列](images/table_sampling_column.png)
 
-![扩展信息](images/tablesampling_cn_extend.png)
+![扩展信息](images/table_sampling_extend.png)
 
-![特征数据](images/tablesampling_cn_sample.png)
+![特征数据](images/table_sampling_sample.png)
 
-![采样数据](images/tablesampling_cn_statistics.png)
+![采样数据](images/table_sampling_statistics.png)

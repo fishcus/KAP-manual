@@ -1,6 +1,6 @@
 ## Import Data from Microsoft SQL Server
 
-MS SQL Server is supported as the default data source since Kyligence Enterprise 3.0, including SQL Server version SQLServer2008 and SQLServer2012. To load the SQL Server tables, SQL Server Driver Jar package is needed to put in  `$KYLIN_HOME/ext`.  The recommended Driver is sqlserver08:4-4.0.
+MS SQL Server 2012 is supported as the default data source since Kyligence Enterprise 3.0, including SQL Server version SQLServer2012 and higher. To load the SQL Server tables, SQL Server Driver Jar package is needed to put in  `$KYLIN_HOME/ext`.  The recommended Driver is sqlserver08:4-4.0.
 
 Then, please set the following configurations in *kylin.properties* or *project configuration*:
 
@@ -15,7 +15,9 @@ Then, please set the following configurations in *kylin.properties* or *project 
 
 To enable query pushdown, following configration is required:
 
-`kylin.query.pushdown.runner-class-name=io.kyligence.kap.query.pushdown.PushdownRunnerSDKImpl`
+```properties
+kylin.query.pushdown.runner-class-name=io.kyligence.kap.query.pushdown.PushdownRunnerSDKImpl
+```
 
 > Tips:  `kylin.source.jdbc.sqoop-home=<sqoop_path>` should be added in `kylin.properties` , which cannot be applied in project configuration. Sqoop_path is the path of your sqoop directory. 
 
@@ -25,11 +27,11 @@ To enable query pushdown, following configration is required:
 
 **Step 1:** Log in to Kyligence Enterprise Web UI, then add a new project by clicking the `+` at the top right on Web UI. Type project name (required) and descriptions on the pop-up page; click `OK` to finish creating a project.
 
-![Create project](/Users/sijie.chen/Documents/GitHub/KAP-Manual/en/datasource/images/dataimport_1.png)
+![Create project](../images/create_project.png)
 
 **Step 2:** Select `Data Source` under *Studio* section of your project. Click the blue `Data Source` button and select RDBMS as data source (as shown below).
 
-![Select data source](../images/rdbms_import2.en.png)
+![Select data source](../images/rdbms_import_select_source.png)
 
 **Step 3:** Set following configuration in project configuration:
 
@@ -47,13 +49,3 @@ kylin.source.jdbc.adaptor=io.kyligence.kap.sdk.datasource.adaptor.MssqlAdaptor
 **Step 4:** After the configuration finished users can access SQL Server data source on Web UI now.
 
 **Step 5:** Click `NEXT` and enter the *Load SQL Server Table Metadata* page; you can select tables you want from *SQL Server Table* on the left. Keyword search is also supported.
-
-
-
-> **Note:** There are several known limitations for Microsoft SQL SERVER 2008.
->
-> - Not support sub-query with limit clause
-> - Not support 'geometric','geography'
-> - Not support INITCAP, MEDIAN, STDDEV_POP, FIRST_VALUE functions
-> - Not support aggregate functions like avg/count/max/min/sum
-> - Not support windowing functions: over()

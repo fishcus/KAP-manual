@@ -24,17 +24,19 @@ Step 2. Click the `Studio` on the navigation bar and select *Data Source*  to se
 
 Step 3. Select the sample tables and click `Sampling` in the upper right.
 
-![Click Sampling button](images/collect_statistics.1.png)
+![Click Sampling button](images/table_sampling.png)
 
 
 
-Step 4. Adjust sample size; Drag the sampling bar to adjust the sample size in the pop-up window; Kyligence Enterprise scans the whole table by default.
+Step 4. Adjust sample percentage and upper limit for sampling data records. Drag the sampling bar to adjust the sample percentage in the pop-up window; Kyligence Enterprise scans the whole table by default, i.e. sampling percentage is set to 100% and the upper limit is 20,000,000.
 
-![Adjust the sample size](images/collect_statistics.2.png)
+![Adjust the sample size](images/table_sampling_percentage.png)
 
-> Notice: Click Data Source and select one or multiple tables to adjust sample size if metadata is not loaded.
+> Notice: 
 >
-> The sampling range is from 20%-40%-60%-80%-100%. The higher the sampling ratio is, the more accurate the sampling result will be. But it may consume more resources. Users can adjust the ratio according to actual resource configuration (see [recommended configuration](../config/recommend_settings.en.md )).
+> 1. Click Data Source and select one or multiple tables to adjust sample size if metadata is not loaded.
+> 2. The sampling range is from 20%-40%-60%-80%-100%. The higher the sampling ratio is, the more accurate the sampling result will be. But it may consume more resources. Users can adjust the ratio according to actual resource configuration (see [recommended configuration](../config/recommend_settings.en.md )).
+> 3. The final sampling records might be not the same as the records calculated by the sampling percentage and upper limit. To ensure the reliability of the table sampling result, there is a lower limit of table sample records in the system. The lower limit cannot be modified.
 
 Step 5. Click `Submit` and start table sampling.
 
@@ -48,16 +50,16 @@ A detailed statistical sampling includes the following information; you can swit
 
 - Column
 - Extend Information
-- Feature Data
+- Statistics, which is the feature data
 - Sample Data
 
-![Column](images/collect_statistics.3.png)
+![Column](images/table_sampling_column.png)
 
-![Extend Information](images/collect_statistics.4.png)
+![Extend Information](images/table_sampling_extend.png)
 
-![Feature Data](images/collect_statistics.5.png)
+![Feature Data](images/table_sampling_sample.png)
 
-![Sample Data](images/collect_statistics.6.png)
+![Sample Data](images/table_sampling_statistics.png)
 
 
 

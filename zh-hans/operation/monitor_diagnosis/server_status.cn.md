@@ -12,7 +12,8 @@
 
 * Query Node：负责充当查询引擎的节点。
 
-  更多相关信息可以查看手册中关于[服务发现及任务引擎高可用](installation/deploy/ha.cn.md)和[集群部署与负载均衡](installation/deploy/cluster_lb.cn.md)的部分。
+  更多相关信息可以查看手册中关于[服务发现及任务引擎高可用](../../installation/deploy/ha.cn.md)和[集群部署与负载均衡](../../installation/deploy/cluster_lb.cn.md)的部分。
+
 
 ### 服务器状态 ###
 

@@ -1,24 +1,34 @@
-## Kyligence Enterprise Quick Start on MapR Sandbox
+## Install on MapR Platform
 
-In this guide, we will explain how to quickly install Kyligence Enterprise on MapR sandbox.
+To enable you to experience Kyligence Enterprise as soon as possible, we recommend that you use Kyligence Enterprise with sandbox software such as All-in-one Sandbox VM. In this section. We will guide you to quickly install Kyligence Enterprise in the MapR sandbox.
 
-Before proceeding, please make sure the [Prerequisite of Kyligence Enterprise](hadoop_env.en.md) is met.
+### Prepare Environment
 
-### Prerequisite
+**MapR Sandbox Environment**
 
-First of all, **please make sure that you allocate sufficient resources for sandbox**. For resource requirements of Kyligence Enterprise for sandbox, please refer to [Requirement](.\hadoop_env.en.md).
+First of all, **make sure that you allocate sufficient resources for sandbox**. For resource requirements of Kyligence Enterprise for sandbox, please refer to [Prerequisites](../prerequisite.en.md).
 
 When configuring sandbox, we recommend that you use the Bridged Adapter model instead of the NAT model. The Bridged Adapter model will assign an independent IP address to your sandbox, allowing you to choose either local or remote access to Kyligence Enterprise GUI.
 
 To avoid permission issue in the sandbox, you can use MapR's  *mapr* account through SSH. The password for **MapR 5.2.1** is `mapr`. This guide uses `mapr` account as example. 
 
+**MapR Cluster Environment**
+
+For the MapR Cluster environment, we use the MapR Converged Community Edition 6.0a1 in AWS Marketplace. For more details, please refer to [AWS Marketplace](https://aws.amazon.com/marketplace/pp/B010GJS5WO?qid=1522845995210&sr=0-4&ref_=srh_res_product_title) 
+
+When installing MapR Cluster, it is recommended to assign public network IP to each node. After installation, you need to open some ports in the security group, such as 7070 (Kylin), 8090 (RM), etc.
+
+MapR Cluster Node cannot be accessed directly through SSH. It requires MapR Installer as a springboard, and then access through SSH. SSH secret keys stored in ` /opt/mapr/installer/data ` of  MapR Installer node.
+
+To access MapR Cluster resources in MapR Cluster Node, you need to generate mapr_ticket. The generation instruction is `maprlogin password`. If you do not know the current account password, please set the password with `passwd {user}`.
+
 ### Install Kyligence Enterprise
 
-After setting up the environment, installing Kyligence Enterprise is very simple. For detailed steps, please refer to [Quick install](.\quick_install.en.md). 
+After setting up the environment, installing Kyligence Enterprise is very simple. For detailed steps, please refer to [Quick Startl](../../quickstart/README.md). 
 
 Please **DO PAY ATTENTION** to the following instructions.
 
->**Caution:** Currently **only MySQL** is supported as metastore. For how to set up MySQL as metastore, please refer to [Use MySQL as Metastore](../config/metastore_jdbc_mysql.en.md).
+>**Caution:** Using MySQL as Metastore is **only supported** in current version. For how to set up MySQL as metastore, please refer to [Use MySQL as Metastore](../../installation/rdbms_metastore/mysql_metastore.en.md).
 
 ### Special Instructions for MapR Environment
 
@@ -57,20 +67,12 @@ The MapR environment is a little bit different with other Hadoop distributions. 
   export HIVE_CONF=/opt/mapr/hive/hive-2.1/conf
   ```
 
-* Please specify the environment dependencies of Spark and execute the following commands before you start Kyligence Enterprise. Please replace the example path with your actual Spark path.
+* Please specify the environment dependencies of Spark before you start Kyligence Enterprise. Please replace the example path with your actual Spark path.
 
   ```shell
   export SPARK_HOME=/opt/mapr/spark/spark-2.2.1
-  cp -rf $SPARK_HOME $KYLIN_HOME
-  cp -rf $KYLIN_HOME/spark/jars/spark-sql_2.11-2.2.1-kylin-*.jar $KYLIN_HOME/spark-2.2.1/jars
-  cp -rf $KYLIN_HOME/spark/jars/spark-catalyst_2.11-2.2.1-kylin-*.jar $KYLIN_HOME/spark-2.2.1/jars
-  rm -rf $KYLIN_HOME/spark-2.2.1/jars/spark-catalyst_2.11-2.2.1-mapr-*.jar
-  rm -rf $KYLIN_HOME/spark-2.2.1/jars/spark-sql_2.11-2.2.1-mapr-*.jar
-  rm -rf $KYLIN_HOME/spark
-  mv $KYLIN_HOME/spark-2.2.1 $KYLIN_HOME/spark
   ```
 
-* Using MySQL as Metastore is **only supported** in current version. More details refer to [Use MySQL as Metastore](../config/metastore_jdbc_mysql.en.md).
 
 ### FAQ
 

@@ -8,9 +8,9 @@ Kyligence Enterprise leverages Hive by default to do part of the pre-calculation
 
 **HDP / CDH / FusionInsight Platform:**
 
-Follow the steps below to enable SparkSQL during cube build:
+Please follow the steps below to enable SparkSQL during cube build:
 
-1. Create a new directory and contain the client side configuration files.
+1. To run Spark on YARN, you need to specify environment variable `HADOOP_CONF_DIR`, which is the directory that contains the client side configuration files for Hadoop. In many Hadoop distributions, the directory normally is `/etc/hadoop/conf`. Therefore, it is recommended to create a directory to link those files. 
 
    ```shell
    mkdir $KYLIN_HOME/hadoop-conf
@@ -34,6 +34,7 @@ Follow the steps below to enable SparkSQL during cube build:
 
    ```properties
    kylin.source.hive.enable-sparksql-for-table-ops=true
+   kylin.env.hadoop-conf-dir=$KYLIN_HOME/hadoop-conf
    ```
 
 **MapR Platform:**
@@ -42,7 +43,17 @@ Follow the steps below to enable SparkSQL during cube build:
 
 > Note: If the Kyligence Enterprise has been started before configuring SparkSQL, please export the `$KYLIN_HOME/spark` as the `SPARK_HOME`.
 
-1. Copy the `hive-site.xml` file from `$HIVE_HOME/conf` to `$SPARK_HOME/conf` in your Hadoop environment and delete the default engine property.
+1. To run Spark on YARN, you need to specify environment variable `HADOOP_CONF_DIR`, which is the directory that contains the client side configuration files for Hadoop. In many Hadoop distributions, the directory normally is `/etc/hadoop/conf`. Therefore, it is recommended to create a directory to link those files. 
+
+   ```shell
+   mkdir $KYLIN_HOME/hadoop-conf
+   ln -s $HADOOP_CONF_DIR/core-site.xml $KYLIN_HOME/hadoop-conf/core-site.xml
+   ln -s $HADOOP_CONF_DIR/hdfs-site.xml $KYLIN_HOME/hadoop-conf/hdfs-site.xml
+   ln -s $HADOOP_CONF_DIR/yarn-site.xml $KYLIN_HOME/hadoop-conf/yarn-site.xml
+   cp /$HIVE_HOME/conf/hive-site.xml $KYLIN_HOME/hadoop-conf/hive-site.xml
+   ```
+
+2. Copy the `hive-site.xml` file from `$HIVE_HOME/conf` to `$SPARK_HOME/conf` in your Hadoop environment and delete the default engine property.
 
    ```shell
    cp /$HIVE_HOME/conf/hive-site.xml $SPARK_HOME/conf/hive-site.xml
@@ -50,20 +61,25 @@ Follow the steps below to enable SparkSQL during cube build:
    # Delete "hive.execution.engine" property
    ```
 
-2. Add `spark.yarn.dist.files` property in `$SPARK_HOME/conf/spark-default.conf`. 
+3. Add `spark.yarn.dist.files` property in `$SPARK_HOME/conf/spark-default.conf`. 
 
    ```shell
    vi $SPARK_HOME/conf/spark-default.conf
    # spark.yarn.dist.files  $SPARK_HOME/conf/hive-site.xml
    ```
 
-3. Set below configuration in `$KYLIN_HOME/conf/kylin.properties`.
+   > **Note**: Please using the absolute path to replace `$SPARK_HOME/conf/hive-site.xml`.
 
-   ```
+4. Set below configuration in `$KYLIN_HOME/conf/kylin.properties`.
+
+   ```properties
    kylin.source.hive.enable-sparksql-for-table-ops=true
+   kylin.env.hadoop-conf-dir=$KYLIN_HOME/hadoop-conf
    ```
 
-4. Start Kyligence Enterprise
+   > **Note**: Please using the absolute path to replace `$KYLIN_HOME/hadoop-conf`.
+
+5. Start Kyligence Enterprise
 
    ```sh
    $KYLIN_HOME/bin/kylin.sh start

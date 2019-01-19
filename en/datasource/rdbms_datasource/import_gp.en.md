@@ -30,13 +30,13 @@ Using Greenplum as an example, we connect Greenplum data source with Greenplum D
 
 **Step 2:** In Kyligence Enterprise, project is the workspace of tables, models and cubes. To create a sample project, open the web UI of Kyligence Enterprise and click the plus icon at the top to create a new project like below.
 
-![Create project](../images/dataimport_1.png)
+![Create project](../images/create_project.png)
 
 **Step 3:** Select the project you just created on the upper corner of the web UI, all our following operations will be within the project.
 
 > **Note:** If you want to use Greenplum as the data source, you need to choose RDBMS in the current version.
 
-![Select data source](../images/rdbms_import2.en.png)
+![Select data source](../images/rdbms_import_select_source.png)
 
 **Step 4:** Set following configuration in project configuration:
 

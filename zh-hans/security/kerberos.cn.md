@@ -107,3 +107,13 @@
   kap.kerberos.keytab={your_keytab_name} 
   ```
 
+### FAQ
+
+**Q: 华为 FI C70 环境配置 Kerberos 后，环境检测未通过**
+
+对于华为FI C70，如果运行环境有启用kerberos安全认证，并且集群的`hive-site.xml`的配置`hive.server2.enable.doAs`为 false，则需要添加相关的配置项：
+
+```properties
+kylin.source.hive.table-dir-create-first=true
+```
+
