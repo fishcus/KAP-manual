@@ -67,6 +67,6 @@ Kyligence Enterprise 3.1.0 开始支持直接从 Hive 数据文件导入数据�
 **步骤三**：加载数据
 
 * 对于启用了 Hive 数据文件导入功能的 Cube，启动构建任务时必需指明数据文件列表，因此暂时无法通过 GUI 触发加载数据。请参考 [Cube 构建 API](../rest/cube_api/cube_build_api.cn.md) 来构建新的 Segment。
-* 类似的，对于合并 Segment 也有特殊的 Rest API。详见 [管理 Segment API](../rest/segment_manage_api.cn.md)。
+* 类似的，对于合并 Segment 也有特殊的 Rest API。详见 [Segment 管理 APII](../rest/segment_manage_api.cn.md)。
 
 

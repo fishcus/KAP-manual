@@ -2,7 +2,7 @@
 
 > Reminders:
 >
-> 1. Please read [Access and Authentication REST API](authentication.en.md) and understand how authentication works.
+> 1. Please read [Access and Authentication REST API](../authentication.en.md) and understand how authentication works.
 > 2. On Curl command line, don't forget to quote the URL if it contains `&` or other special chars.
 
 

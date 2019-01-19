@@ -159,6 +159,7 @@
         * [查看 Cube 信息 API](rest/cube_api/cube_info_api.cn.md)
         * [Cube 构建 API](rest/cube_api/cube_build_api.cn.md)
         * [Cube 管理 API](rest/cube_api/cube_manage_api.cn.md)
+    * [Segment 管理 API](rest/segment_manage_api.cn.md)
     * [任务 API](rest/job_api.cn.md)
     * [查询 API](rest/query_api.cn.md)
     * [缓存 API](rest/cache_api.cn.md)
