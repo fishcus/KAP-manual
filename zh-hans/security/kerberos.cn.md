@@ -91,7 +91,7 @@ Kerberos 是一种支持票证身份验证的安全协议。如果 Kyligence Ent
         };
         ```
 
-     注意：对于华为 FI C80 多节点部署时，请您进行以下操作：
+     注意：对于**华为 FI C80** 多节点部署时，请您进行以下操作：
 
      - 确认 FI Hadoop 集群中每个节点的 `krb5.conf` 文件与导出的 `$KYLIN_HOME/conf/krb5.conf`文件一致；如果不一致请先将其备份，然后将导出的 `krb5.conf` 文件拷贝至FI集群中**每个节点**， 如`/etc`目录下。
 
@@ -123,4 +123,14 @@ Kerberos 是一种支持票证身份验证的安全协议。如果 Kyligence Ent
    kap.kerberos.principal={your_principal_name}
    kap.kerberos.keytab={your_keytab_name} 
    ```
+
+### FAQ
+
+**Q: 华为 FI C70 环境配置 Kerberos 后，环境检测未通过**
+
+对于华为FI C70，如果运行环境有启用kerberos安全认证，并且集群的`hive-site.xml`的配置`hive.server2.enable.doAs`为 false，则需要添加相关的配置项：
+
+```properties
+kylin.source.hive.table-dir-create-first=true
+```
 

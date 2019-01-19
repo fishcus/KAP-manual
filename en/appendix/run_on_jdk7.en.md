@@ -36,3 +36,4 @@ Please continue to start Kyligence Enterprise.
 ```shell
 $KYLIN_HOME/bin/kylin.sh start
 ```
+

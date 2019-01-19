@@ -68,18 +68,18 @@ bin/kafka-console-consumer.sh --bootstrap-server 127.0.0.1:9092 --topic kylindem
 
 **Step 2:** Input your broker info. Under the field *Host*, please fill in your own IP address which the Jobs run in YARN cluster can access.
 
-![Input Broker Information](images/kafka_1.en.png)
+![Input Broker Information](images/kafka_setting.png)
 
 **Step 3:** Click √ to confirm your broker info, then click *Get Cluster Info* to select the topic kylindemo. The kafka sample message will appear in the right box after *Convert* button is clicked.
 
-![Get Cluster Information](images/kafka_2.en.png)
+![Get Cluster Information](images/kafka_info.png)
 
 **Step 4:** You need to give a logic table name for this streaming data source. The name will be used for SQL query later. Please enter "KAFKA_TABLE_1" in the **Table Name** field.
-![Input Table Name](images/kafka_3.png)
+![Input Table Name](images/kafka_name.png)
 
 **Step 5:** Review the table schema, make sure there is at least one column chosen as *timestamp*.
 
-![One Column Chosen as Timestamp](images/kafka_4.png)
+![One Column Chosen as Timestamp](images/kafka_check_timestamp.png)
 
 **Step 6:** Set parser
 
@@ -99,6 +99,6 @@ tsParser: refers to the timestamp parser, which parses the value of tsColName in
 
 tsPattern: refers to the time pattern for use by tsParser.
 
-![Set Parser](images/kafka_5.png)
+![Set Parser](images/kafka_parser.png)
 
 **Step 7:** Click **Submit**. Now, you have defined message flow form Kafka as fact table successfully.

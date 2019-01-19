@@ -31,13 +31,13 @@ kylin.query.pushdown.runner-class-name=io.kyligence.kap.query.pushdown.PushdownR
 
 **步骤二**：打开 Kyligence Enterprise 的 Web UI，在主界面的顶端是项目的管理工具栏，点击“＋”即可如下图所示创建一个新的项目（Project）。 
 
-![新建项目](../images/rdbms_import.cn.png)
+![新建项目](../images/create_project.png)
 
 **步骤三**：在 Web UI 的左上角选择刚刚创建的项目，表示我们接下来的全部操作都在这个项目中，在当前项目的操作不会对其他项目产生影响。 
 
 ​    **注意**：当前版本使用 Greenplum 数据源时，需要选择 RDBMS 数据源
 
-![选择RDBMS数据源](../images/rdbms_import2.cn.png)
+![选择RDBMS数据源](../images/rdbms_import_select_source.png)
 
 **步骤四**：在项目配置中添加以下配置：
 
