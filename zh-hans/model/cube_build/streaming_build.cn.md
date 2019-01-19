@@ -1,53 +1,6 @@
 ## 流式构建
 
-本产品从 2.3 开始提供了流式构建的功能，用户能够以 Kafka 为数据源，根据时间间隔构建流式 Cube。有关 Kafka 数据源导入以及从流式数据定义事实表的信息，参见[导入 Kafka 数据源](../data_import/kafka_import.cn.md)。
-
-
-
-### 通过样例程序快速创建流式模型
-
-Kyligence Enterprise 内置了样例流式 Cube 和 Kafka 测试数据生成脚本，方便您快速体验流式数据建模与数据构建。
-
-在本产品二进制包安装路径下，执行`bin/sample.sh`将创建`kylin_streaming_table`数据表，创建`kylin_streaming`模型，创建`kylin_streaming_cube` Cube 。其中`kylin_streaming_table`关联了运行在 localhost:9092 的 Kafka 节点，名为`kylin_streaming_topic`的 Kafka Topic。
-
-假设在 localhost:9092 确实运行有 kafka节点，并且 Kyligence Enterprise 启动时，`KAFKA_HOME`已经被正确设置，下一步将通过`sample-streaming.sh`脚本，创建`kylin_streaming_topic`的 Kafka Topic，并以每秒钟100个消息的速度发送随机消息到该 topic。
-
-
-
-### 创建数据模型
-
-本产品支持将消息流抽象为事实表。定义好事实表后，就可以开始定义数据模型。这一步和定义一个普通的数据模型没有太大不同([设计模型](../data_modeling.cn.md)）。不过，您需要留意如下两点：
-
-- 对于流式数据，Kyligence Enterprise 暂时还不支持添加维度表。
-- 定义事实表上的维度和度量时，可以参照一般的业务逻辑。本例中，将 `country(国家)`、`category(品类)`、`device（设备）`、`user_gender(用户性别)`、`user_age(用户年龄)`作为维度（dimension/D），将`amount(商品总量)`、`QTY(商品数)`作为度量(measure/M)。
-
-
-
-### 创建 Cube
-
-基于流式数据的 Cube 与常规 Cube 在大部分情况下都十分相似([创建 Cube](../cube/create_cube.cn.md))。您需要特别留意以下几个方面。
-
-**Cube 维度设置**
-
-- 不建议将 `order_time` 作为维度（dimension），此列的数据类型是 timestamp（粒度在毫秒级），将成为一个超高基的维度且一般的查询时间粒度都会大于毫秒。这里，推荐使用 minute\_start, hour\_start 等时间维度。
-- 在设置 RowKeys 时, 请将 "minute\_start" 拖拽到所有属性的最顶部。对于基于流式 Cube 的查询，时间维度会是一个经常被用到的维度。因此，将其放在 RowKeys 前面有助于快速过滤。
-
-**刷新设置**
-
-- 推荐设置自动合并 Segment，例如0.5小时，4小时，１天，７天等。合并 Segment 有助于提升SQL查询性能。 
-
-
-
-### Cube 构建
-
 您可以直接在 Web GUI 中，点击 Cube 的操作**构建**来触发 Cube 构建，当然，你也可以通过 curl 指令通过 REST API 触发 Cube 构建，详情请参考本用户手册中的 REST API章节。
-
-```sh
-curl -X PUT --user ADMIN:KYLIN -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/json" -H "Accept-Language: en" -d '{ "sourceOffsetStart": 0, "sourceOffsetEnd": 9223372036854775807, "buildType": "BUILD"}' http://localhost:7070/kylin/api/cubes/{your_cube_name}/build_streaming
-```
-
-> **注意：** API 是以 "_streaming" 结尾的，这跟常规构建中以 "build" 结尾不同。
-> 同时，语句中的数字０指的是 Cube 开始构建的偏移量，而9223372036854775807指的是 Long.MAX_VALUE 的值，指的是 Kyligence Enterprise 的构建会用到 Topic 中目前为止拥有的所有消息。
 
 在触发了 Cube 构建以后，在**监控**页面，我们可以观察到一个新的构建任务。在构建任务完成后，进入**查询**页面, 并执行 SQL 语句，确认流式 Cube 可用。
 
