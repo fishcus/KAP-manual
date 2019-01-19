@@ -34,6 +34,7 @@ Please follow the steps below to enable SparkSQL during cube build:
 
    ```properties
    kylin.source.hive.enable-sparksql-for-table-ops=true
+   kylin.env.hadoop-conf-dir=$KYLIN_HOME/hadoop-conf
    ```
 
 **MapR Platform:**
@@ -67,7 +68,7 @@ Follow the steps below to enable SparkSQL during cube build:
    # spark.yarn.dist.files  $SPARK_HOME/conf/hive-site.xml
    ```
 
-   > **Note**: Please using the absolute path to replace `$SPARK_HOME/hive-site.xml`.
+   > **Note**: Please using the absolute path to replace `$SPARK_HOME/conf/hive-site.xml`.
 
 4. Set below configuration in `$KYLIN_HOME/conf/kylin.properties`.
 

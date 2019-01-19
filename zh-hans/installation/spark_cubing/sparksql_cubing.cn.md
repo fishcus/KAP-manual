@@ -37,7 +37,7 @@ Kyligence Enterprise 在 Cube 构建过程中，默认应用 Hive 来做部分�
    kylin.env.hadoop-conf-dir=$KYLIN_HOME/hadoop-conf
    ```
 
-   > 注意：请将这里的 ` $KYLIN_HOME/hive-site.xml` 替换为绝对路径
+   > 注意：请将这里的 ` $KYLIN_HOME/hadoop-conf` 替换为绝对路径
 
 **MapR 平台：**
 
@@ -71,7 +71,7 @@ Kyligence Enterprise 在 Cube 构建过程中，默认应用 Hive 来做部分�
    # spark.yarn.dist.files  $SPARK_HOME/conf/hive-site.xml
    ```
 
-   > 注意：请将这里的` $SPARK_HOME/hive-site.xml` 替换为绝对路径
+   > 注意：请将这里的` $SPARK_HOME/conf/hive-site.xml` 替换为绝对路径
 
 1. 在 `$KYLIN_HOME/conf/kylin.properties` 进行如下设置：
 
