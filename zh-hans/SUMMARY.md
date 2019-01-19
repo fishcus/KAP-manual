@@ -69,7 +69,7 @@
         * [验证 SQL](model/cube_design/verify_sql.cn.md)  
     * [构建 Cube](model/cube_build/README.md)    
         * [全量构建](model/cube_build/full_build.cn.md)
-        * [按“日期/时间”构建](model/cube_build/by_date.cn.md)
+        * [按日期/时间构建](model/cube_build/by_date.cn.md)
         * [按文件构建](model/cube_build/by_file.cn.md)
         * [流式构建](model/cube_build/streaming_build.cn.md)
         * [自定义增量构建](model/cube_build/customize_build.cn.md)
