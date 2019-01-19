@@ -11,7 +11,6 @@
 * [Enable a Cube](#enable-a-cube)
 * [Disable a Cube](#disable-a-cube)
 * [Purge a Cube](#purge-a-cube)
-* [Manage Segments](#manage-segments)
 * [Get Holes in Cube](#get-holes-in-cube)
 * [Fill Holes in Cube](#fill-holes-in-cube)
 * [Export TDS File](#export-tds-file)
@@ -283,75 +282,6 @@
           "total_storage_size_kb":0
       },
       "msg":""
-  }
-  ```
-
-
-
-### Manage Segments {#manage-segments}
-
-- `PUT http://host:port/kylin/api/cubes/{cubeName}/segments`
-
-
-- URL Parameters
-  - `cubeName` - `required` `string`, cube name
-
-- HTTP Header
-  - `Accept: application/vnd.apache.kylin-v2+json`
-  - `Accept-Language: en`
-  - `Content-Type: application/json;charset=utf-8`
-
-- HTTP Body: JSON Object
-  - `buildType`  -  `required` `string`, supported build type, ie., "MERGE", "REFRESH" or "DROP"
-  - `segments`  -  `required` `string[]`, segment name
-  - `mpValues`  -  `optional` `string`,  multiple partition values of corresponding model
-  - `force`  -  `optional` `boolean`, whether force to operate, ie., "true" or  "false"
-
-
-- Curl Request Example
-
-  ```sh
-  curl -X PUT \
-    'http://host:port/kylin/api/cubes/kylin_sales_cube/segments' \
-    -H 'Accept: application/vnd.apache.kylin-v2+json' \
-    -H 'Accept-Language: en' \
-    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
-    -H 'Content-Type: application/json;charset=utf-8' \
-    -d '{"buildType":"REFRESH",
-  "segments":["20180908000000_20180909000000"],
-  "mpValues":"",
-  "force":true
-  }'
-  ```
-
-
-- Response Example
-
-  ```JSON
-  {
-    "code":"000",
-    "data":[
-        {
-            "uuid":"90be8cbb-4141-4af7-a57e-0a3b1b5504bd",
-            "last_modified":1545912427926,
-            "version":"3.2.1.2001",
-            "name":"BUILD CUBE - kylin_sales_cube - 20180908000000_20180909000000 - GMT+08:00 2018-12-27 20:07:07",
-            "type":"BUILD",
-            "duration":0,
-            "related_cube":"kylin_sales_cube",
-            "display_cube_name":"kylin_sales_cube",
-            "related_segment":"76910915-d869-4ed4-9d31-55c419e7a6b2",
-            "exec_start_time":0,
-            "exec_end_time":0,
-            "exec_interrupt_time":0,
-            "mr_waiting":0,
-            "steps":[...],
-            "submitter":"ADMIN",
-            "job_status":"PENDING",
-            "progress":0
-        }
-    ],
-    "msg":""
   }
   ```
 
