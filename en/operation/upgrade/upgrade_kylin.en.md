@@ -1,1 +1,112 @@
 ## Upgrade From Apache Kylin
+
+## Upgrade from Apache Kylin
+
+Kyligence Enterprise is a commercial version based on Apache Kylin. This chapter describes how to quickly and easily upgrade from Apache Kylin v2.3+ to the latest version of Kyligence Enterprise 3.x software.
+
+
+### Ready to work
+
+- Stop the running Apache Kylin instance:
+  ```shell
+  $KYLIN_HOME/bin/kylin.sh stop
+  ```
+
+  Confirmation example has stopped:
+
+  ```shell
+  Ps -ef | grep kylin
+  ```
+
+- Back up the Kylin installation directory and metadata:
+
+  ```shell
+  Cp -r $KYLIN_HOME ${KYLIN_HOME}.backup
+  $KYLIN_HOME/bin/metastore.sh backup
+  ```
+
+- Unzip the Kyligence Enterprise installation package. Update the `KYLIN_HOME` environment variable value:
+
+  ```shell
+  Tar -zxvf Kyligence-Enterprise-{version-env}.tar.gz
+  Export KYLIN_HOME={your-unpack-folder}
+  ```
+
+
+### Configuration modification
+
+- Quick configuration Kyligence Enterprise
+
+  Two sets of configuration parameters are available in Kyligence Enterprise: `$KYLIN_HOME/conf/profile_prod/` and `$KYLIN_HOME/conf/profile_min/`. The former is the default solution for the actual production environment; the latter uses less resources and is suitable for environments with limited resources such as sandboxes. If your single point environment has limited resources, you can switch to the `profile_min` configuration.
+
+  ```shell
+  Rm $KYLIN_HOME/conf/profile
+  Ln -s $KYLIN_HOME/conf/profile_min $KYLIN_HOME/conf/profile
+  ```
+
+- Manually modify configuration changes in Kylin to be modified in Kyligence Enterprise
+
+  > **Note**: The configuration file is not fully compatible, please do not ** direct copy replacement configuration file.
+
+  - Redo the changes in `$KYLIN_HOME/conf/` in Kyligence Enterprise's `$KYLIN_HOME/conf/`;
+  - Redo the changes in `$KYLIN_HOME/bin/setenv.sh` in Kyligence Enterprise's `$KYLIN_HOME/conf/setenv.sh`.
+
+    > Tip: The path to `setenv.sh` has changed. The file is located in the `$KYLIN_HOME/conf/` directory in Kyligence Enterprise.
+
+
+- If you need to use existing metadata, you need to modify the following configuration in `$KYLIN_HOME/conf/kylin.properties`:
+
+  ```properties
+  Kylin.metadata.url={your_kylin_metadata_url}
+  ```
+
+- Since the Cube allows you to set some advanced settings in Kyligence Enterprise, you need to manually refresh the Cube information:
+
+  ```shell
+  $KYLIN_HOME/bin/metastore.sh refresh-cube-signature
+  ```
+
+- Due to the introduction of the concept of user groups in Kyligence Enterpise, users in Apache Kylin need to be upgraded:
+
+  ```shell
+  $KYLIN_HOME/bin/kylin.sh io.kyligence.kap.tool.metadata.UserAuthorityUpgraderCLI
+  ```
+
+  After the upgrade is complete, you also need to reset the password for the ADMIN user:
+
+  ```shell
+  $KYLIN_HOME/bin/kylin.sh admin-password-reset
+  ```
+
+
+### Enable Kyligence Enterprise Example
+
+Execute the following command to start:
+```shell
+$KYLIN_HOME/bin/kylin.sh start
+```
+
+
+### Upgrading the storage engine
+
+Apache Kylin uses HBase as the storage engine, and Kyligence Enterprise uses KyStorage as the storage engine by default. The steps to upgrade the storage engine are as follows:
+
+- Back up current metadata
+
+  ```shell
+  $KYLIN_HOME/bin/metastore.sh backup
+  ```
+
+- Upgrade the backed up metadata to fit the KyStorage storage engine
+
+  ```shell
+  $KYLIN_HOME/bin/metastore.sh promote $KYLIN_HOME/meta_backups/<metadata-backup-folder>
+  ```
+
+- Restore upgraded metadata
+
+  ```shell
+  $KYLIN_HOME/bin/metastore.sh restore $KYLIN_HOME/meta_backups/<metadata-backup-folder>
+  ```
+
+- After clicking **Reload Metadata** on the **System** page of the Kyligence Enterprise webpage, clear all Cube Segments and rebuild all cubes.
