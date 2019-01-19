@@ -2,11 +2,11 @@
 
 To achieve stable query performance, it is critical that exclusive resource is allocated for Kyligence Enterprise. The read/write separation deployment is designed for such resource isolation.
 
-The read/write separation deployment requires two separate Hadoop clusters, called the **Build Cluster** and the **Query Cluster** respectively. Logically, the two clusters always exist even for normal deployment and they just share the same physical cluster. Kyligence Enterprise uses the build cluster to build cubes, and query cluster to execute online queries. In build cluster it has lots of data writes, while in the query cluster, it's mainly about data reads. By splitting the two clusters physically, known as the **Build Cluster** (*Write Cluster*) and the **Query Cluster** (*Read Cluster*), read operations can be well isolated from the write operations. As a result, the overall system performance and stability can be greatly improved.
+The read/write separation deployment requires two separate Hadoop clusters, called the **Build Cluster** and the **Query Cluster** respectively. Logically, the two clusters always exist even for normal deployment and they just share the same physical cluster. Kyligence Enterprise uses the build cluster to build cubes, and query cluster to execute online queries. In build cluster it has lots of data writes, while in the query cluster, it's mainly about data reads. By splitting the two clusters physically, known as the **Build Cluster** (Write Cluster) and the **Query Cluster** (Read Cluster), read operations can be well isolated from the write operations. As a result, the overall system performance and stability can be greatly improved.
 
-Below is the architecture of read/write separation deloyment.
+Below is the architecture of read/write separation deployment.
 
-![](images/rw_separated.png)
+![Deployment Architecture](images/rw.png)
 
 ### Prerequisites
 

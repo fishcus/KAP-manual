@@ -8,7 +8,7 @@
         * [在 Cloudera CDH 环境安装](installation/install_uninstall/install_on_cdh.cn.md)
         * [在 Hortonworks HDP 环境安装](installation/install_uninstall/install_on_hdp.cn.md)
         * [在 MapR 环境安装](installation/install_uninstall/install_on_mapr.cn.md)
-        * [在华为 FusionInsight 集群上安装](installation/install_uninstall/install_on_fi.cn.md)
+        * [在华为 FusionInsight 环境安装](installation/install_uninstall/install_on_fi.cn.md)
         * [卸载](installation/install_uninstall/uninstallation.cn.md)
     * [部署模式](installation/deploy/README.md)
         * [集群部署与负载均衡](installation/deploy/cluster_lb.cn.md)

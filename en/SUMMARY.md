@@ -18,7 +18,7 @@
     * [Using RDBMS as Metastore](installation/rdbms_metastore/README.md)
         * [Using MySQL as Metastore](installation/rdbms_metastore/mysql_metastore.en.md)
         * [Using Microsoft SQL Server as Metastore](installation/rdbms_metastore/sqlserver_metastore.en.md)
-        * [Migrate Metastore from Hbase to RDBMS](installation/rdbms_metastore/migrate_metastore_to_rdbms.en.md)
+        * [Migrate Metastore from HBase to RDBMS](installation/rdbms_metastore/migrate_metastore_to_rdbms.en.md)
     * [System Configuration](installation/config/README.md)
         * [Basic Configuration](installation/config/configuration.en.md)
         * [Configuration Override](installation/config/config_override.en.md)

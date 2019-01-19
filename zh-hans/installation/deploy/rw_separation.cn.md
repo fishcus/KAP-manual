@@ -6,7 +6,7 @@
 读写分离部署将 Kyligence Enterprise 部署在两个 Hadoop 集群上，分别称为 **构建集群** 和 **查询集群**。即使在普通部署方式下，这两个集群也是“逻辑上”存在的，只是在物理上共用同一个 Hadoop 集群而已。Kyligence Enterprise 使用构建集群进行 Cube 构建等任务，同时使用查询集群进行分布式查询计算。前者中存在很多写操作，而后者中则以只读操作为主。如果您需要完全隔离上述两种工作负载，让它们各自独立运行，避免它们之间的相互影响及其可能引发的性能不稳定，那么可以将 **构建集群（写集群）** 和 **查询集群（读集群）** 分开部署，即读写分离部署。
 
 读写分离的部署架构如下图所示。
-![](advancing_installation_images/advancing_installation_read_write_separation.png)
+![](images/rw.png)
 
 ### 检查和准备工作
 
