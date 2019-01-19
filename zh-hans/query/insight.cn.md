@@ -5,7 +5,9 @@
 * **F** - Fact，事实表
 * **L** - Lookup，维度表
 
-![](images/insight/insight_list_tables.png)
+![分析界面](images/insight/insight_list_tables.png)
+
+
 
 ### 执行 SQL 查询
 
@@ -20,7 +22,9 @@
 > 2. 若开启了查询下压，当查询无法由 Cube 满足时，将会重定向到下压查询引擎执行。这时可能耗时稍长。
 
 
+
 ### 保存查询
+
 与用户账号关联，用户将能够从不同的浏览器甚至机器上获取已保存的查询。在结果区域点击保存图标，将会弹出名称和描述来保存当前查询。
 
 ![](images/insight/insight_save_query.png)
@@ -30,10 +34,15 @@
 
 ![](images/insight/insight_list_history.png)
 
+
+
 ### 查询结果展现
+
 默认情况下，Kyligence Enterprise 会以表格形式展示数据，可以对数据进行升序或降序排列，也可以对字段进行隐藏。也可以点击**导出**按钮以导出 CSV 文件。
 
 ![](images/insight/insight_show_result.png)
+
+
 
 ### 其他执行 SQL 查询的方式
 

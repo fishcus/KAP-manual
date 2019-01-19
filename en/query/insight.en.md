@@ -6,7 +6,8 @@ Open  Kyligence Enterprise Web UI, click **Insight** on the navigation header, a
 * **F** - Fact table 
 * **L** - Lookup table
 
-![](images/insight/insight_list_tables.png)
+![Insight page](images/insight/insight_list_tables.png)
+
 
 
 ### Execute SQL Queries
@@ -22,6 +23,7 @@ After query results returned successfully, you can find the name of the answerin
 > 2. When query pushdown is enabled, queries that cannot be served by cube will be routed to the pushdown engine for execution. In this case, it will take longer to return.
 
 
+
 ### Save Query
 
 User could click **Save SQL** button at bottom right corner to save queries, the queries are associated with the current user.
@@ -34,11 +36,14 @@ All query histories are shown in **Query History** tab. Click **Query History** 
 ![](images/insight/insight_list_history.png)
 
 
+
 ### Query Result
 
 Kyligence Enterprise displays query result in table by default, the result data could be sorted in ascending or descending order. You can also show/hide the column and export results into CSV file.
 
 ![](images/insight/insight_show_result.png)
+
+
 
 ### Other ways to execute SQL queries
 

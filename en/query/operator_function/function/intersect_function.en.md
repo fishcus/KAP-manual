@@ -4,7 +4,7 @@ Users can use intersection function to calculate the value of the intersection o
 
 Kyligence Enterprise supports the following intersection function,
 
-- [INTERSECT_COUNT](#INTERSECT_COUNT)
+
 
 
 ### INTERSECT_COUNT

@@ -3,9 +3,7 @@
 Users can use grouping function to aggregate data grouping by different keys in one SQL statement.
 
 
-Kyligence Enterprise supports the following grouping function,
-
-- [GROUPING(expression)](#GROUPING(expression))
+Kyligence Enterprise supports the following grouping function.
 
 
 

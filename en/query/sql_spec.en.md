@@ -1,6 +1,8 @@
 ## SQL Specification
 
-Kyligence Enterprise supports ANSI SQL 2003*, and its basic SQL grammars are listed as follow.
+Kyligence Enterprise supports ANSI SQL 2003, and its basic SQL grammars are listed as follow.
+
+
 
 ### Supported Syntax
 
@@ -92,7 +94,9 @@ windowSpec:
     ')'
 ```
 
-＊Different versions of the realization may be different. Feel free to consult the technical support team if you have any questions.
+> **Notice:** the versions of the realization may be different. Feel free to contact the technical support team if you have any questions.
+
+
 
 ### Keywords
 
@@ -114,6 +118,8 @@ Quoted identifiers, such as `"Employee Name"`, start and end with double quotes.
 
 Matching identifiers to the name of the referenced object is case-sensitive. But remember that unquoted identifiers are implicitly converted to upper case before matching, and if the object it refers to was created using an unquoted identifier for its name, then its name will have been converted to upper case also.
 
+
+
 ### Escape Keywords 
 
 If your column or table name are using keywords, you will need to use double quote to escape it.  
@@ -128,6 +134,8 @@ If we change the double-quoted column name to all capitals, the query will retur
 
 ![Query with double-quoted upper case column will return successfully  ](images/spec/4.png)
 
+
+
 ### Escape Quote
 
 If your query contains single quote in the value, you can use another single quote to escape single quote in the value. 
@@ -138,13 +146,19 @@ For double quotes in the value, escape is not needed.
 
 ![](images/spec/6.png)
 
+
+
 ### Date Query
 
 The following are syntax examples of date query:
 
-`select TRANS_ID,PART_DT,PRICE from KYLIN_SALES where PART_DT =date '2012-01-01'`
+```sql
+select TRANS_ID,PART_DT,PRICE from KYLIN_SALES where PART_DT =date '2012-01-01'
+```
 
-Or
+or
 
-`select TRANS_ID,PART_DT,PRICE from KYLIN_SALES where PART_DT =cast ('2012-01-01' as date)`
+```sql
+select TRANS_ID,PART_DT,PRICE from KYLIN_SALES where PART_DT =cast ('2012-01-01' as date)
+```
 
