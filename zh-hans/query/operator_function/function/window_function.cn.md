@@ -20,7 +20,7 @@ Kyligence Enterprise 目前支持两类窗口函数，分别为排名函数和�
 
 
 
-接下来我们以[样例数据集](../../model/sample_dataset.cn.md) 中的 KYLIN_SALES 为例，介绍每个函数的使用方法。表中字段及其意义如下：
+接下来我们以[样例数据集](../../../appendix/sample_dataset.cn.md) 中的 KYLIN_SALES 为例，介绍每个函数的使用方法。表中字段及其意义如下：
 
 - PART_DT：订单日期；
 - TRANS_ID：订单号；

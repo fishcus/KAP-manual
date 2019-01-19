@@ -21,7 +21,7 @@ Kyligence Enterprise currently supports two kinds of window functions, namely, r
 
 
 
-And then we'll illustrate the usage of every single window function with table 'KYLIN_SALES' in the [sample dataset](../../model/sample_dataset.cn.md). The fields and corresponding descriptions of 'KYLIN_SALES' are as followings:
+And then we'll illustrate the usage of every single window function with table 'KYLIN_SALES' in the [sample dataset](../../../appendix/sample_dataset.en.md). The fields and corresponding descriptions of 'KYLIN_SALES' are as follow:
 - PART_DT: Order Date
 - TRANS_ID: order ID
 - BUYER_ID: Buyer ID
@@ -83,7 +83,7 @@ Response Example:
   - Returns an integer ranging from 1 to value, dividing the partition as equally as possible
 - Query Example
 
-  > **Note**: Divide every buyer's orders into 3 groups according to the quanlity of purchased goods.
+  > **Note**: Divide every buyer's orders into 3 groups according to the quantity of purchased goods.
 
 
 ```SQL
