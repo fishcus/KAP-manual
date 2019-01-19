@@ -59,10 +59,10 @@ kylin.source.jdbc.sqoop-home=/usr/hdp/current/sqoop-client/bin
 
 Greenplum tables need to be synchronized into Kyligence Enterprise before they can be used. To make things easy, we synchronize by using the following button to load tables.
 
-![Synchronize table's metadata](../images/rdbms_import3.en.png)
+![Synchronize table's metadata](../images/rdbms_import_tables.png)
 
-In the dialog box, expand the ssb schema and select the desired five tables.
+In the dialog box, expand the sample schema and select the desired five tables.
 
-![Table sampling](../images/rdbms_import4.en.png)
+![Table sampling](../images/rdbms_import_select_table.png)
 
 After importing, the system will automatically scan the tables to collect basic statistics of the data. Wait a few minutes we can view the details under the "Data Source" tab.

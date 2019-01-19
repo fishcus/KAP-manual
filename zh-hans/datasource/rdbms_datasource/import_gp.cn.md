@@ -58,10 +58,10 @@ kylin.source.jdbc.sqoop-home=/usr/hdp/current/sqoop-client/bin
 
 ### 同步 Greenplum 表
 
-选择数据源为 RDBMS 后，通过点击 “Table” 来加载我们所需要的表，如下图所示：![加载表元数据](../images/rdbms_import3.cn.png)
+选择数据源为 RDBMS 后，通过点击 “Table” 来加载我们所需要的表，如下图所示：![加载表元数据](../images/rdbms_import_tables.png)
 
-在弹出的对话框中展开 ssb 数据集，并选择需要的表，如图所示：
+在弹出的对话框中展开 sample 数据集，并选择需要的表，如图所示：
 
-![加载表并采样](../images/rdbms_import4.cn.png)
+![加载表并采样](../images/rdbms_import_select_table.png)
 
 勾选采样，导入后系统会自动计算各表各列的维数，以掌握数据的基本情况。稍等几分钟后，我们可以通过数据源表的详情页查看这些信息。
