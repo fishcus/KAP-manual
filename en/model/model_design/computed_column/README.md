@@ -40,7 +40,7 @@ The following information is required:
 
 ![Set computed column](images/computed_column_define.png)
 
-- **Column**: Display the name of the created computed column.
+- **Column Name**: Display the name of the created computed column.
 - **Expression**: Definition of the computed column. Columns in the expression can refer to any table in the current model, however, you have to make sure the column reference complies to **Table.Column**.
 - **Data Type**: The data type of the created column.
 

@@ -1,4 +1,4 @@
-## TopN
+## Top-N
 
 Find the Top-N (or Top-K) entities from a dataset is a frequent-using scenario and requirement in data minding. We often read the reports or news title like “Top 100 companies in the world”, “Most popular 20 electronics” and so forth. So it is common recognized that exploring and analyzing the top entities are quite valuable and essential for most analysis. 
 
@@ -6,7 +6,7 @@ Within the era of big data, this need is getting stronger than ever before, as b
 
 In v2.1 and higher, Apache Kylin introduces the “Top-N” measure, aiming to pre-calculate the top entities during the cube build phase; in the query phase, Apache Kylin can quickly fetch and return the top records. The performance would be much better than a cube without “Top-N”, giving the analyst more power to inspect data.
 
-> *Notice*: this “Top-N” measure is an approximate realization, to use it smoothly you need to have a good understanding with the algorithm as well as the data distribution.
+> **Note**: this Top-N measure is an approximate realization, to use it smoothly you need to have a good understanding with the algorithm as well as the data distribution.
 
 
 
