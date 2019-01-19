@@ -26,6 +26,6 @@
 
 4. 点击提交按钮，模型就设置成功了。根据业务需求设计并保存 Cube，使用 REST API 进行构建。
 
-   > **注意：**自定义增量构建的 Cube 的构建任务以及 Segment 的刷新/合并任务只能通过 REST API 提交。更多信息请参考 [Cube API](../../rest/cube_api.cn.md)。
+   > **注意：**自定义增量构建的 Cube 的构建任务以及 Segment 的刷新/合并任务只能通过 REST API 提交。更多信息请参考 [Cube 构建 API](../../rest/cube_api/cube_build_api.cn.md)。
 
 5. 构建任务提交成功后，在监控界面可以看到正在运行的构建任务。等待构建任务完成，可以在对应的Cube列表下看到构建好的Segment。

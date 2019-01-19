@@ -1,6 +1,6 @@
 ## 流式构建
 
-您可以直接在 Web GUI 中，点击 Cube 的操作**构建**来触发 Cube 构建，当然，你也可以通过 curl 指令通过 REST API 触发 Cube 构建，详情请参考本用户手册中的 REST API章节。
+您可以直接在 Web GUI 中，点击 Cube 的操作**构建**来触发 Cube 构建，当然，你也可以通过 curl 指令通过 REST API 触发 Cube 构建，详情请参考 [Cube 构建 API](../../rest/cube_api/cube_build_api.cn.md)。
 
 在触发了 Cube 构建以后，在**监控**页面，我们可以观察到一个新的构建任务。在构建任务完成后，进入**查询**页面, 并执行 SQL 语句，确认流式 Cube 可用。
 
