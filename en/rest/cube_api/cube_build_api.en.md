@@ -234,6 +234,7 @@ Given new Hive data files, build a new cube segment and load data into it.
 
 - `PUT http://host:port/kylin/api/cubes/{cubeName}/segments/build_streaming`
 - URL Parameters
+
   - `cubeName` - `required` `string`, the name of the cube to operate on.
 
 - HTTP Header
@@ -297,6 +298,7 @@ Given new Hive data files, build a new cube segment and load data into it.
 
 - `PUT http://host:port/kylin/api/cubes/{cubeName}/segments/build_customized`
 - URL Parameters
+
   - `cubeName` - `required` `string`, the name of the cube to operate on.
 
 - HTTP Header
@@ -362,7 +364,7 @@ Given new Hive data files, build a new cube segment and load data into it.
 
 ### Build a Cube in Batch {#build-a-cube-in-batch}
 
-> **Notice:** the current batch_sync API is only for model built by date/time. 
+> **Notice:** the current batch_sync API is only for model built by date/time and customized build model. 
 
 - `PUT http://host:port/kylin/api/cubes/{cubeName}/batch_sync`
 
