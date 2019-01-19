@@ -85,9 +85,13 @@ Group by pay_type, buyer_id
 
 ![使用必要维度降维](images/Mandatory-2.png)
 
-![降维之后的Cuboids](images/Mandatory-3.png) 
 
-#### 应用实例
+
+![降维之后的Cuboids](images/Mandatory-3.png)
+
+ 
+
+####应用实例
 
 假设一个交易数据的 Cube，它具有很多普通的维度，像是交易时间`order_dt`，交易的地点`location`，交易的商品`product` 和支付类型`pay_type`等。其中，交易时间就是一个被高频作为分组条件（group by）的维度。如果将交易时间`order_dt`设置为必要维度，包含的维度和组合方式如下图：
 

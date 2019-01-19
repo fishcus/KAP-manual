@@ -1,22 +1,29 @@
-## 查询下压
-Kyligence Enterprise 支持查询下压功能。当 Cube 无法满足当前查询时，可以使用查询下压，将该查询重定向至 Spark SQL、Hive 和 Impala，从而在查询的执行时间与灵活程度之间做一个权衡折中，获取更理想的使用体验。
+### Query Pushdown
 
-### 启用查询下压
-查询下压可用的前提条件是有已加载完成的表。
+Kyligence Enterprise supports query pushdown from KE 2.4. If there are queries which cannot be fulfilled through customized cubes, you may simply leverage the query pushdown to redirect the query to Spark SQL, Hive and Impala, making a trade-off  between query latency and query flexibility to obtain a better experience. 
 
-默认情况下，查询下压功能未开启。如果要开启查询下压，需要执行以下两步：
 
-- 在 `kylin.properties` 文件中删除 `kylin.query.pushdown.runner-class-name=io.kyligence.kap.storage.parquet.adhoc.PushDownRunnerSparkImpl` 这一配置项前的注释符号，使其生效。
 
-- 重启 Kyligence Enterprise
+#### Enable Query Pushdown
+
+The precondition for query pushdown is that there exists at least one table which has been loaded.
+
+Query pushdown is turned off by default. To turn it on, please do the following steps:
+
+- Modify the parameter in `$KYLIN_HOME/conf/kylin.properties` as follow: 
+
+  Remove the comment symbol in front of the parameter  `kylin.query.pushdown.runner-class-name=io.kyligence.kap.storage.parquet.adhoc.PushDownRunnerSparkImpl` to bring it into effect. 
+
+- Restart Kyligence Enterprise:
 
   ```
   $KYLIN_HOME/bin/kylin.sh stop
   $KYLIN_HOME/bin/kylin.sh start
   ```
 
-查询下压开启后，当 Cube 无法返回所需的查询结果时，默认情况下，将被重定向至 Spark SQL。用户也可以手动配置，选择 Hive 或者 Impala 作为查询下压的引擎。有关配置方法，参见[查询下压配置](../config/pushdown/README.md)章节。
+With query pushdown turned on, queries that cannot get results from cubes will be redirected to Spark SQL by default. You may also configure it manually, and choose Hive or Impala as the default engine to be redirected. Please refer to [Important Configurations](../config/basic_settings.en.md) for more configuration settings.
 
-开启查询下压后，所有同步的数据表将对用户可见，而无需构建相应的 Cube。用户在提交查询时，若查询下压功能正常启用，则状态下方的查询引擎条目里，会显示 Pushdown。
+After you turn on the query pushdown, all source tables you have synchronized will be shown without building the corresponding cubes. When you submit a query, you will find *Pushdown* in the *Query Engine* item below *Status*, if query pushdown works. 
 
-![查询下压](images/pushdown/pushdown.cn.png)
+![pushdown](/Users/sijie.chen/Desktop/master0111/en/query/images/pushdown/pushdown.en.png)
+

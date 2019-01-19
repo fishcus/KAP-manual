@@ -82,7 +82,7 @@ ps -ef | grep kylin
 - 密码长度至少 8 位
 - 密码需要包含至少一个数字、字母、及特殊字符（~!@#$%^&*(){}|:"<>?[];',./`）
 
-当您成功登录后，可以通过构建 Sample Cube 来验证 Kyligence Enterprise 的功能。具体请参阅[安装验证](../installation_validation.cn.md)。
+当您成功登录后，可以通过构建 Sample Cube 来验证 Kyligence Enterprise 的功能。具体请参阅[安装验证](../installation/install_uninstall/install_validation.cn.md)。
 
 ### 停止 Kyligence Enterprise
 
@@ -153,4 +153,4 @@ $KYLIN_HOME/bin/kylin-port-replace-util.sh set PORT_OFFSET
 
 **Q：Kyligence Enterprise 支持配置 Kerberos 吗？**
 
-支持。如果您的集群启用 Kerberos 安全机制，Kyligence Enterprise 自带的 Spark 需要正确的配置才能安全地访问您的集群资源。具体配置方法请参看[集成Kerberos](../../security/kerberos.cn.md)章节。
+支持。如果您的集群启用 Kerberos 安全机制，Kyligence Enterprise 自带的 Spark 需要正确的配置才能安全地访问您的集群资源。具体配置方法请参看[集成Kerberos](../security/kerberos.cn.md)章节。

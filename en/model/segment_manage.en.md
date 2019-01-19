@@ -2,7 +2,7 @@
 
 ### Cube Management
 
-* **Visit Cube Management Page**
+* **Open Cube Management Page**
 
   Users can enter Cube Management page with the following steps.
 
@@ -39,7 +39,7 @@
     * Backup (Backup a cube's metadata) 
   * *DESCBROKEN*: A cube with Broken status means it is abnormal because its metadata is broken.
 
-  > *Notice:* 
+  > **Note:**
   >
   > 1. When cubes are disabled after they are enabled, the user cannot modify the definition of dimensions and measures, or add/remove dimensions and measures. If you need to edit dimensions and metrics, you need to redesign and build a new cube.
   > 2. When cubes are disabled after they are enabled,  the user can edit dimension description, measure description, Refresh Setting and Cube Configuration/Job Related Configuration/Hive Related Configuration in the Advanced Setting step.
@@ -64,5 +64,5 @@ On Segment page, users can execute the following actions:
 - Merge (Merge several segments into one even if they are discontinuous) 
 - Delete
 
-> Tips: by clicking an ID of a segment that is being built, refreshed or merged, may lead you to the jobs associated in the Monitor page.
+> **Note:** by clicking an ID of a segment that is being built, refreshed or merged, may lead you to the jobs associated in the Monitor page.
 

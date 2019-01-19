@@ -4,7 +4,7 @@
 
 Kyligence Enterprise 支持如下交集函数
 
-- [INTERSECT_COUNT](#INTERSECT_COUNT)
+
 
 ### INTERSECT_COUNT
 
@@ -28,7 +28,7 @@ Kyligence Enterprise 支持如下交集函数
   以 Kyligence Enterprise 的样例数据集为例，事实表 `KYLIN_SALES`  模拟了在线交易数据的记录表。
 以下查询语句可以获得有多少比例的卖家能在新年假期阶段（2012.01.01-2012.01.03）进行持续的在线交易。
 
-  ```SQL
+  ```sql
   select LSTG_FORMAT_NAME,
   intersect_count(SELLER_ID, PART_DT, array[date'2012-01-01']) as first_day,
   intersect_count(SELLER_ID, PART_DT, array[date'2012-01-02']) as second_day,

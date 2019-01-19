@@ -3,7 +3,7 @@
 
 Kyligence Enterprise 实例是无状态的服务，所有的状态信息都存储在元数据库中（如 HBase，JDBC 数据库）中。因此，您可以启用多个 Kyligence Enterprise 节点以部署负载均衡集群，使各个节点分担查询压力且互为备份，从而提高服务的可用性，其部署架构如图所示：
 
-![](advancing_installation_images/advancing_installation_cluster.png)
+![部署架构](images/cluster.png)
 
 ### Kyligence Enterprise 节点配置
 
@@ -12,8 +12,6 @@ Kyligence Enterprise 实例是无状态的服务，所有的状态信息都存�
 1. 在各 Kyligence Enterprise 节点的`$KYLIN_HOME/conf/kylin.properties`配置文件中，为各节点配置相同的`kylin.metadata.url`值，即令各 Kyligence Enterprise 节点使用同一个 HBase metastore；
 
    > 如果您需要启用任务引擎高可用，请参考[服务发现及任务引擎高可用](advancing_installation_ha.cn.md)。
-
-
 
 ### 负载均衡配置
 

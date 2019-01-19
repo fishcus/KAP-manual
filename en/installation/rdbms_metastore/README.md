@@ -1,3 +1,4 @@
-## 基于关系型数据库的 Metastore 的配置
+## Use RDBMS as Metastore
 
-Kyligence Enterprise 2.4+ 版本可以支持关系型数据库作为 Metastore 存储，使用标准 JDBC Driver 连接 Metastore 数据库。
+Using RDBMS as Metastore is supported after Kyligence Enterprise 2.4, which uses JDBC Driver to connect Metastore database.
+

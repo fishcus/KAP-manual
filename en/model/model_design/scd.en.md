@@ -9,7 +9,7 @@ Dealing with this issue involves SCD management methodologies referred to as Typ
 
 In Kyligence Enterprise, we deal with all dimensions as Type 2 **by default**, no matter it's normal dimension or derived dimension. During query time, we always get the historical truth of all dimensions when they were built into cube. Below screenshot illustrates the basics:
 
-![SCD Type 2](./images/model_SCD2_en.png)
+![Kyligence SCD Type 2](./images/model_SCD2_en.png)
 
 For normal dimensions, Kyligence Enterprise will add it into the rowkey and built into cube segment; For derived dimension, we will create snapshot tables to store dimension values and these snapshots are linked with the corresponding segments. During query execution, Kyligence Enterprise will join all necessary segments with their related snapshot tables to get the result.
 
@@ -27,4 +27,4 @@ Kyligence Enterprise supports defining SCD Types for **only** derived dimenions 
 
 For a lookup table with snapshot enabled and **SCD Type 1** selected，Kyligence Enterprise will preserve **only the lastest version** of that lookup table snapshot. All segments will point to this snapshot for latest values of all derived dimensions defined on this lookup table. During building a cube segment, snapshot will be updated with only "insert" and "update" operations, so that this snapshot will have all dimension values. For queries on derived dimension of that lookup table, Kyligence Enterprise will join all necessary segments with the latest snapshot for getting the result. 
 
-![SCD Type 1](./images/model_SCD1_en.png)
+![Kyligence SCD Type 1](./images/model_SCD1_en.png)

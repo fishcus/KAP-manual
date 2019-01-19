@@ -10,7 +10,7 @@
 * [Get Model List](#Get-Model-List)
 * [Get Model Description](#Get-Model-Description)
 * [Clone a Model](#Clone-a-Model)
-* [Drop a Model](#Drop-a-Model)
+* [Delete a Model](#Delete-a-Model)
 * [Get all Computed Columns in a project](#Get-all-Computed-Columns-in-a-project)
 
 
@@ -120,6 +120,7 @@
 - `PUT http://host:port/kylin/api/models/{modelName}/clone`
 
 - URL Parameters
+
   - `modelName` - `required` `string`, model name of being cloned
 
 - HTTP Header
@@ -128,7 +129,7 @@
   - `Content-Type: application/json;charset=utf-8`
 
 - HTTP Body: JSON Object
-  - `modelName` - `required` `string`, model name of to be cloned
+  - `modelName` - `required` `string`, name of the new model
   - `project` - `required` `string`, project name 
 
 - Curl Request Example
@@ -158,7 +159,7 @@
 
 
 
-### Drop a Model {#Drop-a-Model}
+### Delete a Model {#Delete-a-Model}
 
 - `DELETE http://host:port/kylin/api/models/{projectName}/{modelName}`
 

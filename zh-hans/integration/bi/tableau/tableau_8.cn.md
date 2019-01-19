@@ -12,7 +12,7 @@
 参考页面[Kyligence Enterprise ODBC 驱动程序教程](../../driver/odbc/README.md)。
 
 ### 步骤2. 连接到 Kyligence Enterprise 服务器
-> 我们建议使用Connect Using Driver而不是Using DSN。
+> **提示：**我们建议使用Connect Using Driver而不是Using DSN。
 
 Connect Using Driver: 选择左侧面板中的“Other Database(ODBC)”和弹出窗口的“KylinODBCDriver”。
 
@@ -31,7 +31,7 @@ Connect Using Driver: 选择左侧面板中的“Other Database(ODBC)”和弹�
 ![](../../images/tableau_8/4 done.jpg)
 
 ### 步骤3. 使用单表或多表
-> 限制
+> **注意：**请留意以下限制
 >    * 必须首先选择事实表
 >    * 请勿仅支持从查找表选择
 >    * 连接条件必须与cube定义匹配

@@ -2,10 +2,7 @@
 
 用户可以使用分组函数在一条 SQL 查询中完成根据不同索引建的数据聚合。
 
-
 Kyligence Enterprise 支持如下分组函数：
-
-- [GROUPING(expression)](#GROUPING(expression))
 
 
 

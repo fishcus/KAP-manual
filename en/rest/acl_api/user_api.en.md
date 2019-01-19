@@ -2,7 +2,7 @@
 
 > Reminders:
 >
-> 1. Please read [Access and Authentication REST API](authentication.en.md) and understand how authentication works.
+> 1. Please read [Access and Authentication REST API](../authentication.en.md) and understand how authentication works.
 > 2. On Curl command line, don't forget to quote the URL if it contains `&` or other special chars.
 
 
@@ -11,11 +11,14 @@
 * [Create a user](#Create-a-user)
 * [Modify a user](#Modify-a-user)
 * [Delete a user](#Delete-a-user)
+* [Get User's Project and Table Access Permission](#Get-user-table-and-project)
+* [Get User's Row Access Permission](#Get-user-row)
+* [Get User's Column Access Permission](#Get-user-column)
 
 
 
 ### Get User List {#Get-user-list}
- 
+
 - `GET http://host:port/kylin/api/kap/user/users`
 
 
@@ -105,7 +108,7 @@
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8' \
     -d '{
-    "password": "test@Kylingence",
+    "password": "test@Kyligence",
     "disabled": false, 
     "authorities": ["ROLE_ADMIN"]
     
@@ -218,3 +221,142 @@
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8'
   ```
+
+
+
+### Get User's Project and Table Access Permission {#Get-user-table-and-project}
+
+- `GET http://host:port/kylin/api/access/{userName}`
+
+- URL Parameters
+
+  - `userName` - `required` `string`, user name
+
+- HTTP Header
+
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
+
+- Curl Request Example
+
+  ```shell
+  curl -X GET \
+  'http://host:port/kylin/api/access/ADMIN' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8'
+  ```
+
+- Response Example
+
+  ```json
+  {
+      "code":"000",
+      "data":[
+          {
+              "project_name":"test1",
+              "table_name":[
+                  "KAP.KYLIN_ACCOUNT",
+                  "KAP.KYLIN_CAL_DT",
+                  "KAP.KYLIN_SALES",
+                  "KAP.KYLIN_COUNTRY",
+                  "KAP.KYLIN_CATEGORY_GROUPINGS"
+              ]
+          }
+      ],
+      "msg":""
+  }
+  ```
+
+
+
+### Get User's Row Access Permission {#Get-user-row}
+
+- `GET http://host:port/kylin/api/access/{userName}/{projectName}/{tableName}/row`
+
+- URL Parameters
+
+  - `userName` - `required` `string`, user name
+  - `projectName` - `required` `string`, project name
+  - `tableName` - `required` `string`, table name
+
+- HTTP Header
+
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
+
+- Curl Request Example
+
+  ```shell
+  curl -X GET \
+  'http://host:port/kylin/api/access/ADMIN/learn_kylin/DEFAULT.KYLIN_SALES/row' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8'
+  ```
+
+- Response Example
+
+  ```json
+  {
+      "code":"000",
+      "data":{
+          "white_list":"(PART_DT=DATE '2012-01-01')",
+          "user_name":"ADMIN",
+          "project_name":"learn_kylin",
+          "table_name":"DEFAULT.KYLIN_SALES"
+      },
+      "msg":""
+  }
+  ```
+
+
+
+### Get User's Column Access Permission {#Get-user-column}
+
+- `GET http://host:port/kylin/api/access/{userName}/{projectName}/{tableName}/column`
+
+- URL Parameters
+
+  - `userName` - `required` `string`, user name
+  - `projectName` - `required` `string`, project name
+  - `tableName` - `required` `string`, table name
+
+- HTTP Header
+
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
+
+- Curl Request Example
+
+  ```shell
+  curl -X GET \
+  'http://host:port/kylin/api/access/ADMIN/learn_kylin/DEFAULT.KYLIN_SALES/row' \
+  -H 'Accept: application/vnd.apache.kylin-v2+json' \
+  -H 'Accept-Language: en' \
+  -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  -H 'Content-Type: application/json;charset=utf-8'
+  ```
+
+- Response Example
+
+  ```json
+  {
+      "code":"000",
+      "data":{
+          "black_list":[
+              "TRANS_ID"
+          ],
+          "user_name":"ADMIN",
+          "project_name":"learn_kylin",
+          "table_name":"DEFAULT.KYLIN_SALES"
+      },
+      "msg":""
+  }
+  ```
+

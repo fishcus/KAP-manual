@@ -1,84 +1,14 @@
 ## Streaming Build
 
-Kyligence Enterprise 2.3.x releases the scalable streaming cubing function, it leverages Hadoop to consume the data from Kafka to build the cube. This doc is a step-by-step tutorial, illustrating how to create and build a streaming cube.
+You can trigger the build job from web GUI, by clicking **Actions** -> **Build**, or sending a request via Kyligence Enterprise REST API. For more details, please refer to REST API chapter.
 
-For the information on Kafka data source import and the definition of a fact table from streaming data, please refer to [Import Data from Kafka](../../datasource/import_kafka.en.md) under the section of Data Import.
+After the build job is submitted, you can see this new job in the **Monitor** page.
 
-
-
-### Create Data Model
-
-With the table defined in the previous step, let's create the data model. This step is pretty same as creating a normal data model, but please notice:
-
-* For a streaming cube, it doesn't support joining with lookup tables. So when you define the data model, only select "DEFAULT.KAFKA_TABLE_1" as the fact table, no lookup tables.
-* Select "MINUTE_START" as the cube's partition date column, as we will do incremental build at the minute level.
-
-Here we pick 8 dimension columns and 2 measure columns:
-
-![Edit model](images/streaming/g.png)
-
-![Set dimensions](images/streaming/h.png)
-
-![Set measures](images/streaming/i.png)
-
-Select 'MINUTE_START' as partition column. Save the data model.
-
-![Set partition column](images/streaming/j.png)
-
-
-
-### Create Cube
-
-The streaming cube is almost the same as a normal cube. A couple of points need your attention here:
-
-* Don't use "order\_time" as dimension as that is pretty fine-grained, here we suggest to use "minute\_start", "hour\_start" or other, depending on how you inspect the data.
-* In the "refresh setting" step, you should create more merge ranges, like 0.5 hour, 4 hours, 1 day, and 7 days. This helps to control the cube segment amount.
-* "minute_start" is the partition column of model and shall be defined as `Dimension`.
-* In the "rowkeys" section, drag the "minute\_start" to the head position. For streaming queries, the time condition is used frequently. So putting it to the head will help narrow down the scan range.
-
-![Add dimensions](images/streaming/k.png)
-
-![Edit aggregation groups](images/streaming/l.png)
-
-​    ![Edit rowkeys](images/streaming/m.png)
-
-​    ![Add measures](images/streaming/n.png)
-​ 
-​  Save the cube.
-​ 
-​ 
-
-### Run a Build
-​ 
-You can trigger the build job from web GUI, by clicking “Actions” -> “Build”, or sending a request to Kyligence Enterprise RESTful API with ‘curl’ command:
-
-```sh
-curl -X PUT --user ADMIN:KYLIN -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/json" -H "Accept-Language: en" -d '{ "sourceOffsetStart": 0, "sourceOffsetEnd": 9223372036854775807, "buildType": "BUILD"}' http://localhost:7070/kylin/api/cubes/{your_cube_name}/build_streaming
-```
-
-Please notice that the API endpoint is different from a normal cube (this URL ends with “build_streaming”).
-
-Here 0 means it is from the last position, and 9223372036854775807 (Long.MAX_VALUE) means to the end position on Kafka topic. If it is the first time to build (no previous segment), Kyligence Enterprise will seek the beginning of the topics as the start position.
-
-In the “Monitor” page, a new job is generated; Wait it 100% finished.
-
-Enter the “Insight” page, compose a SQL to run, e.g.:
+Enter the **Insight** page, type in a SQL statement to test, e.g.:
 
 ```sql
 SELECT MINUTE_START, COUNT(*), SUM(AMOUNT), SUM(QTY) FROM KAFKA_TABLE_1 GROUP BY MINUTE_START ORDER BY MINUTE_START
 ```
-
-
-
-### Automate the Build
-
-Once the first build and query run successfully, you can schedule incremental builds at a certain frequency. Kyligence Enterprise records the offsets of each build; when receives a build request, it will start from the last end position, and then seeks the latest offsets from Kafka. You can invoke RESTful API with any scheduler tools like Linux crontab to build periodically:
-
-```sh
-crontab -e　*/5 * * * * curl -X PUT --user ADMIN:KYLIN -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/json" -H "Accept-Language: en" -d '{ "sourceOffsetStart": 0, "sourceOffsetEnd": 9223372036854775807, "buildType": "BUILD"}' http://localhost:7070/kylin/api/cubes/{your_cube_name}/build_streaming
-```
-
-Now you can find the cube is automatically built from streaming. And when the cube segments accumulate to a longer time range, Kyligence Enterprise will automatically merge them into a larger segment.
 
 
 
@@ -144,14 +74,3 @@ If the result is an empty array, it means there are no holes. Otherwise, trigger
 ```sh
 curl -X PUT --user ADMINN:KYLIN -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/json" -H "Accept-Language: en" http://localhost:7070/kylin/api/cubes/{your_cube_name}/holes
 ```
-
-
-
-### Create Streaming Cube by Sample Scripts
-Kyligence Enterprise has bundled sample streaming cube and script which generates sample records constantly.
-
-Under `KYLIN_HOME` , run`bin/sample.sh`, it creates source table `kylin_streaming_table`, model `kylin_streaming`, and cube `kylin_streaming_cube`. The table `kylin_streaming_table` has referred to the Kafka topic `kylin_streaming_topic` under localhost:9092 Kafka broker node.
-
-Suppose the Kafka broker is running on localhost:9092, and `KAFKA_HOME` is set properly when Kyligence Enterprise starts, the script`sample-streaming.sh` will create new Kafka topic `kylin_streaming_topic`. The script will send 100 random messages per second to that topic.
-
-In the cube listing page, `BUILD` could be triggered manually. Multiple build jobs could be triggered one by one to check the streaming cube.

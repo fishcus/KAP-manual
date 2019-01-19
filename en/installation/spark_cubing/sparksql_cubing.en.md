@@ -2,7 +2,7 @@
 
 Kyligence Enterprise leverages Hive by default to do part of the pre-calculations during cube build process. Since SparkSQL has better performance over Hive in general, using SparkSQL instead of Hive during cube build may improve the build speed at certain steps.
 
-![sparksql_build_step](../images/sparksql_flat_table.en.png)
+![sparksql_build_step](images/sparksql_flat_table.en.png)
 
 ### Configure SparkSQL
 

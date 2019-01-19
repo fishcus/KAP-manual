@@ -1,5 +1,7 @@
 ## SQL 规范参考
-Kyligence Enterprise 支持ANSI SQL 2003，以下列举了支持的基本 SQL 语句。
+Kyligence Enterprise 支持 ANSI SQL 2003，以下列举了支持的基本 SQL 语句。
+
+
 
 ### 支持语法
 
@@ -91,7 +93,9 @@ windowSpec:
     ')'
 ```
 
-*不同版本实现反馈可能会有不同，如有问题请咨询技术服务团队。
+> **注意：**不同版本实现反馈可能会有不同，如有问题请咨询技术服务团队。
+
+
 
 ### 查询关键字
 
@@ -113,7 +117,9 @@ A, ABS, ABSOLUTE, ACTION, ADA, ADD, ADMIN, AFTER, ALL,ALLOCATE, ALLOW, ALTER, AL
 
 标识符和引用的对象进行匹配是大小写敏感的。没有使用引号的标识符会隐式地被转换成全大写，如果查询对象在创建时也没有使用引号，它的名字也会被转换成全大写，因此标识符和查询对象可以进行匹配。
 
-###转义关键字
+
+
+### 转义关键字
 
 如果您的列名或表名是关键字，您需要使用双引号对其进行转义。
 
@@ -129,6 +135,8 @@ A, ABS, ABSOLUTE, ACTION, ADA, ADD, ADMIN, AFTER, ALL,ALLOCATE, ALLOW, ALTER, AL
 
 ![Query with double-quoted upper case column will return successfully  ](images/spec/4.png)
 
+
+
 ### 转义引号
 
 如果您查询的值中包含单引号，您可以用另一个单引号对查询进行转义。
@@ -137,14 +145,20 @@ A, ABS, ABSOLUTE, ACTION, ADA, ADD, ADMIN, AFTER, ALL,ALLOCATE, ALLOW, ALTER, AL
 
 如果查询的值中有双引号是不需要转义的。
 
-![](images/spec/6.png)
+![Double quote](images/spec/6.png)
+
+
 
 ### 日期查询
 
 下面是日期查询语法范例：
 
-`select TRANS_ID,PART_DT,PRICE from KYLIN_SALES where PART_DT =date '2012-01-01'`
+```sql
+select TRANS_ID,PART_DT,PRICE from KYLIN_SALES where PART_DT =date '2012-01-01'
+```
 
 或者
 
-`select TRANS_ID,PART_DT,PRICE from KYLIN_SALES where PART_DT =cast ('2012-01-01' as date)`
+```sql
+select TRANS_ID,PART_DT,PRICE from KYLIN_SALES where PART_DT =cast ('2012-01-01' as date)
+```

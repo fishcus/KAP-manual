@@ -8,12 +8,14 @@ In this section, we take Kyligence Enterprise built-in dataset as an example. Th
 Typically data model design includes:
 
 - Define a fact table and multiple dimension tables
-- Define how fact table and dimension tables are joined
 - Define dimensions and measures
+- Define how fact table and dimension tables are joined
 
 
 
-### Start Data Model Design
+
+
+### Start Model Design
 
 Open Kyligence Enterprise Web UI, select project *learn_kylin* in project list in upper left corner and click **Studio** in the navigation bar on the left, then select **Model** tab.
 
@@ -21,27 +23,27 @@ Open Kyligence Enterprise Web UI, select project *learn_kylin* in project list i
 
 
 
-### Create / Edit a Data Model
-
-- **Create a New Model**
+### Create a New Model
 
 1. Click **+ Model** button and input the new model name.
 2. Click **Submit** and enter model desinger page.
 
 > **Note**: A new model can be saved only when
 >
-> 1. at least one fact table is selected.
-> 2. at least one dimension column is specified.
+> - at least one fact table is selected.
+> - at least one dimension column is specified.
 
-- **Edit a Model**
 
-in **Model** tab, click icon **Edit** on one specific model and start to edit a model.
+
+###Edit a Model
+
+In **Model** tab, click icon **Edit** on one specific model and start to edit a model.
 
 
 
 ### Design a Data Model
 
-In model designer page, you can define fact table and dimension table via drag and drop in Kyligence web UI.
+In model designer page, you can define fact table and dimension table via drag and drop from source tables in the left panel.
 
 **Step 1. Define Fact Table**
 
@@ -60,7 +62,7 @@ In model designer page, you can define fact table and dimension table via drag a
 
 3. Click **Setting** icon on the top right corner of each table, select table type as **Dimension Table**.
 
-![Set fact table and lookup table](images/model_design_tables.png)
+   ![Set fact table and lookup table](images/model_design_tables.png)
 
 
 
@@ -70,10 +72,10 @@ You can specify either one single column or multiple columns as dimensions or me
 
 1. Click **DM** icon on top left of the table, you can open/close editing mode of specifying dimensions and measures.
 2. In editing mode, click the icons in the toolbar to specify dimension or measure.
-- **D**: Dimension
-- **M**: Mesure
-- **— **: Disabled
-- **A**: Auto Suggestion
+   - **D**: Dimension
+   - **M**: Mesure
+   - **— **: Disabled
+   - **A**: Auto Suggestion
 3. In this example, we specify the dimensions and measures suggested by the system. Check checkbox to enable select all in the toolbar and click icon **A**.
 
 ![Set dimension and measure](images/model_design_tables_a.png)
@@ -93,32 +95,32 @@ Join Condition：
 
    **DEFAULT.KYLIN\_SALES.PART_DT = DEFAULT.KYLIN\_CAL\_DT.CAL\_DT**
 
-2. KYLIN_SALES *Inner Join* KYLIN\_CATEGORY_GROUPINGS 
+2. KYLIN_SALES **Inner Join** KYLIN\_CATEGORY_GROUPINGS 
 Join Condition: 
 
-   **KYLIN_SALES.LEAF_CATEG_ID = KYLIN\_CATEGORY\_GROUPINGS.LEAF_CATEG_ID**
+   *KYLIN_SALES.LEAF_CATEG_ID* = *KYLIN\_CATEGORY\_GROUPINGS.LEAF_CATEG_ID*
 
-   **KYLIN_SALES.LSTG_SITE_ID = KYLIN\_CATEGORY\_GROUPINGS.SITE_ID** 
+   *KYLIN_SALES.LSTG_SITE_ID* = *KYLIN\_CATEGORY\_GROUPINGS.SITE_ID* 
 
-3. KYLIN_SALES *Inner Join* BUYER_ACCOUNT (alias of KYLIN_ACCOUNT)
+3. KYLIN_SALES **Inner Join** BUYER_ACCOUNT (alias of KYLIN_ACCOUNT)
 Join Condition: 
 
-   **KYLIN_SALES.BUYER_ID = BUYER_ACCOUNT.ACCOUNT_ID** 
+   *KYLIN_SALES.BUYER_ID* = *BUYER_ACCOUNT.ACCOUNT_ID* 
 
-4. KYLIN_SALES *Inner Join* SELLER_ACCOUNT (alias of KYLIN_ACCOUNT) 
+4. KYLIN_SALES **Inner Join** SELLER_ACCOUNT (alias of KYLIN_ACCOUNT) 
 Join Condition: 
 
-   **KYLIN_SALES.SELLER_ID = SELLER_ACCOUNT.ACCOUNT_ID** 
+   *KYLIN_SALES.SELLER_ID* = *SELLER_ACCOUNT.ACCOUNT_ID* 
 
-5. BUYER_ACCOUNT (alias of KYLIN_ACCOUNT) *Inner Join* BUYER_COUNTRY (alias of KYLIN\_COUNTRY) 
+5. BUYER_ACCOUNT (alias of KYLIN_ACCOUNT) **Inner Join** BUYER_COUNTRY (alias of KYLIN\_COUNTRY) 
 Join Condition: 
 
-   **BUYER_ACCOUNT.ACCOUNT_COUNTRY = BUYER_COUNTRY.COUNTRY** 
+   *BUYER_ACCOUNT.ACCOUNT_COUNTRY* = *BUYER_COUNTRY.COUNTRY* 
 
-6. SELLER_ACCOUNT (alias of KYLIN_ACCOUNT) *Inner Join* SELLER_COUNTRY (alias of KYLIN\_COUNTRY)
+6. SELLER_ACCOUNT (alias of KYLIN_ACCOUNT) **Inner Join** SELLER_COUNTRY (alias of KYLIN\_COUNTRY)
 Join Condition: 
 
-   **SELLER_ACCOUNT.ACCOUNT_COUNTRY = SELLER_COUNTRY.COUNTRY**
+   *SELLER_ACCOUNT.ACCOUNT_COUNTRY* = *SELLER_COUNTRY.COUNTRY*
 
 The result is shown as below. If you click **inner** icon on the connnection lines, it will show you details of the join.
 
@@ -132,25 +134,31 @@ The result is shown as below. If you click **inner** icon on the connnection lin
 
 Click **Save** button, and then a pop-up window appears.
 
-![Save model](images/model_design_save.png)
+![Save model](images/model_design_save_en.png)
 
 1. Incremental Data Loading
 
-   In this example, the data in table “KYLIN_SALES” grows day by day. Thus we choose **By Date/Time** which means the data would be built by date columns. In our example, we specify column *KYLIN_SALES.PART_DT* as time partition column and specify the date format as `yyyy-MM-dd HH:mm:ss`.
+   In this example, the data in table *KYLIN_SALES* grows day by day. Thus we choose **By Date/Time** which means the data would be built by date columns. In our example, we specify column *KYLIN_SALES.PART_DT* as time partition column and specify the date format as `yyyy-MM-dd HH:mm:ss`.
 
    Currently Kyligence Enterprise supports following data type as time partition column: time (time / date / datetime) , integer (integer / tinyint / smallint / bigint / int4 / long8) , and string (varchar / string).
 
-   > Notice: This product supports different methods to build data, for more information please check [Build Cube](../cube_build/README.md).
+   > **Note:** This product supports different methods to build data, for more information please check [Build Cube](../cube_build/README.md).
 
 2. Cube Partition
 
-   Cube Partition enhances partition flexibility. Taking multi-tenant scenario as an example, it's rather helpful to build data from different regions. The supported data types include integer (long / short / int / integer) or string (string / char / varchar).
+   Cube Partition enables much flexibility in cube design and management. You can create only one cube with cube partition enabled, instead of creating several cubes with the same structure, and data can be loaded and queried on specific partion. This is very useful when you need to load data for many regions or organizations. You can load only one region's data into cube when it's ready and make it available for queries, without having to wait for all regions' data are ready
 
-   > Notice: to specify which data would be loaded into cube, the user should enter partiton value in the cube build confirm page.![Set partition value](images/cube_partition.png)
+   The supported data types include integer (long / short / int / integer) or string (string / char / varchar).
+
+   ![Save model](images/model_design_save_cube_partition_en.png)
+
+   If the underlying data model is cube partition enabled, you have to specify the cube partition value when building a cube segment.
+
+   ![Set partition value](images/cube_partition.png)
 
 3. Data Filter Condition
 
-   Filter condition is an additional data filter besides time partition and more partition (if defined) during data loading. E.g. you can filter out these records with null values or specific records according to your business rules.
+   Filter condition is an additional data filter besides time partition and cube partition (if defined) during data loading. E.g. you can filter out these records with null values or specific records according to your business rules.
 
 **Step 5. Save Model**
 
@@ -158,7 +166,7 @@ Finally, click the button **Submit**, and the data model is created.
 
 
 
-### Advanced: Set Lookup Table Snapshot
+### Lookup Table Snapshot
 
 When lookup table is less than 300 MB, we suggest you to enable snapshot of lookup table, to simplify cube design and improve overall system efficiency. If the model has already finished data sampling, the size of tables would be estimated according to the sampling statistics. The table whose size is lower than 300 MB would be stored as snapshots.
 
@@ -183,11 +191,9 @@ When lookup table is less than 300 MB, we suggest you to enable snapshot of look
   > 3. We cannot successfully store a lookup table as snapshot when there are duplicated keys in dimension table.
 
 
+### Slow Changing Dimension (SCD)
 
-- **Slow Changing Dimension (SCD)**
+In most multi-dimensional OLAP scenarios, lookup table might change unpredictably, rather than according to a regular schedule. For snapshot enabled lookup tables, Kyligence Enterprise supports defining SCD types for all derived dimensions on this lookup table.
 
-  In most multi-dimensional OLAP scenarios, lookup table might change unpredictably, rather than according to a regular schedule. For snapshot enabled lookup tables, Kyligence Enterprise supports defining SCD types for all derived dimensions on this lookup table.
-
-  For more details, please refer to [Slowly Changing Dimension](scd.en.md).
-
+For more details, please refer to [Slowly Changing Dimension](scd.en.md).
 

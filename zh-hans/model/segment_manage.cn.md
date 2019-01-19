@@ -63,6 +63,6 @@ Segments 管理页面下，支持如下操作：
 - 合并（将多个 segment 合并为一个，segment 不连续也可以合并， 合并 segment 时，老 segment 会被重新构建）
 - 删除
 
-> 提示：点击正在被构建、刷新、合并的 segment ID，可以跳转至**监控**页面，查看关联 Segment 任务。Segment 合并任务名一般以 MERGE CUBE 开头。
+> **提示：**点击正在被构建、刷新、合并的 segment ID，可以跳转至**监控**页面，查看关联 Segment 任务。Segment 合并任务名一般以 MERGE CUBE 开头。
 
   

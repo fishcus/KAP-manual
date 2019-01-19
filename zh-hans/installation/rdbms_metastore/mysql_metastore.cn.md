@@ -15,11 +15,11 @@
 
    具体示例如下：
 
-   `kylin.metadata.url=kylin_default_instance@jdbc,url=jdbc:mysql://localhost:3306/kylin,username=root,password=,maxActive=10,maxIdle=10`。
+   `kylin.metadata.url=kylin_default_instance@jdbc,url=jdbc:mysql://localhost:3306/kylin,username=root,password=,maxActive=20,maxIdle=20`。
 
    如需使用 MySQL Cluster 支持负载均衡时，需要在连接字符串中加入该参数，具体示例如下：
 
-   `kylin.metadata.url=kylin_default_instance@jdbc,url=jdbc:mysql:loadbalance://host1:port1,host2:port2/kylin,username=root,password=root,maxActive=10,maxIdle=10`
+   `kylin.metadata.url=kylin_default_instance@jdbc,url=jdbc:mysql:loadbalance://host1:port1,host2:port2/kylin,username=root,password=root,maxActive=20,maxIdle=20`
 
    各配置项的含义如下，其中 `url`，`username` 和 `password` 为必须配置项，其余项若不配置将使用默认配置值：
 
@@ -48,10 +48,11 @@
    java -classpath kap.jar:spring-beans-4.3.10.RELEASE.jar:spring-core-4.3.10.RELEASE.jar:commons-codec-1.7.jar org.apache.kylin.rest.security.PasswordPlaceholderConfigurer AES <your_password>
    ```
 
-4. 由于元数据不依赖于 HBase，所以需要在配置文件 `$KYLIN_HOME/conf/kylin.properties` 中添加 zookeeper 的连接项 `kylin.env.zookeeper-connect-string = host:port `。
+4. 由于元数据不依赖于 HBase，所以需要在配置文件 `$KYLIN_HOME/conf/kylin.properties` 中添加 zookeeper 的连接项 `kylin.env.zookeeper-connect-string=host:port`，如 `kylin.env.zookeeper-connect-string=localhost:2181`。
 
 5. 启动 Kyligence Enterprise
 
 ### 将元数据从 HBase 迁移至关系型数据库
 
-迁移方法可参考：[将元数据从 HBase 迁移至关系型数据库](.\metastore_jdbc_move.cn.md)
+迁移方法可参考：[将元数据从 HBase 迁移至关系型数据库](../rdbms_metastore/migrate_metastore_to_rdbms.cn.md)
+

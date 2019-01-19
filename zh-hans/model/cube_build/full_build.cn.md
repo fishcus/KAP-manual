@@ -4,7 +4,7 @@
 
 ![全量构建](images/full_build.png)
 
-用户可以在 Web UI 进行全量构建，也可以通过 REST API 进行全量构建。关于使用 REST API 进行全量构建的更多信息，请参考 [Cube API](../../rest/cube_api.cn.md) 。
+用户可以在 Web UI 进行全量构建，也可以通过 REST API 进行全量构建。关于使用 REST API 进行全量构建的更多信息，请参考 [Cube 构建 API](../../rest/cube_api/cube_build_api.cn.md)。
 
 用户不可以对全量构建的 Segment 进行合并，因为全量构建的 Cube 中只能有最多一个 Segment。Segment 的刷新同样可以通过 Web UI 和 REST API 进行。
 

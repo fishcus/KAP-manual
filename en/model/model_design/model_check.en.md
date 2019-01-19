@@ -1,6 +1,6 @@
 ## Model Check
 
-Once the model is created, it is hard to say whether it is reasonable or not. Kyligence Enterprise provides a check procedure to inspect the model before building a cube on it.
+Once the model is created, it is hard to say whether it is reasonable or not. Kyligence Enterprise provides a check procedure to inspect the model before creating a cube on it.
 
 The procedure includes the following three steps:
 
@@ -10,7 +10,7 @@ The procedure includes the following three steps:
 
 
 
-**Step1.** Launch Kyligence Enterprise and go to the UI page，select a project, such as *learn_kylin*,  then click **Studio** in the left nav bar, after that click **Model** tab.
+**Step1.** Launch Kyligence Enterprise web UI，select a project, such as *learn_kylin*,  then click **Studio** in the left nav bar, after that click **Model** tab.
 
 ![Create model](images/model_check/24_model_diagnose_1.png)
 
@@ -46,10 +46,10 @@ As mentioned in the beginning, the model check includes 3 different check tasks:
 
 3. **Lookup Table Sampling**: Check if there are the duplications in primary key of lookup tables. If there are the duplication and it is over the given threshold will terminates the check job immediately. In this case, it's better to remove the duplication.
 
-With the above checks, we defines five model checking status:
+We define five model status according to model check result:
 
-1. Not Checked Yet. Once a model is created, it will be in this state.
-2. On Checking. It means a model checking job is running.
-3. Good Health. It means there are no checking errors.
-4. Warning. It indicates there is one checking error.
-5. Error. It shows there are at least two checking errors.
+- **Not Checked Yet**: Once a model is created, it will be in this state.
+- **Checking**: It means a model checking job is running.
+- **Good Health**: It means there are no checking errors.
+- **Warning**: It indicates there is one checking error.
+- **Error**: It shows there are at least two checking errors.

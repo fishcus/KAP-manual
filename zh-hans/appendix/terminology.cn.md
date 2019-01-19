@@ -1,4 +1,4 @@
-## Kyligence Enterprise 概念
+## 词汇表
 
 本节介绍了在Kyligence Enterprise中使用的基础概念。
 

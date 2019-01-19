@@ -4,7 +4,7 @@ Kyligence Enterprise 中提供两种构建引擎用于构建 Cube。它们分别
 
 本文介绍如何配置 Spark 构建引擎。
 
-### 准备 “kylin.env.hadoop-conf-dir”
+### 前置条件
 
 要在 Yarn 上运行 Spark，需要指定环境变量 `HADOOP_CONF_DIR`，即用于存放 Hadoop 客户端配置文件的目录。在许多 Hadoop 发行版中，该目录为`/etc/hadoop/conf`。但 Kyligence Enterprise 不仅需要访问 HDFS、Yarn 和 Hive，而且需要访问 HBase（如果HBase是元数据存储），所以该默认目录不一定包含所有必需的文件。在这种情况下，需要创建一个新目录，然后将这些客户端文件（core-site.xml、hdfs-site.xml、yarn-site.xml、hive-site.xml 和 hbase-site.xml）拷贝到该目录或为它们建立链接。
 

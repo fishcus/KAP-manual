@@ -2,7 +2,7 @@
 
 Kyligence Enterprise 在 Cube 构建过程中，默认应用 Hive 来做部分预计算。SparkSQL 在 Hive 上有更好的性能，所以使用 Spark SQL 可能会在特定步骤中提高构建速度。
 
-![SparkSQL 构建步骤](../images/sparksql_flat_table.cn.png)
+![SparkSQL 构建步骤](images/sparksql_flat_table.cn.png)
 
 ### 配置 SparkSQL
 

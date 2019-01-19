@@ -12,8 +12,8 @@
 * [Get Job Step Output](#Get-Job-Step-Output)
 * [Pause a Job](#Pause-a-Job)
 * [Resume a Job](#Resume-a-Job)
-* [Cancel a Job](#Cancel-a-Job)
-* [Drop a Job](#Drop-a-Job)
+* [Discard a Job](#Cancel-a-Job)
+* [Delete a Job](#Delete-a-Job)
 
 
 
@@ -22,13 +22,38 @@
 - `GET http://host:port/kylin/api/jobs`
 
 - URL Parameters
-  - `timeFilter` - `required` `int`, e.g. (LAST ONE DAY: 0, LAST ONE WEEK: 1, LAST ONE MONTH: 2, LAST ONE YEAR: 3, ALL: 4)
+  - `timeFilter` - `required` `int`
+
+    | Time Range     | Value |
+    | -------------- | ----- |
+    | LAST ONE DAY   | 0     |
+    | LAST ONE WEEK  | 1     |
+    | LAST ONE MONTH | 2     |
+    | LAST ONE YEAR  | 3     |
+    | ALL            | 4     |
+
   - `jobName` - `optional` `string`, job name
+
   - `projectName` - `optional` `string`, project name
-  - `status` - `optional` `int`, e.g. (NEW: 0, PENDING: 1, RUNNING: 2, STOPPED: 32, FINISHED: 4, ERROR: 8, DISCARDED: 16)
+
+  - `status` - `optional` `int`
+
+    | Job Status | Value |
+    | ---------- | ----- |
+    | NEW        | 0     |
+    | PENDING    | 1     |
+    | RUNNING    | 2     |
+    | FINISHED   | 4     |
+    | ERROR      | 8     |
+    | DISCARDED  | 16    |
+    | STOPPED    | 32    |
+
   - `pageOffset` - `optional` `int`, offset of returned result, 0 by default
+
   - `pageSize` - `optional` `int`, quantity of returned result per page, 10 by default
+
   - `sortby` -  `optional`  `string`, sort field,  "last_modify" by default
+
   - `reverse` - `optional` `boolean`, whether sort reverse, "true" by default
 
 - HTTP Header
@@ -89,6 +114,7 @@
 - `GET http://host:port/kylin/api/jobs/{jobId}`
 
 - URL Parameters
+
   - `jobId` - `required` `string`, Job ID
 
 - HTTP Header
@@ -182,6 +208,7 @@
 - `PUT http://host:port/kylin/api/jobs/{jobId}/pause`
 
 - URL Parameters
+
   - `jobId` - `required` `string`, Job ID
 
 - HTTP Header
@@ -235,6 +262,7 @@
 - `PUT http://host:port/kylin/api/jobs/{jobId}/resume`
 
 - URL Parameters
+
   - `jobId` - `required` `string`, Job ID
 
 - HTTP Header
@@ -299,11 +327,12 @@
 
 
 
-### Cancel a Job {#Cancel-a-Job}
+### Discard a Job {#Cancel-a-Job}
 
 - `PUT http://host:port/kylin/api/jobs/{jobId}/cancel`
 
 - URL Parameters
+
   - `jobId` - `required` `string`, Job ID
 
 - HTTP Header
@@ -352,11 +381,12 @@
 
 
 
-### Drop a Job {#Drop-a-Job}
+### Delete a Job {#Delete-a-Job}
 
 - `DELETE http://host:port/kylin/api/jobs/{jobId}/drop`
 
 - URL Parameters
+
   - `jobId` - `required` `string`, Job ID
 
 - HTTP Header

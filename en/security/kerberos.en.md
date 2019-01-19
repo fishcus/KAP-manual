@@ -1,7 +1,5 @@
 ## Integrate with Kerberos
 
-## Kerberos Integration ##
-
 Kerberos is a computer network authentication protocol that works on the basis of tickets. If the Hadoop platform where Kyligence Enterprise is installed enables this protocol, some configurations need to be changed to support that. This mainly includes two parts: Kerberos configurations in Kyligence Enterprise & Hadoop platform configurations.
 
 ### Kerberos Configuration in Kyligence Enterprise ###
@@ -112,17 +110,85 @@ Optional parameters：
        >
        > `{principal}` indicates the principal which is used to access Hive Metastore, such as `hive/hadoop.hadoop.com@HADOOP.COM` 
 
-**Other Hadoop Platform**
 
-1. On the node where YARN NodeManager is installed, the OS user which Kerberos uses needs to be created. For example, if Kerberos user `kylin` needs to be used to run this product, this user should exist in the OS of YARN NodeManager node
+**CDH / HDP Platform**
 
-2. Copy the keytab file to `$KYLIN_HOME/conf` directory
+1. Add corresponding user of Kerberos on the node of YARN NodeManager installation. For instance, the Kerberos user is `kylin`, then there shall be a user `kylin` in operating system of NodeManager node.
 
-3. Configure below parameters about Kerberos in `$KYLIN_HOME/conf/kylin.properties`
+2. Place the file `keytab` required for authentication on the directory `$KYLIN_HOME/conf`.
+
+3. Set Kerberos parameters on the file `$KYLIN_HOME/conf/kylin.properties` as:
 
    ```properties
    kap.kerberos.enabled=true
    kap.kerberos.platform=Standard
-   kap.kerberos.principal={your principal name}
-   kap.kerberos.keytab={your keytab name} 
+   kap.kerberos.principal={your_principal_name}
+   kap.kerberos.keytab={your_keytab_name} 
    ```
+
+4. Copy file `{hadoop_conf}/mapred-site.xml` to the directory `$KYLIN_HOME/conf`. In this file, add the following configurations:
+
+   ```xml
+   <property>
+      <name>mapreduce.job.complete.cancel.delegation.tokens</name>
+         <value>false</value>
+   </property>
+   ```
+
+5. If the read/write splitting deployment is applied, please add the following configurations in the file `$KYLIN_HOME/conf/kylin.properties`:
+
+   ```xml
+   kap.storage.columnar.spark-conf.spark.yarn.access.namenodes=hdfs://readcluster,hdfs://writecluster
+   ```
+
+Notice: For CDH Platform, some Hadoop jar files in directory `$KYLIN_HOME/spark/jars` need to be replaced with the corresponded jar files in your Hadoop environment.
+
+- Look for Hadoop jar files in your environment
+
+  ```shell
+  find /{hadoop_lib} | grep hadoop
+  ```
+
+- Back up the directory `$KYLIN_HOME/spark/`
+
+  ```shell
+  cp -r $KYLIN_HOME/spark ${KYLIN_HOME}.spark_backup
+  ```
+
+- Copy the Hadoop related jar files to `$KYLIN_HOME/spark/jars`
+
+- Please delete and copy the jar files refer to your production environment. Here is a table using Hadoop 2.7 as an example.
+
+| Hadoop jar files before replacement         | Hadoop jar files after replacement                     |
+| ------------------------------------------- | ------------------------------------------------------ |
+| hadoop-annotations-2.6.5.jar                | hadoop-annotations-2.7.2.jar                           |
+| hadoop-auth-2.6.5.jar                       | hadoop-auth-2.7.2.jar                                  |
+| hadoop-client-2.6.5.jar                     | hadoop-client-2.7.2.jar                                |
+| hadoop-common-2.6.5.jar                     | hadoop-common-2.7.2.jar                                |
+| hadoop-hdfs-2.6.5.jar                       | hadoop-hdfs-2.7.2.jar                                  |
+| hadoop-mapreduce-client-app-2.6.5.jar       | hadoop-mapreduce-client-app-2.7.2.jar                  |
+| hadoop-mapreduce-client-common-2.6.5.jar    | hadoop-mapreduce-client-common-2.7.2.jar               |
+| hadoop-mapreduce-client-core-2.6.5.jar      | hadoop-mapreduce-client-core-2.7.2.jar                 |
+| hadoop-mapreduce-client-jobclient-2.6.5.jar | hadoop-mapreduce-client-jobclient-2.7.2.jar            |
+| hadoop-mapreduce-client-shuffle-2.6.5.jar   | hadoop-mapreduce-client-shuffle-2.7.2.jar              |
+| hadoop-yarn-api-2.6.5.jar                   | hadoop-yarn-api-2.7.2.jar                              |
+| hadoop-yarn-client-2.6.5.jar                | hadoop-yarn-client-2.7.2.jar                           |
+| hadoop-yarn-common-2.6.5.jar                | hadoop-yarn-common-2.7.2.jar                           |
+| hadoop-yarn-server-common-2.6.5.jar         | hadoop-yarn-server-common-2.7.2.jar                    |
+| hadoop-yarn-server-web-proxy-2.6.5.jar      | hadoop-yarn-server-web-proxy-2.7.2.jar                 |
+|                                             | hadoop-archives-2.7.2.jar                              |
+|                                             | hadoop-aws-2.7.2.jar                                   |
+|                                             | hadoop-hdfs-client-2.7.2.jar                           |
+|                                             | hadoop-hdfs-colocation-2.7.2.jar                       |
+|                                             | hadoop-yarn-server-applicationhistoryservice-2.7.2.jar |
+|                                             | hadoop-yarn-server-resourcemanager-2.7.2.jar           |
+
+### FAQ
+
+**Q: If the check environment failed when integrated with Kerberos in FusionInsight C70, how to resolve it?**
+
+For C70, if you need to integrate with Kerberos and the property `hive.server2.enable.doAs` is false in `hive-site.xml`, please add the following configuration:
+
+```properties
+kylin.source.hive.table-dir-create-first=true
+```

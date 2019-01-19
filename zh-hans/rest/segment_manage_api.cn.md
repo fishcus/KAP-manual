@@ -1,4 +1,4 @@
-## 管理 Segment API
+## Segment 管理 API
 
 > **提示：**
 >
@@ -159,6 +159,7 @@
 
 - `PUT http://host:port/kylin/api/cubes/{cubeName}/segments/build_by_files`
 - URL Parameters
+
   - `cubeName` - `必选` `string`, Cube 名称
 - HTTP Header
   - `Content-Type: application/json;charset=utf-8`
@@ -214,6 +215,7 @@
 
 - `PUT http://host:port/kylin/api/cubes/{cubeName}/segments/build_by_files`
 - URL Parameters
+
   - `cubeName` - `必选` `string`, Cube 名称
 - HTTP Header
   - `Content-Type: application/json;charset=utf-8`
