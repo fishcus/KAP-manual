@@ -110,6 +110,7 @@ Optional parameters：
        >
        > `{principal}` indicates the principal which is used to access Hive Metastore, such as `hive/hadoop.hadoop.com@HADOOP.COM` 
 
+
 **CDH / HDP Platform**
 
 1. Add corresponding user of Kerberos on the node of YARN NodeManager installation. For instance, the Kerberos user is `kylin`, then there shall be a user `kylin` in operating system of NodeManager node.

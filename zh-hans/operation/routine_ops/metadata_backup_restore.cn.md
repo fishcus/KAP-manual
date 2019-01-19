@@ -2,7 +2,7 @@
 
 Kyligence Enterprise 实例是无状态的服务，所有的状态信息都存储元数据中，因此备份与恢复元数据是运维工作中一个至关重要的环节，可以在由于误操作导致整个实例或某个 Cube 异常时将 Kyligence Enterprise 快速从备份中恢复出来。
 
-元数据分为系统级别、项目级别、Cube 级别，本节的目录结构如下：
+元数据分为系统级别、项目级别、Cube 级别，本章的目录结构如下：
 
 - [元数据目录结构](#metadata_structure)
 - [元数据备份](#metadata_backup)
