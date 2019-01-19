@@ -1,8 +1,6 @@
 ## 卸载
 
 
-
-
 在本节中，我们将为您介绍卸载 Kyligence Enterprise 的步骤。
 
 完整卸载 Kyligence Enterprise 并清除所有相关数据的步骤如下：
