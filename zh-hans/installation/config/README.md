@@ -22,25 +22,3 @@ Kyligence Enterprise在集群结点上安装完毕后，还需要对Kyligence En
 >注意：
 >+ 若无特殊说明，本手册中出现的配置文件如`kylin.properties`均指代一览表中相应的配置文件。
 >+ 您可以在系统启动后从`$KYLIN_HOME/logs/kylin.log`文件中获取一览表中各配置文件路径，日志格式如`/kylin/conf/kylin.properties is used as kylin.properties`。
-
-
-
-继续阅读：
-
-[基本配置参数](basic_settings.cn.md)
-
-[生产环境推荐配置](recommend_settings.cn.md)
-
-[多级配置重写](config_override.cn.md)
-
-[KyStorage配置参数](kystorage_settings.cn.md)
-
-[JDBC Metastore配置](metadata_jdbc.cn.md)
-
-[Spark资源动态配置](spark_dynamic_allocation.cn.md)
-
-[配置 Spark 构建引擎](spark_engine_conf.cn.md)
-
-[压缩配置](compression_settings.cn.md)
-
-[查询下压配置](pushdown/README.md)

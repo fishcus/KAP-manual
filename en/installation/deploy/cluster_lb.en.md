@@ -1,7 +1,7 @@
-## Cluster (Load Balance) Deployment
+## Cluster Deployment and Load Balancing
 Kyligence Enterprise instance is stateless as all state information is stored in HBase or JDBC database. So running Kyligence Enterprise on multiple node in a cluster is a good practice for better load balance and higher availability.
 
-![](images/cluster.png)
+![Deployment Architecture](images/cluster.png)
 
 ### Kyligence Enterprise Instance Configuration
 
@@ -10,8 +10,6 @@ To organize multiple Kyligence Enterprise nodes in a cluster, please make sure t
 1. In the configuration files `$KYLIN_HOME/conf/kylin.properties` of each Kyligence Enterprise node, keep all nodes' `kylin.metadata.url` are same. Make sure all Kyligence Enterprise nodes use the same HBase Metastore;
 
    > If to turn on high availability on job engine, please refer to  [Configuration](adv_install_ha.en.md).
-
-  
 
 ### Load Balance Configuration
 

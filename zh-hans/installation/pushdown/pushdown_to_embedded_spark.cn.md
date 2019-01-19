@@ -11,7 +11,7 @@
 
 查询下压功能默认未开启。如果用户需要开启查询下压，需要在`kylin.properties`文件中删去`kylin.query.pushdown.runner-class-name=io.kyligence.kap.storage.parquet.adhoc.PushDownRunnerSparkImpl`这一配置项前的**注释符号**使其生效。
 
-需要其他下压引擎，可以参考[外部 SparkSQL 集成](pushdown_sparksql.cn.md)／[ Impala 集成](pushdown_impala.cn.md)／[Hive 集成](pushdown_hive.cn.md)。
+需要其他下压引擎，可以参考[查询下压](README.md)。
 
 ### 验证查询下压
 

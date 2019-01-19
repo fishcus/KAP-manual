@@ -10,21 +10,21 @@
 
 点击项目列表按钮，进入项目管理（Project Management）页面，该页面可以打开某一项目的编辑页面，继而可以添加配置项。这些配置项将覆盖配置文件中的默认值。
 
- ![override_project](images/override_project_1.cn.png)
+![项目配置](images/override_project_1.cn.png)
 
- ![override_project](images/override_project_2.cn.png)
+ ![重写参数](images/override_project_2.cn.png)
 
-``kylin.query.force-limit`` 可在项目级别重写
+> 注意：`kylin.query.force-limit` 仅可在项目级别重写
 
 ### Cube 配置重写
 
 在 cube 设计的**高级设置**步骤中，可以添加配置项，这些配置项将覆盖项目级别和配置文件中的默认值。如图所示：
 
- ![override](images/override_cube.cn.png)
+ ![Cube配置重写](images/override_cube.cn.png)
 
 
 
-### 覆盖`kylin.properties`中参数
+### 项目及 Cube 级别配置参数
 
 目前`kylin.properties`中的下列配置项均可以通过 Cube 级别和 Project 级别进行重定义。
 
@@ -57,36 +57,36 @@
 
 
 
-### 覆盖`kylin_hive_conf.xml`中参数
+### 覆盖 Hive 参数
 
 Kyligence Enterprise 支持通过 Kyligence Enterprise GUI 覆盖`kylin_hive_conf.xml`中的参数，以 Key-Value 的形式，按照如下格式替换:
 
 **Cube 级别配置**
 
-kylin.hive.config.override *key* = *value*
+kylin.hive.config.override.key = value
 
 ![override_cube](images/override_hive.cn.png)
 
 **Project 级别配置**
 
-kylin.hive.config.override.*key* = *value*
+kylin.hive.config.override.key = value
 
-![override_project](images/override_hive_project.cn.png)
+![配置重写](images/override_hive_project.cn.png)
 
 
 
-### 覆盖`kylin_job_conf.xml`和`kylin_job_conf_inmem.xml`中参数
+### 覆盖构建相关参数
 
 Kyligence Enterprise 支持通过 Kyligence Enterprise GUI 覆盖`kylin_job_conf.xml`和`kylin_job_conf_inmem.xml`中的参数，以 Key-Value 的形式，按照如下格式替换：
 
 **Cube 级别配置**
 
-kylin.job.mr.config.override *key* = *value*
+kylin.job.mr.config.override.key = value
 
 ![override_cube](images/override_job.cn.png)
 
 **Project 级别配置**
 
-kylin.job.mr.config.override.*key* = *value*
+kylin.job.mr.config.override.key = value
 
-![override_project](images/override_job_project.cn.png)
+![配置重写](images/override_job_project.cn.png)

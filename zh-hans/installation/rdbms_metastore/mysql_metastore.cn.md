@@ -54,4 +54,5 @@
 
 ### 将元数据从 HBase 迁移至关系型数据库
 
-迁移方法可参考：[将元数据从 HBase 迁移至关系型数据库](.\metastore_jdbc_move.cn.md)
+迁移方法可参考：[将元数据从 HBase 迁移至关系型数据库](../rdbms_metastore/migrate_metastore_to_rdbms.cn.md)
+
