@@ -15,7 +15,9 @@ Then, please set the following configurations in *kylin.properties* or *project 
 
 To enable query pushdown, following configration is required:
 
-`kylin.query.pushdown.runner-class-name=io.kyligence.kap.query.pushdown.PushdownRunnerSDKImpl`
+```properties
+kylin.query.pushdown.runner-class-name=io.kyligence.kap.query.pushdown.PushdownRunnerSDKImpl
+```
 
 > Tips:  `kylin.source.jdbc.sqoop-home=<sqoop_path>` should be added in `kylin.properties` , which cannot be applied in project configuration. Sqoop_path is the path of your sqoop directory. 
 
@@ -25,11 +27,11 @@ To enable query pushdown, following configration is required:
 
 **Step 1:** Log in to Kyligence Enterprise Web UI, then add a new project by clicking the `+` at the top right on Web UI. Type project name (required) and descriptions on the pop-up page; click `OK` to finish creating a project.
 
-![Create project](../images/dataimport_1.png)
+![Create project](../images/create_project.png)
 
 **Step 2:** Select `Data Source` under *Studio* section of your project. Click the blue `Data Source` button and select RDBMS as data source (as shown below).
 
-![Select data source](../images/rdbms_import2.en.png)
+![Select data source](../images/rdbms_import_select_source.png)
 
 **Step 3:** Set following configuration in project configuration:
 

@@ -56,7 +56,7 @@ bin/kafka-console-consumer.sh --bootstrap-server 127.0.0.1:9092 --topic kylindem
 
 ### 从流式数据中定义事实表
 
-本产品中，支持将 Kafka 消息流抽象为数据表（事实表）。通过快速构建数据，实现对消息流的近实时处理。后续，设计流式数据模型和 cube，请参见[流式cube](../streaming_cube.cn.md)。
+本产品中，支持将 Kafka 消息流抽象为数据表（事实表）。通过快速构建数据，实现对消息流的近实时处理。
 
 **步骤一**：启动产品, 从 Web GUI 登录, 新建一个项目。选择数据源为 Kafka。
 
