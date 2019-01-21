@@ -12,7 +12,7 @@ Since Kyligence Enterprise V2.5.5, users can check the Kyligence Enterprise clus
 
 * Query Node: The node which is assigned as query engine.
 
-  More information could be seen in [Service Discovery and Job Engine HA](../install/adv_install_ha.en.md) and [Cluster (Load Balance) Deployment](../install/adv_install_lb.en.md)
+  
 
 ### Server Status ###
 

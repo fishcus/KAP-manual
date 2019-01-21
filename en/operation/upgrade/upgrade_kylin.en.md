@@ -1,7 +1,5 @@
 ## Upgrade From Apache Kylin
 
-## Upgrade from Apache Kylin
-
 Kyligence Enterprise is a commercial version based on Apache Kylin. This chapter describes how to quickly and easily upgrade from Apache Kylin v2.3+ to the latest version of Kyligence Enterprise 3.x software.
 
 

@@ -18,8 +18,6 @@ kylin.job.notification-admin-emails=adminstrator-address
 *Restart Kyligence Enterprise* to make configurations work.
 
 #### 2.Setting in the Cube Design Page
-Modelers and Analysts need to fill in the `Notification Email List` with their email addresses in the `Cube info` Page when designing a Cube, as shown in the following picture.
-![](images/alerting/job_alert_en_1.png)
+Modelers and Analysts need to fill in the `Notification Email List` with their email addresses in the `Cube info` Page when designing a Cube.
 
-More detailed trigger condition for notification can be selected in the `Notification Events`, which means when Cube status turns to the specific  condition, email notification will be sent, as shown in the following picture.
-![](images/alerting/job_alert_en_2.png)
+More detailed trigger condition for notification can be selected in the `Notification Events`, which means when Cube status turns to the specific  condition, email notification will be sent.

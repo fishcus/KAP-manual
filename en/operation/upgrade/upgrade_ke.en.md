@@ -1,7 +1,5 @@
 ## Upgrade to Kyligence Enterprise 3.x
 
-## Upgrade to the latest version of Kyligence Enterprise 3.x
-
 This chapter describes how to upgrade from an earlier version of Kyligence Enterprise to the latest version of Kyligence Enterprise 3.x software.
 
 > Tip: Starting with 3.x, the Kyligence Analytics Platform (KAP) was officially renamed Kyligence Enterprise.
@@ -185,9 +183,10 @@ After testing to confirm that all features are available, you can save metadata 
 > **Note: ** Please make sure that the problem you have encountered after the upgrade has been contacted by Kyligence Technical Support, Kyligence Technical Support cannot provide an effective solution to your problem and this issue affects your core usage, then choose to roll back .
 
 1. Stop and confirm that there are no Kyligence Enterprise processes running:
-   ```sh
-   $KYLIN_HOME/bin/kylin.sh stop
-   Ps -ef | grep kylin
+     ```sh
+        $KYLIN_HOME/bin/kylin.sh stop
+        Ps -ef | grep kylin
+     ```
 ```
 
 2. Restore the original Kyligence Enterprise installation directory and update the `KYLIN_HOME` environment variable:
@@ -199,8 +198,9 @@ After testing to confirm that all features are available, you can save metadata 
 ```
 
 3. Restore metadata
-   ```sh
-   $KYLIN_HOME/bin/metastore.sh restore {your_backup_metadata_folder}
+     ```sh
+        $KYLIN_HOME/bin/metastore.sh restore {your_backup_metadata_folder}
+     ```
 ```
 
 4. (Optional) Restore Cube Data
@@ -210,6 +210,9 @@ After testing to confirm that all features are available, you can save metadata 
 ```
 
 5. Start Kyligence Enterprise
-   ```sh
-   $KYLIN_HOME/bin/kylin.sh start
+     ```sh
+        $KYLIN_HOME/bin/kylin.sh start
+     ```
+```
+
 ```

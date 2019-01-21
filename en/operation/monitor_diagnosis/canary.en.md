@@ -4,7 +4,7 @@ Since Kyligence Enterprise v2.5.6, service status will be detected every 15 minu
 
 Services status turns green for being good, yellow for warnings and red for error. More detailed information can be viewed by hovering above the specific detection item.
 
-![service status](images/service_status.en.png)
+![service status](images/canary/service_status.en.png)
 
 Service status detection mainly focuses on following aspects：
 
