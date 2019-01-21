@@ -1,4 +1,4 @@
-## LDAP 验证
+## 与 LDAP 集成
 
 Kyligence Enterprise 支持与 LDAP 服务集成用于实现用户验证。
 

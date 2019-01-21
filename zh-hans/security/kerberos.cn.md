@@ -1,4 +1,4 @@
-## 集成 Kerberos
+## 与 Kerberos 集成
 
 本章将介绍如何配置 Kyligence Enterprise 和 Hadoop 平台，使得 Kyligence Enterprise 与 Kerberos 集成。
 

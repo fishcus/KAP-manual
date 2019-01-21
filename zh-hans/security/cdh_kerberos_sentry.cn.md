@@ -1,68 +1,64 @@
-## CDH 环境下与 Kerberos + Sentry 安全集成
+## 与 Kerberos + Sentry 集成
 
 CDH 自带了 Sentry、Kerberos 等安全组件，用于配置一站式数据安全管控与权限管理。本章节将介绍如何在启用了安全配置的 CDH 集群环境中部署 Kyligence，并实现与 Sentry、Kerberos 安全配置的集成。
 
-###环境准备
+本章节内容结构如下：
 
-本小节介绍如何部署一个启用安全配置的CDH环境（以下所有链接内容都是在CDH5.15版本进行，如需其他版本请自行查找）：
+- [环境准备](#cdh-prep)
+  - 
 
-- 安装CDH基本环境，请参考<https://www.cloudera.com/documentation/enterprise/5-15-x/topics/installation.html>
+### 环境准备 {#cdh-prep}
 
-
-- 启用Kerbores认证，请参考<https://www.cloudera.com/documentation/enterprise/5-15-x/topics/cm_sg_authentication.html>
-
-- 启用Sentry相关的组件
-
-  - 启用HDFS Access Control Lists访问控制列表： <https://www.cloudera.com/documentation/enterprise/5-15-x/topics/cdh_sg_hdfs_ext_acls.html>
-
-  - 启用Hive相关的Sentry服务：
-
-    <https://www.cloudera.com/documentation/enterprise/5-15-x/topics/sg_sentry_service_config.html#concept_z5b_42s_p4__section_n4d_4g4_rp>
-
-  - 启用HDFS-Sentry plugin（用于HDFS同步Sentry权限信息）：
-
-    https://www.cloudera.com/documentation/enterprise/5-15-x/topics/sg_hdfs_sentry_sync.html#xd_583c10bfdbd326ba--69adf108-1492ec0ce48--7f3a>
-
-  - Setting Hive Warehouse Directory Permissions
-
-  - Disable impersonation for HiveServer2 in the Cloudera ManagerAdmin Console.
-
-  - If you are using YARN, enable the Hive user to submit YARN jobs.
-
-  - Block the Hive CLI user from accessing the Hive metastore.
-
-- Add the Hive, Impala and Hue Groups to Sentry's Admin Groups
-
-
-
-###Hive权限配置
-
-本小节介绍通过Hive创建新库方式介绍所需的安全配置(对于Hive中已有的数据表，也可按照同样的方式进行安全配置)。
-
-**前提：**
-
-1. 确保hive中有一些数据库和表来做测试。在本例中，在hive中创建数据库db_test，在数据库db_test中创建一些表。
-
-2. 系统中没有ke_user用户和ke_group用户组，需手动创建：
-
-   ```shell
-   $groupadd ke_group     ##新建用户组ke_group
-
-   $useradd -G ke_group ke_user     ##新建用户ke_user并添加到ke_group用户组中
+1. 请联系您的 Hadoop 管理员来确保您的 CDH 环境中已经启用了 Kerberos 认证和 Sentry 有关的组件。
+2. 请确保 Hive 中有一些数据库（如：`db_test`）和表用于测试。
+3. 请确保用于运行 Kyligence Enterprise 的用户（如：`ke_user` ）及对应用户组（如：`ke_group` ）已经被创建。
+   ```sh
+   $ groupadd ke_group     # 新建用户组 ke_group
+   $ useradd -G ke_group ke_user     # 新建用户 ke_user 并添加到 ke_group 用户组中
    ```
 
-   > **注意：**确保在集群中所有host都创建ke_user和ke_group，否则权限无法生效。
+   > **注意：**请确保在集群中的所有节点上都创建 `ke_user` 和 `ke_group` 以保证权限的成功生效。
+
+
+### 配置 Hive
+
+1. 登录 Cloudera Manager，转到 **Hive** 服务，单击**配置**选项卡。
+2. 搜索 **Hive MetastoreAccess Control and Proxy User Groups Override**，找到配置项 `hadoop.proxyuser.hive.groups`，点击**加号**添加 `ke_group`。
+
+   > **提示： **KyligenceEnterprice执行用户提交的表采样任务时，需要去连接hive metastore。但只有属于 `hive->配置->[hadoop.proxyuser.hive.groups` 中添加的用户组的用户才能够连接hive metastore，所以需要把用户组ke_group添加至其中。这样用户 *ke_user* 就能够连接 hive metastore了。 
+
+
+4. 对 “hive-site.xml的Hive服务高级配置代码段（安全阀）”点击加号，增加以下配置：
+
+   **名称：**hive.metastore.rawstore.impl，
+
+   **值 ：**org.apache.sentry.binding.metastore.AuthorizingObjectStore。
+
+   **名称：**hive.server2.session.hook
+
+   **值：**org.apache.sentry.binding.hive.HiveAuthzBindingSessionHook
+
+   **名称：**hive.server2.authentication
+
+   **值：**KERBEROS
+
+   **名称：**hive.server2.enable.doAs
+
+   **值：**false。
+
+   > **提示：**此时如果通过 hive CLI 去连接 hive metastore，sentry 的权限控制对属于`hadoop.proxyuser.hive.groups`中添加的用户组的用户不起作用。例如，此时用户 *ke_user* 在 hive CLI 中运行 `use default`， `show tables`， 这时可以看到 default 库中所有的表名。
+所以我们通过上述步骤4中的配置来对`hadoop.proxyuser.hive.groups`中添加的用户组做与其对应角色权限的过滤和拦截。此时用户 *ke_user* 在 hiveCLI 中运行 `use default`，` show tables`， 这时只可以看到 default 库中*ke_user* 有权限看到的表了。
 
 
 
-####登陆Beeline
+### 登陆Beeline
 
 安全环境中需要使用Beeline方式访问Hive，并需要以kerberos用户hive操作beeline，创建角色，授予权限。参考命令如下：
 
-> 注意：只有属于 `sentry->配置->sentry.service.admin.group` 中添加的用户组的用户才有权限在beeline中执行sentry权限管理命令，请确保 hive 这个 group 被加入进去。
+> 注意：只有 `sentry->配置->sentry.service.admin.group` 配置中添加的用户组的用户才有权限在beeline中执行sentry权限管理命令，请确保 hive 这个 group 被加入进去。
 
-```shell
-$kinit [hive](mailto:hive@EXAMPLE.COM)
+​```shell
+$kinit hive@EXAMPLE.COM
 
 $beeline -u “jdbc:hive2://localhost:10000/;principal=hive/xxx@EXAMPLE.COM”
 ```
@@ -75,7 +71,7 @@ $beeline -u “jdbc:hive2://localhost:10000/;principal=hive/xxx@EXAMPLE.COM”
    $create role ke_role;
 
    $grant role ke_role to group ke_group;
-   ```
+```
 
    > **注意：**只能将角色授予给特定的组，不能将角色授予给特定的用户。
 
@@ -88,20 +84,20 @@ $beeline -u “jdbc:hive2://localhost:10000/;principal=hive/xxx@EXAMPLE.COM”
 
    $grant all on database db_flat to role ke_role; 
 
-   $grant all on database db_test to roleke_role;        
+   $grant all on database db_test to role ke_role;        
    ```
 
-3. Kyligence Enterprice首次执行 `bin/kylin.shstart` 时，首先会 `check-env` 检查环境，在此过程中会在hive中创建临时测试表存放在 hdfs 的 {kylin-working-dir} 目录下。
+3. Kyligence Enterprice首次执行 `bin/kylin.sh start` 时，首先会 `check-env` 检查环境，在此过程中会在hive中创建临时测试表存放在 hdfs 的 {kylin-working-dir} 目录下。
 
    所以需要执行下述语句，授予用户 ke_user 对 hdfs 的 {kylin-working-dir} 路径对应 uri 的所有权限，并且对 /tmp 也要有权限。
 
    ```shell
-   $grant all on uri “[hdfs://xxxx:8020/](){kylin-working-dir}”to role ke_role;
+   $grant all on uri "hdfs://xxxx:8020/{kylin-working-dir}" to role ke_role;
 
-   $grant all on uri “hdfs://xxxx:8020/tmp”to role ke_role;
+   $grant all on uri "hdfs://xxxx:8020/tmp" to role ke_role;
    ```
 
-   > **注意：**如果您的集群是hadoop HA，请把上面的 *hdfs://xxxx:8020/xxx* 替换为您所配置的 nameservice，例如 *hdfs://nameservice1/kylin* 。
+   > **注意：**上述的XXXX代表你的NameNode的地址。如果您的集群是hadoop HA，请把上面的 *hdfs://xxxx:8020/xxx* 替换为您所配置的 nameservice，例如 *hdfs://nameservice1/kylin* 。
 
 Sentry的授权同步到HDFS的ACL可能需要几分钟时间，请耐心等待。
 
@@ -111,7 +107,7 @@ Sentry的授权同步到HDFS的ACL可能需要几分钟时间，请耐心等待�
 
 1.    新增 Kerberos 用户 *ke_user*，在 KDC 部署机器 host 上执行 kadmin.local   
 
-      ```Shell
+      ```sh
       $kadmin.local: addprinc ke_user
       ```
 
@@ -163,41 +159,6 @@ Sentry的授权同步到HDFS的ACL可能需要几分钟时间，请耐心等待�
 更多sentry权限管理命令请参照cdh官方文档：<https://www.cloudera.com/documentation/enterprise/5-15-x/topics/sg_hive_sql.html>
 
 
-
-###配置Hive Server
-
-请登录Cloudera Manager，并执行下述操作。
-
-1. 转到Hive服务。
-
-2. 单击**配置**选项卡。
-
-3. 搜索 Hive MetastoreAccess Control and Proxy User Groups Override以找到配置项       `hadoop.proxyuser.hive.groups`，点击加号添加 *ke_group*（本文档中实例用户 *ke_user* 的所属组）。
-
-   > **提示： **KyligenceEnterprice执行用户提交的表采样任务时，需要去连接hive metastore。但只有属于 `hive->配置->[hadoop.proxyuser.hive.groups` 中添加的用户组的用户才能够连接hive metastore，所以需要把用户组ke_group添加至其中。这样用户 *ke_user* 就能够连接 hive metastore了。 
-
-
-4. 对 “hive-site.xml的Hive服务高级配置代码段（安全阀）”点击加号，增加以下配置：
-
-   **名称：**hive.metastore.rawstore.impl，
-
-   **值 ：**org.apache.sentry.binding.metastore.AuthorizingObjectStore。
-
-   **名称：**hive.server2.session.hook
-
-   **值：**org.apache.sentry.binding.hive.HiveAuthzBindingSessionHook
-
-   **名称：**hive.server2.authentication
-
-   **值：**KERBEROS
-
-   **名称：**hive.server2.enable.doAs
-
-   **值：**false。
-
-   > **提示：**此时如果通过 hive CLI 去连接 hive metastore，sentry 的权限控制对属于`hadoop.proxyuser.hive.groups`中添加的用户组的用户不起作用。例如，此时用户 *ke_user* 在 hive CLI 中运行 `use default`， `show tables`， 这时可以看到 default 库中所有的表名。
-
-所以我们通过上述步骤4中的配置来对`hadoop.proxyuser.hive.groups`中添加的用户组做与其对应角色权限的过滤和拦截。此时用户 *ke_user* 在 hiveCLI 中运行 `use default`，` show tables`， 这时只可以看到 default 库中*ke_user* 有权限看到的表了。
 
 
 
@@ -257,7 +218,7 @@ $ hadoop fs -setfacl -m “user:hive:rwx” /{kylin-working-dir}
       kadmin.local > xst -norandkey-k /ke_user.keytab ke_user
       ```
 
-2.    把上一步生成的 `ke_user.keytab` 文件放到 `KYLIN_HOME/conf` 下
+2.    把上一步生成的 `ke_user.keytab` 文件放到 `$KYLIN_HOME/conf` 下
 
 ####在 `kylin.properties` 中新增配置：
 
