@@ -43,39 +43,29 @@ OpenLDAP 服务器的安装，依系统不同而略有区别。这里以 CentOS 
     将 `suffix "dc=my-domain,dc=com"` 修改为：`suffix "dc=example,dc=com"`   - 设置 LDAP 管理员的 DN
     将 `rootdn "cn=Manager,dc=my-domain,dc=com"` 修改为：`rootdn "cn=Manager,dc=example,dc=com"`
   - 设置 LDAP 管理员的口令
-    修改 `rootpw	secret`，将 `secret` 使用明文密码代替；
-
-要创建一个新的加密密码，使用下面的命令：
-
-```
-slappasswd
-```
-输入要设置的密码，加密值会被输出在 sh 界面。然后将此值拷贝在 rootpw 这一行，如：
-
-```
-rootpw {SSHA}vv2y+i6V6esazrIv70xSSnNAJE18bb2u
-```
-
-4．为配置文件修改权限
-
-```sh
-chown ldap.ldap /etc/openldap/*
-chown ldap.ldap /var/lib/ldap/*
-```
-
-5．新建目录 /etc/openldap/cacerts
-
-```sh
-mkdir /etc/openldap/cacerts
-```
-
-6．重启系统，然后开启服务
-
-```sh
-sudo service slapd start
-```
-
-7．新建文件 example.ldif（包括三个用户，两个组）
+    修改 `rootpw secret`，将 `secret` 使用明文密码代替；
+    如果要创建一个新的加密密码，请使用下面的命令：
+    ```sh
+    slappasswd
+    ```
+    输入要设置的密码，加密值会被输出在终端界面，请将此值拷贝在 `rootpw` 这一行，如：
+    ```
+    rootpw	{SSHA}vv2y+i6V6esazrIv70xSSnNAJE18bb2u
+    ```
+  - 为配置文件修改权限
+    ```sh
+    chown ldap.ldap /etc/openldap/*
+    chown ldap.ldap /var/lib/ldap/*
+    ```
+  - 新建目录 `/etc/openldap/cacerts`
+    ```sh
+    mkdir /etc/openldap/cacerts
+    ```
+  - 重启服务
+    ```sh
+    sudo service slapd start
+    ```
+  - 新建文件 `example.ldif`（包括三个用户，两个组）
 
 ```properties
 # example.com
