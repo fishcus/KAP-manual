@@ -122,7 +122,7 @@
              * [与 OBIEE 11g 集成](integration/bi/obiee/obiee_11g.cn.md) 
              * [与 OBIEE 12c 集成](integration/bi/obiee/obiee_12c.cn.md) 
          * [与 SAP Business Objects 集成](integration/bi/sap_bo.cn.md)   
-         * [与 SmartBI Insight 集成](integration/bi/SmartBI.cn.md) 
+         * [与 SmartBI Insight 集成](integration/bi/smartbi.cn.md) 
          * [与 Fanruan 集成](integration/bi/fanruan.cn.md)
          * [与 Apache Zeppelin 集成](integration/bi/zeppelin.cn.md)
      * [与 Excel 集成](integration/excel.cn.md)       
