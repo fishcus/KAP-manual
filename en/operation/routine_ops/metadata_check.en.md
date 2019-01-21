@@ -2,27 +2,65 @@
 
 We suggest you backup the metadata regularly so that you may recover it quickly when it is corrupted. Nevertheless, there are still some unexpected situations which may cause metadata inconsistency. Fortunately, now you can use the Metadata Check tool in Kyligence Enterprise to check these inconsistencies and recover part of them.
 
-### Check Scope
-
-We summarize some scenarios which might cause metadata inconsistency in Kyligence Enterprise as follows:
-
-1. Cube against Model (consistency check of Cube and Model)
-2. Cube against Table Index
-3. Cube against Scheduler Job
-4. Job's metadata against output information
-5. Kyligence Enterprise runtime loaded metadata against resource store's metadata
-
 ### Usage
+
+Metadata Check tool arguments introduction:
+
+```sh
+usage: io.kyligence.kap.tool.metadata.MetadataChecker
+-c,--check                     Check metadata. 
+-d,--withDict                  Check metadata including dictionaries
+-e,--excludeThreshold <arg>    Specify how many days of metadata to be
+excluded from cleanup. Default 2 days
+-g,--copyGroupSize <arg>       Specify parallel copy group size when
+checking metadata. Default is 200
+-o,--outdatedThreshold <arg>   Specify how many days of job metadata
+keeping. Default 30 days
+-r,--recovery                  Check and Cleanup metadata
+-s,--withSnapshot              Check metadata including snapshots
+```
+
+> Notes:
+> 1. Check tool support standard short argument and standard long argument
+> 2. Check tool backwards compitable with argument "check" and argument "recovery"
+> 3. Check tool doesn't check and recover dictionary and snapshot, please add arguments if needed when execute Check tool
+> 4. If choose to check snaposhot, please make sure that tables in source can be access via Kyligence Enterprise
+> 5. If choose to recover snapshot, please make sure that Kyligence Enterprise job node is online
+> 6. Check tool only supports to check dictionary, but won't to recover them
+
 Run the Metadata Check tool to identify inconsistent metadata:
 
+
+```sh
+bin/kylin.sh io.kyligence.kap.tool.metadata.MetadataChecker -c
 ```
+
+or
+
+```sh
 bin/kylin.sh io.kyligence.kap.tool.metadata.MetadataChecker check
 ```
 
+
 If there is any inconsistent metadata detected, run the following command to recover the metadata:
 
-> Notes: this step will delete the isolated metadata detected in Kyligence Enterprise.
+> Notes:
+> 1. This step will recover the metadata detected in Kyligence Enterprise.
+> 2. Recovery step will backup metadata to folder "$KYLIN_HOME/meta_backups/", backup folder name follows pattern "cleaned_meta_\${timestamp}"
 
+```sh
+bin/kylin.sh io.kyligence.kap.tool.metadata.MetadataChecker -r
 ```
+
+or
+
+```sh
 bin/kylin.sh io.kyligence.kap.tool.metadata.MetadataChecker recovery
 ```
+
+Run Metadata Check tool on background example:
+
+```sh
+nohup bin/kylin.sh io.kyligence.kap.tool.metadata.MetadataChecker recovery >> /path/to/check.log 2>&1 &
+```
+

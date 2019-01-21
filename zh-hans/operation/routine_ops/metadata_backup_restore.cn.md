@@ -100,7 +100,7 @@ Kyligence Enterprise 中需要用**命令行**进行元数据恢复。
   ```sh
   $KYLIN_HOME/bin/metastore.sh restore /path_to_backup
   ```
-- 恢复**项目级别**的元数据--
+- 恢复**项目级别**的元数据
 
   ```sh
   $KYLIN_HOME/bin/metastore.sh restore-project project_name /path_to_backup

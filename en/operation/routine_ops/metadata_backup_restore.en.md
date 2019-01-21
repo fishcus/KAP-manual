@@ -97,13 +97,13 @@ Metadata recovery is required in Kyligence Enterprise with the **command line**.
 
 **Note: **Recovery operations will overwrite the remote metadata with local metadata, so please confirm that Kyligence Enterprise is down or inactive (including build tasks) from backup to recovery, otherwise from backup to recovery Other metadata changes between them will be lost as a result. If you want the Kyligence Enterprise service to be unaffected, use **project level** or **Cube level** metadata recovery.
 
-- Restore ** system level ** metadata
+- Restore **system level ** metadata
 
   ```sh
   $KYLIN_HOME/bin/metastore.sh restore /path_to_backup
   ```
 
-- Restore ** project level ** metadata --
+- Restore **project level ** metadata 
 
    ```sh
    $KYLIN_HOME/bin/metastore.sh restore-project project_name /path_to_backup

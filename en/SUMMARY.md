@@ -187,6 +187,7 @@
         * [Kyligence Enterprise 2.0 Release Notes](release/history_release/kap_2_0.en.md)
 * [Appendix](appendix/README.md)        
     * [Apply License](appendix/apply_license.en.md)       
+    * [Get Support](appendix/get_support.en.md)
     * [FAQ](appendix/faq.en.md)       
     * [Sample Dataset](appendix/sample_dataset.en.md)      
     * [Terminologies](appendix/terminology.en.md)
