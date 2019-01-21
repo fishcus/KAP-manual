@@ -1,4 +1,4 @@
-## Window Function
+## Window Functions
 
 User can use window function to achieve queries that are more complicated, to simplify the query process and obtain better statistics results.
 

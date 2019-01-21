@@ -1,6 +1,6 @@
 ## Data Export Access Control
 
-## Permission Settings for Result Exporting
+### Permission Settings for Result Exporting
 
 
 Kyligence Enterprise admin can control the permission of exporting query results by setting the parameters of `kap.web.export.allow.admin` and `kap.web.export.allow.other` in `conf/kylin.properties`, respectively for ADMIN and non-ADMIN users of Kyligence Enterprise.

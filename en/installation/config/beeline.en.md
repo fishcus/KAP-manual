@@ -1,4 +1,4 @@
-### Use Beeline to Connect Hive
+## Use Beeline to Connect Hive
 
 If you use Beeline to connect Hive, you need to modify `$KYLIN_HOME/conf/kylin.properties ` as below to ensure it uses the correct account to execute Hive commands:
 

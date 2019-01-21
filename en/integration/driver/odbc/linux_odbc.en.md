@@ -1,4 +1,4 @@
-# Install & Configure Kyligence ODBC Driver on Linux
+## Install & Configure Kyligence ODBC Driver on Linux
 
 In this section, we will introduce how to install Kyligence ODBC driver (linux version) and configure DSN under Linux environment. 
 

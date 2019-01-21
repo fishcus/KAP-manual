@@ -1,4 +1,4 @@
-# Integrate with Tableau 8.x
+## Integrate with Tableau 8.x
 
 > There are some limitations of Kylin ODBC driver with Tableau, please read carefully this instruction before you try it.
 >

@@ -1,4 +1,4 @@
-### 使用 Beeline 连接 Hive
+## 使用 Beeline 连接 Hive
 
 如果您使用 Beeline 连接 Hive，需要如下修改 `$KYLIN_HOME/conf/kylin.properties`，确保 Beeline 使用正确的账户执行命令：
 

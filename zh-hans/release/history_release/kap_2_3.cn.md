@@ -1,4 +1,4 @@
-## 	Kyligence Enterprise 2.3 发行说明
+## Kyligence Enterprise 2.3 发行说明
 
 下面将介绍 Kyligence Enterprise 2.3 新引进的特征和功能更新
 

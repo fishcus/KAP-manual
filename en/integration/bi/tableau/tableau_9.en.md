@@ -1,4 +1,4 @@
-# Integrate with Tableau 9.x 
+## Integrate with Tableau 9.x 
 
 Tableau 9.x has been released a while, there are many users are asking about support this version with Apache Kylin. With updated Kyligence ODBC Driver, now user could interactive with Kylin service through Tableau 9.x.
 

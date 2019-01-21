@@ -1,4 +1,3 @@
-
 ## Kyligence Enterpries Overview
 
 Kyligence Enterprise is a Hadoop-based intelligent enterprise big data analytics platform, which provides sub-second query latency on petabyte-scale dataset, makes OLAP (Online Analytical Process-ing) and BI (Business Intelligence) applications work on big data, empowers data analysts and busi-ness users quickly gain insights and business values from huge amounts of data.

@@ -1,5 +1,3 @@
-
-
 ## 日志
 
 Kyligence Enterprise 顺利启动后，默认会在安装目录下生成`logs/`目录，所有 Kyligence Enterprise 运行过程中生成的日志文件会保存在该目录中。

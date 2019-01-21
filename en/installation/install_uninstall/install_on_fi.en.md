@@ -1,4 +1,4 @@
-# Install on Huawei FusionInsight Platform
+## Install on Huawei FusionInsight Platform
 
 To enable you to experience Kyligence Enterprise as soon as possible, we recommend that you use Kyligence Enterprise with sandbox software such as All-in-one Sandbox VM. In this section. We will guide you to quickly install Kyligence Enterprise in the Huawei FusionInsight sandbox.
 
