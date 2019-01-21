@@ -27,7 +27,7 @@
         * [Spark 资源动态配置](installation/config/spark_dynamic_allocation.cn.md)
         * [Hadoop 队列配置](installation/config/hadoop_queue_config.cn.md)
         * [Beeline 连接 Hive 配置](installation/config/beeline.cn.md)
-        * [查询缓存配置](installation/config/quey_cache.cn.md)
+        * [查询缓存配置](installation/config/query_cache.cn.md)
         * [压缩配置](installation/config/compression_config.cn.md)
     * [使用 Spark 构建](installation/spark_cubing/README.md)
         * [配置 Spark 构建引擎](installation/spark_cubing/spark_engine.cn.md)
