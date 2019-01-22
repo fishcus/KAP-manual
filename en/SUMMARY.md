@@ -1,6 +1,5 @@
 # Summary
 
-* [Overview](introduction/README.md)
 * [Quick Start](quickstart/README.md)
 * [Installation and Configuration](installation/README.md)
     * [Prerequisites](installation/prerequisite.en.md)

@@ -1,6 +1,5 @@
 # 目录
 
-* [简介](introduction/README.md)
 * [快速开始](quickstart/README.md)
 * [安装与配置](installation/README.md)
     * [安装前置条件](installation/prerequisite.cn.md)
