@@ -31,7 +31,7 @@
         * [Compression Configuration](installation/config/compression_config.en.md)
     * [Spark Cubing](installation/spark_cubing/README.md)
         * [Build Cube on Spark](installation/spark_cubing/spark_engine.en.md)
-        * [Using SparkSQL](installation/spark_cubing/sparksql_cubing.en.md)
+        * [Use SparkSQL during Cube Build](installation/spark_cubing/sparksql_cubing.en.md)
     * [Query Pushdown](installation/pushdown/README.md)
         * [Pushdown to Hive](installation/pushdown/pushdown_to_hive.en.md)
         * [Pushdown to Embedded SparkSQL](installation/pushdown/pushdown_to_embedded_spark.en.md)

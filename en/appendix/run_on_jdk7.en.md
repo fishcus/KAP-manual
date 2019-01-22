@@ -4,9 +4,11 @@ Kyligence Enterprise requires JDK 8 or above. This applies to not only the node 
 
 If user's current Hadoop cluster is based on JDK 7 or below, we can still install and run Kyligence Enterprise. However the following steps must be taken before the first start of Kyligence Enterprise.
 
-1. On **all nodes in the cluster**, download and install JDK 8 64 bit to the same location. For example `/usr/java/jdk1.8`
+1. Upgrade JDK version to **JDK 8 64 bit** in **Kyligence Enterprise installation node**.
 
-2. Add following lines to `$KYLIN_HOME/conf/kylin.properties`
+2. On **all other nodes in the cluster**, download and install JDK 8 64 bit to the same location. For example `/usr/java/jdk1.8`
+
+3. Add following lines to `$KYLIN_HOME/conf/kylin.properties`
 
    ```properties
    kap.storage.columnar.spark-conf.spark.executorEnv.JAVA_HOME=/usr/java/jdk1.8
@@ -16,7 +18,7 @@ If user's current Hadoop cluster is based on JDK 7 or below, we can still instal
    kylin.engine.spark-conf.spark.yarn.appMasterEnv.JAVA_HOME=/usr/java/jdk1.8
    ```
 
-3. In`$KYLIN_HOME/conf`, find `kylin_job_conf.xml` and `kylin_job_conf_inmem.xml`, then insert the following properties.
+4. In`$KYLIN_HOME/conf`, find `kylin_job_conf.xml` and `kylin_job_conf_inmem.xml`, then insert the following properties.
 
    ```xml
       <property>

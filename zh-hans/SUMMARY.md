@@ -31,7 +31,7 @@
         * [压缩配置](installation/config/compression_config.cn.md)
     * [使用 Spark 构建](installation/spark_cubing/README.md)
         * [配置 Spark 构建引擎](installation/spark_cubing/spark_engine.cn.md)
-        * [使用 SparkSQL](installation/spark_cubing/sparksql_cubing.cn.md)
+        * [构建 Cube 过程中使用 SparkSQL](installation/spark_cubing/sparksql_cubing.cn.md)
     * [查询下压](installation/pushdown/README.md)
         * [下压至 Hive](installation/pushdown/pushdown_to_hive.cn.md)
         * [下压至原生 SparkSQL](installation/pushdown/pushdown_to_embedded_spark.cn.md)

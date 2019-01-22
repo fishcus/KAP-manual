@@ -4,9 +4,11 @@ Kyligence Enterprise 要求 JDK 8 或以上。这要求不仅适用于运行 Kyl
 
 如果用户当前的集群为 JDK 7 或更低，我们仍然可以安装和运行 Kyligence Enterprise。只是在第一次启动 Kyligence Enterprise 之前，必需先执行以下配置：
 
-1. 在 **集群中的所有节点上**，下载并安装 JDK 8 64 bit 到同样的路径下，比如`/usr/java/jdk1.8`。
+1. 保证 **Kyligence Enterprise 安装节点**的 JDK 版本为 **JDK 8 及以上**。
 
-2. 在`$KYLIN_HOME/conf/kylin.properties`中添加以下配置。
+2. 在 **集群中其他所有节点上**，下载并安装 JDK 8 64 bit 到同样的路径下，比如`/usr/java/jdk1.8`。
+
+3. 在`$KYLIN_HOME/conf/kylin.properties`中添加以下配置。
 
    ```properties
    kap.storage.columnar.spark-conf.spark.executorEnv.JAVA_HOME=/usr/java/jdk1.8
@@ -16,7 +18,7 @@ Kyligence Enterprise 要求 JDK 8 或以上。这要求不仅适用于运行 Kyl
    kylin.engine.spark-conf.spark.yarn.appMasterEnv.JAVA_HOME=/usr/java/jdk1.8
    ```
 
-3. 在`$KYLIN_HOME/conf`目录下`kylin_job_conf.xml`以及`kylin_job_conf_inmem.xml`添加以下配置。
+4. 在`$KYLIN_HOME/conf`目录下`kylin_job_conf.xml`以及`kylin_job_conf_inmem.xml`添加以下配置。
 
    ```xml
       <property>
