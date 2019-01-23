@@ -384,7 +384,7 @@
 - URL Parameters
 
   - `cubeName` - `必选` `string`， Cube 名称
-  - `windowUrl` - `可选` `string`，使用浏览器打开 Kyligence Enterprise 的 URL 前缀，如 `http://localhost:7070/kylin`，默认值为空
+  - `windowUrl` - `必选` `string`，使用浏览器打开 Kyligence Enterprise 的 URL 前缀，如 `http://localhost:7070/kylin`
   - `containTableIndex` - `可选` `boolean`，是否包含 table index 的列，默认值为 `false`
 
 
@@ -397,7 +397,7 @@
 
   ```sh
   curl -X GET \
-    'http://host:port/kylin/api/cubes/kylin_sales_cube/export/tds' \
+    'http://localhost:7070/kylin/api/cubes/kylin_sales_cube/export/tds?windowUrl=http%3a%2f%2flocalhost%3a7070%2fkylin' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \

@@ -382,7 +382,7 @@
 - URL Parameters
 
   - `cubeName` - `required` `string`,  cube name
-  - `windowUrl` - `optional` `string`, url of Kyligence Enterprise windows, for example, `http://localhost:7070/kylin`, and the default value is none.
+  - `windowUrl` - `required` `string`, url of Kyligence Enterprise windows, for example, `http://localhost:7070/kylin`.
   - `containTableIndex` - `optional` `boolean`, whether includes the columns set to table index, the default value is `false`
 
 - HTTP Header
@@ -394,7 +394,7 @@
 
   ```sh
   curl -X GET \
-    'http://host:port/kylin/api/cubes/kylin_sales_cube/export/tds' \
+    'http://localhost:7070/kylin/api/cubes/kylin_sales_cube/export/tds?windowUrl=http%3a%2f%2flocalhost%3a7070%2fkylin' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
