@@ -42,7 +42,7 @@
   > **Note:**
   >
   > 1. When cubes are disabled after they are enabled, the user cannot modify the definition of dimensions and measures, or add/remove dimensions and measures. If you need to edit dimensions and metrics, you need to redesign and build a new cube.
-  > 2. When cubes are disabled after they are enabled,  the user can edit dimension description, measure description, Refresh Setting and Cube Configuration/Job Related Configuration/Hive Related Configuration in the Advanced Setting step.
+  > 2. When cubes are disabled after they are enabled,  the user can edit dimension description, measure description, Refresh Setting and Advanced Setting.
   > 3. User can edit dimension description and measure description in a *DESCBROKEN* cube.
 
 
