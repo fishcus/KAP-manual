@@ -1,6 +1,6 @@
 ## Kyligence Enterprise Manual
 
-**Kyligence Enterprise** 大数据智能分析平台是基于*Apache Kylin*的，在超大数据集上提供亚秒级分析能力的企业级数据仓库产品，为业务用户、分析师及工程师提供简便、快捷的大数据分析服务。在继承Apache Kylin的高性能查询、易用建模，多协议支持、非侵入式架构等突出优点的同时，Kyligence Enterprise在企业用户所关注的实施效率、安全可控、性能优化、自助式敏捷BI、系统监控等方面进行了全方位的创新，被誉为目前最为成熟的OLAP on Hadoop产品。
+**Kyligence Enterprise** 大数据智能分析平台是基于 *Apache Kylin* 的，在超大数据集上提供亚秒级分析能力的企业级数据仓库产品，为业务用户、分析师及工程师提供简便、快捷的大数据分析服务。在继承Apache Kylin的高性能查询、易用建模，多协议支持、非侵入式架构等突出优点的同时，Kyligence Enterprise在企业用户所关注的实施效率、安全可控、性能优化、自助式敏捷 BI、系统监控等方面进行了全方位的创新，被誉为目前最为成熟的 OLAP on Hadoop 产品。
 
 **Kyligence Enterprise: Petabyte-Scale Enterprise OLAP Platform** 
 
