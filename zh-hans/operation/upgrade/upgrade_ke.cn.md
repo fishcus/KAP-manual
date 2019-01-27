@@ -94,7 +94,7 @@ export KYLIN_HOME={your-unpack-folder}
 
 - 快速配置
 
-  Kyligence Enterprise 中提供了两套配置参数：`$KYLIN_HOME/conf/profile_prod/` 和 `$KYLIN_HOME/conf/profile_min/`。前者是默认方案，适用于实际生产环境；后者使用较少的资源，适用于沙箱等资源有限的环境。如果您的单点环境资源有限，可以切换到 `profile_min` 配置。
+  Kyligence Enterprise 中提供了两套配置参数：`$KYLIN_HOME/conf/profile_prod` 和 `$KYLIN_HOME/conf/profile_min`。前者是默认方案，适用于实际生产环境；后者使用较少的资源，适用于沙箱等资源有限的环境。如果您的单点环境资源有限，可以切换到 `profile_min` 配置。
 
   ```sh
   rm $KYLIN_HOME/conf/profile
@@ -122,17 +122,11 @@ export KYLIN_HOME={your-unpack-folder}
     > kylin.metadata.url = {your_kylin_metadata_url}
     > ```
 
-- 如果您当前集群部署是通过 Redis 实现多个 Kyligence Enterprise 实例的 Session 共享，您还需要修改 Tomcat 配置文件，如下：
+- 如果您当前集群部署是通过 Redis 实现多个 Kyligence Enterprise 实例的 Session 共享，请参考[集群部署与负载均衡](../../installation/deploy/cluster_lb.cn.md) 进行配置。
 
-  - 将 Redis 相关的 jar 包放置在 `$KYLIN_HOME/tomcat/lib/` 路径下，如下：
-    ```sh
-    cp $OLD_KYLIN_HOME/tomcat/lib/{jedis-2.0.0.jar,commons-pool2-2.2.jar,tomcat-redis-session-manager-1.2-tomcat-7-java-7.jar} $KYLIN_HOME/tomcat/lib/
-    ```
+- 如果您启用了 Kerberos 安全认证，请参考[与 Kerberos 集成](../../security/kerberos.cn.md)
 
-  - 覆盖 Tomcat 配置文件，如下：
-    ```sh
-    cp $OLD_KYLIN_HOME/tomcat/conf/context.xml $KYLIN_HOME/tomcat/context.xml
-    ```
+- 如果您修改了 Kyligence Enterprise 启动端口，请拷贝并替换 `$OLD_KYLIN_HOME/tomcat/conf/server.xml` 至新的安装目录的相同路径。
 
 
 
