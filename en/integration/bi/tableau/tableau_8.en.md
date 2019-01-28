@@ -8,7 +8,7 @@
 > * You can try to use high cardinality dimensions like seller id as Tableau Filter, but the engine will only return limited seller id in Tableau's filter now.
 
 ### Install Kylin ODBC Driver
-Refer to this guide: [Kylin ODBC Driver Tutorial](../../driver/odbc/README.md).
+Refer to this guide: [Kylin ODBC Driver](../../driver/odbc/README.md).
 
 Please make sure to download and install Kylin ODBC Driver __v1.5__. If you already installed ODBC Driver in your system, please uninstall it first.
 

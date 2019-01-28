@@ -9,7 +9,7 @@ Tableau 是 Windows 平台上最流行的商业智能工具之一，它操作简
 
 ### 前置条件
 
-- 安装 Kyligence ODBC 驱动程序。有关详细安装信息，请参考 [Kyligence ODBC 驱动程序](../driver/kyligence_odbc.cn.md)。
+- 安装 Kyligence ODBC 驱动程序。有关详细安装信息，请参考 [Kyligence ODBC 驱动](../../driver/odbc/README.md)。
 
 - 如果希望进行明细查询，需要在 Cube 中配置**表索引**或开启**查询下压**。
 
@@ -92,4 +92,5 @@ Tableau 提供定制 TDC 配置文件的方式， 以满足 Kyligence Enterprise
 
 
 **方法二**：您可以通过调整`kylin.query.force-limit` 以限制返回记录数。启动该功能的方法为将该设置的值设置为正整数，如1000。
+
 ## Tableau
