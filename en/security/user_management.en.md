@@ -1,111 +1,73 @@
 ## User Management
 
-This section provides an overview of what a user is and how a user can be managed. 
+This chapter introduces what a user is and how a user can be managed. 
 
-### About User
+### About Users
 
-To use Kyligence Enterprise, a user must log in to the system using a login ID and password. Users are defined in the Kyligence Enterprise built-in metadata and exist across projects. You do not have to define users for every project you create in a single metadata. 
-
-User **ADMIN** is a built-in default user with system admin access permission created with a new Kyligence Enterprise metadata. **System admin** user has all access permission for all projects. 
-
-### Access Control List
-
-The **Access Control List (ACL)** is a list of user and access permission that user has in a project. Except for system admin, ACL needs to be granted on a project basis. 
-
-There are fours types of access permission on a project in Kyligence Enterprise. They are PROJECT Admin, Management, Operation, and Query. Each access permission defines a list of functionality user may perform in Kyligence Enterprise system.
-
-For details on project-level access control and how to grant access on projects, please refer to [Manage Access Permission](acl.en.md) 
-
-### Manage User
-
-Login to Kyligence Enterprise and click `System` button on the navigation bar. The system management page will then show. Next, click `User` bar on the left side to enter user management page. Only system admin could get access to the user management page. 
-
-There are three default users in Kyligence Enterprise: ADMIN (system admin), MODELER and ANALYST.
-
-Once a user is created, the system admin can add, manage, delete and group users on user management page. 
-
-Except for System Admin, Other users need to be granted access permission on project-level in order to use any functionality in Kyligence Enterprise. Creating user alone will not grant users any access permission. 
-
-![Manage user](images/user/user_w1.png)
+To use Kyligence Enterprise, a user must log in to the system using a user name and corresponding password. Every user is unique in a Kyligence Enterprise instance, which is to say, it is not necessary to create the same user for every project in a single instance. 
+By default, Kyligence Enterprise initializes three users, namely `ADMIN`, `MODELER` and `ANALYST`. The user `ADMIN` is a built-in system administrator, and the system administrator has all the permissions of the entire system.
 
 
-#### Add User
-Under user management page, click `+ User` button to create a new user, type in a user name and input new password twice, and then set whether this user is the system admin. Click on `Yes` to create the new user. 
+### Manage Users
 
-![Add user](images/user/user_w2.png)
+After the system administrator logs in to Kyligence Enterprise, click the *System* button in the navigation bar to enter the system management page, and click the *User* field to enter the User Management page.
 
-#### Edit User
-Under user management page, click `…` under `Action`, and choose `Edit User`. 
-
-System admin will be prompted to set or unset this user to be system admin on this page. 
-
-![Edit user](images/user/user_w3.png)
-
-#### Reset Password
-Under user management page, click `…` under `Action`, and choose `reset password`.
-
-System admin needs to type in the new password twice to reset the password. 
-
-![Reset password for system admin](images/user/user_w4.png)
+*Caution*:
+1. Except for the system administrator, simply creating a user does not give the user access to any project.
+2. Except for  the system administrator, other users need to be given access at the project level.
 
 
+### Add a user
 
-User will be prompted to change password at first login. If you want to reset password to the default for user ADMIN, please execute command (kylin.sh admin-password-reset) in the KYLIN_HOME.
+On the User Management page, the system administrator can click the *+Users* button to add new users. In the pop-up window, please fill in the user name, password,  confirm new password, select whether the user role is a system administrator or a normal user, and click *Ok*.
 
-```
+
+#### Edit a user role
+
+On the User Management page, click *Action* --> *...* -->*Edit Role*.In the pop-up window,  the system administrator can modify user role. 
+
+### Delete a user
+
+On the User Management page,  click *Action* --> *...* -->*Drop*. The system administrator can confirm to delete a user in the prompted window. User can not be restored after deleting, and user's access permission on all projects will be removed.
+
+### Enable/Disable a user
+
+On the User Management page,  click *Action* --> *...* -->*Enable/Disable*. The system administrator can enable or disable a user, and disabled users cannot login to the system. 
+
+### Reset password for ADMIN
+
+On the User Management page,  click *Action* -->*Reset Password*.
+In the pop-up window, the system administrator can change the password and need to enter the new password twice.
+The initial ADMIN account password needs to be modified after the first login. To restore the initial password, you can execute the following command:
+```sh
 $KYLIN_HOME/bin/kylin.sh admin-password-reset
 ```
 
-#### Drop User
+### Reset password for non-admin
 
-Under user management page, click `…` under `Action`, and choose `Drop`.
-
-System admin could delete users within the page. Please be noted that dropped users cannot be restored. 
-
-When use is dropped from Kyligence Enterprise instance entirely, all user's access permission on all projects will be dropped subsequently. This may include project-level, table-level, row-level and column-level access permission if there is any. 
-
-#### Enable/Disable Users
-
-Under user management page, click `…` under `Action`, and choose `Disable` or `Enable`.
-
-System admin could enable or disable users and disabled users cannot login to the system. 
-
-#### Change Password as Normal Users
-ß
-Click the `User Name` on the top right corner of the navigation bar, then users could choose the `Settings` option and be prompted to reset password. User needs to provide the old password and enter a new password twice to reset the password.
-
-![Change password as normal users](images/user/user_w5.png)
-
-#### Group Users
-
-To add a user to a specific group, do the following:
-
-1. Under user management page, select a user to be grouped.
-2. Click `…` under `Action`, and choose `Group Membership`.
-3. Select a group to assign the user to under `Group to be selected`, and then click the right arrow. The group will enter `Checked Group`.
-4. Click `Save` and the user will be in the selected group.
-
-![Group users](images/user/user_w6.png)
+Click  *<username\>*-->*Setup* on the top right corner of the navigation bar. In the pop-up window,  user can reset the password, need to provide the old password and repeat the new password twice.
 
 
+### Assign a user to a group
 
-#### Modify User's Group
-
-To modify user's group, do the following:
-
-1. Under user management page, select the user to modify the group.
-2. Click `…` under `Action`, and choose `Group Membership`.
-3. Select the group to be modified under `Checked Group`, and then click the left arrow. The group will enter into `Group to be selected`.
-4. Click `Save` and the user's group will be modified.
-
-![Modify user's group](images/user/user_w7.png)
+To assign a user to a group, please do the followings:
+1. On the User Management page,  select a user to be grouped.
+2. Click *Action* --> *...* --> *Group Membership*.
+3. Select a group to assign the user to under *Group to be selected*, and then click the right arrow. The group will enter *Checked Groups*.
+4. Click *Save* and the user will be in the selected group.
 
 
+### Modify user's group membership
 
-#### User Management when LDAP Enabled
+To modify user's group, please do the followings:
+1. On the User Management page,  select the user to modify the group membership.
+2.  Click *Action* --> *...* --> *Group Membership*.
+3. Select the group to be modified under *Checked Group*, and then click the left arrow. The group will enter into *Group to be selected*.
+4. Click *Save* and the user's group membership will be modified.
+
+
+###  User Management when LDAP Enabled
 
 Once LDAP is enabled, user is read-only and cannot be added, edited, dropped, modified or grouped.
 
-![User management when LDAP enabled](images/user/user_w8.png)
-
-For more information on LDAP, please see [LDAP Authentication](ldap.en.md) in this chapter.
+For more information on LDAP, please refer to  [LDAP Authentication](ldap.en.md).
