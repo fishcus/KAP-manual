@@ -7,6 +7,9 @@ CDH 自带了 Sentry、Kerberos 等安全组件，用于配置一站式数据安
 - [环境准备](#cdh-prep)
   - 
 
+
+- 配置验证
+
 ### 环境准备 {#cdh-prep}
 
 1. 请联系您的 Hadoop 管理员来确保您的 CDH 环境中已经启用了 Kerberos 认证和 Sentry 有关的组件。
@@ -24,62 +27,54 @@ CDH 自带了 Sentry、Kerberos 等安全组件，用于配置一站式数据安
 
 1. 登录 Cloudera Manager，转到 **Hive** 服务，单击**配置**选项卡。
 2. 搜索 **Hive MetastoreAccess Control and Proxy User Groups Override**，找到配置项 `hadoop.proxyuser.hive.groups`，点击**加号**添加 `ke_group`。
+3. 在环境中的 `hive-site.xml` 中增加如下配置：
+   ```xml
+   <property>
+      <name>hive.metastore.rawstore.impl</name>
+      <value>org.apache.sentry.binding.metastore.AuthorizingObjectStore</value>
+   </property>
 
-   > **提示： **KyligenceEnterprice执行用户提交的表采样任务时，需要去连接hive metastore。但只有属于 `hive->配置->[hadoop.proxyuser.hive.groups` 中添加的用户组的用户才能够连接hive metastore，所以需要把用户组ke_group添加至其中。这样用户 *ke_user* 就能够连接 hive metastore了。 
+   <property>
+      <name>hive.server2.session.hook</name>
+      <value>org.apache.sentry.binding.hive.HiveAuthzBindingSessionHook</value>
+   </property>
 
+   <property>
+      <name>hive.server2.authentication</name>
+      <value>kerberos</value>
+   </property>
 
-4. 对 “hive-site.xml的Hive服务高级配置代码段（安全阀）”点击加号，增加以下配置：
+   <property>
+      <name>hive.server2.enable.doAs</name>
+      <value>false</value>
+   </property>
+   ```
 
-   **名称：**hive.metastore.rawstore.impl，
-
-   **值 ：**org.apache.sentry.binding.metastore.AuthorizingObjectStore。
-
-   **名称：**hive.server2.session.hook
-
-   **值：**org.apache.sentry.binding.hive.HiveAuthzBindingSessionHook
-
-   **名称：**hive.server2.authentication
-
-   **值：**KERBEROS
-
-   **名称：**hive.server2.enable.doAs
-
-   **值：**false。
-
-   > **提示：**此时如果通过 hive CLI 去连接 hive metastore，sentry 的权限控制对属于`hadoop.proxyuser.hive.groups`中添加的用户组的用户不起作用。例如，此时用户 *ke_user* 在 hive CLI 中运行 `use default`， `show tables`， 这时可以看到 default 库中所有的表名。
-所以我们通过上述步骤4中的配置来对`hadoop.proxyuser.hive.groups`中添加的用户组做与其对应角色权限的过滤和拦截。此时用户 *ke_user* 在 hiveCLI 中运行 `use default`，` show tables`， 这时只可以看到 default 库中*ke_user* 有权限看到的表了。
+   > 提示：通过 Hive CLI 去连接 Hive Metastore，Sentry 的权限控制对 `hadoop.proxyuser.hive.groups` 中添加的用户组的用户不起作用；通过添加上述步骤 3 中的配置对 `hadoop.proxyuser.hive.groups` 中添加的用户组中对应角色进行权限的过滤和拦截。
 
 
 
-### 登陆Beeline
+### 配置 Beeline 连接
 
-安全环境中需要使用Beeline方式访问Hive，并需要以kerberos用户hive操作beeline，创建角色，授予权限。参考命令如下：
+安全环境中需要使用 Beeline 连接访问 Hive，并需要以 Kerberos 用户 hive 操作 Beeline，创建角色，授予权限。参考命令如下：
 
-> 注意：只有 `sentry->配置->sentry.service.admin.group` 配置中添加的用户组的用户才有权限在beeline中执行sentry权限管理命令，请确保 hive 这个 group 被加入进去。
+> **注意**：只有在 Sentry 配置项 `sentry.service.admin.group` 中添加的用户组的用户才有权限在 Beeline 中执行 Sentry 权限管理命令，请确保 hive 所在的用户组被加入进去。
 
-​```shell
-$kinit hive@EXAMPLE.COM
-
-$beeline -u “jdbc:hive2://localhost:10000/;principal=hive/xxx@EXAMPLE.COM”
+​```sh
+$ kinit hive@EXAMPLE.COM
+$ beeline -u "jdbc:hive2://localhost:10000/;principal=hive/xxx@EXAMPLE.COM"
 ```
 
-> **注意：**上面的 Principal 信息在 ClouderaManager 的 hive 中配置，搜索 *hive.metastore.kerberos.principal* 即可找到。
+> **注意：** Principal 信息在环境的 `hive-site.xml` 中搜索 `hive.metastore.kerberos.principal` 即可找到。
 
-1. 在 Beeline 创建一个角色 *ke_role*，并赋予给组
+1. 在 Beeline 创建一个角色 `ke_role`，并赋予给组 `ke_group`
 
-   ```shell
-   $create role ke_role;
-
-   $grant role ke_role to group ke_group;
-```
-
-   > **注意：**只能将角色授予给特定的组，不能将角色授予给特定的用户。
-
-   ​
-
-2. 创建一个数据库，专门用于 KyligenceEnterprice 存放构建 cube 时打的平表，赋予 *ke_role* 角色对这个数据库所有操作权限，并给测试库也赋予权限。
-
-   ```shell
+   ```sh
+   $ create role ke_role;
+   $ grant role ke_role to group ke_group;
+   ```
+2. 创建一个数据库，用于存放Hive 中间表，赋予 *ke_role* 角色对这个数据库所有操作权限，并给测试库也赋予权限。
+   ```sh
    $create database db_flat;
 
    $grant all on database db_flat to role ke_role; 

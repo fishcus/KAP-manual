@@ -147,7 +147,7 @@
     * [Monitoring and Diagnosis](operation/monitor_diagnosis/README.md)       
         * [System Log](operation/monitor_diagnosis/logging.en.md)
         * [Server Status Check](operation/monitor_diagnosis/server_status.en.md) 
-        * [Dependency Environment Check](operation/monitor_diagnosis/canary.en.md)    
+        * [Environment Dependency Check](operation/monitor_diagnosis/canary.en.md)    
         * [Job Status Alert](operation/monitor_diagnosis/alerting.en.md)    
         * [System and Job Diagnosis](operation/monitor_diagnosis/diag.en.md)   
     * [Upgrade](operation/upgrade/README.md)    
