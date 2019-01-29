@@ -52,7 +52,7 @@ You can click *Encoding* drop down list of each column in table index configurat
 5. "int" is deprecated. Use latest "integer" instead. 
 6. "date" uses 3 bytes to encode date dimension values. 
 7. "time" uses 4 bytes to encode timestamps, supporting from 1970-01-01 00:00:00 to 2038/01/19 03:14:07. Milliseconds are ignored. 
-8. "fix_length" uses a fixed-length ("length" parameter) byte array to encode integer dimension values, with potential value truncations. 
+8. "fixed_length" uses a fixed-length ("length" parameter) byte array to encode integer dimension values, with potential value truncations. 
 9. "fixed_length_hex" uses a fixed-length ("length" parameter) byte array to encode the hex string dimension values, such as 1A2BFF or FF00FF, with potential value truncations. For every two hex codes, one length parameter will be assigned. 
 
 Notice: "dict" encoding is NOT supported in table index.

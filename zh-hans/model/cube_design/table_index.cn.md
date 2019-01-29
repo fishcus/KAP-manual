@@ -51,7 +51,7 @@ SortBy 列表中的第1列编码必须为 “integer”，“date” 或 “time
 5. “int” 已弃用，请使用 “integer” 代替。 
 6. “date” 适用于字段值为日期的列，支持的格式包括 yyyyMMdd、yyyy-MM-dd、yyyy-MM-dd HH:mm:ss、yyyy-MM-dd HH:mm:ss.SSS，其中如果包含时间戳部分会被截断。
 7. “time” 适用于字段值为时间戳的列，支持范围为[1970-01-01 00:00:00, 2038/01/19 03:14:07] ，毫秒部分会被忽略。“time” 编码适用于 “time”、“datetime”、“timestamp” 等类型。
-8. “fix_length” 适用于超高基场景，将选取字段的前 N 个字节作为编码值。当 N 小于字段长度时，会造成字段截断。当 N 较大时，会造成 RowKey 过长，查询性能下降。只适用于 varchar 或 nvarchar 类型。
+8. “fixed_length” 适用于超高基场景，将选取字段的前 N 个字节作为编码值。当 N 小于字段长度时，会造成字段截断。当 N 较大时，会造成 RowKey 过长，查询性能下降。只适用于 varchar 或 nvarchar 类型。
 9. “fixed_length_hex” 适用于字段值为十六进制字符，如 1A2BFF 或者 FF00FF。每两个字符需要一个字节。只适用于 varchar 或 nvarchar 类型。
 
 注意：“dict” 编码在表索引中并不支持。
