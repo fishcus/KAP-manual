@@ -10,12 +10,63 @@
 
 
 * [加载 Hive 表](#加载Hive表)
+* [加载 Hive 表（弃用）](#加载Hive表-弃用)
 * [返回多个 Hive 表](#返回多个Hive表)
 * [返回 Hive 表信息](#返回Hive表信息)
 
 
 
 ### 加载 Hive 表   {#加载Hive表}
+
+- `POST http://host:port/kylin/api/table_ext/{project}/load`
+
+- HTTP Header
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
+
+- HTTP Body: JSON Object
+  - `project` - `必选` `string`，指定 Hive 表将要加载到哪个项目
+  - `tables` - `必选` `string[]`，指定想要加载的 Hive 表
+  - `needProfile` - `optional`  `boolean` ，指定是否开启表采样，默认值为 true
+  - `ratio` - `optional` `float`，指定表采样的比例。 例如设置为0.20，代表采样比例为20%，默认值为1，即100%
+  - `maxSampleCount` - `optional` `long`，指定采样行数的最大限制，默认值为20,000,000
+
+- Curl 请求示例
+
+  ```sh
+  curl -X POST \
+    'http://host:port/kylin/api/table_ext/{project}/load' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json;charset=utf-8' \
+    -d '{
+    "project":"{project}",
+    "tables":["KYLIN_SALES","KYLIN_CAL_DT"]
+  }'
+  ```
+
+- 响应示例
+
+  ```JSON
+  {
+      "code": "000",
+      "data": {
+          "result.loaded": [
+              "DEFAULT.KYLIN_SALES",
+              "DEFAULT.KYLIN_CAL_DT"
+          ],
+          "result.running": [],
+          "result.unloaded": []
+      },
+      "msg": ""
+  }
+  ```
+
+
+
+### 加载 Hive 表（弃用）   {#加载Hive表-弃用}
 
 - `POST http://host:port/kylin/api/tables/load`
 
@@ -29,6 +80,8 @@
 - HTTP Body: JSON Object
   - `project` - `必选` `string`，指定 Hive 表将要加载到哪个项目
   - `tables` - `必选` `string[]`，指定想要加载的 Hive 表
+  - `needProfile` - `optional`  `boolean` ，指定是否开启表采样。默认值为 true
+  - `maxSampleCount` - `optional` `long`，指定采样行数的最大限制。默认值为20000000
 
 - Curl 请求示例
 

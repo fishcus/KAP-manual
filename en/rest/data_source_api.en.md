@@ -9,12 +9,63 @@
 
 
 * [Load Hive Table](#Load-Hive-Table)
+* [Load Hive Table (Deprecated)](#Load-Hive-Table-Deprecated)
 * [Get Multiple Hive Table](#Get-Multiple-Hive-Table)
 * [Get Hive Table Information](#Get-Hive-Table-Information)
 
 
 
-### Load Hive Table {#Load-Hive-Table}
+### Load Hive Table  {#Load-Hive-Table}
+
+- `POST http://host:port/kylin/api/table_ext/{project}/load`
+
+- HTTP Header
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
+
+- HTTP Body: JSON Object
+  - `project` - `required` `string`, specify which project will the Hive table be loaded to
+  - `tables` - `required` `string[]`, specify the names of Hive tables which will be loaded
+  - `needProfile` - `optional`  `boolean` , specify whether sampling or not, false as disable sampling, `true` by default
+  - `ratio` - `optional` `float` , specify the sampling percentage, 0.20 as 20%, 1.00 by default
+  - `maxSampleCount` - `optional` `long` , specify the upper limit for total sampling data records, 20,000,000 by default
+
+- Curl Request Example
+
+  ```sh
+  curl -X POST \
+    'http://host:port/kylin/api/table_ext/{project}/load' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json;charset=utf-8' \
+    -d '{
+    "project":"{project}",
+    "tables":["KYLIN_SALES","KYLIN_CAL_DT"]
+  }'
+  ```
+
+- Response Example
+
+  ```json
+  {
+      "code": "000",
+      "data": {
+          "result.loaded": [
+              "DEFAULT.KYLIN_SALES",
+              "DEFAULT.KYLIN_CAL_DT"
+          ],
+          "result.running": [],
+          "result.unloaded": []
+      },
+      "msg": ""
+  }
+  ```
+
+  
+
+### Load Hive Table (Deprecated) {#Load-Hive-Table-Deprecated}
 
 - `POST http://host:port/kylin/api/tables/load`
 
@@ -28,6 +79,8 @@
 - HTTP Body: JSON Object
   - `project` - `required` `string`, specify which project will the Hive table be loaded to
   - `tables` - `required` `string[]`, specify the names of Hive tables which will be loaded
+  - `needProfile` - `optional`  `boolean` , specify whether sampling or not, false as disable sampling. `true` by default
+  - `maxSampleCount` - `optional` `long` , specify the limit for max sampling data records. 20000000 by default
 
 
 - Curl Request Example
