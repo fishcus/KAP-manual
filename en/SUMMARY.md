@@ -168,6 +168,7 @@
     * [Query API](rest/query_api.en.md)
     * [Cache API](rest/cache_api.en.md)
     * [Async Query API](rest/async_query_api.en.md)
+    * [Metadata API](rest/metadata_api.en.md)
     * [ACL Management API](rest/acl_api/README.md)
         * [User Management API](rest/acl_api/user_api.en.md)
         * [User Group Management API](rest/acl_api/user_group_api.en.md)
