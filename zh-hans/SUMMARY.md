@@ -117,6 +117,7 @@
         * [与 Qlik 集成](integration/bi/qlik/README.md)
             * [与 Qlik Sense 集成](integration/bi/qlik/qlik_sense.cn.md)
             * [与 Qlik Sense Enterprise 集成](integration/bi/qlik/qlik_enterprise.cn.md)
+            * [与 QlikView 集成](integration/bi/qlik/qlik_view.cn.md)
         * [与 Oracle Business Intelligence/OBIEE 集成](integration/bi/obiee/README.md) 
             * [与 OBIEE 11g 集成](integration/bi/obiee/obiee_11g.cn.md) 
             * [与 OBIEE 12c 集成](integration/bi/obiee/obiee_12c.cn.md) 

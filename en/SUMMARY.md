@@ -117,6 +117,7 @@
         * [Qlik](integration/bi/qlik/README.md)
             * [Qlik Sense](integration/bi/qlik/qlik_sense.en.md)
             * [Qlik Sense Enterprise](integration/bi/qlik/qlik_sense_enterprise.en.md)
+            * [QlikView](integration/bi/qlik/qlik_view.en.md)
         * [Oracle Business Intelligence/OBIEE](integration/bi/obiee/README.md) 
             * [OBIEE 11g](integration/bi/obiee/obiee_11g.en.md) 
             * [OBIEE 12c](integration/bi/obiee/obiee_12c.en.md) 
