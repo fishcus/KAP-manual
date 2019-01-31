@@ -1,4 +1,4 @@
-## Metadata Check
+## Metadata Check (Deprecated)
 
 We suggest you backup the metadata regularly so that you may recover it quickly when it is corrupted. Nevertheless, there are still some unexpected situations which may cause metadata inconsistency. Fortunately, now you can use the Metadata Check tool in Kyligence Enterprise to check these inconsistencies and recover part of them.
 
@@ -21,12 +21,12 @@ keeping. Default 30 days
 ```
 
 > Notes:
-> 1. Check tool support standard short argument and standard long argument
-> 2. Check tool backwards compitable with argument "check" and argument "recovery"
-> 3. Check tool doesn't check and recover dictionary and snapshot, please add arguments if needed when execute Check tool
-> 4. If choose to check snaposhot, please make sure that tables in source can be access via Kyligence Enterprise
+> 1. Check tool supports the standard short argument and standard long argument
+> 2. Check tool backward compatible with argument "check" and argument "recovery"
+> 3. Check tool doesn't check and recover dictionary and snapshot, please add arguments if needed when executing the Check tool
+> 4. If choose to check the table snaposhot, please make sure that tables in data source can be accessed via Kyligence Enterprise
 > 5. If choose to recover snapshot, please make sure that Kyligence Enterprise job node is online
-> 6. Check tool only supports to check dictionary, but won't to recover them
+> 6. Check tool only supports to check the dictionary, but won't to recover them
 
 Run the Metadata Check tool to identify inconsistent metadata:
 
