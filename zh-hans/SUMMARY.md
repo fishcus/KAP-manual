@@ -137,7 +137,6 @@
     * [管理查询结果导出权限](security/query_result_export.cn.md)      
     * [与 LDAP 集成](security/ldap.cn.md)     
     * [与 Kerberos 集成 ](security/kerberos.cn.md)
-    * [与 Kerberos + Sentry 集成](security/cdh_kerberos_sentry.cn.md)
 * [系统运维](operation/README.md)        
     * [日常维护](operation/routine_ops/README.md)       
         * [基本运维](operation/routine_ops/basic_ops.cn.md)     
