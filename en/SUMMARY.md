@@ -134,7 +134,6 @@
         * [Table-level Access Control](security/data_acl/table_acl.en.md)
         * [Row-level Access Control](security/data_acl/row_acl.en.md)
         * [Column-level Access Control](security/data_acl/column_acl.en.md)
-    * [Data Export Access Control](security/query_result_export.en.md)      
     * [Integrate with LDAP](security/ldap.en.md)     
     * [Integrate with Kerberos](security/kerberos.en.md)    
 * [System Operation](operation/README.md)        

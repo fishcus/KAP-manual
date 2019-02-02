@@ -134,7 +134,6 @@
         * [表级访问权限](security/data_acl/table_acl.cn.md)
         * [行级访问权限](security/data_acl/row_acl.cn.md)
         * [列级访问权限](security/data_acl/column_acl.cn.md)
-    * [管理查询结果导出权限](security/query_result_export.cn.md)      
     * [与 LDAP 集成](security/ldap.cn.md)     
     * [与 Kerberos 集成 ](security/kerberos.cn.md)
 * [系统运维](operation/README.md)        
