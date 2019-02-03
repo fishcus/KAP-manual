@@ -20,9 +20,14 @@ Click **Add Cube** on model *kylin_sales_model* and input cube name *kylin_sales
 
 Select some columns as dimensions via **Add Dimensions**. Dimension can be set as *normal* or *derived*. Only dimensions from lookup tables that have snapshots can be set as derived dimensions. 
 
-> **Note**: Only the number of normal dimensions will affect the number of cuboid generated as well as the size of cube data.
+![edit_dimension](images/edit_dimension_en.png)
+
+> **Note:**
 >
-> Compare to normal dimension, derived dimension does not participate in cube calculation directly. Instead, it is represented by its FK (Foreign Key) in cube. That is why using derived dimensions can greatly reduce cube complexity. During query, derived dimensions have to be converted to their FKs first, causing a small panalty to performance.
+> 1. You can maintain dimension description to add semantic comment to each dimension. Meanwhile this description can be directly exposed to specific BI tools such as Tableau, via using "export TDS" functionality.
+> 2. When data source is Hive, you can directly sync Hive column comment as dimension description and it can also be changed afterwards.
+
+Only the number of normal dimensions will affect the number of cuboid generated as well as the size of cube data. Compare to normal dimension, derived dimension does not participate in cube calculation directly. Instead, it is represented by its FK (Foreign Key) in cube. That is why using derived dimensions can greatly reduce cube complexity. During query, derived dimensions have to be converted to their FKs first, causing a small panalty to performance.
 
 Basic rules for defining dimensions in a cube is explained as below:
 
@@ -49,18 +54,22 @@ The optimization setting for our sample cube is shown as below:
 
 ![Optimize dimension](images/cube_design_basics/createcube_optimize.png)
 
-Rowkey specifies how dimensions are organized and stored together. The order of dimensions specified in rowkey can greatly affect the query performance, so we recommned to set these dimensions which are frequently used in query filters as first or second. In our example, we will set *PART_DT* as the first dimenions in rowkey.
+Rowkey specifies how dimensions are organized and stored together. The order of dimensions specified in rowkey can greatly affect the query performance, so we recommned to set these dimensions which are frequently used in query filters as first or second. 
+
+Kyligene Enterprise can automatically set rowkey encoding and sequence according to dimension data types and cardinalities according to table sampling results. So ususally you don't have to set it manually except for special optimization purposes.
+
+To show you how to set rowkey, we will set *PART_DT* as the first dimenions in this example.
 
 Each dimension in the cube has a corresponding placeholder in rowkey. For normal dimensions the placeholder is the column itself, and for derived dimensions the placeholder is the lookup table's corresponding foreign key in the fact table. 
 
 Each placeholder of the rowkey has an encoding as below:  
 
-1. **dict**: use dictionary to encode dimension values. Dict encoding is very compact but vulnerable for ultra high cardinality dimensions.
-2. **boolean**: use 1 byte to encode boolean values, valid values include: true, false, TRUE, FALSE, True, False, t, f, T, F, yes, no, YES, NO, Yes, No, y, n, Y, N, 1, 0
-3. **integer**: use N bytes to encode integer values, where N equals the length parameter and ranges from 1 to 8. [ -2^(8*N-1), 2^(8*N-1)) is supported for integer encoding with length of N. 
-4. **date**: use 3 bytes to encode date dimension values. 
-5. **time**: use 4 bytes to encode timestamps, supporting from 1970-01-01 00:00:00 to 2038/01/19 03:14:07. Millisecond is ignored. 
-6. **fixed_length**: use a fixed-length("length" parameter) byte array to encode integer dimension values, with potential value truncations. 
+1. **dict**: use dictionary to encode dimension values. Dict encoding is very compact but vulnerable for ultra high cardinality dimensions. By default, this product will use this encoding for non-UHC *varchar* and *char* dimensions.
+2. **boolean**: use 1 byte to encode boolean values, valid values include: true, false, TRUE, FALSE, True, False, t, f, T, F, yes, no, YES, NO, Yes, No, y, n, Y, N, 1, 0. By default, this product will use this encoding for *boolean* dimension.
+3. **integer**: use N bytes to encode integer values, where N equals the length parameter and ranges from 1 to 8. [ -2^(8*N-1), 2^(8*N-1)) is supported for integer encoding with length of N. By default, this product will use this encoding for *tinyint*, *smallint*, *int*, *bigint* dimensions.
+4. **date**: use 3 bytes to encode date dimension values.  By default, this product will use this encoding for *date* dimensions.
+5. **time**: use 4 bytes to encode timestamps, supporting from 1970-01-01 00:00:00 to 2038/01/19 03:14:07. Millisecond is ignored.  By default, this product will use this encoding for *time* dimensions.
+6. **fixed_length**: use a fixed-length("length" parameter) byte array to encode integer dimension values, with potential value truncations.  By default, this product will use this encoding for UHC *varchar* and *char* dimensions.
 7. **fixed_length_hex**: use a fixed-length("length" parameter) byte array to encode the hex string dimension values, like 1A2BFF or FF00FF, with potential value truncations. Assign one length parameter for every two hex codes.
 
 There're multiple dimensions in our example, and we need to set encoding type for each column. For demonstration purpose, we use dict encoding for all dimensions except *LSTG_FORMAT_NAM*E, which uses fixed_length (length 12) encoding. 

@@ -23,6 +23,13 @@
 
 需要注意的是，维度的数量会影响到生成的 Cuboid 数量，进而影响 Cube 的计算与存储消耗。为了优化 Cube 数据刷新时的计算和存储开销，避免维度爆炸问题，Kyligence Enterprise 将维度分为了**普通维度**（Normal Dimension）和**衍生维度**（Derived Dimension）。
 
+![编辑维度](images/edit_dimension_cn.png)
+
+> **提示：**
+>
+> 1. 您可以填写维度描述为维度增加语义描述，并且对接特定 BI 工具时可以将维度描述直接提供为可用列名，如导出 TDS （Tableau 的数据源定义文件）。
+> 2. 当数据源为 Hive 时，可以直接同步 Hive 表字段的备注作为维度描述，且后续可以自行更改。
+
 只有普通维度会影响 Cuboid 的数量和存储膨胀率，衍生维度并不参与 Cuboid 计算，而是由衍生维度对应的外键（FK）参与计算 Cuboid。在查询时，对衍生维度的查询会首先转换为对外键所在维度的查询，因此会牺牲少量查询性能。
 
 普通维度与衍生维度的基本设计规则如下：
@@ -53,17 +60,19 @@
 
 ![一键优化维度](images/createcube_optimize.png)
 
-Rowkey 的顺序对于查询性能来说至关重要，一般把最常出现在过滤条件中的列放置在 rowkey 的前面，在这个案例中，我们首先把 *PART_DT* 放在 rowkey 的第一位。接下来，按照层级把商品分类的字段跟随其后。由于参与 Cuboid 生成的维度都会作为 rowkey，因此我们需要把这些列添加为 rowkey 当中。
+Rowkey 的顺序对于查询性能来说至关重要，把最常出现在过滤条件列放置在 rowkey 的前面会起到很好的查询优化效果。通常情况下 rowkey 不需要您特别设置，Kyligence  Enterprise 会根据维度字段类型和表采样的结果，智能推荐 rowkey 的编码和顺序。
+
+在本例中，为了向您演示 rowkey 的设置，我们首先把 *PART_DT* 放在 rowkey 的第一位。接下来，按照层级把商品分类的字段跟随其后。由于参与 cuboid 生成的维度都会作为 rowkey，因此我们需要把这些列添加为 rowkey 当中。
 
 在每个 rowkey 上，还需要为列值设置编码方法。本产品支持的**基本编码类型**如下：
 
-  - dict：即字典编码，适用于大部分字段，默认推荐使用，但在超高基情况下，可能引起内存不足的问题。
-  - boolean：适用于字段值为: true, false, TRUE, FALSE, True, False, t, f, T, F, yes, no, YES, NO, Yes, No, y, n, Y, N, 1, 0
-  - integer：适用于字段值为整数字符，支持的整数区间为 [ -2^(8*N-1), 2^(8*N-1)]。
-  - date：适用于字段值为日期字符，支持的格式包括 yyyyMMdd、yyyy-MM-dd、yyyy-MM-dd HH:mm:ss、yyyy-MM-dd HH:mm:ss.SSS，其中如果包含时间戳部分会被截断。
-  - time：适用于字段值为时间戳字符，支持范围为[ 1970-01-01 00:00:00, 2038/01/19 03:14:07]，毫秒部分会被忽略。“time” 编码适用于 time, datetime, timestamp等类型。
-  - fixed_length：适用于超高基场景，将选取字段的前 N 个字节作为编码值，当 N 小于字段长度，会造成字段截断，当 N 较大时，造成 Rowkey 过长，查询性能下降。只适用于 varchar 或 nvarchar类型。
-  - fixed_length_hex：适用于字段值为十六进制字符，比如 1A2BFF 或者 FF00FF，每两个字符需要一个字节。只适用于 varchar 或 nvarchar 类型。
+  - **dict**：即字典编码，适用于大部分字段，但在超高基情况下，可能引起内存不足的问题。默认情形下，本产品默认对低基情形下的 varchar 和 char 类型的维度选用此编码。
+  - **boolean**：适用于字段值为: true, false, TRUE, FALSE, True, False, t, f, T, F, yes, no, YES, NO, Yes, No, y, n, Y, N, 1, 0。默认情形下，本产品默认对 boolean 类型的维度选用此编码。
+  - **integer**：适用于字段值为整数字符，支持的整数区间为 [ -2^(8*N-1), 2^(8*N-1)]。默认情形下，本产品默认对 tinyint, smallint, int, bigint 类型的维度选用此编码。
+  - **date**：适用于字段值为日期字符，支持的格式包括 yyyyMMdd、yyyy-MM-dd、yyyy-MM-dd HH:mm:ss、yyyy-MM-dd HH:mm:ss.SSS，其中如果包含时间戳部分会被截断。默认情形下，本产品默认对 date 类型的维度选用此编码。
+  - **time**：适用于字段值为时间戳字符，支持范围为[ 1970-01-01 00:00:00, 2038/01/19 03:14:07]，毫秒部分会被忽略。“time” 编码适用于 time, datetime, timestamp等类型。默认情形下，本产品默认对 timestamp 类型的维度选用此编码。
+  - **fixed_length**：适用于超高基场景，将选取字段的前 N 个字节作为编码值，当 N 小于字段长度，会造成字段截断，当 N 较大时，造成 Rowkey 过长，查询性能下降。只适用于 varchar 或 nvarchar类型。默认情形下，本产品默认对超高基情形下的 varchar 和 char 类型的维度选用此编码。
+  - **fixed_length_hex**：适用于字段值为十六进制字符，比如 1A2BFF 或者 FF00FF，每两个字符需要一个字节。只适用于 varchar 或 nvarchar 类型。
 
 在这个案例中，我们除了把 *LSTG_FORMAT_NAME* 设置为 `fixed_length` 类型（长度为12）外，将其余的 rowkey 都设置为 `dict` 编码。 
 

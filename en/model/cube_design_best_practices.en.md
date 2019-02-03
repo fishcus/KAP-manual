@@ -122,6 +122,8 @@ We are now ready to show why and how the above preparations can help cube design
 
   Another setting that often brings troubles to a newbie is rowkey encoding. The trap here is **dictionary encoding is NOT applicable to Ultra-High-Cardinality (UHC) columns**. The bar of UHC is 1 millions by experience. That is why knowing the cardinality of columns is so important.
 
+  > **Note：** from version 3.2.2, Kyligence  Enterprise will automatically set rowkey encoding and sequence according to dimension data types and cardinalities according to table sampling results.
+
   The guideline of choosing rowkey encoding is as following:
 
   * Start with `date`, `time`, and `dictionary` encoding. Date and time have their own specific encodings. For numbers and strings with cardinality under 1 millions, `dictionary` is usually the most efficient encoding.
