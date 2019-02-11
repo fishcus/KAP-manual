@@ -1,4 +1,4 @@
-## Service Status Detection
+## Service Status Check
 
 Since Kyligence Enterprise v2.5.6, service status will be detected every 15 minutes. As shown in the following picture, ADMIN users can view the service status and related information visually on the kAP WEB UI, and diagnose environment problem conveniently.
 
