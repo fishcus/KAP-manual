@@ -15,7 +15,7 @@
         "ace",
         "emphasize",
         "anchors",
-        "tbfed-pagefooter",
+        "page-footer-ex",
         "sectionx",
         "expandable-chapters",
         "codeblock-filename",
@@ -43,10 +43,10 @@
             ]
         },
         
-        "tbfed-pagefooter": {
-            "copyright":"Copyright &copy Kyligence Inc.",
-            "modify_label": "Last Modified：",
-            "modify_format": "YYYY-MM-DD HH:mm:ss"
+        "page-footer-ex": {
+            "copyright":"&copy 2019 Kyligence Inc. All rights reserved. Powered by Gitbook.",
+            "update_label": "Last Modified：",
+            "update_format": "YYYY-MM-DD HH:mm:ss"
         },
         
         "edit-link": {
