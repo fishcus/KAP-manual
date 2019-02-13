@@ -4,9 +4,10 @@ Starting with version 3.1.0 of Kyligence Enterprise, project level metadata impo
 
 ### Prerequisite
 
-- Check that users need **System ADMIN** or **Project ADMIN** permission;
+- Check that users have **System ADMIN** or **Project ADMIN** permission;
 - Check that the exported project must contain a Cube;
-- Check the imported project. If the cube contains a Segment, it needs to be purged first.
+- Check the imported project. If the cube contains a Segment, it needs to be purged first;
+- Only support Kyligence Enterprise systems with same verison.
 
 ### Metadata Export 
 
@@ -18,7 +19,7 @@ Starting with version 3.1.0 of Kyligence Enterprise, project level metadata impo
 
 The name of the exported tarball is: project_project_name_export_time.zip
 
-> Note: The Safari browser may automatically decompress zip files, and users can change browser-related settings to disable automatic decompression.
+> **Note:** The Safari browser may automatically decompress zip files, and users can change browser-related settings to disable automatic decompression.
 >
 
 All metadata is downloaded to a local directory as a file
