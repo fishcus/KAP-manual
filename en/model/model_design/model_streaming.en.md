@@ -1,8 +1,8 @@
-## Model Design Based on Streaming Data
+## Model Design on Streaming Data
 
-Kyligence Enterprise supports importing Kafka streaming data as data source. You can import a Kafka topic as a table and based on this table, data model and cube can be created. 
+Kyligence Enterprise supports importing streaming data and defining it as a table. You can use this table as a fact table and design a data model and Cube for later analysis.
 
-Designing a data model based on streaming data is almost the same as designing a normal data model, except one restriction:
+Designing a data model based on streaming data is almost the same as designing a normal data model, except the following restrictions:
 
-- For a data model based on streaming data, it doesn't support joining with lookup tables. So when you define the data model, only select "DEFAULT.KAFKA_TABLE_1 " as the fact table, no lookup tables.
-
+1. Model on streaming data doesn't support joining with lookup tables. 
+2. Derived time dimension `MINUTE_START` must be set as a dimension in the model design.

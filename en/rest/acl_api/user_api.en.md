@@ -50,7 +50,7 @@
 
 - Response Example
 
-  ```JSON
+  ```json
   {
       "code": "000",
       "data": {
@@ -118,7 +118,7 @@
 
 - Response Example
 
-  ```JSON
+  ```json
   {
       "username": "test",
       "password": "$2a$10$Iw4NYBNW2bCTN3BqCGVfrO5Loesn/UigQxvbBQFebH2fEkFE2gcHy",
@@ -178,7 +178,7 @@
 
 - Response Example
 
-  ```JSON
+  ```json
   {
       "username": "test",
       "password": "$2a$10$M3u5cQztMHg3LIvMFJ4ZY.RidLB9RAw0gBHHV6EBNzEvxMk6Pf69u",

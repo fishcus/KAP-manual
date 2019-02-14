@@ -54,7 +54,7 @@
 
 - 响应示例
 
-  ```JSON
+  ```json
   {
     "code":"000",
     "data":[
@@ -117,7 +117,7 @@
 
 - Curl 请求示例
 
-  ```bash
+  ```sh
   curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/json;charset=utf-8" -H "Accept: application/vnd.apache.kylin-v2+json" http://localhost:port/kylin/api/cubes/cubeName/segments/merge_consecutive_segs_by_files
   ```
 
@@ -173,7 +173,7 @@
 
 - Curl 请求示例
 
-  ```bash
+  ```sh
   curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/json;charset=utf-8" -H "Accept: application/vnd.apache.kylin-v2+json" -d '{"startOffset":2018042210000, "endOffset": 2018042213000, "buildType":"MERGE"}' http://localhost:port/kylin/api/cubes/cubeName/segments/build_by_files
   ```
 
@@ -230,7 +230,7 @@
 
 - Curl 请求示例
 
-  ```bash
+  ```sh
   curl -X PUT -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/json;charset=utf-8" -H "Accept: application/vnd.apache.kylin-v2+json" -d '{"startOffset":2018042210000, "endOffset":2018042210001, "buildType":"BUILD", "files":["/sample/path/file1", "/sample/path/file5"]}' 
   http://localhost:port/kylin/api/cubes/cubeName/segments/build_by_files
   ```

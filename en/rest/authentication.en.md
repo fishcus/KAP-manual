@@ -34,7 +34,7 @@ All APIs in Kyligence Enterprise are based on [Basic Authentication](http://en.w
 
 - Response Example
 
-  ```JSON
+  ```json
   {
       "code": "000",
       "data": {

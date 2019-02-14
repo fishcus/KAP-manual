@@ -50,7 +50,7 @@
 
 - Response Example
 
-  ```JSON
+  ```json
   {
       "code": "000",
       "data": {
@@ -127,7 +127,7 @@
 
 - Response Example
 
-  ```JSON
+  ```json
   {
       "code": "000",
       "data": "",
@@ -190,7 +190,7 @@
 
 - Response Example
 
-  ```JSON
+  ```json
   {
       "code": "000",
       "data": "",
@@ -246,7 +246,7 @@
 
 - Response Example
 
-  ```JSON
+  ```json
   {
       "code": "000",
       "data": "",
@@ -288,7 +288,7 @@
 
 - Response Example
 
-  ```JSON
+  ```json
   {
       "code": "000",
       "data": "",

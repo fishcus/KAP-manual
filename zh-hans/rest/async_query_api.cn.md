@@ -51,7 +51,7 @@
 
 - 响应示例
 
-  ```JSON
+  ```json
   {
       "code": "000",
       "data": {
@@ -98,7 +98,7 @@
 
 - 响应示例
 
-  ```JSON
+  ```json
   {
       "code": "000",
       "data": {
@@ -144,7 +144,7 @@
 
 - 响应示例
 
-  ```JSON
+  ```json
   {
       "code": "000",
       "data": [
@@ -195,7 +195,7 @@
 
 - 响应示例
 
-  ```JSON
+  ```json
   {
       "code": "000",
       "data": 7611,
@@ -272,7 +272,7 @@
 
 - 响应示例
 
-  ```JSON
+  ```json
   {
       "code": "000",
       "data": "hdfs://host:8020/{kylin_working_dir}/{kylin_metadata_url}/learn_kylin/async_query_result/eb3e837f-d826-4670-aac7-2b92fcd0c8fe",
@@ -311,7 +311,7 @@
 
 - 响应示例
 
-  ```JSON
+  ```json
   {
       "code": "000",
       "data": true,

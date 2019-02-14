@@ -37,7 +37,7 @@ Kyligence Enterprise 所有的 API 都是基于 [Basic Authentication](http://en
 
 - 响应示例
 
-  ```JSON
+  ```json
   {
       "code": "000",
       "data": {

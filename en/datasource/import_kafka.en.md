@@ -1,104 +1,84 @@
 ## Import Data from Kafka
 
-This section introduces how to import Kafka data source and define a table from streaming.
+This chapter introduces how to import streaming data from Kafka and define a table for later modeling.
+
+### Prerequisites
+
+Your Kafka version should be v2.10-0.10.1.0 or above.
+
+### Deploy Kafka Broker
+
+The following steps introduce how to deploy a Kafka broker on the node where Kyligence Enterprise is deployed. If you have installed Kafka broker already, you can just skip this section.
+
+> **Note:**
+> 1. It's unnecessary to have Kafka brokers and Kyligence Enterprise deployed on the same node.
+> 2. If Kafka brokers are not deployed on the node where Kyligence Enterprise is deployed, it is recommended to copy the *same version* of the Kafka binary package from deployed Kafka nodes and extract any path on the node where Kyligence Enterprise is deployed (e.g. `/usr/local/kafka_2. 10-0.10.1.0`) and set `KAFKA_HOME` to that path. Make sure all the JARs for Kafka client are in the `$KAFKA_HOME/libs/` directory.
 
 
+1. Download Kafka installation package and unzip.
+   ```sh
+   curl -s 
+   https://archive.apache.org/dist/kafka/0.10.1.0/kafka_2.10-0.10.1.0.tgz | tar -xz -C /usr/local/
+   ```
+2. Specify the environment variable `KAFKA_HOME`.
 
-### Preparation
+   ```sh
+   export KAFKA_HOME=/usr/local/kafka_2.10-0.10.1.0
+   ```
+3. Start a Kafka broker
+   ```sh
+   $KAFKA_HOME/bin/kafka-server-start.sh config/server.properties &
+   ```
 
-Before starting this tutorial, please make sure that you have already prepared a Hadoop environment which has installed version *2.3* or above and *Kafka v2.10-0.10.1.0* or above. In this tutorial, we use Hortonworks HDP 2.4 Sandbox VM as the Hadoop environment.
+### Create Kafka Topic and Generate Streaming Data
 
-It is unnecessary to deploy Kafka Broker and Kyligence Enterprise in the same node. 
+The following steps introduce how to create a Kafka topic and generate streaming data. If you already have Kafka topics, you may skip this part.
 
-> **Note:** If Kafka Broker has not been deployed in Kyligence Enterprise node, it is highly recommended that you copy the Kafka binary package with the same version and extract it to any path of Kyligence Enterprise's start node (such as: `/usr/local/kafka_2.10-0.10.1.0`), and set KAFKA_HOME to point to this path, thus ensuring there is a Kafka client library under the directory `KAFKA_HOME/libs`.
+The following example assumes that Kafka broker runs on 127.0.0.1:9092 and ZooKeeper runs on 127.0.0.1:2181. 
 
-In this article, we assume that user has not installed Kafka Broker, and has not deployed and/or started Kafka Broker. The user who has installed Kafka Broker can skip this step.
+1. Create a topic named as *kylindemo*:
+   ```sh
+   $KAFKA_HOME/bin/kafka-topics.sh --create --zookeeper 127.0.0.1:2181 --replication-factor 1 --partitions 3 --topic kylindemo
+   ```
+2. Start a Kafka producer.
+   Kyligence Enterprise provides a producer tool to generate streaming data and put it to Kafka topic continuously.
+   ```sh
+   $KYLIN_HOME/bin/kylin.sh org.apache.kylin.source.kafka.util.KafkaSampleProducer --topic kylindemo --broker 127.0.0.1:9092
+   ```
+   > Note:
+   > 1. This producer tool sends 100 records to Kafka per second.
+   > 2. Please keep it running during the simulation.
+3. Meanwhile you can check the streaming data using Kafka consumer.
+   ```sh
+   $KAFKA_HOME/bin/kafka-console-consumer.sh --bootstrap-server 127.0.0.1:9092 --topic kylindemo --from-beginning
+   ```
 
-```sh
-curl -s 
-https://archive.apache.org/dist/kafka/0.10.1.0/kafka_2.10-0.10.1.0.tgz | tar -xz -C /usr/local/
-cd /usr/local/kafka_2.10-0.10.1.0/
-./bin/kafka-server-start.sh config/server.properties &
-```
+### Define a Table from Streaming Data
 
-Please make sure that the environment variable `KAFKA_HOME` has been exported successfully before Kyligence Enterprise starts.
+Kyligence Enterprise supports extracting streaming data into tables and implementing near real-time processing (micro-batch) of streaming data.
 
-```sh
-export KAFKA_HOME=/usr/local/kafka_2.10-0.10.1.0
-```
-
-
-
-### Create Sample Kafka Topic and Simulate Streaming Data (Optional)
-
-> **Tips**: 
->
-> 1. The step to create Kafka Topic is optional. Users who have Kafka Topic may ignore this step.
->
-> 2. The following example assumes that Kafka Broker runs on 127.0.0.1:9092 and ZooKeeper runs on 127.0.0.1:2181. Users may change the IP address to their address accordingly. 
-
-Firstly, we create a topic named as "kylindemo":
-
-```sh
-./bin/kafka-topics.sh --create --zookeeper 127.0.0.1:2181 --replication-factor 1 --partitions 3 --topic kylindemo
-```
-
-Secondly, we need to start a producer to continuously put sample data into this topic. Kyligence Enterprise has a Producer to produce data. Here we presume Kyligence Enterprise is installed under ${KYLIN_HOME}.
-
-```sh
-cd $KYLIN_HOME
-./bin/kylin.sh 
-org.apache.kylin.source.kafka.util.KafkaSampleProducer --topic kylindemo --broker 127.0.0.1:9092
-```
-
-This tool sends 100 records to Kafka per second. Please keep it running during this tutorial. You can check the sample messages by running kafka-console-consumer.sh.
-
-```sh
-cd $KAFKA_HOME
-bin/kafka-console-consumer.sh --bootstrap-server 127.0.0.1:9092 --topic kylindemo --from-beginning
-```
-
-
-
-### Define a Table from Streaming
-
-**Step 1:** Please create a new project and select *Kafka* as the data source.
-
-![Import Kafka Data Source](images/kafka_import.en.png)
-
-**Step 2:** Input your broker info. Under the field *Host*, please fill in your own IP address which the Jobs run in YARN cluster can access.
-
-![Input Broker Information](images/kafka_setting.png)
-
-**Step 3:** Click √ to confirm your broker info, then click *Get Cluster Info* to select the topic kylindemo. The kafka sample message will appear in the right box after *Convert* button is clicked.
-
-![Get Cluster Information](images/kafka_info.png)
-
-**Step 4:** You need to give a logic table name for this streaming data source. The name will be used for SQL query later. Please enter "KAFKA_TABLE_1" in the **Table Name** field.
-![Input Table Name](images/kafka_name.png)
-
-**Step 5:** Review the table schema, make sure there is at least one column chosen as *timestamp*.
-
-![One Column Chosen as Timestamp](images/kafka_check_timestamp.png)
-
-**Step 6:** Set parser
-
-Parser Name: org.apache.kylin.source.kafka.TimedJsonStreamParser (default), you can also use customized parser.
-
-Parser Timestamp Field: you are required to set a timestamp field for the parser. In this example, we use order_time.
-
-ParserProperties: Properties of the parser should as least include the timestamp field. In this example, tsColName=order_time. You can further define customized properties.
-
-tsColName: refers to the timestamp field.
-
-tsParser: refers to the timestamp parser, which parses the value of tsColName into a timestamp.
-
-> **Note:** tsParser has two built-ins, one is org.apache.kylin.source.kafka.DefaultTimeParser, which parses the long timestamp value (epoc time) into timestamp.
->
-> Another built-in parser is org.apache.kylin.source.kafka.DateTimeParser, which parses the time expression of string type into timestamp according to the given tsPattern; if tsPattern is not specified, default format is "yyyy-MM-dd HH:mm:ss.
-
-tsPattern: refers to the time pattern for use by tsParser.
-
-![Set Parser](images/kafka_parser.png)
-
-**Step 7:** Click **Submit**. Now, you have defined message flow form Kafka as fact table successfully.
+1. Create a new project in WEB UI to import Kafka data.
+2. Navigate to **Studio**->**Data Source**, click **Data Source**, and choose **Kafka**, click **Next**.
+   ![Import Kafka Data Source](images/kafka_import.en.png)
+3. On the **Load Kafka Topic** page, fill in the IP address of the Kafka broker and the port, click  √ to confirm.
+   ![Input Broker Information](images/kafka_setting.png)
+4. Click **Get Cluster Info** to select a Kafka topic (e.g.,`kylindemo`), and the sample data of Kafka data will be shown in the right panel, click **Convert**.
+   ![Get Cluster Information](images/kafka_info.png)
+5. Define a table name (e.g.,`KAFKA_TABLE_1`) for streaming data from that topic, and this table will be used for modeling later.
+   ![Input Table Name](images/kafka_name.png)
+6. Confirm column and corresponding column type in the table schema.
+  > **Caution:**
+  > 1. Make sure there is at least one column with column type as *timestamp*.
+  > 2. Kyligence Enterprise generates 7 time column automatically, including *year_start*, *quarter_start*, *month_start*, *week_start*, *day_start*, *hour_start*, *minute_start*, please make sure *minute_start* is chosen to guarantee the following procedures running smoothly, the other derived time dimensions can be chosen according to your actual needs. 
+   ![One Column Chosen as Timestamp](images/kafka_check_timestamp.png)
+7. Set parser
+   ![Set Parser](images/kafka_parser.png)
+   - Parser Name: `org.apache.kylin.source.kafka.TimedJsonStreamParser` by default, you can also use customized parser.
+   - Timestamp Field: a timestamp field (e.g.,`order_time`) for the parser.
+   - Optional Properties: to further define customized properties.
+     - `tsParser`: specifies a timestamp field, which parses the value of tsColName into a timestamp.
+      Kyligence Enterprise provides two built-in parsers,
+      - The default parser is `org.apache.kylin.source.kafka.DefaultTimeParser`, which parses the Long timestamp value (unix time) into timestamp. The default parser pases the unix time to the date time with GMT+0 timezone, e.g., 1549008564973 will be parsed to 2019-02-01 08:09.
+      - Another parser is `org.apache.kylin.source.kafka.DateTimeParser`, which parses the time expression of String type into timestamp according to the given tsPattern; if tsPattern is not specified, default format is "yyyy-MM-dd HH:mm:ss.
+   - `tsPattern`: specifies the time pattern for the use of tsParser.
+8. Click *Submit*. 

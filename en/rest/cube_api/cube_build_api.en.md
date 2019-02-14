@@ -9,8 +9,8 @@
 
 * [Full Build a Cube ](#full-build-a-cube)
 * [Build a Cube by date/time](#build-a-cube-by-date-time)
+* [Build a streaming cube](#build-a-streaming-cube)
 * [Build a Cube by file](#build-a-cube-by-file)
-* [Build a Cube by streaming data](#build-a-cube-by-streaming-data)
 * [Customize build](#customize-build)
 * [Build a Cube in batch](#build-a-cube-in-batch)
 
@@ -51,7 +51,7 @@
 
 - Response Example
 
-  ```JSON
+  ```json
   {
       "code":"000",
       "data":{
@@ -125,7 +125,7 @@
 
 - Response Example
 
-  ```JSON
+  ```json
   {
       "code":"000",
       "data":{
@@ -230,7 +230,7 @@ Given new Hive data files, build a new cube segment and load data into it.
 
 
 
-### Build a Cube by streaming data {#build-a-cube-by-streaming-data}
+### Build a streaming cube {#build-a-streaming-cube}
 
 - `PUT http://host:port/kylin/api/cubes/{cubeName}/segments/build_streaming`
 - URL Parameters
@@ -397,7 +397,7 @@ Given new Hive data files, build a new cube segment and load data into it.
 
 - Response Example
 
-  ```JSON
+  ```json
   {
       "code":"000",
       "data":[

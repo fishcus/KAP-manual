@@ -45,7 +45,7 @@
 
 - Response Example
 
-  ```JSON
+  ```json
   % Total % Received % Xferd  Average Speed   Time    Time    Time  	Current
                               Dload   Upload  Total   Spent    Left  	Speed
   100  9600  100  9547 100 53  109k    620 --:--:-- --:--:-- --:--:--  109k
