@@ -1,4 +1,4 @@
-## 元数据 API
+## Cube 元数据导出/导入 API
 
 
 > 提示：
@@ -9,12 +9,12 @@
 
 
 
-* [导出项目级元数据](#导出项目级元数据)
-* [导入项目级元数据](#导入项目级元数据)
+* [导出 Cube 元数据](#导出-Cube-元数据)
+* [导入 Cube 元数据](#导入-Cube-元数据)
 
 
 
-### 导出项目级元数据
+### 导出 Cube 元数据{#导出-Cube-元数据}
 
 - `POST http://host:port/kylin/api/metastore/export`
 - HTTP Header
@@ -54,7 +54,7 @@
   ```
 
 
-### 导入项目级元数据
+### 导入 Cube 元数据{#导入-Cube-元数据}
 
 - `POST http://host:port/kylin/api/metastore/import_metadata`
 - HTTP Header

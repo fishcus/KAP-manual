@@ -1,4 +1,4 @@
-## Metadata Query API
+## Cube Metadata Export/Import API
 
 > Reminders:
 >
@@ -7,12 +7,12 @@
 
 
 
-* [Export Project Metadata](#Export-Project-Metadata)
-* [Import Project Metadata](#Import-Project-Metadata)
+* [Export Cube Metadata](#Export-Cube-Metadata)
+* [Import Cube Metadata](#Import-Cube-Metadata)
 
 
 
-### Export Project Metadata {#Export-Project-Metadata}
+### Export Cube Metadata {#Export-Cube-Metadata}
 
 - `POST http://host:port/kylin/api/metastore/export`
 - HTTP Header
@@ -52,7 +52,7 @@
   ```
 
 
-### Import Project Metadata{#Import-Project-Metadata}
+### Import Cube Metadata{#Import-Cube-Metadata}
 
 - `POST http://host:port/kylin/api/metastore/import_metadata`
 - HTTP Header

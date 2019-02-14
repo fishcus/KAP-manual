@@ -168,7 +168,7 @@
     * [查询 API](rest/query_api.cn.md)
     * [缓存 API](rest/cache_api.cn.md)
     * [异步查询 API](rest/async_query_api.cn.md)
-    * [元数据 API](rest/metadata_api.cn.md)
+    * [Cube 元数据导出/导入 API](rest/metadata_api.cn.md)
     * [访问控制权限 API](rest/acl_api/README.md)
         * [用户管理 API](rest/acl_api/user_api.cn.md)
         * [用户组管理 API](rest/acl_api/user_group_api.cn.md)
