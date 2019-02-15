@@ -1,3 +1,3 @@
 ## Routine Operations
 
-This chapter demonstrates how to do daily operation work.
+This chapter introduces how to do daily operation work.

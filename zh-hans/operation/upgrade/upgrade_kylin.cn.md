@@ -10,7 +10,7 @@ Kyligence Enterprise 是基于 Apache Kylin 的商业版产品，本章介绍如
   $KYLIN_HOME/bin/kylin.sh stop
   ```
 
-  确认示例已停止：
+- 确认示例已停止：
 
   ```shell
   ps -ef | grep kylin
@@ -32,15 +32,6 @@ Kyligence Enterprise 是基于 Apache Kylin 的商业版产品，本章介绍如
 
 
 ### 配置修改
-
-- 快速配置 Kyligence Enterprise
-
-  Kyligence Enterprise 中提供了两套配置参数：`$KYLIN_HOME/conf/profile_prod` 和 `$KYLIN_HOME/conf/profile_min`。前者是默认方案，适用于实际生产环境；后者使用较少的资源，适用于沙箱等资源有限的环境。如果您的单点环境资源有限，可以切换到 `profile_min` 配置。
-
-  ```shell
-  rm $KYLIN_HOME/conf/profile
-  ln -s $KYLIN_HOME/conf/profile_min $KYLIN_HOME/conf/profile
-  ```
 
 - 将 Kylin 中的配置修改手动在 Kyligence Enterprise 中修改
 

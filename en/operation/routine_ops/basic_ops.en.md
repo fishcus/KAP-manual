@@ -1,13 +1,7 @@
-## Basic Operations
+## Basic Operation
 
-As Kyligence Enterprise operation personnel, the routine work includes:
-* Ensure Kyligence Enterprise service runs normally
-* Ensure Kyligence Enterprise uses cluster resources properly
-* Ensure Cube building job goes normally
-* Disaster recovery and backup
-* So on and forth
-
-
-- To ensure Kyligence Enterprise service running normally, operation personnel should keep an eye on logs of Kyligence Enterprise
-- To ensure Cube building job going normally, operation personnel needs to monitor jobs using email notification or the monitor page of Web GUI.
-- To ensure Kyligence Enterprise can consume cluster resources properly, operation personnel should check their YARN queue and HBase storage utilization.
+As Kyligence Enterprise system administrator, typical daily operations include:
+- To ensure Kyligence Enterprise service running smoothly, system administrator should monitor system logs on a regular basis
+- To ensure cube building job run successfully, system administrator needs to monitor jobs execution status via email notification or system web UI.
+- To ensure Kyligence Enterprise consume cluster resources properly, system administrator should check the YARN queue and HBase storage utilization.
+- To prevent any data loss or system failure, system administrator should make plans for system backup and disaster recovery.

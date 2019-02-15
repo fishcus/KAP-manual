@@ -1,3 +1,3 @@
 ## System Operation
 
-This chapter demonstrates how to do system operation work.
+This chapter introduces how to do system operation work.

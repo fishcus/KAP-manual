@@ -2,7 +2,7 @@
 
 本章介绍如何从 Kyligence Enterprise 的早期版本升级到最新版本的 Kyligence Enterprise 3.x 软件。
 
-> 提示：从 3.x 开始，Kyligence Analytics Platform (KAP) 正式改名为 Kyligence Enterprise。
+> **提示：** 从 3.x 开始，Kyligence Analytics Platform (KAP) 正式改名为 Kyligence Enterprise。
 
 升级分为**主要版本**的升级和**次要版本**的升级。版本号前两位发生变化的是主要版本的升级，如 KAP 2.x 升级到 Kyligence Enterprise 3.x，如 Kyligence Enterprise 3.1.x 升级到 Kyligence Enterprise 3.2.x。反之，版本号前两位不发生变化则是次要版本升级，如 Kyligence Enterprise 3.2.1 升级到 Kyligence Enterprise 3.2.2。
 
@@ -86,20 +86,11 @@ export KYLIN_HOME={your-unpack-folder}
 
 ### 更新配置文件
 
-> 提示：
+> **提示：**
 >
 > 1. 以下使用 `$OLD_KYLIN_HOME` 代表升级前的安装目录，`KYLIN_HOME` 代表升级后的安装目录。
 >
 > 2. 为了保证您享用到新版本的新特性，请**不要**直接使用旧的配置文件夹覆盖新的配置文件夹。
-
-- 快速配置
-
-  Kyligence Enterprise 中提供了两套配置参数：`$KYLIN_HOME/conf/profile_prod` 和 `$KYLIN_HOME/conf/profile_min`。前者是默认方案，适用于实际生产环境；后者使用较少的资源，适用于沙箱等资源有限的环境。如果您的单点环境资源有限，可以切换到 `profile_min` 配置。
-
-  ```sh
-  rm $KYLIN_HOME/conf/profile
-  ln -s $KYLIN_HOME/conf/profile_min $KYLIN_HOME/conf/profile
-  ```
 
 - 将之前版本 `conf/` 目录下的 `setenv.sh` 中的配置修改手动在新版本中的对应文件进行修改。
 
@@ -154,7 +145,7 @@ $KYLIN_HOME/bin/kylin.sh start
 
 ### 测试升级后 Kyligence Enterprise 是否正常工作
 
-> 提示：
+> **提示：**
 > - 如果升级后有任何问题，请及时通过 [Support Portal](https://support.kyligence.io/#/) 联系 Kyligence 技术支持以寻求帮助。
 > - 在测试期间，请**不要**执行垃圾清理操作以保证最大程度的数据安全性。
 
@@ -166,14 +157,12 @@ $KYLIN_HOME/bin/kylin.sh start
 3. 检验集成 Kyligence Enterprise 的第三方系统是否能够成功工作，如使用 JDBC 进行查询的客户端、如调用 REST API 进行查询的客户端、如 BI 工具等。
 
 
-
-### 升级成功
+### 升级成功，清楚备份文件与数据
 
 经过测试确认过功能全部可用后，您可以删除在升级前备份的元数据、安装目录和 Cube 数据，以节省空间。
 
 
-
-### 升级失败，需要回滚到之前版本
+### 升级失败，回滚到之前版本
 
 > **注意：** 请确保您在升级后遇到的问题已经联系过 Kyligence 技术支持、 Kyligence 技术支持无法对您的问题提供有效的解决方案且这个问题影响您的核心使用，再选择回滚。
 

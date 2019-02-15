@@ -3,14 +3,14 @@
 Kyligence Enterprise is an enterprise software based on Apache Kylin. This chapter describes how to easily upgrade from Apache Kylin v2.3+ to the latest version of Kyligence Enterprise 3.x software.
 
 
-### Ready to work
+### Stop Apache Kylin Instance
 
-- Stop the Apache Kylin instance:
+- Stop Apache Kylin instance:
   ```shell
   $KYLIN_HOME/bin/kylin.sh stop
   ```
 
-  Confirm no running Kylin instance
+- Confirm no running Kylin instance:
 
   ```shell
   ps -ef | grep kylin
@@ -31,7 +31,7 @@ Kyligence Enterprise is an enterprise software based on Apache Kylin. This chapt
   ```
 
 
-### Update configuration
+### Update Configuration
 
 - Quick configuration Kyligence Enterprise
 
@@ -84,7 +84,7 @@ $KYLIN_HOME/bin/kylin.sh start
 ```
 
 
-### Upgrading the storage engine
+### Upgrade Storage Engine
 
 Apache Kylin uses HBase as the storage engine, and Kyligence Enterprise uses KyStorage as the storage engine by default. The steps to upgrade the storage engine are as follows:
 
