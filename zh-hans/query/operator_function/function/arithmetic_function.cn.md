@@ -17,7 +17,7 @@
 | ASIN(numeric)                  | 返回数字（numeric）的反正弦                                  | ` ASIN(0.8)`<br /> = 0.9272952180016123 |
 | ATAN(numeric)                  | 返回数字（numeric）的反正切                                  | ` ATAN(0.8)`<br /> = 0.6747409422235527 |
 | ATAN2(numeric1, numeric2)      | 返回坐标 (numeric1, numeric2) 的反正切                       | ` ATAN2(0.2, 0.8)`<br /> = 0.24497866312686414 |
-| COS(numeric)                   | 返回数字（numeric）的正弦                                    | ` COS(5)`<br /> = 0.28366218546322625 |
+| COS(numeric)                   | 返回数字（numeric）的余弦                                   | ` COS(5)`<br /> = 0.28366218546322625 |
 | COT(numeric)                   | 返回数字（numeric）的余切                                    | ` COT(5)`<br /> = -0.2958129155327455 |
 | DEGREES(numeric)               | 将弧度（numeric）转成角度                             | ` DEGREES(5)`<br /> = 286.4788975654116 |
 | PI()                           |       返回无限接近 π 的数字                                                     |   ` PI()`<br /> = 3.141592653589793 |
