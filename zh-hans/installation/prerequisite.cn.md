@@ -116,9 +116,7 @@
 ### 推荐的硬件配置
 
 我们推荐您使用下述硬件配置安装 Kyligence Enterprise：
-
-+ 双路 Intel 至强处理器，6核（或8核）CPU，主频 2.3GHz 或以上
-+ 64GB ECC DDR3 以上
++ 32 vCore，128 GB 内存
 + 至少1个 1TB 的 SAS 硬盘（3.5寸），7200RPM，RAID1
 + 至少两个 1GbE 的以太网电口
 

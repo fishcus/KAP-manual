@@ -117,13 +117,8 @@ If you need to run Kyligence Enterprise in sandbox and other virtual machine env
 
 ### Recommended Hardware Configuration
 We recommend that you use the following hardware configuration to install Kyligence Enterprise:
-
-- Intel Xeon processor, 6 core (or 8 core) CPU, 2.3GHz or above.
-
-- 64GB ECC DDR3 or above
-
+- 32 vCore, 128 GB memory
 - At least one 1TB SAS HDD (3.5 inches), 7200RPM, RAID1
-
 - At least two 1GbE Ethernet ports
 
 ### Recommended Linux Distribution
