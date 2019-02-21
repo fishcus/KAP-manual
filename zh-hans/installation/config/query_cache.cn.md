@@ -16,7 +16,7 @@ Kyligence Enterprise 系统自带查询缓存并默认开启，具体的缓存�
 | kylin.cache.ehcache.max-entries-local-heap      | 查询缓存堆内对象数量                             | 0，即不限制    |           |
 | kylin.cache.ehcache.memory-store-eviction-polcy | 查询缓存内存策略                                 | LRU            | FIFO，LFU |
 
-### 使用 Redis 集群进行分布式缓存
+### 使用 Redis 集群进行分布式缓存 (Beta)
 
 由于 Kyligence Enteprise 自带的查询缓存是进程级的，在不同进程或不同节点之间并不共享，因此在集群部署模式下，当后续相同查询路由至不同 Kyligence Enterprise 节点时，第一次查询执行结果的缓存由于在另一个进程中而无法生效。因此，我们支持使用 Redis 集群作为分布式查询缓存，在所有 Kyligence Enterprise 节点间共享。具体的参数和配置方法如下：
 

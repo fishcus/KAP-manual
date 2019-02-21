@@ -16,7 +16,7 @@ Kyligence Enterprise enables query cache by default at each node/process level. 
 | kylin.cache.ehcache.max-entries-local-heap      | The amount of heap entries uesd by query cache               | 0, which means unlimited |           |
 | kylin.cache.ehcache.memory-store-eviction-polcy | Cache replacement policies                                   | LRU                      | FIFO，LFU |
 
-### Distributed Cache by Using Redis Cluster
+### Distributed Cache by Using Redis Cluster (Beta)
 
 The default query cache cannot be shared among different nodes or processes because it is process level. Because of this,  when subsequent and same queries are routed to different Kyligence Enterprise nodes, the cache of the first query result cannot be used in cluster deployment mode. Therefore, you can configure Redis cluster as distributed cache, which can be shared across all Kyligence Enterprise nodes. The detail configurations are described as below:
 
