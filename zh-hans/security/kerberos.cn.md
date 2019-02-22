@@ -164,14 +164,3 @@
    |                                             | hadoop-hdfs-colocation-2.7.2.jar                       |
    |                                             | hadoop-yarn-server-applicationhistoryservice-2.7.2.jar |
    |                                             | hadoop-yarn-server-resourcemanager-2.7.2.jar           |
-
-### FAQ
-
-**Q: 华为 FI C70 环境配置 Kerberos 后，环境检测未通过**
-
-对于华为 FI C70，如果运行环境有启用 Kerberos 安全认证，并且集群的 `hive-site.xml` 的配置 `hive.server2.enable.doAs` 为 *false*，则需要添加相关的配置项：
-
-```properties
-kylin.source.hive.table-dir-create-first=true
-```
-

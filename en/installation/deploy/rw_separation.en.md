@@ -69,9 +69,6 @@ Follow the below instructions to install Kyligence Enterprise in the build clust
    kylin.source.hive.client=beeline
    kylin.source.hive.beeline-shell=beeline
    kylin.source.hive.beeline-params=...
-   
-   # For Huawei FusionInsight, please uncomment the next line
-   #kylin.source.hive.table-dir-create-first=true
    ```
 
    For better performance, we assume your Hive source is connected with build cluster. In order to let the query servers access Hive in build cluster, **please copy the build cluster's** `hive-site.xml` **into the query servers'** `$KYLIN_HOME/conf` **folder**.

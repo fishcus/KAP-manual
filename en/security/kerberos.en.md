@@ -104,7 +104,7 @@ The following configurations are set in `$KYLIN_HOME/conf/kylin.properties`.
     # e.g. kap.storage.columnar.spark-conf.spark.yarn.keytab=/app/kylin/Kyligence-Enterprise-3.2.2.2022-GA-fi/conf/user.keytab
     ```
 
-   
+
 2. Copy file `$HADOOP_CONF_DIR/mapred-site.xml` to the directory `$KYLIN_HOME/conf/`. In this file, add the following configurations:
   ```xml
   <property>
@@ -154,13 +154,3 @@ The following configurations are set in `$KYLIN_HOME/conf/kylin.properties`.
     |                                             | hadoop-hdfs-colocation-2.7.2.jar                       |
     |                                             | hadoop-yarn-server-applicationhistoryservice-2.7.2.jar |
     |                                             | hadoop-yarn-server-resourcemanager-2.7.2.jar           |
-
-### FAQ
-
-**Q: If the check environment failed when integrated with Kerberos in FusionInsight C70, how to resolve it?**
-
-For C70, if you need to integrate with Kerberos and the property `hive.server2.enable.doAs` is false in `hive-site.xml`, please add the following configuration:
-
-```properties
-kylin.source.hive.table-dir-create-first=true
-```

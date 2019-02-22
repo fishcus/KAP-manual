@@ -68,9 +68,6 @@
    kylin.source.hive.client=beeline
    kylin.source.hive.beeline-shell=beeline
    kylin.source.hive.beeline-params=...
-   
-   # 对于华为 FusionInsight，请打开下面配置
-   #kylin.source.hive.table-dir-create-first=true
    ```
    为了性能考虑，我们假设 Hive 数据源在构建集群中。为了让查询服务器能连接构建集群中的 Hive 服务，**请复制构建集群上的** `hive-site.xml` **到查询服务器的** `$KYLIN_HOME/conf` **目录下**。
 
