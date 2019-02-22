@@ -106,51 +106,23 @@ The following configurations are set in `$KYLIN_HOME/conf/kylin.properties`.
 
 
 2. Copy file `$HADOOP_CONF_DIR/mapred-site.xml` to the directory `$KYLIN_HOME/conf/`. In this file, add the following configurations:
-  ```xml
-  <property>
-     <name>mapreduce.job.complete.cancel.delegation.tokens</name>
-        <value>false</value>
-  </property>
-  ```
+
+   ```xml
+   <property>
+        <name>mapreduce.job.complete.cancel.delegation.tokens</name>
+           <value>false</value>
+     </property>
+   ```
 3. If the read/write splitting deployment is applied, please add the following configurations in the file `$KYLIN_HOME/conf/kylin.properties`,
-  ```xml
-  kap.storage.columnar.spark-conf.spark.yarn.access.namenodes=hdfs://readcluster,hdfs://writecluster
-  ```
-4. For CDH Platform, some Hadoop jar files in directory `$KYLIN_HOME/spark/jars/` need to be replaced with the corresponded jar files in your Hadoop environment.
-  - Look for Hadoop jar files in your environment
-    ```sh
-    find /{hadoop_lib} | grep hadoop
-    ```
 
-  - Back up the directory `$KYLIN_HOME/spark/`
-    ```sh
-    cp -r $KYLIN_HOME/spark ${KYLIN_HOME}.spark_backup
-    ```
+   ```sh
+   kap.storage.columnar.spark-conf.spark.yarn.access.namenodes=hdfs://readcluster,hdfs://writecluster
+   ```
 
-  - Copy the Hadoop related jar files to `$KYLIN_HOME/spark/jars/`
+   For Cloudera CDH Platform, some Hadoop jar files in directory `$KYLIN_HOME/spark/jars/` need to be replaced with the corresponding jar files in your Hadoop environment. If Kerberos is enabled in your system, the jar files will be replaced automatically when the system starts for the first time. If those files are not replaced properly, you can execute the following command:
 
-  - Please delete and copy the jar files refer to your production environment. Here is a table using Hadoop 2.7 as an example.
+   ```sh
+   bin/do-exchange-spark-for-kerberos.sh
+   ```
 
-    | Files list before update                    | File list after udpate                                 |
-    | ------------------------------------------- | ------------------------------------------------------ |
-    | hadoop-annotations-2.6.5.jar                | hadoop-annotations-2.7.2.jar                           |
-    | hadoop-auth-2.6.5.jar                       | hadoop-auth-2.7.2.jar                                  |
-    | hadoop-client-2.6.5.jar                     | hadoop-client-2.7.2.jar                                |
-    | hadoop-common-2.6.5.jar                     | hadoop-common-2.7.2.jar                                |
-    | hadoop-hdfs-2.6.5.jar                       | hadoop-hdfs-2.7.2.jar                                  |
-    | hadoop-mapreduce-client-app-2.6.5.jar       | hadoop-mapreduce-client-app-2.7.2.jar                  |
-    | hadoop-mapreduce-client-common-2.6.5.jar    | hadoop-mapreduce-client-common-2.7.2.jar               |
-    | hadoop-mapreduce-client-core-2.6.5.jar      | hadoop-mapreduce-client-core-2.7.2.jar                 |
-    | hadoop-mapreduce-client-jobclient-2.6.5.jar | hadoop-mapreduce-client-jobclient-2.7.2.jar            |
-    | hadoop-mapreduce-client-shuffle-2.6.5.jar   | hadoop-mapreduce-client-shuffle-2.7.2.jar              |
-    | hadoop-yarn-api-2.6.5.jar                   | hadoop-yarn-api-2.7.2.jar                              |
-    | hadoop-yarn-client-2.6.5.jar                | hadoop-yarn-client-2.7.2.jar                           |
-    | hadoop-yarn-common-2.6.5.jar                | hadoop-yarn-common-2.7.2.jar                           |
-    | hadoop-yarn-server-common-2.6.5.jar         | hadoop-yarn-server-common-2.7.2.jar                    |
-    | hadoop-yarn-server-web-proxy-2.6.5.jar      | hadoop-yarn-server-web-proxy-2.7.2.jar                 |
-    |                                             | hadoop-archives-2.7.2.jar                              |
-    |                                             | hadoop-aws-2.7.2.jar                                   |
-    |                                             | hadoop-hdfs-client-2.7.2.jar                           |
-    |                                             | hadoop-hdfs-colocation-2.7.2.jar                       |
-    |                                             | hadoop-yarn-server-applicationhistoryservice-2.7.2.jar |
-    |                                             | hadoop-yarn-server-resourcemanager-2.7.2.jar           |
+   
