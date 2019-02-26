@@ -117,6 +117,14 @@ User could put the customized config items into **kylin.properties.override**, t
 
   This property specifies the retry times of HBase and the default value is 1.
 
+* **kylin.job.retry**
+
+  This property specifies the auto retry times for error jobs. Tefault value is 0, which means job will not auto retry when it's in error. This property applies on every steps within a job and it will be reset if that step is finished.
+
+* **kylin.job.retry-interval**
+
+  This property specifies the time interval to retry an error job and the default value is 30000 ms. This property is valid only when the job retry property is set to be 1 or above.
+
 ### JVM Configuration Setting
 
 In `$KYLIN_HOME/conf/setenv.sh` (for version lower than 2.4, `$KYLIN_HOME/bin/setenv.sh`), two sample settings for `KYLIN_JVM_SETTINGS` environment variable are given. The default setting use relatively less memory. You can comment it and then uncomment the next line to allocate more memory for Kyligence Enterprise. The default configuration is: 
