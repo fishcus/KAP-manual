@@ -1,11 +1,11 @@
 ## 项目级别访问权限
 
-项目级别访问权限决定用户或用户组在 Kyligence Enterprise 中能否访问一个项目。Kyligence Enterprise 内置四种项目访问权限角色，分别是 *Admin*、*Management*、*Operation* 和 *Query*。权限包含关系如下： *Admin* > *Management* > *Operation* > *Query*，即 *Admn* 包含了其他三种权限，*Management* 包含了 *Operation* 和 *Query* 权限， *Operation* 包含了 *Query*权限。
+项目级别访问权限决定用户或用户组在 Kyligence Enterprise 中能否访问一个项目。Kyligence Enterprise 内置四种项目访问权限角色，分别是 Admin、Management、Operation 和 Query。权限包含关系如下： Admin > Management > Operation > Query，即 Admin 包含了其他三种权限，Management 包含了 Operation 和 Query 权限， Operation 包含了 Query 权限。
 
-- *QUERY*：查询项目中的表和 Cube 的权限；如果启用了查询下压，允许用户或用户组在项目中没有 Ready 状态 Cube 的情况下，使用查询下压查询已同步到项目的表。
-- *OPERATION*：构建项目中 Cube 的权限, 包括刷新 Segment、管理构建任务
-- *MANAGEMENT*:：管理项目中模型、 Cube 的权限
-- *ADMIN*：管理项目中表、模型、Cube 的所有权限
+- QUERY：查询项目中的表和 Cube 的权限；如果启用了查询下压，允许用户或用户组在项目中没有 Ready 状态 Cube 的情况下，使用查询下压查询已同步到项目的表。
+- OPERATION：构建项目中 Cube 的权限, 包括刷新 Segment、管理构建任务
+- MANAGEMENT：管理项目中模型、 Cube 的权限
+- ADMIN：管理项目中表、模型、Cube 的所有权限
 
 > **提示：** 系统管理员在项目上为用户组分配了管理权限后，用户组中的用户会相应地继承数据源、模型及 Cube 上的访问权限。
 

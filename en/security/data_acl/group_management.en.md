@@ -4,14 +4,14 @@ This chapter provides an overview of what a user group is and how a user group c
 
 ### About User Group
 
-A user group is a collection of users, and users in a user group share the same ACL. By default, Kyligence Enterprise initializes four user groups, namely *ALL_USERS*, *ROLE_ADMIN*, *ROLE_ANALYST*, and *ROLE_MODELER*, and the *ALL_USERS* group is a default user group, all users are included in the *ALL_USERS* user group. The *ALL_USERS* user group cannot be modified or deleted. System administrators can add or remove users in user groups except *ALL_USERS*, or add a user to multiple groups except ALL_USERS. User groups cannot be renamed throughout the Kyligence Enterprise instance.
+A user group is a collection of users, and users in a user group share the same ACL. By default, Kyligence Enterprise initializes four user groups, namely ALL_USERS, ROLE_ADMIN, ROLE_ANALYST, and ROLE_MODELER, and ALL_USERS group is a default user group, all users are included in the ALL_USERS user group. ALL_USERS user group cannot be modified or deleted. System administrators can add or remove users in user groups except ALL_USERS, or add a user to multiple groups except ALL_USERS. User groups cannot be renamed throughout the Kyligence Enterprise instance.
 
 
 ### About User Group Permissions
 
 The system administrator can grant the project-level/row-level/table-level/column-level access permissions to a user group. When a user group has been granted the project-level/row-level/table-level/column-level permissions, users in this group will inherit the corresponding permissions from the group.
 
-When a user group and a user in the user group have been set the project-level access permissions at the same time, the user's permission will take the highest permission. For example, if User A is granted *Query* permission in a project, while the user group which User A belongs to is set *Management* permission in this project, then User A has *Management* permission in this project.
+When both a user and his/her user group are granted with access permissions at project-level, Kyligence Enterprise will take the highest permission for this user. For example, if User A is granted with *Query* permission on a project, while his/her user group is granted with *Management* permission, then User A will have management permission on this project.
 
 If row-level/table-level/column-level access permissions of a user group have been revoked, users in this group will lost the corresponding permissions. If a user group is forbidden to access a table/row/column, while a user in this group is allowed to access the table/row/column, then the user is prohibited from accessing the table/row/column, and vice versa.
 

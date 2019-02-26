@@ -20,11 +20,11 @@ Kyligence Enterprise enables query cache by default at each node/process level. 
 
 The default query cache cannot be shared among different nodes or processes because it is process level. Because of this,  when subsequent and same queries are routed to different Kyligence Enterprise nodes, the cache of the first query result cannot be used in cluster deployment mode. Therefore, you can configure Redis cluster as distributed cache, which can be shared across all Kyligence Enterprise nodes. The detail configurations are described as below:
 
-| Properties                         | Description                                                  | Default   | Options |
-| ---------------------------------- | ------------------------------------------------------------ | --------- | ------- |
-| kylin.query.cache-enabled          | Whether to enable query cache. When this property is enabled, the following properties take effect. | true      | false   |
-| kylin.cache.redis.enabled          | Whether to enable query cache by using Redis cluster         | false     | true    |
-| kylin.cache.redis.host             | Redis host address                                           | localhost |         |
-| kylin.cache.redis.port             | Redis port                                                   | 6379      |         |
-| kylin.cache.redis.expire-time-unit | Time unit for cache period. EX means seconds and PX means milliseconds | EX        | PX      |
-| kylin.cache.redis.expire-time      | Valid cache period                                           | 86400     |         |
+| Properties                         | Description                                                  | Default        | Options |
+| ---------------------------------- | ------------------------------------------------------------ | -------------- | ------- |
+| kylin.query.cache-enabled          | Whether to enable query cache. When this property is enabled, the following properties take effect. | true           | false   |
+| kylin.cache.redis.enabled          | Whether to enable query cache by using Redis cluster         | false          | true    |
+| kylin.cache.redis.cluster-enabled  | Whether to enable Redis cluster mode                         | false          | true    |
+| kylin.cache.redis.host             | Redis host. If you need to connect to a Redis cluster, please use comma to split the hosts, such as, kylin.cache.redis.host=localhost:6379,localhost:6380 | localhost:6379 |         |
+| kylin.cache.redis.expire-time-unit | Time unit for cache period. EX means seconds and PX means milliseconds | EX             | PX      |
+| kylin.cache.redis.expire-time      | Valid cache period                                           | 86400          |         |
