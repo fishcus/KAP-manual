@@ -25,6 +25,6 @@ Kyligence Enterprise 系统自带查询缓存并默认开启，具体的缓存�
 | kylin.query.cache-enabled          | 是否开启查询缓存，当该参数开启，下述参数才生效。             | true           | false  |
 | kylin.cache.redis.enabled          | 是否开启 Redis 集群用于查询缓存                              | false          | true   |
 | kylin.cache.redis.cluster-enabled  | 是否开启 Redis 集群模式                                      | false          | true   |
-| kylin.cache.redis.host             | Redis 主机地址，当您需要连接 Redis 集群时，请使用逗号进行分割。如 kylin.cache.redis.host=localhost:6379,localhost:6380 | localhost:6379 |        |
+| kylin.cache.redis.hosts             | Redis 主机地址，当您需要连接 Redis 集群时，请使用逗号进行分割。如 kylin.cache.redis.hosts=localhost:6379,localhost:6380 | localhost:6379 |        |
 | kylin.cache.redis.expire-time-unit | Redis 缓存保留单位，EX为秒，PX为毫秒                         | EX             | PX     |
 | kylin.cache.redis.expire-time      | Redis 缓存保留时间                                           | 86400          |        |
