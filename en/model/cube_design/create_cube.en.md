@@ -124,9 +124,11 @@ Finally, all the measures are defined as blow:
 
 ### Refresh Settings
 
-**Auto Merge Threshhold**: Usually filter and aggregation conditions of a SQL query are based on dates like months or weeks. Hence, cube is set to automatically merge on a weekly/monthly basis, which means cube segments will be merged every 7 days. The settings are as bellow:
+**Auto Merge Threshold**: After each successful cube build job, one segment will be added into cube data. When there're too many segments exist in one cube, it might greatly affect query performance. Hence we recommend to set up auto merge by week or month, to merge these small segments into one big segment. The settings are as bellow:
 
 ![Merge setting](images/cube_design_basics/createcube_merge.png)
+
+> **Caution:** auto merge only applies to cubes with incremental data loading type "By Date/Time". For other scenarios, please **DO NOT** enable this setting.
 
 **Retention Threshold**: For some old and not-used segments, the system can remove these segments automatically by configuring the retention threshold. For each new segment already built, the system will check whether the old segments should be removed at the same time. The rule is if the time range between the latest segment's end date and the old segment's end date exceeds the retention threshold. For example, if the Retention Threshold is 1 year, and the latest segment's end date is today. Any old segments whose end dates before the today of the last year will be removed. 
 
@@ -148,7 +150,7 @@ For more details,lease refer to [Table Index](table_index.en.md).
 
 Some of the configurations in `kylin.properties` can be overwritten at cube level and this can be done in **Advanced Setting**. We do not suggest to change any configurations for the moment.
 
-> Note: For more details about overriding configurations, please refer to [Configuration Override](../../installation/config/config_override.en.md)
+> **Note:** For more details about overriding configurations, please refer to [Configuration Override](../../installation/config/config_override.en.md)
 
 In this step, you can also choose cube build engine. By default, the system uses MapReduce as build engine. But you may also switch to *Spark (Beta)* manually. 
 

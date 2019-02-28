@@ -1,10 +1,8 @@
-## Customized Build
+## Customized Build (Beta)
 
-In addition to Full Build, Build by date/time, Build by file, and streaming build, users may need more flexible ways to build cube. This product provides a customized incremental build from version 3.2. Users can customize the way the cubes are built in the system to meet production needs.
+In addition to full build, build by date/time, build by file, and streaming build, users may need more flexible ways to build cube. This product provides a customized incremental build from version 3.2. Users can customize the way the cubes are built in the system to meet production needs.
 
 
-
-### Set build type in model
 
 1. Choose Build Type
 

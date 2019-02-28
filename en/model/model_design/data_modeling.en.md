@@ -28,10 +28,10 @@ Open Kyligence Enterprise Web UI, select project *learn_kylin* in project list i
 1. Click **+ Model** button and input the new model name.
 2. Click **Submit** and enter model desinger page.
 
-> **Note**: A new model can be saved only when
->
-> - at least one fact table is selected.
-> - at least one dimension column is specified.
+Note a new model can only be saved when
+- at least one fact table is selected.
+- at least one dimension column is specified.
+
 
 
 
@@ -138,11 +138,18 @@ Click **Save** button, and then a pop-up window appears.
 
 1. Incremental Data Loading
 
-   In this example, the data in table *KYLIN_SALES* grows day by day. Thus we choose **By Date/Time** which means the data would be built by date columns. In our example, we specify column *KYLIN_SALES.PART_DT* as time partition column and specify the date format as `yyyy-MM-dd HH:mm:ss`.
+   Incremental data loading defines how the data will be refreshed into cube based on this model. You can set full load to refresh all data in the cube, or you can set following incremental data loading types:
 
-   Currently Kyligence Enterprise supports following data type as time partition column: time (time / date / datetime) , integer (integer / tinyint / smallint / bigint / int4 / long8) , and string (varchar / string).
+   - By Date/Time
+   - By File (Beta)
+   - Customize (Beta)
+   - Streaming
 
-   > **Note:** This product supports different methods to build data, for more information please check [Build Cube](../cube_build/README.md).
+   > **Note:** For more details about customizing incremental data loading, please refer to [Customize Build](../../model/cube_build/customize_build.en.md).
+
+   In our example,  *KYLIN_SALES* has a column *PART_DT* which records when the data is added. So we can select *By Date/Time* here and set *PART_DT* as time partition column。
+
+   > **Note:** Time partition colunn supports time/date/datetime/integer/tinyint/smallint/bigint/int4/long8 /varchar/string.
 
 2. Cube Partition
 

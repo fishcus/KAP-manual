@@ -48,21 +48,29 @@
 
 ### Segment 管理
 
-Cube 数据由一个或多个 Segment 组成。因此当 Cube 构建后，会生成 segment 数据。Segment 的生成是以分区列（partition column）为依据的。
+Cube 数据由一个或多个 Segment 组成。因此当 Cube 构建后，会生成 Segment 数据块。Segment 的生成是以分区列（partition column）为依据的。
 
 用户可通过如下步骤进入 Segment 管理界面：
 
-1. 点击 **Cube** 列表中， Cube **名称** 列的**>**箭头
+1. 打开 Cube 列表， 点击 Cube 名称左侧的 **>** 箭头
 2. 选择 **Segments** 标签页
 
 ![build cube](images/cube_segment_manage/build_segment.png)
 
-Segments 管理页面下，支持如下操作：
+
+
+Segments 管理页面上，支持如下操作：
 
 - 刷新（重新构建该 segment）
+
 - 合并（将多个 segment 合并为一个，segment 不连续也可以合并， 合并 segment 时，老 segment 会被重新构建）
+
+  > **提示：** 
+  >
+  > 1. 为了避免 Cube 中 Segment 过多，导致查询性能下降，我们建议在 Cube 设计时的**刷新设置**步骤开启按周或月对数据进行自动合并。
+  > 2. 自动合并功能仅支持按日期/时间增量构建的 Cube，对于其他增量构建类型的 Cube，请合理规划您的 Segment 合并。
+
 - 删除
 
-> **提示：**点击正在被构建、刷新、合并的 segment ID，可以跳转至**监控**页面，查看关联 Segment 任务。Segment 合并任务名一般以 MERGE CUBE 开头。
+点击正在被构建、刷新、合并的 segment ID，可以跳转至**监控**页面，查看关联任务。
 
-  
