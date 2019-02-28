@@ -7,6 +7,7 @@ Kyligence Enterprise 从 v2.5.6 版本开始，增加了环境依赖服务检测
 ### 环境依赖检测项目说明
 
 * Hive 可用性：检查 Hive/Beeline 的可连通性
+* 文件系统可用性: 检查文件系统的可用性
 * 元数据库可用性：检查元数据库的可连通性、读写正确性和响应速度
 * 元数据完整性：检查元数据的一致性及判断元数据是否损坏
 * Zookeeper 可用性：检查 ZooKeeper 的可连通性、加锁操作和响应速度
@@ -28,6 +29,7 @@ Kyligence Enterprise 从 v2.5.6 版本开始，增加了环境依赖服务检测
 | 检测项目              | 服务状态 - 黄色                                              | 服务状态 - 红色                                              |
 | --------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | HiveCanary            | 在 Hive 中执行列出所有数据库超过 20 秒                       | 在 Hive 中执行列出所有数据库超过 30 秒                       |
+| FileSystemCanary   |  | 文件系统异常关闭|
 | MetaStoreCanary       | 执行元数据读、写、删操作超过 300 毫秒                        | 1. 执行元数据读、写、删操作超过 1000 毫秒 <br />2. 对元数据执行写操作后，未能读取到新写的数据 |
 | MetadataCanary        | 验证元数据完整性超过 10 秒                                   | 1. 验证元数据完整性超过 30 秒 <br />2. 元数据完整性存在错误  |
 | ZookeeperCanary       | 查看 ZooKeeper 活性、加锁、解锁超过 3 秒                     | 1. 查看 ZooKeeper 活性、加锁、解锁超过10秒<br />2. ZooKeeper 处于非活跃状态<br />3. ZooKeeper 加锁／解锁失败 |
@@ -41,14 +43,15 @@ Kyligence Enterprise还提供了命令行工具来执行对每个服务状态检
 
 执行 `$KYLIN_HOME/bin/kylin.sh io.kyligence.kap.canary.CanaryCLI <canaries-to-test>`，其中  <code>canaries-to-test</code> 可替换的对应的检测参数如下：
 
- * Hive 可用性： <code>HiveCanary</code>
- * 元数据库可用性： <code>MetaStoreCanary</code>
- * 元数据完整性： <code>MetadataCanary</code>
- * Zookeeper 可用性： <code>ZookeeperCanary</code>
+ * Hive 可用性： `HiveCanary`
+ * 文件系统可用性： `FileSystemCanary`
+ * 元数据库可用性： `MetaStoreCanary`
+ * 元数据完整性： `MetadataCanary`
+ * Zookeeper 可用性： `ZookeeperCanary`
  * Spark 集群可用性：暂时无法使用命令行来进行单独检测
- * 垃圾清理： <code>GarbageCanary</code>
- * 元数据同步： <code>MetaSyncErrorCanary</code>
- * 任务执行引擎可用性： <code>JobEngineCanary</code>
+ * 垃圾清理： `GarbageCanary`
+ * 元数据同步： `MetaSyncErrorCanary`
+ * 任务执行引擎可用性： `JobEngineCanary`
 
 
 ### 服务状态检测结果邮件报警

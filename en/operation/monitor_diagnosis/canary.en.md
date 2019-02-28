@@ -8,20 +8,21 @@ Services status turns green for being good, yellow for warning and red for error
 
 Service status detection mainly focuses on following aspects：
 
-- *Hive availability*: to check the connectivity of Hive and Beeline.
-- *Metadata store availability*: to check the metastore’s connectivity, functionality and response time 
-- *Metadata integrity*: to check the consistency of metadata and assess whether metadata is corrupted
-- *ZooKeeper availability*: to check the connectivity and response speed of ZooKeeper
-- *Spark cluster availability*: to check the availability of Spark 
-- *Garbage cleanup*: to check the size of garbage
-- *Metadata synchronization*: to check the whether metadata is synchronized successfully and if not, metadata will be reloaded automatically
-- *Job Engine availability*: to check the availability of job engines
+- Hive availability: to check the connectivity of Hive and Beeline.
+- File system availability: to check the availability of file system.
+- Metadata store availability: to check the metastore’s connectivity, functionality and response time 
+- Metadata integrity: to check the consistency of metadata and assess whether metadata is corrupted
+- ZooKeeper availability: to check the connectivity and response speed of ZooKeeper
+- Spark cluster availability: to check the availability of Spark 
+- Garbage cleanup: to check the size of garbage
+- Metadata synchronization: to check the whether metadata is synchronized successfully and if not, metadata will be reloaded automatically
+- Job Engine availability: to check the availability of job engines
 
 ### Three levels of Service Status 
 
-- *Green:* Good, indicating that the service status is healthy
-- *Yellow:* Warning, indicating that there are some problems which may impact Kyligence Enterprise performance.
-- *Red:* Error or crash, indicating that there is something wrong with the service status or the service throws exception. 
+- Green: Good, indicating that the service status is healthy
+- Yellow: Warning, indicating that there are some problems which may impact Kyligence Enterprise performance.
+- Red: Error or crash, indicating that there is something wrong with the service status or the service throws exception. 
 
 
 ### Detailed Criteria for Service Status
@@ -29,6 +30,7 @@ Service status detection mainly focuses on following aspects：
 | Canary Items          | Status: Yellow                                               | Status: Red                                                  |
 | --------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | HiveCanary            | Listing Hive databases exceeds 20 seconds                    | Listing Hive databases exceeds 30 seconds                    |
+| FileSystemCanary            |    | File system closes accidently   |
 | MetaStoreCanary       | Writing, reading and deleting on metadata exceeds 300 milliseconds. | 1.Writing, reading and deleting on metadata exceeds 1000 milliseconds <br>2.Metastore failed to read the latest written data |
 | MetadataCanary        | Verifying the consistency of metadata exceeds 10 seconds     | 1.Verifying the consistency of metadata exceeds 30 seconds<br>2.Broken metadata exists |
 | ZookeeperCanary       | Checking ZooKeeper's availability, locking and unlocking exceeds 3 seconds | 1.Checking ZooKeeper's availability, locking and unlocking exceeds 10 seconds <br>2.ZooKeeper is not alive <br>3.Failed to require or release ZooKeeper lock |
@@ -44,6 +46,7 @@ Kyligence Enterprise also supports users to check service status manually throug
 You can run the command line `$KYLIN_HOME/bin/kylin.sh io.kyligence.kap.canary.CanaryCLI <canaries-to-test>`, in which  `canaries-to-test` could be replaced by the following parameters,
 
 - Hive availability: `HiveCanary`
+- File system availability: `FileSystemCanary`
 - Metadata store availability: `MetaStoreCanary`
 - Metadata integrity: `MetadataCanary`
 - ZooKeeper availability: `ZookeeperCanary`
