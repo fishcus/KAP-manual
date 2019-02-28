@@ -1,30 +1,61 @@
 ## Customized Build (Beta)
 
-In addition to full build, build by date/time, build by file, and streaming build, users may need more flexible ways to build cube. This product provides a customized incremental build from version 3.2. Users can customize the way the cubes are built in the system to meet production needs.
+In this chapter we will introduce customized build to incrementally load new data for some specific scenarios. We will explain in details how it works and how to use.
+
+### Application Scenario
+
+In most cases, we recommend you to build cube based on a date/time column to incrementally load new data into cubes, on a weekly, daily, or even hourly basis, via submiting a build job with a date/time range containing a start and end date/time. 
+
+But in some scenarios, new data cannot be identified or selected simply by a date/time column. E.g. :
+
+- You have a self-increasing transaction number and you need to build new data into cube based transaction number ranges. 
+- You have a fiscal year/period column and you need to build new data based on fiscal year/periods. 
+- You have two columns, like date and batch id, you can build new data by different batches in each date.
+
+So in this case, Kyligence Enterprise supports cube customized build. You can implement your own way to build new data incrementally into Kyligence cubes.
 
 
 
-1. Choose Build Type
+### How It Works
 
-   If we set the incremental data load type to **Customize** when saving the model, the build type of the Cube designed in that model corresponds to **Customize**.
+For each successful date/time based cube build job, Kyligence Enterprise will create a new segment in cube which contains the date/time range as well as the data of the segment. And normally the date/time ranges of all segments in a cube are consecutive if looking at them from a time axis point of view, just as shown below:
 
-   ![Save model](images/customize_build_save_model.png)
+![time axis view of segments based on date/time incremental build](images/time_axis.png)
 
-2. Java Class for Customized Incremental Build and Class Initialization Parameter
+> **Note：**In real implementation, Kyligence Enterprise will transform date/time value into Long type, and these ranges are actually number ranges.
 
-   User needs to enter the class name of the Java class used to implement the custom incremental build. The Java class should be put under path $KYLIN_HOME/ext. After putting it under the right path,  the user should restart the system to enable this Java class.
+For customized build, you can sumit the job with a number range of Long type instread of a date/time range. Kyligence Enterprise will call a customized build implementation (or technically a Java class) which is developed by yourself, to generate the data selection SQL for submit this job. In this customized build implementation, you will be responsible for mapping this number range to the new data selection criteria (or technically a WHERE clause in SQL statement).
 
-   User passes the corresponding parameters according to the above Java class to implement a custom incremental build. Multiple parameters are separated by commas.
+![number range mapping to new data selection criteria](images/time_axis_customize_build.png)
 
-3. Set Cube Partition
 
-   The cube will be built incrementally based on the specific column if the cube partition is enabled.
 
-   ![Cube partition](images/customize_build_save_model_partition.png)
+### How to Use
 
-4. After click the **Submit** button, the model is all set.
+1. Set Incremental Data Loading type during model design.
 
-   > **Note:** Cube build, segments refresh and merge can only be conducted in REST API. See [Cube API](../../rest/cube_api.en.md) for details.
+   Please set **Incremental Data Loading** to be *Customize* when save your model. When you submit a cube build job for cubes based on this model, Kyligence Enterprise will call your own implementation to generate new data selection SQL.
 
-5. After the build API is sent, you can see the corresponding job running in the Monitor page. The segment will be listed under the cube after the build job is finished. 
+   ![保存模型](images/customize_build_save_model.png)
 
+2. Set your own implementation for customized build
+
+   You have to implement your own Java class for customized cube build, put the class under `$KYLIN_HOME/ext` and retart Kyligence Enterprise. 
+
+   For how to implement this Java class, please refer to [Developer Guide for Implementing Java Class of  Customized Cube Build](../../appendix/customized_build_dev_guide.en.md).
+
+   Then specify your java class name in **Java Class for Customized Incremental Build**, as well as its initilization parameter in **Class Initialization Parameter**.
+
+   You can also specify class initialization parameter for your Java class. For example, you can pass the column name(s) which should be used in the WHERE clause for the new data selection. Use comma as the separator if it contains multiple values.
+
+3. Click **Submit** to save this model.
+
+4. Creat a cube based on the model above.
+
+5. Submit a build job with a number range using REST API.
+
+   For customized build cubes, you can submit job **ONLY** via REST API to build, refresh, or merge segment. For more information about how to use REST API, please refer to Kyligence user manual.
+
+6. After submitting a cube build job, you can go to **Monitor** page to check its status and progress. You can also to go cube management page and check whether the data range is correct for the new segment.
+
+7. After the job is successfully finished, please check whether the right data is loaded into cube via submitting a SQL query.
