@@ -6,5 +6,5 @@
 
 异步查询支持在 `kylin.properties` 进行以下配置：
 - `kylin.query.async.cache-expire-days`：异步查询结果缓存在 HDFS 中的失效时间，默认为 10 天，即超过 10 天的数据结果文件将被清理。
-- `kylin.query.async.cache-maximum-size`：异步查询结果缓存支持的最大查询条数，默认 1000 条，即当执行 1001 条异步查询时，第 1 条的查询结果将被清理。
-> **注意：** 当 Kyligence Enterprise 重启后，以上配置将被重置。
+- `kylin.query.async.cache-maximum-size`：异步查询结果缓存支持的最大查询条数，默认 1000 条。当缓存的查询条数超出缓存大小时，将清除最早且结果未被下载的异步查询。
+> **注意：** 当 Kyligence Enterprise 重启后，异步查询结果缓存将被清空。

@@ -12,8 +12,8 @@ You can configure the following setting for async query in `kylin.properties`:
 
 1. `kylin.query.async.cache-expire-days`: the validity period of the asynchronous query result file stored in HDFS. The default value is 10, which means result file older than 10 days will be deleted.
 
-2. `kylin.query.async.cache-maximum-size`: the maximum number of asynchronous queries of which result files are stored in HDFS. The default value is 1000, which means result files for only the latest 1000 async queries will be stored.
+2. `kylin.query.async.cache-maximum-size`: the maximum number of asynchronous queries of which result files are stored in HDFS. The default value is 1000. If it exceeds the limit, Kyligence Enterprise will clean the oldest non-used query result.
 
-> **Caution:** the configurations above will be reset after restarting Kyligence Enterprise.
+> **Caution:** the cache will be reset after restarting Kyligence Enterprise.
 
 
