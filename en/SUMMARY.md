@@ -127,6 +127,7 @@
         * [FineReport/FineBI](integration/bi/fanruan.en.md)
         * [Apache Zeppelin](integration/bi/zeppelin.en.md)
     * [Using Excel](integration/excel.en.md)       
+    * [Using Python](integration/python.en.md)
 * [Security](security/README.md)        
     * [User Management](security/data_acl/user_management.en.md)        
     * [User Group Management](security/data_acl/group_management.en.md)     

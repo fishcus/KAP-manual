@@ -127,6 +127,7 @@
         * [与 帆软 FineBI/FineReport 集成](integration/bi/fanruan.cn.md)
         * [与 Apache Zeppelin 集成](integration/bi/zeppelin.cn.md)
     * [与 Excel 集成](integration/excel.cn.md)       
+    * [与 Python 集成](integration/python.cn.md)
 * [安全控制](security/README.md)   
     * [管理用户](security/data_acl/user_management.cn.md)        
     * [管理用户组](security/data_acl/group_management.cn.md)             
