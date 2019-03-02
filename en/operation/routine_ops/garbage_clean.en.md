@@ -1,5 +1,7 @@
 ## Garbage Cleanup (Deprecated)
 
+> **Caution：**Since Kyligence Enterprise 3.2.2, this tool is deprecated and will be no longer maintained. For system garbage check and cleanup, we provide a new routine operation tool. For more information, please refer to [Routine Operation Tool](./routine_tool.en.md)。
+
 After Kyligence Enterprise running for a period of time, there could be garbage data leftover. Garbage data occupies disk and metadata spaces and could downgrade overall system performance to some extent. The garbage data mainly includes: 
 
 - Leftover cube data after cube is purged
@@ -7,11 +9,11 @@ After Kyligence Enterprise running for a period of time, there could be garbage 
 - Temporary files from error jobs
 - Job history that no need to keep forever
 
-**Notice: **
-
-1. **Data cannot be restored once deleted.** It is essential to back up metadata and check the target resources carefully before deletion.
-
-2. **Please try to arrange cleanup at when there is no (or less) running jobs in the system**, for better overall stability and performance.
+> **Caution: **
+>
+> 1. Data cannot be restored once deleted. It is essential to back up metadata and check the target resources carefully before deletion.
+> 2. It's recommended to do cleanup when there are no (or less) running jobs in the system.
+>
 
 ### Garbage Cleanup Command Tool
 
