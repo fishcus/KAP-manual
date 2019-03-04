@@ -9,8 +9,10 @@
 
 * [Get Table ACL](#Get-Table-ACL)
 * [Grant Table ACL](#Grant-Table-ACL)
-* [Grant Table ACL in batch](#Grant-Table-ACL-in-batch)
+* [Grant Table ACL in Batch](#Grant-Table-ACL-in-batch)
 * [Revoke Table ACL](#Revoke-Table-ACL)
+* [Revoke Table ACL in Batch](#Revoke-Table-ACL-in-Batch)
+* [Override Table ACL](#Override-Table-ACL)
 
 
 
@@ -200,3 +202,108 @@
       "msg": "revoke user table query permission and add user to table black list."
   }
   ```
+
+
+
+### Revoke Table ACL in Batch{#Revoke-Table-ACL-in-Batch}
+
+- `DELETE http://host:port/kylin/api/acl/table/batch/{project}/{table}/`
+
+- URL Parameters
+  - `project` - `required` `string`, project name
+  - `table` - `required` `string`, table name
+
+- HTTP Header
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
+- HTTP Body: JSON Object
+  - `sid` - `required` `string`, user name or group name
+  - `principal` - `required` `boolean`, user or not,  "true" for user and "false" for group
+
+- Curl Request Example
+
+  ```sh
+  curl -X DELETE \
+    'http://host:port/kylin/api/acl/table/batch/learn_kylin/DEFAULT.KYLIN_SALES' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json' \
+    -H 'cache-control: no-cache,no-cache,no-cache' \
+    -d '[
+  	{
+  		"sid": "test1",
+  		"principal": true
+  	},
+  	{
+  		"sid": "test2",
+  		"principal": true
+  	}
+  ]'
+  ```
+
+- Response Example
+
+  ```json
+  {
+      "code": "000",
+      "data": "",
+      "msg": "revoke user table query permission and add user to table black list."
+  }
+  ```
+
+
+
+### Override Table ACL {#Override-Table-ACL}
+
+- `POST http://host:port/kylin/api/acl/table/override/{project}/{table}/`
+
+- URL Parameters
+
+  - `project` - `required` `string`, project name
+  - `table` - `required` `string`, table name
+
+- HTTP Header
+
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
+
+- HTTP Body: JSON Object
+
+  - `sid` - `required` `string`, user name or group name
+  - `principal` - `required` `boolean`, user or not,  "true" for user and "false" for group
+
+- Curl Request Example
+
+  ```sh
+  curl -X POST \
+    'http://host:port/kylin/api/acl/table/override/learn_kylin/DEFAULT.KYLIN_SALES' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json' \
+    -H 'cache-control: no-cache,no-cache,no-cache' \
+    -d '[
+  	{
+  		"sid": "test1",
+  		"principal": true
+  	},
+  	{
+  		"sid": "test2",
+  		"principal": true
+  	}
+  ]'
+  ```
+
+- Response Example
+
+  ```json
+  {
+      "code": "000",
+      "data": "",
+      "msg": "batch cover user table query permission"
+  }
+  ```
+

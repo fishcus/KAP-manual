@@ -1,9 +1,7 @@
 ## 表级访问控制权限 API
 
-> 提示：
->
+> **提示：**
 > 1. 请确保已阅读前面的[访问及安全认证](../authentication.cn.md)章节，了解如何在 REST API 语句中添加认证信息。
->
 > 2. 在 Curl 命令行上，如果您访问的 URL 中含有 `&` 符号，请注意转义，比如在 URL 两端加上引号。
 
 
@@ -12,6 +10,8 @@
 * [赋予表级访问控制权限](#赋予表级访问控制权限)
 * [批量赋予表级访问控制权限](#批量赋予表级访问控制权限)
 * [删除表级访问控制权限](#删除表级访问控制权限)
+* [批量删除表级访问控制权限](#批量删除表级访问控制权限)
+* [覆盖表级访问控制权限](#覆盖表级访问控制权限)
 
 
 
@@ -201,3 +201,102 @@
       "msg": "revoke user table query permission and add user to table black list."
   }
   ```
+
+
+
+### 批量删除表级访问控制权限
+
+- `DELETE http://host:port/kylin/api/acl/table/batch/{project}/{table}`
+
+- URL Parameters
+  - `project` - `必选` `string`，项目名称
+  - `table` - `必选` `string`，表名称
+
+- HTTP Header
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
+- HTTP Body: JSON Object
+  - `sid` - `必选` `string`，用户或组名
+  - `principal` - `必选` `boolean`，是否为用户，"true" 或者 "false"
+
+- Curl 请求示例
+
+  ```sh
+  curl -X DELETE \
+    'http://host:port/kylin/api/acl/table/batch/learn_kylin/DEFAULT.KYLIN_SALES' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json' \
+    -H 'cache-control: no-cache,no-cache,no-cache' \
+    -d '[
+  	{
+  		"sid": "test1",
+  		"principal": true
+  	},
+  	{
+  		"sid": "test2",
+  		"principal": true
+  	}
+  ]'
+  ```
+
+- 响应示例
+
+  ```json
+  {
+      "code": "000",
+      "data": "",
+      "msg": "revoke user table query permission and add user to table black list."
+  }
+  ```
+
+### 覆盖表级访问控制权限
+
+- `POST http://host:port/kylin/api/acl/table/override/{project}/{table}/`
+
+- URL Parameters
+  - `project` - `必选` `string`，项目名称
+  - `table` - `必选` `string`，表名称
+
+- HTTP Header
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
+- HTTP Body: JSON Object
+  - `sid` - `必选` `string`，用户或组名
+  - `principal` - `必选` `boolean`，是否为用户，"true" 或者 "false"
+
+- Curl 请求示例
+
+  ```sh
+  curl -X POST \
+    'http://host:port/kylin/api/acl/table/override/learn_kylin/DEFAULT.KYLIN_SALES' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json' \
+    -H 'cache-control: no-cache,no-cache,no-cache' \
+    -d '[
+  	{
+  		"sid": "test1",
+  		"principal": true
+  	},
+  	{
+  		"sid": "test2",
+  		"principal": true
+  	}
+  ]'
+  ```
+
+- 响应示例
+
+  ```json
+  {
+      "code": "000",
+      "data": "",
+      "msg": "batch cover user table query permission"
+  }
+  ```
+

@@ -1,10 +1,9 @@
 ## 列级访问控制权限 API
 
-> 提示：
->
+> **提示：**
 > 1. 请确保已阅读前面的[访问及安全认证](../authentication.cn.md)章节，了解如何在 REST API 语句中添加认证信息。
->
 > 2. 在 Curl 命令行上，如果您访问的 URL 中含有 `&` 符号，请注意转义，比如在 URL 两端加上引号。
+> 3. 列级权限的 API 为黑名单权限操作，即赋予的列级访问权限将无法被查询
 
 
 
@@ -13,6 +12,7 @@
 * [批量赋予列级访问控制权限](#批量赋予列级访问控制权限)
 * [修改列级访问控制权限](#修改列级访问控制权限)
 * [删除列级访问控制权限](#删除列级访问控制权限)
+* [批量清空用户的列级访问控制权限](#批量清空列级访问控制权限)
 
 
 
@@ -96,7 +96,7 @@
     -d '["QTR_BEG_DT"]'
   ```
 
-  > 提示：示例 Curl 请求将 ADMIN 用户赋予对表 DEFAULT.KYLIN_CAL_DT 在 QTR_BEG_DT 的列级访问控制权限。
+  > **提示：**示例 Curl 请求将 ADMIN 用户赋予对表 *DEFAULT.KYLIN_CAL_DT* 在 *QTR_BEG_DT* 的列级访问控制权限。
 
 
 - 响应示例
@@ -113,12 +113,11 @@
 
 ### 批量赋予列级访问控制权限
 
-- `POST http://host:port/kylin/api/acl/column/batch/{project}/{type}/{table}/{username}`
+- `POST http://host:port/kylin/api/acl/column/batch/{project}/{table}`
 
 
 - URL Parameters
   - `project` - `必选` `string`，项目名称
-  - `type` - `必选` `string`，用来表示操作是用户操作还是用户组操作，取值：user/group
   - `table` - `必选` `string`，表名称
 
 
@@ -129,25 +128,36 @@
 
 
 - HTTP Body: JSON Object
-  - 请求体是键值对结构，键为用户名，值为对应的列。
+  - `sid` - `必选` `string`，用户名或组名
+  - `principal` - `必选` `boolean`，是否为用户，"true" 或者 "false"
+  - `column` - `必选` string列表，即需要赋予列级访问权限的列
 
 
 - Curl 请求示例
 
   ```sh
   curl -X POST \
-    'http://host:port/kylin/api/acl/column/batch/learn_kylin/user/DEFAULT.KYLIN_SALES' \
+    http://host:port/kylin/api/acl/column/batch/learn_kylin/DEFAULT.KYLIN_SALES \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
-    -H 'Content-Type: application/json;charset=utf-8' \
-    -d '{
-    "ADMIN": ["TRANS_ID","PART_DT"],
-    "MODELER": ["PRICE"]
-   }'
+    -H 'Content-Type: application/json' \
+    -H 'cache-control: no-cache,no-cache,no-cache,no-cache' \
+    -d '[
+  	{
+  		"sid": "test1",
+  		"principal": true,
+  		"columns":["PART_DT","TRANS_ID"]
+  	},
+  	{
+  		"sid": "test2",
+  		"principal": true,
+  		"columns":["SELLER_ID"]
+  	}
+  ]'
   ```
 
-  > 提示：示例 Curl 请求将 ADMIN 用户赋予对表 DEFAULT.KYLIN_SALES 的 TRANS_ID 和 PART_DT 的列级访问控制权限；将 MODELER 用户赋予对表 DEFAULT.KYLIN_SALES 在 PRICE 的列级访问控制权限。
+  > **提示：**示例 Curl 请求将 test1 用户赋予对表 *DEFAULT.KYLIN_SALES* 的 *TRANS_ID* 和 *PART_DT* 的列级访问控制权限；将 *MODELER* 用户赋予对表 *DEFAULT.KYLIN_SALES* 在 *SELLER_ID* 的列级访问控制权限。
 
 
 - 响应示例
@@ -194,7 +204,7 @@
     -d '["TRANS_ID"]'
   ```
 
-  > 提示：示例 Curl 请求将 ADMIN 用户修改对表 DEFAULT.KYLIN_SALES 在 TRANS_ID 的列级访问控制权限。
+  > **提示：**示例 Curl 请求将 ADMIN 用户修改对表 *DEFAULT.KYLIN_SALES* 在 *TRANS_ID* 的列级访问控制权限。
 
 
 - 响应示例
@@ -236,7 +246,7 @@
     -H 'Content-Type: application/json;charset=utf-8'
   ```
 
-  > 提示：示例 Curl 请求删除 ANALYST 用户对表 DEFAULT.KYLIN_SALES  的列级访问控制权限。
+  > **提示：**示例 Curl 请求删除 *ANALYST* 用户对表 *DEFAULT.KYLIN_SALES* 的列级访问控制权限。
 
 - 响应示例
 
@@ -247,3 +257,54 @@
       "msg": "delete user from DEFAULT.KYLIN_SALES's column black list"
   }
   ```
+
+
+
+### 批量清空用户的列级访问控制权限
+
+- `DELETE  http://host:port/kylin/api/acl/column/batch/{project}/{table}`
+- URL Parameters
+  - `project` - `必选` `string`，项目名称
+  - `table` - `必选` `string`，表名称
+- HTTP Header
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
+- HTTP Body: JSON Object
+  - `sid` - `必选` `string`，用户或组名
+  - `principal` - `必选` `boolean`，是否为用户，"true" 或者 "false"
+
+- Curl 请求示例
+
+  ```sh
+  curl -X DELETE \
+    'http://10.1.2.134:7570/kylin/api/acl/column/batch/learn_kylin/DEFAULT.KYLIN_SALES' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json' \
+    -H 'cache-control: no-cache,no-cache,no-cache' \
+    -d '[
+  	{
+  		"sid": "test1",
+  		"principal": true
+  	},
+  	{
+  		"sid": "test2",
+  		"principal": true
+  	}
+  ]'
+  ```
+
+  > **提示：**示例 Curl 请求删除 *test1* 以及 *test2* 用户在表 *DEFAULT.KYLIN_SALES* 的所有列级访问控制权限。
+
+- 响应示例
+
+  ```json
+  {
+      "code": "000",
+      "data": "",
+      "msg": ""
+  }
+  ```
+
