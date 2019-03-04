@@ -50,7 +50,7 @@
     * [设计模型](model/model_design/README.md)
         * [基本模型设计](model/model_design/data_modeling.cn.md)
         * [基于流式数据的模型设计](model/model_design/model_streaming.cn.md)
-        * [缓慢变化维度](model/model_design/scd.cn.md)  
+        * [缓慢变化维度](model/model_design/slowly_changing_dimension.cn.md)  
         * [可计算列](model/model_design/computed_column/README.md)    
             * [可计算列支持的函数](model/model_design/computed_column/functions.cn.md)
         * [模型推荐](model/model_design/model_advisor.cn.md) 

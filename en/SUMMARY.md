@@ -50,7 +50,7 @@
     * [Model Design](model/model_design/README.md)
         * [Model Design Basics](model/model_design/data_modeling.en.md)
         * [Model Design on Streaming Data](model/model_design/model_streaming.en.md)
-        * [Slowly Changing Dimension](model/model_design/scd.en.md)  
+        * [Slowly Changing Dimension](model/model_design/slowly_changing_dimension.en.md)  
         * [Computed Column](model/model_design/computed_column/README.md)    
             * [Supported Functions](model/model_design/computed_column/functions.en.md)
         * [Model Advisor](model/model_design/model_advisor.en.md) 
