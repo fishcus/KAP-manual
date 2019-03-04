@@ -1,8 +1,4 @@
-## Operator
-
-The following are operators applicable to SQL queries.
-
-### Comparison Operators
+## Comparison Operators
 
 | Operator             | Description                               | Syntax                                   | Example                                  |
 | -------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
@@ -21,31 +17,3 @@ The following are operators applicable to SQL queries.
 | NOT LIKE             | Whether *string1* does not match pattern *string2* | string1 NOT LIKE string2 [ ESCAPE string3 ] | name NOT LIKE '%frank%'                  |
 | SIMILAR TO           | Whether string1 matches regular expression string2 | string1 SIMILAR TO string2               | name SIMILAR TO 'frank'                  |
 | NOT SIMILAR TO       | Whether *string1* does not match regular expression *string2* | string1 NOT SIMILAR TO string2           | name NOT SIMILAR TO 'frank'              |
-
-### Logical Operators
-
-| Operator     | Description                               | Syntax                | Example                       |
-| ------------ | ---------------------------------------- | --------------------- | ----------------------------- |
-| AND          | Whether *boolean1* and *boolean2* are both TRUE | boolean1 AND boolean2 | Name ='frank' AND gender='M'  |
-| OR           | Whether *boolean1* is TRUE or *boolean2* is TRUE | boolean1 OR boolean2  | Name='frank' OR Name='Hentry' |
-| NOT          | Whether *boolean* is not TRUE; returns UNKNOWN if *boolean* is UNKNOWN | NOT boolean           | NOT (NAME ='frank')           |
-| IS FALSE     | Whether *boolean* is FALSE; returns FALSE if *boolean* is UNKNOWN | boolean IS FALSE      | Name ='frank' IS FALSE        |
-| IS NOT FALSE | Whether *boolean* is not FALSE; returns TRUE if *boolean* is UNKNOWN | boolean IS NOT FALSE  | Name ='frank' IS NOT FALSE    |
-| IS TRUE      | Whether *boolean* is TRUE; returns FALSE if *boolean* is UNKNOWN | boolean IS TRUE       | Name ='frank' IS TRUE         |
-| IS NOT TRUE  | Whether *boolean* is not TRUE; returns TRUE if *boolean* is UNKNOWN | boolean IS NOT TRUE   | Name ='frank' IS NOT TRUE     |
-
-### Arithmetic Operators
-
-| Operator | Description                               | Syntax | Example              |
-| -------- | ---------------------------------------- | ------ | -------------------- |
-| +        | Plus                                     | A+B    | Cost+Profit          |
-| -        | Minus.                                   | A-B    | Revenue- Cost        |
-| *        | Multiply. Returns *numeric1* multiplied by *numeric2* | A*B    | Unit_Price* Quantity |
-| /        | Divide                                   | A/B    | Total_Sale/Quantity  |
-
-### String Operator
-
-| Operator | Description       | Syntax | Example                 |
-| -------- | ---------------- | ------ | ----------------------- |
-| \|\|     | String\|\|string | A\|\|B | First_name\|\|Last_name |
-
