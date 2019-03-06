@@ -21,9 +21,11 @@
         "codeblock-filename",
         "edit-link",
         "header",
-        "image-captions"
+        "image-captions",
+        "custom-favicon"
     ],
     "pluginsConfig": {
+        "favicon": "entry/img/kyligence.png",
         "disqus": {
             "shortName": "kyligence-manual"
         },
