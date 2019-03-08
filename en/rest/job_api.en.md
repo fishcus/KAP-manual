@@ -24,13 +24,13 @@
 - URL Parameters
   - `timeFilter` - `required` `int`
 
-    | Time Range     | Value |
-    | -------------- | ----- |
-    | LAST ONE DAY   | 0     |
-    | LAST ONE WEEK  | 1     |
-    | LAST ONE MONTH | 2     |
-    | LAST ONE YEAR  | 3     |
-    | ALL            | 4     |
+| Time Range     | Value |
+| -------------- | ----- |
+| LAST ONE DAY   | 0     |
+| LAST ONE WEEK  | 1     |
+| LAST ONE MONTH | 2     |
+| LAST ONE YEAR  | 3     |
+| ALL            | 4     |
 
   - `jobName` - `optional` `string`, job name
 
@@ -38,15 +38,15 @@
 
   - `status` - `optional` `int`
 
-    | Job Status | Value |
-    | ---------- | ----- |
-    | NEW        | 0     |
-    | PENDING    | 1     |
-    | RUNNING    | 2     |
-    | FINISHED   | 4     |
-    | ERROR      | 8     |
-    | DISCARDED  | 16    |
-    | STOPPED    | 32    |
+| Job Status | Value |
+| ---------- | ----- |
+| NEW        | 0     |
+| PENDING    | 1     |
+| RUNNING    | 2     |
+| FINISHED   | 4     |
+| ERROR      | 8     |
+| DISCARDED  | 16    |
+| STOPPED    | 32    |
 
   - `pageOffset` - `optional` `int`, offset of returned result, 0 by default
 
