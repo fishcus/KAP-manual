@@ -22,7 +22,7 @@
     * Delete
     * Edit
     * Build 
-    * Ready (Convert a cube with a segment to Ready)
+    * Ready (Convert a cube with a segment to READY)
     * Purge (Empty all segments under a cube)
     * Clone (Copy a cube, without copy a segment)
     * View Cube (View a cube's description)
@@ -33,7 +33,7 @@
 
     * Validate SQL
     * Edit
-    * Disable (Convert a Ready cube to Disable) 
+    * Disable (Convert a READY cube to DISABLED) 
     * Clone (Copy a cube, without copy a segment) 
     * View Cube (View a cube's description) 
     * Backup (Backup a cube's metadata) 
@@ -60,16 +60,18 @@ Users can enter the Segment management interface by the following steps:
 
 On Segment page, you can execute the following actions: 
 
-- Refresh (Rebuild the segment) 
+- **Refresh**: Rebuild the segment.
 
-- Merge (Merge several segments into one even if they are discontinuous) 
+- **Merge**: Merge several segments into one.
+
+  Discontinuous segments can be merged. If the corresponding snapshots of those segments are different, a warning message will pop up. If continue to merge, the processing for slowly changing dimension (SCD) might be changed and your query result might be affected. For more information about SCD, please refer to [Slowly Changing Dimension](model_design/slowly_changing_dimension.en.md).
 
   > **Note:** 
   >
-  > 1. To avoid too many segments in one cube and affect query performance, we recommend you to set up auto merge in refresh setting (step 4) when designing your cube.
+  > 1. Too many segments in one cube may degrade query performance. It is recommended to set up auto merge in refresh setting (step 4) when designing cube.
   > 2. Auto merge only applies to cube/model with incremental data loading type *By Date/Time*. For other scenarios, please plan your merge tasks accordingly.
 
-- Delete
+- **Delete**
 
-Clicking the ID of a segment that is being built, refreshed or merged, may lead you to the related job in **Monitor** page.
+Clicking the ID of a segment that is being built, refreshed or merged, will lead you to the related job in **Monitor** page.
 

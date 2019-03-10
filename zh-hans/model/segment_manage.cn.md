@@ -23,7 +23,7 @@
     - 删除
     - 编辑
     - 构建
-    - 启用（将具有 segment 的 Cube 转化为 ready 状态）
+    - 启用（将包含有 segment 的 Cube 转化为 READY 状态）
     - 清理（清空 Cube 下所有 segment 数据）
     - 克隆（复制 Cube，但不复制 segment 数据）
     - 备份（备份 Cube 元数据）
@@ -33,7 +33,7 @@
 
     - 验证 SQL
     - 构建
-    - 禁用（将具有 ready Cube 转化为 disable 状态）
+    - 禁用（将 READY 的 Cube 转化为 DISABLED 状态）
     - 克隆（复制 Cube，但不复制 segment 数据）
     - 备份（备份 Cube 元数据）
   - **DESCBROKEN**（损坏）：Cube 元数据被破坏，处于异常状态。
@@ -61,16 +61,20 @@ Cube 数据由一个或多个 Segment 组成。因此当 Cube 构建后，会生
 
 Segments 管理页面上，支持如下操作：
 
-- 刷新（重新构建该 segment）
+- **刷新**：重新构建该 segment。
 
-- 合并（将多个 segment 合并为一个，segment 不连续也可以合并， 合并 segment 时，老 segment 会被重新构建）
+- **合并**：将多个 segment 合并为一个。
+
+  Segment 不连续也可以合并，合并 segment 时，老 segment 会被重新构建。
+
+  合并 Segment 时，若被合并的 segment 对应的维度表快照不同，将会弹出警告提示。当用户选择继续合并，可能会产生缓慢变化维处理的不一致，并会影响查询结果。关于更多缓慢变化维的信息，请参考 [缓慢变化维度](model_design/slowly_changing_dimension.cn.md)。
 
   > **提示：** 
   >
   > 1. 为了避免 Cube 中 Segment 过多，导致查询性能下降，我们建议在 Cube 设计时的**刷新设置**步骤开启按周或月对数据进行自动合并。
   > 2. 自动合并功能仅支持按日期/时间增量构建的 Cube，对于其他增量构建类型的 Cube，请合理规划您的 Segment 合并。
 
-- 删除
+- **删除**
 
 点击正在被构建、刷新、合并的 segment ID，可以跳转至**监控**页面，查看关联任务。
 
