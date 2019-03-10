@@ -35,11 +35,13 @@ Note a new model can only be saved when
 
 
 
-###Edit a Model
+### Edit a Model
 
 In **Model** tab, click icon **Edit** on one specific model and start to edit a model.
 
+### Preview a Model
 
+In **Model** tab, click **Model Name** on one specific model and start to preview a model. Model cannot be edited in this mode.
 
 ### Design a Data Model
 

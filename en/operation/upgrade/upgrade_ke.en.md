@@ -8,6 +8,8 @@ The upgrade process is different for a *main version* and a *minor version*. The
 
 The metadata is compatible between two minor versions (with the same major version), so the upgrade only needs to overwrite the software package and update the configuration file. You may need to upgrade the metadata between the major versions or upgrade the existing cube data. It is recommended to back up the metadata and cube data to ensure the maximum safty of your data.
 
+If the original version is KAP 2.x and one project contains multiple data sources like Hive and Kafka, you have to specify a default data source (RDBMS option is not available at this point) for this project after upgrading. Once it's set, it cannot be changed in future.
+
 In order to ensure the safety and stability of production, we do not recommend directly upgrading a production environment. Instead we recommend you to prepare a test environment for the upgrade first, then upgrade the production environment when the test environment are upgraded and verified.
 
 ### Stop Kyligence Enterprise service

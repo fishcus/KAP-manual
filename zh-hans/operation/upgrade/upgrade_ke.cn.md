@@ -1,15 +1,18 @@
 ## 升级至 Kyligence Enterprise 3.x 最新版本
 
-本章介绍如何从 Kyligence Enterprise 的早期版本升级到最新版本的 Kyligence Enterprise 3.x 软件。
+本章介绍如何从 Kyligence 的早期软件版本升级到最新版本的 Kyligence Enterprise 3.x。
 
-> **提示：** 从 3.x 开始，Kyligence Analytics Platform (KAP) 正式改名为 Kyligence Enterprise。
+> **提示：** 从 3.0 开始，Kyligence Analytics Platform (KAP) 正式改名为 Kyligence Enterprise。
 
 升级分为**主要版本**的升级和**次要版本**的升级。版本号前两位发生变化的是主要版本的升级，如 KAP 2.x 升级到 Kyligence Enterprise 3.x，如 Kyligence Enterprise 3.1.x 升级到 Kyligence Enterprise 3.2.x。反之，版本号前两位不发生变化则是次要版本升级，如 Kyligence Enterprise 3.2.1 升级到 Kyligence Enterprise 3.2.2。
 
-次要版本之间兼容元数据，因此升级只需要覆盖软件包、更新配置文件即可；主要版本之间可能需要升级元数据、或者对已有的 Cube 数据进行升级，建议备份元数据和 Cube 数据以保证数据的最大安全性。
+次要版本之间兼容元数据，因此升级只需要覆盖软件包、更新配置文件即可.
+
+主要版本之间可能需要升级元数据、或者对已有的 Cube 数据进行升级，建议备份元数据和 Cube 数据以保证数据的最大安全性。
+
+如果升级前版本为 KAP 2.x 且一个项目中包含多种数据源（如 Hive 和 Kafka），升级后该项目需要选定默认数据源，选定后将无法修改，且在选择默认数据源时 RDBMS 数据源类型不可用。
 
 为了保障生产的安全稳定，我们不建议直接在生产环境升级 Kyligence Enterprise。我们推荐您准备一个测试环境进行升级的测试，直到在测试环境可以稳定使用 Kyligence Enterprise 后，才在生产环境升级。
-
 
 
 ### 升级前准备工作
