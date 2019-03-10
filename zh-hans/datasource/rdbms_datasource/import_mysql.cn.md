@@ -42,7 +42,7 @@ Kyligence Enterprise 可以通过如下步骤，为特定项目设置 MySQL 数�
 ```properties
 kylin.source.jdbc.sqoop-home=/usr/hdp/current/sqoop-client
 kylin.source.jdbc.driver=com.mysql.jdbc.Driver
-kylin.source.jdbc.connection-url=jdbc:<sqlserver>://<HOST>:<PORT>;database=<DATABASE_NAME>
+kylin.source.jdbc.connection-url=jdbc:mysql://<HOST>:<PORT>/<DATABASE_NAME>
 kylin.source.jdbc.user=<username>
 kylin.source.jdbc.pass=<password>
 kylin.source.jdbc.dialect=mysql

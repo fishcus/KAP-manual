@@ -38,7 +38,7 @@ kylin.query.pushdown.runner-class-name=io.kyligence.kap.query.pushdown.PushdownR
 ```properties
 kylin.source.jdbc.sqoop-home=/usr/hdp/current/sqoop-client
 kylin.source.jdbc.driver=com.mysql.jdbc.Driver
-kylin.source.jdbc.connection-url=jdbc:<sqlserver>://<HOST>:<PORT>;database=<DATABASE_NAME>
+kylin.source.jdbc.connection-url=jdbc:mysql://<HOST>:<PORT>/<DATABASE_NAME>
 kylin.source.jdbc.user=<username>
 kylin.source.jdbc.pass=<password>
 kylin.source.jdbc.dialect=mysql
