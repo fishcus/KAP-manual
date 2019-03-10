@@ -1,6 +1,6 @@
-## Install on MapR Platform
+## Install on MapR
 
-To enable you to experience Kyligence Enterprise as soon as possible, we recommend that you use Kyligence Enterprise with sandbox software such as All-in-one Sandbox VM. In this section. We will guide you to quickly install Kyligence Enterprise in the MapR sandbox.
+For quick start, we recommend that you use Kyligence Enterprise with sandbox software such as All-in-one Sandbox VM. In this section. We will guide you to quickly install Kyligence Enterprise in the MapR sandbox.
 
 ### Prepare Environment
 
@@ -10,9 +10,13 @@ First of all, **make sure that you allocate sufficient resources for sandbox**. 
 
 When configuring sandbox, we recommend that you use the Bridged Adapter model instead of the NAT model. The Bridged Adapter model will assign an independent IP address to your sandbox, allowing you to choose either local or remote access to Kyligence Enterprise GUI.
 
-To avoid permission issue in the sandbox, you can use MapR's  *mapr* account through SSH. The password for **MapR 5.2.1** is `mapr`. This guide uses `mapr` account as example. 
-
 **MapR Cluster Environment**
+
+Following MapR versions are supported by Kyligence Enterprise:
+- MapR 5.2.1
+- MapR 6.0.1
+
+To avoid permission issue in the sandbox, you can use MapR's `mapr` account through SSH. The default password is `mapr`. This guide uses `mapr` account as example.
 
 For the MapR Cluster environment, we use the MapR Converged Community Edition 6.0a1 in AWS Marketplace. For more details, please refer to [AWS Marketplace](https://aws.amazon.com/marketplace/pp/B010GJS5WO?qid=1522845995210&sr=0-4&ref_=srh_res_product_title) 
 
@@ -28,17 +32,17 @@ After setting up the environment, installing Kyligence Enterprise is very simple
 
 Please **DO PAY ATTENTION** to the following instructions.
 
->**Caution:** Using MySQL as Metastore is **only supported** in current version. For how to set up MySQL as metastore, please refer to [Use MySQL as Metastore](../../installation/rdbms_metastore/mysql_metastore.en.md).
+>**Caution:** For Kyligence metastore, only MySQL is **supported** in current version. For how to set up MySQL as metastore, please refer to [Use MySQL as Metastore](../../installation/rdbms_metastore/mysql_metastore.en.md).
 
 ### Special Instructions for MapR Environment
-
-The MapR environment is a little bit different with other Hadoop distributions. Please pay attention to the following steps when install Kyligence Enterprise on MapR:
+ 
+Please pay sepcial attention to the following steps when install Kyligence Enterprise on MapR:
 
 > **Note:** Please set environment variable `KYLIN_HOME` to be the folder path where Kyligence Enterprise is unpacked, which will be used in further illustration.
 
 - The file operation command in MapR is `hadoop fs` instead of `hdfs dfs`. Please replace it by yourself and here we use  `/kylin` as an example:
 
-  ```shell
+  ```sh
   hadoop fs -mkdir /kylin
   hadoop fs -chown mapr /kylin
   ```
@@ -63,13 +67,18 @@ The MapR environment is a little bit different with other Hadoop distributions. 
 
 - If you need to specify the environment dependencies of Hive, the default locations are as follows:
 
-  ```shell
+  ```sh
   export HIVE_CONF=/opt/mapr/hive/hive-2.1/conf
   ```
 
 * Please specify the environment dependencies of Spark before you start Kyligence Enterprise. Please replace the example path with your actual Spark path.
 
-  ```shell
+> Note:
+> 
+>  Kyligence Enterprise currently only support MapR Spark-2.2.1, please refer to the MapR's official document to install MapR Spark-2.2.1
+>  Spark-2.2.1 will be installed in the path `/opt/mapr/spark/spark-2.2.1` by default
+
+  ```sh
   export SPARK_HOME=/opt/mapr/spark/spark-2.2.1
   ```
 
@@ -89,7 +98,7 @@ Please adjust `yarn.scheduler.maximum-allocation-vcores` configuration parameter
 
 Or set `conf/profile` to `min_profile` to reduce the need for YARN Vcore:
 
-```shell
+```sh
 rm -f $KYLIN_HOME/conf/profile
 ln -sfn $KYLIN_HOME/conf/profile_min $KYLIN_HOME/conf/profile
 ```
@@ -98,15 +107,8 @@ ln -sfn $KYLIN_HOME/conf/profile_min $KYLIN_HOME/conf/profile
 
 Please note that the default of Zookeeper's service port in the MapR environment is 5181, not 2181. The ports can be confirmed as follows:
 
-```shell
+```sh
 netstat -ntl | grep 5181
 netstat -ntl | grep 2181
 ```
 
-**Q: When checking the environment, there is an error with `hdfs` command cannot be found.**
-
-Please modify the` $KYLIN_HOME/bin/check-2100-os-commands.sh` and annotate the command line of `hdfs`, such as:
-
-```shell
-#command -v hdfs    || quit "ERROR: Command 'hdfs' is not accessible..."
-```

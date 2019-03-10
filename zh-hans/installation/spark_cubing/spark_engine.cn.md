@@ -108,3 +108,7 @@ kylin.cube.aggrgroup.is-mandatory-only-valid=true
 kylin.engine.spark-conf.spark.executor.extraJavaOptions="-Djava.library.path=/opt/cloudera/parcels/CDH/lib/hadoop/lib/native"
 kylin.engine.spark-conf.spark.driver.extraJavaOptions="-Djava.library.path=/opt/cloudera/parcels/CDH/lib/hadoop/lib/native"
 ```
+
+**Q：如果在 MapR 环境下， 使用 Spark 构建，出现如下报错：java.io.IOException: Could not create FileClient**
+
+请在 `kylin.properties` 文件中， 检查参数 `kylin.engine.spark-conf.spark.yarn.archive` 中配置的 IP 地址（或域名）以及端口是否与 `/opt/mapr/conf/mapr-cluster.conf` 中保持一致

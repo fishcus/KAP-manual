@@ -103,3 +103,8 @@ Please add the properties in `kylin.properties`:
 kylin.engine.spark-conf.spark.executor.extraJavaOptions="-Djava.library.path=/opt/cloudera/parcels/CDH/lib/hadoop/lib/native"
 kylin.engine.spark-conf.spark.driver.extraJavaOptions="-Djava.library.path=/opt/cloudera/parcels/CDH/lib/hadoop/lib/native"
 ```
+
+
+**Q: When I use Spark Build Engine in MapR environment, what should I do if I encounter following error message : java.io.IOException: Could not create FileClient?**
+
+Please check the property `kylin.engine.spark-conf.spark.yarn.archive` in `kylin.properties`, to ensure that the ip address(or hostname) and the port should keep consistent with `/opt/mapr/conf/mapr-cluster.conf`

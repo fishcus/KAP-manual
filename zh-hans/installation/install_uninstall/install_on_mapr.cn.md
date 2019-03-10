@@ -10,7 +10,13 @@
 
 在配置沙箱时，我们推荐您使用 Bridged Adapter 模型替代 NAT 模型。Bridged Adapter 模型将为您的沙箱分配一个独立的 IP 地址，使您可以任意选择通过本地或远程访问 Kyligence Enterprise GUI。
 
-为了避免权限问题，我们推荐您使用 MapR 的 `mapr` 账户访问 MapR 沙箱。MapR 5.2.1 的默认密码是`mapr`。本节中均以`mapr`账户为例。
+**MapR 版本支持**
+
+Kyligence Enterprise 支持的 MapR 版本列表
+- MapR 5.2.1
+- MapR 6.0.1
+
+为了避免权限问题, 我们推荐您使用 MapR 的 `mapr` 账户访问 MapR 沙箱, 默认密码为 `mapr`。本节中均以 `mapr` 账户为例。
 
 MapR Cluster 相比于 MapR Sandbox 环境提供了更多的计算存储资源，但是同时环境上也存在一些差异。
 
@@ -32,12 +38,12 @@ MapR Cluster Node不能直接通过 ssh 访问，需要以 MapR Installer 为跳
 
 ### MapR 环境下的特别注意事项
 
-MapR 环境有它的特殊性，在执行安装步骤时，请留意以下事项：
+在执行安装步骤时，请务必留意以下事项：
 
 > **提示：** 我们将环境变量 `KYLIN_HOME` 的值设为 Kyligence Enterprise 解压后的路径，便于后面进行说明。
 
 - MapR 中的文件操作命令为 `hadoop fs`，而不是 `hdfs dfs`。请在文件操作时自行替换，这里工作目录以`/kylin` 为例：
-   ```shell
+   ```sh
    hadoop fs -mkdir /kylin
    hadoop fs -chown mapr /kylin
    ```
@@ -54,21 +60,25 @@ MapR 环境有它的特殊性，在执行安装步骤时，请留意以下事项
 
    ```xml
     <property>
-           <name>fs.default.name</name>
-           <value>maprfs:///</value>
-           <description> Disable Hive's auto merge</description>
-     </property>
+        <name>fs.default.name</name>
+        <value>maprfs:///</value>
+    </property>
    ```
 
 - 如果需要指定 Hive 的环境依赖，请进行以下操作，默认位置如下：
 
-   ```shell
+   ```sh
    export HIVE_CONF=/opt/mapr/hive/hive-2.1/conf
    ```
 
-* 请在启动 Kyligence Enterprise 前，指定 `SPARK_HOME` 环境变量，请您根据环境中的 Spark 地址进行替换。
+- 请在启动 Kyligence Enterprise 前，指定 `SPARK_HOME` 环境变量，请您根据环境中的 Spark 地址进行替换。
 
-  ```shell
+> 注意:
+>
+>  Kyligence Enterprise 目前只支持 MapR Spark-2.2.1 版本，请通过 MapR 官方文档进行 Spark-2.2.1 的安装。
+>  默认情况下， Spark 会被安装至 `/opt/mapr/spark/spark-2.2.1`
+
+  ```sh
   export SPARK_HOME=/opt/mapr/spark/spark-2.2.1
   ```
 
@@ -84,25 +94,20 @@ MapR 环境有它的特殊性，在执行安装步骤时，请留意以下事项
     <value>24</value>
 </property>
 ```
+
 或者将 `conf/profile` 设置成 `min_profile` 来降低对 YARN Vcore 的需求：
-```shell
+
+```sh
 rm -f $KYLIN_HOME/conf/profile
 ln -sfn $KYLIN_HOME/conf/profile_min $KYLIN_HOME/conf/profile
 ```
 
 **Q：如果使用 Kafka 报错称连接不上 ZooKeeper**
 
-请留意 MapR 环境里 Zookeeper 的服务端口默认为 5181，而不是更常见的 2181。可以如下确认当前开放的端口：
+请留意 MapR 环境里 Zookeeper 的服务端口默认为 `5181`，而不是更常见的 `2181`。可以如下确认当前开放的端口：
 
-```shell
+```sh
 netstat -ntl | grep 5181
 netstat -ntl | grep 2181
 ```
 
-**Q：检查运行环境时，如果因为 `hdfs` 命令找不到而报错**
-
-请修改 `$KYLIN_HOME/bin/check-2100-os-commands.sh`，将其中检查 `hdfs` 命令的一行注释掉即可。示例如下：
-
-```shell
-#command -v hdfs    || quit "ERROR: Command 'hdfs' is not accessible..."
-```
