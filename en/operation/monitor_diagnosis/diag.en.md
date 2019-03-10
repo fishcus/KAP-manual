@@ -56,4 +56,9 @@ Please change the *KYBOT_JVM_SETTINGS* parameter in `$KYLIN_HOME/kybot/setenv.sh
 
 **Q: If I failed to generate diagnostic packages because of timeout.** 
 
-Please change the *kybot.package.timeout.seconds* parameter in `$KYLIN_HOME/kybot/kybot-client.properties` and try again. The default value of this parameter is 600 seconds.
+For using WEB GUI: please uncomment and change parameter `kybot.package.timeout.seconds`(in seconds) in `$KYLIN_HOME/conf/kybot-client.properties` and restart Kyligence Enterprise.
+
+For using common line: please change the value of `timeout_threshold`(in seconds) in the file `$KYLIN_HOME/kybot/kybot.sh`. There is no need to restart Kyligence Enterprise after the change.
+
+
+
