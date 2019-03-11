@@ -102,7 +102,7 @@
 
 * **kylin.source.hive.default-varchar-precision**
 
-  当前 Kyligence Enterprise 版本暂时不支持 string 类型，当 string 类型的字段导入 Kyligence Enterprise 时，会自动转化为 varchar。该参数指定了转化后 varchar 字段的最大长度，默认值为256。
+  当前 Kyligence Enterprise 版本暂时不支持 string 类型，当 string 类型的字段导入 Kyligence Enterprise 时，会自动转化为 varchar。该参数指定了转化后 varchar 字段的最大长度，默认值为4096。
 
 * **kylin.metadata.hbase-client-scanner-timeout-period**
 

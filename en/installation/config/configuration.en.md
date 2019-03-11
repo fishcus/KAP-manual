@@ -103,7 +103,7 @@ User could put the customized config items into **kylin.properties.override**, t
 
 * **kylin.source.hive.default-varchar-precision**
 
-  The string datatype is not supported in Kyligence Enterprise. Therefore, the string column will transform into varchar automatically.  This property specifies the maximum length of the transformed filed and the default value is 256.
+  The string datatype is not supported in Kyligence Enterprise. Therefore, the string column will transform into varchar automatically.  This property specifies the maximum length of the transformed filed and the default value is 4096.
 
 * **kylin.metadata.hbase-client-scanner-timeout-period**
 
