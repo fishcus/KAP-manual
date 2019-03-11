@@ -1,6 +1,6 @@
 ## 垃圾清理 (Deprecated)
 
-> **注意：**从 Kyligence Enterprise 3.2.2 开始，此垃圾清理命令行工具将不再维护。建议您使用新的日常运维工具，完成系统的垃圾检查与清理。具体使用方法，请参考[日常维护工具](./routine_tool.cn.md)。
+> **注意：** 从 Kyligence Enterprise 3.2.2 开始，此垃圾清理命令行工具将不再维护。建议您使用新的日常运维工具，完成系统的垃圾检查与清理。具体使用方法，请参考[日常维护工具](./routine_tool.cn.md)。
 
 在 Kyligence Enterprise 运行一段时间之后，有很多数据因为不再使用而变成了垃圾数据，这些数据占据着系统资源，当积累到一定规模会对集群性能产生影响。
 
@@ -19,8 +19,8 @@
 ### 垃圾清理工具
 Kyligence Enterprise 提供了一个命令行工具清理系统垃圾。
 
-```shell
-$KYLIN_HOME/bin/kylin.sh io.kyligence.kap.tool.storage.KapGarbageCleanupCLI [--delete true] [--jobThreshold <arg>]
+```sh
+$KYLIN_HOME/bin/kylin.sh io.kyligence.kap.tool.storage.KapGarbageCleanupCLI [--delete true]
 ```
 
 这个命令寻找并打印出系统中的垃圾数据
@@ -33,6 +33,6 @@ $KYLIN_HOME/bin/kylin.sh io.kyligence.kap.tool.storage.KapGarbageCleanupCLI [--d
 参数：
 
 - `--delete true`：指定这个参数来执行真正的数据删除
-- `--jobThreshold <arg>`: `<arg>` 为整数类型值，指定清理时保留构建任务的时间，默认为30天
 
-第一次执行该工具时建议省去 `--delete true` 参数，这样会只列出所有可以被清理的资源供用户核对，而并不实际进行删除操作。当用户确认无误后，再添加 `--delete true` 参数执行删除。另外建议总是在清理垃圾前备份元数据，以备不时之需。如果执行该工具时省去 `--jobThreshold <arg>` 参数，清理时会保留30天内的构建任务历史。
+
+第一次执行该工具时建议省去 `--delete true` 参数，这样会只列出所有可以被清理的资源供用户核对，而并不实际进行删除操作。当用户确认无误后，再添加 `--delete true` 参数执行删除。另外建议总是在清理垃圾前备份元数据，以备不时之需。

@@ -1,6 +1,5 @@
 ## Garbage Cleanup (Deprecated)
-
-> **Caution：**Since Kyligence Enterprise 3.2.2, this tool is deprecated and will be no longer maintained. For system garbage check and cleanup, we provide a new routine operation tool. For more information, please refer to [Routine Operation Tool](./routine_tool.en.md)。
+> **Caution:** Since Kyligence Enterprise 3.2.2, this tool is deprecated and will be no longer maintained. For system garbage check and cleanup, we provide a new routine operation tool. For more information, please refer to [Routine Operation Tool](./routine_tool.en.md)。
 
 After Kyligence Enterprise running for a period of time, there could be garbage data leftover. Garbage data occupies disk and metadata spaces and could downgrade overall system performance to some extent. The garbage data mainly includes: 
 
@@ -19,8 +18,8 @@ After Kyligence Enterprise running for a period of time, there could be garbage 
 
 Kyligence Enterprise provides a command line tool to clean garbage data.
 
-```shell
-$KYLIN_HOME/bin/kylin.sh io.kyligence.kap.tool.storage.KapGarbageCleanupCLI [--delete true] [--jobThreshold <arg>]
+```sh
+$KYLIN_HOME/bin/kylin.sh io.kyligence.kap.tool.storage.KapGarbageCleanupCLI [--delete true]
 ```
 
 The tool searches and prints garbage in the system which can be cleaned
@@ -33,6 +32,5 @@ The tool searches and prints garbage in the system which can be cleaned
 Parameters:
 
 - `--delete true`: Specify this option for garbage deletion.
-- `--jobThreshold <arg>`: Specify how many days of job metadata keeping. Default 30 days.
 
-It is recommended to always dry run this tool first without the `--delete true` parameter, to list all garbage resources. Verify the list before actual deletion. Also perform a metadata backup before running this tool is a good practice. If dry run this tool without `--jobThreshold <arg>` parameter, it will keep 30 days of job metadata when deleting.
+It is recommended to always dry run this tool first without the `--delete true` parameter, to list all garbage resources. Verify the list before actual deletion. Also perform a metadata backup before running this tool is a good practice. 
