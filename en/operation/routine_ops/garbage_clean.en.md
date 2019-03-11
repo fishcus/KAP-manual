@@ -1,6 +1,4 @@
 ## Garbage Cleanup (Deprecated)
-> **Caution:** Since Kyligence Enterprise 3.2.2, this tool is deprecated and will be no longer maintained. For system garbage check and cleanup, we provide a new routine operation tool. For more information, please refer to [Routine Operation Tool](./routine_tool.en.md)。
-
 After Kyligence Enterprise running for a period of time, there could be garbage data leftover. Garbage data occupies disk and metadata spaces and could downgrade overall system performance to some extent. The garbage data mainly includes: 
 
 - Leftover cube data after cube is purged

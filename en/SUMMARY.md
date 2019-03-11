@@ -145,8 +145,6 @@
 * [System Operation](operation/README.md)        
     * [Routine Operations](operation/routine_ops/README.md)       
         * [Basic Operation](operation/routine_ops/basic_ops.en.md)     
-        * [Routine Operation Tool](operation/routine_ops/routine_tool.en.md)   
-        * [Metadata Check](operation/routine_ops/metadata_check.en.md)     
         * [System Metadata Backup and Restore](operation/routine_ops/metadata_backup_restore.en.md) 
         * [Project Metadata Export and Import](operation/routine_ops/project_metadata_export_import.en.md)    
         * [Garbage Cleanup](operation/routine_ops/garbage_clean.en.md)      
