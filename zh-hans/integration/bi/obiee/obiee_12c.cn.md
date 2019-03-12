@@ -44,33 +44,37 @@ Oracle Business Intelligence Enterprise Edition (OBIEE) 是 Oracle 旗下的 BI 
 
     ![](../../images/OBIEE12/01.png)
 
-2. 选择 ODBC 2.0，将 Kyligence Enterprise 中的表导入。
+2. 选择 ODBC 3.5，将 Kyligence Enterprise 中的表导入。
 
-    ![](../../images/OBIEE12/02.jpeg)
+    ![](../../images/OBIEE12/ODBC35.png)
 
-3. 导入成功后，在物理模型里找到 Kyligence Enterprise 数据源，复选需要建模的表右键，选择**物理图表**进行建模。
+3. 导入成功后，在物理模型里面找到之前创建的数据源，右键选择**属性**->**通用**->**数据源定义**，将**数据库类型**修改为**Apache Spark SQL**。
+
+   ![](../../images/OBIEE12/database_type.png)
+
+4. 下一步您可定义数据模型，复选需要建模的表右键，选择**物理图表**进行建模。
 
    ![](../../images/OBIEE12/03.jpeg)
 
-4. 点击**新建联接**定义表关联关系，然后保存物理模型。
+5. 点击**新建联接**定义表关联关系，然后保存物理模型。
 
    ![](../../images/OBIEE12/04.jpeg)
 
-5. 保存模型后需要手动检索并更改数据类型为字符串的物理列，如果长度显示为0，则需要更改为 Kyligence Enterprise 中字段的实际长度。
+6. 保存模型后需要手动检索并更改数据类型为字符串的物理列，如果长度显示为0，则需要更改为 Kyligence Enterprise 中字段的实际长度。
 
     ![](../../images/OBIEE12/05.jpeg)
 
-6. 保存物理模型后新建业务模型，然后将刚才增加的物理模型拖动到业务模型，如需 outer join 可以选择编辑业务模型, 在此处设置为外部连接， 并保存到业务模型。然后将刚才增加的逻辑模型拖动到表示层，并保存到表示层。
+7. 保存物理模型后新建业务模型，然后将刚才增加的物理模型拖动到业务模型，如需 left outer join 可以选择编辑业务模型, 在此处设置为**左外部连接**， 并保存到业务模型。然后将刚才增加的逻辑模型拖动到表示层，并保存到表示层。
 
    ![](../../images/OBIEE12/06.png)
 
    ![](../../images/OBIEE12/07.png)
 
-7. 点击 BI Administrator tool 中左上角的**文件**->**保存**，保存整个模型。
+8. 点击 BI Administrator tool 中左上角的**文件**->**保存**，保存整个模型。
 
    ![](../../images/OBIEE12/08.jpeg)
 
-8. 重启BIEE server。
+9. 重启BIEE server。
 
 
 ### 创建分析
@@ -98,7 +102,7 @@ Oracle Business Intelligence Enterprise Edition (OBIEE) 是 Oracle 旗下的 BI 
 
 - **方法二**
 
-  1. 在BIEE主页点击**新建-分析-创建直接数据库查询**，使用自定义 SQL 进行查询。
+  1. 在 BIEE 主页点击**新建-分析-创建直接数据库查询**，使用自定义 SQL 进行查询。
 
   2. 选择在 client 端创建的数据源的连接池名进行连接，输入查询 SQL 进行分析。
 
@@ -114,5 +118,5 @@ Oracle Business Intelligence Enterprise Edition (OBIEE) 是 Oracle 旗下的 BI 
 
 ### 注意事项
 
-1. 根据BIEE的开发规范，在 client 端创建的模型最少需要有两张表，否则上载模型会导致 BIEE 无法启动服务。
-2. 由于 BIEE 产生的查询 SQL 不带 schema ，拖拽查询则需要一个项目里只含有一个 database 的表。在连接池查询时使用**自定义 SQL 查询**可以避免此问题 。
+1. 根据 BIEE 的开发规范，在 client 端创建的模型最少需要有两张表，否则上载模型会导致 BIEE 无法启动服务。
+2. 由于 BIEE 产生的查询 SQL 不带 schema ，拖拽查询则需要一个项目里只包含同一个 schema 的表。在连接池查询时使用**自定义 SQL 查询**可以避免此问题 。

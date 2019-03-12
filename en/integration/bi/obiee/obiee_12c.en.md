@@ -45,36 +45,40 @@ Oracle Business Intelligence Enterprise Edition (OBIEE) is Oracle's BI product t
 1. Click **Import Metadata** in the BI Administrator tool to add a data source.
     ![](../../images/OBIEE12/04.png)
 
-2. Select ODBC 2.0 to import the tables in Kyligence Enterprise.
-    ![](../../images/OBIEE12/05.png)
+2. Select **ODBC 3.5** to import the tables in Kyligence Enterprise.
+    ![](../../images/OBIEE12/ODBC35.png)
 
-3. After the import is successful, find the Kyligence Enterprise data source in the physical model and select the table you want to model, then right click and click **Physical Diagram** to model.
+3. After the import is successful, find the data source you just created in the physical model, right click on the data source, choose **Properties** -> **General** ->**Data source definition**, and change **database type** to **Apache Spark SQL**.
+
+   ![](../../images/OBIEE12/database_type.png)
+
+4. Next, you can define the data model in the physical model. Select the table you want to model, then right click and click **Physical Diagram** to create the model.
    ![](../../images/OBIEE12/06.png)
 
-4. Click **New Join** to define the table association and save the physical model.
+5. Click **New Join** to define the table association and save the physical model.
 
    ![](../../images/OBIEE12/07.png)
 
-5. After saving the model, you need to manually retrieve and change the physical column whose data type is a string or varchar. If the length is displayed as 0, you need to change to the actual length of the field in Kyligence Enterprise.
+6. After saving the model, you need to manually retrieve and change the physical column whose data type is a string or varchar. If the length is displayed as 0, you need to change to the actual length of the field in Kyligence Enterprise.
 
     ![](../../images/OBIEE12/08.png)
 
     ![](../../images/OBIEE12/09.png)
 
-6. After saving the physical model, create a new business model, and drag the newly added physical model to the business model. If you need outer join, you can edit the business model, set it as external connection here, and save it to the business model. Then drag the logical model you just added to the presentation layer and save it to the presentation layer.
+7. After saving the physical model, create a new business model, and drag the newly added physical model to the business model. If you need left outer join, you can edit the business model, set it as **left outer** here, and save it to the business model. Then drag the logical model you just added to the presentation layer and save it to the presentation layer.
 
    ![](../../images/OBIEE12/10.png)
 
    ![](../../images/OBIEE12/11.png)
 
-   Set up an external connection:
+   Set up an **left outer** join:
 
    ![](../../images/OBIEE12/12.png)
 
-7. Click **File**->**Save** in the upper left corner of the BI Administrator tool to save the entire model.
+8. Click **File**->**Save** in the upper left corner of the BI Administrator tool to save the entire model.
    ![](../../images/OBIEE12/13.png)
 
-8. Restart BIEE server.
+9. Restart BIEE server.
 
 
 ### Create An Analysis
@@ -117,5 +121,5 @@ There are two ways to analyze using the data from the model you just created.
      ![](../../images/OBIEE12/20.png)
 
 > **Notes**：
->1. According to the BIEE development specification, the model created on the client side needs **at least two** tables, >otherwise the upload model will cause BIEE to fail to start the service.
->2. Since BIEE generates schema-less SQL statements, drag and drop queries require all tables belong to a database in the >project. Use **Create Direct Database Query** when connecting to a pool query to avoid this problem.
+> 1. According to the BIEE development specification, the model created on the client side needs **at least two** tables, otherwise BIEE will fail to start.
+> 2. Since BIEE generates schema-less SQL statements, drag and drop queries require all tables belong to the same schema in the project. Use **Create Direct Database Query** when connecting to a pool query to avoid this problem.
