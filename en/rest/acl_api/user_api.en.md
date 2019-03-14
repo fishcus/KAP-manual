@@ -94,7 +94,7 @@
 
 - HTTP Body: JSON Object
   - `password` - `required` `string`, user password
-  - `disabled` - `required` `bool`, enable the user or not
+  - `disabled` - `required` `boolean`, enable the user or not, ie.,`true` means user is disabled and `false` means user is enabled
   - `authorities` - `required` `string[]`, corresponding user group
 
 
@@ -109,9 +109,9 @@
     -H 'Content-Type: application/json;charset=utf-8' \
     -d '{
     "password": "test@Kyligence",
-    "disabled": false, 
+    "disabled": false,
     "authorities": ["ROLE_ADMIN"]
-    
+
   }'
   ```
 
@@ -154,7 +154,7 @@
 
 - HTTP Body: JSON Object
   - `password` - `required` `string`, user password
-  - `disabled` - `required` `bool`, enable the user or not
+  - `disabled` - `required` `boolean`, enable the user or not, ie.,`true` means user is disabled and `false` means user is enabled
   - `authorities` - `required` `string[]`, corresponding user group
 
 
@@ -169,9 +169,9 @@
     -H 'Content-Type: application/json;charset=utf-8' \
     -d '{
     "password": "test123.",
-    "disabled": false, 
+    "disabled": false,
     "authorities": ["ROLE_ANALYST"]
-    
+
   }'
   ```
 
@@ -359,4 +359,3 @@
       "msg":""
   }
   ```
-

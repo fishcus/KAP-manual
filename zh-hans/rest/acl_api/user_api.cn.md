@@ -95,7 +95,7 @@
 
 - HTTP Body: JSON Object
   - `password` - `必选` `string`，用户密码
-  - `disabled` - `必选` `bool`，是否启用
+  - `disabled` - `必选` `boolean`，是否启用，可填内容 ``true``（代表该用户处于禁用状态），``false``（代表该用户处于启用状态）
   - `authorities` - `必选` `string[]`，用户所属用户组
 
 
@@ -155,7 +155,7 @@
 
 - HTTP Body: JSON Object
   - `password` - `必选` `string`，用户密码
-  - `disabled` - `必选` `bool`，是否启用
+  - `disabled` - `必选` `boolean`，是否启用，可填内容 ``true``（代表该用户处于禁用状态），``false``（代表该用户处于启用状态）
   - `authorities` - `必选` `string[]`，用户所属用户组
 
 
