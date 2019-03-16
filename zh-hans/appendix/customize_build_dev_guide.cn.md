@@ -2,7 +2,7 @@
 
 本文将介绍如何开发一个自定义增量构建 Java 类，实现自定义增量 Cube 构建。
 
-假设样例数据中含有 *MONTH_ID* 和 *BATCH_ID* 两列，*MONTH_ID* 为 6 位整数，对应着数据更新的月份，如201201、201202。*BATCH_ID* 为 4 位整数，对应了每一月内数据更新的批次，如 1、2、3。*MONTH_ID* 与 BATCH_ID 一起构成 10  位整数，形成 Segment 区间。比如：
+假设您的数据集中并没有标准的时间类型的列，而是含有 *MONTH_ID* 和 *BATCH_ID* 两列，*MONTH_ID* 为 6 位整数，对应着数据更新的月份，如201201、201202。*BATCH_ID* 为 4 位整数，对应了每一月内数据更新的批次，如 1、2、3。*MONTH_ID* 与 BATCH_ID 一起构成 10  位整数，形成 Segment 区间。比如：
 
 - [2012010001, 2012010002) 指 2012 年 1 月的第 1 批数据（不含2）。
 
@@ -181,9 +181,9 @@ public class SampleConditionBuilder implements PartitionDesc.IPartitionCondition
 
 - 创建模型和 Cube，定义自定义增量构建
 
-  - 创建模型时，增量构建选择自定义，自定义增量构建 Java 类填写 `SampleConditionBuilder`，Java 类初始化参数空缺，保存模型即可。
-  - 基于上述模型，进一步创建 Cube。
-    - 特别留意：建议关闭自动 Segment 合并功能，或者根据自定义 Segment 区间的值域，谨慎地设置自动合并的区间范围。
+  创建模型时，增量构建选择自定义，自定义增量构建 Java 类填写 `SampleConditionBuilder`，Java 类初始化参数空缺，保存模型即可。基于上述模型，进一步创建 Cube。
+
+  特别留意：建议关闭自动 Segment 合并功能，因为默认的自动合并阈值是为标准时间列预设的。如果您要使用自动合并功能，需根据自定义 Segment 区间的值域，谨慎地设置自动合并的区间范围。
 
 - 自定义增量构建必需使用 Rest API 触发，例如：
   ```sh

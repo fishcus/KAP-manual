@@ -2,15 +2,15 @@
 
 In this section, we will introduce how to develop a Java class for customized cube build based on a simple example.
 
-Suppose in your source data, there is no date/time column for a generic date/time based incremental cube build. Instead, you have two columns *MONTH_ID* and *BATCH_ID* and your data is updated by different batches in each month. *MONTH_ID* contains the year/month information and it's 6 digits like 201901, 201902. *BATCH_ID* means the update batches in each month and it's 4 digits like 1, 2, 3. So *MONTH_ID* and *BATCH_ID* can be concatenated to compose a segment range, as shown below:
+Suppose in your source data, there is no standard date/time column for the date/time based incremental cube build. Instead, you have two columns *MONTH_ID* and *BATCH_ID* and your data is updated by different batches in each month. *MONTH_ID* contains the year/month information and it's 6 digits like 201901, 201902. *BATCH_ID* means the update batches in each month and it's 4 digits like 1, 2, 3. So *MONTH_ID* and *BATCH_ID* can be concatenated to compose a segment range, as shown below:
 
 - [2012010001, 2012010002) means the first batch data in Janurary 2012 (not including second batch)
 
 - [2014020001, 2014020004) means the first batch to third batch data in Feburary 2012 (not including the forth batch)
 
-  > **Caution:** "["  means close interval, ")"  means open inverval。
+  > **Note:** "["  means close interval, ")"  means open interval。
 
-Based on this example, we will show you how to implement a Java class for this cube customized build, to map the segment range above to new data selection criteria (a WHERE clause).
+Based on this example, we will show how to implement a Java class for customized incremental build, to map the segment range above to data selection criteria (a WHERE clause).
 
 #### 1. Build Development Environment
 
@@ -22,9 +22,11 @@ Meanwhile please replace `kylin-job-kap-[*version*].jar` with its absolute path 
 
 ![pom.xml](./images/pom.png)
 
+
+
 #### 2. Implement Java Class for Customized Cube Build
 
-The Java class for customized cube build must implement interface `PartitionDesc.IPartitionConditionBuilder` and its method `buildDateRangeCondition()`. In this method, we will map parameter *segmentRange* to a SQL WHERE clause for new data selection, so that in each build job, Kyligence Enterprise can call it to generate new data selection SQL and hence incrementally load data into cube.
+The Java class for customized cube build must implement interface `PartitionDesc.IPartitionConditionBuilder` and its method `buildDateRangeCondition()`. In this method, we will map parameter *segmentRange* to a SQL WHERE clause. In each build job, Kyligence Enterprise will call it to generate a select SQL with proper filter and incrementally load data into cube.
 
 Below is a Java class template for customized cube build:
 
@@ -47,7 +49,7 @@ public class SampleConditionBuilder implements PartitionDesc.IPartitionCondition
 }
 ```
 
-Parameter *segmentRange* contains the range start value and end value of type Long for a segment. Before writing the code to implement the Java class, we have to decide how this range maps to the columns for new data filter.
+Parameter *segmentRange* contains the range start value and end value of type Long for a segment. Before writing the code to implement the Java class, we have to decide how this range maps to the columns for data filtering.
 
 In this example, we can define start and end to be a 10-digits number, the first 6 digits is *MONTH_ID* and later 4 digits is *BATCH_ID*. So below are the *segmentRange* examples when submitting a cube build job:
 
@@ -55,15 +57,15 @@ In this example, we can define start and end to be a 10-digits number, the first
 
   segmentRange: [2012010001, 2012010002)
 
-  method `buildDateRangeCondition()` returns: MONTH_ID=201201 AND BATCH_ID>=1 AND BATCH_ID<2
+  method `buildDateRangeCondition()` returns: `MONTH_ID=201201 AND BATCH_ID>=1 AND BATCH_ID<2`
 
-- Build the second to nineth batch data in Feburary 2012
+- Build the second to ninth batch data in February 2012
 
   segmentRange: [2012020002, 2012020010)
 
-  method `buildDateRangeCondition()` returns: MONTH_ID=201202 AND BATCH_ID>=2 AND BATCH_ID<10
+  method `buildDateRangeCondition()` returns: `MONTH_ID=201202 AND BATCH_ID>=2 AND BATCH_ID<10`
 
-  > **Caution：** the end value should be a open interval value in segmentRange, to avoid overlaping data between two consecutive segments。
+  > **Note: ** The end value should be a open interval value in segmentRange, to avoid overlapping data between two consecutive segments。
 
 So based on our example, the Java class for customized cube build can be implemented as below:
 
@@ -157,19 +159,23 @@ public class SampleConditionBuilder implements PartitionDesc.IPartitionCondition
 }
 ```
 
+
+
 #### 3. Write Unit Test for Customized Cube Build
 
 Please refer to `src/test/java/SampleConditionBuilderTest.java` in sample project to write a unit test case.
 
+
+
 #### 4. Packaging, Deploying and Testing Your Java Class
 
-- Generate  JAR file using maven
+- Pack you code into a JAR file using maven
 
   ```sh
   mvn package -DskipTests
   ```
 
-  It will create `customized-incremental-build-1.0-SNAPSHOT.jar` file under target folder.
+  It will create `customized-incremental-build-1.0-SNAPSHOT.jar` file under the target folder.
 
 - Deploy JAR file
   Put the JAR file to folder `$KYLIN_HOME/ext`, then restart Kyligence Enterprise.
@@ -182,13 +188,13 @@ Please refer to `src/test/java/SampleConditionBuilderTest.java` in sample projec
 
 - Create model
 
-  - select *Customize* for **Incremental Data Loading** when save the model, input class name`SampleConditionBuilder` in **Java Class for Customized Incremental Build** and leave the initilization parameter empty.
+  Select *Customize* for **Incremental Data Loading** when save the model, input class name `SampleConditionBuilder` in **Java Class for Customized Incremental Build** and leave the initialization parameter empty.
 
 - Create cube
 
-  > **Caution:** It's highly recommended to disable auto merge in step **Refresh Setting**.
+  > **Caution:** It's highly recommended to disable the auto merge function in step **Refresh Setting**, as the default thresholds are defined for standard date/time types. If you want to enable the auto merge for customized incremental build, make sure the thresholds are carefully set according to your specific segment ranges.
 
-- Submit cube build job via REST API, e.g.:
+- Customized cube build must be triggered via REST API, e.g.:
 
   ```sh
   curl -X PUT \
