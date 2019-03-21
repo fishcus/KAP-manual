@@ -68,7 +68,7 @@ Kyligence Enterprise 实例是无状态的服务，所有的状态信息都存�
     参数说明：
 
     1. `ROJECT_NAME` - 必选，需要备份的项目名称，如 learn_kylin
-    2. `PATH_TO_LOCAL_META_DIR` - 可选，表示备份的元数据保存路径
+    2. `PATH_TO_LOCAL_META_DIR` - 必选，表示备份的元数据保存路径
 
   * 备份 **Cube 级别**的元数据
 

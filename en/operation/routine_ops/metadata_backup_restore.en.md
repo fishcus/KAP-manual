@@ -69,7 +69,7 @@ Metadata can be backed up via the command line or the user interface, as follows
      Parameter Description:
 
      1. `ROJECT_NAME` - required, the name of the project to be backed up, such as learn_kylin
-     2. `PATH_TO_LOCAL_META_DIR` - optional, indicating the metadata save path of the backup
+     2. `PATH_TO_LOCAL_META_DIR` - required, indicating the metadata save path of the backup
 
   - Backup **Cube level** metadata
 
