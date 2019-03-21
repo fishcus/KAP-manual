@@ -43,7 +43,7 @@ Nginx 在默认情况下将以轮询的方式分发请求。如果一个 Kyligen
    wget http://central.maven.org/maven2/org/apache/commons/commons-pool2/2.2/commons-pool2-2.2.jar
    wget https://github.com/downloads/jcoleman/tomcat-redis-session-manager/tomcat-redis-session-manager-1.2-tomcat-7-java-7.jar
    ```
-2. 在`$KYLIN_HOME/tomcat/conf/context.xml`中添加如下内容：
+2. 在`$KYLIN_HOME/tomcat/conf/context.xml`中追加如下内容：
 
    ```xml
    <Valve className="com.radiadesign.catalina.session.RedisSessionHandlerValve" />
