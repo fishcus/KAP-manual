@@ -60,7 +60,7 @@ In order to maximize the safty of data and the availability of services, we reco
    > **Note:** The working directory is specified by  `kylin.env.hdfs-working-dir` property in `$KYLIN_HOME/conf/kylin.properties`. The default value is `/kylin`
   - Verify that HDFS has enough space to copy the Kyligence Enterprise working directory and perform cube data backup
     ```sh
-    hdfs dfs -cp /kylin /kylin_temp
+    hadoop distcp /kylin /kylin_temp
     ```
 
 
@@ -173,7 +173,7 @@ After verify and confirm your Kyligence Enterpries is successfully upgraded to t
 4. (Optional) Restore cube data
    ```sh
    hdfs dfs -rmr /kylin
-   hdfs dfs -cp /kylin_temp /kylin
+   hadoop distcp /kylin_temp /kylin
    ```
 5. Start Kyligence Enterprise
    ```sh

@@ -70,7 +70,7 @@
     ```
   - 确认 HDFS 有足够内存支持拷贝 Kyligence Enterprise 工作目录，执行 Cube 数据备份
     ```sh
-    hdfs dfs -cp /kylin /kylin_temp
+    hadoop distcp /kylin /kylin_temp
     ```
 
 
@@ -191,7 +191,7 @@ $KYLIN_HOME/bin/kylin.sh start
 4. （可选）恢复 Cube 数据
   ```sh
   hdfs dfs -rmr /kylin
-  hdfs dfs -cp /kylin_temp /kylin
+  hadoop distcp /kylin_temp /kylin
   ```
 
 5. 启动 Kyligence Enterprise
