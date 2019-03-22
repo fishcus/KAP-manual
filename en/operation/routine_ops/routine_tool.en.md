@@ -6,7 +6,7 @@ Kyligence Enterprise provides a routine operation tool to keep the system clean 
 - System garbage check, cleanup in HDFS / Hive / HBase etc.
 - Metadata backup
 
-> **Note:** We highly recommend you run this tool on a regular basis.
+> **Note:** We highly recommend you to run this tool on a regular basis during system idle time.
 
 ### How to Use
 
@@ -49,3 +49,12 @@ In general case, we suggest that you run the following command line on a daily b
 ```shell
 $KYLIN_HOME/bin/kylin.sh io.kyligence.kap.tool.routine.RoutineTool -c
 ```
+
+#### Enable Multi-Thread Execution
+
+RoutineTool supports multi-thread mode to improve the performance of cleanup process.
+
+Set the parameter `kap-tool.routine-tool.delete-task-thread-num` in `kylin.properties` configuration file:
+
+- The value is `1` by default, means using single-thread mode to cleanup
+- When setting the value to be greater than `1`, then multi-thread mode will be enabled and the value is number of threads.

@@ -1,6 +1,6 @@
 ## 日常运维工具
 
-Kyligence Enterprise 提供了日常运维命令行工具，用于系统元数据/数据的检查、清理与恢复，从而保证系统处于良好的运行状态。
+Kyligence Enterprise 提供了日常运维命令行工具，用于系统元数据/数据的检查、清理与恢复，从而保证系统处于良好的运行状态。我们强烈建议您定期在系统空闲时间运行此工具。
 
 日常运维工具主要负责：
 - 元数据的检查，清理及修复
@@ -36,6 +36,7 @@ $KYLIN_HOME/bin/kylin.sh io.kyligence.kap.tool.routine.RoutineTool
 > 2. 请谨慎使用 `-f` 参数，因为它可能会影响正在运行的任务。
 > 3. `--fastMode` 以及 `--gcMode` 不能够同时使用
 
+
 ### 元数据的备份
 
 当此命令使用 `-c` 参数执行时， RoutineTool 会自动备份当前系统中除了字典（dictionary），快照（snapshot），以及统计（statistics）之外的所有的元数据。当且仅当备份成功后， 才会执行清理工作。备份最多留存 5 份， 之后当有新的备份时，会将最旧的备份删除。
@@ -52,3 +53,9 @@ $KYLIN_HOME/bin/kylin.sh io.kyligence.kap.tool.routine.RoutineTool
 $KYLIN_HOME/bin/kylin.sh io.kyligence.kap.tool.routine.RoutineTool -c
 ```
 
+#### 启用多线程清理
+RoutineTool 支持多线程清理元数据垃圾文件， 启用多线程特性可以提高清理的效率。
+
+在 `kylin.properties` 配置文件中设置参数 `kap.tool.routine-tool.delete-task-thread-num`:
+- 此参数默认值为 `1`, 即单线程清理
+- 当 `kap.tool.routine-tool.delete.task.thread-num` 值大于 `1` 时，则启用多线程清理， 值为线程数量
