@@ -27,7 +27,7 @@ Select some columns as dimensions via **Add Dimensions**. Dimension can be set a
 > 1. You can maintain dimension description to add semantic comment to each dimension. Meanwhile this description can be directly exposed to specific BI tools such as Tableau, via using "export TDS" functionality.
 > 2. When data source is Hive, you can directly sync Hive column comment as dimension description and it can also be changed afterwards.
 
-Only the number of normal dimensions will affect the number of cuboid generated as well as the size of cube data. Compare to normal dimension, derived dimension does not participate in cube calculation directly. Instead, it is represented by its FK (Foreign Key) in cube. That is why using derived dimensions can greatly reduce cube complexity. During query, derived dimensions have to be converted to their FKs first, causing a small panalty to performance.
+Only the number of normal dimensions will affect the number of cuboid generated as well as the size of cube data. Compare to normal dimension, derived dimension does not participate in cube calculation directly. Instead, it is represented by its FK (Foreign Key) in cube. That is why using derived dimensions can greatly reduce cube complexity. During query, derived dimensions have to be converted to their FKs first, causing a small compromise to performance.
 
 Basic rules for defining dimensions in a cube is explained as below:
 

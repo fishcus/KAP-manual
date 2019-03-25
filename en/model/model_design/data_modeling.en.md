@@ -75,7 +75,7 @@ You can specify either one single column or multiple columns as dimensions or me
 1. Click **DM** icon on top left of the table, you can open/close editing mode of specifying dimensions and measures.
 2. In editing mode, click the icons in the toolbar to specify dimension or measure.
    - **D**: Dimension
-   - **M**: Mesure
+   - **M**: Measure
    - **— **: Disabled
    - **A**: Auto Suggestion
 3. In this example, we specify the dimensions and measures suggested by the system. Check checkbox to enable select all in the toolbar and click icon **A**.
