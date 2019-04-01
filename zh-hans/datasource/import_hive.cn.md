@@ -46,7 +46,7 @@ hive> select count(*) from kylin_sales;
 
 ![新建项目](images/create_project.png)
 
-**步骤二**：进入具体项目**建模**功能，选择**数据源**选项卡；点击蓝色的**数据源**按钮，在弹出窗口中，选择 **RDBMS **作为数据源类型；
+**步骤二**：进入具体项目**建模**功能，选择**数据源**选项卡；点击蓝色的**数据源**按钮，在弹出窗口中，选择 **Hive **作为数据源类型；
 
 ![选择数据源](images/import_hive_select_source.png)
 
