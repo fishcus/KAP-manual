@@ -145,6 +145,7 @@
        * [列级访问权限](security/data_acl/column_acl.cn.md)
     * [与 LDAP 集成](security/ldap.cn.md)     
     * [与 Kerberos 集成 ](security/kerberos.cn.md)
+    * [与第三方用户认证系统集成 ](security/integrate_with_3rd_um.cn.md)
     * [Hive 权限映射](security/hive_acl.cn.md)
 * [系统运维](operation/README.md)        
     * [日常维护](operation/routine_ops/README.md)       
