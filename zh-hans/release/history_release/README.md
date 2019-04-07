@@ -6,6 +6,8 @@ Kyligence Enterprise 提供迁移工具，支持从 Apache Kylin 向 Kyligence E
 
 继续阅读
 
+[Kyligence Enterprise 3.2 发行说明](ke_3_2.cn.md)
+
 [Kyligence Enterprise 3.1 发行说明](ke_3_1.cn.md)
 
 [Kyligence Enterprise 3.0 发行说明](ke_3_0.cn.md)
