@@ -37,16 +37,15 @@ Nginx 在默认情况下将以轮询的方式分发请求。如果一个 Kyligen
 
 如果您需要回避 ip_hash 可能导致的 Kyligence Enterprise 实例的负载不均衡（例如只有少量应用服务器频繁访问 Kyligence Enterprise，导致大部分查询请求被分发给少数 Kyligence Enterprise 实例），您应当在 Kyligence Enterprise 中进行相关配置，将 Session 信息保存至 Redis 集群（或 MySQL、MemCache 等）中，实现多个 Kyligence Enterprise 实例的 Session 共享。为此，您只需要简单修改 Tomcat 配置文件即可，步骤如下：
 
-1. 执行下述命令以下载 Redis 相关的 jar 包并将其放置在`$KYLIN_HOME/tomcat/lib/`路径下：
+1. 执行下述命令以下载 Redis Session 共享插件包
    ```sh
-   wget http://central.maven.org/maven2/redis/clients/jedis/2.0.0/jedis-2.0.0.jar
-   wget http://central.maven.org/maven2/org/apache/commons/commons-pool2/2.2/commons-pool2-2.2.jar
-   wget https://github.com/downloads/jcoleman/tomcat-redis-session-manager/tomcat-redis-session-manager-1.2-tomcat-7-java-7.jar
+   wget https://github.com/ran-jit/tomcat-cluster-redis-session-manager/releases/download/3.0/tomcat-cluster-redis-session-manager.zip
    ```
-2. 在`$KYLIN_HOME/tomcat/conf/context.xml`中追加如下内容：
+2. 解压包，并将 lib 目录下的 jar 包拷贝到查询节点的 `$KYLIN_HOME/tomcat/lib` 下，并将 `redis-data-cache.properties` 拷贝到查询节点的 `$KYLIN_HOME/tomcat/conf/` 下
+
+3. 在`$KYLIN_HOME/tomcat/conf/context.xml`中追加如下配置：
 
    ```xml
-   <Valve className="com.radiadesign.catalina.session.RedisSessionHandlerValve" />
-   <Manager className="com.radiadesign.catalina.session.RedisSessionManager" host="localhost" port="6379" database="0" maxInactiveInterval="60"/>
+   <Valve className="tomcat.request.session.redis.SessionHandlerValve" />
+   <Manager className="tomcat.request.session.redis.SessionManager" />
    ```
-   其中，host 和 port 指向所使用的 Redis 集群的地址。
