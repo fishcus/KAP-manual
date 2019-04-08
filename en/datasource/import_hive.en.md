@@ -58,7 +58,7 @@ hive> select count(*) from kylin_sales;
 
 ![Load data](images/import_hive_select_table.png)
 
-> Note: By default, table. Users have options to do it and select sample size.
+> **Note:** Table sampling after loading is enabled by default. Table sampling results will help optimize the model design and cube design. We highly recommend you enable table sampling.
 
 **Step 5**: Once the synchronization is finished, select specific tables and check the details under *Data Source* section.
 

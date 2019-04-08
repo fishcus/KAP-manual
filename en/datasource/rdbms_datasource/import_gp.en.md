@@ -18,7 +18,7 @@ To enable query pushdown, following configration is required:
 
 `kylin.query.pushdown.runner-class-name=io.kyligence.kap.query.pushdown.PushdownRunnerSDKImpl`
 
-> Tips:  `kylin.source.jdbc.sqoop-home=<sqoop_path>` should be added in `kylin.properties` , which cannot be applied in project configuration. Sqoop_path is the path of your sqoop directory. 
+> **Note:**  `kylin.source.jdbc.sqoop-home=<sqoop_path>` should be added in `kylin.properties` , which cannot be applied in project configuration. Sqoop_path is the path of your sqoop directory. 
 
 
 
@@ -65,4 +65,4 @@ In the dialog box, expand the sample schema and select the desired five tables.
 
 ![Table sampling](../images/rdbms_import_select_table.png)
 
-After importing, the system will automatically scan the tables to collect basic statistics of the data. Wait a few minutes we can view the details under the "Data Source" tab.
+> **Note:** Table sampling after loading is selected by default. Table sampling results will help optimize the model design and cube design. User can also turn it off and adjust the sampling percentage.

@@ -19,7 +19,7 @@ Kyligence Enterprise 从3.0开始支持 Greenplum 作为默认的数据源，目
 kylin.query.pushdown.runner-class-name=io.kyligence.kap.query.pushdown.PushdownRunnerSDKImpl
 ```
 
-> 注：除以上项目配置项外，还需要在`kylin.properties`中添加 kylin.source.jdbc.sqoop-home=<sqoop_path>，其中 sqoop_path 为 sqoop 命令所在的文件。
+> **注意：** 除以上项目配置项外，还需要在`kylin.properties`中添加 kylin.source.jdbc.sqoop-home=<sqoop_path>，其中 sqoop_path 为 sqoop 命令所在的文件。
 
 
 
@@ -64,4 +64,4 @@ kylin.source.jdbc.sqoop-home=/usr/hdp/current/sqoop-client/bin
 
 ![加载表并采样](../images/rdbms_import_select_table.png)
 
-勾选采样，导入后系统会自动计算各表各列的维数，以掌握数据的基本情况。稍等几分钟后，我们可以通过数据源表的详情页查看这些信息。
+> **提示：** 默认选择**加载后启动表采样任务**。 表采样结果能帮助优化后续的模型设计和 Cube 设计，我们强烈建议您启用该选项。
