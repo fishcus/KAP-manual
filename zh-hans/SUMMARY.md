@@ -44,6 +44,8 @@
         * [导入 Greenplum 数据源](datasource/rdbms_datasource/import_gp.cn.md)
         * [导入 MySQL 数据源](datasource/rdbms_datasource/import_mysql.cn.md)
         * [导入 MS SQL Server 数据源](datasource/rdbms_datasource/import_sqlserver.cn.md)
+        * [导入 gbase 数据源](datasource/rdbms_datasource/import_gbase.cn.md)
+        * [导入 Oracle 数据源](datasource/rdbms_datasource/import_oracle.cn.md)
     * [导入文件数据源](datasource/import_file.cn.md)
     * [数据采样](datasource/data_sampling.cn.md)
 * [模型和 Cube](model/README.md)

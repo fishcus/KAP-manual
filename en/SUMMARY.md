@@ -44,6 +44,8 @@
         * [Import Data from Greenplum](datasource/rdbms_datasource/import_gp.en.md)
         * [Import Data from MySQL](datasource/rdbms_datasource/import_mysql.en.md)
         * [Import Data from Microsoft SQL Server](datasource/rdbms_datasource/import_sqlserver.en.md)
+        * [Import Data from GBase](datasource/rdbms_datasource/import_gbase.en.md)
+        * [Import Data from Oracle](datasource/rdbms_datasource/import_oracle.en.md)
     * [Import Data from Files](datasource/import_file.en.md)
     * [Data Sampling](datasource/data_sampling.en.md)
 * [Model and Cube](model/README.md)
