@@ -8,6 +8,16 @@ First of all, **make sure that you allocate sufficient resources for sandbox**. 
 
 When configuring sandbox, we recommend that you use the Bridged Adapter model instead of the NAT model. The Bridged Adapter model will assign an independent IP address to your sandbox, allowing you to choose either local or remote access to Kyligence Enterprise GUI.
 
+**Cloudera CDH Supported Version**
+
+Following Cloudera CDH versions are supported by Kyligence Enterprise:
+
+- Cloudera CDH 5.1/5.8/5.12/5.13
+
+- Cloudera CDH 6.0 (Beta) 
+
+  > **Note:** Using SparkSQL during cube building is not supported in Cloudera CDH 6.0.
+
 To avoid permission problems, we recommend that you use CDH default account and password `cloudera` to access CDH sandbox. In this section, the `cloudera` account is taken as an example.
 
 If you need to run Kyligence Enterprise in the environment of CDH 5.7+, please select the corresponding version of the CDH.

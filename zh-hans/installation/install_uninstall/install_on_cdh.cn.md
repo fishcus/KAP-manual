@@ -8,9 +8,17 @@
 
 在配置沙箱时，我们推荐您使用 Bridged Adapter 模型替代 NAT 模型。Bridged Adapter 模型将为您的沙箱分配一个独立的 IP 地址，使您可以任意选择通过本地或远程访问 Kyligence Enterprise GUI。
 
-为了避免权限问题，我们推荐您使用 CDH 默认账户和密码`cloudera`访问 CDH 沙箱。本节中均以`cloudera`账户为例。
+**Cloudera CDH 版本支持**
 
-如果您需要在 CDH 5.7+ 的环境下运行 Kyligence Enterprise，请选择 CDH 对应的发行版。
+Kyligence Enterprise 支持的 Cloudera CDH 版本列表
+
+- Cloudera CDH 5.1/5.8/5.12/5.13
+
+- Cloudera CDH 6.0 (Beta) 
+
+  > **注意：** Cloudera CDH 6.0 版本暂不支持使用 SparkSQL 进行 Cube 构建
+
+为了避免权限问题，我们推荐您使用 CDH 默认账户和密码`cloudera`访问 CDH 沙箱。本节中均以`cloudera`账户为例。
 
 请您访问 Cloudera Manager（默认地址：`http://<host_name>:7180/`，默认账户和密码：`cloudera`）并确保`HDFS`、`Yarn`、`Hive`、`HBase`、`Zookeeper`等组件处于正常状态并且没有任何警告信息。
 
