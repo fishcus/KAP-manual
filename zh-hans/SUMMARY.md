@@ -69,6 +69,7 @@
             * [近似去重计数](model/cube_design/measure_design/count_distinct_hllc.cn.md)
             * [近似 Percentile](model/cube_design/measure_design/percentile_approx.cn.md)
             * [相关函数 CORR(Beta)](model/cube_design/measure_design/corr.cn.md)
+            * [半累加度量（Beta）](model/cube_design/measure_design/semi_sum.cn.md)
         * [明细表索引](model/cube_design/table_index.cn.md)  
         * [验证 SQL](model/cube_design/verify_sql.cn.md)  
     * [构建 Cube](model/cube_build/README.md)    
