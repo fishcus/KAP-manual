@@ -82,5 +82,4 @@ Here are some query examples:
 1. In the current version, only measures with *SUM* as expression can be set to a semi-additive measure, and the aggregation function only supports *LASTVALUE*.
 2. Semi-accumulated measures does not support asynchronous queries.
 3. In the same project, a column cannot be defined both as semi-additive measure and normal *SUM* measure in one project. That is, in a project, after defining a semi-additive measure based on a column, you can no longer define a normal *SUM* measure based on that same column.
-4. In the current version, queries containing semi-additive measure cannot be pushed down to underlying query engine. That's because when the SQL containing semi-additive measures is routed to the underlying query engine, the semi-additive measures will be calculated as normal additive measures, leading to inconsistent query results.
-
+4. In the current version, queries containing semi-additive measure cannot be answered correctly by table index or pushing down to the underlying query engine. That's because when the SQL containing semi-additive measures is answered by the table index or the underlying query engine, the semi-additive measures will be calculated as normal additive measures, leading to inconsistent query results.
