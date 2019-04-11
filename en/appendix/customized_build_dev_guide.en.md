@@ -1,4 +1,4 @@
-##Developer Guide for Implementing Java Class of  Customized Cube Build
+## Developer Guide for Implementing Java Class of Customized Cube Build
 
 In this section, we will introduce how to develop a Java class for customized cube build based on a simple example.
 

@@ -36,7 +36,7 @@ For customized build, you can submit the job with a number range of Long type in
 
    Please set **Incremental Data Loading** to be *Customize* when save your model. When you submit a cube build job for cubes based on this model, Kyligence Enterprise will call your own implementation to generate new data selection SQL.
 
-   ![保存模型](images/customize_build_save_model.png)
+   ![save model](images/customize_build_save_model.png)
 
 2. Set your own implementation for customized build
 
