@@ -114,6 +114,7 @@
         * [与 Tableau 集成](integration/bi/tableau/README.md) 
             * [与 Tableau 8.x 集成](integration/bi/tableau/tableau_8.cn.md)
             * [与 Tableau 9.x 集成](integration/bi/tableau/tableau_9.cn.md)
+            * [与 Tableau Server 集成](integration/bi/tableau/tableau_server.cn.md)
         * [与 Power BI 集成](integration/bi/powerbi/README.md)  
             * [与 Power BI Desktop 集成](integration/bi/powerbi/powerbi_desktop.cn.md)
             * [与 Power BI Service 集成](integration/bi/powerbi/powerbi_service.cn.md)

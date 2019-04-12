@@ -35,5 +35,3 @@ If you want to publish local dashboard to a Tableau Server, just expand `Server`
 
 ### More
 Please refer to [Kylin and Tableau Tutorial](./tableau.en.md) for more details.
-
-

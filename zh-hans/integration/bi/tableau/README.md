@@ -92,5 +92,3 @@ Tableau 提供定制 TDC 配置文件的方式， 以满足 Kyligence Enterprise
 
 
 **方法二**：您可以通过调整`kylin.query.force-limit` 以限制返回记录数。启动该功能的方法为将该设置的值设置为正整数，如1000。
-
-## Tableau

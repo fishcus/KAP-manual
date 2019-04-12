@@ -114,6 +114,7 @@
         * [Tableau](integration/bi/tableau/README.md) 
             * [Tableau 8.x](integration/bi/tableau/tableau_8.en.md)
             * [Tableau 9.x](integration/bi/tableau/tableau_9.en.md)
+            * [Tableau Server](integration/bi/tableau/tableau_server.en.md)
         * [Power BI](integration/bi/powerbi/README.md)  
             * [Power BI Desktop](integration/bi/powerbi/powerbi_desktop.en.md)
             * [Power BI Service](integration/bi/powerbi/powerbi_service.en.md)
