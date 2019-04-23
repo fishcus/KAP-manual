@@ -146,6 +146,7 @@
         * [Column ACL](security/data_acl/column_acl.en.md)
     * [Integrate with LDAP](security/ldap.en.md)     
     * [Integrate with Kerberos](security/kerberos.en.md)
+    * [Integrate with 3rd-Party User Authentication System ](security/integrate_with_3rd_um.en.md)
     * [Hive ACL Mapping](security/hive_acl.en.md)
 * [System Operation](operation/README.md)        
     * [Routine Operations](operation/routine_ops/README.md)       

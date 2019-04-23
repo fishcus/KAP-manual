@@ -108,7 +108,7 @@ Kyligence Enterprise 除了支持与 LDAP 集成实现用户认证外，还支�
    - *listUsers()* 方法用来返回所有用户，该方法的返回值是一个 *ManagedUser* 的集合。*ManagedUser* 包含几个关键属性：
      - username：用户名
      - password：用户密码
-     - disabled：是否启用
+     - disabled：是否禁用
      - locked：是否锁定
      - authorities：用户角色
 
@@ -189,7 +189,7 @@ Kyligence Enterprise 除了支持与 LDAP 集成实现用户认证外，还支�
    }
    ```
 
-   - *authenticateImpl(Authentication authentication)* 该方法用来校验用户名密码是否合法，即是否允许用户登录。该方法的参数为一个 *Authentication* 的对象，该对象有三个关键属性：
+   - *authenticateImpl(Authentication authentication)* 该方法用来校验用户名密码是否合法，即是否允许用户登录。该方法的参数为一个 *Authentication* 的对象，该对象有两个关键属性：
      - *principal* 页面上传递过来的用户名
      - *credentials* 页面上传递过来的密码
    - 其他方法请根据您的实际需求进行覆盖实现

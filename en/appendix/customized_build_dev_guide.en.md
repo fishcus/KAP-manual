@@ -2,7 +2,7 @@
 
 In this section, we will introduce how to develop a Java class for customized cube build based on a simple example.
 
-Suppose in your source data, there is no standard date/time column for the date/time based incremental cube build. Instead, you have two columns *MONTH_ID* and *BATCH_ID* and your data is updated by different batches in each month. *MONTH_ID* contains the year/month information and it's 6 digits like 201901, 201902. *BATCH_ID* means the update batches in each month and it's 4 digits like 1, 2, 3. So *MONTH_ID* and *BATCH_ID* can be concatenated to compose a segment range, as shown below:
+Suppose in your source data, there is no such a date/time column for incremental cube build. Instead, you have two columns *MONTH_ID* and *BATCH_ID* and your data is updated by different batches in each month. *MONTH_ID* contains the year/month information and it's 6 digits like 201901, 201902. *BATCH_ID* means the update batches in each month and it's 4 digits like 1, 2, 3. So *MONTH_ID* and *BATCH_ID* can be concatenated to compose a segment range, as shown below:
 
 - [2012010001, 2012010002) means the first batch data in Janurary 2012 (not including second batch)
 
@@ -14,7 +14,7 @@ Based on this example, we will show how to implement a Java class for customized
 
 #### 1. Build Development Environment
 
-Copy `$KYLIN_HOME/customize/customized-incremental-build.tar.gz` to your local folder and unzip. This is a sample project with `pom.xml` and maven project defined. Import it into your Java IDE.
+Copy `$KYLIN_HOME/samples/customized-incremental-build.tar.gz` to your local folder and unzip. This is a sample project with `pom.xml` and maven project defined. Import it into your Java IDE.
 
 Add Kyligence Enterprise library `$KYLIN_HOME/lib/kylin-job-kap-[*version*].jar ` to your project lib, and add it to your classpath.
 

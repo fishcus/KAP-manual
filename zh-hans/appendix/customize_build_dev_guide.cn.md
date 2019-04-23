@@ -14,7 +14,7 @@
 
 ### 搭建开发环境
 
-拷贝 *$KYLIN_HOME/customize/customized-incremental-build.tar.gz*，解压后目录为一个完整的样例程序。其中有 pom.xml，定义了maven 工程，将其整个导入到您的 Java IDE 中。
+拷贝 *$KYLIN_HOME/samples/customized-incremental-build.tar.gz*，解压后目录为一个完整的样例程序。其中有 pom.xml，定义了maven 工程，将其整个导入到您的 Java IDE 中。
 
 开发工程对 Kyligence Enterprise 有类库依赖，在工程的 lib 目录中加入 *$KYLIN_HOME/lib/kylin-job-kap-[*version*].jar* ，并将其添加到 classpath 中。
 
