@@ -41,6 +41,7 @@ Nginx 在默认情况下将以轮询的方式分发请求。如果一个 Kyligen
    ```sh
    wget https://github.com/ran-jit/tomcat-cluster-redis-session-manager/releases/download/3.0/tomcat-cluster-redis-session-manager.zip
    ```
+   
 2. 解压包，并将 lib 目录下的 jar 包拷贝到查询节点的 `$KYLIN_HOME/tomcat/lib` 下，并将 `redis-data-cache.properties` 拷贝到查询节点的 `$KYLIN_HOME/tomcat/conf/` 下
 
 3. 在`$KYLIN_HOME/tomcat/conf/context.xml`中追加如下配置：
