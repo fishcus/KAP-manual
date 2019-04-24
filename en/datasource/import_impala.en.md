@@ -10,7 +10,7 @@ You need to follow the steps below to connect to Impala:
 
 - Download official [Impala JDBC Driver](https://www.cloudera.com/downloads/connectors/impala/jdbc/2-6-4.html).  Unzip the file and find 2 versions of JDBC(JDBC4 and JDBC4.1). Please use ImpalaJDBC41.jar as Impala JDBC driver.
 - Download Kyligence impala adaptor from [Kyligence Account](http://download.kyligence.io/#/addons)
-- Copy ImpalaJDBC41.jar and Kyligence impala adaptor to `$KYLIN_HOME/ext`. 
+- Copy ImpalaJDBC41.jar and Kyligence impala adaptor to `$KYLIN_HOME/ext`. Need to restart Kyligence Enterprise to take effect.
 - Copy ImpalaJDBC41.jar and Kyligence impala adaptor to `<sqoop_installation_directory>/lib`, check global parameters, and add `kylin.source.jdbc.sqoop-home=<sqoop_path>` to `kylin.properties`. *<sqoop_path>* is the file where the sqoop command locates.
 
 

@@ -1,6 +1,6 @@
 ## Import Data from Microsoft SQL Server
 
-MS SQL Server 2012 is supported as the default data source since Kyligence Enterprise 3.0, including SQL Server version SQLServer2012 and higher. To load the SQL Server tables, SQL Server Driver Jar package is needed to put in  `$KYLIN_HOME/ext`.  The recommended Driver is sqlserver08:4-4.0.
+MS SQL Server 2012 is supported as the default data source since Kyligence Enterprise 3.0, including SQL Server version SQLServer2012 and higher. To load the SQL Server tables, SQL Server Driver Jar package is needed to put in  `$KYLIN_HOME/ext`. Need to restart Kyligence Enterprise to take effect. The recommended Driver is sqlserver08:4-4.0.
 
 Then, please set the following configurations in *kylin.properties* or *project configuration*:
 

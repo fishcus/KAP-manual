@@ -10,7 +10,7 @@
 
 - 下载官方 [Impala JDBC 驱动程序](https://www.cloudera.com/downloads/connectors/impala/jdbc/2-6-4.html)。
 - 下载 Kyligence 特定的数据源适配器 (下载链接：[Kyligence Account](http://download.kyligence.io/#/addons))。
-- 拷贝相关 jar 包放置在`$KYLIN_HOME/ext`目录下。
+- 拷贝相关 jar 包放置在`$KYLIN_HOME/ext`目录下。 需要重启 Kyligence Enterprise 才会生效。
 - 拷贝相关 jar 包放置 sqoop 安装目录的 lib 目录下, 并检查全局参数。在`kylin.properties`中添加 `kylin.source.jdbc.sqoop-home=<sqoop_path>`，其中 sqoop_path 为 sqoop 命令所在的文件。
 
 

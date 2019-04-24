@@ -1,6 +1,6 @@
 ## Import Data from GBase
 
-GBase is supported as data source since Kyligence Enterprise 3.3.0, including version GBase8a and higher versions. To load GBase tables, GBase driver jar package is needed to put in  `$KYLIN_HOME/ext`.  The recommended driver is `gbase-connector-java-8.3.81.51-build-53.6-bin.jar`.
+GBase is supported as data source since Kyligence Enterprise 3.3.0, including version GBase8a and higher versions. To load GBase tables, GBase driver jar package is needed to put in  `$KYLIN_HOME/ext`.  Need to restart Kyligence Enterprise to take effect.  The recommended driver is `gbase-connector-java-8.3.81.51-build-53.6-bin.jar`.
 
 Then please set the following configurations in `kylin.properties` or in *project configuration*:
 
