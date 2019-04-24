@@ -61,7 +61,7 @@ curl -X PUT \
 
 
 
-**Q: 当前因为 Kafka 数据中有空值导致构建失败，应该如何解决？**
+**Q: 当前因为 Kafka 数据中有空值或者其他异常数据导致构建失败，应该如何解决？**
 
 您可以通过在 `$KYLIN_HOME/conf/kylin.properties ` 中配置如下参数：
 

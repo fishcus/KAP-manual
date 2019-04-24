@@ -63,7 +63,7 @@ You can initiate start of offset for the build via the REST API and select the t
    }' 
    ```
 
-**Q: How to solve the failed building job due to empty values in Kafka data?**
+**Q: How to solve the failed building job due to empty or other invalid values in Kafka data?**
 
 You can change the properties in  `$KYLIN_HOME/conf/kylin.properties ` :
 
