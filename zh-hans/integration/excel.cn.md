@@ -26,19 +26,19 @@ Excel 通过 SSAS 接口连接 MDX Service，协议使用 XMLA。MDX Service 将
 
   `vi mdx-server-{version}/conf/mdx/properties`
 
-  |配置项|配置说明|默认值|备注|
-  | :------| :------| :------| :------|
-  |kyligence.host|KE 主机名|localhost|
-  |kyligence.port|KE 端口号|7070|
-  |kyligence.protocol|连接协议|http|如果使用 https 连接 Kyligence Enterprise，请将此值设置成 https|
-  |mdx.calculate.total.need|是否开启计算 total/subtotal 的功能|true|关闭后，返回结果将不会携带 total/subtoal，查询速度更快。如果在 url 中加入请求参数 needCalculateTotal=false，将会关闭计算 total/subtotal 的功能，并且会忽略配置文件对此项的配置。示例 url (http://localhost:7080/mdx/xmla/learn_kylin?needCalculateTotal=false)|
-  |mdx.optimize.enable|是否开启 MDX 语句优化功能|true|如果在 url 中加入请求参数 enableOptimizeMdx=true, 同样也会打开 MDX 优化功能，并且会忽略配置文件对此项的配置。示例 url(http://localhost:7080/mdx/xmla/learn_kylin?enableOptimizeMdx=true)|
-  |mdx.session.ip_cache.enable|是否开启 IP 缓存|true|如果在 url 中添加请求参数 enableIPCache=true, 此功能同样生效。打开此功能后，在与 Excel 的连接过程中不需要输入两次密码，但可能导致同一 Excel 下使用同一项目下的两个用户共用 session|
+|配置项|配置说明|默认值|备注|
+| :------| :------| :------| :------|
+|kyligence.host|KE 主机名|localhost|
+|kyligence.port|KE 端口号|7070|
+|kyligence.protocol|连接协议|http|如果使用 https 连接 Kyligence Enterprise，请将此值设置成 https|
+|mdx.calculate.total.need|是否开启计算 total/subtotal 的功能|true|关闭后，返回结果将不会携带 total/subtoal，查询速度更快。如果在 url 中加入请求参数 needCalculateTotal=false，将会关闭计算 total/subtotal 的功能，并且会忽略配置文件对此项的配置。示例 url (http://localhost:7080/mdx/xmla/learn_kylin?needCalculateTotal=false)|
+|mdx.optimize.enable|是否开启 MDX 语句优化功能|true|如果在 url 中加入请求参数 enableOptimizeMdx=true, 同样也会打开 MDX 优化功能，并且会忽略配置文件对此项的配置。示例 url(http://localhost:7080/mdx/xmla/learn_kylin?enableOptimizeMdx=true)|
+|mdx.session.ip_cache.enable|是否开启 IP 缓存|true|如果在 url 中添加请求参数 enableIPCache=true, 此功能同样生效。打开此功能后，在与 Excel 的连接过程中不需要输入两次密码，但可能导致同一 Excel 下使用同一项目下的两个用户共用 session|
 
 + 启动 MDX Service 服务。
 
   `./start-mdx.sh`
-   
+  
   > **提示：**
   >
   > 1. MDX Service 默认端口号为7080，如果存在端口冲突， 请自行修改安装目录 tomcat/conf/server.xml 文件
@@ -135,5 +135,5 @@ Excel 通过 SSAS 接口连接 MDX Service，协议使用 XMLA。MDX Service 将
    MDX Service 的 HTTPS 默认端口为7043，所以连接样式为
 
    `https://{host}:7043/mdx/xmla/{project}`
-    
+   
    ![使用https连接](images/excel_2018_cn/mdx_https/mdx_https_05.png)
