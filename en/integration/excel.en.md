@@ -23,14 +23,16 @@ Excel connect to MDX Service through SSAS interface, using XMLA protocol. MDX Se
   `tar -xvf MDX Service-{version}.tar.gz`
   
 + Config mdx properties 
-  
+
   `vi mdx-server-{version}/conf/mdx/properties`
+
+
 
   |Configuration|Description|Default value|Comment|
   | :------| :------| :------| :------|
-  |kyligence.host|Kyligence Enterprise host|localhost|
-  |kyligence.port|Kyligence Enterprise port|7070|
-  |kyligence.protocol|connect protocol|http|If you need connect Kyligence Enterprise with https, please set this value to https.
+  |kyligence.host|Kyligence Enterprise host|localhost||
+  |kyligence.port|Kyligence Enterprise port|7070| |
+  |kyligence.protocol|connect protocol|http| If you need to connect Kyligence Enterprise with https, please set this value to https. |
   |mdx.calculate.total.need|whether to enable calculate total/subtotal|true|If disable, the returned result will not carry total/subtoal，and query more faster. If you add a request parameter to the url, `needCalculateTotal=false`, it will also disable calculate total/subtotal, and will ignore this config in mdx.properties. Example url (http://localhost:7080/mdx/xmla/learn_kylin?needCalculateTotal=false)|
   |mdx.optimize.enable|whether to enable optimize mdx query|true|If you add a request parameter to the url, `enableOptimizeMdx=true`, it will also open MDX optimization, and will ignore this config in mdx.properties. Example url(http://localhost:7080/mdx/xmla/learn_kylin?enableOptimizeMdx=true)|
   |mdx.session.ip_cache.enable|whether to enable IP cache|true|If you add a request parameter to the url, `enableIPCache=true`, this feature also takes effect. When this feature is turned on, you do not need to enter the password twice during the connection to Excel, but it may cause the two users in the same project to share the session under the same Excel client.|
@@ -56,7 +58,7 @@ Excel connect to MDX Service through SSAS interface, using XMLA protocol. MDX Se
    ![select SSAS](images/excel_2018_en/Excel_SSAS_1.png)
 
 2. Next, you need to fill in the address information of the connection MDX Service in the `Server name` column, the sample is as follows:
- 
+
    `http:// {host}:{port} / mdx / xmla / {project}`
    
    MDX Service default HTTP port is 7080. The username and password are your **Kyligence Enterprise** login username and password.
@@ -90,11 +92,11 @@ Excel connect to MDX Service through SSAS interface, using XMLA protocol. MDX Se
    `tar -xvf MDX Service-{new_version}`
   
 4. Copy the original configuration file to the new MDX Service.
-   
+  
    `cp -rf MDX Service.old/conf MDX Service-{new_version}`
    
 5. Start MDX Service.
-   
+  
    `./start-mdx.sh`
 
 ### How to Connect MDX Service Using HTTPS
