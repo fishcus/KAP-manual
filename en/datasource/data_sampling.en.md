@@ -35,7 +35,7 @@ Step 4. Adjust sample percentage and upper limit for sampling data records. Drag
 > Notice: 
 >
 > 1. Click Data Source and select one or multiple tables to adjust sample size if metadata is not loaded.
-> 2. The sampling range is from 20%-40%-60%-80%-100%. The higher the sampling ratio is, the more accurate the sampling result will be. But it may consume more resources. Users can adjust the ratio according to actual resource configuration (see [recommended configuration](../config/recommend_settings.en.md )).
+> 2. The sampling range is from 20%-40%-60%-80%-100%. The higher the sampling ratio is, the more accurate the sampling result will be. But it may consume more resources. Users can adjust the ratio according to actual resource configuration.
 > 3. The final sampling records might be not the same as the records calculated by the sampling percentage and upper limit. To ensure the reliability of the table sampling result, there is a lower limit of table sample records in the system. The lower limit cannot be modified.
 
 Step 5. Click `Submit` and start table sampling.

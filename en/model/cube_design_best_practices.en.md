@@ -46,7 +46,7 @@ To get the statistics of your tables:
 
 ### Create Model
 
-Details about creating a model is explained in the [Data Model](model_design/data_modeling.en.md) chapter. Here we just highlight one decision point that causes more problems than others.
+Details about creating a model is explained in the [Model Design Basics](model_design/data_modeling.en.md) chapter. Here we just highlight one decision point that causes more problems than others.
 
 The decision point is whether to create snapshots for lookup tables or not. The system assumes lookup tables are relatively small, which is true in most cases. That is why, by default, the system creates snapshots for all lookup tables. And this brings a few benefits:
 

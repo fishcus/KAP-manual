@@ -51,11 +51,11 @@ Kyligence Enterprise 3.1.0 开始支持直接从 Hive 数据文件导入数据�
 
 **步骤二**：创建模型和 Cube
 
-* 以上面的事实表为中心，创建模型。具体方法可以参考 [设计模型](../data_modeling.cn.md)。
+* 以上面的事实表为中心，创建模型。具体方法可以参考[基本模型设计](../model/model_design/data_modeling.cn.md)。
 
   > 注意：请不要在模型中使用维度表，当前的数据文件导入还不支持。
 
-* 基于上述模型，创建 Cube。具体方法可以参考 [创建Cube](../cube/create_cube.cn.md)。
+* 基于上述模型，创建 Cube。具体方法可以参考[创建Cube](../model/cube_design/create_cube.cn.md)。
 
 * 在 Cube 高级设置中添加下面的配置项，启用基于 Hive 数据文件的导入功能。
 

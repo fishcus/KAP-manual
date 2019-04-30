@@ -148,9 +148,9 @@ Please refer to  [Use Beeline to Connect Hive](../installation/config/beeline.en
 
 **Q: If my cluster is based on JDK 7, how to run Kyligence Enterprise?**
 
-Please follow the steps in [How to Run Kyligence Enterprise on Lower Version JDK](../appendix/run_on_jdk7.en.md).
+Please follow the steps in [Run Kyligence Enterprise on JDK 7](../appendix/run_on_jdk7.en.md).
 
 **Q: Does Kyligence Enterprise support to integrate with Kerberos?**
 
-Yes, if your cluster enables Kerberos security, the Spark embeds in Kyligence Enterprise needs proper configuration to access your cluster resource securely. For more information, please refer to [Kerberos integration](../security/kerberos.en.md).
+Yes, if your cluster enables Kerberos security, the Spark embeds in Kyligence Enterprise needs proper configuration to access your cluster resource securely. For more information, please refer to [Integrate with Kerberos](../security/kerberos.en.md).
 

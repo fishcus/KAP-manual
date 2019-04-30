@@ -51,11 +51,11 @@ Then, to merge all segments in the 6 am, that is A, B, and D, we need to specify
 
 2. Create Model and Cube
 
-   - With the above Hive fact table, create a model as usual. Please refer to [the model design guide](../data_modeling.en.md) for more information.
+   - With the above Hive fact table, create a model as usual. Please refer to [Model Design Basics](../model/model_design/data_modeling.en.md) for more information.
 
 > **Note:** Please don't use lookup table in the model yet. It is not supported at the moment.
 
-   - Create a cube based on the model above. Please refer to [the cube guide](../cube/create_cube.en.md) for more information.
+   - Create a cube based on the model above. Please refer to [Cube Design Basics](../model/cube_design/create_cube.en.md) for more information.
 
    - To enable data import by files on the cube, add the following to the cube's advanced settings.
 

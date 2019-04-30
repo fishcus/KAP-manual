@@ -9,7 +9,7 @@ To organize multiple Kyligence Enterprise nodes in a cluster, please make sure t
 
 1. In the configuration files `$KYLIN_HOME/conf/kylin.properties` of each Kyligence Enterprise node, keep all nodes' `kylin.metadata.url` are same. Make sure all Kyligence Enterprise nodes use the same HBase Metastore;
 
-   > If to turn on high availability on job engine, please refer to  [Configuration](adv_install_ha.en.md).
+   > If to turn on high availability on job engine, please refer to  [Configuration](ha.en.md).
 
 ### Load Balance Configuration
 
@@ -44,7 +44,7 @@ By the other side, ip_hash will bring workload imbalances to Kyligence Enterpris
 2. Unzip the downloaded package, copy the jar packages in lib path to `$KYLIN_HOME/tomcat/lib` of query nodes, copy file `redis-data-cache.properties` to path `$KYLIN_HOME/tomcat/conf/` of query nodes.
   
 3. Edit `$KYLIN_HOME/tomcat/conf/context.xml`, and add these items:
-   
+  
    ```xml
    <Valve className="tomcat.request.session.redis.SessionHandlerValve" />
    <Manager className="tomcat.request.session.redis.SessionManager" />

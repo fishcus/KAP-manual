@@ -11,7 +11,7 @@ Kyligence Enterprise 实例是无状态的服务，所有的状态信息都存�
 
 1. 在各 Kyligence Enterprise 节点的`$KYLIN_HOME/conf/kylin.properties`配置文件中，为各节点配置相同的`kylin.metadata.url`值，即令各 Kyligence Enterprise 节点使用同一个 HBase metastore；
 
-   > 如果您需要启用任务引擎高可用，请参考[服务发现及任务引擎高可用](advancing_installation_ha.cn.md)。
+   > 如果您需要启用任务引擎高可用，请参考[服务发现及任务引擎高可用](ha.cn.md)。
 
 ### 负载均衡配置
 
