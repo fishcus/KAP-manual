@@ -20,7 +20,7 @@ OBIEE是Oracle旗下的BI产品，可提供完整的 BI 功能，包括交互式
 
 2. 设置DSN
 
-   在 client 端和 server 端都需要安装 Kylignece ODBC 并配置 DSN，且两端的 DSN 名称应**保持一致**。
+   在 client 端和 server 端都需要安装 Kyligence ODBC 并配置 DSN，且两端的 DSN 名称应**保持一致**。
 
    有关 Windows 下 Kyligence ODBC 的配置，请参考[Windows下安装与配置Kyligence ODBC驱动](../../driver/odbc/win_odbc.cn.md)。
 
