@@ -9,10 +9,10 @@ Kyligence Enterprise 从 v2.5.6 版本开始，增加了环境依赖服务检测
 * Hive 可用性：检查 Hive/Beeline 的可连通性
 * 文件系统可用性: 检查文件系统的可用性
 * 元数据库可用性：检查元数据库的可连通性、读写正确性和响应速度
-* 元数据完整性：检查元数据的一致性及判断元数据是否损坏
+* 元数据完整性：检查元数据的一致性及判断是否存在元数据垃圾
 * Zookeeper 可用性：检查 ZooKeeper 的可连通性、加锁操作和响应速度
 * Spark 集群可用性：检查 Spark 的可用性
-* 垃圾清理：检查垃圾文件大小
+* 垃圾清理：检查存储系统中垃圾文件大小
 * 元数据同步：检查元数据同步是否异常，异常时系统将尝试重载元数据
 * 任务执行引擎可用性：检查任务执行引擎的活性
 
@@ -31,10 +31,10 @@ Kyligence Enterprise 从 v2.5.6 版本开始，增加了环境依赖服务检测
 | HiveCanary            | 在 Hive 中执行列出所有数据库超过 20 秒                       | 在 Hive 中执行列出所有数据库超过 30 秒                       |
 | FileSystemCanary   |  | 文件系统异常关闭|
 | MetaStoreCanary       | 执行元数据读、写、删操作超过 300 毫秒                        | 1. 执行元数据读、写、删操作超过 1000 毫秒 <br />2. 对元数据执行写操作后，未能读取到新写的数据 |
-| MetadataCanary        | 验证元数据完整性超过 10 秒                                   | 1. 验证元数据完整性超过 30 秒 <br />2. 元数据完整性存在错误  |
+| MetadataCanary        | 1. 验证元数据完整性超过 10 秒<br>2. 存在元数据垃圾文件, 且距离上一次元数据清理超过`kap.canary.metadata-enable-warning-after-cleanup-days` 参数配置的时间阈值, 默认为7                                   | 1. 验证元数据完整性超过 30 秒 <br />2. 元数据完整性存在错误  |
 | ZookeeperCanary       | 查看 ZooKeeper 活性、加锁、解锁超过 3 秒                     | 1. 查看 ZooKeeper 活性、加锁、解锁超过10秒<br />2. ZooKeeper 处于非活跃状态<br />3. ZooKeeper 加锁／解锁失败 |
 | SparkSqlContextCanary | 使用 Spark Context 进行一次整数连加操作超过 10 秒            | 使用 Spark Context 进行一次整数连加操作超过 30 秒            |
-| GarbageCanary         | 1. 元数据垃圾文件数超过50个及以上 <br>2. Cube 构建产生的垃圾文件数超过50个及以上<br>3. 垃圾数据的数据量达到5G及以上 |                                                              |
+| GarbageCanary         | 1. Cube 构建产生的垃圾文件数超过50个及以上<br>2. 垃圾数据的数据量达到5G及以上 |                                                              |
 | MetaSyncErrorCanary   | Metastore 同步失败                                           |                                                              |
 | JobEngineCanary       |                                                              | 1. 有 Kyligence Enterprise 节点未能返回 Job Engine 状态 <br />2. 没有活跃状态的任务构建引擎节点 |
 

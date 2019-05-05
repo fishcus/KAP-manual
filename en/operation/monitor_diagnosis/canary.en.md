@@ -11,10 +11,10 @@ Service status detection mainly focuses on following aspects：
 - Hive availability: to check the connectivity of Hive and Beeline.
 - File system availability: to check the availability of file system.
 - Metadata store availability: to check the metastore’s connectivity, functionality and response time 
-- Metadata integrity: to check the consistency of metadata and assess whether metadata is corrupted
+- Metadata availability: to check the metadata consistency and metadata garbage files
 - ZooKeeper availability: to check the connectivity and response speed of ZooKeeper
 - Spark cluster availability: to check the availability of Spark 
-- Garbage cleanup: to check the size of garbage
+- Garbage cleanup: to check the size of system storage garbage files
 - Metadata synchronization: to check the whether metadata is synchronized successfully and if not, metadata will be reloaded automatically
 - Job Engine availability: to check the availability of job engines
 
@@ -32,10 +32,10 @@ Service status detection mainly focuses on following aspects：
 | HiveCanary            | Listing Hive databases exceeds 20 seconds                    | Listing Hive databases exceeds 30 seconds                    |
 | FileSystemCanary            |    | File system closes accidently   |
 | MetaStoreCanary       | Writing, reading and deleting on metadata exceeds 300 milliseconds. | 1.Writing, reading and deleting on metadata exceeds 1000 milliseconds <br>2.Metastore failed to read the latest written data |
-| MetadataCanary        | Verifying the consistency of metadata exceeds 10 seconds     | 1.Verifying the consistency of metadata exceeds 30 seconds<br>2.Broken metadata exists |
+| MetadataCanary        | 1.Verifying the consistency of metadata exceeds 10 seconds <br> 2. Existing metadata garbage and the time period to last metadata cleanup operation exceed the parameter `kap.canary.metadata-enable-warning-after-cleanup-days`, 7 days by default  | 1.Verifying the consistency of metadata exceeds 30 seconds<br>2.Broken metadata exists |
 | ZookeeperCanary       | Checking ZooKeeper's availability, locking and unlocking exceeds 3 seconds | 1.Checking ZooKeeper's availability, locking and unlocking exceeds 10 seconds <br>2.ZooKeeper is not alive <br>3.Failed to require or release ZooKeeper lock |
 | SparkSqlContextCanary | The time of calculating the sum from 0 to 100 exceeds 10 seconds | The time of calculating the sum from 0 to 100 exceeds 30 seconds |
-| GarbageCanary         | 1. The number of metadata garbage is larger than 50 <br>2. The number of garbage files produced by Cube is larger than 50<br>3. The amount of garbage is larger  than 5G |                                                              |
+| GarbageCanary         | 1. The number of garbage files produced by Cube is larger than 50<br>2. The amount of garbage is larger  than 5G |                                                              |
 | MetaSyncErrorCanary   | Metastore fails to synchronize                               |                                                              |
 | JobEngineCanary       |                                                              | 1.One of the Kyligence Enterprise nodes failed to report Job Engine status<br>2.There is no active Job Engine node |
 
