@@ -104,7 +104,7 @@
      ```xml
      <property>
          <name>mapreduce.job.hdfs-servers</name>
-         <value>hdfs://{build-cluster}/, hdfs://{query-cluster}/</value>
+         <value>hdfs://{build-cluster}/,hdfs://{query-cluster}/</value>
      </property>
      ```
 7. 使用 pushdown 查询，需拷贝构建集群的 `hive-site.xml` 到查询集群

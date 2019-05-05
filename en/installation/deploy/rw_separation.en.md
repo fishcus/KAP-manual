@@ -110,7 +110,7 @@ Follow the below instructions to install Kyligence Enterprise in the build clust
      ```xml
      <property>
          <name>mapreduce.job.hdfs-servers</name>
-         <value>hdfs://{build-cluster}/, hdfs://{query-cluster}/</value>
+         <value>hdfs://{build-cluster}/,hdfs://{query-cluster}/</value>
      </property>
      ```
    
