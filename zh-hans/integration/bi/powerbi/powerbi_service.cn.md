@@ -8,7 +8,7 @@ Microsoft Power BI Service 也被称为 Power BI online，是一个具有强大�
 
 ### Power BI Desktop 集成
 
-Power BI service 通过 Power BI Desktop 发布报表，需要已经安装 Power BI Desktop 并集成 Kylingence。关于如何使用 Power BI Desktop 连接 Kyligence Enterprise 的信息请参考页面 [Power BI Desktop 集成](powerbi_desktop.cn.md)。
+Power BI service 通过 Power BI Desktop 发布报表，需要已经安装 Power BI Desktop 并集成 Kyligence。关于如何使用 Power BI Desktop 连接 Kyligence Enterprise 的信息请参考页面 [Power BI Desktop 集成](powerbi_desktop.cn.md)。
 注意：Power BI service 和 Power BI Desktop 通过 Power BI 账号进行关联，所以在将报表发布到 Power BI service 时，Power BI Desktop 需处于正确的登录状态。
 
 ### 安装 Gateway
