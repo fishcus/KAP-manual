@@ -166,7 +166,7 @@
         * [获取技术支持](operation/monitor_diagnosis/get_support.cn.md)
     * [升级](operation/upgrade/README.md)    
         * [从 Apache Kylin 升级](operation/upgrade/upgrade_kylin.cn.md) 
-        * [升级至 Kyligence Enterprise 3.x 最新版本](operation/upgrade/upgrade_ke.cn.md)  
+        * [使用升级脚本升级至 Kyligence Enterprise 3.x 最新版本](operation/upgrade/upgrade_script_ke.cn.md)
 * [REST API](rest/README.md)         
     * [访问与安全认证 API](rest/authentication.cn.md)
     * [数据源 API](rest/data_source_api.cn.md)
