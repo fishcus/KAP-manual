@@ -1,6 +1,6 @@
 ## 导入 MS SQL Server 数据源
 
-Kyligence Enterprise 从3.0开始支持 SQL Server 作为默认的数据源，目前支持的  SQL Server 版本为 SQLServer2012及更高版本。首先需要下载 SQL Server 驱动程序 jar 包，并放置在`$KYLIN_HOME/ext`目录下。需要重启 Kyligence Enterprise 才会生效。。推荐的驱动版本为 sqlserver08:4-4.0。
+Kyligence Enterprise 从3.0开始支持 SQL Server 作为默认的数据源，目前支持的  SQL Server 版本为 SQLServer2012及更高版本。首先需要下载 SQL Server 驱动程序 jar 包，并放置在`$KYLIN_HOME/ext`目录下，重启 Kyligence Enterprise 生效。推荐的驱动版本为 sqlserver08:4-4.0。
 
 
 

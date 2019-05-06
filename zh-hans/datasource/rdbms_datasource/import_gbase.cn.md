@@ -1,6 +1,6 @@
 ## 导入 GBase 数据源
 
-Kyligence Enterprise 从3.3.0开始支持 GBase 作为数据源，目前支持的 GBase 版本为 GBase8a。首先需要下载 gbase 驱动程序 jar 包，并放置在`$KYLIN_HOME/ext`目录下。需要重启 Kyligence Enterprise 才会生效。推荐的驱动版本为 gbase-connector-java-8.3.81.51-build-53.6-bin.jar。
+Kyligence Enterprise 从3.3.0开始支持 GBase 作为数据源，目前支持的 GBase 版本为 GBase8a。需要下载 gbase 驱动程序 jar 包，并放置在`$KYLIN_HOME/ext`目录下，重启 Kyligence Enterprise 生效。推荐的驱动版本为 gbase-connector-java-8.3.81.51-build-53.6-bin.jar。
 
 以下参数需要您配置在连接 RDBMS 数据源的**项目配置**或 `kylin.properties` 中：
 

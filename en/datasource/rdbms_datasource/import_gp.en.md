@@ -26,7 +26,7 @@ To enable query pushdown, following configration is required:
 
 Using Greenplum as an example, we connect Greenplum data source with Greenplum Driver, followings are the steps:
 
-**Step 1:** Download Greenplum Driver jar package, and put it under `$KYLIN_HOME/ext` and `<sqoop_installation_directory>/lib`. Need to restart Kyligence Enterprise to take effect.
+**Step 1:** Download Greenplum Driver jar package, and put it under `$KYLIN_HOME/ext` and `<sqoop_installation_directory>/lib`. Restart Kyligence Enterprise to take effect.
 
 **Step 2:** In Kyligence Enterprise, project is the workspace of tables, models and cubes. To create a sample project, open the web UI of Kyligence Enterprise and click the plus icon at the top to create a new project like below.
 

@@ -1,6 +1,6 @@
 ## 导入 MySQL 数据源
 
-Kyligence Enterprise 从3.0开始支持 MySQL 作为默认的数据源，目前支持的 MySQL 版本包括 5.5，5.6，5.7。首先需要下载 MySQL 驱动程序 jar 包，并放置在`$KYLIN_HOME/ext`目录下。推荐的驱动版本为 mysql 5.1.41。
+Kyligence Enterprise 从3.0开始支持 MySQL 作为默认的数据源，目前支持的 MySQL 版本包括 5.5，5.6，5.7。需要下载 MySQL 驱动程序 jar 包，并放置在`$KYLIN_HOME/ext`目录下。推荐的驱动版本为 mysql 5.1.41。
 
 
 

@@ -1,6 +1,6 @@
 ## 导入 Oracle 数据源
 
-Kyligence Enterprise 从3.3.0开始支持 Oracle 作为数据源，目前支持的  Oracle 版本为 Oracle 11g 及更高版本。首先需要下载 Oracle 驱动程序 jar 包，并放置在`$KYLIN_HOME/ext`目录下。需要重启 Kyligence Enterprise 才会生效。推荐的驱动版本为 ojdbc6.jar 及以上版本。
+Kyligence Enterprise 从3.3.0开始支持 Oracle 作为数据源，目前支持的  Oracle 版本为 Oracle 11g 及更高版本。需要下载 Oracle 驱动程序 jar 包，并放置在`$KYLIN_HOME/ext`目录下，重启 Kyligence Enterprise 生效。推荐的驱动版本为 ojdbc6.jar 及以上版本。
 
 
 

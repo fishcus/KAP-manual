@@ -1,6 +1,6 @@
 ## 导入 Greenplum 数据源
 
-Kyligence Enterprise 从3.0开始支持 Greenplum 作为默认的数据源，目前支持的 Greenplum 版本为5.3.0。首先需要下载 Greenplum 驱动程序 jar 包，并把 jar 包放置在`$KYLIN_HOME/ext` 目录下。此外，因为Cube构建过程需要使用 **sqoop**，还需要把 jar 包拷贝到 sqoop 安装目录的 lib 目录下。
+Kyligence Enterprise 从3.0开始支持 Greenplum 作为默认的数据源，目前支持的 Greenplum 版本为5.3.0。需要下载 Greenplum 驱动程序 jar 包，并把 jar 包放置在`$KYLIN_HOME/ext` 目录下。此外，因为Cube构建过程需要使用 **sqoop**，还需要把 jar 包拷贝到 sqoop 安装目录的 lib 目录下。
 
 以下参数需要您配置在连接 RDBMS 数据源的**项目配置**或 `kylin.properties` 中：
 
@@ -27,7 +27,7 @@ kylin.query.pushdown.runner-class-name=io.kyligence.kap.query.pushdown.PushdownR
 
 以 Greenplum 数据源为例，我们使用 PostgreSQL JDBC Driver 来连接 Greenplum 数据源，步骤如下：
 
-**步骤一**：下载 Greenplum Driver 的 jar 包，放置在`$KYLIN_HOME/ext`和 sqoop 安装目录的 lib 目录下。 需要重启 Kyligence Enterprise 才会生效。
+**步骤一**：下载 Greenplum Driver 的 jar 包，放置在`$KYLIN_HOME/ext`和 sqoop 安装目录的 lib 目录下。 重启 Kyligence Enterprise 生效。
 
 **步骤二**：打开 Kyligence Enterprise 的 Web UI，在主界面的顶端是项目的管理工具栏，点击“＋”即可如下图所示创建一个新的项目（Project）。 
 

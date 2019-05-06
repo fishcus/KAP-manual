@@ -1,6 +1,6 @@
 ## Import Data from Oracle
 
-Oracle is supported as data source since Kyligence Enterprise 3.3.0, including Oracle 11g and higher versions. To load Oracle tables, Oracle driver jar package is needed to put in `$KYLIN_HOME/ext`. Need to restart Kyligence Enterprise to take effect. The recommended driver is ojdbc6.jar and higher.
+Oracle is supported as data source since Kyligence Enterprise 3.3.0, including Oracle 11g and higher versions. To load Oracle tables, put Oracle driver jar in `$KYLIN_HOME/ext` and restart Kyligence Enterprise to take effect. The recommended driver is ojdbc6.jar and higher.
 
 Then please set the following configurations in `kylin.properties` or in project configuration:
 
