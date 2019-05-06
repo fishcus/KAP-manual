@@ -84,6 +84,10 @@
 
   该参数指定了 segment 自动合并功能。默认状态下为开启状态。将该参数设置为 false 时，自动合并功能会被关闭。即使 cube 更新设置中，添加了自动合并阈值也不会触发合并任务。
 
+* **kap.job.merge-dict-on-yarn**
+
+  Merge dictionary这个步骤, 非常的消耗内存，有可能导致Kyligence Enterprise进程出现OOM，如果开启了这个配置，Merge dictionary这个步骤就会放到YARN上执行，使用MapReduce job来完成。该参数默认状态是关闭的，如果遇到Merge dictionary步骤OOM或者内存吃紧的情况，可以把该参数置为 true。
+
 * **kap.storage.columnar.start-own-spark**
 
   该参数指定了是否启动 Spark 查询集群。默认状态下为 true，将该参数设置为 false 时，关闭该功能。读写分离中，构建集群推荐关闭该功能。

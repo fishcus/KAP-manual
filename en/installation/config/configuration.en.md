@@ -85,6 +85,10 @@ User could put the customized config items into **kylin.properties.override**, t
 
   The auto merge function is enabled by default. If this setting is set to false, the function will be closed. Although the auto merge thresholds were setted, the merge job would not be built.
 
+* **kap.job.merge-dict-on-yarn**
+
+  The Merge dictionary job is a memory-consuming job, which may cause OOM in the Kyligence Enterprise process. If this function is enabled, the Merge dictionary step will be executed on YARN and completed using MapReduce job. This function is off by default. If you encounter OOM at Merge dictionary step or the memory is tight, you can set this configuration to true.
+
 * **kap.storage.columnar.start-own-spark**
 
   This property specifies whether starting the spark query cluster. The default value is true. If this setting is set to false, the function will be closed. In Read/Write Deployment, the property is recommended set as false in job cluster.
