@@ -125,6 +125,10 @@ User could put the customized config items into **kylin.properties.override**, t
 
   This property specifies the time interval to retry an error job and the default value is 30000 ms. This property is valid only when the job retry property is set to be 1 or above.
 
+* **kylin.dictionary.shrunken-from-global-enabled**
+
+  This property specifies whether to enable shrunken dictionary. When you use count_distinct(bitmap) on a large cardinality column in your cube, maybe you will find build base cuboid step cannot finished within a reasonable period because it need frequent dictionary cache swap. Shrunken dictionary is an optimization option which help to reduce dictionary cache swap. The default value is `false`.
+
 ### JVM Configuration Setting
 
 In `$KYLIN_HOME/conf/setenv.sh` (for version lower than 2.4, `$KYLIN_HOME/bin/setenv.sh`), two sample settings for `KYLIN_JVM_SETTINGS` environment variable are given. The default setting use relatively less memory. You can comment it and then uncomment the next line to allocate more memory for Kyligence Enterprise. The default configuration is: 

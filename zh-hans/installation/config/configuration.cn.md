@@ -124,7 +124,12 @@
 
   该参数指定了任务重试的间隔，默认值为 30000，单位毫秒。当配置了上述任务重试次数后，该参数才生效。
 
-### JVM参数
+* **kylin.dictionary.shrunken-from-global-enabled**
+
+  该参数指定了是否开启shrunken dictionary，当在Cube中对一个高基数列使用了count_distinct(bitmap)，有时你会发现build base cuboid步骤不能在一个合理时间段内成功完成，其原因是mapper发生了频繁的词典缓存换入换出。Shrunken dictionary是一个优化项，用于减少这种情况。默认值是`false`。
+
+
+### JVM 参数
 
 在`$KYLIN_HOME/conf/setenv.sh` （如果版本低于2.4.0，`$KYLIN_HOME/bin/setenv.sh`) 中，为KYLIN_JVM_SETTINGS 给出了两种示例配置。默认配置使用的内存较少，用户可以根据自己的实际情况，注释掉默认配置并取消另一配置前的注释符号以启用另一配置，从而为 Kyligence Enterprise 示例分配更多的内存资源。
 
