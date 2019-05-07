@@ -166,7 +166,7 @@
         * [Get Support](operation/monitor_diagnosis/get_support.en.md)
     * [Upgrade](operation/upgrade/README.md)    
         * [Upgrade From Apache Kylin](operation/upgrade/upgrade_kylin.en.md) 
-        * [Upgrade to Kyligence Enterprise 3.x with upgrade script](operation/upgrade/upgrade_script_ke.en.md)  
+        * [Upgrade to Kyligence Enterprise 3.x](operation/upgrade/upgrade_script_ke.en.md)  
 * [REST API](rest/README.md)         
     * [Access and Authentication API](rest/authentication.en.md)
     * [Data Source API](rest/data_source_api.en.md)

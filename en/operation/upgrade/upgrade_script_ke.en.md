@@ -1,24 +1,24 @@
-## Upgrade to Kyligence Enterprise 3.x with upgrade script
-
-In order to simplify upgrade operation, upgrade script is provided since Kyligence Enterprise 3.3.1
+## Upgrade to Kyligence Enterprise 3.x with Upgrade Script
 
 > **Note:** Starting with 3.x, the Kyligence Analytics Platform (KAP) was officially renamed to Kyligence Enterprise.
 
-> upgrade script is available since Kyligence Enterprise 3.3.1
+**For Kyligence Enterprise 3.3.0 and below, there is no upgrade script. Please refer to [this document for manual upgrade](upgrade_ke.en.md).**
 
-The upgrade process is different for a *main version* and a *minor version*. The first two in the version number are major version, such as KAP 2.x upgrade to Kyligence Enterprise 3.x and as Kyligence Enterprise 3.1.x upgrade to Kyligence Enterprise 3.2.x. Conversely, the first two in the version number not changing is a minor version upgrade, such as Kyligence Enterprise 3.2.1 upgrade to Kyligence Enterprise 3.2.2.
+The upgrade process is different for upgrading a *main version* and upgrading a *minor version*. The first two in the version number are major version, such as KAP 2.x upgrade to Kyligence Enterprise 3.x and as Kyligence Enterprise 3.1.x upgrade to Kyligence Enterprise 3.2.x. Conversely, the first two in the version number not changing is a minor version upgrade, such as Kyligence Enterprise 3.2.1 upgrade to Kyligence Enterprise 3.2.2.
 
 The metadata is compatible between two minor versions (with the same major version), so the upgrade only needs to run the upgrade script.
 
-You may need to upgrade the metadata between the major versions or upgrade the existing cube data. It is recommended to back up the metadata and cube data to ensure the maximum safty of your data.
+You may need to upgrade the metadata between the major versions or upgrade the existing cube data. It is recommended to back up the metadata and cube data to ensure the security of your data.
 
 If the original version is KAP 2.x and one project contains multiple data sources like Hive and Kafka, you have to specify a default data source (RDBMS option is not available at this point) for this project after upgrade. Once it's set, it cannot be changed in future.
 
-In order to ensure the safety and stability of production, we do not recommend directly upgrade a production environment. Instead we recommend you to prepare a test environment for the upgrade first, then upgrade the production environment when the test environment are upgraded and verified.
+**Note**: In order to ensure the stability of production, we do not recommend directly upgrade in a production environment. Instead, always test the upgrade in a test environment first.
 
-### Stop Kyligence Enterprise service
+### Stop Kyligence Enterprise Service
 
-1. Make sure that there are no running jobs.
+1. Make sure all jobs are fully completed, in either Successful or Discard state.
+
+   - You can wait till all running jobs are completed, or simply discard them if you plan to re-launch them later.
 
 2. Kyligence Enterprise, and the Hadoop nodes that it runs on, require:
 
@@ -35,7 +35,7 @@ In order to ensure the safety and stability of production, we do not recommend d
 
 ### Data Backup
 
-In order to maximize the safty of data and the availability of services, we recommend backing up metadata before upgrade. For major version upgrades, it is recommended to back up the cube data.
+For maximum data security, we recommend backing up metadata before upgrade. For major version upgrades, it is recommended to back up the cube data as well if resource permits.
 
 - Backup metadata
 
@@ -45,7 +45,7 @@ In order to maximize the safty of data and the availability of services, we reco
 
 - Backup cube data (only for major version)
 
-  Because the update of major version may affect existing cube data, we recommend you to back up the Cube data stored on HDFS for maximum data safty.
+  Because the update of major version may affect existing cube data, we recommend you to back up the cube data stored on HDFS if resource permits.
 
   - Make sure that there is enough space on your HDFS. 
     ```sh
@@ -61,19 +61,15 @@ In order to maximize the safty of data and the availability of services, we reco
     hadoop distcp /kylin /kylin_temp
     ```
 
+### Unpack and Run the Upgrade Script
 
-### Update Installation Directory
-
-Unzip the new version of the Kyligence Enterprise installation package and update the `KYLIN_HOME` environment variable:
+Unzip the new version of the Kyligence Enterprise installation package.
 
 ```sh
 tar -zxvf Kyligence-Enterprise-{version-env}.tar.gz
-export KYLIN_HOME={your-unpack-folder}
 ```
 
-### Run upgrade script
-
-example:
+Run the upgrade script in the unpack directory:
 
 ```sh
 Usage: upgrade.sh <OLD_KYLIN_HOME> [--silent]
@@ -85,19 +81,22 @@ Usage: upgrade.sh <OLD_KYLIN_HOME> [--silent]
 ```
 
 
-- Run upgrade script：
+- Run the upgrade script：
 
   ```sh
-  $NEW_KYLIN_HOME/bin/upgrade.sh $OLD_KYLIN_HOME
+  $UNPACK_HOME/bin/upgrade.sh $OLD_KYLIN_HOME
   ```
   
-- Enter the interactive upgrade mode, Use command (y/n) to finish upgrade according tips and reality.
+- Answer questions (y/n) in command line to finish the upgrade.
 
-### Cautions
-1. For **main version**, upgrade script cannot upgrade Spark or Tomcat automatically. Please configure it after running of upgrade script. （Reference [Integrate with Kerberos](../../security/kerberos.en.md) 和 [Cluster Deployment and Load Balancing](../../installation/deploy/cluster_lb.en.md)）
-2. It is on site upgrade, which means the upgrade script will backup `OLD_KYLIN_HOME` and rename `NEW_KYLIN_HOME` to `OLD_KYLIN_HOME`. Constant installation directory is suggested. It doesn't need extra configuration change, such as `kylin.env.hadoop-conf-dir`, after on site upgrade.
-3. Upgrade logs will be generated in directory `$NEW_KYLIN_HOME/logs` which include operation details.
-4. Parameter `--silent` allows upgrade script into silent mode. In this mode, confirmation operations are no needed. Please use the parameter in the help of Kyligence Technical Support
+- Once done, the `OLD_KYLIN_HOME` will become the upgraded Kyligence Enterprise.
+
+Notes on the upgrade script:
+
+1. For **main version**, upgrade script cannot upgrade Spark or Tomcat automatically. Please configure it after running of upgrade script. Please refer to [Integrate with Kerberos](../../security/kerberos.en.md) and [Cluster Deployment and Load Balancing](../../installation/deploy/cluster_lb.en.md).
+2. The script does in-place upgrade, which means the upgrade script will backup `OLD_KYLIN_HOME` and rename `UNPACK_HOME` to `OLD_KYLIN_HOME`. Constant installation directory is suggested. It doesn't need extra configuration change, such as `kylin.env.hadoop-conf-dir`, after on site upgrade.
+3. Upgrade logs will be generated in directory `$UNPACK_HOME/logs` which include operation details.
+4. Parameter `--silent` allows upgrade script into silent mode. In this mode, confirmation operations are no needed. Please use the parameter in the help of Kyligence Technical Support.
 
 ### Verify Kyligence Enterprise is Upgraded Successfully
 
@@ -111,13 +110,13 @@ Usage: upgrade.sh <OLD_KYLIN_HOME> [--silent]
 
 3. Verify that the integrated third-party systems of Kyligence Enterprise work successfully, such as clients that use JDBC for queries, clients that query the REST API, such as BI tools.
 
-### Deleting Backup Files
+### Delete Backup Files
 After verify and confirm your Kyligence Enterpries is successfully upgraded to the new version, you can safely delete all metadata, installation directories, and cube data that were backed up before the upgrade.
 
 
 ### Roll Back After Upgrade Failed
 
-> **Note:** Before the roll back, it's highly recommended to contacted Kyligence Support to check whether there is a solution for your issue first.
+**Before you decide to roll back**, it's highly recommended to contacted Kyligence Support to check whether there is a solution for your issue first.
 
 1. Stop and confirm that there are no Kyligence Enterprise processes running:
    ```sh

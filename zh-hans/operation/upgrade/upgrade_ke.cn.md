@@ -1,10 +1,10 @@
 ## 升级至 Kyligence Enterprise 3.x 最新版本 (Deprecated)
 
-本章介绍如何从 Kyligence 的早期软件版本升级到最新版本的 Kyligence Enterprise 3.x。
+**Deprecated: 从 Kyligence Enterprise 3.3.1 开始，推荐[使用脚本升级](upgrade_script_ke.cn.md)。**
 
 > **提示：** 从 3.0 开始，Kyligence Analytics Platform (KAP) 正式改名为 Kyligence Enterprise。
 
-> 从 Kyligence Enterprise 3.3.1 开始推荐使用升级脚本升级。
+本章介绍如何从 Kyligence 的早期软件版本升级到最新版本的 Kyligence Enterprise 3.x。
 
 升级分为**主要版本**的升级和**次要版本**的升级。版本号前两位发生变化的是主要版本的升级，如 KAP 2.x 升级到 Kyligence Enterprise 3.x，如 Kyligence Enterprise 3.1.x 升级到 Kyligence Enterprise 3.2.x。反之，版本号前两位不发生变化则是次要版本升级，如 Kyligence Enterprise 3.2.1 升级到 Kyligence Enterprise 3.2.2。
 
