@@ -29,9 +29,8 @@ kylin.query.pushdown.runner-class-name=io.kyligence.kap.query.pushdown.PushdownR
 
 **步骤一**：下载 Greenplum Driver 的 jar 包，放置在`$KYLIN_HOME/ext`和 sqoop 安装目录的 lib 目录下。 重启 Kyligence Enterprise 生效。
 
-**步骤二**：打开 Kyligence Enterprise 的 Web UI，在主界面的顶端是项目的管理工具栏，点击“＋”即可如下图所示创建一个新的项目（Project）。 
+**步骤二**：打开 Kyligence Enterprise 的 Web UI，在主界面的顶端是项目的管理工具栏，点击 **+** 创建一个新的项目（Project）。 
 
-![新建项目](../images/create_project.png)
 
 **步骤三**：在 Web UI 的左上角选择刚刚创建的项目，表示我们接下来的全部操作都在这个项目中，在当前项目的操作不会对其他项目产生影响。 
 

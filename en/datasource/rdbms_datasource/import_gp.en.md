@@ -28,9 +28,8 @@ Using Greenplum as an example, we connect Greenplum data source with Greenplum D
 
 **Step 1:** Download Greenplum Driver jar package, and put it under `$KYLIN_HOME/ext` and `<sqoop_installation_directory>/lib`. Restart Kyligence Enterprise to take effect.
 
-**Step 2:** In Kyligence Enterprise, project is the workspace of tables, models and cubes. To create a sample project, open the web UI of Kyligence Enterprise and click the plus icon at the top to create a new project like below.
+**Step 2:** Log in to Kyligence Enterprise Web UI, then add a new project by clicking the **+** at the top right on Web UI. Type project name (required) and descriptions on the pop-up page; click **OK** to finish creating a project.
 
-![Create project](../images/create_project.png)
 
 **Step 3:** Select the project you just created on the upper corner of the web UI, all our following operations will be within the project.
 
