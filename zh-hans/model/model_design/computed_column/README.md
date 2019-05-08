@@ -124,7 +124,11 @@ select sum(price * item_count) from kylin_sales
 
   我们将这种查询方式成为可计算列的**隐式查询**。
 
-> **提示：**隐式查询默认**开启**状态，如果要关闭它，可以全局配置文件`KYLIN_HOME/conf/kylin.properties`中移除参数 `kylin.query.transformers=io.kyligence.kap.query.util.ConvertToComputedColumn` 
+> **提示：**隐式查询默认**开启**状态，如果要关闭它，可以全局配置文件`KYLIN_HOME/conf/kylin.properties`中，取消注释并修改参数 `kylin.query.system-transformers`的默认值，将`io.kyligence.kap.query.util.ConvertToComputedColumn`从值中移除： 
+
+```properties
+kylin.query.system-transformers=io.kyligence.kap.query.util.EscapeTransformer,org.apache.kylin.query.util.DefaultQueryTransformer,org.apache.kylin.query.util.KeywordDefaultDirtyHack,io.kyligence.kap.query.security.RowFilter,io.kyligence.kap.query.security.HackSelectStarWithColumnACL
+```
 
 
 

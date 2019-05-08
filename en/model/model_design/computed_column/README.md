@@ -68,9 +68,11 @@ When **query pushdown** is enabled and there is no cube can be hit on for your q
 
 **Implicit Query:** You can pretend that computed column is invisible from the table, and still use the expression behind the computed column to query. Continuing with the last example, when your query `select sum(price * item_count) from kylin_sales`, Kyligence Enterprise will analyze the query and figure out that expression in `price * item_count` is replaceable by an existing computed column named `total_amount`. For better performance, Kyligence Enterprise will try to translate your original query to `select sum(total_amount) from kylin_sales`. We call it **Implicit Query** on computed columns.
 
-Implicit Query is **enabled** by default. To disable it you'll need to remove `kylin.query.transformers=io.kyligence.kap.query.util.ConvertToComputedColumn` in `KYLIN_HOME/conf/kylin.properties`
+Implicit Query is **enabled** by default. To disable it you'll need to uncomment and modify the parameter `kylin.query.system-transformers` in `KYLIN_HOME/conf/kylin.properties`, removing `io.kyligence.kap.query.util.ConvertToComputedColumn` from the value as below:
 
-
+```properties
+kylin.query.system-transformers=io.kyligence.kap.query.util.EscapeTransformer,org.apache.kylin.query.util.DefaultQueryTransformer,org.apache.kylin.query.util.KeywordDefaultDirtyHack,io.kyligence.kap.query.security.RowFilter,io.kyligence.kap.query.security.HackSelectStarWithColumnACL
+```
 
 ### Nested Computed Columns
 
