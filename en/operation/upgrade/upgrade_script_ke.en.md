@@ -35,7 +35,7 @@ If the original version is KAP 2.x and one project contains multiple data source
 
 ### Data Backup
 
-For maximum data security, we recommend backing up metadata before upgrade. For major version upgrades, it is recommended to back up the cube data as well if resource permits.
+For maximum data security, backing up metadata before upgrade is necessary. For major version upgrades, backing up the cube data is also highly recommended.
 
 - Backup metadata
 
