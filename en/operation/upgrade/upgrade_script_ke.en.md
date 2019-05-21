@@ -2,7 +2,7 @@
 
 > **Note:** Starting with 3.x, the Kyligence Analytics Platform (KAP) was officially renamed to Kyligence Enterprise.
 
-**For Kyligence Enterprise 3.3.0 and below, there is no upgrade script. Please refer to [this document for manual upgrade](upgrade_ke.en.md).**
+**For Kyligence Enterprise 3.3.0 and below, there is no upgrade script. Please refer to [this document for manual upgrade](../../appendix/upgrade_ke.en.md).**
 
 The upgrade process is different for upgrading a *main version* and upgrading a *minor version*. The first two in the version number are major version, such as KAP 2.x upgrade to Kyligence Enterprise 3.x and as Kyligence Enterprise 3.1.x upgrade to Kyligence Enterprise 3.2.x. Conversely, the first two in the version number not changing is a minor version upgrade, such as Kyligence Enterprise 3.2.1 upgrade to Kyligence Enterprise 3.2.2.
 

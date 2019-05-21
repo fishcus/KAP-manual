@@ -2,7 +2,7 @@
 
 > **提示：** 从 3.0 开始，Kyligence Analytics Platform (KAP) 正式改名为 Kyligence Enterprise。
 
-**如果您要升级到 Kyligence Enterprise 3.3.0 或之前的版本，由于没有自动升级脚本，请查看这里[如何做手工升级](upgrade_ke.cn.md)。**
+**如果您要升级到 Kyligence Enterprise 3.3.0 或之前的版本，由于没有自动升级脚本，请查看这里[如何手动升级](../../appendix/upgrade_ke.cn.md)。**
 
 升级分为**主要版本**的升级和**次要版本**的升级。版本号前两位发生变化的是主要版本的升级，如 Kyligence Enterprise 3.1.x 升级到 Kyligence Enterprise 3.2.x。反之，版本号前两位不发生变化则是次要版本升级，如 Kyligence Enterprise 3.2.1 升级到 Kyligence Enterprise 3.2.2。
 

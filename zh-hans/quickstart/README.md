@@ -2,11 +2,11 @@
 
 在本节中，我们将引导您在单节点上快速安装 Kyligence Enterprise。
 
-在安装前，请确认您已阅读[**安装前置条件**](../installation_conditions.cn.md)。
+在安装前，请确认您已阅读[**安装前置条件**](../installation/prerequisite.cn.md)。
 
 ### 下载安装 Kyligence Enterprise
 
-1. 获取 Kyligence Enterprise 软件包。您可以访问 [发行说明](../release/README.md)，选择适合您的版本。
+1. 获取 Kyligence Enterprise 软件包。您可以访问[发行说明](../release/README.md)，选择适合您的版本。
 
 2. 决定安装路径和将要运行 Kyligence Enterprise 的 Linux 账户。下文所有示例都做如下假设：
 

@@ -206,6 +206,7 @@
     * [样例数据集](appendix/sample_dataset.cn.md)      
     * [词汇表](appendix/terminology.cn.md)     
     * [如何在低版本 JDK 上运行 Kyligence Enterprise](appendix/run_on_jdk7.cn.md)
+    * [如何手动升级 Kyligence Enterprise](appendix/upgrade_ke.cn.md)
     * [自定义增量构建开发者指南](appendix/customize_build_dev_guide.cn.md)
 * [联系我们](contact/README.md)
 

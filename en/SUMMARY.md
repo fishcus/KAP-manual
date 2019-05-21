@@ -205,6 +205,7 @@
     * [FAQ](appendix/faq.en.md)       
     * [Sample Dataset](appendix/sample_dataset.en.md)      
     * [Terminologies](appendix/terminology.en.md)
-    * [Run Kyligence Enterprise on JDK 7](appendix/run_on_jdk7.en.md)     
+    * [Run Kyligence Enterprise on JDK 7](appendix/run_on_jdk7.en.md)
+    * [Manual Upgrade for Kyligence Enterprise 3.x](appendix/upgrade_ke.en.md)     
     * [Developer Guide for Implementing Java Class of Customized Cube Build](appendix/customized_build_dev_guide.en.md)
 * [Contact Us](contact/README.md)
