@@ -14,7 +14,7 @@ Kyligence Enterprise在集群结点上安装完毕后，还需要对Kyligence En
 |Kyligence Enterprise|kylin\_job\_conf.xml|该文件包含了Map Reduce任务的配置项。当kylin\_job\_conf\_inmem.xml不存在，或Cube构建算法是Layer Cubing时，会根据该文件的设置调整构建任务中的Map Reduce参数。|
 |Hadoop|core-site.xml|该文件是Hadoop使用的全局配置文件，用于定义系统级别的参数，如HDFS URL、Hadoop临时目录等。|
 |Hadoop|hdfs-site.xml|该文件用于配置HDFS参数，如NameNode与DataNode存放位置、文件副本个数、文件读取权限等。|
-|Hadoop|yarn-site.xml|该文件用于配置Hadoop集群资源管理系统参数，如ResourceManader与NodeManager的通信端口，web监控端口等。|
+|Hadoop|yarn-site.xml|该文件用于配置Hadoop集群资源管理系统参数，如ResourceManager与NodeManager的通信端口，web监控端口等。|
 |Hadoop|mapred-site.xml|该文件用于配置Map Reduce参数，如reduce任务的默认个数，任务所能够使用内存的默认上下限等。|
 |Hbase|hbase-site.xml|该文件用于配置Hbase运行参数，如master机器名与端口号，根数据存放位置等。|
 |Hive|hive-site.xml|该文件用于配置Hive运行参数，如hive数据存放目录，数据库地址等。|
