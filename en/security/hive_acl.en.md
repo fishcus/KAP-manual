@@ -1,6 +1,6 @@
-## Hive ACL Mapping
+## Enable Hive ACL on Table Sync
 
-Kyligence supports Hive ACL mapping on Hortonworks HDP and HUAWEI FusionInsight platform, which means project admin or modeler can see and sync only these tables according to ACL defined in Hive.
+Kyligence Enterprise supports Hive ACL mapping on Hortonworks HDP and HUAWEI FusionInsight platform, which means project admin or modeler can see and sync only these tables according to ACL defined in Hive.
 
 **Note:** 
 
@@ -9,7 +9,7 @@ Kyligence supports Hive ACL mapping on Hortonworks HDP and HUAWEI FusionInsight 
 
 
 
-### How to Enable Hive ACL Mapping
+### How to Enable Hive ACL on Table Sync
 
 * **Hortonworks HDP platform**
 
@@ -56,7 +56,7 @@ kylin.sh io.kyligence.kap.tool.storage.KapHiveRemoteClientCheckCLI check -databa
 
 ### Known Limitations
 
-There are some known limitations of Hive ACL mapping in Kyligence Enterprise:
+There are some known limitations of enabling Hive ACL on table sync in Kyligence Enterprise:
 
 - Only `SQLStdAuth` of Hive Authorization is supported
 

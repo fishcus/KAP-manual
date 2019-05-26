@@ -1,6 +1,6 @@
-## Hive 权限映射
+## 加载表时的 Hive 权限映射
 
-Kyligence 在 Hortonworks HDP 和华为 FusionInsight 平台上支持 Hive 数据源的权限映射，当用户如项目管理员、建模人员同步 Hive 数据源中的表时，其仅能看到其在 Hive 中拥有权限的表。
+Kyligence Enterprise 在 Hortonworks HDP 和华为 FusionInsight 平台上支持 Hive 数据源的权限映射，当用户如项目管理员、建模人员加载 Hive 数据源中的表时，其仅能看到其在 Hive 中拥有权限的表。
 
 **注意：** 
 
@@ -57,7 +57,7 @@ kylin.sh io.kyligence.kap.tool.storage.KapHiveRemoteClientCheckCLI check -databa
 
 ### 已知限制
 
-目前 Kyligence Enterprise 对 Hive 权限的映射还存在以下限制：
+目前 Kyligence Enterprise 对加载表时的 Hive 权限映射还存在以下限制：
 
 - 目前该功能只支持将 Hive 中 `Authorization` 设置为 `SQLStdAuth`
 
