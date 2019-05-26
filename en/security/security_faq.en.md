@@ -1,6 +1,6 @@
 ## Security FAQ
 
-Frequently asked questions about security are consolidated and answered here.
+Frequently asked questions about security are consolidated and answered here. If the following questions still do not answer your question, please contact the Kyligence sales or create a support ticket via [Kyligence Support](https://support.kyligence.io/).
 
 
 
@@ -34,15 +34,15 @@ A: Yes, Kyligence Enterprise can integrate with an existing user repository, ple
 
 
 
+**Q: Is it possible to reuse company's existing authorization system, like Apache Ranger or Apache Sentry?**
+
+A: Yes, Kyligence Enterprise can integrate with an existing authorization system, including Apache Ranger and Apache Sentry. Once integrated, all data ACL check will be delegated to the existing system. For more details, please refer to [3rd-party authentication integration](integrate_with_3rd_um.en.md).
+
+
+
 **Q: How data access control works?**
 
 A: Kyligence Enterprise supports managing data access control at different granularity, including project-level, table-level, column-level and row-level ACL. Read more about [Data ACL](data_acl/README.md).
-
-
-
-**Q: Is it possible to reuse company's existing authorization system, like Apache Ranger or Apache Sentry?**
-
-A: Yes, Kyligence Enterprise can integrate with an existing authorization system, including Apache Ranger and Apache Sentry. Once integrated, all data ACL check will be delegated to the existing system.
 
 
 
@@ -54,7 +54,7 @@ A: No, Hadoop impersonation is not supported. However, Kyligence Enterprise can 
 
 **Q: Is Single Sign-On (SSO) supported?**
 
-A: Using [Spring Security](https://spring.io/projects/spring-security) technology, Kyligence Enterprise can be customized to integrate with your Single Sign-On system. However such integration often requires technical consulting and/or custom development, please contact Kyligence sales for more information.
+A: Using [Spring Security](https://spring.io/projects/spring-security) technology, Kyligence Enterprise can be customized to integrate with your Single Sign-On system. However, such integration often requires technical consulting and/or custom development, please contact Kyligence sales for more information.
 
 
 

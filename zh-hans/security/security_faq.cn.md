@@ -1,6 +1,6 @@
-## 安全 FAQ
+## 安全问题 FAQ
 
-安全相关的常见问题汇总如下。
+安全相关的常见问题汇总如下。如以下问题仍无法解答您的问题，请联系 Kyligence 销售人员或通过 [Kyligence Support](https://support.kyligence.io/) 创建相应工单。
 
 
 
@@ -34,15 +34,15 @@ A: 是的，Kyligence Enterprise 能与公司已有的用户认证系统集成�
 
 
 
+**Q: 是否可以复用公司已有的权限管理系统，比如 Apache Ranger 或者 Apache Sentry？**
+
+A: 是的，Kyligence Enterprise 能与公司已有的权限管理系统集成，比如 Apache Ranger 和 Apache Sentry。启用之后，所有的数据访问验权都将转发至公司已有的权限管理系统。详情请参考[第三方用户认证系统集成](integrate_with_3rd_um.cn.md)。
+
+
+
 **Q: 系统支持哪些数据访问权限？**
 
 A: Kyligence Enterprise 有丰富的数据访问权限控制，包括项目级、表级、列级、和行级的数据访问权限。了解更多[数据访问权限](data_acl/README.md).
-
-
-
-**Q: 是否可以复用公司已有的权限管理系统，比如 Apache Ranger 或者 Apache Sentry？**
-
-A: 是的，Kyligence Enterprise 能与公司已有的权限管理系统集成，比如 Apache Ranger 和 Apache Sentry。启用之后，所有的数据访问验权都将转发至公司已有的权限管理系统。
 
 
 
