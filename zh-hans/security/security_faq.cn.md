@@ -90,7 +90,7 @@ A: 支持，您可以在 Web 服务层启用 TLS/SSL 来加密传输过程中的
 
 **Q: 系统支持哪些加密算法？**
 
-A: Kyligence Enterprise 本身不提供任何加密算法。TLS/SSL 通常使用 JDK 提供的加密算法。作为参考，JDK 7 要求所有 Java 平台都支持下面这些 [Cipher](https://docs.oracle.com/javase/7/docs/api/javax/crypto/Cipher.html) ：
+A: Kyligence Enterprise 本身不提供任何加密算法。TLS/SSL 通常使用 JDK 提供的加密算法。作为参考，JDK 7 要求所有 Java 平台都支持下面这些 [Cipher](https://docs.oracle.com/javase/8/docs/api/javax/crypto/Cipher.html) ：
 
 - `AES/CBC/NoPadding` (128)
 - `AES/CBC/PKCS5Padding` (128)

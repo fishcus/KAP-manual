@@ -90,7 +90,7 @@ A: Yes, TLS/SSL can be enabled at web service layer to secure data in motion. Ky
 
 **Q: What encryption algorithm is supported?**
 
-A: Kyligence Enterprise does not provide any encryption algorithm. TLS/SSL would leverage what is provided by JDK typically. For reference, JDK 7 requires following [Cipher](https://docs.oracle.com/javase/7/docs/api/javax/crypto/Cipher.html) be implemented by every Java platform:
+A: Kyligence Enterprise does not provide any encryption algorithm. TLS/SSL would leverage what is provided by JDK typically. For reference, JDK 7 requires following [Cipher](https://docs.oracle.com/javase/8/docs/api/javax/crypto/Cipher.html) be implemented by every Java platform:
 
 - `AES/CBC/NoPadding` (128)
 - `AES/CBC/PKCS5Padding` (128)
