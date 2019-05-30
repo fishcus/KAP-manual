@@ -1,4 +1,4 @@
-## Top-N
+## Top-N (Approximate)
 
 Find the Top-N (or Top-K) entities from a dataset is a frequent-using scenario and requirement in data minding. We often read the reports or news title like “Top 100 companies in the world”, “Most popular 20 electronics” and so forth. So it is common recognized that exploring and analyzing the top entities are quite valuable and essential for most analysis. 
 
