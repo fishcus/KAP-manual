@@ -8,6 +8,8 @@
 
 
 * [Merge/Refresh/Delete Segments](#manage-segments)
+* [Export Segment](#export-segment)
+* [Import Segment](#import-segment)
 * [File Datasource: Merge All Consecutive Segments (by Hour)](#File-Datasource-Merge-All-Consecutive-Segments-by-Hour)
 * [File Datasource: Merge Segment using Customized Range](#File-Datasource-Merge-Segment-using-Customized-Range)
 * [File Datasource: Refresh a Segment](#File-Datasource-Refresh-a-Segment)
@@ -78,6 +80,97 @@
         }
     ],
     "msg":""
+  }
+  ```
+
+
+
+### Export Segment 
+
+### {#export-segment}
+
+- `POST http://host:port/kylin/api/cubes/segment/export`
+
+
+- HTTP Header
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
+
+- HTTP Body: JSON Object
+  - `cube`  -  `required` `string`, cube name
+  - `project`  -  `required` `string`, project name
+  - `segmentId`  -  `required` `string`, segment ID
+  - `hdfsPath`  -  `required` `string`, the exported HDFS path
+  - `mkdirOnHdfs`  -  `optional` `boolean`, whether force to create the HDFS directory, please select `true` or `false`.
+
+- Curl Request Example
+
+  ```sh
+  curl -X POST \
+    'http://host:port/kylin/api/cubes/segment/export' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json;charset=utf-8' \
+    -d '{"cube": "kylin_sales_cube",
+    "project": "learn_kylin",
+    "segmentId": "79e204f1-af67-47b4-962c-ee85077b3972",
+    "hdfsPath": "hdfs://ip:port/kylin/segment_export"
+  }'
+  ```
+
+
+- Response Example
+
+  ```json
+  {
+    "code":"000",
+    "data": "hdfs://ip:port/kylin/segment_export/79e204f1-af67-47b4-962c-ee85077b3972",
+    "msg": "Export cube segment storage to HDFS successfully. Path: hdfs://ip:port/kylin/segment_export/79e204f1-af67-47b4-962c-ee85077b3972"
+  }
+  ```
+
+
+
+### Import Segment {#import-segment}
+
+- `POST http://host:port/kylin/api/cubes/segment/import`
+
+
+- HTTP Header
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
+
+- HTTP Body: JSON Object
+  - `hdfsPath`  -  `required` `string`, exported HDFS path
+  - `cubeName`  -  `optional` `string`, cube name
+  - `projectName`  -  `optional` `string`, project name
+  - `tableMapping`  -  `optional` `map`, support to add  table mapping of the imported tables.
+
+- Curl Request Example
+
+  ```sh
+  curl -X POST \
+    'http://host:port/kylin/api/cubes/segment/export' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json;charset=utf-8' \
+    -d '{"hdfsPath": "hdfs://ip:port/kylin/kylin/segment_export/79e204f1-af67-47b4-962c-ee85077b3972",
+    "tableMapping": {"EDW.TEST_CAL_DT_RENAME":"EDW.TEST_CAL_DT","DEFAULT.TEST_KYLIN_FACT_RENAME":"DEFAULT.TEST_KYLIN_FACT"}
+  }'
+  ```
+
+
+- Response Example
+
+  ```json
+  {
+    "code":"000",
+    "data": null,
+    "msg": ""
   }
   ```
 

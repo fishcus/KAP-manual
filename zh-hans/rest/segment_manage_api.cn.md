@@ -9,13 +9,15 @@
 
 
 * [合并/刷新/删除 Segment](#管理Segment)
-* [文件数据源（按小时）合并所有连续的 Segment](#文件数据源（按小时）合并Segment)
-* [文件数据源自定义区间合并 Segment](#文件数据源自定义区间合并Segment)
-* [文件数据源刷新 Segment](#文件数据源刷新Segment)
+* [导出 Segment](#导出Segment)
+* [导入 Segment](#导入Segment)
+* [文件数据源：（按小时）合并所有连续的 Segment](#文件数据源（按小时）合并Segment)
+* [文件数据源：自定义区间合并 Segment](#文件数据源自定义区间合并Segment)
+* [文件数据源：刷新 Segment](#文件数据源刷新Segment)
 
 
 
-### 合并/刷新/删除 Segment   {#管理Segment}
+### 合并/刷新/删除 Segment {#管理Segment}
 
 - `PUT http://host:port/kylin/api/cubes/{cubeName}/segments`
 
@@ -84,9 +86,96 @@
 
 
 
+### 导出 Segment   {#导出Segment}
+
+- `POST http://host:port/kylin/api/cubes/segment/export`
 
 
-### 文件数据源（按小时）合并所有连续的 Segment   {#文件数据源（按小时）合并Segment}
+- HTTP Header
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
+
+- HTTP Body: JSON Object
+  - `cube`  -  `必选` `string`，Cube 名称
+  - `project`  -  `必选` `string`，项目名称
+  - `segmentId`  -  `必选` `string`， Segment ID
+  - `hdfsPath`  -  `必选` `string`，导出的 HDFS 目录地址
+  - `mkdirOnHdfs`  -  `可选` `boolean`，是否强制创建 HDFS 目录，为 "true" 或 "false"
+
+- Curl 请求示例
+
+  ```sh
+  curl -X POST \
+    'http://host:port/kylin/api/cubes/segment/export' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json;charset=utf-8' \
+    -d '{"cube": "kylin_sales_cube",
+    "project": "learn_kylin",
+    "segmentId": "79e204f1-af67-47b4-962c-ee85077b3972",
+    "hdfsPath": "hdfs://ip:port/kylin/segment_export"
+  }'
+  ```
+
+
+- 响应示例
+
+  ```json
+  {
+    "code":"000",
+    "data": "hdfs://ip:port/kylin/segment_export/79e204f1-af67-47b4-962c-ee85077b3972",
+    "msg": "Export cube segment storage to HDFS successfully. Path: hdfs://ip:port/kylin/segment_export/79e204f1-af67-47b4-962c-ee85077b3972"
+  }
+  ```
+
+
+
+### 导入 Segment  {#导入Segment}
+
+- `POST http://host:port/kylin/api/cubes/segment/import`
+
+
+- HTTP Header
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
+
+- HTTP Body: JSON Object
+  - `hdfsPath`  -  `必选` `string`，导出的 HDFS 目录地址
+  - `cubeName`  -  `可选` `string`，Cube 名称
+  - `projectName`  -  `可选` `string`，项目名称
+  - `tableMapping`  -  `可选` `map`，导入数据对应表名映射关系
+
+- Curl 请求示例
+
+  ```sh
+  curl -X POST \
+    'http://host:port/kylin/api/cubes/segment/export' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json;charset=utf-8' \
+    -d '{"hdfsPath": "hdfs://ip:port/kylin/kylin/segment_export/79e204f1-af67-47b4-962c-ee85077b3972",
+    "tableMapping": {"EDW.TEST_CAL_DT_RENAME":"EDW.TEST_CAL_DT","DEFAULT.TEST_KYLIN_FACT_RENAME":"DEFAULT.TEST_KYLIN_FACT"}
+  }'
+  ```
+
+
+- 响应示例
+
+  ```json
+  {
+    "code":"000",
+    "data": null,
+    "msg": ""
+  }
+  ```
+
+
+
+### 文件数据源：（按小时）合并所有连续的 Segment   {#文件数据源（按小时）合并Segment}
 
 假设使用了 “**年月日+小时+文件序号**” 的 Segment 区间格式，调用这个 API 将合并所有同一小时内的连续 Segment。例如，如果已有下面的 Segment：
 
@@ -153,7 +242,7 @@
 
 
 
-### 文件数据源自定义区间合并 Segment   {#文件数据源自定义区间合并Segment}
+### 文件数据源：自定义区间合并 Segment   {#文件数据源自定义区间合并Segment}
 
 根据自定义的区间合并 Segment。
 
@@ -209,7 +298,7 @@
 
 
 
-### 文件数据源刷新 Segment   {#文件数据源刷新Segment}
+### 文件数据源：刷新 Segment   {#文件数据源刷新Segment}
 
 一般而言，已经导入的数据不应该再有变化。但如果源数据确实发生了变化，也可以刷新（即重新载入）一个已经存在的 Segment。
 
