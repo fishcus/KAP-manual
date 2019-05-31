@@ -1,4 +1,4 @@
-## SUM Expression (Beta)
+## Sum Expression (Beta)
 
 在很多业务的数据分析场景中，sum(expression) 是比较常见的 SQL 用法。
 
@@ -17,46 +17,54 @@ kap.query.enable-convert-sum-expression=true
 - sum(column * constant)
 - sum(constant)
 
-这里我们将以产品自带的样例数据集为例进行说明，有关样例数据集的详细信息请参考[样例数据集](../../../appendix/sample_dataset.cn.md)。
+这里我们将以产品自带的样例数据集为例说明具体用法。有关样例数据集的更多信息请参考[样例数据集](../../../appendix/sample_dataset.cn.md)。
 
 
 
 **sum(case when) 函数**
 
-例如，默认状态下，如下 SQL 语句缺省无法执行。
+以下面 SQL 为例：
 
 ```sql
 select
-  sum(case when LSTG_FORMAT_NAME='ABIN' then price else null end)
+  sum(case when LSTG_FORMAT_NAME='ABIN' then PRICE else null end)
 from KYLIN_SALES
 ```
 
-启用 sum(expression) 功能后，并在 Cube 设置了 `LSTG_FORMAT_NAME` 维度和 `sum(price)` 度量后，您将可以用 Cube 执行上述语句。
+要执行它，启用 sum(expression) 功能后，还需如下设置 Cube：
 
+- 将 `when` 子句中出现的所有列定义为维度，如此例中的 `LSTG_FORMAT_NAME` 维度
+- 将 `then` 子句中出现的所有列定义为 Sum 度量，如此例中的 `sum(PRICE)` 度量
+
+然后，Cube 即可执行上述 SQL。
 
 
 
 **sum(column*constant) 函数**
 
-例如，默认状态下，如下 SQL 语句缺省无法执行。
+以下面 SQL 为例：
 
 ```sql
-select sum(price*3) from KYLIN_SALES
+select sum(PRICE * 3) from KYLIN_SALES
 ```
 
-启用 sum(expression) 功能后，并在 Cube 中设置了 `sum(price)` 度量后，您将可以用 Cube 执行上述语句。
+要执行它，启用 sum(expression) 功能后，还需如下设置 Cube：
+
+- 将 Sum 函数中的列定义为 Sum 度量，如此例中的 `sum(PRICE)` 度量
+
+然后，Cube 即可执行上述 SQL。
 
 
 
 **sum(constant) 函数**
 
-例如，默认状态下，如下 SQL 语句缺省无法执行。
+以下面 SQL 为例：
 
 ```sql
 select sum(3) from KYLIN_SALES
 ```
 
-启用 sum(expression) 功能后，您将可以用 Cube 执行上述语句。
+要执行它，只需启用 sum(expression) 功能即可，无需在 Cube 上做其他设置。
 
 
 

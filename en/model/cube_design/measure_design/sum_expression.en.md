@@ -18,45 +18,54 @@ Currently, three kinds of sum (expression) usages are supported, namely
 - sum(column*constant)
 - sum(constant)
 
-We will use the sample dataset to introduce how to use. For more details, please refer to [Sample Dataset](../../../appendix/sample_dataset.en.md).
+We will use the sample dataset to introduce the usage. Read more about the [Sample Dataset](../../../appendix/sample_dataset.en.md).
 
 
 
 **sum(case when) function**
 
-For example, the SQL below is not supported by default:
+For example:
 
 ```sql
 select
-  sum(case when LSTG_FORMAT_NAME='ABIN' then price else null end)
+  sum(case when LSTG_FORMAT_NAME='ABIN' then PRICE else null end)
 from KYLIN_SALES
 ```
 
-With sum(expression) enabled, and `LSTG_FORMAT_NAME` dimension and `sum(price)` measure defined in cube, you will be able to run the above SQL in cube.
+In order to run this SQL, set your cube as below in addition to enable sum(expression):
+
+- Define all columns in the `when` clause as dimensions, like the `LSTG_FORMAT_NAME` in this example.
+- Define all columns in the `then` clause as Sum measure, like the `sum(PRICE)` in this example.
+
+Then, the cube will be able to run the above SQL.
 
 
 
 **sum(column*constant) function**
 
-For example, the SQL below is not supported by default:
+For example:
 
 ```sql
-select sum(price*3) from KYLIN_SALES
+select sum(PRICE * 3) from KYLIN_SALES
 ```
 
-With sum(expression) enabled, and `sum(price)` measure defined in cube, you will be able to run the above SQL in cube.
+In order to run this SQL, set your cube as below in addition to enable sum(expression):
+
+- Define the column in the `sum` function as Sum measure, like the `sum(PRICE)` in this example.
+
+Then, the cube will be able to run the above SQL.
 
 
 
 **sum(constant) function**
 
-For example, the SQL below is not supported by default:
+For example:
 
 ```sql
 select sum(3) from KYLIN_SALES
 ```
 
-With sum(expression) enabled, you will be able to run the above SQL in cube.
+In order to run this SQL, just enable the sum(expression) feature. No other setting on cube is needed.
 
 
 
