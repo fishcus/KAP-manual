@@ -14,7 +14,7 @@ Open  Kyligence Enterprise Web UI, click **Insight** on the navigation header, a
 
 Enter a select query and click **Submit**, you will see query results. Note the **Limit** field at the bottom right of the page. If there's no limit clause in your SQL statement, the system will apply a default limit value, which is 500. You can uncheck the checkbox in front of the limit field, if you want to disable the limit utterly.
 
-After query results returned successfully, you can find the name of the answering cube in the **Query Engine** item below **Status**. 
+After query results returned successfully, you can find the name(s) of the answering cube(s) in the **Query Engine** field at the top of the result section. 
 
 ![](images/insight/insight_input_query.png)
 
