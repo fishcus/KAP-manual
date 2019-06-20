@@ -135,6 +135,7 @@
         * [SmartBI](integration/bi/SmartBI.en.md)
         * [FineReport/FineBI](integration/bi/fanruan.en.md)
         * [Apache Zeppelin](integration/bi/zeppelin.en.md)
+        * [Yonghong BI](integration/bi/yonghong.en.md)
     * [Using Excel](integration/excel.en.md)
     * [Using Python](integration/python.en.md)
 * [Security](security/README.md)
