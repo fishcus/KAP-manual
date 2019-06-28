@@ -1,60 +1,56 @@
 ## Routine Operation Tool
 
-Kyligence Enterprise provides a routine operation tool to keep the system clean and in a healthy state, and hence ensure the system stability and performance. This tool provides following functionalities:
+Kyligence Enterprise provides a routine tool to maintain the system, including metadata/outdated data check, cleanup and recovery. **Please make sure this tool is scheduled to run regularly during system free hours.**
 
-- Metadata check, cleanup, and recovery
-- System garbage check, cleanup in HDFS / Hive / HBase etc.
+This tool provides the following functionalities:
+
+- Metadata check, cleanup and recovery
+- Outdated data check and cleanup
 - Metadata backup
-
-> **Note:** We highly recommend you to run this tool on a regular basis during system idle time.
 
 ### How to Use
 
-You can run this tool via command line:
+You can run the below command line to use
 
 ```shell
 $KYLIN_HOME/bin/kylin.sh io.kyligence.kap.tool.routine.RoutineTool
 ```
 
-Without any options or arguments, running this command only checks system metadata and garbage. No other actions like cleanup are taken. This command supports following options:
+Without options, this command does **checking only** and no change to data or metadata will be made. 
 
-- `-c, --cleanup`: cleanup metadata and system garbage after check.
-- `-e, --excludeThreshold <arg>`: specify how many days of recent metadata to be excluded from cleanup and recovery. `<arg>` is a number of days and default is 1 day.
-- `-f, --force`: force to clean **ALL** intermediate tables in Hive.
+This command supports short and long options:
+
+- `-c, --cleanup`: cleanup metadata and outdated data after check; without this option, no change to data or metadata will be made.
+- `-e, --excludeThreshold <arg>`: specify how many days of recent metadata to be excluded from cleanup and recovery operation. `<arg>` is an integer value and default value is 1.
 - ` -h, --help`: print help message.
-- `-r, --withRecovery`: recover table snapshots after check.
-- `-o, --outdatedThreshold <arg>`: specify how many days of job history to keep during cleanup, default is 30 days.
-- `-dl, --dumpLocation <arg>`: `<arg>` is the path of file system, specify the location for dumped metadata, default is the temporary folder of system.
-- `-fm, --fastMode`: specify running as Fast-Mode, ignore metadata garbage checking and storage garbage checking
-- `-gm, --gcMode`: specify running as GC-Mode, only collecting metadata garbage and storage garbage
-- `-stb, --singleThreadBackup`: specify backup metadata by using single thread, default is multi-thread 
 
-> **Caution:** 
-> 1. `-f` and `-r` option applies only when `-c` is used in command line.
-> 2. Please use `-f` option only when it's necessary, as it might affect running jobs.
-> 3. The option `--fastMode` and `--gcMode` can not be used at the same time.
+> **Note**: A few additional advanced options:
+>
+> - `-f, --force`:  force delete **ALL** intermediate tables in Hive, only works together with the `-c` option. Don't use this unless necessary as it can impact running jobs.
+> - `-r, --withRecovery`: recover table snapshots after check operation, only works together with the `-c` option.
+> - `-o, --outdatedThreshold <arg>`: specify how many days of job history that will be ignored during cleaning. `<arg>` is an integer value and default value is 30.
+> - `-dl, --dumpLocation <arg>`: specify the location for dumped metadata. `<arg>` indicates the file system path and default is the temporary folder of system.
+> - `-fm, --fastMode`: specify running as Fast-Mode, which only does the checking of inconsistent metadata. Checking of outdated data and metadata is ignored.
+> - `-stb, --singleThreadBackup`: run metadata backup in single thread, default is multi-thread.
+> - Further, in `$KYLIN_HOME/conf/kylin.properties`, set `kap.tool.routine-tool.delete-task-thread-num` to enable multi-thread on data deletion. In case of deleting a large number of outdated data files, multi-thread can improve performance to some extent.
 
 ### Metadata Backup
 
-When execute the command with `-c` option, RoutineTool will backup metadata excluding dictionary and snapshot automatically. Only when the backup process succeeds, the cleanup action will be taken.
+When execute the command with `-c` option, this tool will backup metadata excluding dictionary and snapshot before making any changes. Only when backup process succeeds, the cleanup action will be taken.
 
-By default, only 5 backups are kept in system. If there is a new backup, the tool will delete the oldest one. All backups files are stored under folder `$KYLIN_HOME/meta_backups` and file name pattern is `meta_${timestamp}`.
+By default, only 5 backups will be kept. If there is a new backup, the tool will delete the oldest one. All backup files are stored under folder `$KYLIN_HOME/meta_backups` and file name pattern is `meta_${timestamp}`.
 
 ### Best Practice
 
-For system daily operations, you can run this single command line without exectuing previous commands like  `MetadataChecker` or `Gargbage Clean` separately.
-
-In general case, we suggest that you run the following command line on a daily basis. You can write a scheduler shell script to run it during system idle time, like at midnight when there is no jobs or queries in the system.
+We recommend running this tool regularly to ensure the stability and performance of Kyligence Enterprise. Schedule to run bellow command periodically during system is free hours, such as every midnight.
 
 ```shell
 $KYLIN_HOME/bin/kylin.sh io.kyligence.kap.tool.routine.RoutineTool -c
 ```
 
-#### Enable Multi-Thread Execution
+As outdated metadata is cleaned, you may go to Kyligence Enterprise Web UI to reload metadata after cleanup is finished.
 
-RoutineTool supports multi-thread mode to improve the performance of cleanup process.
+**Note**:
 
-Set the parameter `kap-tool.routine-tool.delete-task-thread-num` in `kylin.properties` configuration file:
-
-- The value is `1` by default, means using single-thread mode to cleanup
-- When setting the value to be greater than `1`, then multi-thread mode will be enabled and the value is number of threads.
+1. For Multi-Tenancy deployment mode, please run this tool **in each tenant** separately because of the resource isolation.
+2. For Read/Write deployment mode, it is only supported to run this tool in **Write Cluster**.
