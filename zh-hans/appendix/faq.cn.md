@@ -122,6 +122,10 @@ A：要的。本产品本身的核心在于强大的查询后端，针对数据�
 
 推荐本公司的 Kyligence Insight for Superset，是一款功能强大，且与 Kyligence Enterprise 无缝集成的 BI 解决方案。
 
+**Q：遇到查询相关的功能、性能问题，如何解决？**
+
+A：请看如何处理[关于查询的功能和性能问题](../query/query_issue.cn.md)。
+
 ### 对比方面
 
 **Q：本产品与 Spark、Impala 有什么区别？**
