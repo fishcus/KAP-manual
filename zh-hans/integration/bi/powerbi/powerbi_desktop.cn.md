@@ -6,24 +6,15 @@ Microsoft Power BI Desktop 是由微软推出的一款商业智能的专业分�
 
 有关安装信息，参考页面 [Kyligence ODBC 驱动程序教程](../../driver/odbc/README.md)。
 
-### 安装 Kyligence Enterprise Data Connector for PowerBI 插件
-
-如果您的 Power BI Desktop 版本 >= **2018年10月版本 (v2.63)**，则您不需要手动安装插件，因为自该版本起 Kyligence 成为其内置的认证数据源。
-
-如果您的 Power BI Desktop 版本 < **2018年10月版本 (v2.63)**，您可以按照以下步骤安装 Kyligence Enterprise Data Connector for PowerBI 插件：
-
-1. 在 [Kyligence Account 页面](http://account.kyligence.io)下载 Kyligence Enterprise Data Connector for PowerBI 插件。
-
-2. 将 DirectQuery 插件文件（.mez 文件）复制到 Power BI 安装目录 `[Documents]\Microsoft Power BI Desktop\Custom Connectors` 文件夹中。如果没有 **Custom Connectors** 这个文件夹，请手动创建。
-
-3. 打开 Power BI Desktop 中 **Options and settings** 下的 **Options**。
-   在 **Preview Features** 中勾选 **Custom data connectors**： ![勾选 Custom data connectors](../../images/powerbi/Picture11.png)
-
-   > **提示：** Power BI 2.61版本无法显示 Kyligence connector，须修改扩展插件安全设置。您可以依次选择**文件**->**选项和设置**->**选项**->**安全**，在**数据扩展插件**下，从两个安全级别中进行选择 **（不推荐）允许加载任何插件而不发出警告**。
-
-4. 重启 Power BI Desktop。
-
 ### 使用 Power BI Desktop 连接 Kyligence Enterprise
+
+先决条件：
+
+- 如果您的 Power BI Desktop 版本 >= **2018年10月版本 (v2.63)**，则您使用 Power BI Desktop 内置的 Kyligence Enterprise Data Connector for PowerBI 连接 Kyligence Enterprise，因为自该版本起 Kyligence 成为其内置的认证数据源。
+
+- 如果您的 Power BI Desktop 版本 < **2018年10月版本 (v2.63)**，请先按照本文末的步骤 [安装 Kyligence Enterprise Data Connector for PowerBI 插件](#安装 Kyligence Enterprise Data Connector for PowerBI 插件)。之后，再继续下面步骤。
+
+连接 Kyligence Enterprise 的具体方法：
 
 1. 启动已经安装的 Power BI Desktop，单击 **Get data -> more**，在 **Database** 类别下选中 **Kyligence Enterprise**。
 
@@ -53,3 +44,18 @@ Microsoft Power BI Desktop 是由微软推出的一款商业智能的专业分�
 
 6. 现在可以回到报表页面开始可视化分析。
    ![进行可视化分析](../../images/powerbi/Picture10.png)
+
+### 安装 Kyligence Enterprise Data Connector for PowerBI 插件
+
+如果您的 Power BI Desktop 版本 < **2018年10月版本 (v2.63)**，您可以按照以下步骤安装 Kyligence Enterprise Data Connector for PowerBI 插件：
+
+1. 在 [Kyligence Account 页面](http://account.kyligence.io)下载 Kyligence Enterprise Data Connector for PowerBI 插件。
+
+2. 将 DirectQuery 插件文件（.mez 文件）复制到 Power BI 安装目录 `[Documents]\Microsoft Power BI Desktop\Custom Connectors` 文件夹中。如果没有 **Custom Connectors** 这个文件夹，请手动创建。
+
+3. 打开 Power BI Desktop 中 **Options and settings** 下的 **Options**。
+   在 **Preview Features** 中勾选 **Custom data connectors**： ![勾选 Custom data connectors](../../images/powerbi/Picture11.png)
+
+   > **提示：** Power BI 2.61版本无法显示 Kyligence connector，须修改扩展插件安全设置。您可以依次选择**文件**->**选项和设置**->**选项**->**安全**，在**数据扩展插件**下，从两个安全级别中进行选择 **（不推荐）允许加载任何插件而不发出警告**。
+
+4. 重启 Power BI Desktop。

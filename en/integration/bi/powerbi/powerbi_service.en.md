@@ -9,41 +9,46 @@ This article will guide you to connect Kyligence Enterprise with Power BI servic
 
 ### Integration With Power BI Desktop
 
-To analyze and share the reports on Power BI service, which are published through Power BI Desktop, you need to integrate the Power BI Desktop with Kyligence at first. The relevant installation and configuration information, please refer to following link for details: [Power BI Desktop integration](powerbi_desktop.en.md). NOTE: Power BI Desktop is linked to Power BI service through Power BI account, you need to guarantee that Power BI Desktop is at correct log-in status before deploying the reports on Power BI service platform. 
+To analyze and share the reports on Power BI service, which are published through Power BI Desktop, you need to integrate the Power BI Desktop with Kyligence at first. The relevant installation and configuration information, please refer to following link for details: [Power BI Desktop integration](powerbi_desktop.en.md). 
+
+> Note: Power BI Desktop is linked to Power BI service through Power BI account, you need to guarantee that Power BI Desktop is at correct log-in status before deploying the reports on Power BI service platform. 
 
 ### Install Gateway
 
-Power BI service communicates with local server by Gateway, you can refer this guide [Gateway installation](https://docs.microsoft.com/en-us/power-bi/service-gateway-install) for installation. Note: Gateway does not need to be installed on the same machine as Power BI Desktop, but the machine network running the Gateway should be open and access to data source configured by Kyligence Enterprise Data Connector for Power BI. So you should install 64 bit Kyligence ODBC Driver in the machine which has installed the Gateways, you can refer this guide [Kyligence ODBC Driver tutorial](../../driver/odbc/README.md) for installation.
+Power BI service communicates with local server by Gateway, you can refer this guide [Gateway installation](https://docs.microsoft.com/en-us/power-bi/service-gateway-install) for installation. 
+
+> Note: 
+>
+> 1. Gateway does not need to be installed on the same machine as Power BI Desktop.
+> 2. The machine network running the Gateway should be open and access to data source configured by Kyligence Enterprise Data Connector for Power BI. 
+> 3. You should install 64 bit Kyligence ODBC Driver in the machine which has installed the Gateways,.
+> 4. You can refer this guide [Kyligence ODBC Driver tutorial](../../driver/odbc/README.md) for Kyligence ODBC Driver installation.
 
 ### Configure Gateway
 
-1.After completing the Gateway installation, you can open the administrator command prompt and run ```net start PBIEgwService``` to start the Gateway service. Then you can double-click the *On-premises data gateway* program icon       to configure Gateway. you can also run ```net stop PBIEgwService``` command to stop the Gateway service.
+1. After completing the Gateway installation, you can open the administrator command prompt and run ```net start PBIEgwService``` to start the Gateway service. 
+2. Then you can double-click the *On-premises data gateway* program icon to configure Gateway. For a detailed local data gateway configuration, please refer to Microsoft's tutorial [Local Data Gateway](https://docs.microsoft.com/en-us/power-bi/service-gateway-onprem).
+3. You can also run ```net stop PBIEgwService``` command to stop the Gateway service.
 
-2.Configure Kyligence Enterprise Data Connector for Gateway:
+### Add a data source to the Power BI Service
 
-a) Create a directory, which Gateway could access to, to store the connector. (Please do not create this directory in unaccessible or system folders.) 
+1. After logging into Power BI service, in the upper-right corner of the Power BI service, select the gear icon > **Manage gateways**.
 
-b) Download the Kyligence Enterprise Data Connector for Power BI plug-in from [Kyligence Download Page](http://download.kyligence.io/#/products) and put it under new-created directory. 
+   ![manage gateways](../../images/powerbi/manage_gateway.en.png)
 
-![Custom data connectors](../../images/powerbi/Picture_PBI_SERVIECE_01.png)
+2. Either select a gateway > **Add data source**, or go to Gateways > **Add data source**.
 
-For more configure information, you can refer to [Custom Connectors](https://docs.microsoft.com/en-us/power-bi/service-gateway-custom-connectors).
+   ![add data source](../../images/powerbi/add_data.en.png)
 
-### Power BI Service Manage Gateway
+3. Select the **Data Source Type**, select Kyligence Enterprise here.
 
-1.After logging into Power BI service, you can check the **Allow user's custom data connectors to refresh through this gateway cluster** select box and click the **Apply** button in Gateway page. Then you can add the Kyligence Enterprise connector in Gateway cluster.
+   ![Select the Data Source Type](../../images/powerbi/select_type.en.png)
 
-![allow the custom data connector](../../images/powerbi/Picture_PBI_SERVIECE_08.png)
+4. Fill out the Data Source Configuration using the same connection information between Power BI Desktop and Kyligence Enterprise Data Connector for Power BI. 
 
-2.After success Gateway installation, please click the Gear setting icon on Power BI service page:->**Manage gateways**->**ADD DATA SOURCE**: select Kyligence Enterprise data sources
+   ![Configure Data Source](../../images/powerbi/configuration_data.en.png)
 
-![Add Data Source](../../images/powerbi/Picture_PBI_SERVIECE_03.png)
-
-3.DATA SOURCE CONFIGURATION: Please keep the configuration information of DATA SOURCE same as the connection information between Power BI Desktop and Kyligence Enterprise Data Connector for Power BI.
-
-![Configure Data Source](../../images/powerbi/Picture_PBI_SERVIECE_04.png)
-
-4.You can click the **Users** tab at right side of **Data Source Settings** to add users for DATA SOURCE. Then, the new-added users will have editor access, including report deployment.
+5. You can click the **Users** tab at right side of **Data Source Settings** to add users for data source. Then, the new-added users will have editor access, including report deployment. To learn more about the configuration features of Power BI Service, you can refer to Microsoft's official tutorial [Managing Power BI Local Gateway](https://docs.microsoft.com/en-us/power-bi/service-gateway-manage )
 
 ### Publish Reports on Power BI Service
 
