@@ -30,3 +30,16 @@
    kylin.query.pushdown.jdbc.pool-min-idle
    ```
 
+注：
+
+1. 若配置了 kerberos，其中 principle 应为集群 hive-site.xml 中，配置项 'hive.server2.authentication.kerberos.principal' 对应的值 'hive/[_HOST@hadoop-r.com](mailto:_HOST@hadoop-r.com)'，_HOST 替换为部署 hiveserver2 的主机名
+
+> 例如：
+> kylin.query.pushdown.jdbc.url=jdbc:hive2://127.0.0.1:10000/default;principal=hive/cdh-54-02@hadoop-r.com
+
+2. 在 HDP 中配置下压至 Hive，需要将 hive-site.xml 中的配置项删除：
+
+   > <property>
+   > <name>hive.exec.post.hooks</name>
+   > <value>org.apache.atlas.hive.hook.HiveHook</value>
+   > </property>

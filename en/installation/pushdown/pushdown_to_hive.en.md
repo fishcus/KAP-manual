@@ -30,3 +30,17 @@ Kyligence Enterprise uses Hive as cube's data source. Meanwhile, Hive can also b
    #Hive Jdbc's connection pool's min waiting connected connection number, default value is 0
    kylin.query.pushdown.jdbc.pool-min-idle
    ```
+
+Note:
+
+1. If kerberos is configured, the principal should be the value of the configuration item 'hive.server2.authentication.kerberos.principal' in the cluster hive-site.xml, 'hive/[_HOST@hadoop-r.com](mailto:_HOST@ Hadoop-r.com)', _HOST is replaced with the hostname where hiveserver2 is deployed
+
+   > For example：
+   > kylin.query.pushdown.jdbc.url=jdbc:hive2://127.0.0.1:10000/default;principal=hive/cdh-54-02@hadoop-r.com
+
+2. To configure the Pushdown to Hive at HDP, you need to delete the configuration items in hive-site.xml:
+
+   ><property>
+   ><name>hive.exec.post.hooks</name>
+   ><value>org.apache.atlas.hive.hook.HiveHook</value>
+   ></property>
