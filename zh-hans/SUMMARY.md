@@ -135,7 +135,7 @@
         * [与 思迈特 SmartBI Insight 集成](integration/bi/smartbi.cn.md)
         * [与 帆软 FineBI/FineReport 集成](integration/bi/fanruan.cn.md)
         * [与 Apache Zeppelin 集成](integration/bi/zeppelin.cn.md)
-        * [与 Yonghong BI 集成](integration/bi/yonghong.cn.md)
+        * [与 Yonghong BI 集成](integration/bi/Yonghong.cn.md)
     * [与 Excel 集成](integration/excel.cn.md)
     * [与 Python 集成](integration/python.cn.md)
 * [安全控制](security/README.md)
