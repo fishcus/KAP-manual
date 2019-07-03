@@ -78,8 +78,8 @@
 
 - HTTP Body: JSON Object
   - `permission` - `必选` `string`，项目级访问控制权限，对应关系如下："READ" 对应 "Query"；"ADMINISTRATION" 对应 "ADMIN"；"OPERATION" 对应 "OPERATION"；"MANAGEMENT" 对应 "MANAGEMENT"  
-  - `principal` - `必选` `boolean`，是否为用户，"true" 或者 "false"
-  - `sid` - `必选` `string`，用户名称
+  - `principal` - `必选` `boolean`，为用户或用户组，"true" 表示用户，"false" 表示用户组
+  - `sid` - `必选` `string`，用户或用户组的名称
 
 - Curl 请求示例
 
@@ -123,8 +123,9 @@
   - `Content-Type: application/json;charset=utf-8`
 
 - HTTP Body: JSON Object
-  - `permission` - `必选` `string`，项目级访问控制权限，对应关系如下："READ" 对应 "Query"；"ADMINISTRATION" 对应 "ADMIN"；"OPERATION" 对应 "OPERATION"；"MANAGEMENT" 对应 "MANAGEMENT"  - `principal` - `必选` `boolean`，是否为用户，"true" 或者 "false"
-  - `sid` - `必选` `string`，用户名称
+  - `permission` - `必选` `string`，项目级访问控制权限，对应关系如下："READ" 对应 "Query"；"ADMINISTRATION" 对应 "ADMIN"；"OPERATION" 对应 "OPERATION"；"MANAGEMENT" 对应 "MANAGEMENT"  
+  - `principal` - `必选` `boolean`，为用户或用户组，"true" 表示用户，"false" 表示用户组
+  - `sid` - `必选` `string`，用户或用户组的名称
   - `accessEntryId` - `必选` `int`，用户对应的 UUID
 
 
@@ -177,8 +178,8 @@
 - HTTP Body: JSON Object
   - `permission` - `必选` `string`，项目级访问控制权限，对应关系如下："READ" 对应 "Query"；"ADMINISTRATION" 对应 "ADMIN"；"OPERATION" 对应 "OPERATION"；"MANAGEMENT" 对应 "MANAGEMENT"
   - `accessEntryId` - `必选` `int`，用户对应的 UUID
-  - `sid` - `必选` `string`，用户名称
-  - `principal` - `必选` `boolean`，是否为用户，"true" 或者 "false"
+  - `sid` - `必选` `string`，用户或用户组的名称
+  - `principal` - `必选` `boolean`，为用户或用户组，"true" 表示用户，"false" 表示用户组
 
 
 - Curl 请求示例

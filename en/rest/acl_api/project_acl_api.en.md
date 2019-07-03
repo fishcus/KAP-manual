@@ -75,9 +75,9 @@
   - `Content-Type: application/json;charset=utf-8`
 
 - HTTP Body: JSON Object
-  - `permission` - `required` `string`, project acl. eg.,("READ" for "Query","ADMINISTRATION" for "ADMIN","OPERATION" for "OPERATION" and "MANAGEMENT" for "MANAGEMENT")
-  - `principal` - `required` `boolean`, user or not, "true" for user and "false" for usergroup
-  - `sid` - `required` `string`, user name
+  - `permission` - `required` `string`, project ACL. e.g. ("READ" for "Query", "ADMINISTRATION" for "ADMIN", "OPERATION" for "OPERATION" and "MANAGEMENT" for "MANAGEMENT")
+  - `principal` - `required` `boolean`, user or user group, "true" for user and "false" for user group
+  - `sid` - `required` `string`, name of user or user group
 
 - Curl Request Example
 
@@ -120,9 +120,9 @@
   - `Content-Type: application/json;charset=utf-8`
 
 - HTTP Body: JSON Object
-  - `permission` - `required` `string`, project acl. eg.,("READ" for "Query","ADMINISTRATION" for "ADMIN","OPERATION" for "OPERATION" and "MANAGEMENT" for "MANAGEMENT" )
-  - `principal` - `required` `boolean`, user or not, "true" for user and "false" for usergroup
-  - `sid` - `required` `string`, user name
+  - `permission` - `required` `string`, project ACL. e.g. ("READ" for "Query","ADMINISTRATION" for "ADMIN","OPERATION" for "OPERATION" and "MANAGEMENT" for "MANAGEMENT" )
+  - `principal` - `required` `boolean`, user or user group, "true" for user and "false" for user group
+  - `sid` - `required` `string`, name of user or user group
   - `accessEntryId` - `required` `int`, user UUID
 
 
@@ -171,15 +171,15 @@
 
 
 - HTTP Body: JSON Object
-  - `permission` - `required` `string`, project acl. eg.,("READ" for "Query","ADMINISTRATION" for "ADMIN","OPERATION" for "OPERATION" and "MANAGEMENT" for "MANAGEMENT")
+  - `permission` - `required` `string`, project ACL. e.g. ("READ" for "Query","ADMINISTRATION" for "ADMIN","OPERATION" for "OPERATION" and "MANAGEMENT" for "MANAGEMENT")
   - `accessEntryId` - `required` `int`, user UUID
-  - `sid` - `required` `string`, user name
-  - `principal` - `required` `boolean`, user or not, "true" for user and "false" for usergroup
+  - `sid` - `required` `string`, name of user or user group
+  - `principal` - `required` `boolean`, user or user group, "true" for user and "false" for user group
 
 
 - Curl Request Example
 
- > Note: the following curl request example will delete "query" permission  of user group "ROLE_ANALYST" on project "learn_kylin"
+ > Note: the following curl request example will delete "query" permission of user group "ROLE_ANALYST" on project "learn_kylin"
 
 
   ```sh
