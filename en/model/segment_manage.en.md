@@ -34,12 +34,16 @@
 
       > **Note**: The clone operation will only copy the metadata, without the segment data.
     
-    * Verify SQL: Verify if the cube can answer a certain SQL statement.
+    * Refresh Lookup Table Snapshot:  Refresh the snapshot of all segments under this cube.
     
+      > **Note:** Only lookup tables of SCD Type 1 are supported to refresh
+    
+    * Verify SQL: Verify if the cube can answer a certain SQL statement.
+  
     * Backup/Export: Backup or export a cube's metadata to local or a HDFS path.
     
   * **READY**: A cube with READY status means it has segments to be queried. Besides viewing the cube description, you can also execute the following actions.
-
+  
     * Build: Build the segments based on the partition columns.
     
     * Disable: Convert a READY cube to DISABLED.
