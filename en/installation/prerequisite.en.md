@@ -89,14 +89,18 @@ Verify if user have access to the Hadoop cluster assuming the account is `KyAdmi
 
 ### Supported Hadoop Distributions
 
-The following Hadoop distributions are verified to run Kyligence Enterprise.
+The following Hadoop distributions are verified to run Kyligence Enterprise. The bold are major test versions.
 
-* Cloudera CDH 5.7 / 5.8 / 5.11 / 5.12	
-* Hortonworks HDP 2.2 / 2.4 / 2.6
-* MapR 5.2.1
-* Huawei FusionInsight C60 / C70
-* Azure HDInsight 3.6
-* AWS EMR 5.14 ~ 5.16
+- Cloudera CDH 5.7 / **5.8** / 5.11 ~ 5.13 / **6.0** / **6.1**
+- Hortonworks HDP **2.4** / 2.6
+- MapR **6.0.1**
+- Huawei FusionInsight C60 / **C70**
+- Azure HDInsight **3.6**
+- AWS EMR 5.14 ~ 5.16 / **5.23**
+
+> The following Hadoop distributions used to be verified but the tests are not maintained any more:
+> - Hortonworks HDP 2.2
+> - MapR 5.2.1
 
 ### Hadoop Cluster Resource Allocation
 

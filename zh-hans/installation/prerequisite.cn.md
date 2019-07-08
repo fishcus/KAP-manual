@@ -88,14 +88,18 @@
 
 ### 支持的 Hadoop 平台
 
-下述企业级数据管理平台及其相应 Hadoop 版本已经过我们的认证和测试：
+下述企业级数据管理平台及其相应 Hadoop 版本已经过我们的认证和测试，其中粗体的为主要测试版本：
 
-+ Cloudera CDH 5.7 / 5.8 / 5.11 / 5.12
-+ Hortonworks HDP 2.2 / 2.4 / 2.6
-+ MapR 5.2.1
-+ 华为 FusionInsight C60 / C70
-+ Azure HDInsight 3.6
-+ AWS EMR 5.14 ~ 5.16
+- Cloudera CDH 5.7 / **5.8** / 5.11 ~ 5.16 / **6.0** / **6.1**
+- Hortonworks HDP **2.4** / 2.6
+- MapR **6.0.1**
+- 华为 FusionInsight C60 / **C70**
+- Azure HDInsight **3.6**
+- AWS EMR 5.14 ~ 5.16 / **5.23**
+
+> 以下 Hadoop 版本曾经测试可用，但已不再维护测试：
+> - Hortonworks HDP 2.2
+> - MapR 5.2.1
 
 
 ### 集群资源分配
