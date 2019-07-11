@@ -88,7 +88,7 @@ A：每个查询引擎都可以独立地启用和关闭。如果在 Cube 设计�
 
 **Q：本产品支持 MDX 查询吗？**
 
-A：可以通过 Kyligence MDX Service 组件支持。
+A：可以通过 Kyligence Insight 支持。
 
 **Q：怎么查看查询的执行计划？**
 

@@ -86,48 +86,7 @@ SmartBI Insight 是企业级的商业智能分析平台，定位于前端数据�
 
      ![登录](../images/SmartBI/07.PNG)
 
-### 使用 MDX Service 连接 Kyligence Enterprise
 
-1. 安装 MDX Service
 
-   请参考 [与 Excel 集成](../excel.cn.md)
+> 注意：若想使用多维模式连接 Kyligence 产品，需要使用 Kyligence Insight 。[Kyligence Insight 对接 SmartBI 操作手册](https://docs.kyligence.io/books/insight/v1.0/zh-cn/integration/smartbi_integration.cn.html)
 
-2. 建立多维数据源连接
-
-   + 点击选项卡右侧的定制管理，点击数据源连接，选择多维数据源
-
-     ![创建连接](../images/SmartBI/SmartBI-MDX_01.png)
-
-   + 数据库类型选择 Mondrian, 连接地址格式为 http://{mdx.host}:{mdx.port}/mdx/xmla/{project}
-
-     ![输入连接地址](../images/SmartBI/SmartBI-MDX_02.png)
-
-   + 输入账号密码，需要注意的是，SmartBI 支持的密码格式仅包含字母数字下划线，然后点击测试连接
-
-     ![测试连接](../images/SmartBI/SmartBI-MDX_03.png)
-
-   + 测试通过后，选择一个多维数据库，然后点击保存
-
-     ![保存连接](../images/SmartBI/SmartBI-MDX_04.png)
-
-   + 然后在左侧数据管理 --> 数据源中找到刚才创建的连接，右键数据集管理，将刚才选择的多维数据集同步到右侧
-
-     ![同步连接](../images/SmartBI/SmartBI-MDX_05.png)
-
-3. 多维分析与图表制作
-
-   + 在定制管理页卡中选择其他分析中的多维分析
-
-     ![选择多维分析](../images/SmartBI/SmartBI-MDX_06.png)
-
-   + 选择刚才创建的多维数据集，点击开始分析
-
-     ![打开多维分析](../images/SmartBI/SmartBI-MDX_07.png)
-
-   + 将维度度量过滤条件拖动到相应区域，点击刷新，获取数据
-
-     ![获取数据](../images/SmartBI/SmartBI-MDX_08.png)
-
-   + 选择相应的图形展示数据
-
-     ![图形展示](../images/SmartBI/SmartBI-MDX_09.png)

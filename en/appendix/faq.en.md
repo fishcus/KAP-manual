@@ -88,7 +88,7 @@ A: Each query engine can be enabled and disabled independently. If table index i
 
 **Q: Does this product support MDX queries?**
 
-A: Yes, MDX is supported by the Kyligence MDX Service component.
+A: Yes, MDX is supported by the Kyligence Insight component.
 
 **Q: How to view the execution plan of a query?**
 
