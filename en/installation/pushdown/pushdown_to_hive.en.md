@@ -53,3 +53,10 @@ Kyligence Enterprise supports Query Pushdown since version 2.4. If the query is 
   kylin.query.pushdown.jdbc.url=jdbc:hive2://127.0.0.1:10000/default;principal=hive/cdh-54-02@hadoop.com
   ```
 
+- For HDP, if your Atlas service is disabled, please remove the following configuration in `hive-site.xml`, such that Hive pushdown won't touch the Atlas hook.
+  ```xml
+  <property>
+      <name>hive.exec.post.hooks</name>
+      <value>org.apache.atlas.hive.hook.HiveHook</value>
+  </property>
+  ```

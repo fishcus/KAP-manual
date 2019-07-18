@@ -52,3 +52,11 @@
   ```properties
   kylin.query.pushdown.jdbc.url=jdbc:hive2://127.0.0.1:10000/default;principal=hive/cdh-54-02@hadoop.com
   ```
+- 对于 HDP，如果您**不启用** Atlas 服务，请在 `hive-site.xml` 中**删除**下面的配置，以确保 Hive 下压过程中不会触及 Atlas Hook。
+  ```xml
+  <property>
+      <name>hive.exec.post.hooks</name>
+      <value>org.apache.atlas.hive.hook.HiveHook</value>
+  </property>
+  ```
+
