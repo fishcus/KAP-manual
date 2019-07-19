@@ -121,7 +121,7 @@ ABS,ALL,ALLOCATE,ALLOW,ALTER,AND,ANY,ARE,ARRAY,ARRAY_MAX_CARDINALITY,AS,ASENSITI
 
 ### 转义关键字
 
-如果您的列名或表名是关键字，您需要使用双引号对其进行转义。
+如果您的列名或表名是保留关键字，您需要使用双引号对其进行转义。
 
 例如表 `AIRLINE` 包含列 `YEAR` 及 `QUARTER`。这两列的列名和 Kyligence Enterprise 的关键字 **YEAR** 和 **QUARTER** 重复。如下图所示，如果用户直接对 `YEAR` 及 `QUARTER` 两列进行查询，查询会返回报错，因为 Kyligence Enterprise 查询引擎无法分辨两列是否为关键字。
 
