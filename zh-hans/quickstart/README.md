@@ -51,8 +51,8 @@
 在 `$KYLIN_HOME/conf/` 路径下，我们准备了两套可用的出场配置方案：`profile_prod` 和 `profile_min`。前者是默认方案，适用于实际生产环境；后者使用较少的资源，适用于沙箱等资源有限的环境。如果您的单点环境资源有限，可以切换到 `profile_min` 配置。
 
 ```shell
-rm -f KYLIN_HOME/conf/profile
-ln -sfn KYLIN_HOME/conf/profile_min $KYLIN_HOME/conf/profile
+rm -f $KYLIN_HOME/conf/profile
+ln -sfn $KYLIN_HOME/conf/profile_min $KYLIN_HOME/conf/profile
 ```
 
 ### 启动 Kyligence Enterprise
