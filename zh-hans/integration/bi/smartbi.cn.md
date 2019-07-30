@@ -6,87 +6,82 @@ SmartBI Insight 是企业级的商业智能分析平台，定位于前端数据�
 
 有关 SmartBI Insight 的安装说明，请访问 [SmartBI Insight 下载页面](http://www.SmartBI.com.cn/download)
 
-### 使用 JDBC 连接 Kyligence Enterprise
+### 安装 Kyligence JDBC 驱动程序
 
-1. 安装 Kyligence JDBC 驱动程序
++ SmartBI Insight 通过 JDBC 连接 Kyligence Enterprise，所以首先需要在SmartBI Insight 上安装 Kyligence JDBC 驱动程序，获取 Kyligence JDBC 驱动程序：请参考 [Kyligence JDBC 驱动程序说明](../driver/jdbc.cn.md)
 
-   SmartBI Insight 通过JDBC连接 Kyligence Enterprise，所以首先需要在SmartBI Insight 上安装 Kyligence JDBC 驱动程序
++ 向 SmartBI Insight 增加 JDBC 驱动程序：
 
-   + 获取 Kyligence JDBC 驱动程序：
+  具体步骤如下：
 
-     请参考 [Kyligence JDBC 驱动程序说明](../driver/jdbc.cn.md)
+  + 停止 SmartBI
+  + 将 JDBC 的驱动放到 **Smart BI 安装目录\Tomcat\webapps\eagle\WEB-INF\lib**下
+  + 重启 SmartBI
 
-   + 向 SmartBI Insight 增加 JDBC 驱动程序：
+### 建立 Kyligence Enterprise 数据源连接 
 
-     具体步骤如下：
++ **进入界面**
 
-     (1)停止tomcat，删除war包（**安装目录\Tomcat\webapps\SmartBI.war**）中的jar包 **_JDBC_kylin-jdbc-1.5.0-SNAPSHOT.jar** 
+  在 **定制管理**->**数据管理**->**数据源** 节点下右键选择新建关系数据源，或是在定制管理快捷按钮选择 **数据源连接**，则打开数据源连接窗口。
 
-     注：此处可以直接使用 WinRAR 删除、添加文件，而无需解压缩再压缩
+  ![进入界面](../images/SmartBI/01.PNG)
 
-     (2)修改后，需要删除 (**安装目录\Tomcat\webapps\SmartBI**) 文件夹 ，清空（**安装目录\Tomcat\temp**）文件夹和（**安装目录\Tomcat\work**）文件夹
++ **新建数据源**
 
-     (3)添加新的jar包到war包并保存war包
+  选择 **Kylin** 驱动程序类型，将服务器IP地址等信息填写到连接字符串（ 字符串格式为:```jdbc:kylin://<hostname>:<port>/<project_name>``` ），然后**保存**数据源连接。
 
-     (4)重启tomcat
+  这里默认选择用户验证类型为**静态验证**，输入 Kyligence Enterprise 的用户名和密码进行连接。
 
-2. 建立 Kyligence Enterprise 数据源连接 
+  ![新建数据源](../images/SmartBI/02.PNG)
 
-   + **进入界面**
++ **管理数据源**
 
-     在 **定制管理**->**数据管理**->**数据源** 节点下右键选择新建关系数据源，或是在定制管理快捷按钮选择 **数据源连接**，则打开数据源连接窗口。
+  点击保存后，您将在 **定制管理**->**数据管理**->**数据源**下看到您此前建立的 Kyligence 数据源。
 
-     ![进入界面](../images/SmartBI/01.PNG)
+  ![查看数据源](../images/SmartBI/save.cn.png)
 
-   + **新建数据源**
+  右键点击数据源名称，点击管理数据库，即可进入管理页面
 
-     选择**Kylin**驱动程序类型，将服务器IP地址等信息填写到连接字符串（字符串格式为:**jdbc:kylin://<hostname>:<port>/<project_name>**) ,然后**保存**数据源连接。
+  ![管理数据源](../images/SmartBI/management.cn.PNG)
 
-     这里默认选择用户验证类型为**静态验证**，输入Kyligence Enterprise的用户名和密码进行连接。
+  对数据源进行管理，将表结构信息（表名、字段名、字段类型等）添加到 SmartBI Insight 中。
 
-     如需使用**动态验证**方式，请参考本文下方的**用户的动态验证方式**。
+  ![管理数据源1](../images/SmartBI/09.PNG)
+  
+  右键点击您创建的数据源下的**表关系视图**，点击其中的**新建**->**表关系视图**，即可进入关系图页面
+  
+  ![表关系视图](../images/SmartBI/manage_relation.cn.png)
+  
+  对于星型模型的多表关联，会按照按外键、列名等方式自动创建表之间的关联关系，也可以手动拖拽建立关联关系。（注：这里的关联关系需要与接下来使用的 Cube 中的**关联关系**相匹配）
+  
+  ![管理数据源3](../images/SmartBI/11.PNG)
 
-     ![新建数据源](../images/SmartBI/02.PNG)
+### 创建业务视图
 
-   + **管理数据源**
++ 右键点击**数据库**->**数据库名**->**业务视图**->**可视化查询**，即可进入新增业务视图的界面。
 
-     对数据源进行管理，将表结构信息（表名、字段名、字段类型等）添加到 SmartBI Insight 中。
+  ![业务视图](../images/SmartBI/business.cn.PNG)
 
-     ![管理数据源1](../images/SmartBI/09.PNG)
++ 将字段拖入后，创建业务视图。
 
-     也可以对选择设置字段别名，设置数据类型、数据格式等操作。
+  ![创建业务视图](../images/SmartBI/business_2.cn.PNG)
 
-     ![管理数据源2](../images/SmartBI/10.PNG)
+### 透视分析
 
-     对于星型模型的多表关联，会按照按外键、列名等方式自动创建表之间的关联关系，也可以手动拖拽建立关联关系。（注：这里的关联关系需要与接下来使用的cube中的**关联关系**相匹配）
++ 点击**定制管理**->**透视分析**，即可进入透视分析页面。
 
-     ![管理数据源3](../images/SmartBI/11.PNG)
+  ![透视分析](../images/SmartBI/analysis.cn.png)
 
-3. 制作图表
++ 在选择业务查询页面，选择数据源中的表选项卡，并找到之前创建的业务视图。
 
-   + 新建透视分析，选择新建的数据源，拖拽字段到行列区和过滤区，进行自助式探索分析。可将任意字段作为查询条件进行数据筛查，并进行数据的排序、钻取、行列互换、同环比时间计算等。
+  ![选择业务查询](../images/SmartBI/select_business.cn.png)
 
-     ![制作图表1](../images/SmartBI/12.PNG)
++ 拖拽字段到行列区和过滤区，点击刷新，进行自助式探索分析。
 
-   + 根据分析需要，灵活生成各种分析图表。
+  ![制作图表1](../images/SmartBI/12.PNG)
 
-     ![制作图表2](../images/SmartBI/13.PNG)
++ 根据分析需要，生成各种分析图表。
 
-4. 使用用户的动态验证方式
+  ![制作图表2](../images/SmartBI/13.PNG)
 
-   + 首先设置用户的扩展属性
-
-     ![设置拓展属性](../images/SmartBI/05.PNG)
-
-   + 创建新用户
-
-     ![创建新用户](../images/SmartBI/06.PNG)
-
-   + 在建立数据源连接时选用动态验证方式，将左侧菜单栏中的**用户名**及**密码**字符串拖动过来即可。
-
-     ![登录](../images/SmartBI/07.PNG)
-
-
-
-> 注意：若想使用多维模式连接 Kyligence 产品，需要使用 Kyligence Insight 。[Kyligence Insight 对接 SmartBI 操作手册](https://docs.kyligence.io/books/insight/v1.0/zh-cn/integration/smartbi_integration.cn.html)
-
+> 注意：若想使用多维模式连接 Kyligence 产品，需要使用 Kyligence Insight 。更多信息请看 [Kyligence Insight 对接 SmartBI 操作手册](https://docs.kyligence.io/books/insight/v1.0/zh-cn/integration/smartbi_integration.cn.html)。

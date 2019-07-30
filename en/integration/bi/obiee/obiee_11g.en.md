@@ -10,26 +10,25 @@ Oracle Business Intelligence Enterprise Edition (OBIEE) is Oracle's BI product t
 
 1. Configure OBIEE Client
 
-    You need to install the BI Administrator tool first, and add a connection DSN to the BIEE server in the ODBC Administrator after installation.
+   You need to install the BI Administrator tool first, and add a connection DSN to the BIEE server in the ODBC Administrator after installation.    
 
-    ![](../../images/OBIEE/new_datasource.png)
+   ![New Datasource](../../images/OBIEE/new_datasource.png)
 
-    Once connected, you can manage the data model in the BIEE server by clicking Menu **Open** -> **Online** in the BI Administrator tool.
-
-    ![](../../images/OBIEE/open.png)
-
-
+   Once connected, you can manage the data model in the BIEE server by clicking Menu **Open** -> **Online** in the BI Administrator tool.
+   
+   ![Open](../../images/OBIEE/open.png)
+   
 2. Set up DSN
 
-   Kylignece ODBC and DSN need to be installed on both the client and server sides, and the DSN names on both ends should be **consistent**.
+   Kylignece ODBC and DSN need to be installed on both the client and server sides, and the DSN names on both ends should be **consistent**.
 
-    For the configuration of Kyligence ODBC under Windows, please refer to [Installing and Configuring Kyligence ODBC Driver under Windows](../../driver/odbc/win_odbc.en.md).
+   For the configuration of Kyligence ODBC under Windows, please refer to [Installing and Configuring Kyligence ODBC Driver under Windows](../../driver/odbc/win_odbc.en.md).
 
-    For the configuration of Kyligence ODBC under Linux, please refer to [Installing and Configuring Kyligence ODBC Driver under Linux](https://docs.oracle.com/middleware/12212/biee/BIEMG/GUID-CCDD9782-BC2A-497A-8ED0-AECA2ECFB3AE.htm#config_native_dbs).
+   For the configuration of Kyligence ODBC under Linux, please refer to [Installing and Configuring Kyligence ODBC Driver under Linux](https://docs.oracle.com/middleware/12212/biee/BIEMG/GUID-CCDD9782-BC2A-497A-8ED0-AECA2ECFB3AE.htm#config_native_dbs).
 
-    The Kyligence data source format added to the `odbc.ini` file is:
+   The Kyligence data source format added to the `odbc.ini` file is:
 
-   ```
+   ```vi
    [KyligenceDataSource]
    Driver = KyligenceODBC64
    PORT = 7070
@@ -39,13 +38,13 @@ Oracle Business Intelligence Enterprise Edition (OBIEE) is Oracle's BI product t
    PWD = ADMIN
    ```
 
-### Creating a data model
+### Creating a Data Model
 
 1. Click **Import Metadata** in the BI Administrator tool to add a data source.
-    ![](../../images/OBIEE/add_data.png)
+    ![Add Data](../../images/OBIEE/add_data.png)
 
 2. Select ODBC 3.5 to import the tables in Kyligence Enterprise.
-    ![](../../images/OBIEE12/ODBC35.png)
+    ![ODBC35](../../images/OBIEE12/ODBC35.png)
 
 3. After the import is successful, find the data source you just created in the physical model, right click on the data source, choose **Properties** -> **General** ->**Data source definition**, and change **database type** to **Apache Hadoop**.
 
@@ -56,21 +55,42 @@ Oracle Business Intelligence Enterprise Edition (OBIEE) is Oracle's BI product t
 
    ![](../../images/OBIEE/define_connection.png)
 
-6. After saving the model, you need to manually retrieve and change the physical column whose data type is a string or varchar. If the length is displayed as 0, you need to change to the actual length of the field in Kyligence Enterprise.
+6. After saving the model, you need to manually retrieve and change the physical column with the data type as a string. After expanding the table, right-click on each column and click Properties to enter the edit page.
 
-    ![](../../images/OBIEE/change_type.png)
+    ![](../../images/OBIEE/edit_column.en.png)
 
-7. After saving the physical model, create a new business model, and drag the newly added physical model to the business model. 
-   If you need outer join, you can edit the business model, set it as external connection here, and save it to the business model. 
+7. After saving the model, you need to manually retrieve and change the physical column whose data type is a string or varchar. If the length is displayed as 0, you need to change to the actual length of the field in Kyligence Enterprise.
+
+    ![](../../images/OBIEE12/09.png)
+
+8. After saving the physical model, create a new business model.
+
+   ![Create Business Model](../../images/OBIEE/create_business.en.png)
+
+9. Drag the newly added physical model to the business model, and save.
+
+   ![Refresh Model](../../images/OBIEE/refresh_business.en.png)
+
+10. If you need outer join, you can edit the business model, set it as external connection here, and save it to the business model. 
    Then drag the logical model you just added to the presentation layer and save it to the presentation layer.
 
-   Click **File**->**Save** in the upper left corner of the BI Administrator tool to save the entire model.
-   ![](../../images/OBIEE/save_model.png))
+   ![Refresh Presentation](../../images/OBIEE/refresh_show.en.png)
 
-8. Restart BIEE server.
+11. Click **File**->**Save** in the upper left corner of the BI Administrator tool to save the entire model.
+    ![](../../images/OBIEE/save_model.png)
+
+12. Load BIEE Server, and restart BIEE server.
+
+   ```sh
+   $ service obiee stop
+   - stop server
+   
+   $ service obiee start
+   - start server
+   ```
 
 
-### Create An Analysis
+### Create an Analysis
 
 There are two ways to analyze using the data from the model you just created.
 
@@ -111,6 +131,7 @@ There are two ways to analyze using the data from the model you just created.
 
      ![](../../images/OBIEE/query_result_2.png)
 
-> **Notes**：
-> 1. According to the BIEE development specification, the model created on the client side needs **at least two** tables, >otherwise the upload model will cause BIEE failed to start the service.
-> 2. Since BIEE generates schema-less SQL statements, drag and drop queries require all tables belong to a database in the >project. Use **Create Direct Database Query** when connecting to a pool query to avoid this problem.
+### Notes
+1. According to the BIEE development specification, the model created on the client side needs **at least two** tables, >otherwise the upload model will cause BIEE failed to start the service.
+2. Since BIEE generates schema-less SQL statements, drag and drop queries require all tables belong to a database in the >project. Use **Create Direct Database Query** when connecting to a pool query to avoid this problem.
+

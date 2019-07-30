@@ -133,8 +133,6 @@
             * [OBIEE 11g](integration/bi/obiee/obiee_11g.en.md)
             * [OBIEE 12c](integration/bi/obiee/obiee_12c.en.md)
         * [SAP BusinessObjects/BO](integration/bi/sap_bo.en.md)
-        * [SmartBI](integration/bi/SmartBI.en.md)
-        * [FineReport/FineBI](integration/bi/fanruan.en.md)
         * [Apache Zeppelin](integration/bi/zeppelin.en.md)
         * [Yonghong BI](integration/bi/Yonghong.en.md)
     * [Using Excel](integration/excel.en.md)

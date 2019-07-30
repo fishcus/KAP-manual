@@ -11,14 +11,14 @@ This product is integrated with Python and is supported by **kylinpy**. Kylinpy 
 
 ### How to get Kylinpy
 
-```
+```sh
 pip install --upgrade kylinpy
 ```
 
 If you need to install kylinpy without the Internet, you can download the package and install by pip command.
 https://pypi.org/project/kylinpy/#files
 
-```
+```sh
 pip install kylinpy-<version>.tar.gz
 ```
 
@@ -26,14 +26,14 @@ pip install kylinpy-<version>.tar.gz
 
 - Config connect URI
 
-  Create a SQLAlchemy connection string with the following URI template Kylin
+  Create a SQLAlchemy connection string with the following URI template Kylin.
   
   ```
   kylin://<username>:<password>@<hostname>:<port>/<project>
   ```
   
   |Configuration|Description|Default|Comment|
-  | :------------| :------| :------| :------|
+  |------------|------|------|------|
   |username|Kylin username|||
   |password|Kylin password|||
   |hostname|Kylin host name or IP address||Note that do not to append http or https with host name.|
@@ -42,10 +42,10 @@ pip install kylinpy-<version>.tar.gz
 
 - Config connect options
 
-  SQLAlchemy **create_engine** takes an argument **connect_args** which is an additional dictionary   that will be passed to connect().  
+  SQLAlchemy **create_engine** takes an argument **connect_args** which is an additional dictionary that will be passed to connect().  
   
   |Configuration|Description|Default|Comment|
-  | :------------| :------| :------| :------|
+  |------------|------|------|------|
   |is_ssl|Whether by ssl|False||
   |unverified|Do not verify ssl certificate|True||
   |prefix|Kylin api prefix|kylin/api||
@@ -53,7 +53,7 @@ pip install kylinpy-<version>.tar.gz
   |version|Kylin api version|v1| v2 or v1|
   |is_pushdown|Whether to enable the pushdown option|False|If set to True, you can query the source table of Kylin.|
 
-### From SQLAlchemy access
+### Access via SQLAlchemy
 
 ```python
 $ python
@@ -71,7 +71,7 @@ $ python
  u'KYLIN_STREAMING_TABLE']
 ```
 
-### From Pandas access
+### Access via Pandas
 
 ```python
 $ python

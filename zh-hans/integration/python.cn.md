@@ -11,14 +11,14 @@
 
 ### 如何获取 Kylinpy
 
-```
+```sh
 pip install --upgrade kylinpy
 ```
 
 如果需要离线安装 kylinpy , 可以通过如下网址下载压缩包后安装
 https://pypi.org/project/kylinpy/#files
 
-```
+```sh
 pip install kylinpy-<version>.tar.gz
 ```
 
@@ -26,14 +26,14 @@ pip install kylinpy-<version>.tar.gz
 
 - 配置连接 URI
 
-  通过如下 URI 模板创建 SQLAlchemy 连接字符串 Kylin
+  通过如下 URI 模板创建 SQLAlchemy 连接字符串 Kylin。
   
   ```
   kylin://<username>:<password>@<hostname>:<port>/<project>
   ```
   
   |配置项|配置说明|默认值|备注|
-  | :------------| :------| :------| :------|
+  |------------|------|------|------|
   |username|Kylin 帐名|||
   |password|Kylin 密码|||
   |hostname|Kylin 主机名或者 IP 地址||注意这里不要附加 http 或者 https|
@@ -42,10 +42,10 @@ pip install kylinpy-<version>.tar.gz
 
 - 配置连接选项
 
-  SQLAlchemy **create_engine** 方法还可以接收一个 **connect_args** 参数作为**连接选项**, 如下为连接可选项
+  SQLAlchemy **create_engine** 方法还可以接收一个 **connect_args** 参数作为**连接选项**，如下为连接可选项
 
   |配置项|配置说明|默认值|备注|
-  | :------------| :------| :------| :------|
+  |------------|------|------|------|
   |is_ssl|是否通过 ssl 连接|False||
   |unverified|允许不校验 ssl 证书|True||
   |prefix|Kylin api 前缀|kylin/api||
@@ -83,4 +83,3 @@ $ python
  >>> dataframe = pd.read_sql(sql, kylin_engine)
  >>> print(dataframe)
 ```
-

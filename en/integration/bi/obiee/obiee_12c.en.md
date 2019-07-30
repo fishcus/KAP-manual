@@ -8,27 +8,21 @@ Oracle Business Intelligence Enterprise Edition (OBIEE) is Oracle's BI product t
 
 ### Configuring ODBC and DSN
 
-1. Configure OBIEE Client
+1. Configure OBIEE Client    ![](../../images/OBIEE12/01.png)
 
-    You need to install the BI Administrator tool first, and add a connection DSN to the BIEE server in the ODBC Administrator after installation.
+   Once connected, you can manage the data model in the BIEE server by clicking Menu **Open** -> **Online** in the BI Administrator tool.    ![](../../images/OBIEE12/02.png)
 
-    ![](../../images/OBIEE12/01.png)
-
-    Once connected, you can manage the data model in the BIEE server by clicking Menu **Open** -> **Online** in the BI Administrator tool.
-
-    ![](../../images/OBIEE12/02.png)
-
-    ![](../../images/OBIEE12/03.png)
+   ![](../../images/OBIEE12/03.png)
 
 2. Set up DSN
 
-   Kylignece ODBC and DSN need to be installed on both the client and server sides, and the DSN names on both ends should be **consistent**.
+   Kylignece ODBC and DSN need to be installed on both the client and server sides, and the DSN names on both ends should be **consistent**.
 
-    For the configuration of Kyligence ODBC under Windows, please refer to [Installing and Configuring Kyligence ODBC Driver under Windows](../../driver/odbc/win_odbc.en.md).
+   For the configuration of Kyligence ODBC under Windows, please refer to [Installing and Configuring Kyligence ODBC Driver under Windows](../../driver/odbc/win_odbc.en.md).
 
-    For the configuration of Kyligence ODBC under Linux, please refer to [Installing and Configuring Kyligence ODBC Driver under Linux](https://docs.oracle.com/middleware/12212/biee/BIEMG/GUID-CCDD9782-BC2A-497A-8ED0-AECA2ECFB3AE.htm#config_native_dbs).
+   For the configuration of Kyligence ODBC under Linux, please refer to [Installing and Configuring Kyligence ODBC Driver under Linux](https://docs.oracle.com/middleware/12212/biee/BIEMG/GUID-CCDD9782-BC2A-497A-8ED0-AECA2ECFB3AE.htm#config_native_dbs).
 
-    The Kyligence data source format added to the `odbc.ini` file is:
+   The Kyligence data source format added to the `odbc.ini` file is:
 
    ```
    [KyligenceDataSource]
@@ -40,7 +34,7 @@ Oracle Business Intelligence Enterprise Edition (OBIEE) is Oracle's BI product t
    PWD = ADMIN
    ```
 
-### Creating a data model
+### Creating a Data Model
 
 1. Click **Import Metadata** in the BI Administrator tool to add a data source.
     ![](../../images/OBIEE12/04.png)
@@ -78,10 +72,17 @@ Oracle Business Intelligence Enterprise Edition (OBIEE) is Oracle's BI product t
 8. Click **File**->**Save** in the upper left corner of the BI Administrator tool to save the entire model.
    ![](../../images/OBIEE12/13.png)
 
-9. Restart BIEE server.
+9. Load BIEE Server, and restart BIEE server.
 
+   ```sh
+   $ service obiee stop
+   - stop server
+    
+   $ service obiee start
+   - start server
+   ```
 
-### Create An Analysis
+### Create an Analysis
 
 There are two ways to analyze using the data from the model you just created.
 
@@ -120,6 +121,6 @@ There are two ways to analyze using the data from the model you just created.
 
      ![](../../images/OBIEE12/20.png)
 
-> **Notes**：
-> 1. According to the BIEE development specification, the model created on the client side needs **at least two** tables, otherwise BIEE will fail to start.
-> 2. Since BIEE generates schema-less SQL statements, drag and drop queries require all tables belong to the same schema in the project. Use **Create Direct Database Query** when connecting to a pool query to avoid this problem.
+### Notes
+1. According to the BIEE development specification, the model created on the client side needs **at least two** tables, otherwise BIEE will fail to start.
+2. Since BIEE generates schema-less SQL statements, drag and drop queries require all tables belong to the same schema in the project. Use **Create Direct Database Query** when connecting to a pool query to avoid this problem.
