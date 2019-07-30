@@ -5,12 +5,12 @@ Qlik Sense is a new generation of business intelligence software that provides c
 ### Prerequisite
 * Install Kyligence ODBC Driver. Please refer to [Kyligence ODBC Driver](../../driver/odbc/README.md).
 * Install Qlik Sense Enterprise.
-* Download **Kyligence Data Connector for Qlik** on the Kyligence download webpage, unzip and copy it into the Qlik installed directory(/QlikData/sense/client), keep the folder name as *KyligenceDataConnectorForQlik*.
+* Download **Kyligence Data Connector for Qlik** on the Kyligence download webpage, unzip and copy it into the Qlik installed directory ```Qlik\Sense\Client```, keep the folder name as *KyligenceDataConnectorForQlik*.
 
 
-### Modify The Config
+### Modify Configuration
 
-You can find a file named `KE_METADATA_LOADER.qvf` in the unziped plugin folder. Upload it in **QMC-APP** and copy its app id.
+You can find a file named `KE_METADATA_LOADER.qvf` in the unpacked plugin folder. Upload it in **QMC-APP** and copy its app id.
 ![import QVF file](../../images/Qlik/qse-001.png)
 ![copy APP ID](../../images/Qlik/qse-002.png)
 
@@ -19,38 +19,40 @@ Open the JSON config file named `qdc_config.json`, replace the **appid** value w
 
 Now we can use this app to load our Kyligence cube metadata into Qlik.
 
-1. Open this app which you can find in Qlik hub named **KE_METADATA_LOADER** and switch to its Data-load-editor page.
+Open this app which you can find in Qlik hub named **KE_METADATA_LOADER** and switch to its Data-load-editor page.
 ![open KE_METADATA_LOADER](../../images/Qlik/qse-005.png)
 
-2. Create a valid **Qlik rest connector** to connect with Kyligence Enterprise. Hit the **Create new Connection** button, then choose **Rest** to start the creation. Fill the URL column with the API in the format below: "http://ip:port/kylin/api/cubes"Fill the Authentication column with **Basic**** type and your Kyligence Enterprise username and password. Click **Test Connection**. After its success, click Save button.
+Create a valid **Qlik rest connector** to connect with Kyligence Enterprise. Hit the **Create new Connection** button, then choose **Rest** to start the creation. Fill the URL column with the API in the format of `http://ip:port/kylin/api/cubes`. Fill the Authentication column with **Basic** type and your Kyligence Enterprise user name and password. Click **Test Connection**. After its success, click Save button.
 ![create REST Connector](../../images/Qlik/qse-003.png)
 ![create REST Connector](../../images/Qlik/qse-006.png)
 
-3. Click the button on the right panel to insert the connection string, and replace the origin string with it. Also, you need to change the **KE_HOST** and **KE_PORT** variable to your actual Kyligence Enterprise address.
+Click the button on the right panel to insert the connection string, and replace the origin string with it. Also, you need to change the **KE_HOST** and **KE_PORT** variable to your actual Kyligence Enterprise address.
 ![modify connect information](../../images/Qlik/qse-007.png)
 
 When this is done, click **Load data** button to load the cube metadata into Qlik.
 >**Note**: If the cubes in Kyligence Enterprise are changed, you will need to reload this app.
 
-### Create a Qlik APP with Kyligence Data Connector for Qlik
+### Create a Qlik App with Kyligence Data Connector for Qlik
 
-Open your internet browser, input the URL below:
+Open your Internet browser, input the URL below:
 
-https://[ your_qlik_server_name]/resources/KyligenceDataConnectorForQlik/index.html
+```
+https://[qlik_server_name]/resources/KyligenceDataConnectorForQlik/index.html
+```
 
 Click the first entrance, start your trip to create an app based on the cube.
 ![open the application](../../images/Qlik/qse-009.png)
 
-1. Input the information to connect Kyligence, then click **Apply Data Connection**.
+Input the information to connect Kyligence, then click **Apply Data Connection**.
 ![connect Kyligence](../../images/Qlik/qse-010.png)
 
-2. Choose **cube** in the rows you would like to use in this app. 
+Choose **Cube** in the rows you would like to use in this app. 
 ![choose Cube](../../images/Qlik/qse-011.png)
 
-3. Click **Add Cube** and **Create Script** to generate **Qlik load script**. If the script is correct, click **Apply Selected Cube**.
+Click **Add Cube** and **Create Script** to generate **Qlik load script**. If the script is correct, click **Apply Selected Cube**.
 ![preview script](../../images/Qlik/qse-013.png)
 
-4. Finally, click **Create Application**. After the process finished, click to open the link **Click to Open APP**. Now you can see the Cube data has been loaded in the app.
+Finally, click **Create Application**. After the process finished, click to open the link **Click to Open App**. Now you can see the Cube data has been loaded in the app.
 ![create App](../../images/Qlik/qse-012.png)
 
 Now, you can analyze the data in Kyligence Enterprise in the generated app.
