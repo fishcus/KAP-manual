@@ -4,7 +4,7 @@ Spark中，所谓资源单位一般指的是executors，和Yarn中的Containers�
 
 以Kyligence Enterprise为例，如果用户使用Kyligence Enterprise的时候使用的是固定的资源分配策略，启动时候指定num-executors 3，那么每个Kyligence Enterprise instance都会一直占用４个YARN的container（１个固定用于application master，3个用于executor），这4个资源就会一直被占用着，只有当用户退出时才会释放。但是，如果可以将资源分配的策略设置为Dynamic Resource Allocation，则Spark可以根据Kyligence Enterprise查询的负载情况，动态的增加和减少executors，从而大幅度节省资源。
 
-Spark动态资源分配详细介绍请见官方文档：http://spark.apache.org/docs/1.6.2/job-scheduling.html#dynamic-resource-allocation
+Spark动态资源分配详细介绍请见官方文档：http://spark.apache.org/docs/2.2.1/job-scheduling.html#dynamic-resource-allocation
 
 ### Spark动态资源分配配置方法
 

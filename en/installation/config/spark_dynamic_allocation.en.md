@@ -6,7 +6,7 @@ Take Kyligence Enterprise as sample, if user choose fixed resource allocation st
 
 Please refer to official document for details of Spark Dynamic Allocation:
 
-http://spark.apache.org/docs/1.6.2/job-scheduling.html#dynamic-resource-allocation
+http://spark.apache.org/docs/2.2.1/job-scheduling.html#dynamic-resource-allocation
 
 ### Spark Dynamic Allocation Config
 
