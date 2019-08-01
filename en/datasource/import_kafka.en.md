@@ -92,3 +92,29 @@ Kyligence Enterprise supports extracting streaming data into tables and implemen
      - tsPattern: specifies the time pattern for the use of tsParser.
 
 8. Click **Submit** and all the steps of importing Kafka tables have been finished.
+
+### Additional config for Kafka data source
+Kyligence Enterprise provides following entries to set additional Kafka consumer configuration:
+* `$KYLIN_HOME/conf/kylin-kafka-consumer.xml`. See example:
+
+  ```xml
+  <configuration>
+    <property>
+        <name>session.timeout.ms</name>
+        <value>10000</value>
+    </property>
+    <property>
+        <name>request.timeout.ms</name>
+        <value>20000</value>
+    </property>
+  </configuration>  
+  ```
+* `$KYLIN_HOME/conf/kylin.properties`:
+  Configure with prefix `kylin.source.kafka.config-override.`. It will override property value of Kafka consumer configuration (including `$KYLIN_HOME/conf/kylin-kafka-consumer.xml`). See example:
+  
+  ```properties
+  kylin.source.kafka.config-override.client.id=kyligence
+  ```
+
+Full configuration list: https://kafka.apache.org/21/documentation.html#consumerconfigs
+

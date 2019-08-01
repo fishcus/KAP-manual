@@ -81,3 +81,31 @@
        - 您还可以使用 `org.apache.kylin.source.kafka.DateTimeParser`，该解析器将根据给定的 `tsPattern`，将 String 类型的时间表达式解析成时间戳；如果没有指定 `tsPattern`，将默认使用 `yyyy-MM-dd HH:mm:ss`。
      - tsPattern：指时间戳样式，供 tsParser 使用。
 8. 点击**提交**。至此，您完成了将 Kafka 输出的消息流定义为数据表。
+
+### 为Kafka数据源配置额外参数
+
+Kyligence Enterprise提供了两种方式来配置Kafka consumer的参数：
+
+- 配置文件`$KYLIN_HOME/conf/kylin-kafka-consumer.xml`。样例如下：
+
+  ```xml
+  <configuration>
+    <property>
+        <name>session.timeout.ms</name>
+        <value>10000</value>
+    </property>
+    <property>
+        <name>request.timeout.ms</name>
+        <value>20000</value>
+    </property>
+  </configuration>  
+  ```
+
+- 配置文件`$KYLIN_HOME/conf/kylin.properties`：
+  通过添加前缀为 `kylin.source.kafka.config-override.`的配置项，来覆盖对应的Kafka consumer参数  (同样会覆盖 `$KYLIN_HOME/conf/kylin-kafka-consumer.xml`)。样例如下：
+
+  ```properties
+  kylin.source.kafka.config-override.client.id=kyligence
+  ```
+
+完整配置列表请参考：https://kafka.apache.org/21/documentation.html#consumerconfigs
