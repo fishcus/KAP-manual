@@ -93,7 +93,7 @@ Kyligence Enterprise supports extracting streaming data into tables and implemen
 
 8. Click **Submit** and all the steps of importing Kafka tables have been finished.
 
-### Additional config for Kafka data source
+### Additional Configuration for Kafka Data Source
 Kyligence Enterprise provides following entries to set additional Kafka consumer configuration:
 * `$KYLIN_HOME/conf/kylin-kafka-consumer.xml`. See example:
 

@@ -82,9 +82,9 @@
      - tsPattern：指时间戳样式，供 tsParser 使用。
 8. 点击**提交**。至此，您完成了将 Kafka 输出的消息流定义为数据表。
 
-### 为Kafka数据源配置额外参数
+### 为 Kafka 数据源配置额外参数
 
-Kyligence Enterprise提供了两种方式来配置Kafka consumer的参数：
+Kyligence Enterprise 提供了两种方式来配置 Kafka Consumer的参数：
 
 - 配置文件`$KYLIN_HOME/conf/kylin-kafka-consumer.xml`。样例如下：
 
@@ -102,7 +102,7 @@ Kyligence Enterprise提供了两种方式来配置Kafka consumer的参数：
   ```
 
 - 配置文件`$KYLIN_HOME/conf/kylin.properties`：
-  通过添加前缀为 `kylin.source.kafka.config-override.`的配置项，来覆盖对应的Kafka consumer参数  (同样会覆盖 `$KYLIN_HOME/conf/kylin-kafka-consumer.xml`)。样例如下：
+  通过添加前缀为 `kylin.source.kafka.config-override.`的配置项，来覆盖对应的Kafka Consumer参数  (同样会覆盖 `$KYLIN_HOME/conf/kylin-kafka-consumer.xml`)。样例如下：
 
   ```properties
   kylin.source.kafka.config-override.client.id=kyligence
