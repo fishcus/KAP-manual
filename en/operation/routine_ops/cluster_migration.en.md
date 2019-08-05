@@ -16,9 +16,3 @@ The two clusters can communicate to each other and command `hadoop distcp` is av
 
 
 
-### Single Cube Migration
- 
-1. In SHC, run `$KYLIN_HOME/bin/cluster-migration.sh backup-cube --cubeName someCube --onlyMetadata true`
-2. In DHC, run `$KYLIN_HOME/bin/cluster-migration.sh restore-cube --cubeName someCube --project someProject --namenode hdfs://someip [--overwrite true]`
-
-> Note: If there is already a cube with same name in the target project, the command will throw an exception. You can overwrite the cube by setting ```--overwrite true```.

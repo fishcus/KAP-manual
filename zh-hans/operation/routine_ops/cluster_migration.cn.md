@@ -17,9 +17,3 @@ Kyligence Enterprise 支持跨 Hadoop 集群迁移，包括：整体的迁移和
 
 
 
-### 单个 Cube 迁移 
-
-1. 在 SHC 上的 `KYLIN_HOME` 目录下执行 `$KYLIN_HOME/bin/cluster-migration.sh backup-cube —cubeName someCube —onlyMetadata true`，其中 `cubeName` 是要迁移的 Cube 的名字。
-2. 在 DHC 上的 `KYLIN_HOME` 目录下执行 `$KYLIN_HOME/bin/cluster-migration.sh restore-cube —cubeName someCube —project someProject —namenode hdfs://someip —overwrite true`，其中 `cubeName` 是要迁移的 Cube 的名字，`project` 是 Cube 要加入的项目，`namenode` 是源集群的 HDFS URI 地址。
-
-> 提示：如果目标项目中存在同名 Cube，脚本会提示已有同名 Cube 存在。如果确认要覆盖这个 Cube，可以设置 `--overwrite true`。
