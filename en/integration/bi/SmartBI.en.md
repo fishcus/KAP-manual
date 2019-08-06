@@ -35,5 +35,3 @@ For installation instructions for SmartBI Insight, please visit the [SmartBI Ins
 + **Manage data sources**
 
   After clicking Save, you will see your previously created Kyligence data source under **Customization**->**Data Management**->**Data Source**.
-
-  ![View Data Source](../images/SmartBI/save.cn.png)
