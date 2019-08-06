@@ -8,7 +8,7 @@ If you need pushdown to 3rd Party SparkSQL, you must have a Spark Thrift Server.
 
 #### Download Hive JDBC Driver
 
-1. According to the hive version of hadoop cluster download [hive-jdbc-version.jar](hive-jdbc.jarhttps://mvnrepository.com/artifact/org.apache.hive/hive-jdbc). Be sure to use the JDBC version not to be higher than the hive version of the cluster. Using the same version as Hadoop and Hive is recommended.
+1. According to the hive version of hadoop cluster download [hive-jdbc-version.jar](https://mvnrepository.com/artifact/org.apache.hive/hive-jdbc). Be sure to use the JDBC version not to be higher than the hive version of the cluster. Using the same version as Hadoop and Hive is recommended.
 2. Download [httpclient-version.jar](https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient) and [httpcore-version.jar](https://mvnrepository.com/artifact/org.apache.httpcomponents/httpcore) .
 
 #### Install Hive JDBC
@@ -28,9 +28,9 @@ Modify `$KYLIN_HOME/conf/kylin.properties`, add Hive JDBC configuration.
 - Configure JDBC URL
   - With JDBC Url, spark_hs2_port is Spark Thrift port and spark_host is Spark Thrift hostname
 
-  - Access Spark Thrift without kerberos security certification: ``kylin.query.pushdown.jdbc.url=jdbc:hive2://spark_host:spark_hs2_port/default``
+  - Access Spark Thrift without kerberos security certification: ``kylin.query.pushdown.jdbc.url=jdbc:hive2://{spark_host}:{spark_hs2_port}/default``
 
-  - Access Spark Thrift with kerberos security certification:To configure JDBC Clients for Kerberos Authentication with HiveServer2, they must include the principal of HiveServer2 (principal=<HiveServer2-Kerberos-Principal>) in the JDBC connection string. For example: ``kylin.query.pushdown.jdbc.url=jdbc:hive2://spark_host:spark_hs2_port/default;principal=Spark-Kerberos-Principal``
+  - Access Spark Thrift with kerberos security certification:To configure JDBC Clients for Kerberos Authentication with HiveServer2, they must include the principal of HiveServer2 (principal=<HiveServer2-Kerberos-Principal>) in the JDBC connection string. For example: ``kylin.query.pushdown.jdbc.url=jdbc:hive2://{spark_host}:{spark_hs2_port}/default;principal={Spark-Kerberos-Principal}``
 
     - The Hive JDBC server is configured with Kerberos authentication if the hive.server2.authentication property is set to `kerberos` in the hive-site.xml file:
 

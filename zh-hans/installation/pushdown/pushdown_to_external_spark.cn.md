@@ -8,7 +8,7 @@ Spark Thrift 使用 Hive JDBC 接口，支持 JDBC 接口的应用可以通过 H
 
 #### 下载 Hive JDBC Driver
 
-1. 根据自己 Hadoop 集群 Hive 的版本下载对应版本的[hive-jdbc-version.jar](hive-jdbc.jarhttps://mvnrepository.com/artifact/org.apache.hive/hive-jdbc)，请确保使用的 JDBC 版本不要高于集群的 Hive 版本。建议下载使用和 Hadoop/Hive 版本一致的 Jar 包。
+1. 根据自己 Hadoop 集群 Hive 的版本下载对应版本的[hive-jdbc-version.jar](https://mvnrepository.com/artifact/org.apache.hive/hive-jdbc)，请确保使用的 JDBC 版本不要高于集群的 Hive 版本。建议下载使用和 Hadoop/Hive 版本一致的 Jar 包。
 2. 下载[httpclient-version.jar](https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient)和[httpcore-version.jar](https://mvnrepository.com/artifact/org.apache.httpcomponents/httpcore)。
 
 ### 安装 JDBC
@@ -27,8 +27,8 @@ Spark Thrift 使用 Hive JDBC 接口，支持 JDBC 接口的应用可以通过 H
 
 - **配置 JDBC URL**
   - 以下配置中 spark_host 为 Spark Thrift 所在节点的 hostname,spark_hs2_port 是 Spark Thrift 的端口.
-  - 访问没有 kerberos 安全认证的 Spark Thrift，例如(访问 default 库):``kylin.query.pushdown.jdbc.url=jdbc:hive2://spark_host:spark_hs2_port/default``
-  - 访问带有 kerberos 安全认证的 Spark Thrift: 访问带有 kerberos 认证 Spark Thrift 需要 JDBC Client 端包含 Spark Thrift(principal=<Spark-Kerberos-Principal>)principal 在 JDBC url中，例如(访问 default 库):``kylin.query.pushdown.jdbc.url=jdbc:hive2://spark_host:spark_hs2_port/default;principal=Spark-Kerberos-Principal``
+  - 访问没有 kerberos 安全认证的 Spark Thrift，例如(访问 default 库):``kylin.query.pushdown.jdbc.url=jdbc:hive2://{spark_host}:{spark_hs2_port}/default``
+  - 访问带有 kerberos 安全认证的 Spark Thrift: 访问带有 kerberos 认证 Spark Thrift 需要 JDBC Client 端包含 Spark Thrift(principal=<Spark-Kerberos-Principal>)principal 在 JDBC url中，例如(访问 default 库):``kylin.query.pushdown.jdbc.url=jdbc:hive2://{spark_host}:{spark_hs2_port}/default;principal={Spark-Kerberos-Principal}``
       - 请确保本产品能都读取到的 hive-site.xml 中打开了 hive-server2 的 kerberos 认证:
 
           ```xml
@@ -41,7 +41,7 @@ Spark Thrift 使用 Hive JDBC 接口，支持 JDBC 接口的应用可以通过 H
 
           ​
 
-> **注意：** 如果使用的环境没有 Spark Thrift 时，配置用户名与密码的方式为将下列参数在配置文件 `kylin.properties` 添加并重启本产品。
+> **注意：** 如果使用的环境没有 kerberos 时，配置用户名与密码的方式为将下列参数在配置文件 `kylin.properties` 添加并重启本产品。
 
 ```properties
 kylin.query.pushdown.jdbc.username
