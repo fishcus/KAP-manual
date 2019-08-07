@@ -116,6 +116,8 @@ We create a TOP-N measure, select *KYLIN_SALES.PRICE* column in **ORDER/SUM by C
 
 ![TOPN Measure](images/cube_design_basics/createcube_measure_topn.png)
 
+
+
 Finally, all the measures are defined as blow:
 
 ![Measure list](images/cube_design_basics/createcube_measures.png)

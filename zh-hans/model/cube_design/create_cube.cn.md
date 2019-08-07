@@ -119,6 +119,7 @@ ORDER BY SUM(PRICE)
 因此，我们创建一个 TOP-N 的度量，选择 *PRICE* 字段作为 SUM/ORDER BY 字段，选择 *SELLER_ID* 字段作为GROUP BY字段，并选择 TOPN(100) 作为度量的精度。
 
 ![TOPN 度量](images/createcube_measure_topn.png)
+
 最终 Cube 的度量如下图所示：
 
 ![Measure 列表](images/createcube_measures.png)
