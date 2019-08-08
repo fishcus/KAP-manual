@@ -1,6 +1,14 @@
 ## Supported Functions
 
-The following are functions applicable to computed column.
+The following are functions applicable to computed column, using Hive as an example.
+
+**Note: The functions supported by computed column depend on the data source system you use.** This is because Kyligence Enterprise evaluates the computed columns by submitting SQL to the data source system, and it is the data source system that does the actual calculation.
+
+- For Hive data source, please note the function support varies by Hive version. For example, function `factorial` and function `shiftleft` are only supported since Hive 1.2.0. Function `substring_index` are only supported since Hive 1.3.0. Please contact your Hadoop administrator to confirm your Hive version and the official list of supported functions.
+- For RDBMS data source, please consult the official document provided by the RDBMS vendor to confirm supported functions.
+- For Kafka data source, computed column is not supported at the moment.
+
+Table of Contents
 
 - [Mathematical Functions](#mathematical-functions)
 - [Date Functions](#date-functions)
