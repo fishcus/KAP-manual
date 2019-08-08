@@ -132,7 +132,6 @@
             * [OBIEE 12c](integration/bi/obiee/obiee_12c.en.md)
         * [SAP BusinessObjects/BO](integration/bi/sap_bo.en.md)
         * [Apache Zeppelin](integration/bi/zeppelin.en.md)
-        * [Yonghong BI](integration/bi/Yonghong.en.md)
     * [Using Excel](integration/excel.en.md)
     * [Using Python](integration/python.en.md)
 * [Security](security/README.md)
