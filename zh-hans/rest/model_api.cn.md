@@ -36,7 +36,7 @@
 
   ```sh
   curl -X GET \
-    'http://host:port/kylin/api/models?pageOffset=1' \
+    'http://host:port/kylin/api/models?pageOffset=0' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
