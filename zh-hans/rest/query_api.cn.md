@@ -10,6 +10,7 @@
 
 * [查询 Cube 数据](#查询Cube数据)
 * [列出可查询的表](#列出可查询的表)
+* [导出查询结果](#导出查询结果)
 
 
 
@@ -94,8 +95,9 @@
 - `GET http://host:port/kylin/api/tables_and_columns`
 
 - URL Parameters 	
+  
   - `project` - `必选` `string`，项目名称
-
+  
 - HTTP Header
   - `Accept: application/vnd.apache.kylin-v2+json`
   - `Accept-Language: en`
@@ -135,4 +137,49 @@
       ],
       "msg":""
   }
+  ```
+
+
+
+### 导出查询结果
+
+- `POST http://host:port/kylin/api/query/format/{format}`
+
+- URL Parameters
+
+  - `format` - `必选` `string`，导出文件类型，目前仅支持 `csv` 格式文件
+
+- HTTP Header
+
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
+
+- HTTP Body: JSON Object
+
+  - `sql` - `必选` `string`，查询的 SQL 语句
+  - `project` - `必选` `string`，项目名称
+  - `offset` - `可选` `int`， 设置查询从哪一行开始往后返回数据
+  - `limit` - `可选` `int`，设置从 `offset` 开始返回的行数，实际行数小于该参数时，以实际行数为准
+
+- Curl 请求示例
+
+  ```sh
+  curl -X POST \
+  	'http://host:port/kylin/api/query/format/csv' \
+  	-H 'Accept: application/vnd.apache.kylin-v2+json' \
+  	-H 'Accept-Language: en' \
+  	-H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  	-H 'Content-Type: application/json;charset=utf-8' \
+  	-d '{ "sql":"select * from KYLIN_ACCOUNT", "project":"learn_kylin" }' \
+  	-O -J
+  ```
+
+- 响应示例
+
+  ```sh
+  %  Total % Received % Xferd Average Speed  Time  Time   Time   Current
+                              Dload  Upload  Total Spent  Left   Speed
+  100 277 100  161   100  116  712    513 --:--:-- --:--:-- --:--:--1282
+  curl: Saved to filename '20190718102045980.result.csv'
   ```

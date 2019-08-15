@@ -8,7 +8,8 @@
 
 
 * [Query the Cube](#Query-the-Cube)
-* [List all tables that can be queried](#List-all-tables-that-can-be-queried)
+* [List queryable tables](#List-queryable-tables)
+* [Export Query Result](#query-result)
 
 
 
@@ -89,7 +90,7 @@
 
 
 
-### List all tables that can be queried {#List-all-tables-that-can-be-queried}
+### List queryable tables {#List-queryable-tables}
 
 - `GET http://host:port/kylin/api/tables_and_columns`
 
@@ -137,3 +138,49 @@
       "msg":""
   }
   ```
+
+
+
+### Export Query Result {#query-result}
+
+- `POST http://host:port/kylin/api/query/format/{format}`
+
+- URL Parameters
+
+  - `format` - `required` `string`, type of export files, currently only `csv` format is supported
+
+- HTTP Header
+
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
+
+- HTTP Body: JSON Object
+
+  - `sql` - `required` `string`, SQL statement
+  - `project` - `required` `string`, project name
+  - `offset` - `optional` `int`, skip the `offset` rows before beginning to return the rows
+  - `limit` - `optional` `int`, retrieve a portion of rows returned by a query. If the actual number of rows is less than this parameter, it will return the actual results.
+
+- Curl Request Example
+
+  ```sh
+  curl -X POST \
+  	'http://host:port/kylin/api/query/format/csv' \
+  	-H 'Accept: application/vnd.apache.kylin-v2+json' \
+  	-H 'Accept-Language: en' \
+  	-H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  	-H 'Content-Type: application/json;charset=utf-8' \
+  	-d '{ "sql":"select * from KYLIN_ACCOUNT", "project":"learn_kylin" }' \
+  	-O -J
+  ```
+
+- Response Example
+
+  ```sh
+  %  Total % Received % Xferd Average Speed  Time  Time   Time   Current
+                              Dload  Upload  Total Spent  Left   Speed
+  100 277 100  161   100  116  712    513 --:--:-- --:--:-- --:--:--1282
+  curl: Saved to filename '20190718102045980.result.csv'
+  ```
+
