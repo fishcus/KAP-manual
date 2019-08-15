@@ -9,14 +9,24 @@
 
 
 * [返回用户列表](#返回用户列表)
+
 * [创建用户](#创建用户)
+
 * [修改用户](#修改用户)
+
 * [删除用户](#删除用户)
-* [返回用户拥有的项目及表权限](#返回用户拥有的项目及表权限)
-* [返回用户拥有的行级权限](#返回用户拥有的行级权限)
-* [返回用户拥有的列级权限](#返回用户拥有的列级权限)
 
+* [获取一个用户或用户组的所有权限](#获取一个用户或用户组的所有权限)
 
+* [获取一个用户或用户组在指定项目中的所有权限](#获取一个用户或用户组在指定项目中的所有权限)
+
+* 已弃用的 API
+
+  * [返回用户拥有的项目及表权限](#返回用户拥有的项目及表权限)
+  * [返回用户拥有的行级权限](#返回用户拥有的行级权限)
+  * [返回用户拥有的列级权限](#返回用户拥有的列级权限)
+
+  
 
 ### 返回用户列表
 
@@ -225,7 +235,145 @@
 
 
 
+### 获取一个用户或用户组的所有权限
+
+- `GET http://host:port/kylin/api/access/projects`
+
+- URL Parameters
+  - `type` - `必选` `string`，"user" 或 "group"
+  - `sid` - `必选` `string`，用户名/用户组名
+
+- HTTP Header
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
+
+- Curl 请求示例
+
+  ```sh
+  curl -X GET \
+    'http://host:port/kylin/api/access/projects?sid={sid}&type={type}' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json;charset=utf-8'
+  ```
+
+- 响应示例
+
+  ```json
+  {
+      "code": "000",
+      "data": [
+          {
+              "projectName": "project_acl",
+              "projectPermission": "READ",
+              "tableAclInfoRespons": [
+                  {
+                      "table": "KYLIN_SALES",
+                      "columns": [
+                          "TRANS_ID",
+                          "LSTG_SITE_ID",
+                          "SLR_SEGMENT_CD",
+                          "PRICE",
+                          "ITEM_COUNT",
+                          "SELLER_ID",
+                          "BUYER_ID",
+                          "OPS_USER_ID",
+                          "OPS_REGION"
+                      ],
+                      "rows": {
+                          "LSTG_FORMAT_NAME": [
+                              "Others",
+                              "ABIN"
+                          ],
+                          "PART_DT": [
+                              "1325577600000",
+                              "1325491200000",
+                              "1325404800000"
+                          ]
+                      }
+                  }
+              ]
+          },
+          ...
+      ],
+      "msg": ""
+  }
+  ```
+
+
+
+### 获取一个用户或用户组在指定项目中的所有权限
+
+- `GET http://host:port/kylin/api/access/projects/{projectName}`
+
+- URL Parameters
+  - `type` - `必选` `string`，"user" 或 "group"
+  - `sid` - `必选` `string`，用户名或用户组名
+  - `projectName` - `必选` `string` 项目名称
+
+- HTTP Header
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
+
+- Curl 请求示例
+
+  ```sh
+  curl -X GET \
+    'http://host:port/kylin/api/access/projects/{projectName}?sid={sid}&type={type}' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json;charset=utf-8'
+  ```
+
+- 响应示例
+
+  ```json
+  {
+      "code": "000",
+      "data": {
+          "projectName": "project_acl",
+          "projectPermission": "READ",
+          "tableAclInfoResponse": [
+              {
+                  "table": "KYLIN_SALES",
+                  "columns": [
+                      "TRANS_ID",
+                      "LSTG_SITE_ID",
+                      "SLR_SEGMENT_CD",
+                      "PRICE",
+                      "ITEM_COUNT",
+                      "SELLER_ID",
+                      "BUYER_ID",
+                      "OPS_USER_ID",
+                      "OPS_REGION"
+                  ],
+                  "rows": {
+                      "LSTG_FORMAT_NAME": [
+                          "ABIN",
+                          "Others"
+                      ],
+                      "PART_DT": [
+                          "1325577600000",
+                          "1325491200000",
+                          "1325404800000"
+                      ]
+                  }
+              }
+          ]
+      },
+      "msg": ""
+  }
+  ```
+
+
+
 ### 返回用户拥有的项目及表权限
+
+> **Deprecated**: 该 API 已被替换为 [获取一个用户或用户组的所有权限](#获取一个用户或用户组的所有权限)。
 
 * `GET http://host:port/kylin/api/access/{userName}`
 
@@ -270,7 +418,10 @@
   ```
 
 
+
 ### 返回用户拥有的行级权限
+
+> **Deprecated**: 该 API 已被替换为 [获取一个用户或用户组在指定项目中的所有权限](#获取一个用户或用户组在指定项目中的所有权限)。
 
 * `GET http://host:port/kylin/api/access/{userName}/{projectName}/{tableName}/row`
 
@@ -316,6 +467,8 @@
 
 ### 返回用户拥有的列级权限
 
+> **Deprecated**: 该 API 已被替换为 [获取一个用户或用户组在指定项目中的所有权限](#获取一个用户或用户组在指定项目中的所有权限)。
+
 * `GET http://host:port/kylin/api/access/{userName}/{projectName}/{tableName}/column`
 
 * URL Parameters
@@ -357,3 +510,4 @@
       "msg":""
   }
   ```
+  

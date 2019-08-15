@@ -11,10 +11,14 @@
 * [Create a user](#Create-a-user)
 * [Modify a user](#Modify-a-user)
 * [Delete a user](#Delete-a-user)
-* [Get User's Project and Table Access Permission](#Get-user-table-and-project)
-* [Get User's Row Access Permission](#Get-user-row)
-* [Get User's Column Access Permission](#Get-user-column)
+* [Get All ACL for a User or Group](#Get-all-ACL-for-user)
+* [Get All ACL for a User or Group in Specified Project](#Get-all-ACL-for-user-in-project)
 
+- Deprecated API
+
+  - [Get User's Project and Table Access Permission](#Get-user-table-and-project)
+  - [Get User's Row Access Permission](#Get-user-row)
+  - [Get User's Column Access Permission](#Get-user-column)
 
 
 ### Get User List {#Get-user-list}
@@ -224,7 +228,145 @@
 
 
 
+### Get All ACL for a User or Group {#Get-all-ACL-for-user}
+
+- `GET http://host:port/kylin/api/access/projects`
+
+- URL Parameters
+  - `type` - `required` `string`，"user" or "group"
+  - `sid` - `required` `string`，user name or group name
+
+- HTTP Header
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
+
+- Curl Request Example
+
+  ```sh
+  curl -X GET \
+    'http://host:port/kylin/api/access/projects?sid={sid}&type={type}' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json;charset=utf-8'
+  ```
+
+- Response Example
+
+```json
+ {
+    "code": "000",
+    "data": [
+        {
+            "projectName": "project_acl",
+            "projectPermission": "READ",
+            "tableAclInfoRespons": [
+                {
+                    "table": "KYLIN_SALES",
+                    "columns": [
+                        "TRANS_ID",
+                        "LSTG_SITE_ID",
+                        "SLR_SEGMENT_CD",
+                        "PRICE",
+                        "ITEM_COUNT",
+                        "SELLER_ID",
+                        "BUYER_ID",
+                        "OPS_USER_ID",
+                        "OPS_REGION"
+                    ],
+                    "rows": {
+                        "LSTG_FORMAT_NAME": [
+                            "Others",
+                            "ABIN"
+                        ],
+                        "PART_DT": [
+                            "1325577600000",
+                            "1325491200000",
+                            "1325404800000"
+                        ]
+                    }
+                }
+            ]
+        },
+        ...
+    ],
+    "msg": ""
+}
+```
+
+
+
+### Get All ACL for a User or Group in Specified Project {#Get-all-ACL-for-user-in-project}
+
+- `GET http://host:port/kylin/api/access/projects/{projectName}`
+
+- URL Parameters
+  - `type` - `required` `string`，"user" or "group"
+  - `sid` - `required` `string`，user name or group name
+  - `projectName` - `required` `string` project name
+
+- HTTP Header
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
+
+- Curl Request Example
+
+  ```sh
+  curl -X GET \
+    'http://host:port/kylin/api/access/projects/{projectName}?sid={sid}&type={type}' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json;charset=utf-8'
+  ```
+
+- Response Example
+
+  ```json
+  {
+      "code": "000",
+      "data": {
+          "projectName": "project_acl",
+          "projectPermission": "READ",
+          "tableAclInfoResponse": [
+              {
+                  "table": "KYLIN_SALES",
+                  "columns": [
+                      "TRANS_ID",
+                      "LSTG_SITE_ID",
+                      "SLR_SEGMENT_CD",
+                      "PRICE",
+                      "ITEM_COUNT",
+                      "SELLER_ID",
+                      "BUYER_ID",
+                      "OPS_USER_ID",
+                      "OPS_REGION"
+                  ],
+                  "rows": {
+                      "LSTG_FORMAT_NAME": [
+                          "ABIN",
+                          "Others"
+                      ],
+                      "PART_DT": [
+                          "1325577600000",
+                          "1325491200000",
+                          "1325404800000"
+                      ]
+                  }
+              }
+          ]
+      },
+      "msg": ""
+  }
+  ```
+
+
+
 ### Get User's Project and Table Access Permission {#Get-user-table-and-project}
+
+> **Deprecated**: This API is replaced by [Get All ACL for a User or Group](#Get-all-ACL-for-user).
 
 - `GET http://host:port/kylin/api/access/{userName}`
 
@@ -274,6 +416,8 @@
 
 ### Get User's Row Access Permission {#Get-user-row}
 
+> **Deprecated**: This API is replaced by [Get All ACL for a User or Group in Specified Project](#Get-all-ACL-for-user-in-project).
+
 - `GET http://host:port/kylin/api/access/{userName}/{projectName}/{tableName}/row`
 
 - URL Parameters
@@ -318,6 +462,8 @@
 
 ### Get User's Column Access Permission {#Get-user-column}
 
+> **Deprecated**: This API is replaced by [Get All ACL for a User or Group in Specified Project](#Get-all-ACL-for-user-in-project).
+
 - `GET http://host:port/kylin/api/access/{userName}/{projectName}/{tableName}/column`
 
 - URL Parameters
@@ -359,3 +505,4 @@
       "msg":""
   }
   ```
+
