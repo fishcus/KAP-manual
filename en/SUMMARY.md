@@ -105,7 +105,7 @@
             * [Grouping Function](query/operator_function/function/grouping_function.en.md)
             * [Intersect Function](query/operator_function/function/intersect_function.en.md)
             * [Aggregate Functions](query/operator_function/function/aggregate_function.en.md)
-    * [How to Solve Query Issues](query/query_issues.en.md)
+    * [Query FAQ](query/query_issues.en.md)
 * [Integration with BI Tools](integration/README.md)
     * [Drivers](integration/driver/README.md)
         * [Kyligence JDBC Driver](integration/driver/jdbc.en.md)
