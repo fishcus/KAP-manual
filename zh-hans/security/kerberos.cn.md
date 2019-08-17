@@ -52,21 +52,10 @@
      };
      ```
 
-如您在华为 FusionInsight C80 多节点部署时，请继续执行以下操作：
-
-- 确认 FI Hadoop 集群中每个节点的 `krb5.conf` 文件与导出的 `$KYLIN_HOME/conf/krb5.conf` 文件一致；如果不一致请先将其备份，然后将导出的 `krb5.conf` 文件拷贝至 FI 集群中**每个节点**， 如 `/etc` 目录下。 
-- 将 Kyligence Enterprise 节点的 `$KYLIN_HOME/conf/jaas.conf` 文件拷贝至 FI 集群每个节点上，如`/etc/` 目录下。
-- 在 `$KYLIN_HOME/conf/kylin.properties` 中做如下配置，使 Kyligence Enterprise 能正确地读取 Kerberos 配置文件。
-  ```properties
-  kap.storage.columnar.spark-conf.spark.executor.extraJavaOptions=-Djava.security.auth.login.config={jaas.conf_path} -Djava.security.krb5.conf={krb5.conf_path}
-  kap.storage.columnar.spark-conf.spark.driver.extraJavaOptions=-Djava.security.auth.login.config={jaas.conf_path} -Djava.security.krb5.conf={krb5.conf_path} -Dhive.metastore.sasl.enabled=true -Dhive.metastore.kerberos.principal={principal}
-  ```
-  >  **提示：**
-  >  1. 请使用 FI 各节点实际存放的配置文件路径替换 `{jaas.conf_path}` 和 `{krb5.conf_path}` 
-  >  2. `{principal}` 为访问 Hive Metastore 需要的 principal，如 `hive/hadoop.hadoop.com@HADOOP.COM` 
 
 
 ### 具体配置
+
 在 `$KYLIN_HOME/conf/kylin.properties` 中进行具体设置。
 
 1. 配置 keytab 认证
@@ -106,7 +95,7 @@
      # 如：kap.storage.columnar.spark-conf.spark.yarn.keytab=/app/kylin/Kyligence-Enterprise-3.2.2.2022-GA-fi/conf/user.keytab
      ```
 
-     ​
+     
 
 2. 拷贝 `{hadoop_conf}/mapred-site.xml` 文件至 `$KYLIN_HOME/conf` 目录下，同时在该文件中添加以下配置：
 
@@ -129,4 +118,22 @@
    bin/do-exchange-spark-for-kerberos.sh
    ```
 
-   
+
+
+### 关于 FusionInsight C80
+
+如果您在华为 FusionInsight C80 环境中遇到 Kerberos 问题，可以尝试以下变通方法。
+
+**注意**：以下仅仅是特殊情况下的变通方法，而不是 Kerberos 的正确配置方式。请联系您的 Hadoop 管理员了解 Kerberos 和 FusionInsight C80 的更多信息。
+
+- 确认 FI Hadoop 集群中每个节点的 `krb5.conf` 文件与导出的 `$KYLIN_HOME/conf/krb5.conf` 文件一致；如果不一致请先将其备份，然后将导出的 `krb5.conf` 文件拷贝至 FI 集群中**每个节点**， 如 `/etc` 目录下。 
+- 将 Kyligence Enterprise 节点的 `$KYLIN_HOME/conf/jaas.conf` 文件拷贝至 FI 集群每个节点上，如`/etc/` 目录下。
+- 在 `$KYLIN_HOME/conf/kylin.properties` 中做如下配置，使 Kyligence Enterprise 能正确地读取 Kerberos 配置文件。
+  ```properties
+  kap.storage.columnar.spark-conf.spark.executor.extraJavaOptions=-Djava.security.auth.login.config={jaas.conf_path} -Djava.security.krb5.conf={krb5.conf_path}
+  kap.storage.columnar.spark-conf.spark.driver.extraJavaOptions=-Djava.security.auth.login.config={jaas.conf_path} -Djava.security.krb5.conf={krb5.conf_path} -Dhive.metastore.sasl.enabled=true -Dhive.metastore.kerberos.principal={principal}
+  ```
+  >  **提示：**
+  >  1. 请使用 FI 各节点实际存放的配置文件路径替换 `{jaas.conf_path}` 和 `{krb5.conf_path}` 
+  >  2. `{principal}` 为访问 Hive Metastore 需要的 principal，如 `hive/hadoop.hadoop.com@HADOOP.COM` 
+

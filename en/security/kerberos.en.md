@@ -52,18 +52,7 @@ This chapter introduces how to integrate Kyligence Enterprise with Kerberos.
       };
      ```
 
-For Huawei FI C80, please continute with the following steps:
 
-* Check the consistency of `krb5.conf` file in every Hadoop node with `$KYLIN_HOME/conf/krb5.conf`; If the files are different, please copy the exported file `krb5.conf` to every node in FI cluster, such as `/etc/krb5.conf`.
-* Copy the `$KYLIN_HOME/conf/jaas.conf` from Kyligence Enterprise node to every node in FI cluster, such as `/etc/jaas.conf`.
-* Set the following configurations in `$KYLIN_HOME/conf/kylin.properties` to ensure this product to be able to read the Kerberos configuration file.
-  ```properties
-  kap.storage.columnar.spark-conf.spark.executor.extraJavaOptions=-Djava.security.auth.login.config={jaas.conf_path} -Djava.security.krb5.conf={krb5.conf_path}
-  kap.storage.columnar.spark-conf.spark.driver.extraJavaOptions=-Djava.security.auth.login.config={jaas.conf_path} -Djava.security.krb5.conf={krb5.conf_path} -Dhive.metastore.sasl.enabled=true -Dhive.metastore.kerberos.principal={principal}
-  ```
-  > **Note:**
-  > 1. Please use the exactly file path to replace `{jaas.conf_path}` and  `{krb5.conf_path}` 
-  > 2. `{principal}` indicates the principal which is used to access Hive Metastore, such as `hive/hadoop.hadoop.com@HADOOP.COM` 
 
 ### Configuration
 
@@ -126,3 +115,19 @@ The following configurations are set in `$KYLIN_HOME/conf/kylin.properties`.
    ```
 
    
+### About FusionInsight C80
+If you encounter Kerberos issues in FusionInsight C80, you may try the below steps as a workaround.
+
+**Note**: This is just a workaround rather than the correct way of configuring Kerberos. Please contact your Hadoop administrator for more information about Kerberos on FusionInsight C80.
+
+* Check the consistency of `krb5.conf` file in every Hadoop node with `$KYLIN_HOME/conf/krb5.conf`; If the files are different, please copy the exported file `krb5.conf` to every node in FI cluster, such as `/etc/krb5.conf`.
+* Copy the `$KYLIN_HOME/conf/jaas.conf` from Kyligence Enterprise node to every node in FI cluster, such as `/etc/jaas.conf`.
+* Set the following configurations in `$KYLIN_HOME/conf/kylin.properties` to ensure this product to be able to read the Kerberos configuration file.
+  ```properties
+  kap.storage.columnar.spark-conf.spark.executor.extraJavaOptions=-Djava.security.auth.login.config={jaas.conf_path} -Djava.security.krb5.conf={krb5.conf_path}
+  kap.storage.columnar.spark-conf.spark.driver.extraJavaOptions=-Djava.security.auth.login.config={jaas.conf_path} -Djava.security.krb5.conf={krb5.conf_path} -Dhive.metastore.sasl.enabled=true -Dhive.metastore.kerberos.principal={principal}
+  ```
+  > **Note:**
+  >
+  > 1. Please use the exactly file path to replace `{jaas.conf_path}` and  `{krb5.conf_path}` 
+  > 2. `{principal}` indicates the principal which is used to access Hive Metastore, such as `hive/hadoop.hadoop.com@HADOOP.COM` 
