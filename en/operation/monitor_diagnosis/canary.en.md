@@ -37,7 +37,7 @@ Service status detection mainly focuses on following aspects：
 | SparkSqlContextCanary | The time of calculating the sum from 0 to 100 exceeds 10 seconds | The time of calculating the sum from 0 to 100 exceeds 30 seconds |
 | GarbageCanary         | 1. The number of garbage files produced by Cube is larger than 50<br>2. The amount of garbage is larger  than 5G |                                                              |
 | MetaSyncErrorCanary   | Metastore fails to synchronize                               |                                                              |
-| JobEngineCanary       |                                                              | 1.One of the Kyligence Enterprise nodes failed to report Job Engine status<br>2.There is no active Job Engine node |
+| JobEngineCanary       |                                                              | There is no active Job Engine node |
 
 ### Check Service Status Manually
 

@@ -36,7 +36,7 @@ Kyligence Enterprise 从 v2.5.6 版本开始，增加了环境依赖服务检测
 | SparkSqlContextCanary | 使用 Spark Context 进行一次整数连加操作超过 10 秒            | 使用 Spark Context 进行一次整数连加操作超过 30 秒            |
 | GarbageCanary         | 1. Cube 构建产生的垃圾文件数超过50个及以上<br>2. 垃圾数据的数据量达到5G及以上 |                                                              |
 | MetaSyncErrorCanary   | Metastore 同步失败                                           |                                                              |
-| JobEngineCanary       |                                                              | 1. 有 Kyligence Enterprise 节点未能返回 Job Engine 状态 <br />2. 没有活跃状态的任务构建引擎节点 |
+| JobEngineCanary       |                                                              | 没有活跃状态的任务构建引擎节点 |
 
 ### 使用命令行进行单独诊断
 Kyligence Enterprise还提供了命令行工具来执行对每个服务状态检测，方便进行实时检查和排除错误。同时，检测结果将被保留在单独的日志文件（`$KYLIN_HOME/logs/canary.log`）里。

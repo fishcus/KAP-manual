@@ -24,7 +24,7 @@ Diagnosis function including System Diagnosis and Job Diagnosis.
   5. Select method of dealing with the packages
    Kyligence Enterprise provides two options to dealing with diagnostic packages, one is downloading to local and the other is uploading to KyBot for further analysis.
      - Click **Only generate** to generate the System Diagnostic Package and download to local.
-     - Click **Generate and sync package with KyBot** to generate the System Diagnostic Package and upload it to KyBot.
+     - Click **Generate and sync package with KyBot** to generate the System Diagnostic Package or create a ticket with the package.
 
 
 - Generate Job Diagnosis Package in Web UI
@@ -33,10 +33,12 @@ Diagnosis function including System Diagnosis and Job Diagnosis.
 
   1. Click a certain job on the **Monitor** Page, unfold **Actions** and click **Diagnosis**.
   2. Select Server
+     
+     > **Note:** In the Multi-Active mode, a job may run on multiple job nodes. All the job nodes will automatically list here, you can select the nodes you need to generate package.
   3. Select method of dealing with the packages
      Kyligence Enterprise provides two options to dealing with Diagnostic Packages, one is downloading to local, and the other is uploading to KyBot for further analysis.
      - Click **Only generate** to generate the System Diagnostic Package and download to local.
-     - Click **Generate and sync package with KyBot** to generate the System Diagnostic Package and upload it to KyBot.
+     - Click **Generate and sync package with KyBot** to generate the System Diagnostic Package or create a ticket with the package.
 
 ### Generate Diagnosis Package using bash script
 - Generate system diagnostics package
