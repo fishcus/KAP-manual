@@ -1,6 +1,6 @@
 ## Prerequisite
 
-For better system performance and stability, we recommend that you run Kyligence Enterprise on a dedicated Hadoop cluster. Each server in the cluster should be configured with HDFS, YARN, MapReduce, Hive, Kafka and so on. Among them, HDFS, Yarn, MapReduce, Hive, and Zookeeper are mandatory components.
+For better system performance and stability, we recommend that you run Kyligence Enterprise on a dedicated Hadoop cluster. Each server in the cluster should be configured with HDFS, YARN, MapReduce, Hive, Kafka etc. Note that HDFS, Yarn, MapReduce, Hive, and Zookeeper are mandatory components.
 
 Next we will introduce the prerequisite of Kyligence Enterprise installation.
 
