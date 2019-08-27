@@ -24,7 +24,7 @@ This category relates to `$SPARK_HOME/conf/spark-defaults.conf`, for which there
 kap.storage.columnar.spark-conf.spark.executor.instances=4
 ```
 
-The configuration entry tells Spark to launch 4 executors for KE. As the example illustrates, by prefixing the Spark property with *kap.storage.columnar.conf* , we can specify any Spark property in `$KYLIN_HOME/bin/kylin.properties`.
+The configuration entry tells Spark to launch 4 executors for KE. As the example illustrates, by prefixing the Spark property with *kap.storage.columnar.spark-conf* , we can specify any Spark property in `$KYLIN_HOME/bin/kylin.properties`.
 
 | Property Name                                                | Default | Meaning                                                      |
 | ------------------------------------------------------------ | ------- | ------------------------------------------------------------ |
