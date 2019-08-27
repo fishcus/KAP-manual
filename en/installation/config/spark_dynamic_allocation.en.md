@@ -20,21 +20,16 @@ There are two parts we need to configure for Spark Dynamic Allocation:
 
 1. Log into Cloudera Manager, choose YARN configuration and find NodeManager Advanced Configuration Snippet(Safety Valve) for yarn-site.xml, config as following：
 
- `<property>`
-
- `<name>yarn.nodemanager.aux-services</name>`
-
- `<value>mapreduce_shuffle, spark_shuffle</value>`
-
- `</property>`
-
- `<property>`
-
- `<name>yarn.nodemanager.aux-services.spark_shuffle.class</name>`
-
- `<value>org.apache.spark.network.yarn.YarnShuffleService</value>`
-
- `</property>`
+```
+<property>
+ <name>yarn.nodemanager.aux-services</name>
+ <value>mapreduce_shuffle,spark_shuffle</value>
+</property>
+<property>
+ <name>yarn.nodemanager.aux-services.spark_shuffle.class</name>
+ <value>org.apache.spark.network.yarn.YarnShuffleService</value>
+</property>
+```
 
 2. Copy the $KYLIN_HOME/spark/lib/spark-<version>-yarn-shuffle.jar and put it under path /opt/lib/kap/ of Hadoop node.
 

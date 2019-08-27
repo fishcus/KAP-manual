@@ -10,11 +10,11 @@
 
 * **kylin.env.hdfs-working-dir**
 
-  该参数指定 Kyligence Enterprise 服务所用的 HDFS 路径。默认值为 HDFS 上的`kylin/`，以元数据库路径中的 HTable 表名为子目录。例如，假设元数据库路径参数值为``kylin_metadata@hbase``，那么该 HDFS 路径默认值就是`/kylin/kylin_metadata`。请预先确保启动 Kyligence Enterprise 实例的用户有读写该目录的权限。
+  该参数指定 Kyligence Enterprise 服务所用的 HDFS 路径。默认值为 HDFS 上的`/kylin`，以元数据库路径中的 HTable 表名为子目录。例如，假设元数据库路径参数值为``kylin_metadata@hbase``，那么该 HDFS 路径默认值就是`/kylin/kylin_metadata`。请预先确保启动 Kyligence Enterprise 实例的用户有读写该目录的权限。
 
 * **kylin.server.mode**
 
-  该参数指定 Kyligence Enterprise 实例的运行模式，参数值可以是 *all*，*job*，*query* 中的一个，默认值为 *all*。*job* 模式表示该服务仅用于 Cube 任务调度，不用于 SQL 查询；*query* 模式表示该服务仅用于 SQL 查询，不用于 Cube 构建任务的调度；*all* 模式表示该服务同时用于任务调度和 SQL 查询。
+  该参数指定 Kyligence Enterprise 实例的运行模式，参数值可以是 *all*，*job*，*query* 中的任意一个，默认值为 *all*。*job* 模式表示该服务仅用于 Cube 任务调度，不用于 SQL 查询；*query* 模式表示该服务仅用于 SQL 查询，不用于 Cube 构建任务的调度；*all* 模式表示该服务同时用于任务调度和 SQL 查询。
 
 * **kylin.source.hive.database-for-flat-table**
 
@@ -22,7 +22,7 @@
 
 * **kylin.storage.hbase.compression-codec**
 
-  该参数指定 Kyligence Enterprise 创建的 HTable 所采用的压缩算法。默认值为 *none*，即不启用压缩。请根据实际对压缩算法的支持情况，选择合适的压缩算法，如 *snappy*、*lzo*、*gzip*、*lz4* 等。
+  该参数指定 Kyligence Enterprise 创建的 HTable 所采用的压缩算法。默认值为 *none*，即不启用压缩。请根据实际业务情况，选择合适的压缩算法，如 *snappy*、*lzo*、*gzip*、*lz4* 等。
 
 * **kylin.security.profile**
 

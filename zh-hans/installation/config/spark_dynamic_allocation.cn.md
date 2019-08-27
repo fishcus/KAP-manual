@@ -14,24 +14,19 @@ Spark动态资源分配需要配置两处：一处是集群的资源管理器相
 #### 资源管理器配置
 ##### CDH
 
-1. 登入Cloudera Manager，选择YARN configuration，找到NodeManager Advanced Configuration Snippet （Safety Valve） for yarn-site.xml，配置如下：
+1. 登入Cloudera Manager，选择YARN configuration，找到 NodeManager Advanced Configuration Snippet (Safety Valve) for yarn-site.xml，配置如下：
 
-    `<property>`
-
-    `<name>yarn.nodemanager.aux-services</name>`
-
-    `<value>mapreduce_shuffle，spark_shuffle</value>`
-
-    `</property>`
-
-    `<property>`
-
-    `<name>yarn.nodemanager.aux-services.spark_shuffle.class</name>`
-
-    `<value>org.apache.spark.network.yarn.YarnShuffleService</value>`
-
-    `</property>`
-
+    ```
+<property>
+     <name>yarn.nodemanager.aux-services</name>
+ <value>mapreduce_shuffle,spark_shuffle</value>
+    </property>
+<property>
+     <name>yarn.nodemanager.aux-services.spark_shuffle.class</name>
+ <value>org.apache.spark.network.yarn.YarnShuffleService</value>
+    </property>
+```
+    
 2. 将`$KYLIN_HOME/spark/yarn/spark-<version>-yarn-shuffle.jar`文件拷贝出来（Kyligence Enterprise 2.4.1之前版本路径为`$KYLIN_HOME/spark/lib/spark-<version>-yarn-shuffle.jar`），放到Hadoop节点的/opt/lib/kap/目录下（路径可修改）。
 
     在Cloudera Manager中找到NodeManager Environment Advanced Configuration Snippet （Safety Valve），配置:

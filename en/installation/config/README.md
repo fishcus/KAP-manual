@@ -21,4 +21,5 @@ After deploying Kyligence Enterprise on your cluster, you need to configure Kyli
 
 >Notice:
 >+ Unless otherwise specified, the configuration file such as `kylin.properties` mentioned in this manual refer to the corresponding configuration file in the list.
->+ You can get the path of each listed configuration file from the `$KYLIN_HOME/logs/kylin.log` file when the system is started. The log format is `/kylin/conf/kylin.properties is used as kylin.properties`.
+>+ You can get the real path of each listed configuration file from the `$KYLIN_HOME/logs/kylin.log` file after the system started. Find the content `$KYLIN_HOME/conf/kylin.properties is used as kylin.properties`, which means `kylin.properties` locates at `$KYLIN_HOME/conf/kylin.properties`.
+

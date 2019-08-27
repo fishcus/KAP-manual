@@ -20,5 +20,5 @@ Kyligence Enterprise在集群结点上安装完毕后，还需要对Kyligence En
 |Hive|hive-site.xml|该文件用于配置Hive运行参数，如hive数据存放目录，数据库地址等。|
 
 >注意：
->+ 若无特殊说明，本手册中出现的配置文件如`kylin.properties`均指代一览表中相应的配置文件。
->+ 您可以在系统启动后从`$KYLIN_HOME/logs/kylin.log`文件中获取一览表中各配置文件路径，日志格式如`/kylin/conf/kylin.properties is used as kylin.properties`。
+>+ 若无特殊说明，本手册中出现的配置文件均指代一览表中相应的配置文件。
+>+ 您可以在系统启动后在`$KYLIN_HOME/logs/kylin.log`文件中获取一览表中各配置文件的实际路径。例如，日志内容`$KYLIN_HOME/conf/kylin.properties is used as kylin.properties`说明`kylin.properties`位于`$KYLIN_HOME/conf/kylin.properties`。
