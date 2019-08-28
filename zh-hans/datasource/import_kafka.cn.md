@@ -4,7 +4,7 @@
 
 ### 前提条件
 
-请联系您的 Hadoop 管理员，确保您的环境中已安装 **Kafka v2.10-0.10.1.0** 或以上版本。
+请联系您的 Hadoop 管理员，确保您的环境中已安装 **Kafka v2.11-0.11.0.1** 或以上版本。
 
 ### 部署测试用 Kafka Broker
 
@@ -12,19 +12,19 @@
 
 > **提示：**
 > 
-> 如果 Kyligence Enterprise 节点上没有部署 Kafka 二进制包，则必须拷贝其他已部署 Kafka 节点的相同版本的 Kafka 二进制包并解压在本产品启动节点上的任意路径（如`/usr/local/kafka_2.10-0.10.1.0`），并设置 `KAFKA_HOME` 指向该路径。确保 `$KAFKA_HOME/libs/` 目录下有 Kafka 的客户端有关的 Jar 包。
+> 如果 Kyligence Enterprise 节点上没有部署 Kafka 二进制包，则必须拷贝其他已部署 Kafka 节点的相同版本的 Kafka 二进制包并解压在本产品启动节点上的任意路径（如`/usr/local/kafka_2.11-0.11.0.1`），并设置 `KAFKA_HOME` 指向该路径。确保 `$KAFKA_HOME/libs/` 目录下有 Kafka 的客户端有关的 Jar 包。
 
 1. 下载 Kafka 安装包并解压。
    ```sh
-   curl -s https://archive.apache.org/dist/kafka/0.10.1.0/kafka_2.10-0.10.1.0.tgz | tar -xz -C /usr/local/
+   curl -s https://archive.apache.org/dist/kafka/0.11.0.1/kafka_2.11-0.11.0.1.tgz | tar -xz -C /usr/local/
    ```
 2. 指定 `KAFKA_HOME` 环境变量。
    ```sh
-   export KAFKA_HOME=/usr/local/kafka_2.10-0.10.1.0
+   export KAFKA_HOME=/usr/local/kafka_2.11-0.11.0.1
    ```
 3. 启动 Kafka Broker。
    ```sh
-   $KAFKA_HOME/bin/kafka-server-start.sh config/server.properties &
+   $KAFKA_HOME/bin/kafka-server-start.sh $KAFKA_HOME/config/server.properties &
    ```
 
 
@@ -34,22 +34,22 @@
 
 假设 Kafka Broker 运行在 127.0.0.1:9092，ZooKeeper 运行在 127.0.0.1:2181。
 
-1. 创建一个名为 `kylindemo` 的 Kafka Topic。
+1. 创建一个名为 `kylin_streaming_topic` 的 Kafka Topic。
    ```sh
-   $KAFKA_HOME/bin/kafka-topics.sh --create --zookeeper 127.0.0.1:2181 --replication-factor 1 --partitions 3 --topic kylindemo
+   $KAFKA_HOME/bin/kafka-topics.sh --create --zookeeper 127.0.0.1:2181 --replication-factor 1 --partitions 3 --topic kylin_streaming_topic
    ```
 
 2. 启动 Kafka Producer。
    本产品提供了一个简单的 Producer 工具用于产生消息流，持续往 Kafka Topic 中导入数据。
 
    ```sh
-   $KYLIN_HOME/bin/kylin.sh org.apache.kylin.source.kafka.util.KafkaSampleProducer --topic kylindemo --broker 127.0.0.1:9092
+   $KYLIN_HOME/bin/kylin.sh org.apache.kylin.source.kafka.util.KafkaSampleProducer --topic kylin_streaming_topic --broker 127.0.0.1:9092
    ```
    这个工具每秒会向 Kafka 中发送 100 条消息。在模拟流数据时，请保持本程序持续运行。
 
 3. 同时，您可以使用 Kafka 自带的 Consumer 来检查消息是否成功导入。
    ```sh
-   $KAFKA_HOME/bin/kafka-console-consumer.sh --bootstrap-server 127.0.0.1:9092 --topic kylindemo --from-beginning
+   $KAFKA_HOME/bin/kafka-console-consumer.sh --bootstrap-server 127.0.0.1:9092 --topic kylin_streaming_topic --from-beginning
    ```
 
 ### 从流式数据中解析并定义数据表
@@ -59,21 +59,21 @@
 1. 在 Web UI 界面新建一个项目用于导入流式数据。
 2. 在**建模**-->**数据源**页面，点击数据源选择数据源为 Kafka，点击**下一步**。
    ![选择数据源](images/kafka_import.cn.png)
-3. 在**设置 Kafka 主题**页面中输入 Broker 集群信息，包括主机的实际 IP 地址和端口号，确认后点击  √。
+3. 在**设置 Kafka 主题**页面中点击 **+集群** 输入集群的 Broker 信息，包括主机的实际 IP 地址和端口号（如 `127.0.0.1:9092`）。如果有多个 broker，用 `,` 隔开。确认后点击  √，这时会对输入的 Broker 进行检测。如果检测出无效的 Broker，请移除后再重新确认。
    ![输入 Broker 集群信息](images/kafka_setting.png)
-4. 点击 **获取该集群信息** -> **{Kafka Topic 名称}**（如：`kylindemo`），消息流的采样数据会出现在右边文本框中，点击 **Convert**。
+4. 点击 **获取该集群信息** -> **{Kafka Topic 名称}**（如：`kylin_streaming_topic`），消息流的采样数据会出现在右边文本框中，点击 **转换**。
    ![获取 Broker 集群信息](images/kafka_info.png)
 5. 为流式数据源定义一个表名，这张数据表将作为后续创建模型和查询的事实表。本例将表命名为 **KAFKA_TABLE_1**。
    ![为流式数据源定义表名](images/kafka_name.png)
 6. 检查表结构中的列和对应的列类型是否正确。
   **注意：** 
-  - 确保至少有一列的列类型被选择为 **timestamp**。
-  - 本产品会自动生成 7 个不同粒度的时间列，包括 **year_start、quarter_start、month_start、week_start、day_start、hour_start、minute_start**，请务必保证 **minute_start** 的勾选，保证后续模型设计、Cube 构建等过程的顺利进行，其他维度可以根据您实际业务场景需要进行勾选。
+  - 确保至少有一列的列类型被选择为 **timestamp**，代表记录的数据时间。
+  - 基于上述数据时间列，本产品会自动生成 7 个不同粒度的时间列，包括 **year_start、quarter_start、month_start、week_start、day_start、hour_start、minute_start**，请务必保证 **minute_start** 的勾选，保证后续模型设计、Cube 构建等过程的顺利进行，其他维度可以根据您实际业务场景需要进行勾选。
   ![至少一列为 timestamp](images/kafka_check_timestamp.png)
 7. 设置解析器
    ![设置解析器](images/kafka_parser.png)
    - 解析器名称：默认为 `org.apache.kylin.source.kafka.TimedJsonStreamParser`，支持自定义解析器；
-   - 时间戳字段名称：必须指定一列时间字段用于解析，本例选择了 **order_time**。
+   - 时间戳字段名称：每条记录的数据时间列，用于生成 7 个不同粒度的时间列。本例选择了 **order_time**。
    - 解析器属性：为解析器定义更多属性，请参照输入框中提示的属性格式指定 **tsParser** 和 **tsPattern**。
      - tsParser：指时间戳解析器，该解析器会将 `tsColName` 的数值解析成时间戳。
        本产品提供有两种内置解析器：
