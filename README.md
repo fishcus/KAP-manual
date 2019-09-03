@@ -4,7 +4,7 @@
 
 **Kyligence Enterprise: Petabyte-Scale Enterprise OLAP Platform** 
 
-Kyligence Enterprise is an enterprise OLAP on Hadoop powered by Apache Kylin, enables sub-second SQL query latency on petabyte scale dataset, provides high concurrency at internet scale, empowers analysts to architect BI on Hadoop with industry-standard data warehouse and business intelligence methodology. Kyligence Enterprise is an unified analytics platform simplified Big Data Analytics for business users, analysts and engineers with self-service, seamless integrated with BI tools and no programming required. Kyligence Enterprise is a native on Hadoop OLAP solution which interactive with cluster only via standard APIs, supports main Hadoop distributions from on-premieres to in the Cloud.
+Kyligence Enterprise is an enterprise OLAP on Hadoop powered by Apache Kylin. Kyligence Enterprise enables sub-second SQL query latency on petabyte scale dataset, provides high concurrency at web-scale, empowers analysts to architect BI on Hadoop with industry standard data warehousing and business intelligence methodologies. Kyligence Enterprise is an unified self-serve Big Data analytics platform for business users, analysts and engineers. It integrates with BI tools and requires no programming skills. Kyligence Enterprise is a native on Hadoop OLAP solution which interactive with cluster only via standard APIs, supports main Hadoop distributions from on-premieres to in the Cloud.
 
 上海跬智信息技术有限公司
 
