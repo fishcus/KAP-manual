@@ -1,6 +1,6 @@
 ## String Operator
 
-| Operator | Description       | Syntax | Example                 |
+| Operator | Description       | Syntax | Example                   |
 | -------- | ---------------- | ------ | ----------------------- |
-| \|\|    | String\|\|string | A\|\|B | First_name\|\|Last_name |
+|   &#124;&#124;   | String&#124;&#124;string | A&#124;&#124;B | First_name&#124;&#124;Last_name |
 
