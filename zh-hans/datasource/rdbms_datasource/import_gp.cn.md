@@ -57,10 +57,14 @@ kylin.source.jdbc.sqoop-home=/usr/hdp/current/sqoop-client/bin
 
 ### 同步 Greenplum 表
 
-选择数据源为 RDBMS 后，通过点击 “Table” 来加载我们所需要的表，如下图所示：![加载表元数据](../images/rdbms_import_tables.png)
+选择数据源为 RDBMS 后，通过点击 “Table” 来加载我们所需要的表，如下图所示：
+
+> **提示：** Greenplum中模式、表名和字段名均大小写敏感，当前版本使用 Greenplum 数据源时只支持小写的模式、表名和字段名。
+
+![加载表元数据](../images/rdbms_import_gp_tables.png)
 
 在弹出的对话框中展开 sample 数据集，并选择需要的表，如图所示：
 
-![加载表并采样](../images/rdbms_import_select_table.png)
+![加载表并采样](../images/rdbms_import_select_gp_table.png)
 
 > **提示：** 默认选择**加载后启动表采样任务**。 表采样结果能帮助优化后续的模型设计和 Cube 设计，我们强烈建议您启用该选项。

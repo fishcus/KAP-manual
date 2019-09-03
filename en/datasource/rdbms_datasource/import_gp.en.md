@@ -58,10 +58,12 @@ kylin.source.jdbc.sqoop-home=/usr/hdp/current/sqoop-client/bin
 
 Greenplum tables need to be synchronized into Kyligence Enterprise before they can be used. To make things easy, we synchronize by using the following button to load tables.
 
-![Synchronize table's metadata](../images/rdbms_import_tables.png)
+> **Note:** Schema, table name and field name are case sensitive in Greenplum, only lowercase is supported in current version.
+
+![Synchronize table's metadata](../images/rdbms_import_gp_tables.png)
 
 In the dialog box, expand the sample schema and select the desired five tables.
 
-![Table sampling](../images/rdbms_import_select_table.png)
+![Table sampling](../images/rdbms_import_select_gp_table.png)
 
 > **Note:** Table sampling after loading is selected by default. Table sampling results will help optimize the model design and cube design. User can also turn it off and adjust the sampling percentage.
