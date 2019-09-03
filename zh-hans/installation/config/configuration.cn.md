@@ -50,10 +50,6 @@
   kylin.source.hive.beeline.params=-n root -u 'jdbc:hive2://localhost:10000'
   ```
 
-* **kylin.env**
-
-  该参数指定 Kyligence Enterprise 部署的用途，可以是 *DEV*、*PROD*、*QA*。出厂默认值为 *PROD*。在 *DEV* 模式下一些开发者功能将被启用。
-
 * **kylin.query.force-limit**
 
   BI 工具往往会发送类似`select * from fact_table`的查询语句，对于表格数据特别多的表格，数据返回时间较长，造成BI工具的长时间卡顿。该参数通过为`select *`语句强制添加 LIMIT 分句，达到缩短数据返回时间的目的。启动该功能的方法为将该设置的值设置为正整数，如1000，该值会被用在 LIMIT 分句，查询语句最终会被转化成`select * from fact_table limit 1000`。该参数可在**项目**级别重写。
