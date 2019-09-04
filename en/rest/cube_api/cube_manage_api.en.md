@@ -232,8 +232,11 @@
   - `Content-Type: application/json;charset=utf-8`
 
 - HTTP Body: JSON Object
-  - `mpValues` - `optional` `string`, multiple partition values of corresponding model
   - `project` - `required` `string`, project name
+  - `mpValues` - `optional` `string`, multiple partition value of corresponding model, used to specify one partition to clean up its data
+  - `mpValuesSet` - `optional` `array`, several multiple partition values of corresponding model, used to specify multiple partitions to clean up its data
+
+> Hint: Please choose one between `mpValues` and `mpValuesSet` according to your requirement. The union will take effect if you used both of them in the request. 
 
 - Curl Request Example
 
@@ -244,7 +247,7 @@
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8' \
-    -d '{"mpValues": "", "project": "learn_kylin"}'
+    -d '{"mpValues": "", "project": "learn_kylin", "mpValuesSet": ["value1", "value2"...]}'
   ```
 
 

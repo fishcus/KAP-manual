@@ -230,8 +230,11 @@
   - `Content-Type: application/json;charset=utf-8`
 
 - HTTP Body: JSON Object
-  - `mpValues` - `可选` `string`，模型多级分区值
   - `project` - `必选` `string`，项目名称
+  - `mpValues` - `可选` `string`，模型多级分区值，用于指定单个待清理的分区
+  - `mpValuesSet` - `可选` `数组`, 模型多级分区值的数组，用于指定多个待清理的分区
+
+> 注意：`mpValues`和`mpValuesSet`两个参数只需设置一个。如果两个参数同时设置，生效的待清理分区是两个参数值的全集。
 
 - Curl 请求示例
 
@@ -242,7 +245,7 @@
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8' \
-    -d '{"mpValues": "", "project": "learn_kylin"}'
+    -d '{"mpValues": "", "project": "learn_kylin", "mpValuesSet": ["value1", "value2"...]}'
   ```
 
 
