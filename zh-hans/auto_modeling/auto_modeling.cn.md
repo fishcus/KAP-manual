@@ -51,7 +51,10 @@
 
 #### 自动建模
 
-此步骤中，系统将您勾选的 SQL 模式自动创建多个模型，并直观地展现。点击侧边栏中对应按钮，您可以查看当前模型的维度，度量，表索引和 Rowkeys。Kyligence Enterprise 3.x 版本的自动建模中，可计算列能力暂时不支持。
+此步骤中，系统将您勾选的 SQL 模式自动创建多个模型，并直观地展现。点击侧边栏中对应按钮，您可以查看当前模型的维度，度量，表索引和 Rowkeys。Kyligence Enterprise 3.x 版本的自动建模中，对可计算列仅有有限的支持，目前仅支持对下列表达式推荐可计算列：
+
+1. SELECT/GROUP BY 表达式或 WHERE 条件中的出现的 CASE WHEN 表达式
+2. AVG/SUM 聚合函数内部出现的表达式
 
 点击**编辑**，模型呈现可编辑状态。系统已经根据选入的SQL查询推荐出不同的**维度组**，包括联合维度（J:joint）、层级维度（H:hierarchy）和必要维度（M: mandatory）。概念说明可以参考本产品手册[维度聚合组](../model/cube_design/aggregation_group.cn.md)。
 

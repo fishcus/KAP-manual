@@ -55,7 +55,10 @@ At the page of Pattern Recognition, Kyligence Enterprise integrates all SQL stat
 
 #### Auto Modeling
 
-In Auto modeling, according to the SQL mode you choose, system will automatically create multiple models and display them. Then you can check the Dimensions, Measures, Rowkey and Table Index by clicking the sidebar. Computed column function is not supported in **Auto Modeling** in Kyligence Enterprise 3.x.
+In Auto modeling, according to the SQL mode you choose, system will automatically create multiple models and display them. Then you can check the Dimensions, Measures, Rowkey and Table Index by clicking the sidebar. Computed column function has limited support in **Auto Modeling** in Kyligence Enterprise 3.x, only following expressions are supported right now.
+
+1. CASE WHEN expression in SELECT/GROUP BY clause or WHERE condition
+2. The inner expression in AVG/SUM aggregation function
 
 After clicking the **Edit** button, you will access the edit mode. The system will recommend different optimization settings for dimension, including Joint Dimension (J: Joint) , Hierarchy Dimension (H: Hierarchy) and Mandatory Dimension (M: Mandatory). The detailed information can be found in chapter [Aggregation Group](../model/cube_design/aggregation_group.en.md).
 
