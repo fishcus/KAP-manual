@@ -2,7 +2,7 @@
 
 > 提示：
 >
-> 1. 请确保已阅读前面的[访问及安全认证](authentication.cn.md)章节，了解如何在 REST API 语句中添加认证信息。
+> 1. 请确保已阅读前面的[访问及安全认证](../authentication.cn.md)章节，了解如何在 REST API 语句中添加认证信息。
 >
 > 2. 在 Curl 命令行上，如果您访问的 URL 中含有 `&` 符号，请注意转义，比如在 URL 两端加上引号。
 
@@ -177,7 +177,7 @@
 
 - HTTP Body: JSON Object
   - `permission` - `必选` `string`，项目级访问控制权限，对应关系如下："READ" 对应 "Query"；"ADMINISTRATION" 对应 "ADMIN"；"OPERATION" 对应 "OPERATION"；"MANAGEMENT" 对应 "MANAGEMENT"
-  - `accessEntryId` - `必选` `int`，用户对应的 UUID
+  - `accessEntryId` - `必选` `int`，获取项目级访问控制权限 API 响应值中，用户或用户组的id
   - `sid` - `必选` `string`，用户或用户组的名称
   - `principal` - `必选` `boolean`，为用户或用户组，"true" 表示用户，"false" 表示用户组
 
@@ -187,18 +187,12 @@
   > 提示：如下 Curl 请求将删除用户组 ROLE_ANALYST 对 learn_kylin 的 QUERY 项目级访问控制权限
 
   ```sh
-curl -X PUT \
-  'http://host:port/kylin/api/access/ProjectInstance/{uuid}?accessEntryId=0&sid=ROLE_MODELER&principal=false' \
-  -H 'accept: application/vnd.apache.kylin-v2+json' \
-  -H 'accept-language: en' \
-  -H 'authorization: Basic QURNSU46S1lMSU4=' \
-  -H 'content-type: application/json;charset=utf-8' \
-  -d '{
-	"permission":"READ",
-	"principal": true, 
-	"sid": "ROLE_ANALYST",
-	"accessEntryId": 0
-}'
+  curl -X DELETE \
+   'http://host:port/kylin/api/access/ProjectInstance/{uuid}?accessEntryId=0&sid=ROLE_MODELER&principal=false' \
+   -H 'accept: application/vnd.apache.kylin-v2+json' \
+   -H 'accept-language: en' \
+   -H 'authorization: Basic QURNSU46S1lMSU4=' \
+   -H 'content-type: application/json;charset=utf-8'
   ```
 
 

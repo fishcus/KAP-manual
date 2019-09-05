@@ -123,7 +123,7 @@
   - `permission` - `required` `string`, project ACL. e.g. ("READ" for "Query","ADMINISTRATION" for "ADMIN","OPERATION" for "OPERATION" and "MANAGEMENT" for "MANAGEMENT" )
   - `principal` - `required` `boolean`, user or user group, "true" for user and "false" for user group
   - `sid` - `required` `string`, name of user or user group
-  - `accessEntryId` - `required` `int`, user UUID
+  - `accessEntryId` - `required` `int`, user or user group id in response of Get Project ACL API
 
 
 - Curl Request Example 
@@ -183,18 +183,12 @@
 
 
   ```sh
-  curl -X PUT \
-  'http://host:port/kylin/api/access/ProjectInstance/{uuid}?accessEntryId=0&sid=ROLE_MODELER&principal=false' \
-  -H 'accept: application/vnd.apache.kylin-v2+json' \
-  -H 'accept-language: en' \
-  -H 'authorization: Basic QURNSU46S1lMSU4=' \
-  -H 'content-type: application/json;charset=utf-8' \
-  -d '{
-	"permission":"READ",
-	"principal": true, 
-	"sid": "ROLE_ANALYST",
-	"accessEntryId": 0
-}'
+  curl -X DELETE \
+   'http://host:port/kylin/api/access/ProjectInstance/{uuid}?accessEntryId=0&sid=ROLE_MODELER&principal=false' \
+   -H 'accept: application/vnd.apache.kylin-v2+json' \
+   -H 'accept-language: en' \
+   -H 'authorization: Basic QURNSU46S1lMSU4=' \
+   -H 'content-type: application/json;charset=utf-8'
   ```
 
 
