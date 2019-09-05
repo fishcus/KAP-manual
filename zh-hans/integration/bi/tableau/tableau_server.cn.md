@@ -1,11 +1,33 @@
 ## 与 Tableau Server 集成
 
 ### 前置条件
-- 安装 Kyligence ODBC 驱动程序。有关安装信息，参考页面 [Kyligence ODBC驱动程序教程](http://docs.kyligence.io/books/enterprise/latest/zh-cn/driver/kyligence_odbc.cn.html)。
+- 安装 Kyligence ODBC 驱动程序。有关安装信息，参考页面 [Kyligence ODBC驱动程序教程](../../driver/odbc/README.md)。
 
 - 安装 Tableau Server。有关 Tableau Server 的安装说明，请访问 [Tableau Server下载页面](https://www.tableau.com/products/server)。
 
 - 配置Tableau Datasource Customization (TDC) 文件
+
+  与Desktop类似，步骤如下：
+
+  1. 在[Kyligence下载中心](http://download.kyligence.io/#/download)下载 “Tableau Datasource Customization“ (TDC)文件
+
+  2. 将TDC文件拷贝至Tableau Server相关安装目录下即可
+
+     Tableau Server 缺省目录：
+
+     Windows环境：
+
+     Program Files\Tableau\Tableau Server\<version>\bin
+
+     或者
+
+     ProgramData\Tableau\Tableau Server\data\tabsvc\vizqlserver\Datasources
+
+     Linux 环境：
+
+     /var/opt/tableau/tableau_server/data/tabsvc/vizqlserver/Datasources/
+
+> **注意：**Tableau Server 配置连接 Kyligene Enterprise 的 ODBC 驱动时，请确保 DSN 名称和本地一致
 
 ### 登录到 Tableau Server
 
@@ -47,10 +69,6 @@
 
 - Tableau Server 配置连接 Kyligene Enterprise 的 ODBC 驱动时，请确保 DSN 名称和本地一致
 
-- Tableau Server 和 Kyligence Enterprise 目前还无法做到单点登录
+- Kyligence Server与Tableau Server账号相互独立，在 Desktop 以“提示用户”模式发布工作簿，在 Tableau Server 输入 Kyligence Enterprise 账号密码，实现权限集成
 
-- 两系统账号相互独立，可在 Desktop 通过“提示用户”模式发布工作簿，在 Tableau Server 输入 Kyligence Enterprise 账号密码，实现权限集成
-
-- Tableau Server 支持保存 Kyligence Enterprise 账号密码，通过**设置**->**常规**->**保存的凭据**->
-
-用户可保存其密码实现
+- Tableau Server 支持保存 Kyligence Enterprise 账号密码，通过**设置**->**常规**->**保存的凭据**->用户可保存其密码实现

@@ -4,13 +4,35 @@
 
 - Install Kyligence ODBC Driver
 
-  For the installation information, please refer to [Kyligence ODBC Driver tutorial](http://docs.kyligence.io/books/enterprise/latest/zh-cn/driver/kyligence_odbc.cn.html).
+  For the installation information, please refer to [Kyligence ODBC Driver tutorial](../../driver/odbc/README.md).
 
 - Install  Tableau Server
 
   For the installation information, please refer to [Tableau Server Download](https://www.tableau.com/products/server).
 
 - Configure Tableau Datasource Customization (TDC) 
+
+  Similar to Desktop, the steps are as follows:
+
+  Step 1: Download file named Tableau Datasource Customization on [Kyligence Download](http://download.kyligence.io/#/addons).
+
+  Step 2: Copy the file into the required Tableau directory. 
+
+  ​             The default location is： 
+
+  ​             Windows environment
+
+  ​             Program Files\Tableau\Tableau Server\<version>\bin`
+
+  ​             Or
+
+  ​             ProgramData\Tableau\Tableau Server\data\tabsvc\vizqlserver\Datasources`
+
+  ​             Linux environment
+
+  ​             /var/opt/tableau/tableau_server/data/tabsvc/vizqlserver/Datasources/
+
+  > **Note：**When configureing ODBC drivers in Tableau Server, make sure that the DSN name is the same as the local.
 
 ### Login to Tableau Server
 

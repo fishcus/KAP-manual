@@ -114,7 +114,7 @@
             * [Linux](integration/driver/odbc/linux_odbc.en.md)
     * [Connect Kyligence from BI Tools](integration/bi/README.md)
         * [Tableau](integration/bi/tableau/README.md)
-            * [Tableau 9.x](integration/bi/tableau/tableau_9.en.md)
+            * [Tableau Desktop](integration/bi/tableau/tableau_desktop.en.md)
             * [Tableau Server](integration/bi/tableau/tableau_server.en.md)
         * [Power BI](integration/bi/powerbi/README.md)
             * [Power BI Desktop](integration/bi/powerbi/powerbi_desktop.en.md)
