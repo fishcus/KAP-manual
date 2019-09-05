@@ -6,8 +6,13 @@
 
 **Q:如何触发流式 Cube 的定期自动构建？**
 在第一次构建完成以后，您可以以一定周期定时触发构建任务，每次触发构建的时候，Kyligence Enterprise 都会自动从上次结束的位置开始构建。您可以使用 Linux 的 `crontab` 指令定期触发构建任务：
+   - **新建文件**
    ```sh
-   crontab -e　*/5 * * * * curl -X PUT \
+   sudo vi streaming_build.sh
+   ```
+   - **文件内加入以下命令**
+   ```sh
+   curl -X PUT \
    'http://host:port/kylin/api/cubes/{cubeName}/build_streaming' \
    -H 'Accept: application/vnd.apache.kylin-v2+json' \
    -H 'Accept-Language: en' \
@@ -17,8 +22,23 @@
        "sourceOffsetStart": 0, 
        "sourceOffsetEnd": 9223372036854775807, 
        "buildType": "BUILD"
-   }' 
+   }'   
    ```
+   - **给文件授权**
+   ```sh
+   chmod 777 streaming_build.sh
+   ```
+   
+   - **加入crontab**
+   ```sh
+   crontab -e　
+   ```
+   - **添加内容**
+   ```sh
+   */5 * * * * {filepath}/streaming_build.sh
+   ```
+
+   
 **Q:由于流式 Cube 的构建总是从消息队列尾部开始构建，如果某次构建任务被终止，则 Cube 中会由于缺失了此次构建的 Segment 而产生一个“空洞”。正常的构建将无法填补这些空洞，这种情况应该如何处理？**
 使用 REST API 找出这些 Segment 的“空洞”，并且重新触发构建将其补全。
    - **检查空洞**

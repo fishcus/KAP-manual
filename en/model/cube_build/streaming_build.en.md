@@ -6,8 +6,13 @@ Build cube job from streaming data can be triggered from WEB UI or by REST API. 
 
 **Q: How to trigger the periodic automatic build of the streaming Cube?**
 After the first build is completed, you can trigger the build job at a fixed time, and each time the build job is triggered, Kyligence Enterprise will automatically build from the last time it was last. You can periodically trigger a build task using Linux's `crontab` command:
+   - **Create file**
    ```sh
-   crontab -e　*/5 * * * * curl -X PUT \
+   sudo vi streaming_build.sh
+   ```
+   - **Add the command**
+   ```sh
+   curl -X PUT \
    'http://host:port/kylin/api/cubes/{cubeName}/build_streaming' \
    -H 'Accept: application/vnd.apache.kylin-v2+json' \
    -H 'Accept-Language: en' \
@@ -17,8 +22,22 @@ After the first build is completed, you can trigger the build job at a fixed tim
        "sourceOffsetStart": 0, 
        "sourceOffsetEnd": 9223372036854775807, 
        "buildType": "BUILD"
-   }' 
+   }'   
    ```
+   - **Authorize the file**
+   ```sh
+   chmod 777 streaming_build.sh
+   ```
+   
+   - **Add to crontab**
+   ```sh
+   crontab -e　
+   ```
+   - **Add the content**
+   ```sh
+   */5 * * * * {filepath}/streaming_build.sh
+   ```
+
 **Q: Because the build job of the streaming cube always starts from the end of the message queue, if a build job is discarded, the cube will genereate a "hole" due to the missing segment. Normal build jobs will not be able to fill these holes. How should this be handled?**
 Use REST API to find the "holes" of these segments and trigger the build job to fill them.
 
