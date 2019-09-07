@@ -69,7 +69,7 @@
             * [Count Distinct (Approximate)](model/cube_design/measure_design/count_distinct_hllc.en.md)
             * [Percentile (Approximate)](model/cube_design/measure_design/percentile_approx.en.md)
             * [CORR (Beta)](model/cube_design/measure_design/corr.en.md)
-            * [Semi-additive Measure (Beta)](model/cube_design/measure_design/semi_sum.en.md)
+            * [Semi-Additive Measure (Beta)](model/cube_design/measure_design/semi_sum.en.md)
             * [Sum Expression (Beta)](model/cube_design/measure_design/sum_expression.en.md)
         * [Table Index](model/cube_design/table_index.en.md)
         * [Verify SQL](model/cube_design/verify_sql.en.md)

@@ -1,156 +1,142 @@
-## Semi-additive Measure (Beta)
+## Semi-Additive Measure (Beta)
 
-Semi-additive measures are very common in various data analysis scenarios, like account balance or inventory analysis. Take account balance as an example, you can analyze account balance based on the account transactions history, SUM() is used when aggregated by default, but for aggregating multiple records under the same account, we need to use last record value (LastNonEmpty) along the time dimension (typically it's transaction date/timestamp).
+Semi-additive measures are very common in various data analysis scenarios, like account balance or inventory analysis. Take account balance as an example, you can analyze account balance based on the account transactions history, SUM() is used when aggregated by default, but for aggregating multiple records under the same account, we need to use last record value along the time dimension.
 
-Since v3.3, Kyligence Enterprise supports semi-additive measure. When defining a SUM() measure, you can enable semi-additive behavior by specifying a semi-additive function (LastNonEmpty), an account dimension, and a time dimension (only TIMESTAMP or DATE type). When querying, Kyligence Enterprise will take only the last value along the time dimension for multiple records in the same account, and then perform normal accumulation (SUM) on other dimensions.
+Since v3.4, Kyligence Enterprise supports semi-additive measure. When defining a SUM() measure, you can enable semi-additive behavior by specifying a semi-additive function and a time dimension (of type TIMESTAMP or DATE). When doing group-by aggregation, Kyligence Enterprise will take only the last record(s) along the time dimension for one group-by result set. If multiple records share the last position in time dimension, further aggregation takes place using normal sum.
 
 ### How to Use
 
-Taking the balance analysis based on account transaction history data as an example, the following is the bank account transaction history table *FLOW_RECORD*:
+The semi-additive feature requires the fact table to contain snapshots over time such as products inventory or accounts balances. At each point of time, the fact table must contain one record for all accounts, like the *SEMI_SCENE* table below.
 
-| Part_DT    | Account   | Expense | Income | Balance |
+| TX_DATE    | ACCOUNT   | EXPENSE | INCOME | BALANCE |
 | ---------- | --------- | ------- | ------ | ------- |
 | 2018-01-01 | account_a | 100     |        | 1000    |
 | 2018-01-01 | account_b | 200     |        | 800     |
-| 2018-01-02 | account_b | 300     |        | 500     |
+| 2018-01-01 | account_c | 300     |        | 500     |
 | 2018-02-15 | account_a |         | 200    | 1200    |
-| 2018-02-18 | account_b |         | 300    | 800     |
+| 2018-02-15 | account_b |         | 300    | 1100    |
+| 2018-02-15 | account_c |         | 50     | 550     |
 
-We can create a semi-additive measure with *Balance* by the following steps.
+The *SEMI_SCENE* table contains two points of time, 2018-01-01 and 2018-02-15. At each point of time, there are records for all 3 accounts. It is a typical snapshot dataset.
 
-Step 1. In the third step of Cube creation, click **Add Measure** in the left corner to add a new measure.
+We can create a semi-additive measure on the *BALANCE* column along the *TX_DATE* time dimension by the following steps.
 
-Step 2. Enter the measure name, select *SUM* as expression and *Balance* as the parameter value. Click *Semi-Additive (Beta)*.
+1. Create a cube with *SEMI_SCENE* as fact table.
+2. In the measure panel, add a new measure using SUM expression and turn on the Semi-Additive switch.
+3. Select BALANCE as measure column and TX_DATE as time dimension.
+4. Select LastChild as the semi-additive function, which is also the only choice at the moment.
+5. Go on to complete the cube creation process and save.
 
-![Create measure](../images/semi_sum.en.png)
+   ![Create measure](../images/semi_sum.en.png)
 
-Step 3. Select *Account Dimension* and *Time Dimension*, and set an *Aggregation Function*.
 
-> **Note:** Only *LastNonEmpty* function is supported in the current version. If you see *LASTVALUE*, it is a bug in the beta version and will be fixed soon. It actually behaviors as *LastNonEmpty*.
 
-Step 4. Design and build Cube, then go to **Insight** page to run a query. 
+Load data by building the cube and it is ready for queries. Some query examples:
 
-Here are some query examples:
-
-1. Analyze the total expenditure, total income and balance for each account.
+1. Get the total expense, income, and balance of all accounts.
 
    ```sql
    SELECT ACCOUNT, SUM(EXPENSE),SUM(INCOME),SUM(BALANCE)
-   FROM FLOW_RECORD
+   FROM SEMI_SCENE
    GROUP BY ACCOUNT
    ```
 
-   The query results:
+   Results
 
    ```sql
    account_a, 100, 200, 1200
-   account_b, 500, 300, 800
+   account_b, 200, 300, 1100
+   account_c, 300, 50, 550
    ```
 
-2. Get the balance of all accounts by the end of January 2018.
+2. Get the remaining balance of all accounts by January 2018.
 
    ```sql
    SELECT ACCOUNT, SUM(BALANCE)
-   FROM FLOW_RECORD
-   WHERE PART_DT <= '2018-01-31'
+   FROM SEMI_SCENE
+   WHERE TX_DATE <= '2018-01-31'
    GROUP BY ACCOUNT
    ```
    
-   The query results:
+   Results
    
    ```sql
    account_a, 1000
-   account_b, 500
+   account_b, 800
+   account_c, 500
    ```
    
-3. Analyze the total expenditure, total income and balance of all accounts in the year 2018.
+3. Get the total expense, income, and balance for year 2018.
 
    ```sql
    SELECT SUM(EXPENSE),SUM(INCOME),SUM(BALANCE)
-   FROM FLOW_RECORD
-   WHERE YEAR(PART_DT) = 2018
+   FROM SEMI_SCENE
+   WHERE YEAR(TX_DATE) = 2018
    ```
 
-   The query results:
+   Results
 
    ```sql
-   600, 500, 2000
+   600, 550, 2850
    ```
 
-4. Analyze the total expenditure, total income and balance of each account in every month of the year 2018.
+4. Break down the expense, income, balance of year 2018 by month.
 
    ```sql
-   SELECT MONTH(PART_DT),SUM(EXPENSE),SUM(INCOME),SUM(BALANCE)
-   FROM FLOW_RECORD
-   WHERE YEAR(PART_DT) = 2018
-   GROUP BY MONTH(PART_DT)
+   SELECT MONTH(TX_DATE),SUM(EXPENSE),SUM(INCOME),SUM(BALANCE)
+   FROM SEMI_SCENE
+   WHERE YEAR(TX_DATE) = 2018
+   GROUP BY MONTH(TX_DATE)
    ```
 
-   The query results:
+   Results
 
    ```sql
-   201801, 600, 0, 1500
-   201802, 0, 500, 2000
+   201801, 600, 0, 2300
+   201802, 0, 550, 2850
    ```
 
-### Notes and Known Limitations
 
-1. In order to get correct query results, please note the below when writing queries:
-   - The filter of queries must be open enough to include at least one record for each account that need to be returned.
 
-     For example, the below query won't return value for `account_a` because the filter only includes the date `2018-01-02`, and there is no record for `account_a` on that date.
-   
-     ```sql
-     SELECT ACCOUNT, SUM(BALANCE)
-     FROM FLOW_RECORD
-     WHERE PART_DT = '2018-01-02'
-     GROUP BY ACCOUNT
-     ```
-   
-     The incorrect result will be
-   
-     ```sql
-     account_b, 500
-     ```
-   
-     To get the balances of all accounts on `2018-01-02`, the right query should be
-   
-     ```sql
-     SELECT ACCOUNT, SUM(BALANCE)
-     FROM FLOW_RECORD
-     WHERE PART_DT <= '2018-01-02'
-     GROUP BY ACCOUNT
-     ```
-   
-     And the correct result is
-   
-     ```sql
-     account_a, 1000
-     account_b, 500
-     ```
-   
-   - The record sets produced by the Group By of query must be big enough such that, each group must contain at least one record for each account that need to be returned.
-   
-     For example, the monthly Group By below will return the total balance at each month end correctly, because each month contains records for both `account_a` and `account_b`.
-   
-     ```sql
-     SELECT MONTH(PART_DT), SUM(BALANCE)
-     FROM FLOW_RECORD
-     WHERE YEAR(PART_DT) = 2018
-     GROUP BY MONTH(PART_DT)
-     ```
-   
-     However, the daily Group By below won't return the total balance of each day correctly, because not all accounts have records every day.
-   
-     ```sql
-     SELECT PART_DT, SUM(BALANCE)
-     FROM FLOW_RECORD
-     WHERE YEAR(PART_DT) = 2018
-     GROUP BY PART_DT
-     ```
-   
-   - If there are multiple records of one account at one same point of time, the semi-additive result is undetermined since it is not sure which record is later in time.
-   
-   - Semi-additive measures does not work with table index, query pushdown, and asynchronous query. Normal additive results will be returned in these cases.
-2. Only measures with *SUM* as expression can be set to a semi-additive measure, and the aggregation function only supports *LastNonEmpty*.
-4. In the same project, a column cannot be defined both as semi-additive measure and normal *SUM* measure in one project. That is, in a project, after defining a semi-additive measure based on a column, you can no longer define a normal *SUM* measure based on that same column.
+### Notes and Limitations
+
+- If the fact table does not contains snapshots data over time, the query results may not be what is expected.
+  
+  For example, the dataset below misses 2 records on date 2018-02-15.
+  
+  | TX_DATE    | ACCOUNT   | EXPENSE | INCOME | BALANCE |
+  | ---------- | --------- | ------- | ------ | ------- |
+  | 2018-01-01 | account_a | 100     |        | 1000    |
+  | 2018-01-01 | account_b | 200     |        | 800     |
+  | 2018-01-01 | account_c | 300     |        | 500     |
+  | 2018-02-15 | account_a |         | 200    | 1200    |
+  
+  Run the query
+  
+  ```sql
+  SELECT ACCOUNT, SUM(BALANCE)
+  FROM SEMI_SCENE
+  GROUP BY ACCOUNT
+  ```
+  
+  Results
+  
+  ```sql
+  account_a, 1200
+  account_b, 800
+  account_c, 500
+  ```
+
+  If user expects zero balance on date 2018-02-15 for account_b and account_c because of missing records, then this is not what user wants.
+
+  Also, if there are multiple records of account_a on date 2018-02-15, it also leads to ambiguous result.
+  
+- Semi-additive measure does not work with table index, query pushdown and asynchronous query. Normal sum will take place in these cases. 
+
+- Some limitation when defining semi-additive measure.
+
+  - Semi-additive is only exposed through SUM expression and only supports LastChild semi-additive function.
+  - Within one project, normal sum and semi-additive sum cannot coexist on the same column. For example, you cannot define SUM(BALANCE) as both normal sum and semi-additive sum at the same time. That causes ambiguity when parsing a query.
+  - Within one project, if semi-additive sum on one column is defined multiple times in multiple cubes, their time dimension must be consistent.
+  - The current semi-additive feature (Beta) is not backward compatible. If you upgrade from a previous version, any old cube containing old semi-additive measure will become broken. In that case, please purge the old cube segments and edit the cube to redefine the semi-additive measure.
+
