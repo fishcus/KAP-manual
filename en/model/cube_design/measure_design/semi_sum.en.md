@@ -131,7 +131,7 @@ Load data by building the cube and it is ready for queries. Some query examples:
 
   Also, if there are multiple records of account_a on date 2018-02-15, it also leads to ambiguous result.
   
-- Semi-additive measure does not work with table index, query pushdown and asynchronous query. Normal sum will take place in these cases. 
+- Semi-additive measure does not work with table index and query pushdown. Normal sum will take place in these cases. 
 
 - Some limitation when defining semi-additive measure.
 
