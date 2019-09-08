@@ -138,5 +138,5 @@ Load data by building the cube and it is ready for queries. Some query examples:
   - Semi-additive is only exposed through SUM expression and only supports LastChild semi-additive function.
   - Within one project, normal sum and semi-additive sum cannot coexist on the same column. For example, you cannot define SUM(BALANCE) as both normal sum and semi-additive sum at the same time. That causes ambiguity when parsing a query.
   - Within one project, if semi-additive sum on one column is defined multiple times in multiple cubes, their time dimension must be consistent.
-  - The current semi-additive feature (Beta) is not backward compatible. If you upgrade from a previous version, any old cube containing old semi-additive measure will become broken. In that case, please purge the old cube segments and edit the cube to redefine the semi-additive measure.
+  - The v3.3 version of this product also provides a *LASTVALUE* semi-additive feature (Beta), however that has been deprecated. The current semi-additive feature (Beta) is not backward compatible. If you upgrade from a previous version, any old cube containing old semi-additive measure will become broken. In that case, please purge the old cube segments and edit the cube to redefine the semi-additive measure.
 
