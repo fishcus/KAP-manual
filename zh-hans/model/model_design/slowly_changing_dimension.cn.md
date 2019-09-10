@@ -7,7 +7,7 @@
 - 类别 1：维度表中直接覆盖原值，查询时只能使用最新的维度属性，反应维度最新状态（Latest Status）
 - 类别 2：维度表中添加新的记录，通常增加有效期字段来区分，记录维度表所有历史变化，从而使得历史可追溯。在查询时一般使用当时的维度属性，反应历史事实（Historical Truth）
 
-在 Kyligence Enterprise中，默认情形下对所有维度均做类别2处理，无论是普通维度（Normal Dimension）还是衍生维度（Derived Dimension），我们都在查询时使用 Cube 构建当时的维度表，反应当时的历史事实，其原理如下图：
+在 Kyligence Enterprise 中，默认所有维度为类别 2 处理（Kafka 数据源是例外，默认为类别 1），无论是普通维度（Normal Dimension）还是衍生维度（Derived Dimension），我们都在查询时使用 Cube 构建当时的维度表，反应当时的历史事实，其原理如下图：
 
 ![Kyligence Enterprise 默认SCD2](images/model_SCD2_cn.png)
 

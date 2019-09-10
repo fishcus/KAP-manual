@@ -7,7 +7,7 @@ Dealing with this issue involves SCD management methodologies referred to as Typ
 - Type 1: overwrite. This methodology overwrites old with new data, and therefore does not track historical data. This is also called "latest status".
 - Type 2: add new row. This method tracks historical data by creating multiple records for a given natural key in the dimensional tables with separate surrogate keys and/or different version numbers. Unlimited history is preserved for each insert. This is also called "historical truth".
 
-In Kyligence Enterprise, **SCD Type 2 is the default**, no matter it's normal dimension or derived dimension. During query time, we always get the historical truth of all dimensions when they were built into cube. Below screen-shot illustrates the basics:
+In Kyligence Enterprise, **SCD Type 2 is the default** (except for Kafka data source which uses SCD Type 1 as default), no matter it's normal dimension or derived dimension. During query time, we always get the historical truth of all dimensions when they were built into cube. Below screen-shot illustrates the basics:
 
 ![Kyligence SCD Type 2](./images/model_SCD2_en.png)
 

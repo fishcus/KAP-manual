@@ -86,9 +86,7 @@ You can define a new computed column based on an existing computed column, and t
 
 ![Nested computed column](images/nest_computed_column_en.png)
 
-Click **Check** to validate the expression.
-
-**Note**: Please click the **Check** button before submit, to ensure the validity of the nested computed column expression.
+Click **Check** to validate the expression. Kafka data source is an exception, as it does not support expression check at the moment due to technical limitation.
 
 
 

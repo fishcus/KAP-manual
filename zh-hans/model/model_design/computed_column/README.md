@@ -144,9 +144,7 @@ kylin.query.system-transformers=io.kyligence.kap.query.util.EscapeTransformer,or
 
 ![引用可计算列](images/nest_computed_column.png)
 
-点击**验证**检查嵌套表达式，表达式是有效的。
-
-> **注意**：请在提交可计算列之前点击**校验**按钮，以保证嵌套可计算列表达式的正确性。
+点击**验证**检查嵌套表达式是有效的。一个例外是 Kafka 数据源，由于技术原因，暂不支持可计算列的校验功能。
 
 
 
