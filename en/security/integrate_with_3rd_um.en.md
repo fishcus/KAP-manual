@@ -1,40 +1,66 @@
 ## Integrate with 3rd-party User Authentication System
 
-In addition to the user authentication integration with LDAP, Kyligence Enterprise also supports the integration with 3rd-party user authentication systems during a system login.
+In addition to the user authentication integration with LDAP, Kyligence Enterprise also supports the integration with 3rd-party user authentication systems.
 
-By default, Kyligence Enterprise has its user management system that provides user authentication and authorization. When a user logs into Kyligence Enterprise, the system verifies the current user's username and password to confirm the identity. If verified, the user logs in successfully. Kyligence Enterprise also provides an extended interface for user authentication. In this case, the system will connect to a 3rd-party user authentication system to verify a user during the log in.
+By default, Kyligence Enterprise has its user management system that provides user authentication and authorization. When a user logs into Kyligence Enterprise, the system verifies the user name and password against the internal user system. In addition, Kyligence Enterprise also provides an extension point where user can plug-in customized authentication logic. When such plug-in is enabled, the system will call the customized code to do authentication, which typically delegates to a 3rd-party system.
 
-This section describes the principles and implementation steps to integrate with the 3rd-party user authentication system.
+This section describes the principles and steps to integrate with a 3rd-party user authentication system.
 
 ### How It Works
 
-The image below descripes the mechanism of integrating with a 3rd-party user authentication system:
+The mechanism of integrating with a 3rd-party user authentication system is shown below:
 
-![User Authentication Integration with 3rd-party System](images/3rd_um/3rdPartyAuthentication.png)
+![User Authentication Integration with 3rd-party System](images/3rd_party_um.png)
 
-Therefore, the key to integration with the 3rd-party user authentication system is to implement a customized extension, which connects to the 3rd-party user authentication system for user verification.
+The key to integrate with a 3rd-party user authentication system is to implement a customized extension, which connects to the 3rd-party user authentication system for user verification.
 
-### How to Use
+### How to Implement
 
-#### Step 1. Build Development Environment
+Kyligence Enterprise ships a sample that shows how to implement an authentication extension from compiling source code to packaging and deployment. Below is more details about the sample.
+
+#### Step 1. Setup Development Environment
 
 Unzip `$KYLIN_HOME/samples/static-user-manager.tar.gz`. This is the sample project with `pom.xml` and maven project defined. Import it into your Java IDE.
 
-Add Kyligence Enterprise library `$KYLIN_HOME/tool/kylin-tool-kap-[version].jar` to your project lib, and add the lib directory to your classpath.
+Add Kyligence Enterprise library `$KYLIN_HOME/tool/kylin-tool-kap-[version].jar` to your project lib directory and to your classpath.
 
-The sample creates a memory-based user system with two users, *admin* and *test*, *admin* with administrator privileges and *test* with browse permissions.
+The sample creates a memory-based user system with two users called *admin* and *test*, *admin* with administrator privileges and *test* with normal privileges.
 
-#### Step 2. Implement Java Class for Docking 3rd-party User System
+#### Step 2. Implement the Authentication Extension
 
-To implement 3rd-party user authentication extensions, you need to implement these three classes in Kyligence Enterprise: *KapOpenUserService (optional)*, *KapOpenUserGroupService (optional)*, *KapOpenAuthenticationProvider (necessary)*.
+The extension point of 3rd-party user authentication consists of the following:
 
-- KapOpenUserService: return the user list, check if the user exists, and return the administrator list, etc. If you are using the built-in user management in system, you do not need to implement these methods.
-- KapOpenUserGroupService: return a list of user groups, return user group members, etc. If you are using the built-in user management in system, you do not need to implement these methods.
-- KapOpenAuthenticationProvider: verify whether the login user is legal. This class must be implemented.
+- **KapOpenAuthenticationProvider** (required): Authenticates a login user. This implementation is mandatory.
+- **KapOpenUserService** (optional): Used for getting user list, checking user existence, etc. Implementing this is not mandatory but is often needed.
+- **KapOpenUserGroupService** (optional): Used for getting user group list, checking user group members, etc. Implementing this is not mandatory but is often needed.
 
-Below introduces how to implement these three classes through the sample template.
+Below introduces how to implement these three classes through the sample code.
 
-1. Implementation template for the *KapOpenUserService* class：
+1. Implement the *KapOpenAuthenticationProvider* class:
+
+   ```java
+   public class StaticAuthenticationProvider extends KapOpenAuthenticationProvider {
+       private static final Logger logger = LoggerFactory.getLogger(StaticAuthenticationProvider.class);
+     
+       @Override
+       public boolean authenticateImpl(Authentication authentication) {
+           String name = authentication.getName();
+           Object credentials = authentication.getCredentials();
+           ManagedUser user = (ManagedUser) getUserService().loadUserByUsername(name);
+           if (!credentials.equals(user.getPassword())) {
+               return false;
+           }
+           return true;
+       }
+   }
+   ```
+
+   - The *authenticateImpl(Authentication authentication)* is used to check whether the username and password are valid, that is, whether the user is allowed to log in. The argument to this method is an *Authentication* object with two key properties:
+     - *principal*: Username passed on the page
+     - *credentials*: The password passed on the page
+   - Other methods should be covered selectively according to your actual needs.
+
+2. Implement the *KapOpenUserService* class：
 
    ```java
    public class StaticUserService extends KapOpenUserService {
@@ -102,7 +128,7 @@ Below introduces how to implement these three classes through the sample templat
    }
    ```
 
-   - The *init()* method is used to do some initialization operations. This method must be annotated with *@PostConstruct*. In this template, we created two users.
+   - The *init()* method is used to do some initialization operations. This method must be annotated with *@PostConstruct*. In this sample, we created two users.
 
    - *The listUsers()* method is used to return all users, and the return value of this method is a collection of *ManagedUser*. *ManagedUser* contains several key attributes:
      - username: username
@@ -111,11 +137,11 @@ Below introduces how to implement these three classes through the sample templat
      - locked: whether to lock
      - authorities: user's role
 
-   ​       In this template, we return directly to the list of users after initialization: *users*
+     In this sample, we return directly to the list of users created during initialization: *users*.
 
-   - The *listAdminUses()* method is used to return all administrator users. The return value of this method is a **List** consisting of user names. In this template, this method simply filters out the admin users among all *users*.
+   - The *listAdminUses()* method is used to return all administrator users. The return value of this method is a **List** consisting of user names. In this sample, this method simply filters out the admin users among all *users*.
 
-   - The *userExists(String s)* method is used to return whether the user exists based on the username. In this template, we traverse the *users* directly.
+   - The *userExists(String s)* method is used to return whether the user exists based on the username. In this sample, we traverse the *users* directly.
 
    - The *loadUserByUsername(String s)* method is used to return a user.
 
@@ -125,7 +151,7 @@ Below introduces how to implement these three classes through the sample templat
 
    - Other methods should be implemented according to your actual needs.
 
-2. Implementation template for the *KapOpenUserGroupService* class:
+3. Implement the *KapOpenUserGroupService* class:
 
    ```java
    public class StaticUserGroupService extends KapOpenUserGroupService {
@@ -169,55 +195,40 @@ Below introduces how to implement these three classes through the sample templat
 
      > **Caution:** If your user management system does not have user groups, then you only need to maintain an empty implementation in the above methods.
 
-3. Implementation template for the *KapOpenAuthenticationProvider* class:
-
-   ```java
-   public class StaticAuthenticationProvider extends KapOpenAuthenticationProvider {
-       private static final Logger logger = LoggerFactory.getLogger(StaticAuthenticationProvider.class);
-     
-       @Override
-       public boolean authenticateImpl(Authentication authentication) {
-           String name = authentication.getName();
-           Object credentials = authentication.getCredentials();
-           ManagedUser user = (ManagedUser) getUserService().loadUserByUsername(name);
-           if (!credentials.equals(user.getPassword())) {
-               return false;
-           }
-           return true;
-       }
-   }
-   ```
-
-   - The *authenticateImpl(Authentication authentication)* is used to check whether the username and password are valid, that is, whether the user is allowed to log in. The argument to this method is an *Authentication* object with two key properties:
-     - *principal*: Username passed on the page
-     - *credentials*: The password passed on the page
-   - Other methods should be covered selectively according to your actual needs.
-
    
 
-#### Step 3. Packaging, Deploying and Testing Your Java Class
+#### Step 3. Package and Deploy
 
-1. Pack you code into a JAR file using maven
+1. Pack you code into a jar file using maven
 
    ```shell
    mvn package -DskipTests
    ```
 
-2. Deploy JAR file
+   The built jar file should be found under the `target` folder.
 
-   Put the JAR file to folder `$KYLIN_HOME/ext`.
+2. Deploy the jar file
+
+   Put the jar file to folder `$KYLIN_HOME/ext`.
 
 3. Configure and restart the system
 
-   Add the following configuration in `kylin.properties`.
+   Add the following configuration in `conf/kylin.properties` and restart to take effect.
 
-   ```shell
-   kylin.security.profile=custom //configure profile to custom mode
-   kylin.security.custom.user-service-clz=StaticUserService //Configure the full class name of the KapOpenUserService custom implementation class (optional)
-   kylin.security.custom.user-group-service-clz=StaticUserGroupService //Configure the full class name of the KapOpenUserGroupService custom implementation class,optional
-   kylin.security.custom.authenticaton-provider-clz=StaticAuthenticationProvider //Configure the full class name of the KapOpenAUthenticationProvider custom implementation class (necessary)
+   ```properties
+   # Set the security profile to custom
+   kylin.security.profile=custom
+   
+   # Set the KapOpenAUthenticationProvider, required
+   kylin.security.custom.authenticaton-provider-clz=StaticAuthenticationProvider
+   
+   # Set the KapOpenUserService, optional
+   kylin.security.custom.user-service-clz=StaticUserService
+   
+   # Set KapOpenUserGroupService, optional
+   kylin.security.custom.user-group-service-clz=StaticUserGroupService
    ```
 
 4. Log in to Kyligence Enterprise and verify
 
-   Now the configuration is activated and the user authentication is enabled. The user information entered when logging in will be verified by the 3rd-party system.
+   After Kyligence Enterprise is restarted, the configuration is activated and the user authentication extension is enabled. Try login to the system to check if the authentication is handled by the 3rd-party system correctly.

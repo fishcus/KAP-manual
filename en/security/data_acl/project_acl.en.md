@@ -1,6 +1,6 @@
 ## Project ACL
 
-Project ACLs determines whether a user/user group can access a certain project in Kyligence Enterprise. Kyligence Enterprise has four built-in project access roles, *Admin*, *Management*, *Operation* and *Query*. *Admin* includes the other three permissions, *Management* includes *Operation* and *Query* permissions, *Operation* includes *Query* permissions.
+Project ACLs determines whether a user/user group can access a certain project in Kyligence Enterprise. Kyligence Enterprise has four built-in project level permissions, *Admin*, *Management*, *Operation* and *Query*. *Admin* includes the other three permissions, *Management* includes *Operation* and *Query* permissions, *Operation* includes *Query* permissions.
 
 - *QUERY*: Permission to query tables/cubes in the project. If pushdown is enabled, user/group can query tables loaded to the project when there's no ready cube to answer the query.
 - *OPERATION*: Permission to build a cube in the project, including rebuild a segment, resume or discard jobs. 
