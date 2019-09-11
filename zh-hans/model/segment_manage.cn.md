@@ -61,8 +61,11 @@
     
   - **DESCBROKEN**（损坏）：Cube 元数据被破坏，处于异常状态。
   
-    - 编辑：可以编辑一个 DESCBROKEN 状态的 Cube 来修复它。
+    - 编辑：您可以修复处于 DESCBROKEN 状态的 Cube。不含 Segment 可以直接修复，含 Segments 请删除所有 Segments 后编辑修复。
+    
     - 删除：删除 Cube 及其包含的 Segment 信息。
+    
+    - 备份/导出：备份或导出 Cube 元数据至浏览器客户端或者指定的 HDFS 目录。
   
 
 ### Segment 管理

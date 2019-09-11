@@ -62,8 +62,11 @@
     
   * **DESCBROKEN**: A cube with DESCBROKEN status means it is unavailable because its metadata is broken.
   
-    * Edit: You can edit a DESCBROKEN cube trying to recover it to normal status.
+    * Edit: You can edit a DESCBROKEN cube and try to recover it to normal status. If it don't have a segment, you can edit it directly, or you can delete all segments then edit it.
+    
     * Delete: Delete the cube and any data it contains.
+    
+    * Backup/Export: Backup or export a cube's metadata to local or a HDFS path.
   
 
 ### Segment Management
