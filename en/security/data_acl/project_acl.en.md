@@ -33,3 +33,8 @@ Project ACLs determines whether a user/user group can access a certain project i
 4. Select a user/user group, then click **Delete**.
 
 > **Caution**: When user/user group's project access permission has been revoked, all access permission on this project including table-level, row-level and column-level will be revoked subsequently.
+
+###  Data ACL Grant Control
+
+Setting the system level configuration parameter ` kylin.security.allow-project-admin-grant-acl=false ` and the project administrator can't grant table/row/column access to user/user group, but can still view user/user group's table/row/column level access permission.
+

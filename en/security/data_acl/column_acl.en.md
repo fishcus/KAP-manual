@@ -37,4 +37,5 @@ Column ACLs restrict the columns that user/group can access on the table. If the
 >3. Column ACL needs to be set separately in different project which the same table is loaded into.
 >4. Please make sure the user/group has the project ACL before setting column ACL.
 >5. Column ACL might be impacted by BI frontend cache, which is to say, if two users with different ACL browse the same report in BI, it's possible that BI uses the cache to render the result and thus bypass the access control.  
+>6. If user does not have permissions to tables or columns referenced by a model or cube in the project, the corresponding model or cube will be locked. User can hover over the lock icon and click more details to view the table-level and column-level permissions that the user does not have.
 
