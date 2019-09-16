@@ -5,7 +5,8 @@
 > 1. 请确保已阅读前面的[访问及安全认证](../authentication.cn.md)章节，了解如何在 REST API 语句中添加认证信息。
 >
 > 2. 在 Curl 命令行上，如果您访问的 URL 中含有 `&` 符号，请注意转义，比如在 URL 两端加上引号。
-
+>
+> 3. 以下接口全部兼容老的以 UUID 方式请求接口的方式
 
 
 * [获取项目级访问控制权限](#获取项目级访问控制权限)
@@ -17,11 +18,11 @@
 
 ### 获取项目级访问控制权限
 
-- `GET http://host:port/kylin/api/access/{type}/{uuid}`
+- `GET http://host:port/kylin/api/access/{type}/{projectName}`
 
 - URL Parameters
   - `type` - `必选` `string`，"ProjectInstance"
-  - `uuid` - `必选` `string`，项目对应的 UUID
+  - `projectName` - `必选` `string`，项目对应的名称
 
 - HTTP Header
   - `Accept: application/vnd.apache.kylin-v2+json`
@@ -32,7 +33,7 @@
 
   ```sh
   curl -X GET \
-    'http://host:port/kylin/api/access/ProjectInstance/{uuid}' \
+    'http://host:port/kylin/api/access/ProjectInstance/{projectName}' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
@@ -65,11 +66,11 @@
 
 ### 赋予项目级访问控制权限
 
-- `POST http://host:port/kylin/api/access/{type}/{uuid}`
+- `POST http://host:port/kylin/api/access/{type}/{projectName}`
 
 - URL Parameters
   - `type` - `必选` `string`，"ProjectInstance"
-  - `uuid` - `必选` `string`，项目对应的 UUID
+  - `projectName` - `必选` `string`，项目对应的名称
 
 - HTTP Header
   - `Accept: application/vnd.apache.kylin-v2+json`
@@ -85,7 +86,7 @@
 
   ```sh
   curl -X POST \
-    'http://host:port/kylin/api/access/ProjectInstance/{uuid}' \
+    'http://host:port/kylin/api/access/ProjectInstance/{projectName}' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
@@ -111,11 +112,11 @@
 
 ### 修改项目级访问控制权限
 
-- `PUT http://host:port/kylin/api/access/{type}/{uuid}`
+- `PUT http://host:port/kylin/api/access/{type}/{projectName}`
 
 - URL Parameters
   - `type` - `必选` `string`，"ProjectInstance"
-  - `uuid` - `必选` `string`，项目对应的 UUID
+  - `projectName` - `必选` `string`，项目对应的名称
 
 - HTTP Header
   - `Accept: application/vnd.apache.kylin-v2+json`
@@ -133,7 +134,7 @@
 
   ``` sh
   curl -X PUT \
-    'http://host:port/kylin/api/access/ProjectInstance/{uuid}' \
+    'http://host:port/kylin/api/access/ProjectInstance/{projectName}' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
@@ -161,12 +162,12 @@
 
 ### 删除项目级访问控制权限
 
-- `DELETE http://host:port/kylin/api/access/{type}/{uuid}`
+- `DELETE http://host:port/kylin/api/access/{type}/{projectName}`
 
 
 - URL Parameters
   - `type` - `必选`  `string`，"ProjectInstance"
-  - `uuid` - `必选`  `string`，项目对应的 UUID
+  - `projectName` - `必选`  `string`，项目对应的名称
 
 
 - HTTP Header
@@ -188,7 +189,7 @@
 
   ```sh
   curl -X DELETE \
-   'http://host:port/kylin/api/access/ProjectInstance/{uuid}?accessEntryId=0&sid=ROLE_MODELER&principal=false' \
+   'http://host:port/kylin/api/access/ProjectInstance/{projectName}?accessEntryId=0&sid=ROLE_MODELER&principal=false' \
    -H 'accept: application/vnd.apache.kylin-v2+json' \
    -H 'accept-language: en' \
    -H 'authorization: Basic QURNSU46S1lMSU4=' \
