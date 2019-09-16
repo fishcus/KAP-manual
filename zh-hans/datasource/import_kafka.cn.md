@@ -136,6 +136,7 @@ Kyligence Enterprise 提供了两种方式来配置 Kafka Consumer 的参数：
 - 暂时 Kafka 表无法重载，我们会在后续版本中修复。暂时您可以先删除原表，再重新加载同名的 Kafka 表。
 - 当前只支持 JSON 格式的 Kafka 消息，更多格式将在后续的版本中支持。
 - 在定义表结构时，请仔细核对系统自动识别的数据类型，在一些特定情况下识别可能有误。另外，已知 `Float` 类型在某些特殊情况下会导致 Kafka 表上的查询失败，推荐使用 `Double` 类型代替。
+- 从产品 v3.4.1 开始，要求 **minute_start** 作为必选维度出现在以 Kafka 表为中心的模型和 Cube 上，这对于 Cube 能正常自动合并至关重要。不含 **minute_start** 的旧版模型和 Cube 将呈现为 BROKEN 状态。
 - Kafka 表暂不支持查询下压。
 - Kafka 表相关的模型和 Cube 导入导出也暂不支持，我们将在后续版本中修复。
 

@@ -138,6 +138,7 @@ More information about Kafka configuration can be found at https://kafka.apache.
 - Kafka table cannot reload at the moment, which will be fixed soon. For now, you can first delete the original Kafka table and then create a new one with the same name.
 - Only JSON message is supported at the moment. More formats will be supported in later release.
 - When defining table schema, please manually check the column types recommended by the system. In certain cases, they may not be the wanted types. Also, the `Float` type is known to cause query error on streaming data under some special condition. Recommend to use `Double` type whenever possible.
+- Since v3.4.1, the product mandates the **minute_start** column be defined as dimension of models and cubes using Kafka table. This is important for auto segment merge to work properly. Old models and cubes without the **minute_start** dimension will be shown as BROKEN.
 - Kafka table does not support query pushdown.
 - Kafka table and its related model and cube does not support import and export functions, which will be fixed in future release.
 
