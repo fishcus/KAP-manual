@@ -64,9 +64,11 @@ Kyligence 目前支持 MicroStrategy Secure Enterprise 10.8及更高版本。
 
 接下来需要在 MicroStrategy 集群中所有的 MicroStrategy Web 计算机中完成如下的配置：
 
-1. 将 DBproperties 文件和 AddConnector.jar 文件复制到运行MicroStrategy Web的机器。 并将文件的所在路径记为<location1>。
+1. 在MicroStrategy Community下载[连接器文件](https://community.microstrategy.com/s/article/Kyligence-Analytic-Platform?language=undefined).
 
-2. 找到DBProperties.xml文件的所在路径，并将此路径记为<location2>。
+2. 将 DBproperties 文件和 AddConnector.jar 文件复制到运行MicroStrategy Web的机器。 并将文件的所在路径记为<location1>。
+
+3. 找到DBProperties.xml文件的所在路径，并将此路径记为<location2>。
 
   > DBProperties.xml文件的路径默认为
   >
@@ -75,10 +77,10 @@ Kyligence 目前支持 MicroStrategy Secure Enterprise 10.8及更高版本。
   > * Tomcat (on Linux): `/opt/apache/tomcat/apache-tomcat-8.0.43/webapps/MicroStrategy/WEB-INF/xml/DBproperties.xml`
   >
 
-3. 替换<location1>和<location2>，并执行如下命令：
+4. 替换<location1>和<location2>，并执行如下命令：
 
   ```
-  java -jar <location1>\AddConnector.jar --target <location2>\DBProperties.xml --file <location2>\DBproperties
+  java -jar <location1>\AddConnector.jar --target <location2>\DBProperties.xml --file <location1>\DBproperties
   ```
 
   > 提示：
@@ -89,9 +91,9 @@ Kyligence 目前支持 MicroStrategy Secure Enterprise 10.8及更高版本。
   >
   > * 该命令将在<location2>中创建原始DBProperties 文件的备份。
 
-4. 运行上述命令后，请重新启动您的应用程序服务器。
+5. 运行上述命令后，请重新启动您的应用程序服务器。
 
-5. 设置连接器图标:
+6. 设置连接器图标:
 
    * 默认情况下，数据导入主页中的图标是如下所示数据库的常规图标：
 
