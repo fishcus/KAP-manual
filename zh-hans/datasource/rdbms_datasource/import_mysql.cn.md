@@ -2,7 +2,7 @@
 
 Kyligence Enterprise 从 3.0 版本开始支持 MySQL 作为数据源，目前支持的 MySQL 版本包括 5.5，5.6，5.7。
 
-您可以参考[连接 RDBMS 数据源](README.md)中的介绍配置连接，本文着重介绍针对 Impala 的特殊配置。
+您可以参考[连接 RDBMS 数据源](README.md)中的介绍配置连接，本文着重介绍针对 MySQL 的特殊配置。
 
 ### 驱动程序
 

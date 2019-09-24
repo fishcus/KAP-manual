@@ -2,7 +2,7 @@
 
 Kyligence Enterprise 从 3.0 版本开始支持 Greenplum 作为数据源，目前支持的 Greenplum 版本为 5.3.0。
 
-您可以参考[连接 RDBMS 数据源](README.md)中的介绍配置连接，本文着重介绍针对 Impala 的特殊配置。
+您可以参考[连接 RDBMS 数据源](README.md)中的介绍配置连接，本文着重介绍针对 Greenplum 的特殊配置。
 
 > 注：本文介绍的 Greenplum 连接方案属于二次开发方案，不建议直接在生产环境使用。如果您有需求，请在 Kyligence 服务人员的支持下使用。
 
