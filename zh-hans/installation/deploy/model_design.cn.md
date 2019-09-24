@@ -34,7 +34,7 @@
    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
    -H 'Content-Type: application/x-www-form-urlencoded' \
    -H 'cache-control: no-cache' \
-   -d 		   'cube=learn_kylin_cube&project=learn_kylin&withDependence=true&destPath=hdfs%3A%2F%2Fhost%3Aport%2Fkylin%2Fexport_cube%2F&tableMapping%255Btablename1%255D%2520=tablename2'
+   -d 'cube=learn_kylin_cube&project=learn_kylin&withDependence=true&destPath=hdfs%3A%2F%2Fhost%3Aport%2Fkylin%2Fexport_cube%2F&tableMapping%255Btablename1%255D%2520=tablename2'
   ```
 
 - 响应示例

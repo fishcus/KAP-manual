@@ -36,7 +36,7 @@
     -H 'Content-Type: application/json' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -d '{
-      "hdfsPath": "hdfs://hacluster/kylin/export_segment/6daadacf-27cf-4590-9c68-12ace64647d3"
+      "hdfsPath":"hdfs://hacluster/kylin/export_segment/6daadacf-27cf-4590-9c68-12ace64647d3","projectName":"project_test","cubeName":"cube_test"
   }'
   ```
 
