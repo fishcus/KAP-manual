@@ -1,42 +1,21 @@
 ## 导入 GBase 数据源
 
-Kyligence Enterprise 从3.3.0开始支持 GBase 作为数据源，目前支持的 GBase 版本为 GBase8a。需要下载 gbase 驱动程序 jar 包，并放置在`$KYLIN_HOME/ext`目录下，重启 Kyligence Enterprise 生效。推荐的驱动版本为 gbase-connector-java-8.3.81.51-build-53.6-bin.jar。
+Kyligence Enterprise 从 3.3.0 开始支持 GBase 作为数据源，目前支持的 GBase 版本为 GBase 8a。
 
-以下参数需要您配置在连接 RDBMS 数据源的**项目配置**或 `kylin.properties` 中：
+您可以参考[连接 RDBMS 数据源](README.md)中的介绍配置连接，本文着重介绍针对 GBase 的特殊配置。
 
-| 参数名                           | 解释                          |
-| -------------------------------- | ----------------------------- |
-| kylin.source.jdbc.driver         | JDBC 驱动类名                 |
-| kylin.source.jdbc.connection-url | JDBC 连接字符串               |
-| kylin.source.jdbc.user           | JDBC 连接用户名               |
-| kylin.source.jdbc.pass           | JDBC 连接密码                 |
-| kylin.source.jdbc.dialect        | JDBC 方言                     |
-| kylin.source.jdbc.adaptor        | JDBC 连接的数据源对应的适配器 |
+> 注：本文介绍的 GBase 连接方案属于二次开发方案，不建议直接在生产环境使用。如果您有需求，请在 Kyligence 服务人员的支持下使用。
 
-如果需要开启查询下压，还需要配置以下参数：
+### 驱动程序
 
-```properties
-kylin.query.pushdown.runner-class-name=io.kyligence.kap.query.pushdown.PushdownRunnerSDKImpl
-```
+- 使用官方 GBase JDBC Driver (推荐版本 gbase-connector-java-8.3.81.51-build-53.6-bin.jar)
+- 访问[Kyligence Download](http://download.kyligence.io/#/addons)下载 Kyligence Data Source Adaptor for GBase
 
-> **注意：** 除以上项目配置项外，还需要在`kylin.properties`中添加 `kylin.source.jdbc.sqoop-home=<sqoop_path>`，其中 sqoop_path 为 sqoop 命令所在的文件。
+### 连接参数
 
-
-
-### 为项目设置 GBase 数据源
-
-Kyligence Enterprise 可以通过如下步骤，为特定项目设置 GBase 数据源：
-
-**步骤一**：打开 Kyligence Enterprise 的 Web UI，在主界面的顶端是项目的管理工具栏，点击 **+** 创建一个新的项目（Project）。
-
-**步骤二**：进入具体项目**建模**功能，选择**数据源**选项卡；点击蓝色的**数据源**按钮，在弹出窗口中，选择 **RDBMS **作为数据源类型；
-
-​    ![选择RDBMS数据源](../images/rdbms_import_select_source.png)
-
-**步骤三**：在项目配置中添加以下配置：
+请参考[连接 RDBMS 数据源](README.md)中的介绍配置连接参数，以下是一个连接 GBase 数据源的配置样例：
 
 ```properties
-kylin.source.jdbc.sqoop-home=/usr/hdp/current/sqoop-client
 kylin.source.jdbc.driver=org.gjt.mm.gbase.Driver
 kylin.source.jdbc.connection-url=jdbc:gbase://<host>:<port>/<database_name>
 kylin.source.jdbc.user=<username>
@@ -44,7 +23,3 @@ kylin.source.jdbc.pass=<password>
 kylin.source.jdbc.dialect=gbase8a
 kylin.source.jdbc.adaptor=io.kyligence.kap.sdk.datasource.adaptor.Gbase8aAdaptor
 ```
-
-**步骤四**：配置完成之后，就可以通过 Kyligence Enterprise 界面连接 GBase 数据源了。
-
-**步骤五**：进入**加载表元数据**窗口，用户可按需在左侧表清单中，单击选中需要建模的表，也支持输入关键字进行搜索。点击右下方**同步**按钮进行加载。

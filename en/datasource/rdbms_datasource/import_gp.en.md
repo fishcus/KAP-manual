@@ -1,18 +1,28 @@
 ## Import Data from Greenplum
 
-Greenplum is supported as the default data source since Kyligence Enterprise 3.0. In order to load the Greenplum tables, Greenplum Driver Jar package is needed to put in  `$KYLIN_HOME/ext`.  The jar package is also needed to copy to `<sqoop_installation_directory>/lib`, because *sqoop* is used in the process of cube building.
+Kyligence Enterprise supports Greenplum as data source since v3.0. Supported Greenplum version is 5.3.0
 
-Then, please set the following configurations in *kylin.properties* or *project configuration*:
+You can refer to [Import Data from RDBMS](README.md) to configure connection, and this article will introduce specific configuration for Greemplum.
 
-| Parameter                        | Description                                                  |
-| -------------------------------- | ------------------------------------------------------------ |
-| kylin.source.jdbc.driver         | JDBC Driver Class Name                                       |
-| kylin.source.jdbc.connection-url | JDBC Connection String                                       |
-| kylin.source.jdbc.user           | JDBC Connection Username                                     |
-| kylin.source.jdbc.pass           | JDBC Connection Password                                     |
-| kylin.source.jdbc.dialect        | Dialect to the data source (Currently only support greenplum and default) |
-| kylin.source.default             | Type of Data Source (16 for Greenplum and RDBMS)             |
-| kylin.source.jdbc.adaptor        | JDBC Data Source Adaptor                                     |
+> This solution requires customization and is not recommended to use in production environment, please contact Kyligence Service Team if you want to adopt this.
+
+### Drivers
+
+- Use official Greenplum JDBC Driver (Recommend gsjdbc4.jar)
+- Use embeded Data Source Adaptor for Greemplum
+
+### Configure Connection
+
+Please refer to [Import Data from RDBMS](README.md) to configure. Following is an example connecting with Greemplum:
+
+```properties
+kylin.source.jdbc.driver=com.pivotal.jdbc.GreenplumDriver
+kylin.source.jdbc.connection-url=jdbc:pivotal:greenplum://<HOST>:<PORT>;DatabaseName=<DATABASE_NAME>
+kylin.source.jdbc.user=<username>
+kylin.source.jdbc.pass=<password>
+kylin.source.jdbc.dialect=greenplum
+kylin.source.jdbc.adaptor=io.kyligence.kap.sdk.datasource.adaptor.GreenplumAdaptor
+```
 
 To enable query pushdown, following configration is required:
 
@@ -20,50 +30,20 @@ To enable query pushdown, following configration is required:
 
 > **Note:**  `kylin.source.jdbc.sqoop-home=<sqoop_path>` should be added in `kylin.properties` , which cannot be applied in project configuration. Sqoop_path is the path of your sqoop directory. 
 
-
-
 ### Create Project
 
-Using Greenplum as an example, we connect Greenplum data source with Greenplum Driver, followings are the steps:
+**Step 1:** Log in to Kyligence Enterprise Web UI, then add a new project by clicking the **+** at the top right on Web UI. Type project name (required) and descriptions on the pop-up page; click **OK** to finish creating a project.
 
-**Step 1:** Download Greenplum Driver jar package, and put it under `$KYLIN_HOME/ext` and `<sqoop_installation_directory>/lib`. Restart Kyligence Enterprise to take effect.
+**Step 2:** Select the project you just created on the upper corner of the web UI, all our following operations will be within the project.
 
-**Step 2:** Log in to Kyligence Enterprise Web UI, then add a new project by clicking the **+** at the top right on Web UI. Type project name (required) and descriptions on the pop-up page; click **OK** to finish creating a project.
-
-
-**Step 3:** Select the project you just created on the upper corner of the web UI, all our following operations will be within the project.
-
-> **Note:** If you want to use Greenplum as the data source, you need to choose RDBMS in the current version.
+> **Note:** Choose RDBMS to connect Greenplum as data source.
 
 ![Select data source](../images/rdbms_import_select_source.png)
 
-**Step 4:** Set following configuration in project configuration:
-
-```properties
-kylin.source.jdbc.driver=com.pivotal.jdbc.GreenplumDriver
-kylin.source.jdbc.connection-url=jdbc:pivotal:greenplum://<HOST>:<PORT>;DatabaseName=<DATABASE_NAME>
-kylin.source.jdbc.user=<username>
-kylin.source.jdbc.pass=<password>
-kylin.query.pushdown.runner-class-name=io.kyligence.kap.query.pushdown.PushdownRunnerSDKImpl
-kylin.source.jdbc.dialect=greenplum
-kylin.source.default=16
-kylin.source.jdbc.sqoop-home=/usr/hdp/current/sqoop-client/bin
-```
-
-**Step 5:** After the configuration finished users can access Greenplum data source on Web UI now.
-
-
-
-### Synchronize Greenplum Table
-
-Greenplum tables need to be synchronized into Kyligence Enterprise before they can be used. To make things easy, we synchronize by using the following button to load tables.
+**Step 3:** Synchronize tables from Greenplum to Kyligence Enterprise.
 
 > **Note:** Schema, table name and field name are case sensitive in Greenplum, only lowercase is supported in current version.
 
 ![Synchronize table's metadata](../images/rdbms_import_gp_tables.png)
-
-In the dialog box, expand the sample schema and select the desired five tables.
-
-![Table sampling](../images/rdbms_import_select_gp_table.png)
 
 > **Note:** Table sampling after loading is selected by default. Table sampling results will help optimize the model design and cube design. User can also turn it off and adjust the sampling percentage.
