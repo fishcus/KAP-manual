@@ -21,9 +21,7 @@ kylin.source.jdbc.connection-url=jdbc:pivotal:greenplum://<HOST>:<PORT>;Database
 kylin.source.jdbc.user=<username>
 kylin.source.jdbc.pass=<password>
 kylin.source.jdbc.dialect=greenplum
-<<<<<<< HEAD
-kylin.source.default=16
-kylin.source.jdbc.sqoop-home=/usr/hdp/current/sqoop-client/bin
+kylin.source.jdbc.adaptor=io.kyligence.kap.sdk.datasource.adaptor.GreenplumAdaptor
 ```
 
 **步骤五**：配置完成之后，就可以通过 Kyligence Enterprise 界面连接 Greenplum 数据源了。
@@ -43,7 +41,3 @@ kylin.source.jdbc.sqoop-home=/usr/hdp/current/sqoop-client/bin
 ![加载表并采样](../images/rdbms_import_select_gp_table.png)
 
 > **提示：** 默认选择**加载后启动表采样任务**。 表采样结果能帮助优化后续的模型设计和 Cube 设计，我们强烈建议您启用该选项。
-=======
-kylin.source.jdbc.adaptor=io.kyligence.kap.sdk.datasource.adaptor.GreenplumAdaptor
-```
->>>>>>> refactor data source content
