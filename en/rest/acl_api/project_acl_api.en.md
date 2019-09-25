@@ -124,7 +124,7 @@
   - `permission` - `required` `string`, project ACL. e.g. ("READ" for "Query","ADMINISTRATION" for "ADMIN","OPERATION" for "OPERATION" and "MANAGEMENT" for "MANAGEMENT" )
   - `principal` - `required` `boolean`, user or user group, "true" for user and "false" for user group
   - `sid` - `required` `string`, name of user or user group
-  - `accessEntryId` - `required` `int`, user or user group id in response of Get Project ACL API
+  - `accessEntryId` - `deprecated` `int`, this parameter will no longer be used
 
 
 - Curl Request Example 
@@ -139,7 +139,6 @@
   	"permission": "OPERATION",
   	"principal": true, 
   	"sid": "ANALYST",
-  	"accessEntryId": 1
   }'
   ```
 
@@ -173,7 +172,7 @@
 
 - HTTP Body: JSON Object
   - `permission` - `required` `string`, project ACL. e.g. ("READ" for "Query","ADMINISTRATION" for "ADMIN","OPERATION" for "OPERATION" and "MANAGEMENT" for "MANAGEMENT")
-  - `accessEntryId` - `required` `int`, user UUID
+  - `accessEntryId` - `deprecated` `int`, this parameter will no longer be used
   - `sid` - `required` `string`, name of user or user group
   - `principal` - `required` `boolean`, user or user group, "true" for user and "false" for user group
 
@@ -185,7 +184,7 @@
 
   ```sh
   curl -X DELETE \
-   'http://host:port/kylin/api/access/ProjectInstance/{projectName}?accessEntryId=0&sid=ROLE_MODELER&principal=false' \
+   'http://host:port/kylin/api/access/ProjectInstance/{projectName}?sid=ROLE_MODELER&principal=false' \
    -H 'accept: application/vnd.apache.kylin-v2+json' \
    -H 'accept-language: en' \
    -H 'authorization: Basic QURNSU46S1lMSU4=' \
