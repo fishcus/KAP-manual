@@ -25,7 +25,8 @@ Select some columns as dimensions via **Add Dimensions**. Dimension can be set a
 > **Note:**
 >
 > 1. You can maintain dimension description to add semantic comment to each dimension. Meanwhile this description can be directly exposed to specific BI tools such as Tableau, via using "export TDS" functionality.
-> 2. When data source is Hive, you can directly sync Hive column comment as dimension description and it can also be changed afterwards.
+> 2. You can directly sync column comment defined in data source as dimension description and it can also be changed afterwards.
+> 3. In version 3.4.2, description of unchecked dimensions can also be synced, but it will be lost if you rollback to previous version and edit then save the cube again. It is recommended that you backup the metadata before rolling back to a version before 3.4.2.
 
 Only the number of normal dimensions will affect the number of cuboid generated as well as the size of cube data. Compare to normal dimension, derived dimension does not participate in cube calculation directly. Instead, it is represented by its FK (Foreign Key) in cube. That is why using derived dimensions can greatly reduce cube complexity. During query, derived dimensions have to be converted to their FKs first, causing a small compromise to performance.
 
@@ -122,7 +123,9 @@ Finally, all the measures are defined as blow:
 
 ![Measure list](images/cube_design_basics/createcube_measures.png)
 
-
+> **Note:**
+>
+> In 3.4.2 and later version, you can directly sync column comment defined in data source as measure description and it can also be changed afterwards. If the measure involves multiple columns, the descriptions of multiple columns will be spliced together as the measure description. 
 
 ### Refresh Settings
 
