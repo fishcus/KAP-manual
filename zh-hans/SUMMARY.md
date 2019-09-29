@@ -86,6 +86,7 @@
     * [查询基本原理](query/query_basics.cn.md)
     * [在用户界面执行 SQL 查询](query/insight.cn.md)
     * [异步查询](query/async_query.cn.md)
+    * [为查询指定 Cube 优先级](query/cube_priority.cn.md)
     * [SQL 规范参考](query/sql_spec.cn.md)
     * [函数及运算符](query/operator_function/README.md)
         * [运算符](query/operator_function/operator/README.md)
