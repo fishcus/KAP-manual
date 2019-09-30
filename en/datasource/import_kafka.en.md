@@ -57,7 +57,7 @@ Kyligence Enterprise supports extracting streaming data into tables and implemen
 1. Create a new project in Web UI to import Kafka data.
 
 2. Select the project to import Kafka data. Navigate to **Studio**->**Data Source**, click **Data Source**, and choose **Kafka**, click **Next**.
-   ![Import Kafka Data Source](images/kafka_import_en.png)
+   ![Import Kafka Data Source](images/kafka_import.en.png)
    
 3. On the **Load Kafka Topic** page, click **+Cluster** input the Kafka broker info, include the IP address and the port (like `127.0.0.1:9092`). If there are more than one Kafka broker, please separate them by commas, click  √ to check Kafka cluster info. If there are invalid brokers, please remove them and check again. 
   

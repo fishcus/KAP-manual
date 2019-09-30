@@ -2,9 +2,7 @@
 
 **Computed Column** allows you to pre-define actions like data transformation and calculation in models, it enhances the data semantic abstraction according to various business scenarios. By replacing runtime calculation with offline cube construction, the pre-calculation capability of Kyligence Enterprise is fully utilized. As a result, query performance could be improved significantly. It's allowed to use Hive UDF in computed columns, so that existing business codes can be reused.
 
-> **Caution:**
->   - Computed column is **ONLY** supported when the data source is Hive.
->   - Please **DO NOT** define an expression with only constants for a computed column.
+> **Note:** Please **DO NOT** define an expression with only constants for a computed column.
 
 
 
@@ -86,7 +84,7 @@ You can define a new computed column based on an existing computed column, and t
 
 ![Nested computed column](images/nest_computed_column_en.png)
 
-Click **Check** to validate the expression. Kafka data source is an exception, as it does not support expression check at the moment due to technical limitation.
+Click **Check** to validate the expression. Kafka fact table is an exception, as it does not support expression check at the moment due to technical limitation.
 
 
 
