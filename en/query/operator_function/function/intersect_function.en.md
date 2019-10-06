@@ -11,17 +11,17 @@ Kyligence Enterprise supports the following intersection function,
 
 - Description
 
-  - Returns the count of the value of the intersection of the results of two SQL statements
+  - Returns the distinct count of the intersection of multiple result sets in different conditions
 
 - Syntax
 
-  - `intersect_count(column To Count, column To Filter, filter Value List)`
+  - `intersect_count(column_to_count, column_to_filter, filter_value_list)`
 
 - Parameters
 
-  - `column To Count`,  the column to be calculated and applied on distinct count
-  - `column To Filter`, the varied dimension and only one can be specified
-  - `filter Value List`, the value of the varied dimensions listed in `array[]`, A single element in an array can map multiple values. By default, the '|' is split. You can use `kylin.query.udf.intersect.separator` to configure the separator. This configuration is global.
+  - `column_to_count`,  the column to be calculated and applied on distinct count, required to be added as **Precise count distinct** measure
+  - `column_to_filter`, the varied dimension
+  - `filter_value_list`, the value of the varied dimensions listed in `array[]`, A single element in an array can map multiple values. By default, the '|' is split. You can set `kylin.query.udf.intersect.separator` in `kylin.properties` to configure the separator.
 
 
 - Query Example
@@ -51,17 +51,17 @@ Kyligence Enterprise supports the following intersection function,
 
 - Description
 
-  - Returns the value of the intersection of the results of two SQL statements
+  - Returns the values of the intersection of multiple result sets in different conditions
 
 - Syntax
 
-  - `intersect_value(column To Count, column To Filter, filter Value List)`
+  - `intersect_value(column_to_count, column_to_filter, filter_value_list)`
 
 - Parameters
 
-  - `column To Count`,  the column to be calculated and applied on distinct count
-  - `column To Filter`, the varied dimension and only one can be specified
-  - `filter Value List`, the value of the varied dimensions listed in `array[]`, A single element in an array can map multiple values. By default, the '|' is split. You can use `kylin.query.udf.intersect.separator` to configure the separator. This configuration is global.
+  - `column_to_count`,  the column to be calculated and applied on distinct count, required to be added as **Precise count distinct** measure
+  - `column_to_filter`, the varied dimension
+  - `filter_value_list`, the value of the varied dimensions listed in `array[]`, A single element in an array can map multiple values. By default, the '|' is split. You can set `kylin.query.udf.intersect.separator` in `kylin.properties` to configure the separator.
 
 
 - Query Example
