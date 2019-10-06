@@ -79,9 +79,9 @@ The rowkey setting result is shown as below:
 
 ![Set rowkeys](images/cube_design_basics/createcube_rowkey.png)
 
-> **Note**: Columns in lookup tables can be set as normal dimension or derived dimension, if snapshot is enabled for the lookup table. Normnal dimensions are stored in cube, while derived dimensions are stored in snapshots. For more information, please refer to [Set Lookup Table Snapshot](../model_design/data_modeling.en.md#advanced-set-lookup-table-snapshot).
+> **Note**: Columns in lookup tables can be set as normal dimension or derived dimension, if snapshot is enabled for the lookup table. Normal dimensions are stored in cube, while derived dimensions are stored in snapshots. For more information, please refer to [Set Lookup Table Snapshot](../model_design/data_modeling.en.md#advanced-set-lookup-table-snapshot).
 
-> **Caution**: It's **NOT** reconmended to mix normal dimensions and derived dimenions in one lookup table. Users might be confused by query results, as some dimensions are from cube which reflects histrocal truth, while some are from snapshot which shows more recent status.
+> **Caution**: It's **NOT** recommended to mix normal dimensions and derived dimensions in one lookup table. Users might be confused by query results, as some dimensions are from cube which reflects historical truth, while some are from snapshot which shows more recent status.
 
 
 
@@ -91,37 +91,42 @@ We can define measures according to analysis requirements. COUNT measure and SUM
 
 - **SUM**
 
-To summerize order amount in our case, we define total sales  `SUM(PRICE)` as a cube measure. 
+  To summarize order amount in our case, we define total sales `SUM(PRICE)` as a cube measure. 
 
 - **COUNT DISTINCT**
 
-Also we need to count number of sellers by defining another measure `COUNT(DISTINCT SELLER_ID)`. 
+  Also we need to count number of sellers by defining another measure `COUNT(DISTINCT SELLER_ID)`. 
 
-Kyligence also implements HyperLogLog algorithm - an approximation algorithm, for counting high-cardinality columns with much higher query performance.  If accuracy is not that so critical in some cases, you can choose this algorithm and specify an error rate, e.g. in our case we set *Error Rate < 9.75%*. Similarly we also create another measure `COUNT(DISTINCT LSTG_FORMAT_NAME)`.
+  Kyligence also implements HyperLogLog algorithm - an approximation algorithm, for counting high-cardinality columns with much higher query performance.  If accuracy is not that so critical in some cases, you can choose this algorithm and specify an error rate, e.g. in our case we set *Error Rate < 9.75%*. Similarly we also create another measure `COUNT(DISTINCT LSTG_FORMAT_NAME)`.
 
-![Edit Measure](images/cube_design_basics/createcube_measure_hll.png)
+  ![Edit Measure](images/cube_design_basics/createcube_measure_hll.png)
 
 - **TOP N**
 
-We usually need to figure out the best sellers by executing following SQL query to get the best sellers' ID:
+  We usually need to figure out the best sellers by executing following SQL query to get the best sellers' ID:
 
-```sql
-SELECT SELLER_ID, SUM(PRICE) FROM KYLIN_SALES 
-GROUP BY SELLER_ID 
-ORDER BY SUM(PRICE)
-```
+  ```sql
+  SELECT SELLER_ID, SUM(PRICE) FROM KYLIN_SALES 
+  GROUP BY SELLER_ID 
+  ORDER BY SUM(PRICE)
+  ```
 
-In Kyligence Enterprise, we can define a TOP-N measure to acheive this with much better query performance.
+  In Kyligence Enterprise, we can define a TOP-N measure to achieve this with much better query performance.
 
-We create a TOP-N measure, select *KYLIN_SALES.PRICE* column in **ORDER/SUM by Column** and select *SELLER_ID* in **GROUP BY**. Select *TOPN(100)* as the measure accuracy.
+  We create a TOP-N measure, select *KYLIN_SALES.PRICE* column in **ORDER/SUM by Column** and select *SELLER_ID* in **GROUP BY**. Select *TOPN(100)* as the measure accuracy.
 
-![TOPN Measure](images/cube_design_basics/createcube_measure_topn.png)
+  ![TOPN Measure](images/cube_design_basics/createcube_measure_topn.png)
 
-
-
-Finally, all the measures are defined as blow:
+Finally, all the measures are defined as below:
 
 ![Measure list](images/cube_design_basics/createcube_measures.png)
+
+
+
+> **Caution**: When a column has NULL value, `COUNT(col)` does not equals to `COUNT(1)`. In such case, measure `COUNT(col)` must be defined explicitly to have correct query result.
+>
+> - By default, the system assumes columns do not contain NULL value, thus `COUNT(1)` can be used to answer queries of `COUNT(col)`. That is why user does not have to define `COUNT(col)` for each column by default.
+> - If a column does contain NULL value, then measure `COUNT(col)` must be defined explicitly to ensure the correctness of query result.
 
 > **Note:**
 >
