@@ -94,7 +94,11 @@
     ![推导维度](images/kafka_derived_dim.png)
   
 7. 设置时间戳解析器以及消息解析器属性
+
    ![设置时间解析器](images/kafka_parser.png)
+
+   ![设置时间解析器2](images/kafka_parser_2.png)
+
    - 时间戳字段名称：每条记录的数据时间列，用于生成 7 个不同粒度的时间列。本例选择了 **order_time**。
    - 时间戳解析器：时间戳解析器，决定了如何从上面的 时间戳字段 创建 Timestamp 对象
      - `org.apache.kylin.source.kafka.DefaultTimeParser`, 将根据 Long 型的系统毫秒时间（类似 java.lang.System.currentTimeMillis）创建 Timestamp 对象。该解析器将根据给定的 `时间戳时区`，将时间解析为对应时间区间的时间，如 `GMT+8` 时，时间戳 1549008564973 将被解析为 2019-02-01 16:09:24。时区默认使用 `GMT+0`。
@@ -105,7 +109,7 @@
 
     ![表校验](images/kafka_validate.png)
 
-8. 点击**提交**。至此，您完成了将 Kafka 消息流定义为数据表。
+9. 点击**提交**。至此，您完成了将 Kafka 消息流定义为数据表。
 
 ### 为 Kafka 数据源配置额外参数
 
@@ -176,6 +180,7 @@ Kyligence Enterprise 提供了两种方式来配置 Kafka Consumer 的参数：
 - 从产品 v3.4.1 开始，要求 **minute_start** 作为必选维度出现在以 Kafka 表为中心的模型和 Cube 上，这对于 Cube 能正常自动合并至关重要。不含 **minute_start** 的旧版模型和 Cube 将呈现为 BROKEN 状态。
 - Kafka 表暂不支持查询下压。
 - Kafka 表相关的模型和 Cube 导入导出也暂不支持，我们将在后续版本中修复。
+- 从产品 v3.4.2 开始，不兼容旧版本的自定义解析器，需要重新实现。
 
 
 ## 自定义 Kafka 消息解析器
@@ -191,14 +196,14 @@ Kyligence Enterprise 自带一个样例， 向您展示如何从源代码编译�
 
 #### 一、搭建开发环境
 
-拷贝 ·$KYLIN_HOME/samples/example-kafka-parser.tar.gz·，解压后目录为一个完整的样例程序，将其拷贝到工作目录后，在项目的 lib 目录中加入 $KYLIN_HOME/tool/kylin-tool-kap-[version].jar，并将其添加到 classpath 中。您可以在 IDE 中打开并编译这个样例程序
+拷贝 `$KYLIN_HOME/samples/example-kafka-parser.tar.gz`，解压后目录为一个完整的样例程序，将其拷贝到工作目录后，在项目的 lib 目录中加入 `$KYLIN_HOME/tool/kylin-tool-kap-[version].jar`，并将其添加到 classpath 中。您可以在 IDE 中打开并编译这个样例程序
 
 样例提供了一个自定义解析器示例 `ExampleKafkaParser`, 用来解析 Kafka 消息。
 
 #### 二、实现自定义 Kafka 消息解析器
 
 自定义 Kafka 消息解析器的扩展点包含一个类 **CustomKafkaParserBase**， 其中需要覆写两个方法：
-- `flattenMessage(ByteBuffer byteBuffer)`（必要）： 用来反序列化 Kafka 消息， 并解析为键值对集合，用来定义 Kafka 表的列
+- `flattenMessage(ByteBuffer byteBuffer)`（必要）： 用来反序列化 Kafka 消息， 并解析为键值对集合，键值对集合用于定义 Kafka 表的列
 - `parse(ByteBuffer byteBuffer)`（可选）： 根据定义的表，取出 Kafka 消息中对应列的数据
 
 下面介绍如何实现这个类， 以样例中的 `ExampleKafkaParser` 为例。
@@ -236,16 +241,16 @@ public class ExampleKafkaParser extends CustomKafkaParserBase {
 }
 ```
 
-`flattenMessage` 方法中， 参数为序列化后的 Kafka 消息，首先需要将其转化为字节数组，然后将字节数组反序列化。然后将反序列化后的消息，解析为键值对，将其放入 flatMap 中。需要注意的是，此处应使用 `LinkedHashMap` 来保证每次解析的顺序保持一致。这个键值对集合将会展示在前端界面中，如图所示
+`flattenMessage()` 方法中， 参数为序列化后的 Kafka 消息，首先需要将其转化为字节数组，然后将字节数组反序列化。然后将反序列化后的消息，解析为键值对，将其放入 flatMap 中。需要注意的是，此处应使用 `LinkedHashMap` 来保证每次解析的顺序保持一致。这个键值对集合将会展示在前端界面中，如图所示
 
  ![至少一列为 timestamp](images/kafka_check_timestamp.png)
 
  其中**属性**为 flatMap 中的键， **样例值** 为 flatMap 中的值。
 
  > 注意：
- > 1. 一般情况下不需要覆写 parse() 方法，但需要视具体情况而定
+ > 1. 一般情况下不需要覆写 `parse()` 方法，但需要视具体情况而定
  > 2. 如果需要添加依赖，对于常用 Java 依赖， 一般设置 scope 为 `provided` 来避免和系统依赖 JAR 包冲突
- > 3. flattenMessage() 方法要注意结果的顺序，一般情况下需要保序
+ > 3. `flattenMessage()` 方法要注意结果的顺序，一般情况下需要保序
 
 
  ### 三、打包、部署与调试
