@@ -174,6 +174,7 @@
         * [从 Apache Kylin 升级](operation/upgrade/upgrade_from_kylin.cn.md)
 * [REST API](rest/README.md)
     * [访问与安全认证 API](rest/authentication.cn.md)
+    * [项目 API](rest/project_api.cn.md)
     * [数据源 API](rest/data_source_api.cn.md)
     * [模型 API](rest/model_api.cn.md)
     * [Cube API](rest/cube_api/README.md)

@@ -169,6 +169,7 @@
         * [Upgrade from Apache Kylin](operation/upgrade/upgrade_from_kylin.en.md)
 * [REST API](rest/README.md)
     * [Access and Authentication API](rest/authentication.en.md)
+    * [Project API](rest/project_api.en.md)
     * [Data Source API](rest/data_source_api.en.md)
     * [Model API](rest/model_api.en.md)
     * [Cube API](rest/cube_api/README.md)
