@@ -88,7 +88,7 @@ Kyligence Enterprise supports extracting streaming data into tables and implemen
 
   - The **minute_start** column is critical for later model design and cube design. In models and cubes that use Kafka table as fact table, the **minute_start** will be a mandatory dimension and segment merge will perform along the **minute_start** as time dimension.
 
-     > **Note**: If your Kafka message contains fields of the same names, they will be overwritten by the system derived time columns.
+     > **Note**: If your Kafka message contains fields of the same names, please modify the column name.
      
      ![One Column Chosen as Timestamp](images/kafka_check_timestamp.png)
 
@@ -173,7 +173,7 @@ More information about Kafka configuration can be found at https://kafka.apache.
 
 ### Notes and Limitations
 
-- In project with Kafka as data source, you can also load Hive tables. However Kafka table must be used as fact table and Hive table must be used as lookup table.
+- In project with Kafka as data source, you can also load Hive tables. However Kafka table must be used as fact table.
 - Kafka table cannot reload at the moment, which will be fixed soon. For now, you can first delete the original Kafka table and then create a new one with the same name.
 - JSON message is supported by default at the moment. More formats please use customized implementation parser.
 - When defining table schema, please manually check the column types recommended by the system. In certain cases, they may not be the wanted types. Also, the `Float` type is known to cause query error on streaming data under some special condition. Recommend to use `Double` type whenever possible.

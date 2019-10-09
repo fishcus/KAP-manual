@@ -88,7 +88,7 @@
   - 推导时间维度信息由系统生成，不可修改
   - **minute_start** 将在后续的建模和 Cube 设计中发挥重要作用。在以 Kafka 表为中心的模型和 Cube 中，**minute_start** 将是必选维度，Segment 的自动合并也将以 **minute_start** 为时间维度。
 
-    > **注意**：如果 Kafka 消息中有同名的时间字段，它们将被系统生成的时间列覆盖。
+    > **注意**：如果 Kafka 消息中有同名的字段，请按照界面提示进行修改。
 
     ![至少一列为 timestamp](images/kafka_check_timestamp.png)
     ![推导维度](images/kafka_derived_dim.png)
@@ -173,7 +173,7 @@ Kyligence Enterprise 提供了两种方式来配置 Kafka Consumer 的参数：
 
 ### 注意事项和已知局限
 
-- 在以 Kafka 为数据源的项目中，也可以加载 Hive 表。然而 Kafka 表只能用作事实表，Hive 表只能用作维度表。
+- 在以 Kafka 为数据源的项目中，支持加载 Hive 表，然而 Kafka 表只能用作事实表
 - 暂时 Kafka 表无法重载，我们会在后续版本中修复。暂时您可以先删除原表，再重新加载同名的 Kafka 表。
 - 当前默认支持 JSON 格式的 Kafka 消息，更多格式请使用自定义解析器来。
 - 在定义表结构时，请仔细核对系统自动识别的数据类型，在一些特定情况下识别可能有误。另外，已知 `Float` 类型在某些特殊情况下会导致 Kafka 表上的查询失败，推荐使用 `Double` 类型代替。
