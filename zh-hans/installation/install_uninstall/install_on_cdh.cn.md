@@ -14,7 +14,7 @@ Kyligence Enterprise 支持的 Cloudera CDH 版本列表
 
 - Cloudera CDH 5.1/5.8/5.12/5.13
 
-- Cloudera CDH 6.0 (Beta) 
+- Cloudera CDH 6.0 
 
   > **注意：** Cloudera CDH 6.0 版本暂不支持使用 SparkSQL 进行 Cube 构建
 
