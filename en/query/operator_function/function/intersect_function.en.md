@@ -51,7 +51,7 @@ Kyligence Enterprise supports the following intersection function,
 
 - Description
 
-  - Returns the values of the intersection of multiple result sets in different conditions
+  - Returns the values of the intersection of multiple result sets in different conditions. If the returned result is large, it may cause the analysis page browser to crash.
 
 - Syntax
 
@@ -61,7 +61,7 @@ Kyligence Enterprise supports the following intersection function,
 
   - `column_to_count`,  the column to be calculated and applied on distinct count, required to be added as **Precise count distinct** measure
   - `column_to_filter`, the varied dimension
-  - `filter_value_list`, the value of the varied dimensions listed in `array[]`, A single element in an array can map multiple values. By default, the '|' is split. You can set `kylin.query.udf.intersect.separator` in `kylin.properties` to configure the separator.
+  - `filter_value_list`, the value of the varied dimensions listed in `array[]`, A single element in an array can map multiple values. By default, the '|' is split. You can set `kylin.query.intersect.separator` in `kylin.properties` to configure the separator.
 
 
 - Query Example
