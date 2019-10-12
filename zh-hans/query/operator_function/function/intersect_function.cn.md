@@ -20,7 +20,7 @@ Kyligence Enterprise 支持如下交集函数。
 
   - `column_to_count` 指向用于统计去重计数的列，这个列必须已经被添加为**精确去重**的度量
   - `column_to_filter` 指向可变的维度
-  - `filter_value_list` 数组形式，指向可变维度中的值；数组中单个元素可以映射多个值，默认使用'|'分割，可以使用 `kylin.query.udf.intersect.separator` 配置分隔符，仅支持在 `kylin.properties` 文件中配置。
+  - `filter_value_list` 数组形式，指向可变维度中的值；数组中单个元素可以映射多个值，默认使用'|'分割，可以使用 `kylin.query.intersect.separator` 配置分隔符，可以取值 `|` 或者 `,`，默认为 `|`，仅支持在 `kylin.properties` 文件中配置。
 
 - 查询示例
 
@@ -59,7 +59,7 @@ Kyligence Enterprise 支持如下交集函数。
 
   - `column_to_count` 指向用于统计去重计数的列，这个列必须已经被添加为**精确去重**的度量
   - `column_to_filter` 指向可变的维度
-  - `filter_value_list` 数组形式，指向可变维度中的值；数组中单个元素可以映射多个值，默认使用'|'分割，可以使用 `kylin.query.intersect.separator` 配置分隔符，仅支持在 `kylin.properties` 文件中配置。
+  - `filter_value_list` 数组形式，指向可变维度中的值；数组中单个元素可以映射多个值，默认使用'|'分割，可以使用 `kylin.query.intersect.separator` 配置分隔符，可以取值 `|` 或者 `,`，默认为 `|`，仅支持在 `kylin.properties` 文件中配置。
 
 - 查询示例
 
