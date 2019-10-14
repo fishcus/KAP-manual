@@ -21,7 +21,7 @@ Kyligence Enterprise supports the following intersection function,
 
   - `column_to_count`,  the column to be calculated and applied on distinct count, required to be added as **Precise count distinct** measure
   - `column_to_filter`, the varied dimension
-  - `filter_value_list`, the value of the varied dimensions listed in `array[]`, When `column_to_filter` is of type varchar, A single element in an array can map multiple values. By default, the '|' is split. You can set `kylin.query.intersect.separator` in `kylin.properties` to configure the separator, Can take value '|' or ',', default is '|'.
+  - `filter_value_list`, the value of the varied dimensions listed in `array[]`, When `column_to_filter` is of type varchar, A single element in an array can map multiple values. By default, the '|' is split. You can set `kylin.query.intersect.separator` in `kylin.properties` to configure the separator, Can take value '|' or ',', default is '|'(Currently this parameter does not support the use of subquery results as parameters).
 
 
 - Query Example
@@ -61,7 +61,7 @@ Kyligence Enterprise supports the following intersection function,
 
   - `column_to_count`,  the column to be calculated and applied on distinct count, required to be added as **Precise count distinct** measure
   - `column_to_filter`, the varied dimension
-  - `filter_value_list`, the value of the varied dimensions listed in `array[]`, When `column_to_filter` is of type varchar, A single element in an array can map multiple values. By default, the '|' is split. You can set `kylin.query.intersect.separator` in `kylin.properties` to configure the separator, Can take value '|' or ',', default is '|'
+  - `filter_value_list`, the value of the varied dimensions listed in `array[]`, When `column_to_filter` is of type varchar, A single element in an array can map multiple values. By default, the '|' is split. You can set `kylin.query.intersect.separator` in `kylin.properties` to configure the separator, Can take value '|' or ',', default is '|'(Currently this parameter does not support the use of subquery results as parameters).
 
 
 - Query Example
