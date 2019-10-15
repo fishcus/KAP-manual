@@ -22,7 +22,7 @@ Kyligence Enterprise 支持如下交集函数。
   - `column_to_filter` 指向可变的维度
   - `filter_value_list` 数组形式，指向可变维度中的值；当 `column_to_filter` 为 varchar 类型时，数组中单个元素可以映射多个值，默认使用'|'分割，可以使用 `kylin.query.intersect.separator` 配置分隔符，可以取值 `|` 或者 `,`，默认为 `|`，仅支持在 `kylin.properties` 文件中配置（目前该参数不支持使用子查询的结果作为参数使用）。
 
-- 查询示例
+- 查询示例 1
 
   以 Kyligence Enterprise 的样例数据集为例，事实表 `KYLIN_SALES` 模拟了在线交易数据的记录表。
 以下查询语句可以获得有多少比例的卖家能在新年假期阶段（2012.01.01-2012.01.03）进行持续的在线交易。
@@ -39,12 +39,24 @@ Kyligence Enterprise 支持如下交集函数。
   group by LSTG_FORMAT_NAME
   ```
 
-- 返回示例
+- 返回示例 1
 
   ![](images/intersect_count.1.png)
   
   结果表示没有卖家在新年阶段进行持续的在线交易。
   
+- 查询示例 2（column to filter 为 varchar 类型时，单元素映射多个值）
+
+  ```sql
+    select 
+    intersect_count(SELLER_ID, LSTG_FORMAT_NAME, array['FP-GTC|FP-non GTC|Others', 'Others']) as test_column
+    from kylin_sales
+  ```
+
+- 返回示例 2
+
+  ![](images/intersect_count.2.png)
+
 ### INTERSECT_VALUE
 
 - 说明
@@ -61,7 +73,7 @@ Kyligence Enterprise 支持如下交集函数。
   - `column_to_filter` 指向可变的维度
   - `filter_value_list` 数组形式，指向可变维度中的值；当 `column_to_filter` 为 varchar 类型时，数组中单个元素可以映射多个值，默认使用'|'分割，可以使用 `kylin.query.intersect.separator` 配置分隔符，可以取值 `|` 或者 `,`，默认为 `|`，仅支持在 `kylin.properties` 文件中配置（目前该参数不支持使用子查询的结果作为参数使用）。
 
-- 查询示例
+- 查询示例 1
 
   以 Kyligence Enterprise 的样例数据集为例，事实表 `KYLIN_SALES`  模拟了在线交易数据的记录表。
 以下查询语句可以获得有多少比例的卖家能在新年假期阶段（2012.01.01-2012.01.03）进行持续的在线交易。
@@ -78,8 +90,20 @@ Kyligence Enterprise 支持如下交集函数。
   group by LSTG_FORMAT_NAME
   ```
 
-- 返回示例
+- 返回示例 1
 
   ![](images/intersect_value.1.png)
   
   结果表示在新年阶段进行持续的在线交易的卖家 id 的集合，以数组的形式展示。
+  
+- 查询示例 2（column to filter 为 varchar 类型时，单元素映射多个值）
+
+  ```sql
+  select 
+  intersect_value(SELLER_ID, LSTG_FORMAT_NAME, array['FP-GTC|FP-non GTC|Others', 'Others']) as test_column
+  from kylin_sales
+  ```
+
+- 返回示例 2
+
+  ![](images/intersect_value.2.png)

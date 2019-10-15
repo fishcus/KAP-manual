@@ -24,7 +24,7 @@ Kyligence Enterprise supports the following intersection function,
   - `filter_value_list`, the value of the varied dimensions listed in `array[]`, When `column_to_filter` is of type varchar, A single element in an array can map multiple values. By default, the '|' is split. You can set `kylin.query.intersect.separator` in `kylin.properties` to configure the separator, Can take value '|' or ',', default is '|'(Currently this parameter does not support the use of subquery results as parameters).
 
 
-- Query Example
+- Query Example 1
 
   Take the sample dataset provided by Kyligence Enterprise as an example, table `KYLIN_SALES` simulates the online transaction data, and the following query can return the percentile of sellers who are trading day by day during 2012.01.01 to 2012.01.03.
 
@@ -40,12 +40,23 @@ Kyligence Enterprise supports the following intersection function,
   group by LSTG_FORMAT_NAME
   ```
 
-- Response Example
+- Response Example 1
 
   ![](images/intersect_count.1.png)
 
   The result shows that there is no seller keeps trading constantly during this period.
-  
+
+- Query Example 2
+
+  ```sql
+    select 
+    intersect_count(SELLER_ID, LSTG_FORMAT_NAME, array['FP-GTC|FP-non GTC|Others', 'Others']) as test_column
+    from kylin_sales
+  ```
+
+- Response Example 2
+
+  ![](images/intersect_count.2.png) 
   
 ### INTERSECT_VALUE
 
@@ -64,7 +75,7 @@ Kyligence Enterprise supports the following intersection function,
   - `filter_value_list`, the value of the varied dimensions listed in `array[]`, When `column_to_filter` is of type varchar, A single element in an array can map multiple values. By default, the '|' is split. You can set `kylin.query.intersect.separator` in `kylin.properties` to configure the separator, Can take value '|' or ',', default is '|'(Currently this parameter does not support the use of subquery results as parameters).
 
 
-- Query Example
+- Query Example 1
 
   Take the sample dataset provided by Kyligence Enterprise as an example, table `KYLIN_SALES` simulates the online transaction data, and the following query can return the percentile of sellers who are trading day by day during 2012.01.01 to 2012.01.03.
 
@@ -80,8 +91,20 @@ Kyligence Enterprise supports the following intersection function,
   group by LSTG_FORMAT_NAME
   ```
 
-- Response Example
+- Response Example 1
 
   ![](images/intersect_value.1.png)
 
   The result shows that set of keeping trading constantly's sellerId during this period.
+  
+- Query Example 2
+
+  ```sql
+  select 
+  intersect_value(SELLER_ID, LSTG_FORMAT_NAME, array['FP-GTC|FP-non GTC|Others', 'Others']) as test_column
+  from kylin_sales
+  ```
+
+- Response Example  2
+
+  ![](images/intersect_value.2.png)
