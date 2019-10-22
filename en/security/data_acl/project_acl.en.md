@@ -34,6 +34,7 @@ Project ACLs determines whether a user/user group can access a certain project i
 | Add,  enable/disable, clone, purge cube                      | Yes          | Yes           | Yes        | No        | No    |
 | Build, manage  Cube                                          | Yes          | Yes           | Yes        | Yes       | No    |
 | Add, edit,  delete Cube                                      | Yes          | Yes           | Yes        | No        | No    |
+| Export TDS file of Cube                                      | Yes          | Yes           | Yes        | Yes       | Yes   |
 | View, edit and  delete Cube draft                            | Yes          | Yes           | Yes        | No        | No    |
 | View Insight  page                                           | Yes          | Yes           | Yes        | Yes       | Yes   |
 | Query Insight  page                                          | Yes          | Yes           | Yes        | Yes       | Yes   |

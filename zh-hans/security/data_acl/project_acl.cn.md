@@ -35,6 +35,7 @@
 | 构建、管理 Cube                          | Yes          | Yes           | Yes        | Yes       | No    |
 | 添加、编辑、删除 Cube                    | Yes          | Yes           | Yes        | No        | No    |
 | 查看、编辑及删除 Cube 草稿               | Yes          | Yes           | Yes        | No        | No    |
+| 导出 Cube TDS 文件                       | Yes           | Yes          | Yes        | Yes       | Yes    |
 | 查看分析页面                             | Yes          | Yes           | Yes        | Yes       | Yes   |
 | 在分析页面查询                           | Yes          | Yes           | Yes        | Yes       | Yes   |
 | 查看监控页面                             | Yes          | Yes           | Yes        | Yes       | No    |
