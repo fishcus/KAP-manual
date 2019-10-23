@@ -72,3 +72,25 @@ select sum(3) from KYLIN_SALES
 
 1. 由于对于 null 值的处理较为复杂，因此在当前版本中暂时不支持解析 `sum(column+column)` 或 `sum(column+constant)` 等类型的函数。如您需要需要使用这些函数，您可以通过创建可计算列或表索引满足上述需求。
 2. 在当前版本中暂时不支持 `count(distinct)` 与 `sum(case when)` 同时使用。
+2. 在当前版本中暂时不支持 `count(distinct)` 与 `sum(case when)` 同时使用。
+3. 在当前版本中，对于嵌套子查询暂不支持 `sum(column*constant)` 或 `sum(column/constant)`
+以下面 SQL 为例, 暂时不被 sum(expression) 支持
+
+```sql
+select sum(t.a1 * 2) 
+from (select sum(PRICE) as a1, sum(ITEM_COUNT) as a2 from KYLIN_SALES group by PART_DT) t
+```
+
+可以改写 SQL 为
+
+```sql
+select sum(t.a1) * 2 
+from (
+select sum(PRICE) as a1, sum(ITEM_COUNT) as a2 from KYLIN_SALES group by PART_DT
+) t
+```
+
+或
+```sql
+select sum(PRICE * 2) as a1, sum(ITEM_COUNT) as a2 from KYLIN_SALES group by PART_DT
+```
