@@ -14,9 +14,9 @@ Following Cloudera CDH versions are supported by Kyligence Enterprise:
 
 - Cloudera CDH 5.1/5.8/5.12/5.13
 
-- Cloudera CDH 6.0
+- Cloudera CDH 6.0/6.1/6.2
 
-  > **Note:** Using SparkSQL during cube building is not supported in Cloudera CDH 6.0.
+  > **Note:** Using SparkSQL during cube building is not supported in Cloudera CDH 6.0/6.1/6.2.
 
 To avoid permission problems, we recommend that you use CDH default account and password `cloudera` to access CDH sandbox. In this section, the `cloudera` account is taken as an example.
 
