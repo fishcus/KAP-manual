@@ -19,7 +19,7 @@
   - It's highly recommended to define computed column only on the fact table, although you can define computed column on lookup tables which are not stored as snapshots.
   - You can define different computed columns in different models with following the guideline above.
   - Access control: If a user has restricted access to the column used in the expression of a computed column, then this user will not be able to query the computed column either. 
-
+  - Be careful to remove the reused computed column, it will cause the model and cube of the reusable computed column to be unavailable.
 
 
 ### Create Computed Column
