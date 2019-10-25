@@ -4,8 +4,6 @@ Kyligence Enterprise supports Greenplum as data source since v3.0. Supported Gre
 
 You can refer to [Import Data from RDBMS](README.md) to configure connection, and this article will introduce specific configuration for Greemplum.
 
-> This solution requires customization and is not recommended to use in production environment, please contact Kyligence Service Team if you want to adopt this.
-
 ### Drivers
 
 - Use official Greenplum JDBC Driver ([greenplum.jar](https://www.progress.com/jdbc/pivotal-greenplum))

@@ -4,8 +4,6 @@ Kyligence Enterprise supports Microsoft SQL Server as data source since version 
 
 You can refer to [Import Data from RDBMS](README.md) to configure connection, and this article will introduce specific configuration for Microsoft SQL Server.
 
-> This solution requires customization and is not recommended to use in production environment, please contact Kyligence Service Team if you are interested in this.
-
 ### Drivers
 
 - Use official Microsoft SQL Server JDBC Driver (Recommend sqljdbc4.1)

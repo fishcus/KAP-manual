@@ -2,6 +2,8 @@
 
 Kyligence Enterprise can connect RDBMS as data source through JDBC API.
 
+> This solution requires customization and is not recommended to use in production environment, please contact Kyligence Service Team if you want to adopt this.
+
 ### Environment Prerequisites
 
 In order to connect RDBMS as data source, following requirements are necessary:

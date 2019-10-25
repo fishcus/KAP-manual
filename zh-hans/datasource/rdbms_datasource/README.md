@@ -2,6 +2,8 @@
 
 Kyligence Enterprise 可通过 JDBC 接口连接 RDBMS 数据源。
 
+> 注：本文介绍的 RDBMS 连接方案属于二次开发方案，不建议直接在生产环境使用。如果您有需求，请在 Kyligence 服务人员的支持下使用。
+
 ### 环境要求
 
 连接 RDBMS 数据源，需要满足以下环境要求：
