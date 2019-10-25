@@ -2,6 +2,8 @@
 
 在本文中，我们将向您介绍如何在Mac 系统下通过ODBC Manager或unixODBC安装和配置 Kyligence ODBC 驱动（Mac 版本)。
 
+您可以使用 ODBC Manager 通过界面创建DSN或者也可以直接编辑`odbc.ini` 文件
+
 ### 使用ODBC Manger安装
 
 - #### 安装 Kyligence ODBC Driver 
@@ -58,9 +60,10 @@
 
   ![Add Drivers](../images/mac_odbc/5.png)
 
-
+DSN配置好后您就可以直接在BI工具中使用了。
 
 ### 使用UnixODBC 安装
+如您已经通过ODBC Manager 完成了ODBC的安装及 DSN的配置，可跳过本章节。
 
 - #### 安装 unixODBC 
 
