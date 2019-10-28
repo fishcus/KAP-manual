@@ -51,9 +51,9 @@ In this section, we will introduce how to install Kyligence ODBC driver (Mac ver
 >
 >```
 >[ODBC Data Sources]
->{DriverPath} = {DriverName}
+>{DSNName} = {DriverName}
 >
->[KyligenceODBCDriver]
+>[{DSNName}]
 >Driver = {DriverPath}
 >Host = {KE_Url}
 >Port = {KE_Port}
@@ -66,7 +66,7 @@ In this section, we will introduce how to install Kyligence ODBC driver (Mac ver
 >
 >```
 >[ODBC Drivers]
->KyligenceODBCDriver  = Installed
+>KyligenceODBCDriver = Installed
 >
 >[KyligenceODBCDriver]
 >Driver = /Library/KyligenceODBCLib/libKyligenceODBC64.dylib
@@ -84,20 +84,22 @@ In this section, we will introduce how to install Kyligence ODBC driver (Mac ver
 >Port = 7070
 >Project = learn_kylin
 >```
+>
+>After configured, you can use it directly in the BI tool，and You can skip the following steps to configure the Driver and DSN.
 
 - #### Configure KyligenceODBCDriver
 
-  Open ODBC Manger, go to the "Drivers" page, click "Add" ![Drivers](../images/mac_odbc/1.png)
+  Open ODBC Manger, go to the "Drivers" page, click "Add" 
+
+  > **Caution:** Make sure the Driver Name is "KyligenceODBCDriver"
 
   Enter Driver Name: "KyligenceODBCDriver", select local Kyligence ODBC Driver， click "OK"
 
   ![Add Drivers](../images/mac_odbc/2.png)
 
-> **Caution:** Make sure the Driver Name is "KyligenceODBCDriver"
-
 - #### Configure DSN
 
-  Go to the "System DSN" page and click on "Add"
+  Go to the "System DSN" or "User DSN" page and click on "Add"
 
   ![Add Drivers](../images/mac_odbc/3.png)
 

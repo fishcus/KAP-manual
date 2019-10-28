@@ -30,7 +30,7 @@
    sudo chown -R {UserName} odbc.ini
    ```
 
-> **注意：**若安装后，~/Library/下没有ODBC文件夹，请手动创建，并初始化配置odbcinst.ini、odbc.ini
+> **注意：**若安装后，~/Library/下没有ODBC文件夹，请手动创建，并配置odbcinst.ini、odbc.ini
 >
 > ```
 > mkdir ODBC
@@ -53,9 +53,9 @@
 >
 > ```
 > [ODBC Data Sources]
-> {DriverPath} = {DriverName}
+> {DSNName} = {DriverName}
 > 
-> [KyligenceODBCDriver]
+> [{DSNName}]
 > Driver = {DriverPath}
 > Host = {KE_Url}
 > Port = {KE_Port}
@@ -86,20 +86,24 @@
 > Port = 7070
 > Project = learn_kylin
 > ```
+>
+>   配置好后，您就可以直接在BI工具中使用了，可跳过下面的界面配置Driver、DSN操作。
 
 - #### 配置KyligenceODBCDriver
 
-  打开ODBC Manger，进入“Drivers”页面​ ，点击“Add”新建![Drivers](../images/mac_odbc/1.png)
+  打开ODBC Manger，进入“Drivers”页面​ ，点击“Add”新建
+
+  > **注意：**请务必保证Driver Name为“KyligenceODBCDriver”
+
+  ![Drivers](../images/mac_odbc/1.png)
 
   输入Driver Name:"KyligenceODBCDriver"，Driver File选择Kyligence ODBC Driver本地文件，点击“OK”即可
 
   ![Add Drivers](../images/mac_odbc/2.png)
 
-> **注意：**请务必保证Driver Name为“KyligenceODBCDriver”
-
 - #### 配置DSN
 
-  进入“System DSN”页面，点击“Add”新建
+  进入“System DSN”或“User DSN”页面，点击“Add”新建
 
   ![Add Drivers](../images/mac_odbc/3.png)
 
