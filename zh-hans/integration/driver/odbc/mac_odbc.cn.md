@@ -26,13 +26,70 @@
 2. ~/Library/ODBC 文件夹下，给登陆用户赋予odbc.ini，odbcinst.ini读写权限
 
    ```
-   sudo chown -R {UserName} odbc.ini
    sudo chown -R {UserName} odbcinst.ini
+   sudo chown -R {UserName} odbc.ini
    ```
+
+> **注意：**若安装后，~/Library/下没有ODBC文件夹，请手动创建，并初始化配置odbcinst.ini、odbc.ini
+>
+> ```
+> mkdir ODBC
+> cd ODBC
+> touch odbcinst.ini
+> touch odbc.ini
+> ```
+>
+> **ODBC驱动配置文件** –  /Library/ODBC/odbcinst.ini
+>
+> ```
+> [ODBC Drivers]
+> [{DriverName}] = Installed
+> 
+> [{DriverName}]
+> Driver={DriverPath}
+> ```
+>
+> **DSN配置文件** – /Library/ODBC/odbc.ini 
+>
+> ```
+> [ODBC Data Sources]
+> {DriverPath} = {DriverName}
+> 
+> [KyligenceODBCDriver]
+> Driver = {DriverPath}
+> Host = {KE_Url}
+> Port = {KE_Port}
+> Project = {KE_Project}
+> ```
+>
+> 样例配置： 
+>
+>   ~/Library/ODBC/odbcinst.ini
+>
+> ```
+> [ODBC Drivers]
+> KyligenceODBCDriver  = Installed
+> 
+> [KyligenceODBCDriver]
+> Driver = /Library/KyligenceODBCLib/libKyligenceODBC64.dylib
+> ```
+>
+>   ~/Library/ODBC/odbc.ini
+>
+> ```
+> [ODBC Data Sources]
+> KyligenceDataSource = KyligenceODBCDriver
+> 
+> [KyligenceDataSource]
+> Driver = /Library/KyligenceODBCLib/libKyligenceODBC64.dylib
+> Host = http://kapdemo.chinaeast.cloudapp.chinacloudapi.cn
+> Port = 7070
+> Project = learn_kylin
+> ```
 
 - #### 配置KyligenceODBCDriver
 
-   打开ODBC Manger，进入“Drivers”页面​ ，点击“Add”新建![Drivers](../images/mac_odbc/1.png)
+  打开ODBC Manger，进入“Drivers”页面​ ，点击“Add”新建![Drivers](../images/mac_odbc/1.png)
 
   输入Driver Name:"KyligenceODBCDriver"，Driver File选择Kyligence ODBC Driver本地文件，点击“OK”即可
 
@@ -89,7 +146,7 @@ DSN配置好后您就可以直接在BI工具中使用了。
 
   将 Kyligence ODBC 添加入配置文件
 
-  **ODBC驱动配置文件** –  /Library/ODBC/odbcinst.ini 
+  **ODBC驱动配置文件** –  /usr/local/etc/odbcinst.ini 
 
   ```
   [{DriverName}]
@@ -105,7 +162,7 @@ DSN配置好后您就可以直接在BI工具中使用了。
 
 - #### 配置DSN
 
-  **DSN配置文件** – /Library/ODBC/odbc.ini 
+  **DSN配置文件** – /usr/local/etc/odbc.ini 
 
   ```
   [{DSName}]

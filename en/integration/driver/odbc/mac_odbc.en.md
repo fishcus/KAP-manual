@@ -28,9 +28,66 @@ In this section, we will introduce how to install Kyligence ODBC driver (Mac ver
    sudo chown -R {UserName} odbcinst.ini
    ```
 
+>**Caution:** If there is no ODBC folder under ~/Library/ after installation, please create it manually and initialize the configuration odbcinst.ini, odbc.ini
+>
+>```
+>mkdir ODBC
+>cd ODBC
+>touch odbcinst.ini
+>touch odbc.ini
+>```
+>
+>**Driver Configuration** –  /Library/ODBC/odbcinst.ini
+>
+>```
+>[ODBC Drivers]
+>[{DriverName}] = Installed
+>
+>[{DriverName}]
+>Driver={DriverPath}
+>```
+>
+>**DSN Configuration** – /Library/ODBC/odbc.ini 
+>
+>```
+>[ODBC Data Sources]
+>{DriverPath} = {DriverName}
+>
+>[KyligenceODBCDriver]
+>Driver = {DriverPath}
+>Host = {KE_Url}
+>Port = {KE_Port}
+>Project = {KE_Project}
+>```
+>
+>Sample Config： 
+>
+>~/Library/ODBC/odbcinst.ini
+>
+>```
+>[ODBC Drivers]
+>KyligenceODBCDriver  = Installed
+>
+>[KyligenceODBCDriver]
+>Driver = /Library/KyligenceODBCLib/libKyligenceODBC64.dylib
+>```
+>
+>~/Library/ODBC/odbc.ini
+>
+>```
+>[ODBC Data Sources]
+>KyligenceDataSource = KyligenceODBCDriver
+>
+>[KyligenceDataSource]
+>Driver = /Library/KyligenceODBCLib/libKyligenceODBC64.dylib
+>Host = http://kapdemo.chinaeast.cloudapp.chinacloudapi.cn
+>Port = 7070
+>Project = learn_kylin
+>```
+
 - #### Configure KyligenceODBCDriver
 
-   Open ODBC Manger, go to the "Drivers" page, click "Add" ![Drivers](../images/mac_odbc/1.png)
+  Open ODBC Manger, go to the "Drivers" page, click "Add" ![Drivers](../images/mac_odbc/1.png)
 
   Enter Driver Name: "KyligenceODBCDriver", select local Kyligence ODBC Driver， click "OK"
 
