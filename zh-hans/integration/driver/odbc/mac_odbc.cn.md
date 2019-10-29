@@ -23,14 +23,14 @@
 
 1. 您可以在 [ODBC Manager](http://www.odbcmanager.net) 页面下载ODBC Manager安装包，并运行安装
 
-2. ~/Library/ODBC 文件夹下，给登陆用户赋予odbc.ini，odbcinst.ini读写权限
+2. /Library/ODBC 文件夹下，给登陆用户赋予odbc.ini，odbcinst.ini读写权限
 
    ```
    sudo chown -R {UserName} odbcinst.ini
    sudo chown -R {UserName} odbc.ini
    ```
 
-> **注意：**若安装后，~/Library/下没有ODBC文件夹，请手动创建，并配置odbcinst.ini、odbc.ini
+> **注意：**若安装后，/Library/下没有ODBC文件夹，请手动创建，并配置odbcinst.ini、odbc.ini
 >
 > ```
 > mkdir ODBC
@@ -64,7 +64,7 @@
 >
 > 样例配置： 
 >
->   ~/Library/ODBC/odbcinst.ini
+>   /Library/ODBC/odbcinst.ini
 >
 > ```
 > [ODBC Drivers]
@@ -74,7 +74,7 @@
 > Driver = /Library/KyligenceODBCLib/libKyligenceODBC64.dylib
 > ```
 >
->   ~/Library/ODBC/odbc.ini
+>   /Library/ODBC/odbc.ini
 >
 > ```
 > [ODBC Data Sources]

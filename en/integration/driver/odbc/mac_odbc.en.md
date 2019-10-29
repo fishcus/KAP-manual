@@ -21,14 +21,14 @@ In this section, we will introduce how to install Kyligence ODBC driver (Mac ver
 
 1. You can download Mac OS ODBC Manager from  [ODBC Manager](http://www.odbcmanager.net) , and install it.
 
-2. Enter the ~/Library/ODBC folder, give the login user read and write permissions to odbc.ini, odbcinst.ini 
+2. Enter the /Library/ODBC folder, give the login user read and write permissions to odbc.ini, odbcinst.ini 
 
    ```
    sudo chown -R {UserName} odbc.ini
    sudo chown -R {UserName} odbcinst.ini
    ```
 
->**Caution:** If there is no ODBC folder under ~/Library/ after installation, please create it manually and initialize the configuration odbcinst.ini, odbc.ini
+>**Caution:** If there is no ODBC folder under /Library/ after installation, please create it manually and initialize the configuration odbcinst.ini, odbc.ini
 >
 >```
 >mkdir ODBC
@@ -62,7 +62,7 @@ In this section, we will introduce how to install Kyligence ODBC driver (Mac ver
 >
 >Sample Config： 
 >
->~/Library/ODBC/odbcinst.ini
+>/Library/ODBC/odbcinst.ini
 >
 >```
 >[ODBC Drivers]
@@ -72,7 +72,7 @@ In this section, we will introduce how to install Kyligence ODBC driver (Mac ver
 >Driver = /Library/KyligenceODBCLib/libKyligenceODBC64.dylib
 >```
 >
->~/Library/ODBC/odbc.ini
+>/Library/ODBC/odbc.ini
 >
 >```
 >[ODBC Data Sources]
