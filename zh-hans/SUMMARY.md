@@ -13,6 +13,8 @@
     * [部署模式](installation/deploy/README.md)
         * [集群部署与负载均衡](installation/deploy/cluster_lb.cn.md)
         * [读写分离部署](installation/deploy/rw_separation.cn.md)
+        * [多租户部署](installation/deploy/multi_tenant.cn.md)
+        * [资源组部署](installation/deploy/resource_group.cn.md)
         * [服务发现及任务引擎高可用](installation/deploy/ha.cn.md)
         * [云端部署](installation/deploy/install_on_cloud.cn.md)
     * [配置 RDBMS 元数据存储](installation/rdbms_metastore/README.md)
