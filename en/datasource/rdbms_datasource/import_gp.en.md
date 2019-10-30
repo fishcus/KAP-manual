@@ -8,7 +8,7 @@ You can refer to [Import Data from RDBMS](README.md) to configure connection, an
 
 ### Drivers
 
-- Use official Greenplum JDBC Driver (Recommend gsjdbc4.jar)
+- Use official Greenplum JDBC Driver ([greenplum.jar](https://www.progress.com/jdbc/pivotal-greenplum))
 - Use embeded Data Source Adaptor for Greemplum
 
 ### Configure Connection

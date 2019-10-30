@@ -8,7 +8,7 @@ Kyligence Enterprise 从 3.0 版本开始支持 Greenplum 作为数据源，目�
 
 ### 驱动程序
 
-- 使用官方 Greenplum JDBC Driver (推荐版本 gsjdbc4.jar)
+- 使用官方 Greenplum JDBC Driver ([greenplum.jar](https://www.progress.com/jdbc/pivotal-greenplum))
 - 使用 Kyligence Enterprise 内置的 Data Source Adaptor for Greemplum
 
 ### 连接参数配置
