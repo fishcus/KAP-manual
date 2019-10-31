@@ -113,6 +113,7 @@
         * [Kyligence ODBC 驱动](integration/driver/odbc/README.md)
             * [Windows 版本](integration/driver/odbc/win_odbc.cn.md)
             * [Linux 版本](integration/driver/odbc/linux_odbc.cn.md)
+            * [Mac 版本](integration/driver/odbc/mac_odbc.cn.md)
     * [与 BI 工具连接](integration/bi/README.md)
         * [与 Tableau 集成](integration/bi/tableau/README.md)
             * [与 Tableau Desktop 集成](integration/bi/tableau/tableau_desktop.cn.md)

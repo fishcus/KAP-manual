@@ -10,8 +10,9 @@ Kyligence ODBC 驱动程序包含在Kyligence Enterprise 发行版。驱动程�
 
 目前有如下版本：
 
-- Windows 64位/32位
-- Linux 64位/32位
+- [Windows 64位/32位](win_odbc.cn.md)
+- [Linux 64位/32位](linux_odbc.cn.md)
+- [Mac OS](mac_odbc.cn.md)
 
 
 在接下来的章节中，我们将介绍如何安装、配置和使用Kyligence ODBC驱动。

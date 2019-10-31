@@ -112,6 +112,7 @@
         * [Kyligence ODBC Driver](integration/driver/odbc/README.md)
             * [Windows](integration/driver/odbc/win_odbc.en.md)
             * [Linux](integration/driver/odbc/linux_odbc.en.md)
+            * [Mac](integration/driver/odbc/mac_odbc.en.md)
     * [Connect Kyligence from BI Tools](integration/bi/README.md)
         * [Tableau](integration/bi/tableau/README.md)
             * [Tableau Desktop](integration/bi/tableau/tableau_desktop.en.md)
