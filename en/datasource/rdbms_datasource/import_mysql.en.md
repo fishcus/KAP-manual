@@ -4,6 +4,8 @@ Kyligence Enterprise supports MySQL as data source since version 3.0. Supported 
 
 You can refer to [Import Data from RDBMS](README.md) to configure connection, and this article will introduce specific configuration for MySQL.
 
+> This solution requires customization and is not recommended to use in production environment, please contact Kyligence Service Team if you want to adopt this.
+
 ### Drivers
 
 - Use official MySQL JDBC Driver (Recommend MySQL 5.1.41)

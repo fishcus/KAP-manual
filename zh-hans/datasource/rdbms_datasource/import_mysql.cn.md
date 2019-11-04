@@ -4,6 +4,8 @@ Kyligence Enterprise 从 3.0 版本开始支持 MySQL 作为数据源，目前�
 
 您可以参考[连接 RDBMS 数据源](README.md)中的介绍配置连接，本文着重介绍针对 MySQL 的特殊配置。
 
+> 注：本文介绍的 MySQL 连接方案属于二次开发方案，不建议直接在生产环境使用。如果您有需求，请在 Kyligence 服务人员的支持下使用。
+
 ### 驱动程序
 
 - 使用官方 MySQL JDBC Driver（推荐版本为 MySQL 5.1.41）

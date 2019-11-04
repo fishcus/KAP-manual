@@ -4,6 +4,8 @@ Kyligence Enterprise 从 3.2 版本开始支持 Impala 作为数据源。
 
 您可以参考[连接 RDBMS 数据源](README.md)中的介绍配置连接，本文着重介绍针对 Impala 的特殊配置。
 
+> 注：本文介绍的 Impala 连接方案属于二次开发方案，不建议直接在生产环境使用。如果您有需求，请在 Kyligence 服务人员的支持下使用。
+
 ### 驱动程序
 
 - 使用官方 [Impala JDBC 驱动程序](https://www.cloudera.com/downloads/connectors/impala/jdbc/2-6-4.html)

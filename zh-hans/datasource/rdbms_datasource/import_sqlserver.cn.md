@@ -2,6 +2,8 @@
 
 Kyligence Enterprise 从 3.0 开始支持 SQL Server 作为数据源，目前支持的 SQL Server 版本为 SQL Server 2012 及更高版本。
 
+> 注：本文介绍的 SQL Server 连接方案属于二次开发方案，不建议直接在生产环境使用。如果您有需求，请在 Kyligence 服务人员的支持下使用。
+
 ### 驱动程序
 
 - 使用官方 Microsoft SQL Server JDBC Driver (推荐 sqljdbc4.1 及以上版本)

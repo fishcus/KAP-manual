@@ -4,6 +4,8 @@ Kyligence Enterprise supports Impala as data source since version 3.2.
 
 You can refer to [Import Data from RDBMS](README.md) to configure connection, and this article will introduce specific configuration for Impala.
 
+> This solution requires customization and is not recommended to use in production environment, please contact Kyligence Service Team if you want to adopt this.
+
 ### Drivers
 
 - Use official [Impala JDBC Driver](https://www.cloudera.com/downloads/connectors/impala/jdbc/2-6-4.html)
