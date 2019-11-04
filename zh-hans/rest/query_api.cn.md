@@ -97,6 +97,7 @@
 - URL Parameters 	
   
   - `project` - `必选` `string`，项目名称
+  - `cube` - `可选` `string`，cube名称
   
 - HTTP Header
   - `Accept: application/vnd.apache.kylin-v2+json`
