@@ -24,4 +24,4 @@ For more information, please refer to [Beeline command options](https://cwiki.ap
 
 **Q: When I use Beeline to connect Hive, it was failed with the following error message:  Cannot modify xxx at runtime. It is not in list of params that are allowed to be modified at runtime.**
 
-Please find `hive.security.authorization.sqlstd.confwhitelist` property in `hive-site.xml` file and add the values according to the error messages. 
+Please find `hive.security.authorization.sqlstd.confwhitelist` property in `$HIVE_CONF/hive_conf.xml` file and add the values according to the error messages. 
