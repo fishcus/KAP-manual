@@ -12,8 +12,14 @@
         * [Uninstall](installation/install_uninstall/uninstallation.en.md)
     * [Deployment Options](installation/deploy/README.md)
         * [Cluster Deployment and Load Balancing](installation/deploy/cluster_lb.en.md)
-        * [Read/Write Seperation](installation/deploy/rw_separation.en.md)
+        
+        * [Read/Write Separation](installation/deploy/rw_separation.en.md)
+        
+         * [Multi-tenancy Deployment](installation/deploy/multi_tenant.en.md)
+        * [Resource Group Deployment](installation/deploy/resource_group.en.md)
+        
         * [Service Discovery and Job Engine HA](installation/deploy/ha.en.md)
+        
         * [Cloud deployment](installation/deploy/install_on_cloud.en.md)
     * [Use RDBMS as Metastore](installation/rdbms_metastore/README.md)
         * [Use MySQL as Metastore](installation/rdbms_metastore/mysql_metastore.en.md)
