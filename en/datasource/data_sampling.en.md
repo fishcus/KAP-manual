@@ -36,7 +36,8 @@ Step 4. Adjust sample percentage and upper limit for sampling data records. Drag
 >
 > 1. Click Data Source and select one or multiple tables to adjust sample size if metadata is not loaded.
 > 2. The sampling range is from 20%-40%-60%-80%-100%. The higher the sampling ratio is, the more accurate the sampling result will be. But it may consume more resources. Users can adjust the ratio according to actual resource configuration.
-> 3. The final sampling records might be not the same as the records calculated by the sampling percentage and upper limit. To ensure the reliability of the table sampling result, there is a lower limit of table sample records in the system. The lower limit cannot be modified.
+> 3. The final sampling records might be not the same as the records calculated by the sampling percentage and upper limit. To ensure the reliability of the table sampling result, there is a lower limit of table sample records (1000,000) in the system. The lower limit cannot be modified.
+> 4. If the sampled table is a partitioned table, and the data types of all partition columns in the table are in [tinyint, smallint, int, bigint, string, date], the system will calculate the number of partitions to be sampled according to the number of target sample rows and the average number of rows per partition, and only sample the data of these partitions.
 
 Step 5. Click `Submit` and start table sampling.
 
