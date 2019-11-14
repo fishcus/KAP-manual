@@ -206,7 +206,7 @@ KapOpenColumnACLProvider 的实现方法比较类似，这里就不重复了。
    # 启用第三方权限验证扩展，启用相关的服务和拦截器
    kylin.security.table-acl-service-clz=io.kyligence.kap.rest.service.KapOpenTableACLService
    kylin.security.column-acl-service-clz=io.kyligence.kap.rest.service.KapOpenColumnACLService
-   kylin.query.interceptors=io.kyligence.kap.rest.service.KapOpenTableInterceptor
+   kylin.query.interceptors=io.kyligence.kap.rest.security.KapOpenTableInterceptor
    
    # 配置自定义的表级权限 Provider 类，必要
    kylin.security.table-acl-provider-clz=HiveAclProvider
