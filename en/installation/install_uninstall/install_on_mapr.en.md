@@ -15,6 +15,7 @@ When configuring sandbox, we recommend that you use the Bridged Adapter model in
 Following MapR versions are supported by Kyligence Enterprise:
 - MapR 5.2.1
 - MapR 6.0.1
+- MapR 6.1.0
 
 To avoid permission issue in the sandbox, you can use MapR's `mapr` account through SSH. The default password is `mapr`. This guide uses `mapr` account as example.
 
@@ -55,7 +56,7 @@ Please pay sepcial attention to the following steps when install Kyligence Enter
   kylin.engine.spark-conf.spark.history.fs.logDirectory=maprfs:///kylin/spark-history
   ```
 
-  In addition to this, please add the following properties in `$KYLIN_HOME/conf/kylin_hive_conf.xml` and `$KYLIN_HOME/conf/kylin_job_conf.xml`. 
+  **Before the Kyligence Enterprise version 3.4.5**, please add the following properties in `$KYLIN_HOME/conf/kylin_hive_conf.xml` and `$KYLIN_HOME/conf/kylin_job_conf.xml`. 
 
   ```xml
     <property>
@@ -112,3 +113,121 @@ netstat -ntl | grep 5181
 netstat -ntl | grep 2181
 ```
 
+**Q: How to Install Spark 2.2.1 on MapR 6.1.0**
+
+MapR 6.1.0 supports Spark 2.3.1 officially, so we need to install Spark 2.2.1 manually.
+Installing Spark 2.2.1 requires root privileges, please follow the steps below:
+
+1. Download Spark 2.2.1 from MapR repository
+
+```sh
+wget http://package.mapr.com/releases/MEP/MEP-5.0.0/redhat/mapr-spark-2.2.1.201804031348-1.noarch.rpm
+```
+
+2. Install Spark 2.2.1
+
+```sh
+rpm2cpio mapr-spark-2.2.1.201804031348-1.noarch.rpm | cpio -idmv
+cp -r ./opt/mapr/spark/spark-2.2.1 /opt/mapr/spark
+rm -rf ./opt
+```
+
+MapR spark 2.2.1 will be installed to the directory `/opt/mapr/spark/spark-2.2.1`
+
+3. Add the configuration file `spark-env.sh` into the directory `/opt/mapr/spark/spark-2.2.1/conf`, the content as below
+
+```sh
+#########################################################################################################
+# Set MapR attributes and compute classpath
+#########################################################################################################
+
+# Set the spark attributes
+if [ -d "/opt/mapr/spark/spark-2.2.1" ]; then
+        export SPARK_HOME=/opt/mapr/spark/spark-2.2.1
+fi
+
+# Load the hadoop version attributes
+source /opt/mapr/spark/spark-2.2.1/mapr-util/hadoop-version-picker.sh
+export HADOOP_HOME=$hadoop_home_dir
+export HADOOP_CONF_DIR=$hadoop_conf_dir
+
+# Enable mapr impersonation
+export MAPR_IMPERSONATION_ENABLED=1
+
+MAPR_HADOOP_CLASSPATH=`/opt/mapr/spark/spark-2.2.1/bin/mapr-classpath.sh`
+MAPR_HADOOP_JNI_PATH=`hadoop jnipath`
+MAPR_SPARK_CLASSPATH="$MAPR_HADOOP_CLASSPATH"
+
+SPARK_MAPR_HOME=/opt/mapr
+
+export SPARK_LIBRARY_PATH=$MAPR_HADOOP_JNI_PATH
+export LD_LIBRARY_PATH="$MAPR_HADOOP_JNI_PATH:$LD_LIBRARY_PATH"
+
+# Load the classpath generator script
+source /opt/mapr/spark/spark-2.2.1/mapr-util/generate-classpath.sh
+
+# Calculate hive jars to include in classpath
+generate_compatible_classpath "spark" "2.2.1" "hive"
+MAPR_HIVE_CLASSPATH=${generated_classpath}
+if [ ! -z "$MAPR_HIVE_CLASSPATH" ]; then
+  MAPR_SPARK_CLASSPATH="$MAPR_SPARK_CLASSPATH:$MAPR_HIVE_CLASSPATH"
+fi
+
+# Calculate hbase jars to include in classpath
+generate_compatible_classpath "spark" "2.2.1" "hbase"
+MAPR_HBASE_CLASSPATH=${generated_classpath}
+if [ ! -z "$MAPR_HBASE_CLASSPATH" ]; then
+  MAPR_SPARK_CLASSPATH="$MAPR_SPARK_CLASSPATH:$MAPR_HBASE_CLASSPATH"
+  SPARK_SUBMIT_OPTS="$SPARK_SUBMIT_OPTS -Dspark.driver.extraClassPath=$MAPR_HBASE_CLASSPATH"
+fi
+
+# Set executor classpath for MESOS. Uncomment following string if you want deploy spark jobs on Mesos
+#MAPR_MESOS_CLASSPATH=$MAPR_SPARK_CLASSPATH
+SPARK_SUBMIT_OPTS="$SPARK_SUBMIT_OPTS -Dspark.executor.extraClassPath=$MAPR_HBASE_CLASSPATH:$MAPR_MESOS_CLASSPATH"
+
+# Set SPARK_DIST_CLASSPATH
+export SPARK_DIST_CLASSPATH=$MAPR_SPARK_CLASSPATH
+
+# Security status
+source /opt/mapr/conf/env.sh
+if [ "$MAPR_SECURITY_STATUS" = "true" ]; then
+  SPARK_SUBMIT_OPTS="$SPARK_SUBMIT_OPTS -Dhadoop.login=hybrid -Dmapr_sec_enabled=true"
+fi
+
+# scala
+export SCALA_VERSION=2.11
+export SPARK_SCALA_VERSION=$SCALA_VERSION
+export SCALA_HOME=/opt/mapr/spark/spark-2.2.1/scala
+export SCALA_LIBRARY_PATH=$SCALA_HOME/lib
+
+# Use a fixed identifier for pid files
+export SPARK_IDENT_STRING="mapr"
+
+#########################################################################################################
+#    :::CAUTION::: DO NOT EDIT ANYTHING ON OR ABOVE THIS LINE
+#########################################################################################################
+
+
+#
+# MASTER HA SETTINGS
+#
+#export SPARK_DAEMON_JAVA_OPTS="-Dspark.deploy.recoveryMode=ZOOKEEPER  -Dspark.deploy.zookeeper.url=<zookeerper1:5181,zookeeper2:5181,..> -Djava.security.auth.login.config=/opt/mapr/conf/mapr.login.conf -Dzookeeper.sasl.client=false"
+
+
+# MEMORY SETTINGS
+export SPARK_DAEMON_MEMORY=1g
+export SPARK_WORKER_MEMORY=16g
+
+# Worker Directory
+export SPARK_WORKER_DIR=$SPARK_HOME/tmp
+```
+
+4. Create the working directory for Spark
+
+```sh
+hadoop fs -mkdir /apps/spark
+hadoop fs -chown root /apps/spark
+hadoop fs -chmod 777 /apps/spark
+```
+
+Until to now, the Spark 2.2.1 has been installed on MapR 6.1.0 successfully.

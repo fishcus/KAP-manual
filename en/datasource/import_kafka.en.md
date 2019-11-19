@@ -28,6 +28,7 @@ To help quick test, the following steps introduce how to deploy a Kafka broker o
    ```sh
    $KAFKA_HOME/bin/kafka-server-start.sh $KAFKA_HOME/config/server.properties &
    ```
+> **Note:** Please check if the Zookeeper IP address or port has been configured correctly in Kafka configuration.
 
 ### Create Kafka Topic and Generate Data for Quick Test
 

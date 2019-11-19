@@ -65,6 +65,8 @@ hadoop fs -mkdir -p /kylin/spark-history
 hadoop fs -put spark-libs.jar /kylin/spark/
 ```
 
+> 注意： 在 MapR 平台中， 上传 Spark Jar 包步骤必须要在执行了 `$KYLIN_HOME/bin/check-env.sh` 或 `$KYLIN_HOME/bin/kylin.sh start` 之后执行 
+
 这样，`kylin.properties` 中的配置将变为：
 
 ```properties

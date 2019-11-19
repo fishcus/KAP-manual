@@ -27,6 +27,8 @@
    $KAFKA_HOME/bin/kafka-server-start.sh $KAFKA_HOME/config/server.properties &
    ```
 
+> **注意：** 启动 Kafka Broker 时， 需要确认 Kafka 中 Zookeeper 的 IP 或者 端口是否配置正确
+
 
 ### 为测试创建 Kafka Topic 并模拟流数据
 
