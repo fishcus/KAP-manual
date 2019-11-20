@@ -147,6 +147,7 @@
         * [Enable Hive ACL on Table Sync](security/data_acl/hive_acl_when_sync_table.en.md)
     * [Integrate with LDAP](security/ldap.en.md)
     * [Integrate with Kerberos](security/kerberos.en.md)
+    * [CDH integrate with Kerberos and Sentry](security/cdh_kerberos_sentry.en.md)
     * [Integrate with 3rd-Party User Authentication System](security/integrate_with_3rd_um.en.md)
     * [Integrate with 3rd-Party Authorization System](security/integrate_with_3rd_acl.en.md)
     * [Security FAQ](security/security_faq.en.md)
