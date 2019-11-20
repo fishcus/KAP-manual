@@ -26,7 +26,9 @@
     
     * Delete: Delete the metadata of cube and segments.
     
-    * Enable: Convert a cube with a segment to READY status.
+    * Enable: Convert a cube to READY status.
+    
+      > **Note**: If the cube does not contain any segment in the READY state, part of the query results will be empty after it is enabled. In order to avoid affecting the online production system, it is recommended to use it only in the development stage.
     
     * Purge: Delete all segments information under a cube, which will only delete the metadata. To totally delete the segment data, please refer to [Routine Operation Tool](../operation/routine_ops/routine_tool.en.md).
 

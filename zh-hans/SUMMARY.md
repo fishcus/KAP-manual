@@ -152,6 +152,7 @@
         * [加载表时的 Hive 权限映射](security/data_acl/hive_acl_when_sync_table.cn.md)
     * [与 LDAP 集成](security/ldap.cn.md)
     * [与 Kerberos 集成 ](security/kerberos.cn.md)
+    * [CDH 与 Kerberos + Sentry 集成 ](security/cdh_kerberos_sentry.cn.md)
     * [与第三方用户认证系统集成](security/integrate_with_3rd_um.cn.md)
     * [与第三方权限系统集成](security/integrate_with_3rd_acl.cn.md)
     * [安全问题 FAQ](security/security_faq.cn.md)
