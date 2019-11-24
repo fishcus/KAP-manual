@@ -16,6 +16,9 @@
 
   该参数指定 Kyligence Enterprise 实例的运行模式，参数值可以是 *all*，*job*，*query* 中的任意一个，默认值为 *all*。*job* 模式表示该服务仅用于 Cube 任务调度，不用于 SQL 查询；*query* 模式表示该服务仅用于 SQL 查询，不用于 Cube 构建任务的调度；*all* 模式表示该服务同时用于任务调度和 SQL 查询。
 
+* **kap.server.schema-editable**
+  该参数指定 Kyligence Enterprise 实例中元数据是否可编辑，默认参数值为 true。将该参数设置为 false 时，对元数据的编辑功能以及相应的REST API将被禁用，具体包括：数据源功能下的加载数据源表和加载kafka集群、保存或克隆模型、保存或克隆 Cube、自动建模。其中加载数据源表REST API参见[数据源API](../../rest/data_source_api.cn.md)，克隆模型REST API参见[模型API](../../rest/model_api.cn.md)，克隆 cube REST API参见[管理cube API](../../rest/cube_api/cube_manage_api.cn.md)。
+
 * **kylin.source.hive.database-for-flat-table**
 
   该参数指定 Hive 中间表保存在哪个 Hive 数据库中，默认值为 *default*。如果执行 Kyligence Enterprise 的用户没有操作 *default* 数据库的权限，可以修改此参数的值以使用其他数据库。
