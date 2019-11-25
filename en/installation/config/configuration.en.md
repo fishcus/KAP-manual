@@ -18,7 +18,7 @@ User could put the customized config items into **kylin.properties.override**, t
 
 * **kap.server.schema-editable**
   
-  This parameter specifies whether the metadata in the Kyligence Enterprise instance is editable and defaults to true. When this parameter is set to false, the editing function of metadata and the corresponding REST APIs will be disabled, including loading data source table and loading kafka streaming config, saving or cloning models, saving or cloning cubes, and automatic modeling. Load datasource table REST API see [data source API](../../rest/data_source_api.en.md), clone model REST API see [model API](../../rest/model_api.en.md), clone cube REST API see [manage cube API](../../rest/cube_api/cube_manage_api.en.md).
+  This parameter specifies whether the metadata in the Kyligence Enterprise instance is editable and defaults to true. When this parameter is set to false, the editing function of metadata and the corresponding REST APIs will be disabled, including: 1. loading table from data source and loading kafka streaming config. 2. creating model, editing model or cloning model. 3. create cube, editing cube or cloning cube. 4. automatic modeling. Load data source table REST API see [data source API](../../rest/data_source_api.en.md), clone model REST API see [model API](../../rest/model_api.en.md), clone cube REST API see [manage cube API](../../rest/cube_api/cube_manage_api.en.md).
 
 * **kylin.source.hive.database-for-flat-table**
 
