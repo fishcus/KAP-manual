@@ -126,6 +126,7 @@ wget http://package.mapr.com/releases/MEP/MEP-5.0.0/redhat/mapr-spark-2.2.1.2018
 2. 安装 Spark 2.2.1
 
 ```sh
+mkdir -p /opt/mapr/spark
 rpm2cpio mapr-spark-2.2.1.201804031348-1.noarch.rpm | cpio -idmv
 cp -r ./opt/mapr/spark/spark-2.2.1 /opt/mapr/spark
 rm -rf ./opt
