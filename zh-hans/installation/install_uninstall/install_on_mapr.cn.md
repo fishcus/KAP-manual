@@ -228,7 +228,15 @@ export SPARK_WORKER_MEMORY=16g
 export SPARK_WORKER_DIR=$SPARK_HOME/tmp
 ```
 
-4. 创建 Spark 工作目录
+4. 拷贝配置文件
+
+```sh
+mv /opt/mapr/spark/spark-2.2.1/conf/spark-defaults.conf /opt/mapr/spark/spark-2.2.1/conf/spark-defaults.conf.old
+cp /opt/mapr/spark/spark-2.3.1/conf/spark-defaults.conf /opt/mapr/spark/spark-2.2.1/conf/spark-defaults.conf
+cp /opt/mapr/hive/hive-2.3/conf/hive-site.xml /opt/mapr/spark/spark-2.2.1/conf/
+```
+
+5. 创建 Spark 工作目录
 
 ```sh
 hadoop fs -mkdir /apps/spark

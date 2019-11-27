@@ -230,7 +230,15 @@ export SPARK_WORKER_MEMORY=16g
 export SPARK_WORKER_DIR=$SPARK_HOME/tmp
 ```
 
-4. Create the working directory for Spark
+4. Copy configuration files
+
+```sh
+mv /opt/mapr/spark/spark-2.2.1/conf/spark-defaults.conf /opt/mapr/spark/spark-2.2.1/conf/spark-defaults.conf.old
+cp /opt/mapr/spark/spark-2.3.1/conf/spark-defaults.conf /opt/mapr/spark/spark-2.2.1/conf/spark-defaults.conf
+cp /opt/mapr/hive/hive-2.3/conf/hive-site.xml /opt/mapr/spark/spark-2.2.1/conf/
+```
+
+5. Create the working directory for Spark
 
 ```sh
 hadoop fs -mkdir /apps/spark
