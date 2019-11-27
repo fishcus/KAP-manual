@@ -96,7 +96,7 @@ Usage: upgrade.sh <old-kylin-home> [--silent]
 
 **Note**:
 
-1. **For main version upgrade, the new version could ship higher versions of Spark and/or Tomcat, and their configuration files are not backward compatible.** In this case, please manually configure Spark and/or Tomcat again after running the upgrade script according to your needs. Please refer to [Integrate with Kerberos](../../security/kerberos.en.md) and [Cluster Deployment and Load Balancing](../../installation/deploy/cluster_lb.en.md). The configuration folders are `$KYLIN_HOME/spark/conf` and `$KYLIN_HOME/tomcat/conf`.
+1. For the upgrade, the new version could ship higher versions of Spark and/or Tomcat, and a similar prompt appears during the upgrade process:<br/>`Cannot complete upgrade spark from version 2.2.1-kylin-r6 to 2.2.1-kylin-r7. Please complete the upgrade manually`<br/>`Failed to upgrade the tomcat or spark, Please contact Kyligence Enterprise technical support for more details`<br/> After the upgrade script is executed, please upgrade the components in the prompt manually. For specific operations, refer to [Manually upgrade built-in components](./upgrade_components_manually.en.md).
 2. The script does in-place upgrade, which means the script will first backup `OLD_KYLIN_HOME`, and then upgrade in the same directory. `KYLIN_HOME` will not change after the upgrade.
 3. Upgrade logs will be generated in directory `$UNPACK_HOME/logs` which include operation details.
 4. Using `--silent` can upgrade without interaction. Please use the silent mode with the guidance from Kyligence Technical Support.
