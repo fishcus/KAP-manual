@@ -117,6 +117,12 @@ netstat -ntl | grep 2181
 MapR 6.1.0 版本中， 官方支持的 Spark 版本为 2.3.1， 所以需要手动进行 Spark 2.2.1 的安装.
 安装 Spark 2.2.1 需要系统管理员权限， 步骤如下
 
+首先确保系统中的 Spark 2.3.1 已正确安装并可用，如果未安装，可以通过以下命令先安装 Spark 2.3.1
+
+```sh
+yum install mapr-spark mapr-spark-historyserver mapr-spark-thriftserver
+```
+
 1. 从 MapR 软件库中下载 Spark 2.2.1
 
 ```sh

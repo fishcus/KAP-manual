@@ -118,6 +118,13 @@ netstat -ntl | grep 2181
 MapR 6.1.0 supports Spark 2.3.1 officially, which is not supported by Kyligence Enterprise. So we need to install Spark 2.2.1 manually.
 Installing Spark 2.2.1 requires root privileges, please follow the steps below:
 
+Before install Spark 2.2.1, please make sure Spark 2.3.1 has been installed and runs correctly.
+If Spark 2.3.1 is not installed, please install it as bellow:
+
+```sh
+yum install mapr-spark mapr-spark-historyserver mapr-spark-thriftserver
+```
+
 1. Download Spark 2.2.1 from MapR repository
 
 ```sh
