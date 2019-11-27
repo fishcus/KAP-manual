@@ -122,6 +122,7 @@ MapR 6.1.0 版本中， 官方支持的 Spark 版本为 2.3.1， 所以需要手
 ```sh
 yum install mapr-spark mapr-spark-historyserver mapr-spark-thriftserver
 ```
+并参照 MapR 官方文档执行 `/opt/mapr/server/configure.sh -R` 脚本使 Spark 正确配置
 
 1. 从 MapR 软件库中下载 Spark 2.2.1
 
