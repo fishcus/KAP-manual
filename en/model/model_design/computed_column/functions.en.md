@@ -148,3 +148,9 @@ Table of Contents
 | levenshtein(string A, string B)          | Returns the Levenshtein distance between two strings. For example, levenshtein('kitten', 'sitting') results in 3. | levenshtein('kitten', 'sitting')         |
 | soundex(string A)                        | Returns soundex code of the string. For example, soundex('Miller') results in M460. | soundex('Miller')                        |
 
+### Limitation
+
+1. In MapR 6.1.0 version and above, the Hive version is 2.3, the Computed Column does not support to define a string type column on the function whose  return type is array 
+
+- `sentences(string str, string lang, string locale)`
+- `split(string str, string pat)`

@@ -125,7 +125,7 @@ If Spark 2.3.1 is not installed, please install it as bellow:
 yum install mapr-spark mapr-spark-historyserver mapr-spark-thriftserver
 ```
 
-And execute the script `/opt/mapr/server/configure.sh -R` to configure the Spark according to MapR official doc.
+And execute the script `/opt/mapr/server/configure.sh -R` to configure the Spark according to the MapR official doc.
 
 1. Download Spark 2.2.1 from MapR repository
 
@@ -248,4 +248,4 @@ hadoop fs -chown root /apps/spark
 hadoop fs -chmod 777 /apps/spark
 ```
 
-Until now, the Spark 2.2.1 has been installed on MapR 6.1.0 successfully.
+Until now, the Spark 2.2.1 has been installed on the MapR 6.1.0 successfully.

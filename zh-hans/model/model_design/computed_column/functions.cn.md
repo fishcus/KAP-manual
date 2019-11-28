@@ -149,4 +149,9 @@
 | soundex(string A)                        | 返回字符串的 soundex 码。例如，soundex(‘Miller’) 结果为 M460。 | soundex('Miller')                        |
 
 
+### 限制
 
+1. MapR 6.1.0 以上版本，使用的 Hive 版本为 2.3，可计算列不支持返回值为数组的函数定义为字符串类型
+
+- `sentences(string str, string lang, string locale)`
+- `split(string str, string pat)`
