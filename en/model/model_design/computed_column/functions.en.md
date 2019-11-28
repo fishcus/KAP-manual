@@ -156,3 +156,5 @@ Table of Contents
 - `split(string str, string pat)`, the return type is `array<string>`
 
 > The Computed Column can be defined on the element of the array which is returned from these functions , or be defined on the string value which is converted from the array returned from these functions. 
+
+2. If use SparkSQL during the cube building, please take care that some functions may not be supported in SparkSQL, like `field` function

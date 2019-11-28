@@ -157,3 +157,5 @@
 - `split(string str, string pat)`，返回类型为 `array<string>`
 
 > 可以选取字符串数组的元素定义为字符串类型的可计算列, 或者是将函数通过其他方式将返回值转成字符串来定义可计算列
+
+2. 如果在构建过程中使用 SparkSQL，需要注意有些函数在 SparkSQL 中是不被支持的，比如 `field` 函数
