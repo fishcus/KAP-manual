@@ -72,6 +72,10 @@
 * **kylin.query.pushdown.cache-enabled**
 
   通过 Kyligence Enterprise 进行下压查询时，可以开启缓存来提高相同 sql 语句的查询效率。该参数默认为开启状态，将该参数设置为 false 时，关闭该功能。
+  
+* **kylin.query.max-result-rows**
+
+  该参数限制了查询返回结果的最大行数。当 limit 分句、`kylin.query.force-limit` 参数、JDBC `Statement.setMaxRows()` 等方法也在限制返回结果时，这些参数会与 `kylin.query.max-result-rows` 参数进行数值比较，较小的参数将作为返回结果的行数限制。该参数作用于所有连接方式，包括用户界面、异步查询、JDBC Driver 与 ODBC Driver。该参数可在项目级别重写。该参数有效取值范围为不超过 2147483647 的正整数。默认值为 0，表示不设限制。
 
 * **kap.smart.conf.model.cc.enabled**
 

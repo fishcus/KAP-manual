@@ -81,6 +81,10 @@ User could put the customized config items into **kylin.properties.override**, t
 
   This property specifies the function of cache enabled. The default value is true. If this setting is set to false, the function will be closed. 
 
+* **kylin.query.max-result-rows**
+
+  This property specifies the maximum number of rows that a query can return. When multiple limits, such as limit clause, `kylin.query.force-limit` property and JDBC `Statement.setMaxRows()` method, are set along with this property, the smallest value will be selected as the maximum row number for the return data. This property applies on all ways of executing queries, including Web UI, Asynchronous Query, JDBC Driver and ODBC Driver. This configuration can be overridden at **project** level. For this property to take effect, it needs to be a positive integer less than or equal to 2147483647. The default value is 0, meaning no limit on the result.
+
 * **kylin.cube.is-automerge-enabled**
 
   The auto merge function is enabled by default. If this setting is set to false, the function will be closed. Although the auto merge thresholds were setted, the merge job would not be built.
