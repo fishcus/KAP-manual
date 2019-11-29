@@ -15,6 +15,6 @@ The resource groups are mainly divided into the following three types:
   - Pushdown Query: When defining this resource group, it will only respond to the pushdown query.
   - Async Query: When defining this resource group, it will only respond to the async query.
 
-### **How to Deploy**
+### **How to Use**
 
-This deployment mode needs to be deployed through Kyligence Manager. For more information, please refer to [Kyligence Manager Manual](https://docs.kyligence.io/books/manager/v1.0/en/index.html).
+This deployment mode is an advanced feature, please contact [Kyligence sales](https://kyligence.io/) for more details.

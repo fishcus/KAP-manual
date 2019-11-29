@@ -17,6 +17,6 @@
 
 
 
-### **如何部署**
+### **如何使用**
 
-该部署模式需要通过 Kyligence Manager 进行管理和部署，更多信息请参考 [Kyligence Manager 手册](https://docs.kyligence.io/books/manager/v1.0/zh-cn/index.html)。
+该部署模式为产品高级功能，如您需要使用请咨询[销售](https://kyligence.io/zh/)获取详情。

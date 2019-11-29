@@ -18,6 +18,6 @@ The HDFS directory is stored according to the project directory, and the build d
 
 Project-level YARN queue configuration is provided for the isolation. The different projects can be configured with different queues. At the same time, a separate Spark clusters is used in each tenant. When some tenants encounter services problems, it will not affect by each other.
 
-### **How to Deploy**
+### **How to Use**
 
-This deployment mode needs to be deployed through Kyligence Manager. For more information, please refer to [Kyligence Manager Manual](https://docs.kyligence.io/books/manager/v1.0/en/index.html).
+This deployment mode is an advanced feature, please contact [Kyligence sales](https://kyligence.io/) for more details.
