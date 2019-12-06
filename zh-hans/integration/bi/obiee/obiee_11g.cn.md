@@ -34,8 +34,8 @@ Driver = KyligenceODBC64
 PORT = 7070
 PROJECT = learn_kylin
 SERVER = http://kapdemo.chinaeast.cloudapp.chinacloudapi.cn   #(Optional)
-UID = KYLIN   #(Optional)
-PWD = ADMIN
+UID = ADMIN   #(Optional)
+PWD = KYLIN
    ```
 
 ### 创建数据模型
