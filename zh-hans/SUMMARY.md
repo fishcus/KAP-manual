@@ -179,6 +179,7 @@
         * [从 KAP 2.x 升级](operation/upgrade/upgrade_from_2x.cn.md)
         * [从 Apache Kylin 升级](operation/upgrade/upgrade_from_kylin.cn.md)
         * [手动升级内置组件](operation/upgrade/upgrade_components_manually.cn.md)
+    * [许可证容量](operation/license_capacity.cn.md)
 * [REST API](rest/README.md)
     * [访问与安全认证 API](rest/authentication.cn.md)
     * [数据源 API](rest/data_source_api.cn.md)

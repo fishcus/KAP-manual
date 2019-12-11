@@ -178,6 +178,7 @@
         * [Upgrade from KAP 2.x](operation/upgrade/upgrade_from_2x.en.md)
         * [Upgrade from Apache Kylin](operation/upgrade/upgrade_from_kylin.en.md)
         * [Manually upgrade built-in components](operation/upgrade/upgrade_components_manually.en.md)
+    * [License Capacity](operation/license_capacity.en.md)
 * [REST API](rest/README.md)
     * [Access and Authentication API](rest/authentication.en.md)
     * [Data Source API](rest/data_source_api.en.md)
