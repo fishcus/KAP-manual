@@ -24,4 +24,4 @@ kylin.source.hive.beeline-params=-n root -u 'jdbc:hive2://host:port' --hiveconf 
 
 **Q：使用 Beeline 连接 Hive时，连接失败，出现如下报错： Cannot modify xxx at runtime. It is not in list of params that are allowed to be modified at runtime**
 
-请在 `$KYLIN_HOME/conf/hive-site.xml` 文件中，找到 `hive.security.authorization.sqlstd.confwhitelist` 参数，并根据报错提示追加该参数值。
+请在 `$HIVE_CONF/hive_conf.xml` 文件中，找到 `hive.security.authorization.sqlstd.confwhitelist` 参数，并根据报错提示追加该参数值。

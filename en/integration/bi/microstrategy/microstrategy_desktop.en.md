@@ -15,8 +15,10 @@ For detail on how to download and configure Kyligence ODBC Driver please refer t
 2. Update DBProperties.json
 
   * Decompress the utils.zip found attached
+  
+  * Copy utils to C:\Program Files (x86)\MicroStrategy\Web ASPx
 
-  * Run the run.bat script as administrator from the command line on windows, and note that running the script requires that you install JRE 8 or above
+  * Run the utils\run.bat script as administrator from the command line on windows, and note that running the script requires that you install JRE 8 or above
 
   * After running the script, the tool will automatically convert original DBProperties.xml into two new files: DBProperties.json32 and DBProperties.json64, rename DBProperties.json64 to DBProperties.json and replace the old file in Workstation/Desktop with this new file
 

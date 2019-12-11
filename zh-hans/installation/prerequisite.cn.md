@@ -92,7 +92,7 @@
 
 - Cloudera CDH 5.7 / **5.8** / 5.11 ~ 5.16 / **6.0** / **6.1**
 - Hortonworks HDP **2.4** / 2.6
-- MapR **6.0.1**
+- MapR **6.0.1** / **6.1.0**
 - 华为 FusionInsight C60 / **C70**
 - Azure HDInsight **3.6**
 - AWS EMR 5.14 ~ 5.16 / **5.23**

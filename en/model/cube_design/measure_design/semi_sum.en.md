@@ -104,12 +104,12 @@ Load data by building the cube and it is ready for queries. Some query examples:
   
   For example, the dataset below misses 2 records on date 2018-02-15.
   
-  | TX_DATE    | ACCOUNT   | EXPENSE | INCOME | BALANCE |
-  | ---------- | --------- | ------- | ------ | ------- |
-  | 2018-01-01 | account_a | 100     |        | 1000    |
-  | 2018-01-01 | account_b | 200     |        | 800     |
-  | 2018-01-01 | account_c | 300     |        | 500     |
-  | 2018-02-15 | account_a |         | 200    | 1200    |
+| TX_DATE    | ACCOUNT   | EXPENSE | INCOME | BALANCE |
+| ---------- | --------- | ------- | ------ | ------- |
+| 2018-01-01 | account_a | 100     |        | 1000    |
+| 2018-01-01 | account_b | 200     |        | 800     |
+| 2018-01-01 | account_c | 300     |        | 500     |
+| 2018-02-15 | account_a |         | 200    | 1200    |
   
   Run the query
   

@@ -57,7 +57,11 @@ The following detail steps required for mapping data model :
 
 ### Other Remarks
 
-When you connect Tableau to Kyligence Enterprise, it will send a query which triggers full table scan. This will take a relatively long time to process the query when the dataset is extremely large. There are two ways to avoid this situation
+When you connect Tableau to Kyligence Enterprise, it will send a query which triggers full table scan. This will bring two situations：
+
+####Situations 1：This will take a relatively long time to process the query when the dataset is extremely large. 
+
+There are two ways to avoid this situation
 
 **Method 1**: You can download **Kyligence Tableau Datasource Customization (TDC)** file from Kyligence download center and apply it to your Tableau. This is a Kyligence specific connection configuration file with some capability customizations   which helps Tableau connect to Kyligence . 
 
@@ -92,3 +96,12 @@ Linux environment
 > **Note:** The path of datasources applies to operating systems with English locale. If your Tableau is running in a Non-English environment, e.g. in Chinese, the directory "\Datasources" is then called "\数据源".
 
 **Method 2:** You can set the parameter `kylin.query.force-limit` in `kylin.properties` to limit returned records, such as 1000.
+
+####Situations 2： Full table scan will cause Tableau to introduce columns that are not related to the current Cube
+
+Add the configuration item **kap.cube.export-tds-with-cube** in Kyligence Enterprise (the default value is false). When the value is true, the cube name will be added to the exported cube TDS. Opening the TDS file will only display the columns of the current cube.
+
+>**Note**
+>+ Kyligence Enterprise 3.4.3 and above support **kap.cube.export-tds-with-cube** parameters;
+>+ Kyligence ODBC Driver 3.1.4 and above support TDS cube recognition function;
+>+ The **kap.cube.export-tds-with-cube** parameter can be set at the cube, project, and system levels. Configuration method, please refer to[System Configuration](../../../installation/config/README.md). If there is a parameter value conflict, the range of compliance is small. (For example: the parameter value of project1/cube1 is true, and the parameter of project1 is false, then cube1 is processed according to true)

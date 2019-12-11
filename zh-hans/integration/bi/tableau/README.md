@@ -55,7 +55,9 @@ Tableau 是 Windows 平台上最流行的商业智能工具之一，它操作简
 
 ### 其他注意事项
 
-当您使用 Tableau 连接 Kyligence Enterprise 时，Tableau 会发送一个全表查询语句。如果表数据量较大，会造成查询返回时间较长。
+当您使用 Tableau 连接 Kyligence Enterprise 时，Tableau 会发送一个全表查询语句。这会带来两种情况：
+
+####情况一：如果表数据量较大，会造成查询返回时间较长。
 
 以下两种方式可以避免这种情况：
 
@@ -92,3 +94,12 @@ Tableau 提供定制 TDC 配置文件的方式， 以满足 Kyligence Enterprise
 
 
 **方法二**：您可以通过调整`kylin.query.force-limit` 以限制返回记录数。启动该功能的方法为将该设置的值设置为正整数，如1000。
+
+####情况二：全表查询会使得 Tableau 引入当前 Cube 不相关的列
+
+在 Kyligence Enterprise 中增加配置项 **kap.cube.export-tds-with-cube**（默认值为 false），当取值为 true 时，导出的 cube TDS 中会增加 cube 名称，此时使用 Tableau 打开 TDS 文件，便只会显示当前 TDS 对应 cube 的列。
+
+>**注意**
+>+ Kyligence Enterprise 3.4.3 及以上版本支持 **kap.cube.export-tds-with-cube** 参数；
+>+ Kyligence ODBC Driver 3.1.4 及以上版本支持 TDS 的 cube 识别功能；
+>+ **kap.cube.export-tds-with-cube** 参数可分别在 Cube、项目和系统级别设置，配置方法请参考[系统配置](../../../installation/config/README.md)。如果存在参数值冲突，则范围大的服从范围小的。（例如：project1/cube1 的参数值为true，而 project1 的参数为false，则 cube1 按照 true 处理）

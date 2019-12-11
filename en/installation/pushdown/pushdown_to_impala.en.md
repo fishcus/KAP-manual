@@ -36,6 +36,12 @@ Modify `$KYLIN_HOME/conf/kylin.properties`, add Hive JDBC configuration
     kylin.query.pushdown.jdbc.url=jdbc:hive2://impala_host:impala_hs2_port/default;auth=noSasl
     ```
 
+  - When connecting to the impala data source, you need to set APPX_COUNT_DISTINCT=true so that the impala query supports count_distinct functions
+
+    ```properties
+    kylin.query.pushdown.jdbc.url=jdbc:hive2://impala_host:impala_hs2_port/default;APPX_COUNT_DISTINCT=true
+    ```
+
   - Access Impala with kerberos security certification:To configure JDBC Clients for Kerberos Authentication with HiveServer2, they must include the principle of HiveServer2 (principal=<HiveServer2-Kerberos-Principal>) in the JDBC connection string. For example:
 
     ```properties

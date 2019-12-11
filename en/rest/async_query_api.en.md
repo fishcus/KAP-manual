@@ -209,11 +209,12 @@
 
 > Note: Please make sure the query status is "SUCCESSFUL" before calling this API.
 
-- `GET http://host:port/kylin/api/async_query/{queryID}/result_download`
+- `GET http://host:port/kylin/api/async_query/{queryID}/result_download?includeHeader=true`
 
 
 - URL Parameters
   - `queryID` - `required` `string`,  Query ID of the Async Query
+  - `includeHeader` - `optional` `boolean`, result include header, default is false
 
 - HTTP Header
   - `Accept: application/vnd.apache.kylin-v2+json`
@@ -226,11 +227,12 @@
 
   ```sh
   curl -X GET \
-    'http://host:port/kylin/api/async_query/{queryID}/result_download' \
+    'http://host:port/kylin/api/async_query/{queryID}/result_download?includeHeader=true' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
-    -H 'Content-Type: application/json;charset=utf-8'
+    -H 'Content-Type: application/json;charset=utf-8' \
+    -O -J
   ```
   
 - Response Example

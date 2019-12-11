@@ -206,7 +206,7 @@ The *KapOpenColumnACLProvider* interface is very similar and is omitted here.
    # Enable the authorization extension, enable related services and interceptors
    kylin.security.table-acl-service-clz=io.kyligence.kap.rest.service.KapOpenTableACLService
    kylin.security.column-acl-service-clz=io.kyligence.kap.rest.service.KapOpenColumnACLService
-   kylin.query.interceptors=io.kyligence.kap.rest.service.KapOpenTableInterceptor
+   kylin.query.interceptors=io.kyligence.kap.rest.security.KapOpenTableInterceptor
    
    # Set the table ACL provider in full class name, required
    kylin.security.table-acl-provider-clz=HiveAclProvider

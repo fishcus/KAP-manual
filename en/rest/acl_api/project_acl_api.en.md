@@ -4,7 +4,8 @@
 >
 > 1. Please read [Access and Authentication REST API](../authentication.en.md) and understand how authentication works.
 > 2. On Curl command line, don't forget to quote the URL if it contains `&` or other special chars.
-
+>
+> 3. The following interfaces are all compatible with the old way of requesting interfaces in UUID mode.
 
 
 * [Get Project ACL](#Get-Project-ACL)
@@ -16,11 +17,11 @@
 
 ### Get Project ACL {#Get-Project-ACL}
 
-- `GET http://host:port/kylin/api/access/{type}/{uuid}`
+- `GET http://host:port/kylin/api/access/{type}/{projectName}`
 
 - URL Parameters
   - `type` - `required` `string`, "ProjectInstance"
-  - `uuid` - `required` `string`, project UUID
+  - `projectName` - `required` `string`, project name
 
 - HTTP Header
   - `Accept: application/vnd.apache.kylin-v2+json`
@@ -31,7 +32,7 @@
 
   ```sh
   curl -X GET \
-    'http://host:port/kylin/api/access/ProjectInstance/{uuid}' \
+    'http://host:port/kylin/api/access/ProjectInstance/{projectName}' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Content-Type: application/json;charset=utf-8'
@@ -63,11 +64,11 @@
 
 ### Grant Project ACL {#Grant-Project-ACL}
 
-- `POST http://host:port/kylin/api/access/{type}/{uuid}`
+- `POST http://host:port/kylin/api/access/{type}/{projectName}`
 
 - URL Parameters
   - `type` - `required` `string`, "ProjectInstance"
-  - `uuid` - `required` `string`, project UUID
+  - `projectName` - `required` `string`, project name
 
 - HTTP Header
   - `Accept: application/vnd.apache.kylin-v2+json`
@@ -83,7 +84,7 @@
 
   ```sh
   curl -X POST \
-    'http://host:port/kylin/api/access/ProjectInstance/{uuid}' \
+    'http://host:port/kylin/api/access/ProjectInstance/{projectName}' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Content-Type: application/json;charset=utf-8' \
@@ -108,11 +109,11 @@
 
 ### Update Project ACL {#Update-Project-ACL}
 
-- `PUT http://host:port/kylin/api/access/{type}/{uuid}`
+- `PUT http://host:port/kylin/api/access/{type}/{projectName}`
 
 - URL Parameters
   - `type` - `required` `string`, "ProjectInstance"
-  - `uuid` - `required` `string`, project UUID
+  - `projectName` - `required` `string`, project name
 
 - HTTP Header
   - `Accept: application/vnd.apache.kylin-v2+json`
@@ -123,14 +124,14 @@
   - `permission` - `required` `string`, project ACL. e.g. ("READ" for "Query","ADMINISTRATION" for "ADMIN","OPERATION" for "OPERATION" and "MANAGEMENT" for "MANAGEMENT" )
   - `principal` - `required` `boolean`, user or user group, "true" for user and "false" for user group
   - `sid` - `required` `string`, name of user or user group
-  - `accessEntryId` - `required` `int`, user or user group id in response of Get Project ACL API
+  - `accessEntryId` - `deprecated` `int`, this parameter will no longer be used
 
 
 - Curl Request Example 
 
   ``` sh
   curl -X PUT \
-    'http://host:port/kylin/api/access/ProjectInstance/{uuid}' \
+    'http://host:port/kylin/api/access/ProjectInstance/{projectName}' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Content-Type: application/json;charset=utf-8' \
@@ -138,7 +139,6 @@
   	"permission": "OPERATION",
   	"principal": true, 
   	"sid": "ANALYST",
-  	"accessEntryId": 1
   }'
   ```
 
@@ -157,12 +157,12 @@
 
 ### Revoke Project ACL {#Revoke-Project-ACL}
 
-- `DELETE http://host:port/kylin/api/access/{type}/{uuid}`
+- `DELETE http://host:port/kylin/api/access/{type}/{projectName}`
 
 
 - URL Parameters
   - `type` - `required`  `string`, "ProjectInstance"
-  - `uuid` - `required`  `string`, project UUID
+  - `projectName` - `required`  `string`, project name
 
 - HTTP Header
   - `Accept: application/vnd.apache.kylin-v2+json`
@@ -172,7 +172,7 @@
 
 - HTTP Body: JSON Object
   - `permission` - `required` `string`, project ACL. e.g. ("READ" for "Query","ADMINISTRATION" for "ADMIN","OPERATION" for "OPERATION" and "MANAGEMENT" for "MANAGEMENT")
-  - `accessEntryId` - `required` `int`, user UUID
+  - `accessEntryId` - `deprecated` `int`, this parameter will no longer be used
   - `sid` - `required` `string`, name of user or user group
   - `principal` - `required` `boolean`, user or user group, "true" for user and "false" for user group
 
@@ -184,7 +184,7 @@
 
   ```sh
   curl -X DELETE \
-   'http://host:port/kylin/api/access/ProjectInstance/{uuid}?accessEntryId=0&sid=ROLE_MODELER&principal=false' \
+   'http://host:port/kylin/api/access/ProjectInstance/{projectName}?sid=ROLE_MODELER&principal=false' \
    -H 'accept: application/vnd.apache.kylin-v2+json' \
    -H 'accept-language: en' \
    -H 'authorization: Basic QURNSU46S1lMSU4=' \

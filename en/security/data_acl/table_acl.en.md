@@ -33,3 +33,4 @@ Follow the below steps to revoke table ACLs:
 > 2. Table ACL needs to be set separately in different project which the same table is loaded into.
 > 3. Please make sure the user/user group has the project ACL before setting table ACL.
 > 4. Table ACL might be impacted by BI frontend cache, which is to say, if two users with different ACL browse the same report in BI, it's possible that BI uses the cache to render the result and thus bypass the access control.  
+> 5. If user does not have permissions to tables or columns referenced by a model or cube in the project, the corresponding model or cube will be locked. User can hover over the lock icon and click more details to view the table-level and column-level permissions that the user does not have.

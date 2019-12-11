@@ -16,6 +16,9 @@
 
   该参数指定 Kyligence Enterprise 实例的运行模式，参数值可以是 *all*，*job*，*query* 中的任意一个，默认值为 *all*。*job* 模式表示该服务仅用于 Cube 任务调度，不用于 SQL 查询；*query* 模式表示该服务仅用于 SQL 查询，不用于 Cube 构建任务的调度；*all* 模式表示该服务同时用于任务调度和 SQL 查询。
 
+* **kap.server.schema-editable**
+  该参数指定 Kyligence Enterprise 实例中元数据是否可编辑，默认参数值为 true。将该参数设置为 false 时，对元数据的编辑功能以及相应的REST API将被禁用，具体包括：1. 数据源功能下的加载数据源表和加载kafka集群。2. 新建、编辑或克隆模型。3. 新建、编辑或克隆 cube。4. 自动建模。其中加载数据源表REST API参见[数据源API](../../rest/data_source_api.cn.md)，克隆模型REST API参见[模型API](../../rest/model_api.cn.md)，克隆 cube REST API参见[管理cube API](../../rest/cube_api/cube_manage_api.cn.md)。
+
 * **kylin.source.hive.database-for-flat-table**
 
   该参数指定 Hive 中间表保存在哪个 Hive 数据库中，默认值为 *default*。如果执行 Kyligence Enterprise 的用户没有操作 *default* 数据库的权限，可以修改此参数的值以使用其他数据库。
@@ -69,6 +72,10 @@
 * **kylin.query.pushdown.cache-enabled**
 
   通过 Kyligence Enterprise 进行下压查询时，可以开启缓存来提高相同 sql 语句的查询效率。该参数默认为开启状态，将该参数设置为 false 时，关闭该功能。
+  
+* **kylin.query.max-result-rows**
+
+  该参数限制了查询返回结果的最大行数。当 limit 分句、`kylin.query.force-limit` 参数、JDBC `Statement.setMaxRows()` 等方法也在限制返回结果时，这些参数会与 `kylin.query.max-result-rows` 参数进行数值比较，较小的参数将作为返回结果的行数限制。该参数作用于所有连接方式，包括用户界面、异步查询、JDBC Driver 与 ODBC Driver。该参数可在项目级别重写。该参数有效取值范围为不超过 2147483647 的正整数。默认值为 0，表示不设限制。
 
 * **kap.smart.conf.model.cc.enabled**
 

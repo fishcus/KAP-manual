@@ -47,13 +47,15 @@ For details on how to download and configure Kyligence ODBC Driver please refer 
 
 #### Update data type mapping on Intelligence Server
 
-1. Copy the file DTMAPPING and AddConnector.jar files to all the Intelligence Server machines that need to be upgraded.
-x
-2. Find the location of the DTMAPPING.pds file of the Intelligence Server installation
+1. Download [Connector File](https://community.microstrategy.com/s/article/Kyligence-Analytic-Platform?language=undefined) in the Micro strategy community
 
-   > Note: On Windows the default location is `C:\Program Files (x86)\Common Files\MicroStrategy`, also referred to in the  $MSTR_CLASSPATH environment variable.
+2. Copy the file DTMAPPING and AddConnector.jar files to all the Intelligence Server machines that need to be upgraded
 
-3. Run the following command replacing <location> with the folder where dtmapping.pds file is located.
+3. Find the location of the DTMAPPING.pds file of the Intelligence Server installation
+
+   > Note: On Windows the default location is `C:\Program Files (x86)\Common Files\MicroStrategy`, also referred to in the  $MSTR_CLASSPATH environment variable
+
+4. Run the following command replacing <location> with the folder where dtmapping.pds file is located.
 
    ```
    java -jar AddConnector.jar --target <location>\DTMAPPING.pds --file DTMAPPING
@@ -61,7 +63,7 @@ x
 
    > Note: Running the command requires the privileges to copy and modify the existing dtmapping.pds file. The command will create a backup of the original file in <location>.
 
-4. Restart Intelligence Server.
+5. Restart Intelligence Server.
 
 
 #### Install Kyligence Connector in MicroStrategy Web
@@ -80,7 +82,7 @@ Next, you will need to finish below configurations in all MicroStrategy Web mach
 3. Run the following command replacing <location2> with the folder where DBProperties.xml file is located.
 
       ```
-      java -jar <location1>AddConnector.jar --target <location2>DBProperties.xml --file <location2>DBproperties
+      java -jar <location1>AddConnector.jar --target <location2>DBProperties.xml --file <location1>DBproperties
       ```
 
       > Note:

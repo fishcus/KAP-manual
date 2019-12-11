@@ -36,7 +36,13 @@ Impala 使用 Hive JDBC接口，支持 JDBC 接口的应用可以通过 Hive JDB
     ```properties
     kylin.query.pushdown.jdbc.url=jdbc:hive2://impala_host:impala_hs2_port/default;auth=noSasl
     ```
-
+    
+  - 连接impala数据源时，需要设置APPX_COUNT_DISTINCT=true，使impala查询支持count_distinct函数
+    
+    ```properties
+    kylin.query.pushdown.jdbc.url=jdbc:hive2://impala_host:impala_hs2_port/default;APPX_COUNT_DISTINCT=true
+    ```
+    
   - 访问带有 kerberos 安全认证的 Impala Thrift: 访问带有 kerberos 认证的 Impala 集群需要 JDBC Client 端包含 Impala(principal=<Impala-Kerberos-Principal>)principal 在 jdbc url 中，例如(访问 default 库):
 
     ```properties

@@ -32,26 +32,26 @@ pip install kylinpy-<version>.tar.gz
   kylin://<username>:<password>@<hostname>:<port>/<project>
   ```
   
-  |Configuration|Description|Default|Comment|
-  |------------|------|------|------|
-  |username|Kylin username|||
-  |password|Kylin password|||
-  |hostname|Kylin host name or IP address||Note that do not to append http or https with host name.|
-  |port|Kylin port|7070||
-  |project|project of Kylin|||
+|Configuration|Description|Default|Comment|
+|------------|------|------|------|
+|username|Kylin username|||
+|password|Kylin password|||
+|hostname|Kylin host name or IP address||Note that do not to append http or https with host name.|
+|port|Kylin port|7070||
+|project|project of Kylin|||
 
 - Config connect options
 
   SQLAlchemy **create_engine** takes an argument **connect_args** which is an additional dictionary that will be passed to connect().  
   
-  |Configuration|Description|Default|Comment|
-  |------------|------|------|------|
-  |is_ssl|Whether by ssl|False||
-  |unverified|Do not verify ssl certificate|True||
-  |prefix|Kylin api prefix|kylin/api||
-  |timeout|access Kylin timeout(unit: seconds)|30||
-  |version|Kylin api version|v1| v2 or v1|
-  |is_pushdown|Whether to enable the pushdown option|False|If set to True, you can query the source table of Kylin.|
+|Configuration|Description|Default|Comment|
+|------------|------|------|------|
+|is_ssl|Whether by ssl|False||
+|unverified|Do not verify ssl certificate|True||
+|prefix|Kylin api prefix|kylin/api||
+|timeout|access Kylin timeout(unit: seconds)|30||
+|version|Kylin api version|v1| v2 or v1|
+|is_pushdown|Whether to enable the pushdown option|False|If set to True, you can query the source table of Kylin.|
 
 ### Access via SQLAlchemy
 

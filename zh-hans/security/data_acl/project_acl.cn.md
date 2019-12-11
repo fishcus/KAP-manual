@@ -9,6 +9,40 @@
 
 > **提示：** 系统管理员在项目上为用户组分配了管理权限后，用户组中的用户会相应地继承数据源、模型及 Cube 上的访问权限。
 
+
+
+### 角色访问权限列表
+
+| 功能/操作                                | SYSTEM ADMIN | PROJECT ADMIN | MANAGEMENT | OPERATION | QUERY |
+| ---------------------------------------- | ------------ | ------------- | ---------- | --------- | ----- |
+| 增加／删除项目                           | Yes          | No            | No         | No        | No    |
+| 编辑／备份项目                           | Yes          | Yes           | No         | No        | No    |
+| 查看项目详情                             | Yes          | Yes           | Yes        | Yes       | Yes   |
+| 增加／编辑／删除项目访问权限             | Yes          | Yes           | No         | No        | No    |
+| 查看系统仪表盘                           | Yes          | Yes           | Yes        | Yes       | Yes   |
+| 查看建模页面                             | Yes          | Yes           | Yes        | Yes       | Yes   |
+| 查看建模->数据源页面                     | Yes          | Yes           | Yes        | No        | No    |
+| 载入／卸载／重载数据源                   | Yes          | Yes           | No         | No        | No    |
+| 查看表级、行级、列级访问权限             | Yes          | Yes           | Yes        | No        | No    |
+| 添加、修改、删除表级、行级、列级访问权限 | Yes          | Yes           | No         | No        | No    |
+| 查看建模->模型页面                       | Yes          | Yes           | Yes        | Yes       | Yes   |
+| 查看模型                                 | Yes          | Yes           | Yes        | Yes       | Yes   |
+| 添加、编辑、克隆、删除模型。模型健康检查 | Yes          | Yes           | Yes        | No        | No    |
+| 查看 Cube 页面                           | Yes          | Yes           | Yes        | Yes       | Yes   |
+| 查看 Cube 详情                           | Yes          | Yes           | Yes        | Yes       | Yes   |
+| 编辑 Cube 详情                           | Yes          | Yes           | Yes        | No        | No    |
+| 添加、禁用／启用，清理Cube               | Yes          | Yes           | Yes        | No        | No    |
+| 构建、管理 Cube                          | Yes          | Yes           | Yes        | Yes       | No    |
+| 添加、编辑、删除 Cube                    | Yes          | Yes           | Yes        | No        | No    |
+| 查看、编辑及删除 Cube 草稿               | Yes          | Yes           | Yes        | No        | No    |
+| 导出 Cube TDS 文件                       | Yes           | Yes          | Yes        | Yes       | Yes    |
+| 查看分析页面                             | Yes          | Yes           | Yes        | Yes       | Yes   |
+| 在分析页面查询                           | Yes          | Yes           | Yes        | Yes       | Yes   |
+| 查看监控页面                             | Yes          | Yes           | Yes        | Yes       | No    |
+| 查看系统页面                             | Yes          | No            | No         | No        | No    |
+| 管理系统                                 | Yes          | No            | No         | No        | No    |
+| 管理用户／组                             | Yes          | No            | No         | No        | No    |
+
 ### 赋予项目访问权限
 
 1. 点击**仪表盘** -> **项目**。
@@ -30,3 +64,8 @@
 3. 点击**权限**，选择一个用户／用户组点击**删除**。
 
 >**注意：** 当用户或用户组的项目级权限被删除时，用户或用户组在项目上的所有权限也会被删除，这包括用户或用户组在项目上的表级、行级及列级权限。
+
+
+###  数据权限控制
+
+设置系统级配置参数` kylin.security.allow-project-admin-grant-acl=false `后，每个项目中的项目管理员无权给用户或用户组分配表/行/列访问权限，但仍可以查看用户或用户组的表/行/列级访问权限。

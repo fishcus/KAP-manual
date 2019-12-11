@@ -25,7 +25,9 @@
   
     - 删除：删除 Cube 及其包含的 Segment 信息。
   
-    - 启用：将包含有 Segment 的 Cube 转化为 READY 状态。
+    - 启用：将 Cube 转化为 READY 状态。
+    
+      > **注意**：如果cube不包含任何 READY 状态的segment，启用后导致部分查询结果为空，为避免影响线上生产系统，建议仅在开发阶段中使用。
   
     - 清除数据：清空 Cube 下所有 Segment 信息，清除操作将仅删除元数据信息，对应的数据文件需要通过[日常运维工具](../operation/routine_ops/routine_tool.cn.md)进行清理
   

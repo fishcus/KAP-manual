@@ -11,19 +11,20 @@ Kyligence Enterprise supports the following intersection function,
 
 - Description
 
-  - Returns the value of the intersection of the results of two SQL statements
+  - Returns the distinct count of the intersection of multiple result sets in different conditions
 
 - Syntax
 
-  - `intersect_count(column To Count, column To Filter, filter Value List)`
+  - `intersect_count(column_to_count, column_to_filter, filter_value_list)`
 
 - Parameters
 
-  - `column To Count`,  the column to be calculated and applied on distinct count
-  - `column To Filter`, the varied dimension and only one can be specified
-  - `filter Value List`, the value of the varied dimensions listed in `array[]`
+  - `column_to_count`,  the column to be calculated and applied on distinct count, required to be added as **Precise count distinct** measure
+  - `column_to_filter`, the varied dimension
+  - `filter_value_list`, the value of the varied dimensions listed in `array[]`, When `column_to_filter` is of type varchar, A single element in an array can map multiple values. By default, the '|' is split. You can set `kylin.query.intersect.separator` in `kylin.properties` to configure the separator, Can take value '|' or ',', default is '|'(Currently this parameter does not support the use of subquery results as parameters).
 
-- Query Example
+
+- Query Example 1
 
   Take the sample dataset provided by Kyligence Enterprise as an example, table `KYLIN_SALES` simulates the online transaction data, and the following query can return the percentile of sellers who are trading day by day during 2012.01.01 to 2012.01.03.
 
@@ -39,8 +40,21 @@ Kyligence Enterprise supports the following intersection function,
   group by LSTG_FORMAT_NAME
   ```
 
-- Response Example
+- Response Example 1
 
   ![](images/intersect_count.1.png)
 
   The result shows that there is no seller keeps trading constantly during this period.
+
+- Query Example 2
+
+  ```sql
+    select 
+    intersect_count(SELLER_ID, LSTG_FORMAT_NAME, array['FP-GTC|FP-non GTC|Others', 'Others']) as test_column
+    from kylin_sales
+  ```
+
+- Response Example 2
+
+  ![](images/intersect_count.2.png) 
+ 

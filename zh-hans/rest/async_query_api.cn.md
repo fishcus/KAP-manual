@@ -213,11 +213,12 @@
 
 > 提示：请确认查询状态为 SUCCESSFUL 之后再调用此接口
 
-- `GET http://host:port/kylin/api/async_query/{queryID}/result_download`
+- `GET http://host:port/kylin/api/async_query/{queryID}/result_download`?includeHeader=true
 
 
 - URL Parameters
   - `queryID` - `必选` `string`，异步查询的 Query ID
+  - `includeHeader` - `可选` `boolean`，下载结果是否包含表头，默认为 false
 
 
 - HTTP Header
@@ -231,11 +232,12 @@
 
   ```sh
   curl -X GET \
-    'http://host:port/kylin/api/async_query/{queryID}/result_download' \
+    'http://host:port/kylin/api/async_query/{queryID}/result_download?includeHeader=true' \
     -H 'Accept: application/vnd.apache.kylin-v2+json' \
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
-    -H 'Content-Type: application/json;charset=utf-8'
+    -H 'Content-Type: application/json;charset=utf-8' \
+    -O -J
   ```
 
 - 响应示例

@@ -32,26 +32,26 @@ pip install kylinpy-<version>.tar.gz
   kylin://<username>:<password>@<hostname>:<port>/<project>
   ```
   
-  |配置项|配置说明|默认值|备注|
-  |------------|------|------|------|
-  |username|Kylin 帐名|||
-  |password|Kylin 密码|||
-  |hostname|Kylin 主机名或者 IP 地址||注意这里不要附加 http 或者 https|
-  |port|Kylin 主机端口|7070||
-  |project|Kylin 项目|||
+|配置项|配置说明|默认值|备注|
+|------------|------|------|------|
+|username|Kylin 帐名|||
+|password|Kylin 密码|||
+|hostname|Kylin 主机名或者 IP 地址||注意这里不要附加 http 或者 https|
+|port|Kylin 主机端口|7070||
+|project|Kylin 项目|||
 
 - 配置连接选项
 
   SQLAlchemy **create_engine** 方法还可以接收一个 **connect_args** 参数作为**连接选项**，如下为连接可选项
 
-  |配置项|配置说明|默认值|备注|
-  |------------|------|------|------|
-  |is_ssl|是否通过 ssl 连接|False||
-  |unverified|允许不校验 ssl 证书|True||
-  |prefix|Kylin api 前缀|kylin/api||
-  |timeout|访问 Kylin 实例超时时间(单位: 秒)|30||
-  |version|使用 Kylin api 版本|v1|可选值为 v2 和 v1|
-  |is_pushdown|Kylin 实例是否开启 pushdown 选项|False|如果设为 True 可以查询到未经构建的原表|
+|配置项|配置说明|默认值|备注|
+|------------|------|------|------|
+|is_ssl|是否通过 ssl 连接|False||
+|unverified|允许不校验 ssl 证书|True||
+|prefix|Kylin api 前缀|kylin/api||
+|timeout|访问 Kylin 实例超时时间(单位: 秒)|30||
+|version|使用 Kylin api 版本|v1|可选值为 v2 和 v1|
+|is_pushdown|Kylin 实例是否开启 pushdown 选项|False|如果设为 True 可以查询到未经构建的原表|
 
 
 ### 通过 SQLAlchemy 访问

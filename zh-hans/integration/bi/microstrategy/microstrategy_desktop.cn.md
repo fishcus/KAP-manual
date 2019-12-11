@@ -14,8 +14,10 @@
 2. 更新 DBProperties.json 文件
 
    * 解压下载的 KyligenceConnectorFiles.zip 中的 utils.zip
-
-   * 在 Windows 中以管理员权限运行 run.bat 脚本
+   
+   * 拷贝utils 至 C:\Program Files (x86)\MicroStrategy\Web ASPx路径下
+   
+   * 在 Windows 中以管理员权限运行 utils\run.bat 脚本
 
    * 运行脚本后，该工具会自动将原始DBProperties.xml转换为两个新文件 DBProperties.json32 和 DBProperties.json64，将 DBProperties.json64 重命名为 DBProperties.json ，并使用此新文件替换 MicroStrategy Workstation / Desktop 中的旧文件。
 

@@ -62,6 +62,8 @@ hadoop fs -mkdir -p /kylin/spark-history
 hadoop fs -put spark-libs.jar /kylin/spark/
 ```
 
+> **Note**: For MapR platform, the Spark jars must be uploaded after the execution of `$KYLIN_HOME/bin/check-env.sh` or `$KYLIN_HOME/bin/kylin.sh` 
+
 After then, the config in `kylin.properties` will be:
 
 ```properties

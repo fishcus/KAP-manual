@@ -16,6 +16,10 @@ User could put the customized config items into **kylin.properties.override**, t
 
   Kyligence Enterprise instance running mode is specified by this property. Optional values include `all`, `job` and `query`, among them `all` is the default one. **job** mode means the Kyligence Enterprise instance schedules Cube task only; **query** mode means the instance serves SQL queries only; **all** mode means the instance handles both of them.
 
+* **kap.server.schema-editable**
+  
+  This parameter specifies whether the metadata in the Kyligence Enterprise instance is editable and defaults to true. When this parameter is set to false, the editing function of metadata and the corresponding REST APIs will be disabled, including: 1. loading table from data source and loading kafka streaming config. 2. creating model, editing model or cloning model. 3. create cube, editing cube or cloning cube. 4. automatic modeling. Load data source table REST API see [data source API](../../rest/data_source_api.en.md), clone model REST API see [model API](../../rest/model_api.en.md), clone cube REST API see [manage cube API](../../rest/cube_api/cube_manage_api.en.md).
+
 * **kylin.source.hive.database-for-flat-table**
 
   This property specifies which Hive database intermediate tables will locate in. The default value is **default**. If the user running Kyligence Enterprise doesn't have permission to access **default** database, it's adequate to alter the property to use databases with other names. 
@@ -76,6 +80,10 @@ User could put the customized config items into **kylin.properties.override**, t
 * **kylin.query.pushdown.cache-enabled**
 
   This property specifies the function of cache enabled. The default value is true. If this setting is set to false, the function will be closed. 
+
+* **kylin.query.max-result-rows**
+
+  This property specifies the maximum number of rows that a query can return. When multiple limits, such as limit clause, `kylin.query.force-limit` property and JDBC `Statement.setMaxRows()` method, are set along with this property, the smallest value will be selected as the maximum row number for the return data. This property applies on all ways of executing queries, including Web UI, Asynchronous Query, JDBC Driver and ODBC Driver. This configuration can be overridden at **project** level. For this property to take effect, it needs to be a positive integer less than or equal to 2147483647. The default value is 0, meaning no limit on the result.
 
 * **kylin.cube.is-automerge-enabled**
 

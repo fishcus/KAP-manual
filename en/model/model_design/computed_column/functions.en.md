@@ -148,3 +148,13 @@ Table of Contents
 | levenshtein(string A, string B)          | Returns the Levenshtein distance between two strings. For example, levenshtein('kitten', 'sitting') results in 3. | levenshtein('kitten', 'sitting')         |
 | soundex(string A)                        | Returns soundex code of the string. For example, soundex('Miller') results in M460. | soundex('Miller')                        |
 
+### Limitation
+
+1. In MapR 6.1.0 version and above, the Hive version is 2.3, the Computed Column does not support to define a string type column on the function whose  return type is array 
+
+- `sentences(string str, string lang, string locale)`, the return type is `array<array<string>>`
+- `split(string str, string pat)`, the return type is `array<string>`
+
+> The Computed Column can be defined on the element of the array which is returned from these functions , or be defined on the string value which is converted from the array returned from these functions. 
+
+2. If use SparkSQL during the cube building, please take care that some functions may not be supported in SparkSQL, like `field` function

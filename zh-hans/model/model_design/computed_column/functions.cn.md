@@ -139,7 +139,7 @@
 | rtrim(string A)                          | 返回从 A 的末尾（右手边）删除空白字符后的字符串。例如，rtrim(‘ foobar ‘) 返回结果 ‘foobar’。 | rtrim('foobar')                          |
 | sentences(string str, string lang, string locale) | 将一个自然语言文本字符串标记为单词和句子，每个句子在适当的句子边界被拆分并且作为一个单词数组返回。‘lang’ 和 ‘locale’ 是可选参数。例如，sentences(‘Hello there! How are you?’) 返回 ( (“Hello”, “there”), (“How”, “are”, “you”))。 | sentences('Hello there! How are you?')   |
 | space(int n)                             | 返回 n 个空格的字符串。                            | space(3)                                 |
-| split(string str, string pat)            | 从 pat 左右分解 str（ pat 是一个正则表达式）。           | split('abtcdtef','t')                    |
+| split(string str, string pat)            | 从 pat 左右分解 str（ pat 是一个正则表达式）返回分解后的数据。           | split('abtcdtef','t')                    |
 | substr(string/binary A, int start) substring(string/binary A, int start) | 返回从 start 位置到末尾的字符串 A 的子字符串或字节数组的部分。例如，substr(‘foobar’, 4) 返回结果为 ‘bar’。 | substr('foobar', 4)                      |
 | substr(string/binary A, int start, int len) substring(string/binary A, int start, int len) | 返回从 start 位置开始长度为 len 的 A 的字符串或字节数组的部分。例如，substr(‘foobar’, 4, 1) 返回结果为 ‘b’。 | substr('foobar', 4, 1)                   |
 | substring_index(string A, string delim, int count) | 返回字符串 A 中 delim 分隔符第 count 次匹配前的子字符串。如果 count 是正数，会返回所有到左边最后分隔符（从左边计算）的值。如果 count 是负数，会返回所有到右边最后分隔符（从右边计算）。当搜索 delim 时，Substring_index 是大小写敏感的。示例：substring_index(‘www.apache.org’, ‘.’, 2) = ‘www.apache’。 | substring_index('www.apache.org', '.', 2) |
@@ -149,4 +149,13 @@
 | soundex(string A)                        | 返回字符串的 soundex 码。例如，soundex(‘Miller’) 结果为 M460。 | soundex('Miller')                        |
 
 
+### 限制
 
+1. MapR 6.1.0 以上版本，使用的 Hive 版本为 2.3，可计算列不支持返回类型为数组的函数定义为字符串类型
+
+- `sentences(string str, string lang, string locale)`，返回类型为 `array<array<string>>`
+- `split(string str, string pat)`，返回类型为 `array<string>`
+
+> 可以选取字符串数组的元素定义为字符串类型的可计算列, 或者是将函数通过其他方式将返回值转成字符串来定义可计算列
+
+2. 如果在构建过程中使用 SparkSQL，需要注意有些函数在 SparkSQL 中是不被支持的，比如 `field` 函数

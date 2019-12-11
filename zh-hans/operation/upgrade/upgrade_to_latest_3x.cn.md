@@ -97,7 +97,7 @@ Usage: upgrade.sh <old-kylin-home> [--silent]
 
 **注意事项**：
 
-1. 当跨**主要版本**升级时，**新版本中可能携带了更高版本的 Spark 或 Tomcat，且它们的配置文件与旧版本并不兼容**。这时，请在升级脚本执行结束后，根据需要重新手工配置 Spark 或 Tomcat（参考 [与 Kerberos 集成](../../security/kerberos.cn.md) 和 [集群部署与负载均衡](../../installation/deploy/cluster_lb.cn.md)）。配置目录为 `$KYLIN_HOME/spark/conf` 和 `$KYLIN_HOME/tomcat/conf`。
+1. 升级时，**新版本中可能携带了更高版本的 Spark 或 Tomcat**，并在升级过程中出现类似提示：<br/>`Cannot complete upgrade spark from version 2.2.1-kylin-r6 to 2.2.1-kylin-r7. Please complete the upgrade manually`<br/>`Failed to upgrade the tomcat or spark, Please contact Kyligence Enterprise technical support for more details`<br/> 请在升级脚本执行结束后，对提示中的组件进行手动升级，具体操作请参考 [手动升级内置组件](./upgrade_components_manually.cn.md)。
 2. 升级模式为 “原地升级” ，即升级程序会先自动备份 `OLD_KYLIN_HOME`，然后原地进行升级。升级后的 `KYLIN_HOME` 不变。
 3. 升级完成后，在 `$UNPACK_HOME/logs` 下会生成升级日志，其中包含升级过程中的操作细节。
 4. 参数 `--silent` 允许升级脚本进入 “无声升级模式”，无需客户确认操作指令。建议在 Kyligence 技术支持的确认下使用。
