@@ -15,7 +15,7 @@ The states of capacity controls are:
 - **Over Capacity**: The used data volume or the active processes is beyond the allowed capacity. In this state, the system will remain query-able but will refuse to load additional data. Please consider the following actions to recover from this state.
   - If the used data volume is over capacity, you can delete some old cube segments to offload the system and downgrade the data volume back to normal.
   - If the active process is over capacity, you can stop some Kyligence service processes to bring the system back to normal.
-  - Or you can contact Kyligence Technical Support to get a new license with higher capacity.
+  - Or you can contact Kyligence sales to get a new license with higher capacity.
 - **Tentative** / **Error**: In some rare cases, the system may encounter error when accessing the source database and result the data volume in Tentative or Error state. Usually, the system can recover by itself when it calculates data volume the next time. If the system remains in Tentative or Error state for a long time (like a few days), please contact Kyligence Technical Support for help, before the impact getting worse.
 
 From the **System** > **Overview** > **License Capacity** panel, you can get more information about the license capacity and the current usage. The used data volume can be reviewed by projects and by tables (interactions highlighted below). In the table level data volume list, you may trigger the recalculation of a table when its data volume is in Tentative or Error state.
@@ -33,7 +33,7 @@ The used data volume means the size of the data that has been loaded into the sy
 - Data size is counted in its uncompressed text form, in order to avoid the ambiguity introduced by compression algorithm.
 - Within one project, tables are counted only once if they participate in multiple models and cubes. However, in separate projects, the same table will be counted multiple times according to its usage.
 
-For capacity planning, it is a common need to estimate the future data volume of your system. Below we introduce a simple estimation method using the [learn_kylin sample data](../installation/install_uninstall/install_validation.en.md) as an example.
+For capacity planning, it is a common need to estimate the future data volume of your system. Below we introduce a simple estimation method using the [learn_kylin sample data](../appendix/sample_dataset.en.md) as an example.
 
 - Fact Table Data Volume Estimation
 
