@@ -34,8 +34,8 @@ Oracle Business Intelligence Enterprise Edition (OBIEE) 是 Oracle 旗下的 BI 
    PORT = 7070
    PROJECT = learn_kylin
    SERVER = http://kapdemo.chinaeast.cloudapp.chinacloudapi.cn   
-   UID = KYLIN  
-   PWD = ADMIN
+   UID = ADMIN  
+   PWD = KYLIN
    ```
 
 ### 创建数据模型

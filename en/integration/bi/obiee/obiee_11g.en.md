@@ -34,8 +34,8 @@ Oracle Business Intelligence Enterprise Edition (OBIEE) is Oracle's BI product t
    PORT = 7070
    PROJECT = learn_kylin
    SERVER = http://kapdemo.chinaeast.cloudapp.chinacloudapi.cn   
-   UID = KYLIN  
-   PWD = ADMIN
+   UID = ADMIN   #(Optional)
+   PWD = KYLIN
    ```
 
 ### Creating a Data Model
