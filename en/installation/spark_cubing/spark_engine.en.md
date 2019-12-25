@@ -23,8 +23,9 @@ vi $KYLIN_HOME/hadoop-conf/hive-site.xml
 Now, set property `kylin.env.hadoop-conf-dir` in `kylin.properties` to be the directory mentioned above:
 
 ```properties
-kylin.env.hadoop-conf-dir=/usr/local/apache-kylin-2.1.0-bin-hbase1x/hadoop-conf
+kylin.env.hadoop-conf-dir=$KYLIN_HOME/hadoop-conf
 ```
+> Notice：Please replace the ` $KYLIN_HOME/hadoop-conf` with absolute path
 
 If this property isn’t set, the system will use the directory where `hive-site.xml` locates. That folder may not contain `hbase-site.xml` and you may encounter HBase/ZK connection error in Spark.
 

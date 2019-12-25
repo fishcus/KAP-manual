@@ -24,8 +24,9 @@ vi $KYLIN_HOME/hadoop-conf/hive-site.xml
 然后在 `kylin.properties` 中设置 `kylin.env.hadoop-conf-dir`：
 
 ```properties
-kylin.env.hadoop-conf-dir=/usr/local/apache-kylin-2.1.0-bin-hbase1x/hadoop-conf
+kylin.env.hadoop-conf-dir=$KYLIN_HOME/hadoop-conf
 ```
+> 注意：请将这里的 ` $KYLIN_HOME/hadoop-conf` 替换为绝对路径
 
 如果未设置该属性，Kyligence Enterprise 将自动寻找环境中 Hive 使用的配置目录（一般包含`hive-site.xml`等其它配置文件），而该文件夹可能不包含`hbase-site.xml`，这样在 Spark 中可能会发生 HBase/Zookeeper 连接错误。
 
