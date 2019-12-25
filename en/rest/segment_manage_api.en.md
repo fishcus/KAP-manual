@@ -32,7 +32,7 @@
 
 - HTTP Body: JSON Object
   - `buildType`  -  `required` `string`, supported build type, ie., "MERGE", "REFRESH" or "DROP"
-  - `segments`  -  `required` `string[]`, segment name
+  - `segments`  -  `required` `array of string`, array of segment names
   - `mpValues`  -  `optional` `string`,  multiple partition values of corresponding model
   - `force`  -  `optional` `boolean`, whether force to operate, ie., "true" or  "false"
 
@@ -99,7 +99,7 @@
 - HTTP Body: JSON Object
   - `cube`  -  `required` `string`, cube name
   - `project`  -  `required` `string`, project name
-  - `segmentId`  -  `required` `string`, segment ID
+  - `segmentIds`  -  `required` `array of string`, array of segment IDs
   - `hdfsPath`  -  `required` `string`, the exported HDFS path
   - `mkdirOnHdfs`  -  `optional` `boolean`, whether force to create the HDFS directory, please select `true` or `false`.
 
@@ -114,7 +114,7 @@
     -H 'Content-Type: application/json;charset=utf-8' \
     -d '{"cube": "kylin_sales_cube",
     "project": "learn_kylin",
-    "segmentId": "79e204f1-af67-47b4-962c-ee85077b3972",
+    "segmentIds": ["79e204f1-af67-47b4-962c-ee85077b3972"],
     "hdfsPath": "hdfs://ip:port/kylin/segment_export"
   }'
   ```
@@ -336,7 +336,7 @@ Generally speaking, we don't expect data changes in a built segment. However, if
   - `startOffset` - `required` `long`, the start value (inclusive) of the segment range to refresh.
   - `endOffset` - `required` `long`, the end value (exclusive) of the segment range to refresh.
   - `buildType` - `required` `string`, the build type must be `BUILD`.
-  - `files` - `required` `string[]`, the absolute paths of the data files on HDFS to refresh.
+  - `files` - `required` `array of string`, array of absolute paths of the data files on HDFS to refresh.
 
 - Curl Request Example
 

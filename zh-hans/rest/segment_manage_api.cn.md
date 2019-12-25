@@ -35,7 +35,7 @@
 
 - HTTP Body: JSON Object
   - `buildType`  -  `必选` `string`，操作类型，为 "MERGE", "REFRESH" 或 "DROP"
-  - `segments`  -  `必选` `string[]`，Segment 名称
+  - `segments`  -  `必选` `string 数组`，Segment 名称的数组
   - `mpValues`  -  `可选` `string`， 模型的多级分区值
   - `force`  -  `可选` `boolean`，是否强制进行操作，为 "true" 或 "false"
 
@@ -101,7 +101,7 @@
 - HTTP Body: JSON Object
   - `cube`  -  `必选` `string`，Cube 名称
   - `project`  -  `必选` `string`，项目名称
-  - `segmentId`  -  `必选` `string`， Segment ID
+  - `segmentIds`  -  `必选` `string 数组`， Segment ID 的数组
   - `hdfsPath`  -  `必选` `string`，导出的 HDFS 目录地址
   - `mkdirOnHdfs`  -  `可选` `boolean`，是否强制创建 HDFS 目录，为 "true" 或 "false"
 
@@ -116,7 +116,7 @@
     -H 'Content-Type: application/json;charset=utf-8' \
     -d '{"cube": "kylin_sales_cube",
     "project": "learn_kylin",
-    "segmentId": "79e204f1-af67-47b4-962c-ee85077b3972",
+    "segmentIds": ["79e204f1-af67-47b4-962c-ee85077b3972"],
     "hdfsPath": "hdfs://ip:port/kylin/segment_export"
   }'
   ```
@@ -330,7 +330,7 @@
   - `startOffset` - `必选` `long`， 要刷新的 Segment 的区间起始值（包含）。
   - `endOffset` - `必选` `long`，要刷新的 Segment 的区间结束值（不包含）。
   - `buildType` - `必选` `string`，支持的构建类型为`BUILD`。
-  - `files` - `必选` `string[]`，刷新数据文件的绝对路径列表。
+  - `files` - `必选` `string 数组`，刷新数据文件的绝对路径列表。
 
 - Curl 请求示例
 
