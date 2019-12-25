@@ -69,4 +69,5 @@ You can click *Index* drop down list of each column in table index configuration
 
 2. "fuzzy" index is for query with like filter. If query with "like" filter will be applied to one column, please set the index as "fuzzy". It is not recommended to set index of too many columns as "fuzzy", which will increase storage overhead. 
 
-> If query with the like filter applied to the columns which are not set as "fuzzy", it may spend more time when using table index.
+> If query with the like filter applied to the columns which are not set as "fuzzy", it may spend more time when using table index. 
+> And only columns of string type are supported to set fuzzy index.
