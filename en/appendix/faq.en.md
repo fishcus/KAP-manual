@@ -84,6 +84,17 @@ Each engine has its own query capabilities (by dimension, metric, column definit
 
 A: Each query engine can be enabled and disabled independently. If table index is not configured during the cube design phase, the table index engine is disabled for related queries. The pushdown engine needs manual configuration to enable. For cube engine, it can also be disabled to answer detailed queries by setting `kylin.query.disable-cube-noagg-sql=true`.
 
+**Q：How to switch sparder/calcite query engine**
+
+A：calcite query engine is the default engine, if you want to switch to sparder engine, you can add config in system/project/query level:
+    1.system config: add config `kap.query.engine.sparder-enabled=true` in KYLIN_HOME/conf/kylin.properties
+    2.project config: add config `kap.query.engine.sparder-enabled=true` in  project config
+    3.query config: add config in query
+    ```
+       -- ConfigOverride(kap.query.engine.sparder-enabled=true)
+                       select * from kylin_sales
+    ```
+
 ### Query
 
 **Q: Does this product support MDX queries?**
@@ -121,6 +132,12 @@ In real practice, if the source data quality cannot be guaranteed, it is recomme
 A: Yes. The core capability of the product is a powerful backend that provides sub-second query latency. At the same time, it also has a good integration with external BI platforms, and provides a rich API for custom development. We recommend using this product with other BI systems.
 
 Also recommend the Kyligence Insight for Superset, which is a powerful BI solution that seamlessly integrates with Kyligence Enterprise.
+
+**Q：How to config cube/raw table blackList**
+
+A：if you want to filter cube/raw table when query, you can add config in system/project level:
+    1.system config: add config `kap.query.black.realizations=INVERTED_INDEX[name=test_cube],CUBE[name=test_cube]` in KYLIN_HOME/conf/kylin.properties
+    2.project config: add config `kap.query.black.realizations=INVERTED_INDEX[name=test_cube],CUBE[name=test_cube]` in project config
 
 ### Comparison
 

@@ -22,6 +22,10 @@ Kyligence Enterprise 支持如下交集函数。
   - `column_to_filter` 指向可变的维度
   - `filter_value_list` 数组形式，指向可变维度中的值；当 `column_to_filter` 为 varchar 类型时，数组中单个元素可以映射多个值，默认使用'|'分割，可以使用 `kylin.query.intersect.separator` 配置分隔符，可以取值 `|` 或者 `,`，默认为 `|`，仅支持在 `kylin.properties` 文件中配置（目前该参数不支持使用子查询的结果作为参数使用）。
 
+> **注意：** 当可变维度的数据类型不是 varchar 或 integer 时，`filter_value_list`中的值需要做显式的类型转换，例如：
+> `select intersect_count(column_to_count, column_to_filter, array[cast(3.53 as double), cast(5.79 as double)]) from TEST_TABLE`
+> 或 `select intersect_count(column_to_count, column_to_filter, array[TIMESTAMP'2012-01-02 11:23:45', TIMESTAMP'2012-01-01 11:23:45']) from TEST_TABLE;`
+
 - 查询示例 1
 
   以 Kyligence Enterprise 的样例数据集为例，事实表 `KYLIN_SALES` 模拟了在线交易数据的记录表。
@@ -56,3 +60,58 @@ Kyligence Enterprise 支持如下交集函数。
 - 返回示例 2
 
   ![](images/intersect_count.2.png)
+
+### INTERSECT_VALUE	
+
+- 说明	
+
+  - 返回不同条件下多个结果集交集的去重结果。若返回结果较大，可能会导致分析页面浏览器崩溃。
+
+- 语法	
+
+  - `intersect_value(column_to_count, column_to_filter, filter_value_list)`	
+
+- 参数	
+
+  - `column_to_count` 指向用于统计去重数据的列，这个列必须已经被添加为**精确去重**的度量, **且只支持类型为tinyint、smallint或integer的列**。	
+  - `column_to_filter` 指向可变的维度	
+  - `filter_value_list` 数组形式，指向可变维度中的值；当 `column_to_filter` 为 varchar 类型时，数组中单个元素可以映射多个值，默认使用'|'分割，可以使用 `kylin.query.intersect.separator` 配置分隔符，可以取值 `|` 或者 `,`，默认为 `|`，仅支持在 `kylin.properties` 文件中配置（目前该参数不支持使用子查询的结果作为参数使用）。	
+
+> **注意：** 当可变维度的数据类型不是 varchar 或 integer 时，`filter_value_list`中的值需要做显式的类型转换，例如：
+> `select intersect_value(column_to_count, column_to_filter, array[cast(3.53 as double), cast(5.79 as double)]) from TEST_TABLE`
+> 或 `select intersect_value(column_to_count, column_to_filter, array[TIMESTAMP'2012-01-02 11:23:45', TIMESTAMP'2012-01-01 11:23:45']) from TEST_TABLE;`
+
+- 查询示例 1	
+
+  事实表 `KYLIN_SALES_TEST`  模拟了在线交易数据的记录表，其中 SELLER_ID 字段的类型为 integer。	
+以下查询语句可以获得哪些卖家能在新年假期阶段（2012.01.01-2012.01.03）进行持续的在线交易。	
+
+  ```sql	
+  select LSTG_FORMAT_NAME,	
+  intersect_value(SELLER_ID, PART_DT, array[date'2012-01-01']) as first_day,	
+  intersect_value(SELLER_ID, PART_DT, array[date'2012-01-02']) as second_day,	
+  intersect_value(SELLER_ID, PART_DT, array[date'2012-01-03']) as third_day,	
+  intersect_value(SELLER_ID, PART_DT, array[date'2012-01-01',date'2012-01-02']) as retention_oneday, 	
+  intersect_value(SELLER_ID, PART_DT, array[date'2012-01-01',date'2012-01-02',date'2012-01-03']) as retention_twoday 	
+  from KYLIN_SALES_TEST	
+  where PART_DT in (date'2012-01-01',date'2012-01-02',date'2012-01-03')	
+  group by LSTG_FORMAT_NAME	
+  ```	
+
+- 返回示例 1	
+
+  ![](images/intersect_value.1.png)	
+
+  结果表示在新年阶段进行持续的在线交易的卖家 id 的集合，以数组的形式展示。	
+
+- 查询示例 2（column to filter 为 varchar 类型时，单元素映射多个值）	
+
+  ```sql	
+  select 	
+  intersect_value(SELLER_ID, LSTG_FORMAT_NAME, array['FP-GTC|FP-non GTC|Others', 'Others']) as test_column	
+  from kylin_sales	
+  ```	
+
+- 返回示例 2	
+
+  ![](images/intersect_value.2.png)
