@@ -84,7 +84,7 @@ Kyligence Enterprise supports the following intersection function,
 
 - Query Example 1	
 
-  Fact table `KYLIN_SALES_TEST` simulates the online transaction data. And data type of `SELLER_ID` column is `integer`. The following query can return the percentile of sellers who are trading day by day during 2012.01.01 to 2012.01.03.	
+  Fact table `KYLIN_SALES_TEST` simulates the online transaction data. And data type of `SELLER_ID` column is `integer`. The following query can return the ids of sellers who are trading day by day during 2012.01.01 to 2012.01.03.	
 
   ```SQL	
   select LSTG_FORMAT_NAME,	
@@ -93,7 +93,7 @@ Kyligence Enterprise supports the following intersection function,
   intersect_value(SELLER_ID, PART_DT, array[date'2012-01-03']) as third_day,	
   intersect_value(SELLER_ID, PART_DT, array[date'2012-01-01',date'2012-01-02']) as retention_oneday, 	
   intersect_value(SELLER_ID, PART_DT, array[date'2012-01-01',date'2012-01-02',date'2012-01-03']) as retention_twoday 	
-  from KYLIN_SALES	
+  from KYLIN_SALES_TEST	
   where PART_DT in (date'2012-01-01',date'2012-01-02',date'2012-01-03')	
   group by LSTG_FORMAT_NAME	
   ```	
