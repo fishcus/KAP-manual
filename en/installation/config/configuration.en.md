@@ -30,7 +30,7 @@ User could put the customized config items into **kylin.properties.override**, t
 
 * **kylin.security.profile**
 
-  Kyligence Enterprise instance security profile is specified by this property. Optional values include **ldap**, **saml** and **testing**, among them **testing** is the default one which means testing account enabled. You can alter its value to plug into existing enterprise authentication systems, such as **ldap** and **saml**. For more information, refer to section [Security and Access Control](../security/README.md). 
+  Kyligence Enterprise instance security profile is specified by this property. Optional values include **ldap** and **testing**, among them **testing** is the default one which means testing account enabled. You can alter its value to plug into existing enterprise authentication systems, such as **ldap**. For more information, refer to section [Security and Access Control](../security/README.md). 
 
 * **kylin.web.timezone**
 
