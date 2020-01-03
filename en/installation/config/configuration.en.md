@@ -137,6 +137,26 @@ User could put the customized config items into **kylin.properties.override**, t
 
   This property specifies whether to enable shrunken dictionary. When you use count_distinct(bitmap) on a large cardinality column in your cube, maybe you will find build base cuboid step cannot finished within a reasonable period because it need frequent dictionary cache swap. Shrunken dictionary is an optimization option which help to reduce dictionary cache swap. The default value is `false`.
 
+* **kylin.engine.mr.mapper-input-rows**
+  
+  While building, in the Redistribute Flat Hive Table step, the flat table is saved as small pieces of equal size, and each small piece contains the number of rows specified by this parameter. This parameter will affect the number of mappers in the next few steps. If the resources are sufficient and the concurrency is not enough, you can reduce this value to add more mappers. The default value is 1000000, which means that each evenly divided block contains one million rows.
+
+* **kylin.engine.mr.reduce-input-mb**  
+  
+  Before starting the MR Job, the total amount of data received by the reducer is estimated based on the input, and then divided by this parameter to obtain the number of reducers. If there is data skew, that is, a certain Cuboid is particularly large, which causes a special time to be spent in a Reducer during construction, which slows down the overall construction speed, you can adjust this parameter. The parameter indicates how much input data each reducer is responsible for. The default is 500 MB. By reducing the parameter value, the number of Reducers can be increased, and one Reducer is responsible for fewer cuboids / shards.
+
+* **kylin.engine.mr.min-reducer-number** 
+  
+  Used in conjunction with `kylin.engine.mr.reduce-input-mb`, the minimum number of reducers in M/R jobs, the default value is 1.
+
+* **kylin.engine.mr.max-reducer-number** 
+
+  Used with `kylin.engine.mr.reduce-input-mb`, the maximum number of reducers in M/R jobs, the default value is 500.
+
+* **kylin.engine.mr.uhc-reducer-count** 
+
+  By default, a Reducer is assigned to each column in the Extract Fact Table Distinct Column step. For ultra-high columns, it will cause a bottleneck on a Reducer. This parameter can be used to increase the number of Reducers. A setting of 5 indicates that 5 reducers are allocated for each UHC column. This parameter can be overridden at the cube level.
+
 ### JVM Configuration Setting
 
 In `$KYLIN_HOME/conf/setenv.sh` (for version lower than 2.4, `$KYLIN_HOME/bin/setenv.sh`), two sample settings for `KYLIN_JVM_SETTINGS` environment variable are given. The default setting use relatively less memory. You can comment it and then uncomment the next line to allocate more memory for Kyligence Enterprise. The default configuration is: 
