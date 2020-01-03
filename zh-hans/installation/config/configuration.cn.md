@@ -29,7 +29,7 @@
 
 * **kylin.security.profile**
 
-  该参数指定 Kyligence Enterprise 服务启用的安全授权方案，可以是 *ldap*、*saml*、*testing*。默认值为 *testing*，即使用固定的测试账号进行登录。用户可以修改此参数以接入已有的企业级认证体系，如 *ldap*、*saml*。具体设置可以参考[安全控制](../../security/README.md)章节。
+  该参数指定 Kyligence Enterprise 服务启用的安全授权方案，可以是 *ldap*、*testing*。默认值为 *testing*，即使用固定的测试账号进行登录。用户可以修改此参数以接入已有的企业级认证体系，如 *ldap*。具体设置可以参考[安全控制](../../security/README.md)章节。
 
 * **kylin.web.timezone**
 
