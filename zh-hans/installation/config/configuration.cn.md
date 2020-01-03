@@ -135,6 +135,25 @@
 
   该参数指定了是否开启shrunken dictionary，当在Cube中对一个高基数列使用了count_distinct(bitmap)，有时你会发现build base cuboid步骤不能在一个合理时间段内成功完成，其原因是mapper发生了频繁的词典缓存换入换出。Shrunken dictionary是一个优化项，用于减少这种情况。默认值是`false`。
 
+* **kylin.engine.mr.mapper-input-rows**
+  
+  Hive构建时，Redistribute Flat Hive Table 步骤中将平表保存为大小均等的小块，每一小块包含该参数指定的行数。这个参数会影响到在后面几步的 mapper 个数，如资源充足而并发不够，可以将这个值调小，则会起更多的 mapper 。默认值为1000000， 即每个均分的小块中包含一百万行。
+  
+* **kylin.engine.mr.reduce-input-mb**  
+  
+  MR Job启动前会依据输入预估 Reducer 接收数据的总量，再除以该参数得出 Reducer 的数目。如果存在数据倾斜，即某个 Cuboid 特别大，造成构建的时候在一个 Reducer 里花费特别多的时间，拖慢整体构建速度，可以调整这个参数。参数表示每个 Reducer 负责多大的输入数据，默认500 MB。通过缩小参数值可以增加 Reducer 的数目，让一个 Reducer 负责更少的 cuboid/shard。
+
+* **kylin.engine.mr.min-reducer-number** 
+  
+  和 `kylin.engine.mr.reduce-input-mb` 配套使用，M/R 作业中 Reducer 数目的最小值，默认值为1
+
+* **kylin.engine.mr.max-reducer-number** 
+
+  和 `kylin.engine.mr.reduce-input-mb` 配套使用，M/R 作业中 Reducer数目的最大值，默认值为500
+
+* **kylin.engine.mr.uhc-reducer-count** 
+
+  默认在 Extract Fact Table Distinct Column 这一步对于每一列分配一个 Reducer，对于超高列会在一个 Reducer上造成瓶颈，可以通过此参数增加 Reducer 数量。设置为5，表明为每个UHC列分配5个reducer。此参数可以在Cube级别覆盖。
 
 ### JVM 参数
 
