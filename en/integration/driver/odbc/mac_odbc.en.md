@@ -200,7 +200,7 @@ In this section, we will introduce how to install Kyligence ODBC driver (Mac ver
 1. Test connection with cmd tool "isql DSN [UID '[PWD]']
 
    ```
-   isql KyligenceDataSource ADMIN 'KYLIN'`
+   isql KyligenceDataSource ADMIN 'KYLIN'
    ```
 
 2. Send a query to test  

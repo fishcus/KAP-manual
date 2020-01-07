@@ -207,7 +207,7 @@ DSN配置好后您就可以直接在BI工具中使用了。
 1. 使用命令行工具`isql DSN [UID '[PWD]']`测试连接
 
    ```
-   isql KyligenceDataSource ADMIN 'KYLIN'`
+   isql KyligenceDataSource ADMIN 'KYLIN'
    ```
 
 2. 发送查询测试 
