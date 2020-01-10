@@ -133,7 +133,7 @@
 
 * **kylin.dictionary.shrunken-from-global-enabled**
 
-  该参数指定了是否开启shrunken dictionary，当在Cube中对一个高基数列使用了count_distinct(bitmap)，有时你会发现build base cuboid步骤不能在一个合理时间段内成功完成，其原因是mapper发生了频繁的词典缓存换入换出。Shrunken dictionary是一个优化项，用于减少这种情况。默认值是`false`。
+  该参数指定了是否开启shrunken dictionary，当在Cube中对一个高基数列使用了count_distinct(bitmap)，有时你会发现build base cuboid步骤不能在一个合理时间段内成功完成，其原因是mapper发生了频繁的词典缓存换入换出。Shrunken dictionary是一个优化项，用于减少这种情况。默认值是`true`。
 
 * **kylin.engine.mr.mapper-input-rows**
   
