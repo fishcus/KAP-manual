@@ -157,7 +157,7 @@ Kyligence Enterprise 支持如下 Bitmap 函数。
 
   ![](images/intersect_value_by_uuid.1.png)
   
-  子查询中的两个 uuid ，分别指向两个 bitmap ，由 bitmap_uuid 和 intersect_bitmap_uuid 提供。intersect_count_by_uuid 函数对这两个 bitmap 进行交集操作，并返回去重结果。
+  子查询中的两个 uuid ，分别指向两个 bitmap ，由 bitmap_uuid 和 intersect_bitmap_uuid 提供。intersect_value_by_uuid 函数对这两个 bitmap 进行交集操作，并返回去重结果。
 
 ### INTERSECT_COUNT_BY_COL
 
