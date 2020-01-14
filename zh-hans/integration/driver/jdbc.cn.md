@@ -105,7 +105,6 @@ while (resultSet.next()) {
 **Prepared Statement已知限制**
 
 - 不支持查询下压。
-- 不支持**LIMIT**, **OFFSET**中使用动态参数，如`limit ?, offset ?`
 - 动态参数不支持与"-"放在一起，如`SUM(price - ?)`
 - 动态参数不支持出现在**group by**中，如 `group by trans_id/?`
 - 动态参数不支持出现在**case when**中，如`case when xxx then ? else ? end`
