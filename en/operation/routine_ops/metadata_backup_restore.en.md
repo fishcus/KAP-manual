@@ -9,7 +9,7 @@ Metadata is divided into system level, project level, and cube level. The direct
 - [Metadata Restore](#metadata_restore)
 
 
-### Metadata Structure		{#metadata_structure}
+### Metadata Structure      {#metadata_structure}
 
 | Metadata             | Description                                               | System-level | Project-level | Cube-level |
 | ------------------ | -------------------------------------------------- | -------- | -------- | --------- |
@@ -42,7 +42,7 @@ Metadata is divided into system level, project level, and cube level. The direct
 
 
 
-### Metadata Backup	{#metadata_backup}
+### Metadata Backup     {#metadata_backup}
 
 In general, it is a good practice to back up metadata before each failure recovery or system upgrade. This can guarantee the possibility of rollback after the operation fails, and still maintain the stability of the system in the worst case. .
 
@@ -50,17 +50,21 @@ In addition, metadata backup is also a tool for fault finding. When the system f
 
 Metadata can be backed up via the command line or the user interface, as follows:
 
-- Metadata backup via ** command line**
+- Metadata backup via **command line**
 
   Kyligence Enterprise provides a command line tool for backing up metadata, using the following methods:
 
-  - Backup ** system level ** metadata
+  - Backup **system level** metadata
 
      ```sh
-     $KYLIN_HOME/bin/metastore.sh backup
+     $KYLIN_HOME/bin/metastore.sh backup [--includeAllDict]
      ```
+     
+     Parameter Description:
+     
+     `--includeAllDict` - optional, if specified, sdict and GlobalDict will be downloaded to the `PATH_TO_LOCAL_META_DIR/persistence` directory.
 
-  - Backup ** project level ** metadata
+  - Backup **project level** metadata
 
      ```sh
      $KYLIN_HOME/bin/metastore.sh backup-project PROJECT_NAME PATH_TO_LOCAL_META_DIR
@@ -97,13 +101,17 @@ Metadata recovery is required in Kyligence Enterprise with the **command line**.
 
 **Note: **Recovery operations will overwrite the remote metadata with local metadata, so please confirm that Kyligence Enterprise is down or inactive (including build tasks) from backup to recovery, otherwise from backup to recovery Other metadata changes between them will be lost as a result. If you want the Kyligence Enterprise service to be unaffected, use **project level** or **Cube level** metadata recovery.
 
-- Restore **system level ** metadata
+- Restore **system level** metadata
 
   ```sh
-  $KYLIN_HOME/bin/metastore.sh restore /path_to_backup
+  $KYLIN_HOME/bin/metastore.sh restore /path_to_backup [--includeAllDict]
   ```
+  
+  Parameter Description:
+       
+  `--includeAllDict` - optional, if specified, sdict and GlobalDict will be restored to working directory of Kyligence Enterprise on HDFS.
 
-- Restore **project level ** metadata 
+- Restore **project level** metadata 
 
    ```sh
    $KYLIN_HOME/bin/metastore.sh restore-project project_name /path_to_backup

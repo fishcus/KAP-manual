@@ -57,8 +57,11 @@ Kyligence Enterprise 实例是无状态的服务，所有的状态信息都存�
   * 备份**系统级别**的元数据
 
     ```sh
-    $KYLIN_HOME/bin/metastore.sh backup
+    $KYLIN_HOME/bin/metastore.sh backup [--includeAllDict]
     ```
+    参数说明：
+    
+    `--includeAllDict`- 可选，加上此参数后会备份GlobalDict和sdict。备份路径为`PATH_TO_LOCAL_META_DIR/persistence`
 
   * 备份**项目级别**的元数据
 
@@ -98,8 +101,12 @@ Kyligence Enterprise 中需要用**命令行**进行元数据恢复。
 - 恢复**系统级别**的元数据
 
   ```sh
-  $KYLIN_HOME/bin/metastore.sh restore /path_to_backup
+  $KYLIN_HOME/bin/metastore.sh restore /path_to_backup [--includeAllDict]
   ```
+  参数说明：
+  
+  `--includeAllDict` - 可选，加上此参数后会恢复GlobalDict和sdict到Kyligence Enterprise在HDFS上的工作目录中。
+      
 - 恢复**项目级别**的元数据
 
   ```sh
