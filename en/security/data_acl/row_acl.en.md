@@ -13,7 +13,7 @@ The where clause for row ACL can be previewed by clicking on the **Preview** hyp
 3. For that table, click **Access** tab, choose **Row**. 
 4. Click **+Restrict** to restrict access to user/group. 
 5. On the pop-up window, choose the user/user group.
-6. Choose the column and fill in the filtering value.
+6. Choose the column and fill in the filtering value, if the data type of the column is date or timestamp, you can select the time by clicking the rightmost calendar icon. The data type of the column is date, the format of the input range is `YYYY-MM-DD~YYYY-MM-DD` . The data type of the column is timestamp, the format of the input range is `YYYY-MM-DD HH: mm: ss~YYYY-MM-DD HH: mm: ss` . If you need to choose a time point, please choose a consistent start and end time.
 7. (Optional) Click on **+** to add another column to filter. 
 8. Click **Submit**.
 

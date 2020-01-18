@@ -135,7 +135,7 @@ User could put the customized config items into **kylin.properties.override**, t
 
 * **kylin.dictionary.shrunken-from-global-enabled**
 
-  This property specifies whether to enable shrunken dictionary. When you use count_distinct(bitmap) on a large cardinality column in your cube, maybe you will find build base cuboid step cannot finished within a reasonable period because it need frequent dictionary cache swap. Shrunken dictionary is an optimization option which help to reduce dictionary cache swap. The default value is `false`.
+  This property specifies whether to enable shrunken dictionary. When you use count_distinct(bitmap) on a large cardinality column in your cube, maybe you will find build base cuboid step cannot finished within a reasonable period because it need frequent dictionary cache swap. Shrunken dictionary is an optimization option which help to reduce dictionary cache swap. The default value is `true`.
 
 * **kylin.engine.mr.mapper-input-rows**
   
