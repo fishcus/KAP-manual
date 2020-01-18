@@ -87,7 +87,6 @@ Among them, Prepared Statement supports assignment for the following types:
 **Prepared Statement Known Limitation**
 
 - Query pushdown is not supported when using Prepared Statement.
-- Dynamic param cannot use in <b>LIMIT</b>, <b>OFFSET</b>, e.g. `limit ?, offset ?`
 - Dynamic param cannot follow with <b>'-'</b>, e.g. `SUM(price - ?)`
 - Dynamic param cannot use in <b>group by</b>, e.g. `group by trans_id/?`
 - Dynamic param cannot use in <b>case when</b>, e.g. `case when xxx then ? else ? end`
