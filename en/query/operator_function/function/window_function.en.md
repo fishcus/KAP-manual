@@ -15,7 +15,7 @@ User can use window function to achieve queries that are more complicated, to si
 
 ### Examples of window functions
 
-And then we'll illustrate the usage of every single window function with table 'KYLIN_SALES' in the [sample dataset](../../model/sample_dataset.cn.md). The fields and corresponding descriptions of 'KYLIN_SALES' are as followings:`PART_DT`: Order Date;`TRANS_ID`: order ID;`BUYER_ID`: Buyer ID;`ITEM_COUNT`: The number of purchased goods.
+And then we'll illustrate the usage of every single window function with table 'KYLIN_SALES' in the [sample dataset](../../../appendix/sample_dataset.en.md). The fields and corresponding descriptions of 'KYLIN_SALES' are as followings:`PART_DT`: Order Date;`TRANS_ID`: order ID;`BUYER_ID`: Buyer ID;`ITEM_COUNT`: The number of purchased goods.
 
 
 

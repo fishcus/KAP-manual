@@ -8,7 +8,7 @@ For installation instructions for SmartBI Insight, please visit the [SmartBI Ins
 
 ### Install Kyligence JDBC Driver
 
-- SmartBI Insight connects to Kyligence Enterprise via JDBC, so you firstly need to install the Kyligence JDBC driver on SmartBI Insight. If you would like to get the Kyligence JDBC driver, please refer to [Kyligence JDBC Driver Description](../driver/jdbc.cn.md)
+- SmartBI Insight connects to Kyligence Enterprise via JDBC, so you firstly need to install the Kyligence JDBC driver on SmartBI Insight. If you would like to get the Kyligence JDBC driver, please refer to [Kyligence JDBC Driver Description](../driver/jdbc.en.md)
 - Add a JDBC driver to SmartBI Insight:
 
    Steps are as follows:

@@ -51,4 +51,4 @@ Please refer to [User Management](user_management.en.md)
 
 Once LDAP is enabled, user group is read-only and cannot be added, edited, dropped, modified.
 
-For more information on LDAP, please refer to [LDAP Authentication](ldap.en.md).
+For more information on LDAP, please refer to [LDAP Authentication](../ldap.en.md).

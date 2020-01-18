@@ -42,7 +42,7 @@ In order to achieve accurate suggestion, Optimizer need to take the following it
 
 ### Steps
 
-Step 1, Implement model check on a data model. Skip the model check if it has already passed. To get more info about model check, please click [Model Check](model/model_design/model_check.en.md).
+Step 1, Implement model check on a data model. Skip the model check if it has already passed. To get more info about model check, please click [Model Check](../model_design/model_check.en.md).
 
 Step 2, To create a cube with this model, please click "Collect SQL patterns" under "Cube Info" tab, then paste your SQL statements. For multiple SQLs, use ';' for separation.
 

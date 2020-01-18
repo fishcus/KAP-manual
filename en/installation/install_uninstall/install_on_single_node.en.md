@@ -2,11 +2,11 @@
 
 In this guide, we will explain how to quickly install Kyligence Enterprise on a single node.
 
-Before proceeding, please make sure the [Prerequisite of Kyligence Enterprise](hadoop_env.en.md) is met.
+Before proceeding, please make sure the [Prerequisite of Kyligence Enterprise](../../installation/prerequisite.en.md) is met.
 
 ### Download and Install Kyligence Enterprise
 
-1. Get Kyligence Enterprise software package. You can visit [Kyligence Enterprise Release Notes](../release/README.md) and choose the right version according to your environment.
+1. Get Kyligence Enterprise software package. You can visit [Kyligence Enterprise Release Notes](../../release/README.md) and choose the right version according to your environment.
 
 2. Decide the installation location and the Linux account to run Kyligence Enterprise. All the examples below are based on the following assumptions:
    * The install location is `/usr/local/`.
@@ -74,11 +74,11 @@ For more information, please refer to [Beeline command options](https://cwiki.ap
 
 ### If You Use Kerberos
 
-If your cluster enables Kerberos security, the Spark embeds in Kyligence Enterprise needs proper configuration to access your cluster resource securely. For more information, please refer to [Kerberos integration](../security/kerberos.en.md).
+If your cluster enables Kerberos security, the Spark embeds in Kyligence Enterprise needs proper configuration to access your cluster resource securely. For more information, please refer to [Kerberos integration](../../security/kerberos.en.md).
 
 ### If Your Cluster is Based on JDK 7
 
-Please follow the steps in [How to Run Kyligence Enterprise on Lower Version JDK](about_low_version_jdk.en.md).
+Please follow the steps in [How to Run Kyligence Enterprise on Lower Version JDK](../../appendix/run_on_jdk7.en.md).
 
 ### Start Kyligence Enterprise
 
@@ -107,7 +107,7 @@ After Kyligence Enterprise is started, open web GUI at `http://{host}:7070/kylin
 - At least 8 characters.
 - Contains at least one number, one letter, and one special character (~!@#$%^&*(){}|:"<>?[];',./`).
 
-Now, you can verify the installation by building a sample cube. Please continue to [Install Validation](install_validate.en.md).
+Now, you can verify the installation by building a sample cube. Please continue to [Install Validation](install_validation.en.md).
 
 ### Stop Kyligence Enterprise
 Run the following command to stop Kyligence Enterprise:

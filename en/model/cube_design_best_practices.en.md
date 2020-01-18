@@ -68,7 +68,7 @@ The decision point is whether to create snapshots for lookup tables or not. The 
 
   To exclude a lookup table for snapshot, in the bottom of edit model page, find **Overview** and then the **Model** tab, uncheck the snapshot checkbox in the lookup table list.
 
-![](../images/model_design_update_en.png)
+![](./images/model_design_update_en.png)
 
 - Increase `kylin.snapshot.max-mb` very carefully.
 

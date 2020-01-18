@@ -36,7 +36,7 @@ INNER JOIN CUSTOMER on XXXX=XX
 
 ![Set Multiple Columns Count Distinct](../images/count_distinct/cd_measures_add.3.png)
 
-Follow the [Cube Design Basics](../create_cube.en.md) instructions for the rest steps, the Cube would be ready after you setting segments on the [Build Cube](../../build_cube.en.md) section.
+Follow the [Cube Design Basics](../create_cube.en.md) instructions for the rest steps, the Cube would be ready after you setting segments on the [Build Cube](../../cube_build/README.md) section.
 
 Not only this result but also other testified results are right, which prove that approximate count distinct query works well. More information about precise count distinct function, please refer to [Count Distinct (Precise)](count_distinct_bitmap.en.md) Introduction.
 

@@ -11,7 +11,7 @@ The complete steps to uninstall Kyligence Enterprise and remove all relevant dat
 
 2. Data cleaning and backup (optional):
 
-   - To ensure that some temporary data in Kyligence Enterprise are deleted in the external system, it is recommended that [storage cleanup](..\operation\storage_cleanup.en.md) operations should be performed before the formal unloading.
+   - To ensure that some temporary data in Kyligence Enterprise are deleted in the external system, it is recommended that [storage cleanup](../../operation/routine_ops/routine_tool.en.md) operations should be performed before the formal unloading.
 
    - Backup metadata before full unloading so that it can be restored when needed.
 
