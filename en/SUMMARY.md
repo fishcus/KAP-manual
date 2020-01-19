@@ -111,6 +111,7 @@
             * [Grouping Function](query/operator_function/function/grouping_function.en.md)
             * [Intersect Function](query/operator_function/function/intersect_function.en.md)
             * [Aggregate Functions](query/operator_function/function/aggregate_function.en.md)
+            * [Bitmap Functions](query/operator_function/function/bitmap_function.en.md)
     * [Query FAQ](query/query_issues.en.md)
 * [Integration with BI Tools](integration/README.md)
     * [Drivers](integration/driver/README.md)

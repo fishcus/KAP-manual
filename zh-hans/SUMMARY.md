@@ -108,6 +108,7 @@
             * [分组函数](query/operator_function/function/grouping_function.cn.md)
             * [交集函数](query/operator_function/function/intersect_function.cn.md)
             * [聚合函数](query/operator_function/function/aggregate_function.cn.md)
+            * [Bitmap 函数](query/operator_function/function/bitmap_function.cn.md)
     * [查询 FAQ](query/query_issues.cn.md)
 * [与 BI 工具集成](integration/README.md)
     * [驱动程序](integration/driver/README.md)
