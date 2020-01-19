@@ -23,7 +23,7 @@ Enter your Sever location and credentials: server host, port, username and passw
 
 ![](../../images/tableau_8/serverhost.jpg)
 
-Click "Connect" to get the list of projects that you have permission to access. See details about permission in [Kylin Cube Permission Grant Tutorial](../../../security/acl.en.md). Then choose the project you want to connect in the drop down list. 
+Click "Connect" to get the list of projects that you have permission to access. See details about permission in [Kylin Cube Permission Grant Tutorial](../../../security/data_acl/README.md). Then choose the project you want to connect in the drop down list. 
 
 ![](../../images/tableau_8/project.jpg)
 

@@ -89,7 +89,7 @@ Follow the below instructions to install Kyligence Enterprise in the build clust
 
 6. If Kerberos is enabled, please do follow the steps below:
 
-   - Configure [Kerberos Intergration](../security/kerberos.en.md) in both clusters, and confirm:
+   - Configure [Kerberos Intergration](../../security/kerberos.en.md) in both clusters, and confirm:
 
      - The build cluster and the query cluster belong to different realms.
      - The cross-realm trust between the two clusters is configured properly.

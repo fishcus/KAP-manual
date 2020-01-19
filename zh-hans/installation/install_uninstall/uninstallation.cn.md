@@ -13,7 +13,7 @@
 
 2. （可选的）数据清理和备份
 
-   - 为确保 Kyligence Enterprise 在外部系统中的一些临时数据被删除，建议在正式卸载前先执行[垃圾清理](/operation/storage_cleanup.cn.md)操作。
+   - 为确保 Kyligence Enterprise 在外部系统中的一些临时数据被删除，建议在正式卸载前先执行[垃圾清理](../../operation/routine_ops/routine_tool.cn.md)操作。
    - 为以防万一，可以完全卸载前先备份元数据，以便在需要的时候恢复：
       ```shell
       $KYLIN_HOME/bin/metastore.sh backup

@@ -40,7 +40,7 @@ INNER JOIN CUSTOMER on XXXX=XX
 
 ![设置多列 Count Distinct](../images/count_distinct/CountDistinct_cn_multi.png)
 
-创建 Cube 的后续步骤请参见 [基本 Cube 设计](../create_cube.cn.md) 。当您按照 [构建 Cube](../../build_cube.cn.md) 的介绍，完成 Cube 的构建后，该 Cube 即准备完毕。
+创建 Cube 的后续步骤请参见 [基本 Cube 设计](../create_cube.cn.md) 。当您按照 [构建 Cube](../../cube_build/) 的介绍，完成 Cube 的构建后，该 Cube 即准备完毕。
 
 关于 count distinct 的精确查询信息请参见[精确去重计数](count_distinct_bitmap.cn.md)介绍。
 

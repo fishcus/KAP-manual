@@ -84,5 +84,5 @@ $KYLIN_HOME/bin/kylin.sh admin-password-reset
 
 在启用 LDAP 后，用户为只读，不可添加、编辑、删除、修改用户或对用户分组。
 
-有关 LDAP 的更多信息，参见本章 [与 LDAP 集成](ldap.cn.md)。
+有关 LDAP 的更多信息，参见本章 [与 LDAP 集成](../ldap.cn.md)。
 

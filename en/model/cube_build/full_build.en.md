@@ -4,7 +4,7 @@ If we set the incremental data load type to **Full Build** when saving the model
 
 ![Set Full Build](images/full_build.png)
 
-User can conduct full build in Web UI or via REST API. See [Cube API](../../rest/cube_api.en.md) for details.
+User can conduct full build in Web UI or via REST API. See [Cube API](../../rest/cube_api/README.md) for details.
 
 User cannot merge segments in a full-build cube since there should be only one segment. Segment refresh can be conducted in Web UI and REST API.
 

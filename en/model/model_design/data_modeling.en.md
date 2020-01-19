@@ -196,7 +196,7 @@ When lookup table is less than 300 MB, we suggest you to enable snapshot of look
   > **Caution**:
   >
   > 1. When a lookup table is larger than 300 MB, we don't recommend you to store it as snapshop. But you can still set parameter `kylin.snapshot.max-mb` in `kylin.properties` to modify this when it's really necessary.
-  > 2. When the parameter above is set to be larger than 300 MB, it might cause cube build job fail at step **Build Dimension Dictionary** and hence affect system stability. If you do need to store lookup table as snapshot, please contact [Kyligence Support](../introduction/get_support.en.md) for solution.
+  > 2. When the parameter above is set to be larger than 300 MB, it might cause cube build job fail at step **Build Dimension Dictionary** and hence affect system stability. If you do need to store lookup table as snapshot, please contact Kyligence Support for solution.
   > 3. We cannot successfully store a lookup table as snapshot when there are duplicated keys in dimension table.
 
 
@@ -204,5 +204,5 @@ When lookup table is less than 300 MB, we suggest you to enable snapshot of look
 
 In most multi-dimensional OLAP scenarios, lookup table might change unpredictably, rather than according to a regular schedule. For snapshot enabled lookup tables, Kyligence Enterprise supports defining SCD types for all derived dimensions on this lookup table.
 
-For more details, please refer to [Slowly Changing Dimension](scd.en.md).
+For more details, please refer to [Slowly Changing Dimension](slowly_changing_dimension.en.md).
 

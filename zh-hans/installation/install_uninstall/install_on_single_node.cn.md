@@ -3,7 +3,7 @@
 
 在本节中，我们将引导您在单节点上快速安装 Kyligence Enterprise。
 
-在安装前，请确认您已阅读[**安装前置条件**](../installation_conditions.cn.md)。
+在安装前，请确认您已阅读[**安装前置条件**](../prerequisite.cn.md)。
 
 ### 下载安装 Kyligence Enterprise
 
@@ -76,7 +76,7 @@ hive.security.authorization.sqlstd.confwhitelist=dfs.replication|hive.exec.compr
 
 ### 如果您的 Hadoop 集群为 JDK 7
 
-请执行 [如何在低版本 JDK 上运行 Kyligence Enterprise](../about_low_version_jdk.cn.md) 中的配置步骤。
+请执行 [如何在低版本 JDK 上运行 Kyligence Enterprise](../../appendix/run_on_jdk7.cn.md) 中的配置步骤。
 
 ### 启动 Kyligence Enterprise
 
@@ -107,7 +107,7 @@ ps -ef | grep kylin
 - 密码长度至少 8 位
 - 密码需要包含至少一个数字、字母、及特殊字符（~!@#$%^&*(){}|:"<>?[];',./`）
 
-当您成功登录后，可以通过构建 Sample Cube 来验证 Kyligence Enterprise 的功能。具体请参阅[安装验证](../installation_validation.cn.md)。
+当您成功登录后，可以通过构建 Sample Cube 来验证 Kyligence Enterprise 的功能。具体请参阅[安装验证](./install_validation.cn.md)。
 
 ### 停止 Kyligence Enterprise
 

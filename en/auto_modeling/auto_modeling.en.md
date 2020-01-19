@@ -76,7 +76,7 @@ If you need more detailed adjustment of auto generated models, you can click **S
 
 #### Query Accelerator
 
-The system generates cube building job for each auto generated model. The default mode is full-build, and you can click the edit button to change the partition and range. For more details, please refer to [Build Cube](../model/build_cube.en.md).
+The system generates cube building job for each auto generated model. The default mode is full-build, and you can click the edit button to change the partition and range. For more details, please refer to [Build Cube](../model/cube_build/README.md).
 
 You can check the job information in this page, *choose* the needed jobs by the jobs' name and **submit** to build. Only after cube building job is succeeded, the model (including the cube) can serve queries and accelerate the response time to sub-second latency on big data.
 
