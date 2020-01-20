@@ -50,8 +50,6 @@ Spark动态资源分配需要配置两处：一处是集群的资源管理器相
 #### Kyligence Enterprise配置
 配置Spark动态资源分配需要在Spark的配置文件中添加一些配置项以开启该服务。由于在Kyligence Enterprise中可以通过在kylin.properties中进行配置来直接覆盖Spark中的配置，因此只需要在kylin.properties中进行如下配置：
 
-`kap.storage.columnar.spark-conf.spark.executor.instances=0`
-
 `kap.storage.columnar.spark-conf.spark.dynamicAllocation.enabled=true`
 
 `kap.storage.columnar.spark-conf.spark.dynamicAllocation.maxExecutors=5`

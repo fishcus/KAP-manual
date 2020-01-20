@@ -54,8 +54,6 @@ There are two parts we need to configure for Spark Dynamic Allocation:
 #### Kyligence Enterprise configuration
 To enable the Spark Dynamic Allocaiton, we will need to add some configuration items in Spark config files. Since we can override spark configuraion in kylin.properties, we will add following configuration items in it:
 
-`kap.storage.columnar.spark-conf.spark.executor.instances=0`
-
 `kap.storage.columnar.spark-conf.spark.dynamicAllocation.enabled=true`
 
 `kap.storage.columnar.spark-conf.spark.dynamicAllocation.maxExecutors=5`
