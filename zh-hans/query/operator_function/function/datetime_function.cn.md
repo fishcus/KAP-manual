@@ -16,7 +16,7 @@
 | WEEK(date)                                   | 返回日期中对应的星期，<br />等同于 `EXTRACT(WEEK FROM date)`。<br />返回值为 1 到 53 的整数 | ` WEEK(CURRENT_DATE)`<br /> = 41                             |
 | DAYOFYEAR(date)                              | 返回日期对应年的天数，<br />等同于 `EXTRACT(DOY FROM date)`。<br />返回值为 1 到 366 的整数 | `DAYOFYEAR(CURRENT_DATE)`<br /> = 283                        |
 | DAYOFMONTH(date)                             | 返回日期对应月的天数，<br />等同于`EXTRACT(DAY FROM date)`。<br />返回值为 1 到 31 | ` DAYOFMONTH(CURRENT_DATE)`<br /> = 10                       |
-| DAYOFWEEK(date)                              | 返回日期对应的星期几，<br />等同于 `EXTRACT(DOW FROM date)`。<br />返回值为 1 到 7 的整数 | ` DAYOFWEEK(CURRENT_DATE)`<br /> = 4                         |
+| DAYOFWEEK(date)                              | 返回日期对应的星期几，<br />等同于 `EXTRACT(DOW FROM date)`。<br />返回值为 1 到 7 的整数, 其中1代表星期日，2代表星期一，以此类推 | ` DAYOFWEEK(CURRENT_DATE)`<br /> = 4                         |
 | HOUR(date)                                   | 返回日期中的小时数，<br />等同于 `EXTRACT(HOUR FROM date)`。返回值为 0 到 23 的整数 | ` HOUR(CURRENT_TIME)`<br /> = 19                             |
 | MINUTE(date)                                 | 返回日期中的分钟数，<br />等同于 `EXTRACT(MINUTE FROM date)`。<br />返回结果为 0 到 59 的整数 | ` MINUTE(CURRENT_TIME)`<br /> = 8                            |
 | SECOND(date)                                 | 返回日期中的秒数，<br />等同于 `EXTRACT(SECOND FROM date)`。<br />返回结果为 0 到 59 的整数 | ` SECOND(CURRENT_TIME)`<br /> = 49                           |

@@ -16,7 +16,7 @@
 | WEEK(date)                                   | Equivalent to `EXTRACT(WEEK FROM date)`. Returns an integer between 1 and 53. | ` WEEK(CURRENT_DATE)`<br /> = 41                             |
 | DAYOFYEAR(date)                              | Equivalent to `EXTRACT(DOY FROM date)`. Returns an integer between 1 and 366. | `DAYOFYEAR(CURRENT_DATE)`<br /> = 283                        |
 | DAYOFMONTH(date)                             | Equivalent to `EXTRACT(DAY FROM date)`. Returns an integer between 1 and 31. | ` DAYOFMONTH(CURRENT_DATE)`<br /> = 10                       |
-| DAYOFWEEK(date)                              | Equivalent to `EXTRACT(DOW FROM date)`. Returns an integer between 1 and 7. | ` DAYOFWEEK(CURRENT_DATE)`<br /> = 4                         |
+| DAYOFWEEK(date)                              | Equivalent to `EXTRACT(DOW FROM date)`. Returns an integer between 1 and 7. Note: 1=Sunday, 2=Monday, 3=Tuesday, 4=Wednesday, 5=Thursday, 6=Friday, 7=Saturday | ` DAYOFWEEK(CURRENT_DATE)`<br /> = 4                         |
 | HOUR(date)                                   | Equivalent to `EXTRACT(HOUR FROM date)`. Returns an integer between 0 and 23. | ` HOUR(CURRENT_TIME)`<br /> = 19                             |
 | MINUTE(date)                                 | Equivalent to `EXTRACT(MINUTE FROM date)`. Returns an integer between 0 and 59. | ` MINUTE(CURRENT_TIME)`<br /> = 8                            |
 | SECOND(date)                                 | Equivalent to `EXTRACT(SECOND FROM date)`. Returns an integer between 0 and 59. | ` SECOND(CURRENT_TIME)`<br /> = 49                           |
