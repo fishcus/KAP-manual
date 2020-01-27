@@ -49,7 +49,7 @@
 2. 在**构建服务器**和**查询服务器**上，修改 `$KYLIN_HOME/conf/kylin.properties`，为所有的 Kyligence Enterprise 服务配置相同的元数据和数据存储路径。
 
    > **注意**：
-   >  - 此处需使用关系数据库为元数据存储，请参阅 [配置 RDBMS 元数据存储](../rdbms_metastore/)。
+   >  - 此处需使用关系数据库为元数据存储，请参阅 [配置 RDBMS 元数据存储](../rdbms_metastore/README.md)。
    >  - 此处数据存储路径需指向**查询集群** HDFS。
 
    ```properties

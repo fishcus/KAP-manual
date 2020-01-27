@@ -1,5 +1,5 @@
 {
-	"title" : "Kyligence Enterprise Manual",
+	"title" : "Kyligence Enterprise User Manual",
 	"description" : "Kyligence智能大数据分析平台(Kyligence Enterprise)是基于Apache Kylin的，在超大规模数据集上提供亚秒级分析能力的企业级产品，为业务用户、分析师及工程师提供简单、快捷的大数据分析服务。",
 	"links" : {
 		"sidebar" : {
@@ -22,8 +22,10 @@
         "edit-link",
         "header",
         "image-captions",
-        "custom-favicon"
+        "custom-favicon",
+        "validate-links"
     ],
+   
     "pluginsConfig": {
         "favicon": "entry/img/kyligence.png",
         "disqus": {
@@ -33,9 +35,9 @@
             "url": "https://github.com/Kyligence-git/kap-manual"
         },
         "sharing": {
-            "weibo": true,
-            "facebook": true,
-            "twitter": true,
+            "weibo": false,
+            "facebook": false,
+            "twitter": false,
             "google": false,
             "instapaper": false,
              "vk": false,
@@ -62,6 +64,10 @@
 
         "image-captions": {
              "caption": "_CAPTION_"
+        },
+
+        "validate-links": {
+             "local": "error"
         }
         
     }

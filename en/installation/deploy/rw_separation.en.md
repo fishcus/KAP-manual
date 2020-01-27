@@ -48,7 +48,7 @@ Follow the below instructions to install Kyligence Enterprise in the build clust
 2. On all the **Build Servers** and **Query Servers**, modify `$KYLIN_HOME/conf/kylin.properties` to setup the same metastore and storage location for all of them.
 
    > **Note**: 
-   > - RDBMS metastore is required here. Please find more information in [Use RDBMS as Metastore](../rdbms_metastore/).
+   > - RDBMS metastore is required here. Please find more information in [Use RDBMS as Metastore](../rdbms_metastore/README.md).
    > - The data storage location must point to the query cluster HDFS.
 
    ```properties

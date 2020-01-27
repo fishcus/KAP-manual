@@ -70,4 +70,4 @@ To modify user's group, please do the followings:
 
 Once LDAP is enabled, user is read-only and cannot be added, edited, dropped, modified or grouped.
 
-For more information on LDAP, please refer to  [LDAP Authentication](ldap.en.md).
+For more information on LDAP, please refer to  [LDAP Authentication](../ldap.en.md).
