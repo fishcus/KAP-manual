@@ -6,6 +6,8 @@
 
 有关 FineReport 的安装说明，请访问 [FineReport 下载页面](http://www.finereport.com/product/download)。
 
+> 注意：现仅支持 Windows 版的 FineReport
+
 ### 安装 Kyligence JDBC 驱动程序
 
 FineReport 通过 JDBC 连接 Kyligence Enterprise，所以首先需要在 FineReport 上安装 Kyligence JDBC 驱动程序。

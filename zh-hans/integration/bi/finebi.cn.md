@@ -6,6 +6,8 @@
 
 有关 FineBI 的安装说明，请访问 [FineBI 下载页面](http://www.finebi.com/product/download/)。
 
+> 注意：现仅支持 Windows 版 FineBI
+
 ### 安装 Kyligence JDBC 驱动程序
 
 FineBI 通过 JDBC 连接 Kyligence Enterprise，所以首先需要在 FineBI 上安装 Kyligence JDBC 驱动程序。
