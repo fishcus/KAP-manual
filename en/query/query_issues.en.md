@@ -60,3 +60,10 @@ A: The system works slightly different from what ANSI/ISO SQL-92 requires.
 
 
 
+**Q: How does the system support queries that include division by null?**
+
+A: The current system does not support the query divided by null. You need to configure the corresponding parameters to enable this function.
+
+- Modify the corresponding configuration: add `io.kyligence.kap.query.util.ConvertNullType` to the configuration item `kylin.query.system-transformers` to make it like `kylin.query.system-transformers = io.kyligence. kap.query.util.ConvertNullType, io.kyligence.kap.query.util.ConvertToComputedColumn, io.kyligence.kap.query.util.EscapeTransformer, org.apache.kylin.query.util.DefaultQueryTransformer, org.apache.kylin. query.util.KeywordDefaultDirtyHack, io.kyligence.kap.query.security.RowFilter, io.kyligence.kap.query.security.HackSelectStarWithColumnACL, io.kyligence.kap.query.util.ReplaceStringWithVarchar`
+
+

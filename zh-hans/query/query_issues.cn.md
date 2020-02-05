@@ -58,3 +58,9 @@ A: 系统当前的行为与 ANSI/ISO SQL-92 规范略有不同。
 
 
 
+**Q: 系统如何支持除以null的查询？**
+
+A: 当前的系统默认不支持除以null的查询，需要配置相应的参数开启该功能。
+
+- 修改相应的配置：在配置项 `kylin.query.system-transformers` 中加入 `io.kyligence.kap.query.util.ConvertNullType` 使其变成 `kylin.query.system-transformers=io.kyligence.kap.query.util.ConvertNullType,io.kyligence.kap.query.util.ConvertToComputedColumn,io.kyligence.kap.query.util.EscapeTransformer,org.apache.kylin.query.util.DefaultQueryTransformer,org.apache.kylin.query.util.KeywordDefaultDirtyHack,io.kyligence.kap.query.security.RowFilter,io.kyligence.kap.query.security.HackSelectStarWithColumnACL,io.kyligence.kap.query.util.ReplaceStringWithVarchar`
+
