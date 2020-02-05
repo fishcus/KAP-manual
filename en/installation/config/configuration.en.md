@@ -87,7 +87,7 @@ User could put the customized config items into **kylin.properties.override**, t
 
 * **kylin.cube.is-automerge-enabled**
 
-  The auto merge function is enabled by default. If this setting is set to false, the function will be closed. Although the auto merge thresholds were setted, the merge job would not be built.
+  The auto merge function is enabled by default. If this setting is set to false, the function will be closed. Although the auto merge thresholds were set, the merge job would not be built.
 
 * **kap.job.merge-dict-on-yarn**
 
@@ -156,6 +156,14 @@ User could put the customized config items into **kylin.properties.override**, t
 * **kylin.engine.mr.uhc-reducer-count** 
 
   By default, a Reducer is assigned to each column in the Extract Fact Table Distinct Column step. For ultra-high columns, it will cause a bottleneck on a Reducer. This parameter can be used to increase the number of Reducers. A setting of 5 indicates that 5 reducers are allocated for each UHC column. This parameter can be overridden at the cube level.
+  
+* **kylin.engine.mr.table-ext-col-divisor-for-mapper-enabled** 
+
+  This property specifies whether to take column count as factor when calculating mapper number of table sampling job, the default value is `false`. This configuration can be overridden at **project** level.
+
+* **kylin.engine.mr.table-ext-col-divisor-for-mapper** 
+
+  When `kylin.engine.mr.table-ext-col-divisor-for-mapper-enabled=true`, this property will take effect. It specifies the column divisor for mapper number of table sampling job, default value is `20`. The formula is **wantedMapperCount=`ceil((rowCount/1,000,000,000) * (columnCount/columnDivisor))`**, `rowCount` stands for row number of table, `columnCount` stands for column number of table. Please note that wantedMapperCount may not equal to the actual mapper number of table sampling job. This configuration can be overridden at **project** level.
 
 ### JVM Configuration Setting
 

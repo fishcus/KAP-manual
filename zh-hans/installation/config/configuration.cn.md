@@ -155,6 +155,17 @@
 
   默认在 Extract Fact Table Distinct Column 这一步对于每一列分配一个 Reducer，对于超高列会在一个 Reducer上造成瓶颈，可以通过此参数增加 Reducer 数量。设置为5，表明为每个UHC列分配5个reducer。此参数可以在Cube级别覆盖。
 
+* **kylin.engine.mr.table-ext-col-divisor-for-mapper-enabled** 
+
+  该参数指定了在表采样时是否把列数当作计算mapper数量的考虑因素，默认为`false`。该参数可在**项目**级别重写。
+
+* **kylin.engine.mr.table-ext-col-divisor-for-mapper** 
+  
+  该参数指定了表采样时把列数当作计算mapper数量的影响因子的除数，仅在`kylin.engine.mr.table-ext-col-divisor-for-mapper-enabled=true`时生效，默认值为20。计算表采样时mapper数量的公式为 **wantedMapperCount=`ceil((rowCount/1,000,000,000) * (columnCount/columnDivisor))`**, 其中rowCount为表的行数，columnCount为表的列数，ceil代表向上取整。 该参数可在**项目**级别重写。
+
+> wantedMapperCount和真实启动的mapper数量可能会有误差，仅供参考。
+  
+
 ### JVM 参数
 
 在`$KYLIN_HOME/conf/setenv.sh` （如果版本低于2.4.0，`$KYLIN_HOME/bin/setenv.sh`) 中，为KYLIN_JVM_SETTINGS 给出了两种示例配置。默认配置使用的内存较少，用户可以根据自己的实际情况，注释掉默认配置并取消另一配置前的注释符号以启用另一配置，从而为 Kyligence Enterprise 示例分配更多的内存资源。
