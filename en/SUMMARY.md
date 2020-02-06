@@ -175,6 +175,7 @@
         * [Environment Dependency Check](operation/monitor_diagnosis/canary.en.md)
         * [Job Status Alert](operation/monitor_diagnosis/alerting.en.md)
         * [System and Job Diagnosis](operation/monitor_diagnosis/diag.en.md)
+        * [Instance Guard](operation/monitor_diagnosis/instance_guard.en.md)
         * [Get Support](operation/monitor_diagnosis/get_support.en.md)
     * [Upgrade](operation/upgrade/README.md)
         * [Upgrade to Latest Kyligence Enterprise 3.x](operation/upgrade/upgrade_to_latest_3x.en.md)
