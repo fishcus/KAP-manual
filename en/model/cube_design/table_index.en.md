@@ -28,8 +28,6 @@ When you configure table index, you should set at least 1 column as SortBy. Thos
 
 Columns set as SortBy will indicate the order of raw data. You can drag one of them up or down to change their order. 
 
-The first column of SortBy list must have encoding of "integer", "date" or "time". No limitation for other columns. Please refer to contents below for more details of encoding. 
-
 Those top columns in the order of SortBy list will get more benefits on efficiency when they are filter condition of queries. Thus, we suggest you arrange SortBy columns as the order of chance to be filter condition in your environment. Do not set too many SortBy columns, because tail columns have little help for performance, increasing overheads of table index building on the contrary. We also suggest you set a column of time to be the first in SortBy list, in order to get a better performance when processing time-related queries, which are very common. 
 
 When you configure table index, you could set 1 column as ShardBy or simply do nothing. If you set a certain column as ShardBy column, the raw data will be sharded according to values of that column. If you don't explicitly specify an ShardBy column, sharding will be done considering of values in all columns. 
