@@ -73,10 +73,6 @@ User could put the customized config items into **kylin.properties.override**, t
 
   > Only these functions are currently supported : SUM({EXPR}), AVG({EXPR}), array[{INDEX}], CASE .. WHEN ..
 
-* **kylin.query.pushdown.update-enabled**
-
-  This property specifies whether opending the update function in pushdown query. The default value is false.  If this setting is set to true, the function will be opened. 
-
 * **kylin.query.pushdown.cache-enabled**
 
   This property specifies the function of cache enabled. The default value is true. If this setting is set to false, the function will be closed. 
