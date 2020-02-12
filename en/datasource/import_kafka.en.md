@@ -108,7 +108,7 @@ Kyligence Enterprise supports extracting streaming data into tables and implemen
        - `org.apache.kylin.source.kafka.DateTimeParser`,  then `Timestamp` object is created by converting from `String` value according to the given `tsPattern`, namely the string format of timestamp
        
   - `Parser Property`: You may specify addition properties to further customize the behavior of the customized implementation Parser.
-       
+    
 8. Click **Verify**, the sample table will be shown in WebUI
 
     ![Table Verify](images/kafka_validate.png)
@@ -172,15 +172,23 @@ More information about Kafka configuration can be found at https://kafka.apache.
 > 1. Need to configure Kafka Admin Client and Kafka Consumer both when setting `client.id` property
 > 2. Kafka configurations in `kylin.properties` will override property values in xml configuration files
 
+###Reload Streaming Table
+
+1. Navigate to **Studio**->**Data Source**, select specific streaming table and click **Reload**
+
+![reload kafka table tab](images/reload_kafka_table_tab.png)
+
+2. In the pop-up page, the columns of the original Kafka table will be checked by default, you can modify the kafka cluster information, parser, column and column type used by the streaming table and click **Submit ** to reload.
+
+![reload kafka table](images/reload_kafka_table.png)
+
 ### Notes and Limitations
 
 - In project with Kafka as data source, you can also load Hive tables. However Kafka table must be used as fact table.
-- Kafka table cannot reload at the moment, which will be fixed soon. For now, you can first delete the original Kafka table and then create a new one with the same name.
 - JSON message is supported by default at the moment. More formats please use customized implementation parser.
 - When defining table schema, please manually check the column types recommended by the system. In certain cases, they may not be the wanted types. Also, the `Float` type is known to cause query error on streaming data under some special condition. Recommend to use `Double` type whenever possible.
 - Since v3.4.1, the product mandates the **minute_start** column be defined as dimension of models and cubes using Kafka table. This is important for auto segment merge to work properly. Old models and cubes without the **minute_start** dimension will be shown as BROKEN.
 - Kafka table does not support query pushdown.
-- Kafka table and its related model and cube does not support import and export functions, which will be fixed in future release.
 - Since v3.4.2, the older version customized implementation parser need to re-implement.
 
 ## Customized Implementation Kafka Message Parser

@@ -74,12 +74,13 @@
   
    > **注意**：
    > 1.当前系统只支持显示 JSON 格式的样例数据。如果 Topic 中的消息时非 JSON 格式， 则文本框内不会显示样例数据。
+   >
    > 2. JSON 格式消息使用的解析器为 `org.apache.kylin.source.kafka.TimedJsonStreamParser`, 如果是非 JSON 格式消息， 则需要使用自定义解析器， 后文会介绍如何实现和使用自定义解析器
 
 
-   
+
    ![获取 Broker 集群信息](images/kafka_info.png)
-   
+
 5. 为流式数据定义一个表名，如 `KAFKA_TABLE_1`。之后可以用这张表创建模型。
    ![为流式数据源定义表名](images/kafka_name.png)
 
@@ -106,7 +107,7 @@
      - `org.apache.kylin.source.kafka.DefaultTimeParser`, 将根据 Long 型的系统毫秒时间（类似 java.lang.System.currentTimeMillis）创建 Timestamp 对象。该解析器将根据给定的 `时间戳时区`，将时间解析为对应时间区间的时间，如 `GMT+8` 时，时间戳 1549008564973 将被解析为 2019-02-01 16:09:24。时区默认使用 `GMT+0`。
      - `org.apache.kylin.source.kafka.DateTimeParser`，将根据给定的 `时间戳格式`，将 `String` 类型转换为 `Timestamp` 对象。
    - 解析器属性：可以为自定义解析器设置更多属性，来定义其行为。
-    
+   
 8. 点击 **校验**， 如果校验成功，表结构将会显示在界面上
 
     ![表校验](images/kafka_validate.png)
@@ -172,16 +173,24 @@ Kyligence Enterprise 提供了两种方式来配置 Kafka Consumer 的参数：
 > 1. 如果需要配置 client-id， 那么需要同时配置 Kafka Admin Client 和 Kafka Consumer
 > 2. `kylin.properties` 中的 Kafka 配置会覆盖 xml 配置文件中的配置
 
+### 重载流式表
+
+1. 在 **建模** 界面的 **数据源** 面板中，选中具体要重载的流式表，点击 **重载** 按钮。
+
+![重载 kafka 表的按钮](images/reload_kafka_table_tab.cn.png)
+
+2. 在弹出的重载 kafka 表界面中，原 kafka 表的列会被默认勾选，您可以修改该流式表使用的 kafka 集群信息，解析器，列及列类型，修改完成之后点击 **提交** 按钮进行重载。
+
+![重载 kafka 表](images/reload_kafka_table.cn.png)
+
 
 ### 注意事项和已知局限
 
 - 在以 Kafka 为数据源的项目中，支持加载 Hive 表，然而 Kafka 表只能用作事实表
-- 暂时 Kafka 表无法重载，我们会在后续版本中修复。暂时您可以先删除原表，再重新加载同名的 Kafka 表。
 - 当前默认支持 JSON 格式的 Kafka 消息，更多格式请使用自定义解析器来。
 - 在定义表结构时，请仔细核对系统自动识别的数据类型，在一些特定情况下识别可能有误。另外，已知 `Float` 类型在某些特殊情况下会导致 Kafka 表上的查询失败，推荐使用 `Double` 类型代替。
 - 从产品 v3.4.1 开始，要求 **minute_start** 作为必选维度出现在以 Kafka 表为中心的模型和 Cube 上，这对于 Cube 能正常自动合并至关重要。不含 **minute_start** 的旧版模型和 Cube 将呈现为 BROKEN 状态。
 - Kafka 表暂不支持查询下压。
-- Kafka 表相关的模型和 Cube 导入导出也暂不支持，我们将在后续版本中修复。
 - 从产品 v3.4.2 开始，不兼容旧版本的自定义解析器，需要重新实现。
 
 
