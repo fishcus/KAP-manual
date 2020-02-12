@@ -125,7 +125,7 @@ You can download Kyligence ODBC driver (Linux version) from [Kyligence Account C
    Locale=en-US
    ```
 
-   **/etc/dobc.ini**
+   **/etc/odbc.ini**
 
    ```
    [KyligenceDataSource]
