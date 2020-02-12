@@ -65,10 +65,6 @@
 
   有一些BI工具会在查询中创建临时表获中间表。将该参数设置为 true 可以将查询中创建表的语句转成 with 语句，当后续查询需要使用到该临时表获中间表时，会被转化成包含 With 的查询语句。修改这个配置后，创建中间表获临时表的查询可以击中可匹配的 Cube。
 
-* **kylin.query.pushdown.update-enabled**
-
-  该参数指定了是否在查询下压中开启 update。默认状态下为 false，将该参数设置为 true 时，开启该功能。
-
 * **kylin.query.pushdown.cache-enabled**
 
   通过 Kyligence Enterprise 进行下压查询时，可以开启缓存来提高相同 sql 语句的查询效率。该参数默认为开启状态，将该参数设置为 false 时，关闭该功能。
