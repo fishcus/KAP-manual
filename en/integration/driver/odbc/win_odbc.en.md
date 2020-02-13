@@ -71,6 +71,51 @@ DRIVER={KyligenceODBCDriver};SERVER=locahost;PORT=7070;PROJECT=learn_kylin
 
 > **Note:** Please replace *SERVER*, *PORT* and *PROJECT* with your Kyligence Enterprise settings.
 
+### Windows ODBC Driver Logging - Using the logging dialog box
+
+You can enable logging in the driver to track activity and troubleshoot issues.
+
+**Important:** Only enable logging long enough to capture an issue. Logging decreases performance and can consume a large quantity of disk space.
+
+1. Select **Control Panel -> Administrative Tools** to open **ODBC Data Source Administrator**
+2. Select the DSN for which you want to log connection activity, and then click **Configure**
+
+![windows_dsn_list](../images/odbc_log/windows_dsn_list.png)
+
+1. In the DSN Setup dialog box, click **Logging Options**
+
+   ![windows_odbc_log_dsn_settup](../images/odbc_log/windows_odbc_log_dsn_settup.png)
+
+2. Information on all of the Log Levels is listed below.  LOG_TRACE is best in most cases.
+
+   - **LOG_OFF** disables all logging.
+   - **LOG_FATAL** logs very severe error events that might lead the driver to abort.
+   - **LOG_ERROR** logs error events that might still allow the driver to continue running.
+   - **LOG_WARNING** logs potentially harmful situations.
+   - **LOG_INFO** logs general information that describes the progress of the driver.
+   - **LOG_DEBUG** logs detailed information that is useful for debugging the driver.
+   - **LOG_TRACE** logs more detailed information than the LOG_DEBUG level.
+
+3. In the Log Path (or Log Directory) field, type the full path to the folder where you want to save log files.
+
+   ![windows_odbc_log_options](../images/odbc_log/windows_odbc_log_options.png)
+
+4. In the Max Number Files field, type the maximum number of log files to keep.
+
+   > **Note:** After the maximum number of log files is reached, each time an additional file is created, the driver deletes the oldest file.
+
+5. In the Max File Size field, type the maximum size of each log file in megabytes (MB).
+
+   > **Note:** After the maximum file size is reached, the driver creates a new file and continues logging.
+
+6. Click **OK** to close the Logging Options dialog box.
+
+7. Click **OK** to save your settings and close the DSN Configuration dialog box.
+
+   > **Note:** Configuration changes will not be saved or picked up by the driver until you have clicked **OK** in the DSN Configuration dialog box.Clicking **Cancel** button will result in the changes being discarded.
+
+8. Restart the application you are using the driver with.  Configuration changes will not be picked up by the application until it reloads the driver.
+
 ## Other Reminders
 
 If you want to use Kyligence ODBC driver to connect to Kyligence Enterprise in other client applications, the configuration is similar to this example. For more information, please see [Connect with BI tools](../../bi/README.md) chapter of Kyligence Enterprise Manual.
