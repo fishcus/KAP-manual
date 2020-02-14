@@ -220,46 +220,6 @@ In this section, we will introduce how to install Kyligence ODBC driver (Mac ver
   sudo mkdir /ODBC
   ```
 
-## Mac ODBC Driver Logging
-
-You can enable logging in the driver to track activity and troubleshoot issues.
-
-**Important:** Only enable logging long enough to capture an issue. Logging decreases performance and can consume a large quantity of disk space.
-
-1. Open the driver configuration file in a text editor.
-   For example,  you would open the  {ODBC installed path}/kyligence.odbc.ini
-
-2. Information on all of the Log Levels is listed below.  6  is best in most cases.
-
-   - **0** disables all logging.
-   - **1** logs very severe error events that might lead the driver to abort.
-   - **2**  logs error events that might still allow the driver to continue running.
-   - **3**  logs potentially harmful situations.
-   - **4**  logs general information that describes the progress of the driver.
-   - **5**  logs detailed information that is useful for debugging the driver.
-   - **6 (TRACE)** logs more detailed information than log level 5.
-
-3. For example: **LogLevel=6**
-
-4. Set the LogPath attribute to the full path to the folder where you want to save log files.  This directory mus exist and be writable, including being writable by other users if the application using the driver runs as a specific user.
-   For example: **LogPath=/localhome/username/Documents**
-
-   ![Connect Successfully](C:/Users/xue.tang/Documents/GitHub/KAP-Manual/en/integration/driver/images/odbc_log/linux_log_example.png)      
-
-5. Set the LogFileCount attribute to the maximum number of log files to keep.
-   For example: **LogFileCount=5**
-
-   > **Note**: After the maximum number of log files is reached, each time an additional file is created, the driver deletes the oldest file.
-
-6. Set the LogFileSize attribute to the maximum size of each log file in megabytes (MB).
-   For example: **LogFileSize=20**
-
-   > **Note:** After the maximum file size is reached, the driver creates a new file and continues logging.
-
-7. Save the driver configuration file.
-
-8. Restart the application you are using the driver with.  Configuration changes will not be picked up by the application until it reloads the driver.
-
 ### FAQ
 
 **Q: How to uninstall unixODBC**
