@@ -45,7 +45,7 @@ You can download Kyligence ODBC driver (Linux version) from [Kyligence Account C
 
    `tar zxf KyligenceODBC_linux.tar.gz`
 
-   > **Caution:** please **DONOT** uncompress Kyligence ODBC Driver under root folder, otherwise BI servers might be unable to access necessary files because of authoriztaion.
+   > **Note:** please **DONOT** uncompress Kyligence ODBC Driver under root folder, otherwise BI servers might be unable to access necessary files because of authoriztaion.
 
 2. Check library dependency
 
@@ -135,7 +135,7 @@ You can download Kyligence ODBC driver (Linux version) from [Kyligence Account C
    SERVER = http://kapdemo.chinaeast.cloudapp.chinacloudapi.cn
    ```
 
-   > **Caution:** please ensure DSN name in `odbc.ini` is consistent with DSN name in BI client tools, otherwise BI reports/applications cannot connect to data source when it's published to BI server.
+   > **Note:** please ensure DSN name in `odbc.ini` is consistent with DSN name in BI client tools, otherwise BI reports/applications cannot connect to data source when it's published to BI server.
 
 2. Test connection with cmd tool "isql DSN [UID '[PWD]']
 
@@ -162,6 +162,7 @@ You can download Kyligence ODBC driver (Linux version) from [Kyligence Account C
 Here we use **MicroStrategy Linux Intelligence Server** as an example to explain how to create DSN.
 
 1. From a Linux console window, browse to HOME_PATH, where HOME_PATH is the MicroStrategy Installation directory.
+
 2. Open the `ODBC.ini` file to add new DSN to connect. 
 
     ```
@@ -185,7 +186,7 @@ Here we use **MicroStrategy Linux Intelligence Server** as an example to explain
     ```
     [ODBC Data Sources]
     KyligenceDataSource=KyligenceODBC
-
+    
     [EAT_WH1]
     ConnectionType=Direct
     Driver=/home/kylin/ODBCDriver/libKyligenceODBC64.so
@@ -195,7 +196,48 @@ Here we use **MicroStrategy Linux Intelligence Server** as an example to explain
     ```
 
 4. After you finished configuring the DSN, it is recommended to restart your MSTR Intelligence Server so that the new created DSN will be taken into effect. 
+
 5. You can then connect to your MicroStrategy Linux I-Server and create a new database instance based on the DSN.
+
+## Linux ODBC Driver Logging
+
+You can enable logging in the driver to track activity and troubleshoot issues.
+
+**Important:** Only enable logging long enough to capture an issue. Logging decreases performance and can consume a large quantity of disk space.
+
+1. Open the driver configuration file in a text editor.
+   For example,  you would open the  {ODBC installed path}/kyligence.odbc.ini
+
+2. Information on all of the Log Levels is listed below.  6  is best in most cases.
+
+   - **0** disables all logging.
+   - **1** logs very severe error events that might lead the driver to abort.
+   - **2**  logs error events that might still allow the driver to continue running.
+   - **3**  logs potentially harmful situations.
+   - **4**  logs general information that describes the progress of the driver.
+   - **5**  logs detailed information that is useful for debugging the driver.
+   - **6 (TRACE)** logs more detailed information than log level 5.
+
+3. For example: **LogLevel=6**
+
+4. Set the LogPath attribute to the full path to the folder where you want to save log files.  This directory mus exist and be writable, including being writable by other users if the application using the driver runs as a specific user.
+   For example: **LogPath=/localhome/username/Documents**
+
+   ![linux_log_configure](../images/odbc_log/linux_log_example.png)      
+
+5. Set the LogFileCount attribute to the maximum number of log files to keep.
+   For example: **LogFileCount=5**
+
+   > **Note**: After the maximum number of log files is reached, each time an additional file is created, the driver deletes the oldest file.
+
+6. Set the LogFileSize attribute to the maximum size of each log file in megabytes (MB).
+   For example: **LogFileSize=20**
+
+   > **Note:** After the maximum file size is reached, the driver creates a new file and continues logging.
+
+7. Save the driver configuration file.
+
+8. Restart the application you are using the driver with.  Configuration changes will not be picked up by the application until it reloads the driver.
 
 ### FAQ
 
