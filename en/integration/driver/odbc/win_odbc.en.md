@@ -80,11 +80,11 @@ You can enable logging in the driver to track activity and troubleshoot issues.
 1. Select **Control Panel -> Administrative Tools** to open **ODBC Data Source Administrator**
 2. Select the DSN for which you want to log connection activity, and then click **Configure**
 
-![windows_dsn_list](../images/odbc_log/windows_dsn_list.png)
+![ODBC Data Source Administrator](../images/odbc_log/windows_dsn_list.png)
 
 1. In the DSN Setup dialog box, click **Logging Options**
 
-   ![windows_odbc_log_dsn_settup](../images/odbc_log/windows_odbc_log_dsn_settup.png)
+   ![DSN Settup](../images/odbc_log/windows_odbc_log_dsn_settup.png)
 
 2. Information on all of the Log Levels is listed below.  LOG_TRACE is best in most cases.
 
@@ -98,7 +98,7 @@ You can enable logging in the driver to track activity and troubleshoot issues.
 
 3. In the Log Path (or Log Directory) field, type the full path to the folder where you want to save log files.
 
-   ![windows_odbc_log_options](../images/odbc_log/windows_odbc_log_options.png)
+   ![log Options](../images/odbc_log/windows_odbc_log_options.png)
 
 4. In the Max Number Files field, type the maximum number of log files to keep.
 
