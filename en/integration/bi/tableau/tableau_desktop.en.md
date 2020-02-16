@@ -25,6 +25,10 @@ Kyligence Enterprise supports integration with Tableau 8.X, 9.X, 10.X, 2018.X, 2
   ​             The default location is： 
 
   ​             Documents\My Tableau Repository\Datasources
+  
+  Step3: Restart Tableau Desktop to apply the change.
+  
+  > **Note:** The file must be saved with a `.tdc` extension, but the name does not matter.
 
 This section will introduce two methods available to connect Tableau with Kyligence Enterprise.
 

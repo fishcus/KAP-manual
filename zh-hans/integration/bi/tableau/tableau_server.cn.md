@@ -28,6 +28,12 @@
      /var/opt/tableau/tableau_server/data/tabsvc/vizqlserver/Datasources/
 
 > **注意：**Tableau Server 配置连接 Kyligene Enterprise 的 ODBC 驱动时，请确保 DSN 名称和本地一致
+>
+> ​            TDC文件必须以`.tdc` 为扩展名，但是命名可以为任意名称。
+>
+> ​            TDC 文件必须应用在所有服务器节点以保证行为一致。
+
+  3. 重启 Tableau Server 以使 TDC 文件生效。
 
 ### 登录到 Tableau Server
 

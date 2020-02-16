@@ -23,6 +23,10 @@ Kyligence Enterprise支持与Tableau 8.X，9.X，10.X，2018.X，2019.X集成，
   ​       Tableau Desktop 缺省目录：
 
   ​       Documents\My Tableau Repository\Datasources
+  
+  > **注意：** tdc文件必须以`.tdc` 为扩展名，但是命名可以为任意名称。
+
+  3. 重启 Tableau Desktop 以使 TDC 文件生效。
 
 Kyligence Enterprise 与 Tableau Desktop 支持2种集成方式，下文将分别介绍具体集成步骤。
 

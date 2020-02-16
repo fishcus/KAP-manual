@@ -32,7 +32,13 @@
 
   ​             /var/opt/tableau/tableau_server/data/tabsvc/vizqlserver/Datasources/
 
+  Step 3: Restart Tableau Server to apply the change.
+  
   > **Note：**When configureing ODBC drivers in Tableau Server, make sure that the DSN name is the same as the local.
+  >
+  > The file must be saved with a `.tdc` extension, but the name does not matter. 
+  >
+  > The TDC file must be saved on all server nodes for consistent behavior.
 
 ### Login to Tableau Server
 
