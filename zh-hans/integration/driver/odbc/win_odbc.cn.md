@@ -79,11 +79,11 @@ DRIVER={KyligenceODBCDriver};SERVER=locahost;PORT=7070;PROJECT=learn_kylin
 1. 单击**控制面板 ->管理工具**，找到并打开**ODBC 数据源管理程序**
 2. 选择要记录连接活动的DSN，然后单击**配置**
 
-![windows_log_list](../images/odbc_log/windows_dsn_list.png)
+![ODBC数据源管理界面](../images/odbc_log/windows_dsn_list.png)
 
 3. 在DSN安装对话框中，单击**Logging Options**
 
-![windows_odbc_log_dsn_settup](../images/odbc_log/windows_odbc_log_dsn_settup.png)
+![DSN 配置界面](../images/odbc_log/windows_odbc_log_dsn_settup.png)
 
 4. 下面列出了所有日志级别的信息。在大多数情况下，LOG_TRACE是最佳的。
    - **LOG_FATAL**  记录可能导致驱动程序中止的非常严重的错误事件。
@@ -94,21 +94,17 @@ DRIVER={KyligenceODBCDriver};SERVER=locahost;PORT=7070;PROJECT=learn_kylin
    - **LOG_TRACE**  记录比LOG_DEBUG级别更详细的信息。
 
 5. 在**Log Path**字段中，键入要保存日志文件的文件夹完整路径。
-
-![windows_odbc_log_options](../images/odbc_log/windows_odbc_log_options.png)
+![日志选项](../images/odbc_log/windows_odbc_log_options.png)
 
 6. 在**Max Number Files**字段中，键入要保留的最大日志文件数。
-
 ​      **注意:** 到达日志文件的最大数量后，每次创建一个额外的文件，驱动程序都会删除最旧的文件。
 
 7. 在**Max File Size**字段中，键入每个日志文件的最大大小(以MB为单位)。
-
 ​      **注意:** 达到最大文件大小后，驱动程序创建一个新文件并继续日志记录。
 
 8. 单击**OK**关闭日志记录选项对话框。
 
 9. 单击**OK**保存设置并关闭DSN配置对话框。
-
 ​      **注意:** 在DSN配置对话框中单击**OK**后，驱动程序才会保存配置更改。单击**Cancel**按钮将放弃更改。
 
 10. 重新启动使用驱动程序的应用程序。在重新加载驱动程序之前，应用程序不会应用配置更改。
