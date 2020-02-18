@@ -1,45 +1,60 @@
 ## Kyligence ODBC 驱动（Mac 版本）
 
-在本文中，我们将向您介绍如何在Mac 系统下通过ODBC Manager或unixODBC安装和配置 Kyligence ODBC 驱动（Mac 版本)。
+在本文中，我们将向您介绍如何在 Mac 系统下通过 ODBC Manager 或 unixODBC 安装和配置 Kyligence ODBC 驱动（Mac 版本)。
 
-您可以使用 ODBC Manager 通过界面创建DSN或者也可以直接编辑`odbc.ini` 文件
+您可以使用 ODBC Manager，通过界面创建 "驱动程序" 与 "DSN" 。也可以直接编辑 `odbcinst.ini` 和 `odbc.ini` 文件。
 
-### 使用ODBC Manger安装
+### 安装 Kyligence ODBC Driver
 
-- #### 安装 Kyligence ODBC Driver 
+1. 您可以在 [Kyligence Account](http://account.kyligence.io/) 申请下载 Kyligence ODBC Driver 安装包。
 
-1. 您可以在 [Kyligence Account](http://account.kyligence.io) 申请下载 Kyligence ODBC Driver安装包
+2. 使用安装包安装，依照指引进行安装，驱动文件会自动安装至 /Library/ODBC/KyligenceODBCDriver/ 目录下。
 
-2. 解压下载的压缩包
+   > **注意：** 安装过程中会要求用户输入密码，用于安装驱动文件、配置 odbcinst.ini 和 odbc.ini 文件，以及赋予登陆用户读写权限。对于从旧版本更新到新版本的用户，可能需要手动删除旧驱动文件以及配置，详情见 FAQ 。
 
-   ```
-   tar -zxf KyligenceODBC_MacOS.tar.gz
-   ```
+### 使用 ODBC Manager 配置 Kyligence ODBC Driver
 
-> **注意：** 请不要将 ODBC 安装文件放在 root 目录下，否则会因为读写权限问题可能导致 BI Server 访问失败。
+您可以在 [ODBC Manager](http://www.odbcmanager.net/) 页面下载 ODBC Manager安装包，并运行安装。
 
-- #### 安装ODBC Manger
+- #### 配置 Driver
 
+1. 打开ODBC Manger，进入 "驱动程序" 页面，点击 "添加" 新建。
 
-1. 您可以在 [ODBC Manager](http://www.odbcmanager.net) 页面下载ODBC Manager安装包，并运行安装
+   > **注意：** Driver Name 可自定义，推荐使用 Kyligence ODBC Driver 等关键字来命名。手册中以 KyligenceODBCDriver 为例。
 
-2. /Library/ODBC 文件夹下，给登陆用户赋予odbc.ini，odbcinst.ini读写权限
+   ![ODBC 管理程序](../images/mac_odbc/1.png)
 
-   ```
-   sudo chown -R {UserName} odbcinst.ini
-   sudo chown -R {UserName} odbc.ini
-   ```
+2. 输入驱动名 "KyligenceODBCDriver"，驱动文件选择 Kyligence ODBC Driver 本地文件，点击 "好" 即可。
 
-> **注意：**若安装后，/Library/下没有ODBC文件夹，请手动创建，并配置odbcinst.ini、odbc.ini
->
-> ```
-> mkdir ODBC
-> cd ODBC
-> touch odbcinst.ini
-> touch odbc.ini
-> ```
->
-> **ODBC驱动配置文件** –  /Library/ODBC/odbcinst.ini
+   ![查看 ODBC 驱动信息](../images/mac_odbc/2.png)
+
+- #### 配置 DSN
+
+1. 进入 "系统 DSN" 或 "用户 DSN" 页面，点击 "添加" 新建。
+
+   ![添加 DSN](../images/mac_odbc/3.png)
+
+2. 选择 "KyligenceODBCDriver"。
+
+   ![选择 ODBC 驱动](../images/mac_odbc/4.png)
+
+3. 确认后，输入 Host、Port、Project 等信息，点击 "好" 即可。
+
+   - Host：本产品服务器地址
+   - Port：本产品服务器端口号
+   - Username：本产品服务登录用户名
+   - Password：本产品服务登录密码
+   - Project：查询所使用的本产品项目名称
+
+   ![配置 DSN 信息](../images/mac_odbc/5.png)
+
+4. 配置好后您就可以直接在 BI 工具中使用了，可以跳过其余章节。
+
+### 手动配置 Kyligence ODBC Driver
+
+您也可以通过直接修改配置文件，手动配置 Kyligence ODBC Driver 。
+
+> **ODBC 驱动配置文件** – /Library/ODBC/odbcinst.ini
 >
 > ```
 > [ODBC Drivers]
@@ -49,7 +64,7 @@
 > Driver={DriverPath}
 > ```
 >
-> **DSN配置文件** – /Library/ODBC/odbc.ini 
+> **DSN 配置文件** – /Library/ODBC/odbc.ini
 >
 > ```
 > [ODBC Data Sources]
@@ -62,64 +77,30 @@
 > Project = {KE_Project}
 > ```
 >
-> 样例配置： 
+> 样例配置：
 >
->   /Library/ODBC/odbcinst.ini
+> /Library/ODBC/odbcinst.ini
 >
 > ```
 > [ODBC Drivers]
 > KyligenceODBCDriver  = Installed
 > 
 > [KyligenceODBCDriver]
-> Driver = /Library/KyligenceODBCLib/libKyligenceODBC64.dylib
+> Driver = /Library/ODBC/KyligenceODBCDriver/libKyligenceODBC64.dylib
 > ```
 >
->   /Library/ODBC/odbc.ini
+> /Library/ODBC/odbc.ini
 >
 > ```
 > [ODBC Data Sources]
 > KyligenceDataSource = KyligenceODBCDriver
 > 
 > [KyligenceDataSource]
-> Driver = /Library/KyligenceODBCLib/libKyligenceODBC64.dylib
+> Driver = /Library/ODBC/KyligenceODBCDriver/libKyligenceODBC64.dylib
 > Host = http://kapdemo.chinaeast.cloudapp.chinacloudapi.cn
 > Port = 7070
 > Project = learn_kylin
 > ```
->
->   配置好后，您就可以直接在BI工具中使用了，可跳过下面的界面配置Driver、DSN操作。
-
-- #### 配置KyligenceODBCDriver
-
-  打开ODBC Manger，进入“Drivers”页面​ ，点击“Add”新建
-
-  > **注意：**请务必保证Driver Name为“KyligenceODBCDriver”
-
-  ![Drivers](../images/mac_odbc/1.png)
-
-  输入Driver Name:"KyligenceODBCDriver"，Driver File选择Kyligence ODBC Driver本地文件，点击“OK”即可
-
-  ![Add Drivers](../images/mac_odbc/2.png)
-
-- #### 配置DSN
-
-  进入“System DSN”或“User DSN”页面，点击“Add”新建
-
-  ![Add Drivers](../images/mac_odbc/3.png)
-
-  选择“KyligenceODBCDriver”
-
-  ![Add Drivers](../images/mac_odbc/4.png)
-
-  确认后，输入Host、Port、Project等信息，点击“OK”即可
-
-  - Host：本产品服务器地址
-  - Port：本产品服务器端口号
-  - Username：本产品服务登录用户名
-  - Password：本产品服务登录密码
-  - Project：查询所使用的本产品项目名称
-
-  ![Add Drivers](../images/mac_odbc/5.png)
 
 DSN配置好后您就可以直接在BI工具中使用了。
 
@@ -270,7 +251,7 @@ DSN配置好后您就可以直接在BI工具中使用了。
 
    例如: **LogPath=/localhome/username/Documents**
 
-   ![mac_log_configure](../images/odbc_log/linux_log_example.png)      
+   ![Mac 日志配置](../images/odbc_log/linux_log_example.png)      
 
 4. 配置**LogFileCount**属性以保留最大数量的日志文件。
 

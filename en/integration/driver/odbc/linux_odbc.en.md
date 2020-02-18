@@ -223,7 +223,7 @@ You can enable logging in the driver to track activity and troubleshoot issues.
 4. Set the LogPath attribute to the full path to the folder where you want to save log files.  This directory mus exist and be writable, including being writable by other users if the application using the driver runs as a specific user.
    For example: **LogPath=/localhome/username/Documents**
 
-   ![linux_log_configure](../images/odbc_log/linux_log_example.png)      
+   ![linux log configuration](../images/odbc_log/linux_log_example.png)      
 
 5. Set the LogFileCount attribute to the maximum number of log files to keep.
    For example: **LogFileCount=5**

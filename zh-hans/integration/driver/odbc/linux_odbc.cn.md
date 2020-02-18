@@ -226,7 +226,7 @@
 
    例如: **LogPath=/localhome/username/Documents**
 
-   ![linux_log_configure](../images/odbc_log/linux_log_example.png)      
+   ![linux 日志配置](../images/odbc_log/linux_log_example.png)      
 
 4. 配置**LogFileCount**属性以保留最大数量的日志文件。
 
