@@ -23,7 +23,8 @@
         "header",
         "image-captions",
         "custom-favicon",
-        "validate-links"
+        "validate-links",
+        "ga"
     ],
    
     "pluginsConfig": {
@@ -68,6 +69,10 @@
 
         "validate-links": {
              "local": "error"
+        },
+
+        "ga": {
+            "token": "UA-130862036-4"
         }
         
     }
