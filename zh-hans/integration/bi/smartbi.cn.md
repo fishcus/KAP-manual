@@ -84,4 +84,4 @@ SmartBI Insight 是企业级的商业智能分析平台，定位于前端数据�
 
   ![制作图表2](../images/SmartBI/13.PNG)
 
-> 注意：若想使用多维模式连接 Kyligence 产品，需要使用 Kyligence Insight 。更多信息请看 [Kyligence Insight 对接 SmartBI 操作手册](https://docs.kyligence.io/books/insight/v1.0/zh-cn/integration/smartbi_integration.cn.html)。
+> 注意：若想使用多维模式连接 Kyligence 产品，需要使用 Kyligence Insight 。更多信息请看 [Kyligence MDX 对接 SmartBI 操作手册](https://docs.kyligence.io/books/mdx/v1.0/zh-cn/integration/smartbi_integration.cn.html)。
