@@ -32,11 +32,13 @@ In this chapter, we will take Windows 7 as an example to introduce how to instal
 
 2. Switch to **System DSN** tab, click **Add** and select **KyligenceODBCDriver** in the pop-up driver selection box, then click **Finish**.
 
+   > **Note**：**User DSN** can be invoked only by a specific user, while **System DSN**  is available to all logged-in users of the system. If the user needs to access Kyligence Enterprise via ODBC on the Web BI Server, the **System DSN** should be used. 
+
    ![Add Kyligence ODBC Driver](../images/01.png)
 
 3. In the pop-up window, input the Kyligence Enterprise server information, as shown in the figure:
 
-    ![DSN setting](../images/02.png)
+   ![DSN Setting](../images/02.png)
 
    Where, the parameters are described as below: 
 
@@ -79,12 +81,10 @@ You can enable logging in the driver to track activity and troubleshoot issues.
 
 1. Select **Control Panel -> Administrative Tools** to open **ODBC Data Source Administrator**
 2. Select the DSN for which you want to log connection activity, and then click **Configure**
-
-![ODBC Data Source Administrator](../images/odbc_log/windows_dsn_list.png)
+![System DSN](../images/odbc_log/windows_dsn_list.png)
 
 1. In the DSN Setup dialog box, click **Logging Options**
-
-   ![DSN Settup](../images/odbc_log/windows_odbc_log_dsn_settup.png)
+   ![DSN Setting](../images/odbc_log/windows_odbc_log_dsn_settup.png)
 
 2. Information on all of the Log Levels is listed below.  LOG_TRACE is best in most cases.
 
@@ -97,8 +97,7 @@ You can enable logging in the driver to track activity and troubleshoot issues.
    - **LOG_TRACE** logs more detailed information than the LOG_DEBUG level.
 
 3. In the Log Path (or Log Directory) field, type the full path to the folder where you want to save log files.
-
-   ![log Options](../images/odbc_log/windows_odbc_log_options.png)
+   ![Log Setting](../images/odbc_log/windows_odbc_log_options.png)
 
 4. In the Max Number Files field, type the maximum number of log files to keep.
 
