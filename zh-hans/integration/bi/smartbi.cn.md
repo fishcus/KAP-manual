@@ -2,86 +2,183 @@
 
 SmartBI Insight 是企业级的商业智能分析平台，定位于前端数据分析，对接各种数据库、数据仓库和大数据平台，构建交互式仪表盘，满足多样性的数据分析应用需求，如大数据分析、企业报表平台、自主探索分析等。本文将分步介绍 SmartBI Insight 与 Kyligence Enterprise 的连接。
 
+### 支持的Smartbi 版本
+
+本文档验证的smartbi版本为 smartbi 8.5。
+
 ### 安装 SmartBI Insight
 
 有关 SmartBI Insight 的安装说明，请访问 [SmartBI Insight 下载页面](http://www.SmartBI.com.cn/download)
 
 ### 安装 Kyligence JDBC 驱动程序
 
-+ SmartBI Insight 通过 JDBC 连接 Kyligence Enterprise，所以首先需要在SmartBI Insight 上安装 Kyligence JDBC 驱动程序，获取 Kyligence JDBC 驱动程序：请参考 [Kyligence JDBC 驱动程序说明](../driver/jdbc.cn.md)
+SmartBI Insight 通过 JDBC 连接 Kyligence Enterprise，所以首先需要在SmartBI Insight 上安装 Kyligence JDBC 驱动程序，获取 Kyligence JDBC 驱动程序：请参考 [Kyligence JDBC 驱动程序说明](../driver/jdbc.cn.md)
 
-+ 向 SmartBI Insight 增加 JDBC 驱动程序：
+向 SmartBI Insight 增加 JDBC 驱动程序：
 
-  具体步骤如下：
+* 删除Smartbi自带的Kylin JDBC，通常放置在以下路径：
 
-  + 停止 SmartBI
-  + 将 JDBC 的驱动放到 **Smart BI 安装目录\Tomcat\webapps\eagle\WEB-INF\lib**下
-  + 重启 SmartBI
+`[Smartbi_Insight安装路径]\Tomcat\webapps\smartbi\WEB-INF\lib`
 
-### 建立 Kyligence Enterprise 数据源连接 
+* 确认Smartbi的动态目录
 
-+ **进入界面**
+进入smartbi的配置界面，URL为 http://server:port/smartbi/vision/config.jsp（根据实际情况修改server和port），将界面滚动到底部，找到“动态驱动存放路径”一项
 
-  在 **定制管理**->**数据管理**->**数据源** 节点下右键选择新建关系数据源，或是在定制管理快捷按钮选择 **数据源连接**，则打开数据源连接窗口。
+![找到smartbi的动态驱动路径](../images/SmartBI/dynamicpath.png)
 
-  ![进入界面](../images/SmartBI/01.PNG)
 
-+ **新建数据源**
 
-  选择 **Kylin** 驱动程序类型，将服务器IP地址等信息填写到连接字符串（ 字符串格式为:```jdbc:kylin://<hostname>:<port>/<project_name>``` ），然后**保存**数据源连接。
+下载 Kyligence 的 JDBC 的驱动并放到 **Smartbi的动态驱动路径下**, 默认安装路径为：
 
-  这里默认选择用户验证类型为**静态验证**，输入 Kyligence Enterprise 的用户名和密码进行连接。
+`[Smartbi_Insight 安装路径]\Tomcat\bin\dynamicLibraryPath\KYLIN`
 
-  ![新建数据源](../images/SmartBI/02.PNG)
+> 直接将文件添加到上述步骤中配置的存放路径即可，无需重启服务。系统每隔10秒会自动监听该目录里jar文件的变化。
 
-+ **管理数据源**
 
-  点击保存后，您将在 **定制管理**->**数据管理**->**数据源**下看到您此前建立的 Kyligence 数据源。
 
-  ![查看数据源](../images/SmartBI/save.cn.png)
+### 建立 Kyligence Enterprise 数据源连接
 
-  右键点击数据源名称，点击管理数据库，即可进入管理页面
+#### 新建数据源
 
-  ![管理数据源](../images/SmartBI/management.cn.png)
++ 在 **定制管理**->**数据管理**->**数据源** 节点下右键选择新建关系数据源，或是在定制管理快捷按钮选择 **数据源连接**，则打开数据源连接窗口。
 
-  对数据源进行管理，将表结构信息（表名、字段名、字段类型等）添加到 SmartBI Insight 中。
+  | **数据源填写项** | **如何填写**                                                 |
+  | ---------------- | ------------------------------------------------------------ |
+  | 名称             | 输入任意名称                                                 |
+  | 别名             | 输入任意别名                                                 |
+  | 驱动程序类型     | Kylin                                                        |
+  | 驱动程序类       | org.apache.kylin.jdbc.Driver                                 |
+  | 连接字符串       | jdbc:kylin://<servername>:<port>/<projectName>               |
+  | 验证类型         | 根据需要选择静态或动态，如直接输入单一验证账户，则选择静态，需要配置动态请查看下方文档。 |
+  | 用户名           | 输入连接的Kyligence环境的用户名                              |
+  | 密码             | 输入连接的Kyligence环境的密码                                |
+  | 数据库源字符集   | 留空                                                         |
+  | 数据库目标字符集 | 留空                                                         |
+  | 最大连接数       | 不修改，默认值100                                            |
+  | 引用标识符       | 查询中的转义符号，请使用英文的双引号"                        |
 
-  ![管理数据源1](../images/SmartBI/09.PNG)
+  ![创建数据源](../images/SmartBI/datasource.png)
+
+  点击测试连接，显示连接通过，然后点击保存数据源。
+
   
-  右键点击您创建的数据源下的**表关系视图**，点击其中的**新建**->**表关系视图**，即可进入关系图页面
-  
-  ![表关系视图](../images/SmartBI/manage_relation.cn.png)
-  
-  对于星型模型的多表关联，会按照按外键、列名等方式自动创建表之间的关联关系，也可以手动拖拽建立关联关系。（注：这里的关联关系需要与接下来使用的 Cube 中的**关联关系**相匹配）
-  
-  ![管理数据源3](../images/SmartBI/11.PNG)
+
+#### **管理数据源**
+
+点击保存后，您将在 **定制管理**->**数据管理**->**数据源**下看到您此前建立的 Kyligence 数据源。
+
+右键点击数据源名称，点击管理数据库，即可进入管理页面
+
+![数据库管理](../images/SmartBI/manage_data_source.png)
+
+对数据源进行管理，将表结构信息（表名、字段名、字段类型等）添加到 SmartBI Insight 中。
+
+![导入数据源表](../images/SmartBI/import_tables.png)
+
+对于需要在模型上重复使用的表需要复制表，并修改表的别名。
+
+点击您创建的数据源，右键点击需要重复使用的表，点击**复制表**。
+
+![管理数据源1](../images/SmartBI/copy_tables.png)
+
+右键点击需要表名，点击属性，修改表的别名。在本例中，我们将需要重复使用的表 KYLIN_ACCOUNT分别修改别名为BUYER_ACCOUNT和SELLER_ACCOUNT
+
+<img src="../images/SmartBI/change_table_alias.png" alt="修改表别名" style="zoom:50%;" />
+
+
+
+右键点击您创建的数据源下的**表关系视图**，点击其中的**新建**->**表关系视图**，即可进入关系图页面
+
+<img src="../images/SmartBI/data_model.png" alt="表关系视图" style="zoom:50%;" />
+
+输入名称、别名、描述。
+
+拖拽左侧的表到画布中，进行建模，对于星型模型的多表关联，会按照按外键、列名等方式自动创建表之间的关联关系，也可以手动拖拽建立关联关系。
+
+<img src="../images/SmartBI/canvas.png" alt="数据建模" style="zoom:50%;" />
+
+
+
+> 注：在smartbi中定义的模型需要与Kyligence Enterprise中定义的模型的**关联关系**相匹配
+
+对于需要多列关联的表，可点击关联模型的线，修改关联表达式
+
+<img src="../images/SmartBI/composite_join_key.png" alt="数据建模" style="zoom:50%;" />
+
+
 
 ### 创建业务视图
 
-+ 右键点击**数据库**->**数据库名**->**业务视图**->**可视化查询**，即可进入新增业务视图的界面。
+右键点击**数据库**->**数据库名**->**业务视图**->**可视化查询**，即可进入新增业务视图的界面。
 
-  ![业务视图](../images/SmartBI/business.cn.png)
+<img src="../images/SmartBI/business_view.png" alt="新建业务视图" style="zoom:50%;" />
 
-+ 将字段拖入后，创建业务视图。
+将字段拖入后，创建业务视图。
 
-  ![创建业务视图](../images/SmartBI/business_2.cn.png)
+<img src="../images/SmartBI/create_business_view.png" alt="创建业务视图" style="zoom:50%;" />
+
+>注意：对于在Kyligence Cube上定义了聚合的度量请双击字段，并定义字段的聚合方式。
+>
+>如 Kylin_sales_cube 上度量 GMV 定义为 sum(price)，则在业务视图中需要将PRICE字段的聚合方式定义为合计。
+
+<img src="../images/SmartBI/define_aggregation.png" alt="定义业务视图" style="zoom:50%;" />
 
 ### 透视分析
 
-+ 点击**定制管理**->**透视分析**，即可进入透视分析页面。
+点击**定制管理**->**透视分析**，即可进入透视分析页面。
 
-  ![透视分析](../images/SmartBI/analysis.cn.png)
+<img src="../images/SmartBI/pivot_analysis.png" alt="创建透视分析" style="zoom:50%;" />
 
-+ 在选择业务查询页面，选择数据源中的表选项卡，并找到之前创建的业务视图。
+在选择业务查询页面，选择**数据源中的表**选项卡，并找到之前创建的业务视图。
 
-  ![选择业务查询](../images/SmartBI/select_business.cn.png)
+<img src="../images/SmartBI/choose_business_view.png" alt="选择业务视图" style="zoom:50%;" />
 
-+ 拖拽字段到行列区和过滤区，点击刷新，进行自助式探索分析。
+拖拽字段到行列区和过滤区，点击刷新，进行自助式探索分析。
 
-  ![制作图表1](../images/SmartBI/12.PNG)
+<img src="../images/SmartBI/create_pivot_analysis.png" alt="创建透视分析" style="zoom:50%;" />
 
-+ 根据分析需要，生成各种分析图表。
+根据分析需要，生成各种分析图表。
 
-  ![制作图表2](../images/SmartBI/13.PNG)
+<img src="../images/SmartBI/chart.png" alt="创建图表分析" style="zoom:50%;" />
+
+
 
 > 注意：若想使用多维模式连接 Kyligence 产品，需要使用 Kyligence Insight 。更多信息请看 [Kyligence MDX 对接 SmartBI 操作手册](https://docs.kyligence.io/books/mdx/v1.0/zh-cn/integration/smartbi_integration.cn.html)。
+
+### 自助仪表盘
+
+#### 创建业务主题
+
+使用自助仪表盘功能需要先创建业务主题，在菜单中选择**定置管理>业务主题**。
+
+<img src="../images/SmartBI/business_theme.png" alt="创建业务主题" style="zoom:50%;" />
+
+在数据源中选择创建好的 Kyligence 数据源，如果您好没有创建 Kyligence 数据源 请参考 [**建立 Kyligence Enterprise 数据源连接**](#建立 Kyligence Enterprise 数据源连接 ) 部分文档创建数据源。
+
+<img src="../images/SmartBI/choose_data_source.png" alt="创建业务主题" style="zoom:50%;" />
+
+使用数据源中的需要使用的表拖拽到左侧栏位，并在表关系视图定义表之间的关联。
+
+<img src="../images/SmartBI/create_business_theme.png" alt="创建业务主题" style="zoom:50%;" />
+
+如果您需要对数据进行过滤，您可以右键过滤器，选择新建过滤器
+
+<img src="../images/SmartBI/create_filter.png" alt="创建业务主题" style="zoom:50%;" />
+
+在过滤器中定义过滤器的表达式。
+
+<img src="../images/SmartBI/create_filter-2.png" alt="创建业务主题" style="zoom:50%;" />
+
+#### 创建自助仪表盘
+
+选择**定置管理>自主仪表盘**
+
+<img src="../images/SmartBI/create_dashboard.png" alt="创建业务主题" style="zoom:50%;" />
+
+在左侧数据栏位下拉选择刚才创建的业务主题
+
+<img src="../images/SmartBI/choose_business_theme.png" alt="创建业务主题" style="zoom:30%;" />
+
+即可进行拖拽可视化分析。
+
+<img src="../images/SmartBI/dashboard.png" alt="创建业务主题" style="zoom:50%;" />
