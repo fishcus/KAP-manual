@@ -1,7 +1,7 @@
 ## Integrate with Kerberos and Sentry
 
 The CDH platform contains security components such as Sentry and Kerberos. This chapter describes how to deploy Kyligence in a CDH cluster enabled with Sentry and Kerberos.
-
+Some configurations are slightly different from those in [Prerequisite](../installation/prerequisite.en.md). This chapter shall prevail.
 
 ### Prerequisite
 
