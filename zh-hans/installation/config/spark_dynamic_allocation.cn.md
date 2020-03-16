@@ -42,9 +42,7 @@ Spark动态资源分配需要配置两处：一处是集群的资源管理器相
 1. 登陆Ambari管理页面，选择Yarn -> Configs -> Advanced，通过Filter找到以下配置项并进行更改：
    `yarn.nodemanager.aux-services.spark_shuffle.class=org.apache.spark.network.yarn.YarnShuffleService`
 
-2. 将$KYLIN_HOME/spark/lib/spark-<version>-yarn-shuffle.jar文件拷贝出来，放到hadoop节点的$HDP_HOME/hadoop/lib路径下。
-
-3. 保存配置并重启
+2. 保存配置并重启
 
 
 #### Kyligence Enterprise配置

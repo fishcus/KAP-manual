@@ -46,9 +46,7 @@ There are two parts we need to configure for Spark Dynamic Allocation:
 1. Log into Ambari management page, choose Yarn -> Configs -> Advanced, find following configurations via filter and update: 
    `yarn.nodemanager.aux-services.spark_shuffle.class=org.apache.spark.network.yarn.YarnShuffleService`
 
-2. Copy `$KYLIN_HOME/spark/yarn/spark-<version>-yarn-shuffle.jar` and put it under path $HDP_HOME/hadoop/lib of Hadoop node.
-
-3. Save the config and restart all services.
+2. Save the config and restart all services.
 
 
 #### Kyligence Enterprise configuration
