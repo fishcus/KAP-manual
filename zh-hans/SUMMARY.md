@@ -177,6 +177,7 @@
         * [任务报警](operation/monitor_diagnosis/alerting.cn.md)
         * [系统诊断与任务诊断](operation/monitor_diagnosis/diag.cn.md)
         * [进程守护脚本](operation/monitor_diagnosis/instance_guard.cn.md)
+        * [守护进程](operation/monitor_diagnosis/guardian.cn.md)
         * [获取技术支持](operation/monitor_diagnosis/get_support.cn.md)
     * [升级](operation/upgrade/README.md)
         * [升级至 Kyligence Enterprise 3.x 最新版本](operation/upgrade/upgrade_to_latest_3x.cn.md)
