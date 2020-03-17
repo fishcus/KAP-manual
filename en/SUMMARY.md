@@ -176,6 +176,7 @@
         * [Job Status Alert](operation/monitor_diagnosis/alerting.en.md)
         * [System and Job Diagnosis](operation/monitor_diagnosis/diag.en.md)
         * [Get Support](operation/monitor_diagnosis/get_support.en.md)
+        * [Guardian Process](operation/monitor_diagnosis/guardian.en.md)
     * [Upgrade](operation/upgrade/README.md)
         * [Upgrade to Latest Kyligence Enterprise 3.x](operation/upgrade/upgrade_to_latest_3x.en.md)
         * [Upgrade from KAP 2.x](operation/upgrade/upgrade_from_2x.en.md)
