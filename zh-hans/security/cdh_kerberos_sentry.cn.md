@@ -1,6 +1,7 @@
 ## 与 Kerberos + Sentry 集成
 
 CDH 自带了 Sentry、Kerberos 等安全组件，用于配置一站式数据安全管控与权限管理。本章节将介绍如何在启用了安全配置的 CDH 集群环境中部署 Kyligence，并实现与 Sentry、Kerberos 安全配置的集成。
+部分配置与 [安装前置条件](../installation/prerequisite.cn.md) 中存在的细微差异，以本章节为准。
 
 ### 环境准备 
 
