@@ -126,4 +126,4 @@ Compatible distributions：
 
 ### **Download**
 
-The Kyligence Enterprise 2.4 is available for download, please visit[ Kyligence Enterprise Product ](http://kyligence.io/products/#kap)for more details.
+The Kyligence Enterprise 2.4 is available for download, please visit[ Kyligence Enterprise Product ](http://download.kyligence.io)for more details.

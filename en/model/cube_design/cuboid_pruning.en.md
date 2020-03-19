@@ -54,7 +54,7 @@ The Cube level MDC applies to all aggregation groups, while the aggregation grou
 
 Based on the example above, we set the cube level MDC to 2, and keep the aggregation group level MDC as 0. Save the cube and edit it again, we can see the cuboid number is reduced from 4095 to 78 in the aggregation groups, and all cuboids in this cube are reduced to 113. It is because the cuboids containing more than 2 dimensions are ignored except for base cuboid.
 
-![Set Max Dimension Combination](images/cuboid_pruning_2.png)
+![Set Max Dimension Combination](images/mdc_agg_0.png)
 
 
 

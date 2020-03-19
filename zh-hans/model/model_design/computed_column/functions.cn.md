@@ -98,7 +98,7 @@
 
 | 函数语法                 | 描述                                       | 示例                  |
 | -------------------- | ---------------------------------------- | ------------------- |
-| cast(expr as <type>) | 将表达式 expr 转换为 type 类型，例如 cast(‘1’ as BIGINT)。如果转换不成功，则返回 null；非空字符串转换为 boolean，返回 true。 | cast('1' as BIGINT) |
+| cast(expr as <type>) | 将表达式 expr 转换为 type 类型，例如 cast('1' as BIGINT)。如果转换不成功，则返回 null；非空字符串转换为 boolean，返回 true。 | cast('1' as BIGINT) |
 
 
 
@@ -130,23 +130,23 @@
 | locate(string substr, string str[, int pos]) | 返回 substr 第一次出现在 str 的 pos 后的位置。         | locate('I like this game', 'like')       |
 | lower(string A) lcase(string A)          | 返回全部字符转为小写之后的字符串。                        | lower('fOoBaR')                          |
 | lpad(string str, int len, string pad)    | 左边添加 pad 参数输入的字符使字符串长度为 len，然后返回该字符串。    | lpad('abc',10,'td')                      |
-| ltrim(string A)                          | 返回从 A 的开头（左手边）删除空白字符后的字符串。例如，ltrim(‘ foobar ‘) 结果为 ‘foobar’。 | ltrim('foobar')                          |
-| regexp_extract(string subject, string pattern, int index) | 返回使用模式提取的字符串。例如，regexp_extract(‘foothebar’, ‘foo(.*?)(bar)’, 2) 返回 ‘bar’。注意，使用预定义字符类型有一些必要的关注：使用 ‘\s’ 作为第二个参数将匹配字母 s；匹配空白字符 ‘\\s’ 是必须的。‘index’ 参数是 Java 正则 Matcher group() 方法索引。 | regexp_extract('foothebar', 'foo(.*?)(bar)', 2) |
+| ltrim(string A)                          | 返回从 A 的开头（左手边）删除空白字符后的字符串。例如，ltrim(' foobar ') 结果为 'foobar'。 | ltrim('foobar')                          |
+| regexp_extract(string subject, string pattern, int index) | 返回使用模式提取的字符串。例如，regexp_extract('foothebar', 'foo(.*?)(bar)', 2) 返回 'bar'。注意，使用预定义字符类型有一些必要的关注：使用 '\s' 作为第二个参数将匹配字母 s；匹配空白字符 '\\s' 是必须的。'index' 参数是 Java 正则 Matcher group() 方法索引。 | regexp_extract('foothebar', 'foo(.*?)(bar)', 2) |
 | regexp_replace(string INITIAL_STRING, string PATTERN, string REPLACEMENT) | 返回用 REPLACEMENT 的实例替换 INITIAL_STRING 中所有 PATTERN 内定义的与 java 正则表达式的语法匹配的所有子串。 | regexp_replace('foobar', 'oo\ar', '')    |
 | repeat(string str, int n)                | 重复 `str` n 次。                            | repeat('abc', 3)                         |
 | reverse(string A)                        | 返回反转后的字符串。                               | reverse('abc')                           |
 | rpad(string str, int len, string pad)    | 右边添加 pad 参数输入的字符使字符串长度为 len，然后返回该字符串。    | rpad('abc',10,'td')                      |
-| rtrim(string A)                          | 返回从 A 的末尾（右手边）删除空白字符后的字符串。例如，rtrim(‘ foobar ‘) 返回结果 ‘foobar’。 | rtrim('foobar')                          |
-| sentences(string str, string lang, string locale) | 将一个自然语言文本字符串标记为单词和句子，每个句子在适当的句子边界被拆分并且作为一个单词数组返回。‘lang’ 和 ‘locale’ 是可选参数。例如，sentences(‘Hello there! How are you?’) 返回 ( (“Hello”, “there”), (“How”, “are”, “you”))。 | sentences('Hello there! How are you?')   |
+| rtrim(string A)                          | 返回从 A 的末尾（右手边）删除空白字符后的字符串。例如，rtrim(' foobar ') 返回结果 'foobar'。 | rtrim('foobar')                          |
+| sentences(string str, string lang, string locale) | 将一个自然语言文本字符串标记为单词和句子，每个句子在适当的句子边界被拆分并且作为一个单词数组返回。'lang' 和 'locale' 是可选参数。例如，sentences('Hello there! How are you?') 返回 ( (“Hello”, “there”), (“How”, “are”, “you”))。 | sentences('Hello there! How are you?')   |
 | space(int n)                             | 返回 n 个空格的字符串。                            | space(3)                                 |
 | split(string str, string pat)            | 从 pat 左右分解 str（ pat 是一个正则表达式）返回分解后的数据。           | split('abtcdtef','t')                    |
-| substr(string/binary A, int start) substring(string/binary A, int start) | 返回从 start 位置到末尾的字符串 A 的子字符串或字节数组的部分。例如，substr(‘foobar’, 4) 返回结果为 ‘bar’。 | substr('foobar', 4)                      |
-| substr(string/binary A, int start, int len) substring(string/binary A, int start, int len) | 返回从 start 位置开始长度为 len 的 A 的字符串或字节数组的部分。例如，substr(‘foobar’, 4, 1) 返回结果为 ‘b’。 | substr('foobar', 4, 1)                   |
-| substring_index(string A, string delim, int count) | 返回字符串 A 中 delim 分隔符第 count 次匹配前的子字符串。如果 count 是正数，会返回所有到左边最后分隔符（从左边计算）的值。如果 count 是负数，会返回所有到右边最后分隔符（从右边计算）。当搜索 delim 时，Substring_index 是大小写敏感的。示例：substring_index(‘www.apache.org’, ‘.’, 2) = ‘www.apache’。 | substring_index('www.apache.org', '.', 2) |
-| trim(string A)                           | 返回从 A 两端去除空白字符后的字符串。例如，trim(‘ foobar ‘) 返回的结果为 ‘foobar’。 | trim('foobar')                           |
-| upper(string A) ucase(string A)          | 返回转换字符串 A 中所有字符为大写后的字符串。例如，upper(‘fOoBaR’) 返回的结果为 ‘FOOBAR’。 | upper('fOoBaR')                          |
-| levenshtein(string A, string B)          | 返回两个字符串之间的 Levenshtein 距离。例如，levenshtein(‘kitten’, ‘sitting’) 返回结果 3。 | levenshtein('kitten', 'sitting')         |
-| soundex(string A)                        | 返回字符串的 soundex 码。例如，soundex(‘Miller’) 结果为 M460。 | soundex('Miller')                        |
+| substr(string/binary A, int start) substring(string/binary A, int start) | 返回从 start 位置到末尾的字符串 A 的子字符串或字节数组的部分。例如，substr('foobar', 4) 返回结果为 'bar'。 | substr('foobar', 4)                      |
+| substr(string/binary A, int start, int len) substring(string/binary A, int start, int len) | 返回从 start 位置开始长度为 len 的 A 的字符串或字节数组的部分。例如，substr('foobar', 4, 1) 返回结果为 'b'。 | substr('foobar', 4, 1)                   |
+| substring_index(string A, string delim, int count) | 返回字符串 A 中 delim 分隔符第 count 次匹配前的子字符串。如果 count 是正数，会返回所有到左边最后分隔符（从左边计算）的值。如果 count 是负数，会返回所有到右边最后分隔符（从右边计算）。当搜索 delim 时，Substring_index 是大小写敏感的。示例：substring_index('www.apache.org', '.', 2) = 'www.apache'。 | substring_index('www.apache.org', '.', 2) |
+| trim(string A)                           | 返回从 A 两端去除空白字符后的字符串。例如，trim(' foobar ') 返回的结果为 'foobar'。 | trim('foobar')                           |
+| upper(string A) ucase(string A)          | 返回转换字符串 A 中所有字符为大写后的字符串。例如，upper('fOoBaR') 返回的结果为 'FOOBAR'。 | upper('fOoBaR')                          |
+| levenshtein(string A, string B)          | 返回两个字符串之间的 Levenshtein 距离。例如，levenshtein('kitten', 'sitting') 返回结果 3。 | levenshtein('kitten', 'sitting')         |
+| soundex(string A)                        | 返回字符串的 soundex 码。例如，soundex('Miller') 结果为 M460。 | soundex('Miller')                        |
 
 
 ### 限制
