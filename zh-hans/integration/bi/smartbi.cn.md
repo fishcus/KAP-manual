@@ -2,7 +2,7 @@
 
 SmartBI Insight 是企业级的商业智能分析平台，定位于前端数据分析，对接各种数据库、数据仓库和大数据平台，构建交互式仪表盘，满足多样性的数据分析应用需求，如大数据分析、企业报表平台、自主探索分析等。本文将分步介绍 SmartBI Insight 与 Kyligence Enterprise 的连接。
 
-### 支持的Smartbi 版本
+### 支持的 SmartBI 版本
 
 本文档验证的smartbi版本为 smartbi 8.5。
 
@@ -12,31 +12,31 @@ SmartBI Insight 是企业级的商业智能分析平台，定位于前端数据�
 
 ### 安装 Kyligence JDBC 驱动程序
 
-SmartBI Insight 通过 JDBC 连接 Kyligence Enterprise，所以首先需要在SmartBI Insight 上安装 Kyligence JDBC 驱动程序，获取 Kyligence JDBC 驱动程序：请参考 [Kyligence JDBC 驱动程序说明](../driver/jdbc.cn.md)
+SmartBI Insight 通过 JDBC 连接 Kyligence Enterprise，所以首先需要在 SmartBI Insight 上安装 Kyligence JDBC 驱动程序，获取 Kyligence JDBC 驱动程序：请参考 [Kyligence JDBC 驱动程序说明](../driver/jdbc.cn.md)
 
 向 SmartBI Insight 增加 JDBC 驱动程序：
 
-* 删除Smartbi自带的Kylin JDBC，通常放置在以下路径：
+* 删除 SmartBI 自带的 Apache Kylin JDBC 驱动程序，通常可在以下路径找到：
 
 ```
-[Smartbi_Insight安装路径]\Tomcat\webapps\smartbi\WEB-INF\lib
+[SmartBI_Insight安装路径]\Tomcat\webapps\smartbi\WEB-INF\lib
 ```
 
-* 确认Smartbi的动态目录
+* 确认 SmartBI 的动态目录
 
-进入smartbi的配置界面，URL为 `http://server:port/smartbi/vision/config.jsp`（根据实际情况修改server和port），将界面滚动到底部，找到**动态驱动存放路径**一项
+进入 SmartBI 的配置界面，URL 为 `http://server:port/smartbi/vision/config.jsp`（根据实际情况修改 server 和 port ），将界面滚动到底部，找到**动态驱动存放路径**一项
 
-![找到smartbi的动态驱动路径](../images/smart_bi/dynamicpath.png)
+![找到 SmartBI 的动态驱动路径](../images/smart_bi/dynamicpath.png)
 
 
 
-下载 Kyligence 的 JDBC 的驱动并放到 **Smartbi的动态驱动路径下**, 默认安装路径为：
+下载  Kyligence 的 JDBC 的驱动并放到 ** SmartBI 的动态驱动路径下**, 默认安装路径为：
 
 ```
-[Smartbi_Insight 安装路径]\Tomcat\bin\dynamicLibraryPath\KYLIN
+[SmartBI_Insight 安装路径]\Tomcat\bin\dynamicLibraryPath\KYLIN
 ```
 
-> 直接将文件添加到上述步骤中配置的存放路径即可，无需重启服务。系统每隔10秒会自动监听该目录里jar文件的变化。
+> 直接将文件添加到上述步骤中配置的存放路径即可，无需重启服务。系统每隔 10 秒会自动监听该目录里 jar 文件的变化。
 
 
 
@@ -44,28 +44,37 @@ SmartBI Insight 通过 JDBC 连接 Kyligence Enterprise，所以首先需要在S
 
 #### 新建数据源
 
-+ 在 **定制管理**->**数据管理**->**数据源** 节点下右键选择新建关系数据源，或是在定制管理快捷按钮选择 **数据源连接**，则打开数据源连接窗口。
+在 **定制管理**->**数据管理**->**数据源** 节点下右键选择新建关系数据源，或是在定制管理快捷按钮选择 **数据源连接**，则打开数据源连接窗口。
 
-  | **数据源填写项** | **如何填写**                                                 |
-  | ---------------- | ------------------------------------------------------------ |
-  | 名称             | 输入任意名称                                                 |
-  | 别名             | 输入任意别名                                                 |
-  | 驱动程序类型     | Kylin                                                        |
-  | 驱动程序类       | `org.apache.kylin.jdbc.Driver`                                 |
-  | 连接字符串       | `jdbc:kylin://<servername>:<port>/<projectName>`               |
-  | 验证类型         | 根据需要选择静态或动态，如直接输入单一验证账户，则选择静态，需要配置动态请查看下方文档。 |
-  | 用户名           | 输入连接的 Kyligence 环境的用户名                              |
-  | 密码             | 输入连接的 Kyligence 环境的密码                                |
-  | 数据库源字符集   | 留空                                                         |
-  | 数据库目标字符集 | 留空                                                         |
-  | 最大连接数       | 不修改，默认值 100                                            |
-  | 引用标识符       | 查询中的转义符号，请使用英文的双引号 `"`                        |
+名称：输入任意名称
 
-  ![创建数据源](../images/smart_bi/datasource.png)
+别名：输入任意别名
 
-  点击测试连接，显示连接通过，然后点击保存数据源。
+驱动程序类型：Kylin
 
-  
+驱动程序类：org.apache.kylin.jdbc.Driver
+
+连接字符串：`jdbc:kylin://<servername>:<port>/<projectName>`
+
+验证类型: 根据需要选择静态或动态，如直接输入单一验证账户，则选择静态。
+
+用户名: 输入连接的 Kyligence 环境的用户名
+
+密码: 输入连接的 Kyligence 环境的密码
+
+数据库源字符集: 留空
+
+数据库目标字符集: 留空
+
+最大连接数:不修改，默认值 100
+
+引用标识符:查询中的转义符号，请使用英文的双引号
+
+![创建数据源](../images/smart_bi/datasource.png)
+
+点击测试连接，显示连接通过，然后点击保存数据源。
+
+
 
 #### **管理数据源**
 
@@ -85,7 +94,7 @@ SmartBI Insight 通过 JDBC 连接 Kyligence Enterprise，所以首先需要在S
 
 ![管理数据源1](../images/smart_bi/copy_tables.png)
 
-右键点击需要表名，点击属性，修改表的别名。在本例中，我们将需要重复使用的表 KYLIN_ACCOUNT分别修改别名为BUYER_ACCOUNT和SELLER_ACCOUNT
+右键点击需要表名，点击属性，修改表的别名。在本例中，我们将需要重复使用的表 KYLIN_ACCOUNT 分别修改别名为 BUYER_ACCOUNT 和 SELLER_ACCOUNT 
 
 <img src="../images/smart_bi/change_table_alias.png" alt="修改表别名" style="zoom:50%;" />
 
@@ -103,7 +112,7 @@ SmartBI Insight 通过 JDBC 连接 Kyligence Enterprise，所以首先需要在S
 
 
 
-> 注：在smartbi中定义的模型需要与Kyligence Enterprise中定义的模型的**关联关系**相匹配
+> 注：在 SmartBI 中定义的模型需要与 Kyligence Enterprise 中定义的模型的**关联关系**相匹配
 
 对于需要多列关联的表，可点击关联模型的线，修改关联表达式
 
@@ -121,7 +130,7 @@ SmartBI Insight 通过 JDBC 连接 Kyligence Enterprise，所以首先需要在S
 
 <img src="../images/smart_bi/create_business_view.png" alt="创建业务视图" style="zoom:50%;" />
 
->注意：对于在Kyligence Cube上定义了聚合的度量请双击字段，并定义字段的聚合方式。
+>注意：对于在 Kyligence 的 Cube 上定义了聚合的度量请双击字段，并定义字段的聚合方式。
 >
 >如 Kylin_sales_cube 上度量 GMV 定义为 sum(price)，则在业务视图中需要将PRICE字段的聚合方式定义为合计。
 
@@ -146,8 +155,7 @@ SmartBI Insight 通过 JDBC 连接 Kyligence Enterprise，所以首先需要在S
 <img src="../images/smart_bi/chart.png" alt="创建图表分析" style="zoom:50%;" />
 
 
-
-> 注意：若想使用多维模式连接 Kyligence 产品，需要使用 Kyligence Insight 。更多信息请看 [Kyligence MDX 对接 SmartBI 操作手册](https://docs.kyligence.io/books/mdx/v1.0/zh-cn/integration/smartbi_integration.cn.html)。
+> 注意：若想使用多维模式连接 Kyligence 产品，需要使用 Kyligence MDX 。更多信息请看 [Kyligence MDX 对接 SmartBI 操作手册](https://docs.kyligence.io/books/mdx/v1.0/zh-cn/integration/smartbi_integration.cn.html)。
 
 ### 自助仪表盘
 

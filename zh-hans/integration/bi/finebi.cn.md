@@ -18,8 +18,9 @@ FineBI 通过 JDBC 连接 Kyligence Enterprise，所以首先需要在 FineBI �
 
 2. 向 FineBI 增加 JDBC 驱动程序
 
-   拷贝 JDBC 驱动程序到 `安装路径\webapps\webroot\WEB-INF\lib`
+​       Windows 版：拷贝 JDBC 驱动程序到 `安装路径\webapps\webroot\WEB-INF\lib`
 
+​       Linux 版：拷贝 JDBC 驱动程序到 `安装路径\webapps\webroot\WEB-INF\lib`
 
 ### 建立 Kyligence Enterprise 数据源连接
 
@@ -35,11 +36,19 @@ FineBI 通过 JDBC 连接 Kyligence Enterprise，所以首先需要在 FineBI �
 
 2. 保存数据源
 
-   将服务器IP地址等信息填写到连接字符串
+   将服务器 IP 地址等信息填写到连接字符串，字符串格式为：
 
-   字符串格式为: `jdbc:kylin://<hostname>:<port>/<project_name>`  ，填写用户名和密码
+   ```sh
+   jdbc:kylin://<hostname>:<port>/<project_name>
+   ```
+   
+   然后填写用户名和密码。
    
    ![编辑连接信息](../images/fineruan/connect_info.cn.png)
+   
+   **注意**：由于 FineBI 若开启获取连接前校验的选项会不使用数据库名发送侦测查询，且该配置从5.1开始默认开启，所以在测试连接前请确认关闭了该选项。
+   
+   ![关闭获取连接前校验](../images/fineruan/test_sql.cn.png)
    
    然后点击测试连接，测试成功后点击确定保存数据源连接。
    
