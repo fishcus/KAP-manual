@@ -14,26 +14,35 @@
 
       * 若您需要使用64位 Kyligence ODBC 驱动，您可以直接使用以下命令进行64位 unixODBC 的安装
 
-        `sudo yum install unixODBC-devel -y`
+        ```
+        sudo yum install unixODBC-devel -y
+        ```
 
       * 若您需要使用32位 Kyligence ODBC 驱动，建议您依次使用以下命令进行32位 unixODBC 的安装
 
-        `sudo yum install unixODBC.i686 -y`
-
-        `sudo yum install unixODBC-devel.i686 -y`
+        ```
+      sudo yum install unixODBC.i686 -y
+        sudo yum install unixODBC-devel.i686 -y
+        ```
+        
+        
 
 2. Ubuntu 环境，请参考如下操作安装
 
    * 若您需要使用64位 Kyligence ODBC 驱动，您可以直接使用以下命令进行64位unixODBC的安装
 
-     `sudo apt-get install unixODBC-devel`
+     ```
+    sudo apt-get install unixODBC-devel
+     ```
+   
+   - 若您需要使用32位 Kyligence ODBC 驱动，建议您依次使用以下命令进行32位unixODBC的安装
+   
+     ```
+     sudo apt-get install unixODBC.i686
+     sudo apt-get install unixODBC-devel.i686
+     ```
 
-   * 若您需要使用32位 Kyligence ODBC 驱动，建议您依次使用以下命令进行32位unixODBC的安装
-     `sudo apt-get install unixODBC.i686`
-
-     `sudo apt-get install unixODBC-devel.i686`
-
-
+  
 
 ### 下载 ODBC 驱动程序
 
@@ -44,20 +53,23 @@
 
 1. 解压下载的压缩包
 
-   `tar -zxf KyligenceODBC_linux.tar.gz`
+   ```
+   tar -zxf KyligenceODBC_linux.tar.gz
+   ```
 
    > **注意：** 请不要将 ODBC 安装文件放在 root 目录下，否则会因为读写权限问题可能导致 BI Server 访问失败。
 
 2. 检查库的依赖
 
-   `cd ODBCDriver/`
-
-   `ldd libKyligenceODBC64.so`
-
+   ```
+cd ODBCDriver/
+   ldd libKyligenceODBC64.so
+   ```
+   
    > **提示：** 使用32位的 Kyligence ODBC 驱动请使用`ldd libKyligenceODBC32.so`命令检查库的依赖。
-
+   
    如果检查成功，您将会看到如下输出：
-
+   
    ```
    linux-vdso.so.1 =>  (0x00007fffca9eb000)
    librt.so.1 => /lib64/librt.so.1 (0x00007fe826b3f000)
@@ -67,9 +79,10 @@
    libc.so.6 => /lib64/libc.so.6 (0x00007fe826105000)
    lib64/ld-linux-x86-64.so.2 (0x00007fe829aac000)
    ```
-
+   
+   
    如果检查失败，依赖库不存在，您将看到如下输出：
-
+   
    ```
    linux-vdso.so.1 =>  not found
    librt.so.1 => /lib64/librt.so.1 (0x00007fe826b3f000)
@@ -88,7 +101,7 @@
    > **提示：** 一些 BI 工具需要 ODBC 配置文件放置在自己的安装目录下，如[样例说明](#样例说明)中的 **MicroStrategy**。因此请您根据所使用的 BI 工具进行配置。
 
    **ODBC驱动配置文件** – /etc/odbcinst.ini 
-
+   
    ```
    [{DriverName}]
    APILevel=1
@@ -100,9 +113,9 @@
    SQLLevel=1
    Locale=en-US
    ```
-
+   
    **DSN配置文件** – /etc/odbc.ini 
-
+   
    ```
    [{DSName}]
    Driver = {DriverName}
@@ -110,13 +123,15 @@
    PROJECT = {KE_Project}
    SERVER = {KE_Url}
    ```
-
+   
+    
+   
    样例配置： 
-
-   **/etc/odbcinst.ini**
-
+   
+    **/etc/odbcinst.ini**
+   
    ```
-   [KyligenceODBC]
+   [KyligenceODBCDriver]
    APILevel=1
    ConnectFunctions=YYY
    Description=Sample 64-bit Kyligence ODBC Driver
@@ -126,26 +141,33 @@
    SQLLevel=1
    Locale=en-US
    ```
-
-   **/etc/odbc.ini**
-
+   
+   
+      **/etc/odbc.ini**
+   
    ```
    [KyligenceDataSource]
-   Driver = KyligenceODBC
+   Driver = KyligenceODBCDriver
    PORT = 80
    PROJECT = learn_kylin
    SERVER = http://kapdemo.chinaeast.cloudapp.chinacloudapi.cn
    ```
-
+   
    > **注意：** 请确认 `odbc.ini` 文件中的 DSN 名称和 BI 桌面环境下配置的 DSN 名称完全一致，保证 BI 应用由桌面客户端发布至服务器端时连接正常
-
+   
 2. 使用命令行工具`isql DSN [UID '[PWD]']`测试连接
 
-   `isql KyligenceDataSource ADMIN 'KYLIN'`
+   ```
+   isql KyligenceDataSource ADMIN 'KYLIN'
+   ```
+
 
 3. 发送查询测试 
 
-   `SQL> select count(*) from kylin_sales;`
+   ```
+   SQL> select count(*) from kylin_sales;
+   ```
+
    如果连接成功，则会返回如下结果
 
    ```
@@ -157,6 +179,9 @@
    SQLRowCount returns 1
    1 rows fetched
    ```
+
+   
+
 
 ### 样例说明
 
@@ -175,15 +200,17 @@
    SERVER=<SERVER_NAME>
    ```
 
+
 3. 添加如下配置信息，映射 DSN 至 ODBC。 
 
    ```
    [ODBC Data Sources]
    <DSN_Name>=KyligenceODBC
    ```
-
+   
+   
    以下就是一个名为 *EAT1_WH* 的 DSN 配置样例：
-
+   
    ```
    [ODBC Data Sources]
    KyligenceDataSource=KyligenceODBC
@@ -195,7 +222,9 @@
    PROJECT=mstr
    SERVER=http://106.75.137.52
    ```
-
+   
+   
+   
 4. 完成 DSN 配置后，我们建议您重启 MicroStrategy Intelligence Server，确保刚创建的 DSN 已经生效。 
 
 5. 现在您就可以在 MicroStrategy Linux I-Server 上使用该 DSN 创建新的数据库连接了。
@@ -226,7 +255,7 @@
 
    例如: **LogPath=/localhome/username/Documents**
 
-   ![linux 日志配置](../images/odbc_log/linux_log_example.png)      
+   ![Log Setting](../images/odbc_log/linux_log_example.png)      
 
 4. 配置**LogFileCount**属性以保留最大数量的日志文件。
 
@@ -259,10 +288,9 @@
 您可以看到报错：
 
 ```
-[08001][unixODBC][Simba][ODBC](10380) Unable to establish connection with data source. Missing settings: {[SERVER]}
+08001][unixODBC][Simba][ODBC](10380) Unable to establish connection with data source. Missing settings: {[SERVER]}
 [ISQL]ERROR: Could not SQLConnect
 ```
-
 
 
 **Q:isql测试连接报错 "Can't open lib '/usr/local/ODBCDriver/libKyligenceODBC32.so' : file not found"，但是文件实际在对应目录下存在**
@@ -282,6 +310,9 @@ SQLLEN Size........: 4
 SQLSETPOSIROW Size.: 2
 ```
 
+
+
+
 若安装了64位 unixODBC，您可以看到如下结果：
 
 ```
@@ -294,6 +325,7 @@ SQLULEN Size.......: 8
 SQLLEN Size........: 8
 SQLSETPOSIROW Size.: 8
 ```
+
 
 
 
@@ -310,13 +342,11 @@ unixODBC.x86_64           2.2.14-14.el6           @base
 unixODBC-devel.x86_64     2.2.14-14.el6           @base
 ```
 
+
 接下来依次使用以下命令，完成64位 unixODBC 的卸载：
 
 ```
 sudo yum remove unixODBC-devel.x86_64
-```
-
-```
 sudo yum remove unixODBC.x86_64
 ```
 
@@ -326,4 +356,7 @@ sudo yum remove unixODBC.x86_64
 
 请您运行以下命令：  
 
-`export LD_PRELOAD=/usr/lib/libodbcinst.so`
+```
+export LD_PRELOAD=/usr/lib/libodbcinst.so
+```
+

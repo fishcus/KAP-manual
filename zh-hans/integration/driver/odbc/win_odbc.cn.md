@@ -33,11 +33,12 @@
 
 2. 切换至**系统 DSN** 选项卡，单击**添加**，在弹出的驱动程序选择框中选择 **KyligenceODBCDriver**，然后单击**完成**按钮。
 
-   ![ODBC 数据源管理器](../images/01.png)
+   > **注意**：**用户 DSN**只有特定的用户可以调用，而**系统 DSN** 对该系统的所有登录用户可用。如果用户需要在Web BI Server 通过 ODBC 访问 Kyligence Enterprise，应使用**系统 DSN**。    
+
+   ![System DSN](../images/01.png)
 
 3. 在弹出的对话框中输入 Kyligence Enterprise 服务器信息，如图所示：
-
-   ![DSN 设置](../images/02.png)
+   ![DSN Setting](../images/02.png)
 
    其中，各项参数介绍如下：
 
@@ -52,7 +53,7 @@
 
 4. 单击 **Test** 按钮，连接成功后，将显示如下对话框。
 
-   ![连接成功](../images/03.png)
+   ![Connect Successfully](../images/03.png)
 
 ## 是否需要开启catalog层
 
@@ -74,16 +75,15 @@ DRIVER={KyligenceODBCDriver};SERVER=locahost;PORT=7070;PROJECT=learn_kylin
 
 您可以启用驱动程序中的日志记录来跟踪活动和故障排除问题。
 
-**重要:** 启动详细的的日志记录用来捕获问题，但日志记录会降低性能并消耗大量磁盘空间。
+> **重要:** 启动详细的的日志记录用来捕获问题，但日志记录会降低性能并消耗大量磁盘空间。
 
 1. 单击**控制面板 ->管理工具**，找到并打开**ODBC 数据源管理程序**
-2. 选择要记录连接活动的DSN，然后单击**配置**
 
-![ODBC数据源管理界面](../images/odbc_log/windows_dsn_list.png)
+2. 选择要记录连接活动的DSN，然后单击**配置**
+![System DSN](../images/odbc_log/windows_dsn_list.png)
 
 3. 在DSN安装对话框中，单击**Logging Options**
-
-![DSN 配置界面](../images/odbc_log/windows_odbc_log_dsn_settup.png)
+![DSN Setting](../images/odbc_log/windows_odbc_log_dsn_settup.png)
 
 4. 下面列出了所有日志级别的信息。在大多数情况下，LOG_TRACE是最佳的。
    - **LOG_FATAL**  记录可能导致驱动程序中止的非常严重的错误事件。
@@ -94,22 +94,24 @@ DRIVER={KyligenceODBCDriver};SERVER=locahost;PORT=7070;PROJECT=learn_kylin
    - **LOG_TRACE**  记录比LOG_DEBUG级别更详细的信息。
 
 5. 在**Log Path**字段中，键入要保存日志文件的文件夹完整路径。
-![日志选项](../images/odbc_log/windows_odbc_log_options.png)
+![Log Setting](../images/odbc_log/windows_odbc_log_options.png)
 
 6. 在**Max Number Files**字段中，键入要保留的最大日志文件数。
-​      **注意:** 到达日志文件的最大数量后，每次创建一个额外的文件，驱动程序都会删除最旧的文件。
+
+   > **注意:** 到达日志文件的最大数量后，每次创建一个额外的文件，驱动程序都会删除最旧的文件。
 
 7. 在**Max File Size**字段中，键入每个日志文件的最大大小(以MB为单位)。
-​      **注意:** 达到最大文件大小后，驱动程序创建一个新文件并继续日志记录。
+
+   > **注意:** 达到最大文件大小后，驱动程序创建一个新文件并继续日志记录。
 
 8. 单击**OK**关闭日志记录选项对话框。
 
 9. 单击**OK**保存设置并关闭DSN配置对话框。
-​      **注意:** 在DSN配置对话框中单击**OK**后，驱动程序才会保存配置更改。单击**Cancel**按钮将放弃更改。
+
+   > **注意:** 在DSN配置对话框中单击**OK**后，驱动程序才会保存配置更改。单击**Cancel**按钮将放弃更改。
 
 10. 重新启动使用驱动程序的应用程序。在重新加载驱动程序之前，应用程序不会应用配置更改。
 
 ## 特别提醒
 
 如果用户希望在其他应用程序中使用 Kyligence ODBC 驱动程序连接本产品，可访问本手册[ 与BI 工具连接](../../bi/README.md)章节，了解相关信息。
-
