@@ -1,0 +1,18 @@
+{
+	"ignorePatterns": [
+		{
+			"pattern": "^http://host:port"
+		},
+		{
+			"pattern": "^http://www.apache.org"
+		},
+		{
+			"pattern": "^http://www.apache"
+		},
+		{
+			"pattern": "^https://pypi.org"
+		}
+	],
+	"replacementPatterns": [],
+	"httpHeaders": []
+}

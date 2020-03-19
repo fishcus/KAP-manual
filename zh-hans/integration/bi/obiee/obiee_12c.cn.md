@@ -46,7 +46,7 @@ Oracle Business Intelligence Enterprise Edition (OBIEE) 是 Oracle 旗下的 BI 
 
 2. 选择 ODBC 3.5，将 Kyligence Enterprise 中的表导入。
 
-    ![导入向导](../../images/OBIEE12/ODBC35.png)
+    ![导入向导](../../images/OBIEE12/odbc35.png)
 
 3. 导入成功后，在物理模型里面找到之前创建的数据源，右键选择**属性**->**通用**->**数据源定义**，将**数据库类型**修改为 **Apache Spark SQL**。
 
