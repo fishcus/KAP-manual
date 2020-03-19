@@ -18,7 +18,7 @@ FineBI 通过 JDBC 连接 Kyligence Enterprise，所以首先需要在 FineBI �
 
 2. 向 FineBI 增加 JDBC 驱动程序
 
-   拷贝 JDBC 驱动程序到 安装路径 \webapps\webroot\WEB-INF\lib
+   拷贝 JDBC 驱动程序到 `安装路径\webapps\webroot\WEB-INF\lib`
 
 
 ### 建立 Kyligence Enterprise 数据源连接
@@ -37,7 +37,7 @@ FineBI 通过 JDBC 连接 Kyligence Enterprise，所以首先需要在 FineBI �
 
    将服务器IP地址等信息填写到连接字符串
 
-   字符串格式为: ```jdbc:kylin://<hostname>:<port>/<project_name>``` ) ，填写用户名和密码
+   字符串格式为: `jdbc:kylin://<hostname>:<port>/<project_name>`  ，填写用户名和密码
    
    ![编辑连接信息](../images/fineruan/connect_info.cn.png)
    
