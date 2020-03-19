@@ -50,8 +50,7 @@
     -H 'Content-Type: application/json;charset=utf-8' \
     -d '{"buildType":"REFRESH",
   "segments":["20180908000000_20180909000000"],
-  "mpValues":"",
-  "force":true
+  "mpValues":""
   }'
   ```
 

@@ -326,8 +326,7 @@ Given new Hive data files, build a new cube segment and load data into it.
     -d '{
    "sourceOffsetStart":201201010001,
    "sourceOffsetEnd":201201010002,
-   "buildType":"BUILD",
-   "force":true
+   "buildType":"BUILD"
   }'
   ```
 

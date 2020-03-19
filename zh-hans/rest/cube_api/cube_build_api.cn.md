@@ -126,8 +126,7 @@
   -d '{
     "startTime": 1325376038000,
     "endTime": 1356998438000,
-    "buildType": "BUILD",
-    "force": true
+    "buildType": "BUILD"
   }'
   ```
 
@@ -340,8 +339,7 @@
   -d '{
    "sourceOffsetStart":201201010001,
    "sourceOffsetEnd":201201010002,
-   "buildType":"BUILD",
-   "force":true
+   "buildType":"BUILD"
   }'
   ```
 
