@@ -29,6 +29,8 @@ The default query cache cannot be shared among different nodes or processes beca
 | kylin.cache.redis.hosts             | Redis host. If you need to connect to a Redis cluster, please use comma to split the hosts, such as, kylin.cache.redis.hosts=localhost:6379,localhost:6380 | localhost:6379 |         |
 | kylin.cache.redis.expire-time-unit | Time unit for cache period. EX means seconds and PX means milliseconds. | EX             | PX      |
 | kylin.cache.redis.expire-time      | Valid cache period.                                           | 86400          |         |
+| kylin.cache.redis.reconnection.enabled | Whether to enable redis reconnection when cache degrades to ehcache | true | false |
+| kylin.cache.redis.reconnection.interval | Automatic reconnection interval, in minutes | 60 | |
 
 ### Query Cache Criteria
 Kyligence Enterprise doesn't cache the query result of all SQL queries by default, because the memory resource might be limited. It only caches those queries which are slow and the result size is appropriate. The criterias are configured by the following parameters.
