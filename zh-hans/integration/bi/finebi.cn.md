@@ -1,12 +1,12 @@
 ## 与 FineBI 集成
 
-帆软是国内最大、实力最强的 Web 报表工具、商业智能等数据类产品研发的公司。旗下产品 FineBI 是新型商业智能软件优秀代表。帆软产品被成功实施于上万个信息化应用项目，客户遍及各行各业，每天有超过 50 万人通过帆软的产品来查阅、填报、分析数据。近日，Kyligence 已认证帆软旗下 FineBI（4.1版本）产品。本文将分别介绍 Kyligence Enterprise 与 FineBI 的集成。
+帆软是国内最大、实力最强的 Web 报表工具、商业智能等数据类产品研发的公司。旗下产品 FineBI 是新型商业智能软件优秀代表。帆软产品被成功实施于上万个信息化应用项目，客户遍及各行各业，每天有超过 50 万人通过帆软的产品来查阅、填报、分析数据。Kyligence Enterprise 支持与 FineBI 4.1，5.1 产品集成。本文将分别介绍集成操作。
 
 ### 安装 FineBI
 
 有关 FineBI 的安装说明，请访问 [FineBI 下载页面](http://www.finebi.com/product/download/)。
 
-> 注意：现仅支持 Windows 版 FineBI
+> 注意：仅支持 Windows，Linux 版 FineBI
 
 ### 安装 Kyligence JDBC 驱动程序
 
