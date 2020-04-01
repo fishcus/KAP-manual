@@ -28,6 +28,8 @@ Kyligence Enterprise 系统自带查询缓存并默认开启，具体的缓存�
 | kylin.cache.redis.hosts             | Redis 主机地址，当您需要连接 Redis 集群时，请使用逗号进行分割。如 kylin.cache.redis.hosts=localhost:6379,localhost:6380 | localhost:6379 |        |
 | kylin.cache.redis.expire-time-unit | Redis 缓存保留单位，EX为秒，PX为毫秒                         | EX             | PX     |
 | kylin.cache.redis.expire-time      | Redis 缓存保留时间                                           | 86400          |        |
+| kylin.cache.redis.reconnection.enabled | 当缓存降级时是否开启Redis自动重连 | true | false |
+| kylin.cache.redis.reconnection.interval | 自动重连Redis的时间间隔，单位是分钟 | 60 | |
 
 ###查询被缓存的条件
 Kyligence Enterprise 不会默认缓存每条查询的结果，因为内存资源可能是有限的。目前 Kyligence Enterprise 会有选择性的对那些性能较慢且结果集不是特别大的查询进行缓存。一条查询是否会被缓存，由以下几个参数影响：
