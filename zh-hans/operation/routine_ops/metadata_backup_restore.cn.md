@@ -70,7 +70,7 @@ Kyligence Enterprise 实例是无状态的服务，所有的状态信息都存�
     ```
     参数说明：
 
-    1. `ROJECT_NAME` - 必选，需要备份的项目名称，如 learn_kylin
+    1. `PROJECT_NAME` - 必选，需要备份的项目名称，如 learn_kylin
     2. `PATH_TO_LOCAL_META_DIR` - 必选，表示备份的元数据保存路径
 
   * 备份 **Cube 级别**的元数据
@@ -106,7 +106,7 @@ Kyligence Enterprise 中需要用**命令行**进行元数据恢复。
   参数说明：
   
   `--includeAllDict` - 可选，加上此参数后会恢复GlobalDict和sdict到Kyligence Enterprise在HDFS上的工作目录中。
-      
+  
 - 恢复**项目级别**的元数据
 
   ```sh
