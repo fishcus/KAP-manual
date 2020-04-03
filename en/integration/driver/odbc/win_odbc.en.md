@@ -16,11 +16,11 @@ In this chapter, we will take Windows 7 as an example to introduce how to instal
 
 1. If you have previously installed Kyligence ODBC driver, please uninstall it first.
 
-2. Apply and [Download](http://account.kyligence.io) Kyligence ODBC driver, and install it.
+2. Apply and  [Kyligence Download](http://download.kyligence.io/#/download) Kyligence ODBC driver, and install it.
 
-   - For 32-bit application, please install and use kyligence_odbc.x86.exe
+   - For 32-bit application, please install and use Kyligence.ODBC.{version}.x86.exe
 
-   - For 64-bit application, Please install and use kyligence_odbc.x64.exe
+   - For 64-bit application, Please install and use Kyligence.ODBC.{version}.x64.exe
 
 ## Configure the DSN
 
@@ -46,9 +46,9 @@ In this chapter, we will take Windows 7 as an example to introduce how to instal
    * Description：Description of data source
    * Host: Kyligence Enterprise server address
    * Port: Kyligence Enterprise server port number
-   * Username: username to login Kyligence Enterprise
+   * Username: username to login Kyligence Enterprise，case insensitive
    * Password: password to login Kyligence Enterprise 
-   * Project: the name of the Kyligence Enterprise project to use for the query
+   * Project: the name of the Kyligence Enterprise project to use for the query，case insensitive
    * Disable catalog：Whether to disable the catalog layer, the default is **enable** state, If you choose to disable catalog, check this option.
 
 4. Click **Test**
@@ -81,12 +81,14 @@ You can enable logging in the driver to track activity and troubleshoot issues.
 
 1. Select **Control Panel -> Administrative Tools** to open **ODBC Data Source Administrator**
 2. Select the DSN for which you want to log connection activity, and then click **Configure**
+
 ![System DSN](../images/odbc_log/windows_dsn_list.png)
 
-1. In the DSN Setup dialog box, click **Logging Options**
+3. In the DSN Setup dialog box, click **Logging Options**
+
    ![DSN Setting](../images/odbc_log/windows_odbc_log_dsn_settup.png)
 
-2. Information on all of the Log Levels is listed below.  LOG_TRACE is best in most cases.
+4. Information on all of the Log Levels is listed below.  LOG_TRACE is best in most cases.
 
    - **LOG_OFF** disables all logging.
    - **LOG_FATAL** logs very severe error events that might lead the driver to abort.
@@ -96,24 +98,25 @@ You can enable logging in the driver to track activity and troubleshoot issues.
    - **LOG_DEBUG** logs detailed information that is useful for debugging the driver.
    - **LOG_TRACE** logs more detailed information than the LOG_DEBUG level.
 
-3. In the Log Path (or Log Directory) field, type the full path to the folder where you want to save log files.
-   ![Log Setting](../images/odbc_log/windows_odbc_log_options.png)
+5. In the Log Path (or Log Directory) field, type the full path to the folder where you want to save log files.
 
-4. In the Max Number Files field, type the maximum number of log files to keep.
+   ![Log Options](../images/odbc_log/windows_odbc_log_options.png)
+
+6. In the Max Number Files field, type the maximum number of log files to keep.
 
    > **Note:** After the maximum number of log files is reached, each time an additional file is created, the driver deletes the oldest file.
 
-5. In the Max File Size field, type the maximum size of each log file in megabytes (MB).
+7. In the Max File Size field, type the maximum size of each log file in megabytes (MB).
 
    > **Note:** After the maximum file size is reached, the driver creates a new file and continues logging.
 
-6. Click **OK** to close the Logging Options dialog box.
+8. Click **OK** to close the Logging Options dialog box.
 
-7. Click **OK** to save your settings and close the DSN Configuration dialog box.
+9. Click **OK** to save your settings and close the DSN Configuration dialog box.
 
-   > **Note:** Configuration changes will not be saved or picked up by the driver until you have clicked **OK** in the DSN Configuration dialog box.Clicking **Cancel** button will result in the changes being discarded.
+   > **Note:** Configuration changes will not be saved or picked up by the driver until you have clicked **OK** in the DSN Configuration dialog box. Clicking **Cancel** button will result in the changes being discarded.
 
-8. Restart the application you are using the driver with.  Configuration changes will not be picked up by the application until it reloads the driver.
+10. Restart the application you are using the driver with. Configuration changes will not be picked up by the application until it reloads the driver.
 
 ## Other Reminders
 

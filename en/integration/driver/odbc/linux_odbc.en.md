@@ -14,79 +14,70 @@ For different Linux systems:
 
    * If you want to use Kyligence ODBC Driver for Linux 64 bit, please run following scripts to install unixODBC 64 bit
 
-     ```
-     sudo yum install unixODBC-devel -y
-     ```
+     `sudo yum install unixODBC-devel -y` 
 
    * If you want to use Kyligence ODBC Driver for Linux 32 bit, please install unixODBC 32 bit with following scripts in turns
 
-     ```
-   sudo yum install unixODBC.i686 -y
-     sudo yum install unixODBC-devel.i686 -y
-     ```
+     `sudo yum install unixODBC.i686 -y`
+
+     `sudo yum install unixODBC-devel.i686 -y`
 
 2. For Ubuntu, please refer to the following steps:
 
    * If you want to use Kyligence ODBC Driver for Linux 64 bit, please run following scripts to install unixODBC 64 bit
 
-     ```
-    sudo apt-get install unixODBC-devel
-     ```
+     `sudo apt-get install unixODBC-devel`
 
    * If you want to use Kyligence ODBC Driver for Linux 32 bit, please install unixODBC 32 bit with following scripts in turn
 
-     ```
-   sudo apt-get install unixODBC.i686
-     sudo apt-get install unixODBC-devel.i686
-     ```
-     
-     
+     `sudo apt-get install unixODBC.i686`
+
+     `sudo apt-get install unixODBC-devel.i686`
 
 
 ### Download Kyligence ODBC Driver for Linux
 
-You can download Kyligence ODBC driver (Linux version) from [Kyligence Account Center](http://account.kyligence.io).
+You can download Kyligence ODBC driver (Linux version) from  [Kyligence Download](http://download.kyligence.io/#/download) .
 
 ### Install ODBC Driver
 
 1. Uncompress package
 
-   ```
-   tar zxf KyligenceODBC_linux.tar.gz
-   ```
+   `tar -zxvf Kyligence.ODBC.{version}.tar.gz`
 
    > **Note:** please **DONOT** uncompress Kyligence ODBC Driver under root folder, otherwise BI servers might be unable to access necessary files because of authoriztaion.
 
 2. Check library dependency
 
-   ```
-cd ODBCDriver/
-   ldd libKyligenceODBC64.so
-   ```
-   
+   `cd ODBCDriver/`
+
+   `ldd libKyligenceODBC64.so`
+
    > **Note:** If using Kyligence ODBC Driver for Linux 32 bit, please use `ldd libKyligenceODBC32.so` command to check library dependency.
-   
+
    Expect output shall be:
-   
-       linux-vdso.so.1 =>  (0x00007fffca9eb000)
-       librt.so.1 => /lib64/librt.so.1 (0x00007fe826b3f000)
-       libdl.so.2 => /lib64/libdl.so.2 (0x00007fe82693b000)
-       libm.so.6 => /lib64/libm.so.6 (0x00007fe8266b6000)
-       libpthread.so.0 => /lib64/libpthread.so.0 (0x00007fe826499000)
-       libc.so.6 => /lib64/libc.so.6 (0x00007fe826105000)
-       lib64/ld-linux-x86-64.so.2 (0x00007fe829aac000)
-   
-   
+
+   ```
+    linux-vdso.so.1 =>  (0x00007fffca9eb000)
+    librt.so.1 => /lib64/librt.so.1 (0x00007fe826b3f000)
+    libdl.so.2 => /lib64/libdl.so.2 (0x00007fe82693b000)
+    libm.so.6 => /lib64/libm.so.6 (0x00007fe8266b6000)
+    libpthread.so.0 => /lib64/libpthread.so.0 (0x00007fe826499000)
+    libc.so.6 => /lib64/libc.so.6 (0x00007fe826105000)
+    lib64/ld-linux-x86-64.so.2 (0x00007fe829aac000)
+   ```
+
     Bad output, which has "not found" libraries:
-   
-       linux-vdso.so.1 =>  not found
-       librt.so.1 => /lib64/librt.so.1 (0x00007fe826b3f000)
-       libdl.so.2 => /lib64/libdl.so.2 (0x00007fe82693b000)
-       libm.so.6 => /lib64/libm.so.6 (0x00007fe8266b6000)
-       libpthread.so.0 => /lib64/libpthread.so.0 (0x00007fe826499000)
-       libc.so.6 => /lib64/libc.so.6 (0x00007fe826105000)
-       lib64/ld-linux-x86-64.so.2 (0x00007fe829aac000)
-       ```
+
+    ```
+    linux-vdso.so.1 =>  not found
+    librt.so.1 => /lib64/librt.so.1 (0x00007fe826b3f000)
+    libdl.so.2 => /lib64/libdl.so.2 (0x00007fe82693b000)
+    libm.so.6 => /lib64/libm.so.6 (0x00007fe8266b6000)
+    libpthread.so.0 => /lib64/libpthread.so.0 (0x00007fe826499000)
+    libc.so.6 => /lib64/libc.so.6 (0x00007fe826105000)
+    lib64/ld-linux-x86-64.so.2 (0x00007fe829aac000)
+    ```
 
 ### Create DSN (Linux 64bit) Using unixODBC
 
@@ -148,18 +139,14 @@ cd ODBCDriver/
 
 2. Test connection with cmd tool "isql DSN [UID '[PWD]']
 
-   ```
-   isql KyligenceDataSource ADMIN 'KYLIN'
-   ```
+   `isql KyligenceDataSource ADMIN 'KYLIN'`
 
 3. Send a query to test 
 
-   ```
-   SQL> select count(*) from kylin_sales;
-   ```
-
-   expected result:
+   `SQL> select count(*) from kylin_sales;`
    
+   expected result:
+
    ```
    +---------------------+
    | EXPR$0              |
@@ -322,6 +309,9 @@ Then use following command in turns to uninstall unixODBC 64 bit:
 
 ```sh
 sudo yum remove unixODBC-devel.x86_64
+```
+
+```sh
 sudo yum remove unixODBC.x86_64
 ```
 
