@@ -50,6 +50,7 @@ Accept Partial: true
 Is Partial Result: false
 Hit Exception Cache: false
 Storage cache used: false
+Cache type: EHCACHE
 Is Query Push-Down: false
 Is Prepare: false
 Trace URL: null
@@ -65,6 +66,7 @@ Message: Something complex went wrong. null Please contact KAP technical support
 * `Project`： 该查询所在项目
 * `Realization Names`： 该查询所击中的Cube名称
 * `Hit Exception Cache`： 该查询是否击中查询缓存
+* `Cache type`： 该查询击中的查询缓存类型。有 REDIS 和 EHCACHE 两种类型。如果没击中缓存，则为 null
 * `Is Query Push-Down`：该查询是否下压到其他查询引擎
 * `Message`：该查询的页面提示信息
 
