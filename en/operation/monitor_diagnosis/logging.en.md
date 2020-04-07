@@ -54,6 +54,7 @@ Accept Partial: true
 Is Partial Result: false
 Hit Exception Cache: false
 Storage cache used: false
+Cache type: EHCACHE
 Is Query Push-Down: false
 Is Prepare: false
 Trace URL: null
@@ -68,6 +69,7 @@ Message: Something complex went wrong. null Please contact Kyligence Enterprise 
 * `Project:` The project of this query
 * `Realization Names:` The Cube used for this query
 * `Hit Exception Cache:` Whether this query hit cache
+* `Cache type`： The cache type that query hit, which including REDIS and EHCACHE. If the query does not hit cache, the value would be null
 * `Is Query Push-Down:`Whether this query is pushdown to other engines
 * `Message:`Message prompted in UI page when this query finished
 
