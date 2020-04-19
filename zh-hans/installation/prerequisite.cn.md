@@ -63,12 +63,9 @@
    hive> create table t1(id string);
    hive> drop table t1;
    ```
-   在 Hive 中需要授权当前用户访问 Kyligence Enterprise HDFS 工作目录（本例为`/kylin`）的权限。
-   ```shell
-   hive> grant all on URI "/kylin" to role KyAdmin;
-   ```
+3. 如果启用 Sentry 管理 Hive 的数据权限，则需要在 Hive 中授权当前用户访问 Kyligence Enterprise HDFS 工作目录和临时目录的权限。请参考 [与 Kerberos + Sentry 集成](../security/cdh_kerberos_sentry.cn.md) 进行赋权。
 
-3. 假如您使用 HBase 作为 Metastore，请测试 `KyAdmin` 用户是否具备 HBase 读写权限
+4. 假如您使用 HBase 作为 Metastore，请测试 `KyAdmin` 用户是否具备 HBase 读写权限
    假设存储元数据的 HBase 表为 *XXX_instance*（ Kyligence 集群唯一标识），HBase 命名空间为 *XXX_NS*，需要在`conf/kylin.properties` 中设置：
 
    ```properties
