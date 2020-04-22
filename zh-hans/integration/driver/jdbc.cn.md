@@ -125,4 +125,3 @@ while (resultSet.next()) {
 **Q: 如何升级 JDBC 驱动?**   
 
 将 BI 或其它第三方应用的 Kyligence JDBC 驱动包移除，替换至新的 JDBC 驱动包即可。
-

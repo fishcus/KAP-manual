@@ -18,6 +18,8 @@ Kyligence Enterprise 支持如下函数：
 
 - [交集函数](intersect_function.cn.md)
 
+- [差集函数](subtract_function.cn.md)
+
 - [聚合函数](aggregate_function.cn.md)
 
 - [Bitmap 函数](bitmap_function.cn.md)

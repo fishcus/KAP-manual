@@ -111,6 +111,7 @@
             * [Window Function](query/operator_function/function/window_function.en.md)
             * [Grouping Function](query/operator_function/function/grouping_function.en.md)
             * [Intersect Function](query/operator_function/function/intersect_function.en.md)
+            * [Subtract Function](query/operator_function/function/subtract_function.en.md)
             * [Aggregate Functions](query/operator_function/function/aggregate_function.en.md)
             * [Bitmap Functions](query/operator_function/function/bitmap_function.en.md)
     * [Query FAQ](query/query_issues.en.md)

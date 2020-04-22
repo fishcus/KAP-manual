@@ -61,6 +61,7 @@ Kyligence Enterprise 支持如下交集函数。
 
   ![](images/intersect_count.2.png)
 
+
 ### INTERSECT_VALUE	
 
 - 说明	
@@ -84,7 +85,7 @@ Kyligence Enterprise 支持如下交集函数。
 - 查询示例 1	
 
   事实表 `KYLIN_SALES_TEST`  模拟了在线交易数据的记录表，其中 SELLER_ID 字段的类型为 integer。	
-以下查询语句可以获得哪些卖家能在新年假期阶段（2012.01.01-2012.01.03）进行持续的在线交易。	
+	以下查询语句可以获得哪些卖家能在新年假期阶段（2012.01.01-2012.01.03）进行持续的在线交易。	
 
   ```sql	
   select LSTG_FORMAT_NAME,	
@@ -96,7 +97,7 @@ Kyligence Enterprise 支持如下交集函数。
   from KYLIN_SALES_TEST	
   where PART_DT in (date'2012-01-01',date'2012-01-02',date'2012-01-03')	
   group by LSTG_FORMAT_NAME	
-  ```	
+  ```
 
 - 返回示例 1	
 
@@ -110,8 +111,78 @@ Kyligence Enterprise 支持如下交集函数。
   select 	
   intersect_value(SELLER_ID, LSTG_FORMAT_NAME, array['FP-GTC|FP-non GTC|Others', 'Others']) as test_column	
   from kylin_sales	
-  ```	
+  ```
 
 - 返回示例 2	
 
   ![](images/intersect_value.2.png)
+  
+  
+  ### INTERSECT_COUNT_V2
+  
+  - 说明
+  
+    - 返回不同条件下多个结果集交集的去重计数，条件支持正则表达式匹配。
+  
+  - 语法
+  
+    - `intersect_count_v2(column_to_count, column_to_filter, filter_value_list, filter_type)`
+  
+  - 参数
+  
+    - `column_to_count` 指向用于统计去重计数的列，这个列必须已经被添加为**精确去重**的度量
+    - `column_to_filter` 指向可变的维度
+    - `filter_value_list` 数组形式，指向可变维度中的值
+    - `filter_type` 类型为 String，标识 filter 的方式，目前有两个可选值 “RAWSTRING” 和  "REGEXP"，当参数值为 "RAWSTRING" 时的过滤方式为精确过滤，当 `column_to_filter` 为 varchar 类型时，数组中单个元素可以映射多个值，默认使用'|'分割，可以使用 `kylin.query.intersect.separator` 配置分隔符，可以取值 `|` 或者 `,`，默认为 `|`，仅支持在 `kylin.properties` 文件中配置（目前该参数不支持使用子查询的结果作为参数使用）。当参数值为 "REGEXP" 时，过滤方式为正则匹配，只会过滤 column_to_filter 中能够匹配 filter_value_list 中的正则表达式的值。
+  
+  > **注意：**  当 filter_type 为 "RAWSTRING" ，并且可变维度的数据类型不是 varchar 或 integer 时，`filter_value_list`中的值需要做显式的类型转换，例如：
+  > `select intersect_count_v2(column_to_count, column_to_filter, array[cast(3.53 as double), cast(5.79 as double)], 'RAWSTRING') from TEST_TABLE`
+  > 或 `select intersect_count_v2(column_to_count, column_to_filter, array[TIMESTAMP'2012-01-02 11:23:45', TIMESTAMP'2012-01-01 11:23:45'], 'RAWSTRING') from TEST_TABLE;`
+  
+  - 查询示例 1
+  
+    ```sql
+     select intersect_count_v2(
+      	LSTG_SITE_ID, LSTG_FORMAT_NAME, 
+          array['FP.*GTC', 'Other.*'], 'REGEXP')
+       from kylin_sales
+    ```
+    
+  - 返回示例 1
+  
+    ![](images/intersect_count2.1.png)
+    
+    
+### INTERSECT_VALUE_V2
+
+  - 说明
+  
+    - 返回不同条件下多个结果集交集的去重结果。若返回结果较大，可能会导致分析页面浏览器崩溃。条件支持正则表达式匹配。
+  
+  - 语法
+  
+    - `intersect_value_v2(column_to_count, column_to_filter, filter_value_list, filter_type)`
+  
+  - 参数
+  
+    - `column_to_count` 指向用于统计去重计数的列，这个列必须已经被添加为**精确去重**的度量, **且只支持类型为tinyint、smallint或integer的列**。
+    - `column_to_filter` 指向可变的维度
+    - `filter_value_list` 数组形式，指向可变维度中的值
+    - `filter_type` 类型为 String，标识 filter 的方式，目前有两个可选值 “RAWSTRING” 和  "REGEXP"，当参数值为 "RAWSTRING" 时的过滤方式为精确过滤，当 `column_to_filter` 为 varchar 类型时，数组中单个元素可以映射多个值，默认使用'|'分割，可以使用 `kylin.query.intersect.separator` 配置分隔符，可以取值 `|` 或者 `,`，默认为 `|`，仅支持在 `kylin.properties` 文件中配置（目前该参数不支持使用子查询的结果作为参数使用）。当参数值为 "REGEXP" 时，过滤方式为正则匹配，只会过滤 column_to_filter 中能够匹配 filter_value_list中的正则表达式的值。
+
+  > **注意：**  当 filter_type 为 "RAWSTRING" ，并且可变维度的数据类型不是 varchar 或 integer 时，`filter_value_list`中的值需要做显式的类型转换，例如：
+  > `select intersect_value_v2(column_to_count, column_to_filter, array[cast(3.53 as double), cast(5.79 as double)], 'RAWSTRING') from TEST_TABLE`
+  > 或 `select intersect_value_v2(column_to_count, column_to_filter, array[TIMESTAMP'2012-01-02 11:23:45', TIMESTAMP'2012-01-01 11:23:45'], 'RAWSTRING') from TEST_TABLE;`
+
+  - 查询示例 1
+  
+    ```sql
+     select intersect_value_v2(
+      	LSTG_SITE_ID, LSTG_FORMAT_NAME, 
+          array['FP.*GTC', 'Other.*'], 'REGEXP')
+       from kylin_sales
+    ```
+    
+  - 返回示例 1
+  
+    ![](images/intersect_value2.1.png)

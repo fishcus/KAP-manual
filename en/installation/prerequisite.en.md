@@ -63,19 +63,16 @@ Verify if user have access to the Hadoop cluster assuming the account is `KyAdmi
    hive> create table t1(id string);
    hive> drop table t1;
    ```
-   In Hive, the current user needs to be authorized to access the Kyligence Enterprise HDFS working directory, which is `/kylin` in this case:
-   ```shell
-   hive> grant all on URI "/kylin" to role KyAdmin;
-   ```
+3. If Sentry is enabled to manage Data ACL of Hive, then the current user needs to be authorized to access the Kyligence Enterprise HDFS working directory and temporary directory. Please follow the instruction in [Integrate with Kerberos and Sentry](../security/cdh_kerberos_sentry.en.md)
 
-3. If you use HBase as metastore, please verify whether the `KyAdmin` user have HBase read and write permissions
+4. If you use HBase as metastore, please verify whether the `KyAdmin` user have HBase read and write permissions
 
    Assume that the HBase table for storing metadata is `XXX_instance` (Kyligence cluster unique identifier), the HBase namespace is `XXX_NS`. Setting in `conf/kylin.properties` is:
-   
+
    ```properties
    kylin.metadata.url=XXX_NS:XXX_instance@hbase
    ```
-   
+
    Verify:
 
    ```shell

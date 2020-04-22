@@ -44,7 +44,7 @@ Kyligence Enterprise 支持如下 Bitmap 函数。
   
 - 参数
 
-  - `column_to_count` 指向用于统计去重数据的列，这个列必须已经被添加为**精确去重**的度量, **且只支持类型为 tinyint 、smallint 或 integer 的列**。 
+  - `column_to_count` 指向用于统计去重数据的列，这个列必须已经被添加为**精确去重**的度量。 
   
 - 查询事例 1
 
@@ -68,7 +68,7 @@ Kyligence Enterprise 支持如下 Bitmap 函数。
   
 - 参数
 
-  - `column_to_count` 指向用于统计去重数据的列，这个列必须已经被添加为**精确去重**的度量, **且只支持类型为 tinyint 、smallint 或 integer 的列**。
+  - `column_to_count` 指向用于统计去重数据的列，这个列必须已经被添加为**精确去重**的度量。
   - `column_to_filter` 指向可变的维度	
   - `filter_value_list` 数组形式，指向可变维度中的值；当 `column_to_filter` 为 varchar 类型时，数组中单个元素可以映射多个值，默认使用'|'分割，可以使用 `kylin.query.intersect.separator` 配置分隔符，可以取值 `|` 或者 `,`，默认为 `|`，仅支持在 `kylin.properties` 文件中配置（目前该参数不支持使用子查询的结果作为参数使用）。
   
@@ -91,7 +91,45 @@ Kyligence Enterprise 支持如下 Bitmap 函数。
 
   ![](images/intersect_bitmap_uuid.1.png)
   
-  结果返回一个 uuid: 0 ，指向一个用户不可见的 bitmap ，表示在元旦这一天，同时进行过类型为 'FP-GTC' 和 'Others'，或 'FP-non GTC' 和 'Others' 两种交易的用户的去重合集。uuid 指向的 bitmap 供其他函数进行二次计算。
+  结果返回一个 uuid: 0 ，指向一个用户不可见的 bitmap ，表示同时进行过类型为 'FP-GTC' 和 'Others'，或 'FP-non GTC' 和 'Others' 两种交易的用户的去重合集。uuid 指向的 bitmap 供其他函数进行二次计算。
+
+### INTERSECT_BITMAP_UUID_V2
+
+- 说明
+
+  - 返回一个 uuid ，指向一个用户不可见的多个结果集交集的去重结果，类型为 bitmap ，供其他函数进行二次计算。
+
+- 语法
+
+  - `intersect_bitmap_uuid_v2(column_to_count,  column_to_filter, filter_value_list, filter_type)`
+  
+- 参数
+
+  - `column_to_count` 指向用于统计去重数据的列，这个列必须已经被添加为**精确去重**的度量。
+  - `column_to_filter` 指向可变的维度
+  - `filter_value_list` 数组形式，指向可变维度中的值
+  - `filter_type` 类型为 String，标识 filter 的方式，目前有两个可选值 “RAWSTRING” 和  "REGEXP"，当参数值为 "RAWSTRING" 时的过滤方式为精确过滤，当 `column_to_filter` 为 varchar 类型时，数组中单个元素可以映射多个值，默认使用'|'分割，可以使用 `kylin.query.intersect.separator` 配置分隔符，可以取值 `|` 或者 `,`，默认为 `|`，仅支持在 `kylin.properties` 文件中配置（目前该参数不支持使用子查询的结果作为参数使用）。当参数值为 "REGEXP" 时，过滤方式为正则匹配，只会过滤 column_to_filter 中能够匹配 filter_value_list中的正则表达式的值。
+  
+> **注意：** 当 filter_type 为 "RAWSTRING" ，并且可变维度的数据类型不是 varchar 或 integer 时，`filter_value_list`中的值需要做显式的类型转换，例如：
+> `select intersect_bitmap_uuid_v2(column_to_count, column_to_filter, array[cast(3.53 as double), cast(5.79 as double)], 'RAWSTRING') from TEST_TABLE`
+> 或 `select intersect_bitmap_uuid_v2(column_to_count, column_to_filter, array[TIMESTAMP'2012-01-02 11:23:45', TIMESTAMP'2012-01-01 11:23:45'], 'RAWSTRING') from TEST_TABLE;`
+
+- 查询事例 1
+
+  LSTG_FORMAT_NAME 字段类型为 VARCHAR(4096)，作为可变维度列。
+  
+  ```
+  select intersect_bitmap_uuid_v2(
+  				LSTG_SITE_ID, LSTG_FORMAT_NAME,
+          array['FP.*GTC', 'Other.*'], 'REGEXP')
+      from kylin_sales
+  ```
+  
+- 返回事例 1
+
+  ![](images/intersect_bitmap_uuid2.1.png)
+  
+  结果返回一个 uuid: 0 ，指向一个用户不可见的 bitmap ，正则表达式能匹配到 'FP-GTC', 'FP-non GTC' 和 'Others'，表示进行过类型为 'FP-GTC' 和 'Others'，或 'FP-non GTC' 和 'Others' 两种交易的用户的去重合集。uuid 指向的 bitmap 供其他函数进行二次计算。
 
 ### INTERSECT_COUNT_BY_UUID
 
@@ -105,7 +143,7 @@ Kyligence Enterprise 支持如下 Bitmap 函数。
   
 - 参数
 
-  - `uuid` 子查询返回的 uuid 列，每一个 uuid 都指向一个对用户不可见的 bitmap 。能返回该类型的函数有，bitmap_uuid 和 intersect_bitmap_uuid 。
+  - `uuid` 子查询返回的 uuid 列，每一个 uuid 都指向一个对用户不可见的 bitmap 。能返回该类型的函数有，bitmap_uuid 和 intersect_bitmap_uuid 和 intersect_bitmap_uuid_v2。
   
 - 查询事例 1
 
@@ -138,8 +176,10 @@ Kyligence Enterprise 支持如下 Bitmap 函数。
   
 - 参数
 
-  - `uuid` 子查询返回的 uuid 列，每一个 uuid 都指向一个对用户不可见的 bitmap 。能返回该类型的函数有，bitmap_uuid 和 intersect_bitmap_uuid 。
+  - `uuid` 子查询返回的 uuid 列，每一个 uuid 都指向一个对用户不可见的 bitmap 。能返回该类型的函数有，bitmap_uuid 和 intersect_bitmap_uuid 和 intersect_bitmap_uuid_v2。
   
+> **注意：** 这个函数调用的 bitmap_uuid 或者 intersect_bitmap_uuid 或者 intersect_bitmap_uuid_v2 中用于统计去重数据的列只支持类型 tinyint 、smallint 或 integer。 
+
 - 查询事例 1
 
   ```
@@ -171,7 +211,7 @@ Kyligence Enterprise 支持如下 Bitmap 函数。
   
 - 参数
 
-  - `t1.uuid, t2.uuid ...` 子查询的 uuid 列，每一个 uuid 都指向一个对用户不可见的 bitmap 。能返回该类型的函数有，bitmap_uuid 和 intersect_bitmap_uuid 。
+  - `t1.uuid, t2.uuid ...` 子查询的 uuid 列，每一个 uuid 都指向一个对用户不可见的 bitmap 。能返回该类型的函数有，bitmap_uuid 和 intersect_bitmap_uuid 和 intersect_bitmap_uuid_v2。
   
 - 查询事例 1
 
@@ -203,8 +243,10 @@ Kyligence Enterprise 支持如下 Bitmap 函数。
   
 - 参数
 
-  - `t1.uuid, t2.uuid ...` 子查询的 uuid 列，每一个 uuid 都指向一个对用户不可见的 bitmap 。能返回该类型的函数有，bitmap_uuid 和 intersect_bitmap_uuid 。
-  
+  - `t1.uuid, t2.uuid ...` 子查询的 uuid 列，每一个 uuid 都指向一个对用户不可见的 bitmap 。能返回该类型的函数有，bitmap_uuid 和 intersect_bitmap_uuid 和 intersect_bitmap_uuid_v2。
+
+> **注意：** 这个函数调用的 bitmap_uuid 或者 intersect_bitmap_uuid 或者 intersect_bitmap_uuid_v2 中用于统计去重数据的列只支持类型 tinyint 、smallint 或 integer。
+
 - 查询事例 1
 
   ```
