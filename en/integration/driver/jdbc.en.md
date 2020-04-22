@@ -1,23 +1,44 @@
 ## Kyligence JDBC Driver
-Kyligence Enterprise provides JDBC driver, which enables applications with JDBC interface to access Kyligence Enterprise instance.  
+Kyligence Enterprise provides JDBC driver, which enables BI or other applications with JDBC interface to access Kyligence Enterprise instance.  
 
-Under Kyligence Enterprise's installation directory's subdirectory "lib", users would find a jar package named as kylin-jdbc-kap-*.jar, which is the JDBC driver of Kyligence Enterprise.
+### How to get JDBC Driver
 
-#### Connecting Steps
+You can download Kyligence JDBC driver from  [Kyligence Download](http://download.kyligence.io/#/download) , and placed in the BI or other third party applications specified path.
+
+> **Note：**
+>
+> 1. Support connecting to Kyligence Enterprise 3.2.x, 3.3.x, 3.4.x, 4.0.x, 4.1.x and higher versions
+>
+> 2. In earlier Kyligence Enterprise versions, under Kyligence Enterprise's installation directory's subdirectory `./lib`, users would find a jar package named as kylin-jdbc-kap-\<version\>.jar, which is the JDBC driver of Kyligence Enterprise.
+>
+> 3. Not support connecting  to Apache Kylin
+
+
+
+### How to configure JDBC connection
+
 Kyligence Enterprise JDBC driver follows the JDBC standard interface, users can specify the Kyligence Enterprise service to which the JDBC connection is made via the URL and the URL form is:
 
-<!-- ``` -->
+```
 jdbc:kylin://<hostname>:<port>/<project_name>
 ```
-* &lt;hostname&gt; : If Kyligence Enterprise service start SSL, then JDBC should use the HTTPS port of the Kyligence Enterprise service 
-* &lt;port&gt;: If port has not been specified, then JDBC driver would use default port of HTTP and HTTPS 
-* &lt;project_name&gt; : Required. users have to ensure the project exist in Kyligence Enterprise service 
+
+URL parameter description is as follows:
+
+- &lt;hostname&gt;: If Kyligence Enterprise service start SSL, then JDBC should use the HTTPS port of the Kyligence Enterprise service 
+
+- &lt;port&gt;：If port has not been specified, then JDBC driver would use default port of HTTP and HTTPS 
+- &lt;project_name&gt;:  Required. users have to ensure the project exist in Kyligence Enterprise service 
+
+
 
 Besides, users need to specify username, password and whether SSL would be true for connection, these properties are as follow: 
 
-* &lt;user&gt;: username to login Kyligence Enterprise service
-* &lt;password&gt;: password to login Kyligence Enterprise service
-* &lt;ssl&gt;: enable ssl parameter. Set up string type "true" / "false", the default setting for this parameter  is "false". If the value is "true", all accesses to Kyligence Enterprise are based on HTTPS
+- &lt;user&gt;: 	username to login Kyligence Enterprise service
+- &lt;password&gt;: password to login Kyligence Enterprise service
+- <ssl&gt;: enable ssl parameter. Set up string type "true" / "false", the default setting for this parameter  is "false". If the value is "true", all accesses to Kyligence Enterprise are based on HTTPS
+
+
 
 Here lists an example of Connection: 
 
@@ -29,6 +50,10 @@ info.put("password", "KYLIN");
 //info.put("ssl","true");
 Connection conn = driver.connect("jdbc:kylin://localhost:7070/kylin_project_name", info);
 ```
+
+
+
+The following sections describe how two JAVA programs can connect to JDBC
 
 #### Query based on Statement 
 Here lists an example of Query based on Statement：
@@ -75,12 +100,10 @@ Among them, Prepared Statement supports assignment for the following types:
 * setInt
 * setShort
 * setLong
-* setFloat
 * setDouble
 * setBoolean
 * setByte
 * setDate
-* setTime
 * setTimestamp
 
 
@@ -91,3 +114,11 @@ Among them, Prepared Statement supports assignment for the following types:
 - Dynamic param cannot use in <b>case when</b>, e.g. `case when xxx then ? else ? end`
 
 It's recommended to use dynamic param in filters only, e.g. `where id = ?`.
+
+
+
+### FAQ
+
+**Q: How to upgrade the JDBC Driver?** 
+
+Remove the Kyligence JDBC Driver package for BI or other third-party applications，and replace it with a new JDBC driver package.

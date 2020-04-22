@@ -1,27 +1,32 @@
 ## Kyligence JDBC 驱动
-本产品支持JDBC接口，并提供了JDBC驱动程序。该驱动允许如第三方BI应用，SQL 查询工具或其他支持JDBC接口的应用访问本产品实例。
+本产品支持 JDBC 接口，并提供了 JDBC 驱动程序。该驱动允许如第三方BI应用，SQL 查询工具或其他支持 JDBC 接口的应用访问本产品实例。
+
+### 如何获取 JDBC 驱动程序
+
+在 [Kyligence 下载页面](http://download.kyligence.io/#/download) 下载 Kyligence JDBC 驱动程序，并放置在 BI 或其它第三方应用指定路径。
+
+> **注意：**
+>
+> 1. 支持连接到 Kyligence Enterprise 3.2.x，3.3.x，3.4.x，4.0.x，4.1.x 及之后的高版本
+> 2. 较早期的 Kyligence Enterprise版本，可以在产品安装目录的 `./lib`子目录下，获取 JDBC JAR 包文件进行连接, 文件名为：**kylin-jdbc-kap-\<version\>.jar**
+> 3. 不支持连接到 Apache Kylin
 
 
 
-### 如何获取JDBC驱动程序
+### 如何配置 JDBC 连接
 
-用户可以在产品安装目录的 `./lib`子目录下，获取相关JAR包文件。
+本产品的 JDBC 驱动程序遵循了 JDBC 标准接口，用户可通过 URL 指定 JDBC 方式连接到 Kyligence 服务。
 
-文件名为： **kylin-jdbc-kap-\<version\>.jar**。
-
-### 如何配置JDBC连接
-本产品的 JDBC驱动程序遵循了JDBC标准接口，用户可通过URL指定JDBC方式连接到Kyligence服务。
-
-URL格式为：
+URL 格式为：
 
 ```
 jdbc:kylin://<hostname>:<port>/<project_name>
 ```
-URL参数说明如下：
+URL 参数说明如下：
 
-- &lt;hostname&gt;:主机名
+- &lt;hostname&gt;: 主机名
 
-* &lt;port&gt;： 端口号，如果本产品部署启用了SSL安全认证服务，则应该使用相关HTTPS端口号
+* &lt;port&gt;：端口号，如果本产品部署启用了SSL安全认证服务，则应该使用相关HTTPS端口号
 
 * &lt;project_name&gt;:  必须指定具体项目名称，并且确认该项目在服务中存在
 
@@ -30,10 +35,14 @@ URL参数说明如下：
 其他配置参数如下：
 
 * &lt;user&gt;: 	登陆服务实例的用户名
-* &lt;password&gt;: 登陆服务实例的密码
-* &lt;ssl&gt;: 是否开启SSL， 值为String类型的"true"或"false"， 默认为"false"。如果是"true"，所有Kyligence的访问都将基于HTTPS
 
-JAVA配置连接样例：
+* &lt;password&gt;: 登陆服务实例的密码
+
+* &lt;ssl&gt;: 是否开启SSL，值为String类型的"true"或"false"， 默认为"false"。如果是"true"，所有Kyligence的访问都将基于HTTPS
+
+  
+
+JAVA 配置连接样例：
 
 ```java
 Driver driver = (Driver) Class.forName("org.apache.kylin.jdbc.Driver").newInstance();
@@ -46,11 +55,11 @@ Connection conn = driver.connect("jdbc:kylin://localhost:7070/kylin_project_name
 
 
 
-下面章节介绍两种JAVA程序调用 JDBC 的访问本产品
+下面章节介绍两种 JAVA 程序调用 JDBC 的连接方式
 
-#### 方法一：基于Statement的查询
+#### 方法一：基于 Statement 的查询
 
-具体直接基于Statement进行查询的代码样例如下：
+具体直接基于 Statement 进行查询的代码样例如下：
 ```java
 Driver driver = (Driver) Class.forName("org.apache.kylin.jdbc.Driver").newInstance();
 Properties info = new Properties();
@@ -68,22 +77,20 @@ while (resultSet.next()) {
 ```
 
 
-#### 方法二：基于PreparedStatement的查询
-该方法支持在SQL语句中传入参数， 目前支持如下方法进行参数设置：
+#### 方法二：基于 PreparedStatement 的查询
+该方法支持在 SQL 语句中传入参数， 目前支持如下方法进行参数设置：
 
 - setString
 - setInt
 - setShort
 - setLong
-- setFloat
 - setDouble
 - setBoolean
 - setByte
 - setDate
-- setTime
 - setTimestamp
 
-具体基于Prepared Statement进行查询的代码样例如下：
+具体基于 Prepared Statement 进行查询的代码样例如下：
 
 ```java
 Driver driver = (Driver) Class.forName("org.apache.kylin.jdbc.Driver").newInstance();
@@ -102,10 +109,19 @@ while (resultSet.next()) {
 }
 ```
 
-**Prepared Statement已知限制**
+**Prepared Statement 已知限制**
 
-- 不支持查询下压。
+- 不支持查询下压
 - 动态参数不支持与"-"放在一起，如`SUM(price - ?)`
-- 动态参数不支持出现在**case when**中，如`case when xxx then ? else ? end`
+- 动态参数不支持出现在 **group by** 中，如 `group by trans_id/?`
+- 动态参数不支持出现在 **case when** 中，如`case when xxx then ? else ? end`
 
-此外，我们推荐您仅让动态参数出现在查询的过滤条件中，如`where id = ?`
+此外，我们推荐您仅让动态参数出现在查询的过滤条件中，如 `where id = ?`
+
+
+
+### FAQ
+
+**Q: 如何升级 JDBC 驱动?**   
+
+将 BI 或其它第三方应用的 Kyligence JDBC 驱动包移除，替换至新的 JDBC 驱动包即可。
