@@ -35,6 +35,7 @@
   - `segments`  -  `required` `array of string`, array of segment names
   - `mpValues`  -  `optional` `string`,  multiple partition values of corresponding model
   - `force`  -  `optional` `boolean`, whether force to operate, ie., "true" or  "false"
+  - `yarnQueue` - `optional` `string`, yarn queue for merge segment task, it can be set after these two parameters were set: kylin.engine-yarn.queue.in.task.enabled (whether to allow set specified YARN queue for build task, default value is false), kylin.engine-yarn.queue.in.task.available (available YARN queues, separate them with English commas)
 
 
 - Curl Request Example

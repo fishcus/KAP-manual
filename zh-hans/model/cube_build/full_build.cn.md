@@ -16,6 +16,10 @@
 
    ![Cube 构建](images/full_build_cube.png)
 
+   如果需要为构建任务指定 YARN 队列，可以在系统级别或项目级别设置参数：kylin.engine-yarn.queue.in.task.enabled（是否允许为任务指定 YARN 队列，默认不开启）、kylin.engine-yarn.queue.in.task.available（可供设置的 YARN 队列，多个队列时用英文逗号分隔）。例如设置kylin.engine-yarn.queue.in.task.enabled=true、kylin.engine-yarn.queue.in.task.available=default,test，弹出提示消息如下：
+
+   ![Cube 构建时设置 YARN 队列](images/full_build_cube_with_queue.png)
+   
 2. 点击继续进行构建。当构建任务完成之后，前往 Cube 列表中查看，会发现该 Cube 的状态已被置为“就绪（Ready）”了。Cube 中会存在一个名为 FULL_BUILD 的 Segment。
 
    ![FULL_BUILD Segment](images/full_build_segment_info.png)

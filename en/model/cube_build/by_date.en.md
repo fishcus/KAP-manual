@@ -15,6 +15,10 @@ Step 2: In the build cube dialog, confirm the *Partition Date Column* is *DEFAUL
 
 ![](images/by_date/buildcube_1.png)
 
+> **Tips**: If you need to set specified YARN queue for build tasks , parameters can be set in the system level or project level: kylin.engine-yarn.queue.in.task.enabled (whether to allow set specified YARN queue for build task, default value is false), kylin.engine-yarn.queue.in.task.available (available YARN queues, separate them with English commas). For example, kylin.engine-yarn.queue.in.task.enabled=true、kylin.engine-yarn.queue.in.task.available=default,test, a pop-up window will appear as below:
+
+![](images/by_date/buildcube_4.png)
+
 After submission, go to the *Monitor* page, a list of running jobs will be displayed. The first job (named *BUILD CUBE - kylin_sales_cube - 20120101000000_20130101000000 - GMT+08:00 2017-06-27 16:38:44*) is the job we just submitted. Double click the job (or single click the arrow icon on the left), the detail steps of the job will expand. When all steps complete, the status of the job will become *Finished*, and the first segment is ready. Go to the cube list, check if the cube status now is *Ready*.
 
 ![](images/by_date/buildcube_2.png)

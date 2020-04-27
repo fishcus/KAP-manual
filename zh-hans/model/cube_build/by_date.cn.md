@@ -13,6 +13,10 @@
 
 ![](images/buildcube_1.png)
 
+> **提示：** 如果需要为构建任务指定 YARN 队列，可以在系统级别或项目级别设置参数：kylin.engine-yarn.queue.in.task.enabled（是否允许为任务指定 YARN 队列，默认不开启）、kylin.engine-yarn.queue.in.task.available（可供设置的 YARN 队列，多个队列时用英文逗号分隔）。例如设置kylin.engine-yarn.queue.in.task.enabled=true、kylin.engine-yarn.queue.in.task.available=default,test，弹出提示消息如下：
+
+![](images/buildcube_4.png)
+
 当任务成功提交之后，切换到**监控**页面，这里会列出所有的任务列表。我们找到列表最上面的一个任务（名称是：**Kylin_sales_cube** - 20120101000000_20130101000000），这就是我们刚刚提交的任务。在这一行单击或点击左侧的箭头图标，页面右侧会显示当前任务的详细信息。
 待构建任务完成，可以在**监控**页面看到该任务状态已被置为**Finished（完成）**。前往 Cube 列表中查看，会发现该 Cube 的状态已被置为**Ready（就绪）**了。
 
