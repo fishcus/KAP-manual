@@ -261,7 +261,7 @@ Given new Hive data files, build a new cube segment and load data into it.
     -d '{ 
       "sourceOffsetStart": 0, 
       "sourceOffsetEnd": 9223372036854775807, 
-      "buildType": "BUILD"}' http://localhost:7070/kylin/api/cubes/{cubeName}/build_streaming
+      "buildType": "BUILD"}' http://localhost:7070/kylin/api/cubes/{cubeName}/segments/build_streaming
   ```
 
 - Response Example
