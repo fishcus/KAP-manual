@@ -19,6 +19,57 @@ Kyligence Enterprise 支持与 Tableau 8.X，9.X，10.X，2018.X，2019.X ，202
   1. 在 [Kyligence下载中心](http://download.kyligence.io/#/download) 下载 **Tableau Datasource Customization** (TDC) 文件
 
   2. 将 TDC 文件拷贝至 Tableau Desktop 相关安装目录下即可，默认目录为 ` Documents\My Tableau Repository\Datasources`
+  
+
+Kyligence Enterprise 与 Tableau Desktop 支持2种集成方式，下文将分别介绍具体集成步骤。
+
+- Kyligence Enterprise 快捷导入导出同步模型方式
+- Kyligence Enterprise 手动映射模型方式
+
+
+### 方式一：Kyligence Enterprise 快捷导入导出同步模型方式
+
+您在Kyligence Enterprise 完成建模与创建Cube后，可以直接导出 Tableau 对应的数据源文件(.TDS)，
+
+并在 Tableau 中一键导入该文件，快速完成模型同步。
+
+> **注意：** 仅 Kyligence Enterprise 3.0.1 以上版本支持该方式
+
+该方式主要步骤如下：
+
+#### Kyligence Enterprise 导出 Tableau Data Source (.TDS) 文件
+
+- 进入**建模**模块下的**Cube**页面
+- 选择**Ready**状态的的**Cube**
+- 在**更多操作**中选择**导出TDS** 
+
+![](../../images/tableau_desktop/1_Export_TDS.png)
+
+#### 将导出的.TDS文件导入至 Tableau
+
+- 在已部署的 Tableau 环境中，双击导出的**TDS**文件
+- 在弹出的认证窗口中，输入连接认证信息
+- 点击**OK**
+
+![](../../images/tableau_desktop/2_Connect_Information.png)
+
+#### 在 Tableau 中，检查导入的模型内容, 如维度，度量
+
+![](../../images/tableau_desktop/3_Review_Dimension_Measure.png)
+
+#### 创建可视化图表
+
+现在您可以进一步使用Tableau进行可视化分析，拖拽维度、度量字段，就可以生成自己的图表了。
+
+![](../../images/tableau_desktop/4_Charts.png)
+
+
+
+### 方式二：Kyligence Enterprise 手动映射模型方式 
+
+您可通过Kyligence ODBC Driver 连接 Kyligence Enterprise 数据源, 并在 Tableau 中重新建立模型完成映射。
+
+该方式主要步骤如下：
 
 
 ### 连接 Kyligence Enterprise

@@ -20,6 +20,47 @@ Kyligence Enterprise supports integration with Tableau 8.X, 9.X, 10.X, 2018.X, 2
 
   2. Copy the file to the required Tableau directory. The default location is: `Documents\My Tableau Repository\Datasources`
 
+This section will introduce two methods available to connect Tableau with Kyligence Enterprise.
+
+- Quick sync up model by using Kyligence Enterprise TDS export function
+- Manually build mapping model 
+
+### Method 1: Quick Sync Up Model by Using TDS Import/Export Function
+
+After modeling and creating cube, you can export cube definition as Tableau model definition file in Kyligence Enterprise and import it in Tableau. 
+
+> **Note：** Only Kyligence Enterprise Version 3.0.1 or above supports this approach
+
+Please follow the steps below:
+
+**Step 1:** Export Tableau Data source (TDS) file from Kyligence Enterprise
+
+- Under **Model** > **Cube** module
+- Select a **Ready** Cube
+- Click **More Action** icon and select **Export TDS** option, a pop-up page shows
+
+![](../../images/tableau_desktop/1_Export_TDS.png)
+
+**Step 2:** Import TDS file into Tableau
+
+- Copy the TDS file to the environment which tableau installed, and double click on it
+- In the pop-up window, enter authorization information.
+- Click **OK** 
+
+![](../../images/tableau_desktop/2_Connect_Information.png)
+
+**Step 3:** In Tableau, check model import, such as dimension, measure etc.
+
+![](../../images/tableau_desktop/3_Review_Dimension_Measure.png)
+
+**Step 4:** Now you can start to enjoy analyzing with Tableau Desktop
+
+![](../../images/tableau_desktop/4_Charts.png)
+
+### Method 2: Manually Build Mapping Model
+
+You can connect Kyligence Enterprise through ODBC Driver, and manually map Kyligence model in Tableau.
+
 ### Connect to Kyligence Enterprise
 
 Open Tableau Desktop, click **Other Database (ODBC)** in the left panel, enter connection authentication information (host port, project, username, password) in the pop-up window, or drop-down to select t the existing DSN, and click **Connection**. After verification, you can get the tables and data with access rights.
