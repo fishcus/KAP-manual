@@ -32,6 +32,7 @@
   - `buildType` - `required` `string`, supported build type, "BUILD"
   - `mpValues` - `optional` `string`, multiple partition values of corresponding model
   - `force` - `optional` `boolean`, force submit mode, default is false
+  - `yarnQueue` - `optional` `string`, yarn queue for this task, it can be set after these two parameters were set: kylin.engine-yarn.queue.in.task.enabled (whether to allow set specified YARN queue for build task, default value is false), kylin.engine-yarn.queue.in.task.available (available YARN queues, separate them with English commas).
 
 - Curl Request Example
 
@@ -98,6 +99,7 @@
   - `buildType` - `required` `string`,supported build type, "BUILD"
   - `mpValues` - `optional` `string`, multiple partition values of corresponding model
   - `force` - `optional` `boolean`, force submit mode, default is false
+  - `yarnQueue` - `optional` `string`, yarn queue for this task, it can be set after these two parameters were set: kylin.engine-yarn.queue.in.task.enabled (whether to allow set specified YARN queue for build task, default value is false), kylin.engine-yarn.queue.in.task.available (available YARN queues, separate them with English commas).
 
   > **Note：**If your source data gets updated frequently and you need to refresh corresponding cube data accordingly, you can use this "force" option to build the segment in one step. Kyligence Enterprise will handle existing cube segment or job **with exactly the same time partition** automatically explained as below:
   >
@@ -250,6 +252,7 @@ Given new Hive data files, build a new cube segment and load data into it.
   - `buildType` - `required` `string`, the build type must be `BUILD`.
   - `mpValues` - `optional` `string`, multiple partition values of corresponding model.
   - `force` - `optional` `boolean`, force submit mode, default is false.
+  - `yarnQueue` - `optional` `string`, yarn queue for this task, it can be set after these two parameters were set: kylin.engine-yarn.queue.in.task.enabled (whether to allow set specified YARN queue for build task, default value is false), kylin.engine-yarn.queue.in.task.available (available YARN queues, separate them with English commas).
 
 - Curl Request Example
 
@@ -314,6 +317,7 @@ Given new Hive data files, build a new cube segment and load data into it.
   - `buildType` - `required` `string`, the build type must be `BUILD`.
   - `mpValues` - `optional` `string`, multiple partition values of corresponding model.
   - `force` - `optional` `boolean`, force submit mode, default is false.
+  - `yarnQueue` - `optional` `string`, yarn queue for this task, it can be set after these two parameters were set: kylin.engine-yarn.queue.in.task.enabled (whether to allow set specified YARN queue for build task, default value is false), kylin.engine-yarn.queue.in.task.available (available YARN queues, separate them with English commas).
 
 - Curl Request Example
 

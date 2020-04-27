@@ -37,6 +37,7 @@
   - `buildType` - `必选` `string`，支持的计算类型："BUILD"
   - `mpValues` - `可选` `string`，对应模型的分区字段值
   - `force` - `可选` `boolean`，是否强制提交任务，默认值为 `false`
+  - `yarnQueue` - `可选` `string`，指定该任务使用的 YARN 队列，在系统级别或项目级别设置参数后使用：kylin.engine-yarn.queue.in.task.enabled（是否允许为任务指定 YARN 队列，默认不开启）、kylin.engine-yarn.queue.in.task.available（可供设置的 YARN 队列，多个队列时用英文逗号分隔）。
 
 
 - Curl 请求示例
@@ -106,6 +107,7 @@
   - `buildType` - `必选` `string`，支持的计算类型，为："BUILD"
   - `mpValues` - `可选` `string`，对应模型的分区字段值
   - `force` - `可选` `boolean`，强制提交任务选项，默认值为 `false`
+  - `yarnQueue` - `可选` `string`，指定该任务使用的 YARN 队列，在系统级别或项目级别设置参数后使用：kylin.engine-yarn.queue.in.task.enabled（是否允许为任务指定 YARN 队列，默认不开启）、kylin.engine-yarn.queue.in.task.available（可供设置的 YARN 队列，多个队列时用英文逗号分隔）。
 
   > **提示：** 如果您的源数据随时可能发生更新，并且需要同步刷新 Cube 数据，可以使用**强制提交任务**选项，一步完成刷新 Cube 数据工作，系统将自动对现有的 Cube Segment 或任务进行相应处理：
   >
@@ -256,6 +258,7 @@
   - `mpValues` - `可选` `string`，对应模型的分区字段值。
   - `force` - `可选` `boolean`，强制提交任务选项，默认值为 `false`
   - `buildType` - `必选` `string`，支持的计算类型，为："BUILD"
+  - `yarnQueue` - `可选` `string`，指定该任务使用的 YARN 队列，在系统级别或项目级别设置参数后使用：kylin.engine-yarn.queue.in.task.enabled（是否允许为任务指定 YARN 队列，默认不开启）、kylin.engine-yarn.queue.in.task.available（可供设置的 YARN 队列，多个队列时用英文逗号分隔）。
 
 
 - Curl 请求示例
@@ -326,6 +329,8 @@
   - `buildType` - `必选` `string`，支持的构建类型为 `BUILD`。
   - `mpValues` - `可选` `string`，对应模型的分区字段值。
   - `force` - `可选` `boolean`，强制提交任务选项，默认值为 `false`。
+  - `yarnQueue` - `可选` `string`，指定该任务使用的 YARN 队列，在系统级别或项目级别设置参数后使用：kylin.engine-yarn.queue.in.task.enabled（是否允许为任务指定 YARN 队列，默认不开启）、kylin.engine-yarn.queue.in.task.available（可供设置的 YARN 队列，多个队列时用英文逗号分隔）。
+
 
 - Curl 请求示例
 

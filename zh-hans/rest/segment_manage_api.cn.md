@@ -38,6 +38,7 @@
   - `segments`  -  `必选` `string 数组`，Segment 名称的数组
   - `mpValues`  -  `可选` `string`， 模型的多级分区值
   - `force`  -  `可选` `boolean`，是否强制进行操作，为 "true" 或 "false"
+  - `yarnQueue` - `可选` `string`，合并 segment 时可以设置任务的 YARN 队列，在系统级别或项目级别设置参数后使用：kylin.engine-yarn.queue.in.task.enabled（是否允许为任务指定 YARN 队列，默认不开启）、kylin.engine-yarn.queue.in.task.available（可供设置的 YARN 队列，多个队列时用英文逗号分隔）。
 
 - Curl 请求示例
 
