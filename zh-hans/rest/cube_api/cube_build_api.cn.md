@@ -156,7 +156,7 @@
         "progress":0
     },
     "msg":""
-}
+  }
   ```
 
 
@@ -262,7 +262,7 @@
 
   ```sh
   curl -X PUT \
-  'http://localhost:7070/kylin/api/cubes/{cubeName}/build_streaming' \
+  'http://localhost:7070/kylin/api/cubes/{cubeName}/segments/build_streaming' \
   -H 'Accept: application/vnd.apache.kylin-v2+json' \
   -H 'Accept-Language: en' \
   -H 'Authorization: Basic QURNSU46S1lMSU4=' \
