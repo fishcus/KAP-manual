@@ -6,6 +6,7 @@ Kyligence will provide migration tools to support the migration from Apache Kyli
 
 Continue reading
 
+- [Kyligence Enterprise 3.3 Release Notes](ke_3_3.en.md)
 - [Kyligence Enterprise 3.2 Release Notes](ke_3_2.en.md)
 - [Kyligence Enterprise 3.1 Release Notes](ke_3_1.en.md)
 - [Kyligence Enterprise 3.0 Release Notes](ke_3_0.en.md)
