@@ -141,7 +141,7 @@ Kyligence Enterprise 自带一个样例，向您展示如何从源代码编译�
 
      在本例我们直接返回初始化之后的用户列表 *users*。
 
-   - *listAdminUses()* 方法用来返回所有的角色为管理员的用户，该方法返回值是一个由用户名组成的List。在本例中我们直接过滤出 *users* 中角色为 admin 的用户返回
+   - *listAdminUsers()* 方法用来返回所有的角色为管理员的用户，该方法返回值是一个由用户名组成的List。在本例中我们直接过滤出 *users* 中角色为 admin 的用户返回
 
    - *userExists(String s)* 方法用来根据用户名返回用户是否存在。在本例中我们直接遍历 *users* 进行判断
 
@@ -219,7 +219,7 @@ Kyligence Enterprise 自带一个样例，向您展示如何从源代码编译�
    # 配置安全模式为 custom
    kylin.security.profile=custom
    
-   # 配置 KapOpenAUthenticationProvider，必须
+   # 配置 KapOpenAuthenticationProvider，必须
    kylin.security.custom.authenticaton-provider-clz=StaticAuthenticationProvider
    
    # 配置 KapOpenUserService，可选

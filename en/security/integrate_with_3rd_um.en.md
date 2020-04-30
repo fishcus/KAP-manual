@@ -139,7 +139,7 @@ Below introduces how to implement these three classes through the sample code.
 
      In this sample, we return directly to the list of users created during initialization: *users*.
 
-   - The *listAdminUses()* method is used to return all administrator users. The return value of this method is a **List** consisting of user names. In this sample, this method simply filters out the admin users among all *users*.
+   - The *listAdminUsers()* method is used to return all administrator users. The return value of this method is a **List** consisting of user names. In this sample, this method simply filters out the admin users among all *users*.
 
    - The *userExists(String s)* method is used to return whether the user exists based on the username. In this sample, we traverse the *users* directly.
 
@@ -147,7 +147,7 @@ Below introduces how to implement these three classes through the sample code.
 
    - The *completeUserInfo(ManagedUser user)* method is used to add user information.
 
-     > **Note:** In Kyligence Enterprise, *completeUserInfo* is a mandotory method. Please leave it empty rather than delete it if you don't need to add user information.
+     > **Note:** In Kyligence Enterprise, *completeUserInfo* is a mandatory method. Please leave it empty rather than delete it if you don't need to add user information.
 
    - Other methods should be implemented according to your actual needs.
 
@@ -219,7 +219,7 @@ Below introduces how to implement these three classes through the sample code.
    # Set the security profile to custom
    kylin.security.profile=custom
    
-   # Set the KapOpenAUthenticationProvider, required
+   # Set the KapOpenAuthenticationProvider, required
    kylin.security.custom.authenticaton-provider-clz=StaticAuthenticationProvider
    
    # Set the KapOpenUserService, optional
