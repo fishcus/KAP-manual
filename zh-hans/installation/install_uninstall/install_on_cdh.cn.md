@@ -16,8 +16,6 @@ Kyligence Enterprise 支持的 Cloudera CDH 版本列表
 
 - Cloudera CDH 6.0/6.1/6.2
 
-  > **注意：** Cloudera CDH 6.0/6.1/6.2 版本暂不支持使用 SparkSQL 进行 Cube 构建
-
 为了避免权限问题，我们推荐您使用 CDH 默认账户和密码`cloudera`访问 CDH 沙箱。本节中均以`cloudera`账户为例。
 
 请您访问 Cloudera Manager（默认地址：`http://<host_name>:7180/`，默认账户和密码：`cloudera`）并确保`HDFS`、`Yarn`、`Hive`、`HBase`、`Zookeeper`等组件处于正常状态并且没有任何警告信息。
