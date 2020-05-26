@@ -69,7 +69,13 @@ The configurations in ``kylin.properties`` list below can be overridden at Cube 
 
   > **Note: Only** when `kylin.source.hive.flat-table-storage-format`=TEXTFILE, the system would apply the configuration  `kylin.source.hive.flat-table-field-delimiter`
 
+- `kylin.snapshot.force-reuse-enabled`，default is false，whether to reuse dimension table snapshots;
 
+Configurations only supported at cube level
+
+- `kylin.materialized-view.force-reuse-enabled`, default is false. Whether to reuse materialized views when building cube. For view dimension tables, if you choose to store them as snapshots, the build task of cube will first materialize the view and use that materialized view to build the flat table and snapshot. When this parameter is set to true, the materialized view will be stored in the project of current cube and will not be cleaned up as a temporary table after the build task is completed. Cube that has enabled the reuse of materialized views will look for views that have been materialized within the scope of its project and will use them in the build task without rematerialized. The refresh dimension table snapshot function can be used to update the reused materialized view, the function can be seen in [Cube and Segment management](../../model/segment_manage.en.md) or [Segment management API](../../rest/segment_manage_api.en.md). ** Do not configure this parameter at the system or project level **, Otherwise, functions such as table sampling will be unavailable.
+
+  > **Note: ** Because snapshots of view dimension tables are built using materialized views, when reuse materialized views is enabled, the multiple builds of dimension table snapshots will not change if the reuse dimension table snapshots is not enabled. Therefore, when there are view-dimension tables stored in the form of snapshots, it is recommended to turn on the reuse materialized view and the reuse dimension table snapshot at the same time, and update the materialized view and dimension table snapshot periodically with the refresh dimension table snapshot function.
 
 ### Override Hive Properties 
 
