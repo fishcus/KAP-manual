@@ -55,6 +55,7 @@
 
   > **注意： 只有**`kylin.source.hive.flat-table-storage-format`=TEXTFILE时，配置`kylin.source.hive.flat-table-field-delimiter`才会生效。
 
+- `kylin.snapshot.force-reuse-enabled`，默认值false，是否复用维表快照（snapshot）；
 
 - `kylin.snapshot.force-reuse-enabled`，默认值 `false`，是否复用维表快照（Snapshot）；
 
