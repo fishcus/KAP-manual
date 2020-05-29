@@ -55,7 +55,13 @@
 
   > **注意： 只有**`kylin.source.hive.flat-table-storage-format`=TEXTFILE时，配置`kylin.source.hive.flat-table-field-delimiter`才会生效。
 
+- `kylin.snapshot.force-reuse-enabled`，默认值 `false`，是否复用维表快照（Snapshot）；
 
+目前只支持在 Cube 级别设置的参数
+
+- `kylin.materialized-view.force-reuse-enabled`，默认值 `false`，是否在构建过程中复用物化视图。对于视图维表，如果选择了以快照（Snapshot）形式存储，Cube 构建步骤中会首先物化视图，并使用该物化视图构建打平表和快照。本参数设置为 `true` 时，物化视图将会在当前 Cube 所属项目中存储，而不会在构建任务完成后作为临时表被清理。开启了复用物化视图的 Cube 将会在其所属项目范围内查找已经物化的视图，并在构建步骤中使用，不再重新物化。可使用刷新维表快照功能更新被复用的物化视图，刷新维表快照功能参见 [Cube与Segment管理](../../model/segment_manage.cn.md) 或 [Segment管理API](../../rest/segment_manage_api.cn.md)。**请勿将此参数配置在系统或项目级别**，否则会导致表采样等功能不可用。
+
+  > **注意：** 由于视图维表的快照是使用物化视图构建的，当开启复用物化视图时，如果未开启复用维表快照，多次构建的维表快照将不会有变化。因此存在以快照形式存储的视图维表时，建议同时开启复用物化视图和复用维表快照，使用刷新维表快照功能定期更新物化视图和维表快照。
 
 ### 覆盖 Hive 参数
 
