@@ -37,11 +37,11 @@ Kyligence Enterprise 在 Cube 构建过程中，默认应用 Hive 来做部分�
    kylin.env.hadoop-conf-dir=$KYLIN_HOME/hadoop-conf
    ```
 
-   > 注意：请将这里的 ` $KYLIN_HOME/hadoop-conf` 替换为绝对路径
+   > 注意：请将这里的 ` $KYLIN_HOME/hadoop-conf` 替换为绝对路径。参数 ` kylin.source.hive.enable-sparksql-for-table-ops=true ` 支持在项目或 cube 级别设置，操作方式参见 [多级配置重写](../config/config_override.cn.md)。
 
 **MapR 平台：**
 
-对 MapR 环境，在 Cube 的构建中启用 SparkSQL，只需要在 `$KYLIN_HOME/conf/kylin.properties` 进行如下设置：
+对 MapR 环境，在 Cube 的构建中启用 SparkSQL，只需要在 `$KYLIN_HOME/conf/kylin.properties`中，或项目中，或 cube 级别进行如下设置：
 
    ```properties
    kylin.source.hive.enable-sparksql-for-table-ops=true
@@ -56,6 +56,8 @@ Kyligence Enterprise 在 Cube 构建过程中，默认应用 Hive 来做部分�
 ```shell
 $KYLIN_HOME/bin/spark-test.sh test
 ```
+
+> **注意：**执行此检测脚本，需要在 `$KYLIN_HOME/conf/kylin.properties` 中配置 ` kylin.source.hive.enable-sparksql-for-table-ops=true `
 
 当您看到如下输出时，代表已经配置成功。
 
