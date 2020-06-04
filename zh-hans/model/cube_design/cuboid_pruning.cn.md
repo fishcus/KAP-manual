@@ -26,7 +26,7 @@ select count(*) from table group by column_mandatory, column_joint1, column_join
 
 当 MDC = 3 时，包含多于3个维度的 Cuboid 会被剪裁掉，如：ABCDEF，ABCDEG，ABCD，ABCE 等。
 
-考虑到 Cube 构建过程中性能问题，Base Cuboid 和一些 Cuboid 不会被剪裁掉即使包含维度大于当前 MCD 的值，如当 MDC =4时，ABCEF 可能不会被剪裁掉。同时根据上一节关于查询维度计算方法，当一个 Cuboid 中含有必要维度，联合维度组和层级维度组时，这两个维度组均算做一个维度，必要维度不算做维度。因此在使用自动剪枝功能时需要考虑到当含有以上维度组或者必要维度时，Cuboid 的实际所含维度数。
+考虑到 Cube 构建过程中性能问题，Base Cuboid 和一些 Cuboid 不会被剪裁掉即使包含维度大于当前 MDC 的值，如当 MDC =4时，ABCEF 可能不会被剪裁掉。同时根据上一节关于查询维度计算方法，当一个 Cuboid 中含有必要维度，联合维度组和层级维度组时，这两个维度组均算做一个维度，必要维度不算做维度。因此在使用自动剪枝功能时需要考虑到当含有以上维度组或者必要维度时，Cuboid 的实际所含维度数。
 
 
 
