@@ -51,7 +51,7 @@ kylin.query.pushdown.runner-class-name=io.kyligence.kap.query.pushdown.PushdownR
 在 `$KYLIN_HOME/tomcat/webapps/kylin/WEB-INF/lib` 目录下运行如下命令，就可得到加密后的密码：
 
 ```sh
-java -classpath kap.jar:spring-beans-4.3.10.RELEASE.jar:spring-core-4.3.10.RELEASE.jar:commons-codec-1.7.jar org.apache.kylin.rest.security.PasswordPlaceholderConfigurer AES yourpassword
+java -classpath kap.jar:spring-beans-4.3.14.RELEASE.jar:spring-core-4.3.14.RELEASE.jar:commons-codec-1.7.jar org.apache.kylin.rest.security.PasswordPlaceholderConfigurer AES yourpassword
 ```
 
 加密后的密文是形如 ${xxxxxxxxx} 的格式，您可以使用这段密文配置到 `kylin.source.jdbc.pass` 配置项。

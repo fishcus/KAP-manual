@@ -45,7 +45,7 @@ The following steps illustrate how to connect SQL Server as metastore. Here is a
 3. To encrypt the password, you can run the following command in `$KYLIN_HOME/tomcat/webapps/kylin/WEB-INF/lib` 
 
    ```shell
-   java -classpath kap.jar:spring-beans-4.3.10.RELEASE.jar:spring-core-4.3.10.RELEASE.jar:commons-codec-1.7.jar org.apache.kylin.rest.security.PasswordPlaceholderConfigurer AES <your_password>
+   java -classpath kap.jar:spring-beans-4.3.14.RELEASE.jar:spring-core-4.3.14.RELEASE.jar:commons-codec-1.7.jar org.apache.kylin.rest.security.PasswordPlaceholderConfigurer AES <your_password>
    ```
 
 4. It is required to add the zookeeper connection configuration `kylin.env.zookeeper-connect-string = host:port` in `$KYLIN_HOME/conf/kylin.properties` because the metadata has no dependency on HBase.
