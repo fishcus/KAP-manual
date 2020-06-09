@@ -35,6 +35,8 @@
     * Clone: Copy a cube metadata, such as the dimension and measure description.
 
       > **Note**: The clone operation will only copy the metadata, without the segment data.
+
+> **Note**: In the mapr environment, when you build empty segment using In Memory mode, the cube size may be 1Kb but the source records is 0. This is because the _SUCCESS file built in the mapr environment occupies 1KB. 
     
     * Refresh Lookup Table Snapshot:  Refresh the snapshot of all segments under this cube.
     
