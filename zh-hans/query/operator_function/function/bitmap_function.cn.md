@@ -6,6 +6,12 @@ Kyligence Enterprise 支持如下 Bitmap 函数。
 
 
 
+### 前提条件
+
+您的 Kyligence Enterprise 版本高于或等于 3.4.5.2080。
+
+
+
 ### BITMAP_VALUE
 
 - 说明
