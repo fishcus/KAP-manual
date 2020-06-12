@@ -30,6 +30,7 @@
         * [Beeline 连接 Hive 配置](installation/config/beeline.cn.md)
         * [查询缓存配置](installation/config/query_cache.cn.md)
         * [压缩配置](installation/config/compression_config.cn.md)
+        * [日志滚动配置](installation/config/log_rotate.cn.md)
     * [使用 Spark 构建](installation/spark_cubing/README.md)
         * [配置 Spark 构建引擎](installation/spark_cubing/spark_engine.cn.md)
         * [构建 Cube 过程中使用 SparkSQL](installation/spark_cubing/sparksql_cubing.cn.md)

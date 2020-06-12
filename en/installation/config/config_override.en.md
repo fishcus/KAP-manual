@@ -69,6 +69,7 @@ The configurations in ``kylin.properties`` list below can be overridden at Cube 
 
   > **Note: Only** when `kylin.source.hive.flat-table-storage-format`=TEXTFILE, the system would apply the configuration  `kylin.source.hive.flat-table-field-delimiter`
 
+
 - `kylin.snapshot.force-reuse-enabled`，default is `false`，whether to reuse dimension table snapshots;
 
 Configurations only supported at cube level

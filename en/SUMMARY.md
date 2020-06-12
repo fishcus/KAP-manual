@@ -34,6 +34,7 @@
         * [Use Beeline to Connect Hive Configuration](installation/config/beeline.en.md)
         * [Query Cache Configuration](installation/config/query_cache.en.md)
         * [Compression Configuration](installation/config/compression_config.en.md)
+        * [Log Rotate Configuration](installation/config/log_rotate.en.md)
     * [Spark Cubing](installation/spark_cubing/README.md)
         * [Build Cube on Spark](installation/spark_cubing/spark_engine.en.md)
         * [Use SparkSQL during Cube Build](installation/spark_cubing/sparksql_cubing.en.md)
