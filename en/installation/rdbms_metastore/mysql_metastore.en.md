@@ -24,31 +24,37 @@ The following steps illustrate how to connect MySQL as metastore. Here is an exa
 
    The meaning of each parameter is as below,  `url`, `username`, and `password` are required parameters. For others, default values will be used if they are not indicated.
 
-     **url**: JDBC's url;
+    
 
-     **username**: JDBC's username;
+   | Name                       | Description                                                  |
+   | -------------------------- | ------------------------------------------------------------ |
+   | **url**                    | JDBC Connect URL                                             |
+   | **username**               | JDBC connect username                                        |
+   | **password**               | JDBC connect password,recommended not use `@` and `,` character. |
+   | **driverClassName**        | JDBC connect driver class name，default value is `com.mysql.jdbc.Driver` |
+   | **maxActive**              | max number of database's connection number, default value is `5` |
+   | **maxIdle**                | max number of database's waiting connection number, default value is `5` |
+   | **maxWait**                | max waiting milliseconds for connecting, default value is `1000` |
+   | **removeAbandoned**        | whether remove timeout connection automatically, default value is `true` |
+   | **removeAbandonedTimeout** | timeout milliseconds, default value is `300`                 |
+   | **passwordEncrypted**      | whether JDBC's password is encrypted，default value is `false` |
 
-     **password**: JDBC's password;
-
-     **driverClassName**: JDBC's driver class name, default value is `com.mysql.jdbc.Driver`;
-
-     **maxActive**: max number of database's connection number, default value is `5`;
-
-     **maxIdle**: max number of database's waiting connection number, default value is `5`;
-
-     **maxWait**: max waiting milliseconds for connecting, default value is `1000`;
-
-     **removeAbandoned**: whether remove timeout connection automatically, default value is `true`;
-
-     **removeAbandonedTimeout**: timeout milliseconds, default value is `300`;
-
-     **passwordEncrypted**: whether JDBC's password is encrypted，default value is `false`；
+   
 
 3. To encrypt the password, you can run the following command in `$KYLIN_HOME/tomcat/webapps/kylin/WEB-INF/lib`
 
    ```shell
-   java -classpath kap.jar:spring-beans-4.3.10.RELEASE.jar:spring-core-4.3.10.RELEASE.jar:commons-codec-1.7.jar org.apache.kylin.rest.security.PasswordPlaceholderConfigurer AES <your_password>
+   java -classpath kap.jar:spring-beans-4.3.14.RELEASE.jar:spring-core-4.3.14.RELEASE.jar:commons-codec-1.7.jar org.apache.kylin.rest.security.PasswordPlaceholderConfigurer AES <your_password>
    ```
+
+   > **Notes:** If you run this command before start Kyligence Enterprise at first time, the directory `$KYLIN_HOME/tomcat/webapps/kylin/WEB-INF/lib` should not exist. To manual create it, please enter the folder `$KYLIN_HOME/tomcat/webapps` and create new directory with name `kylin`, then use `jar` command unzip the `kylin.war` file. The reference commands are as follows:
+   >
+   > ```
+   > mkdir kylin
+   > jar -xf kylin.war -C ./kylin
+   > ```
+
+   
 
 4. It is required to add the zookeeper connection configuration `kylin.env.zookeeper-connect-string=host:port` in `$KYLIN_HOME/conf/kylin.properties`, such as  `kylin.env.zookeeper-connect-string=localhost:2181`, because the metadata has no dependency on HBase.
 

@@ -32,7 +32,8 @@
 
 - HTTP Body: JSON Object
   - `buildType`  -  `required` `string`, supported build type, ie., "MERGE", "REFRESH" or "DROP"
-  - `segments`  -  `required` `array of string`, array of segment names
+  - `segments`  -  `required when buildType=MERGE/REFRESH` `array of string`, array of segment names
+  - `segmentIds`  -  `required when buildType=DROP` `array of string`, array of segment uuid
   - `mpValues`  -  `optional` `string`,  multiple partition values of corresponding model
   - `force`  -  `optional` `boolean`, whether force to operate, ie., "true" or  "false"
   - `yarnQueue` - `optional` `string`, yarn queue for merge segment task, it can be set after these two parameters were set: kylin.engine-yarn.queue.in.task.enabled (whether to allow set specified YARN queue for build task, default value is false), kylin.engine-yarn.queue.in.task.available (available YARN queues, separate them with English commas)
@@ -52,7 +53,21 @@
   "mpValues":""
   }'
   ```
-
+  or
+  
+  ```sh
+  curl -X PUT \
+    'http://host:port/kylin/api/cubes/kylin_sales_cube/segments' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json;charset=utf-8' \
+    -d '{"buildType":"DROP",
+  "segmentIds":["108518df-65cd-4cb1-a62f-8e6ce1d09284"],
+  "mpValues":"",
+  "force":true
+  }'
+  ```
 
 - Response Example
 

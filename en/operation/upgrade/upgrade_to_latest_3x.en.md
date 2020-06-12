@@ -100,6 +100,7 @@ Usage: upgrade.sh <old-kylin-home> [--silent]
 2. The script does in-place upgrade, which means the script will first backup `OLD_KYLIN_HOME`, and then upgrade in the same directory. `KYLIN_HOME` will not change after the upgrade.
 3. Upgrade logs will be generated in directory `$UNPACK_HOME/logs` which include operation details.
 4. Using `--silent` can upgrade without interaction. Please use the silent mode with the guidance from Kyligence Technical Support.
+5. Make sure that your server has enough disk space. If there is no enough space, the execution will fail.
 
 ### Verify Kyligence Enterprise is Upgraded Successfully
 

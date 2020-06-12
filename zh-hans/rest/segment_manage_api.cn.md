@@ -35,7 +35,8 @@
 
 - HTTP Body: JSON Object
   - `buildType`  -  `必选` `string`，操作类型，为 "MERGE", "REFRESH" 或 "DROP"
-  - `segments`  -  `必选` `string 数组`，Segment 名称的数组
+  - `segments`  -  `buildType=MERGE/REFRESH时，必选` `string 数组`，Segment 名称的数组
+  - `segmentIds`  -  `buildType=DROP时，必选` `string 数组`，Segment uuid的数组
   - `mpValues`  -  `可选` `string`， 模型的多级分区值
   - `force`  -  `可选` `boolean`，是否强制进行操作，为 "true" 或 "false"
   - `yarnQueue` - `可选` `string`，合并 segment 时可以设置任务的 YARN 队列，在系统级别或项目级别设置参数后使用：kylin.engine-yarn.queue.in.task.enabled（是否允许为任务指定 YARN 队列，默认不开启）、kylin.engine-yarn.queue.in.task.available（可供设置的 YARN 队列，多个队列时用英文逗号分隔）。
@@ -54,7 +55,21 @@
   "mpValues":""
   }'
   ```
-
+  或者
+  
+  ```sh
+  curl -X PUT \
+    'http://host:port/kylin/api/cubes/kylin_sales_cube/segments' \
+    -H 'Accept: application/vnd.apache.kylin-v2+json' \
+    -H 'Accept-Language: en' \
+    -H 'Authorization: Basic QURNSU46S1lMSU4=' \
+    -H 'Content-Type: application/json;charset=utf-8' \
+    -d '{"buildType":"DROP",
+  "segmentIds":["108518df-65cd-4cb1-a62f-8e6ce1d09284"],
+  "mpValues":"",
+  "force":true
+  }'
+  ```
 
 - 响应示例
 

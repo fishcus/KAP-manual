@@ -99,7 +99,7 @@ A：calcite query engine is the default engine, if you want to switch to sparder
 
 **Q: Does this product support MDX queries?**
 
-A: Yes, MDX is supported by the Kyligence Insight component.
+A: Yes, MDX is supported by the Kyligence MDX component.
 
 **Q: How to view the execution plan of a query?**
 
@@ -111,7 +111,7 @@ A: Using `like` as a filter is supported and it is recommended to use **fuzzy** 
 
 **Q: What SQL standard and SQL functions are supported?**
 
-A: This product supports SQL 92 standard, using Apache Calcite as SQL parser. For SQL reference, please refer to https://calcite.apache.org/docs/reference.html
+A: This product supports ANSI SQL 2003, using Apache Calcite as SQL parser. For SQL reference, please refer to https://calcite.apache.org/docs/reference.html
 
 **Q: The query result returns the column name as upper case. How to return lower case column name?**
 

@@ -50,7 +50,7 @@ In project configuration, your database password configured in `kylin.source.jdb
 Kyligence Enterprise provides an encryption tool to encrypt your database password, so that you can configure with encrypted words. Run following command in `$KYLIN_HOME/tomcat/webapps/kylin/WEB-INF/lib` directory, you will get the encrypted words. 
 
 ```sh
-java -classpath kap.jar:spring-beans-4.3.10.RELEASE.jar:spring-core-4.3.10.RELEASE.jar:commons-codec-1.7.jar org.apache.kylin.rest.security.PasswordPlaceholderConfigurer AES yourpassword
+java -classpath kap.jar:spring-beans-4.3.14.RELEASE.jar:spring-core-4.3.14.RELEASE.jar:commons-codec-1.7.jar org.apache.kylin.rest.security.PasswordPlaceholderConfigurer AES yourpassword
 ```
 
 The encrypted words are in the form like ${xxxxxxxxx}, you can use that to set the value of `kylin.source.jdbc.pass` in configuration.

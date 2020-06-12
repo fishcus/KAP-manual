@@ -101,6 +101,7 @@ Usage: upgrade.sh <old-kylin-home> [--silent]
 2. 升级模式为 “原地升级” ，即升级程序会先自动备份 `OLD_KYLIN_HOME`，然后原地进行升级。升级后的 `KYLIN_HOME` 不变。
 3. 升级完成后，在 `$UNPACK_HOME/logs` 下会生成升级日志，其中包含升级过程中的操作细节。
 4. 参数 `--silent` 允许升级脚本进入 “无声升级模式”，无需客户确认操作指令。建议在 Kyligence 技术支持的确认下使用。
+5. 请确保您的服务器拥有充足的硬盘空间。若空间不足，执行可能会失败。
 
 ### 验证升级后 Kyligence Enterprise 是否正常工作
 

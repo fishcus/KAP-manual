@@ -28,7 +28,9 @@ For detail on how to download and configure Kyligence ODBC Driver please refer t
 
 4. Replace the DATABASE.PDS and DTMapping.PDS in workstation with the two files you configured in previous steps of MicroStrategy Intelligence Server.
 
-   > DATABASE.PDS and DTMapping.PDS location: C:\Program Files (x86)\Common Files\MicroStrategy
+   > Workstation location: C:\Program Files (x86)\Common Files\MicroStrategy
+   >
+   > Desktop location: C:\Program Files\MicroStrategy\Desktop
 
 5. Restart Workstation/Desktop.
 

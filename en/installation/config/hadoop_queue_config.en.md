@@ -18,10 +18,15 @@ Then you may configure the YARN queue to be used in Kyligence Enterprise
 
 
 ```shell
-kylin.engine.spark-conf.spark.yarn.queue = YOUR_QUEUE_NAME
-kylin.engine.mr.config-override.mapreduce.job.queuename = YOUR_QUEUE_NAME
-kylin.source.hive.config-override.tez.queue.name = YOUR_QUEUE_NAME
-kylin.source.hive.config-override.mapreduce.job.queuename = YOUR_QUEUE_NAME
+#  Cubing engine's yarn queue name
+kylin.engine.spark-conf.spark.yarn.queue=YOUR_QUEUE_NAME
+kylin.engine.mr.config-override.mapreduce.job.queuename=YOUR_QUEUE_NAME
+# Hive executor engine's yarn queue name
+kylin.source.hive.config-override.mapreduce.job.queuename=YOUR_QUEUE_NAME
+# Tez framework's yarn queue name under HDP 
+kylin.source.hive.config-override.tez.queue.name=YOUR_QUEUE_NAME
+# Query engine's yarn queue name
+kap.storage.columnar.spark-conf.spark.yarn.queue=YOUR_QUEUE_NAME
 ```
 
 You will need to change the YOUR_QUEUE_NAME to your queue name. 

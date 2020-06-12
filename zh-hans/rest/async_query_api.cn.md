@@ -237,7 +237,7 @@
     -H 'Accept-Language: en' \
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8' \
-    -O -J
+    -o result.csv
   ```
 
 - 响应示例

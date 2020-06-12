@@ -27,13 +27,15 @@
 
 4. 使用之前在中步骤中配置的DATABASE.PDS 文件和 DTMapping.PDS 文件替换Workstation / Desktop 中原有的DATABASE.PDS and DTMapping.PDS 文件
 
-   > 文件默认位置  location: C:\Program Files (x86)\Common Files\MicroStrategy
+   > Desktop 默认位置 C:\Program Files\MicroStrategy\Desktop
+   >
+   > Workstation 默认位置: C:\Program Files (x86)\Common Files\MicroStrategy
 
 5. 重启 Workstation / Desktop
 
 6. 请注意，Kyligence 在 Mac 版 Workstation / Desktop 中尚不支持 
 
-### 使用 MicroStrategy Desktop 连接Kyligence:
+### 使用 MicroStrategy Desktop 连接 Kyligence:
 
 1. 打开 MicroStrategy Desktop并选择 New Data，选择 Kyligence 作为数据源
 

@@ -99,7 +99,7 @@ A：KE默认使用calcite查询引擎，如果需要开启sparder引擎，可以
 
 **Q：本产品支持 MDX 查询吗？**
 
-A：可以通过 Kyligence Insight 支持。
+A：可以通过 Kyligence MDX 支持。
 
 **Q：怎么查看查询的执行计划？**
 
@@ -111,7 +111,7 @@ A：支持`like`做为过滤条件，同时我们建议您对需要使用模糊�
 
 **Q：支持的 SQL 标准是什么？有哪些函数？**
 
-A：本产品支持 SQL 92 标准，使用 Apache Calcite 做为查询解析引擎，因此本产品的 SQL 语法可以参考https://calcite.apache.org/docs/reference.html
+A：本产品支持 ANSI SQL 2003，使用 Apache Calcite 做为查询解析引擎，因此本产品的 SQL 语法可以参考https://calcite.apache.org/docs/reference.html
 
 **Q:   查询结果会将列名返回为大写，如果需要小写的列名怎么办？**
 

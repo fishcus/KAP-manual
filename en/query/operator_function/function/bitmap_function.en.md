@@ -6,6 +6,12 @@ Kyligence Enterprise supports following bitmap functions,
 
 
 
+### Prerequisites
+
+Kyligence Enterprise version is 3.4.5.2080 or higher.
+
+
+
 ### BITMAP_VALUE
 
 - Description
