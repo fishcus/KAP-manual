@@ -8,7 +8,7 @@ Some log files under `$KYLIN_HOME/log/`, including `shell.stderr`, `shell.stdout
 | -----------------------------------------| --------------------------------| -------------- | ---------|
 | kap.env.max-keep-log-file-number         | Log files are rotated count times before being removed | 10             |          |
 | kap.env.max-keep-log-file-threshold-mb   | Log files are rotated when they grow bigger than this  | 256，whose unit is MB   |          |
-| kap.env.log-rotate-check-cron            | The `crontab` time configuration                         | 33 \* \* \* \*     |          |
+| kap.env.log-rotate-check-cron            | The `crontab` time configuration                         | * 33 * * *     |          |
 | kap.env.log-rotate-enabled               | Whether to use scheduled rotate strategy               | false          | true     |
 
 ### Use Default Rotate Strategy 
