@@ -18,7 +18,7 @@ KG process description:
  - The JVM configuration of the process can be set in `KYLIN_HOME/conf/setenv-tool.sh` by the configuration item` KE_GUARDIAN_PROCESS_OPTS`.
 
  - KG will periodically check the health status of Kyligence Enterprise. The time delay of the first check is configured by the parameter `kap.guardian.check-init-delay`, the default is 5 minutes, and the check interval is set by the parameter `kap.guardian.check-interval`, the default is 1 minute.
-
+   > **Note**：If the starting time of your Kyligence Enterprise instance more than 5 mimutes, please increase the configuration `kap.guardian.check-init-delay` to avoid unnecessary restart behavior of kyligence enterprise.
 
 #### Check Items
 KG currently checks the following 4 aspects of Kyligence Enterprise instance's health.
@@ -41,7 +41,7 @@ KG currently checks the following 4 aspects of Kyligence Enterprise instance's h
    
 
 #### KG Highly Available
-To ensure the high availability of KG, Kyligence Enterprise will also periodically check the status of KG. If theff Kyligence Enterprise detects the KG process does not exist, it will automatically start KG. This feature is enabled by default. If you want to disable it, you can add the configuration `kap.guardian.ha-enabled=false` in `KYLIN_HOME/conf/kylin.properties`. The time delay of the first check is configured by the parameter `kap.guardian.ha-check-init-delay` which is 5 minutes by default, and the check interval is set by the parameter `kap.guardian.ha-check-interval` which is 1 minute by default.
+To ensure the high availability of KG, Kyligence Enterprise will also periodically check the status of KG. If the Kyligence Enterprise detects the KG process does not exist, it will automatically start KG. This feature is enabled by default. If you want to disable it, you can add the configuration `kap.guardian.ha-enabled=false` in `KYLIN_HOME/conf/kylin.properties`. The time delay of the first check is configured by the parameter `kap.guardian.ha-check-init-delay` which is 5 minutes by default, and the check interval is set by the parameter `kap.guardian.ha-check-interval` which is 1 minute by default.
 
 
 #### Kyligence Enterprise OOM restarts automatically
