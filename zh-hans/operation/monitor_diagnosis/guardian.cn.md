@@ -17,8 +17,8 @@ KG 进程说明：
  
  - 进程的 JVM 配置可以在`KYLIN_HOME/conf/setenv-tool.sh`中，由`KE_GUARDIAN_PROCESS_OPTS`这个配置项设置。
 
- - KG 会定时去检查 Kyligence Enterprise 的健康状态，第一次检查的时间延迟是由参数`kap.guardian.check-init-delay`配置，默认为 5 分钟，然后检查的时间间隔是由参数`kap.guardian.check-interval`配置，默认是 1 分钟检查一次。
-
+ - KG 会定时去检查 Kyligence Enterprise 的健康状态，第一次检查的时间延迟是由参数`kap.guardian.check-init-delay` 配置，默认为 5 分钟，然后检查的时间间隔是由参数`kap.guardian.check-interval`配置，默认是 1 分钟检查一次。
+   > **注意**：如果您的 Kyligence Enterprise 实例启动时间超过 5 分钟的话，请调大配置 `kap.guardian.check-init-delay` 以避免 Kyligence Enterprise 不必要的重启行为。
 
 #### 检查项
 KG 目前会去检查 Kyligence Enterprise 4 个方面的健康状况。
