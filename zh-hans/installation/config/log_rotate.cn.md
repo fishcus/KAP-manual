@@ -8,7 +8,6 @@ Kyligence Enterprise 的日志目录 `$KYLIN_HOME/log/` 下面的 `shell.stderr`
 | -----------------------------------------| --------------------------------| -------------- | ---------|
 | kap.env.max-keep-log-file-number         | 日志滚动保留的最大文件数量        | 10             |          |
 | kap.env.max-keep-log-file-threshold-mb   | 触发日志滚动的文件大小            | 256，单位为MB   |          |
-| kap.env.log-rotate-check-cron            | 日志滚动检查的`crontab`时间设置     | 33 \* \* \* \*     |          |
 | kap.env.log-rotate-check-cron            | 日志滚动检查的`crontab`时间设置     | * 33 * * *     |          |
 | kap.env.log-rotate-enabled               | 是否启用`crontab`检查日志滚动       | false          | true     |
 
