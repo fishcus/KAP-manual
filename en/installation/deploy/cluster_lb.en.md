@@ -41,7 +41,7 @@ To configure shared sessions in tomcat, do the following **on all query nodes**.
 1. Execute the following command to download Redis Session Sharing plugin package
 
    ```sh
-   wget https://github.com/ran-jit/tomcat-cluster-redis-session-manager/releases/download/3.0/tomcat-cluster-redis-session-manager.zip
+   wget https://github.com/ran-jit/tomcat-cluster-redis-session-manager/releases/download/3.0.4/tomcat-cluster-redis-session-manager.zip
    ```
 
 2. Unzip the downloaded package and copy files.
@@ -49,8 +49,10 @@ To configure shared sessions in tomcat, do the following **on all query nodes**.
    - Copy the jar files in lib folder to `$KYLIN_HOME/tomcat/lib/`
    - Copy file `redis-data-cache.properties` to path `$KYLIN_HOME/tomcat/conf/`
 
-3. Specify the Redis host information in `$KYLIN_HOME/tomcat/conf/redis-data-cache.properties`, such as `redis.hosts=127.0.0.1:6379`.
-
+3. Specify the Redis host information in `$KYLIN_HOME/tomcat/conf/redis-data-cache.properties`, such as `redis.hosts=127.0.0.1:6379`,`redis.password=123456`.
+   
+   If you want to encrypt redis password, please configure `kylin.cache.redis.password` in kylin.properties and configure `redis.password=${REDIS_PASSWORD}`
+   
    If you are using a Redis cluster, please configure the following properties:
 
    - `redis.hosts=host1:port,host2:port`

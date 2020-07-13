@@ -41,7 +41,7 @@ Nginx 在默认情况下将以轮询的方式分发请求。如果一个 Kyligen
 
 1. 执行下述命令以下载 Redis Session 共享插件包
    ```sh
-   wget https://github.com/ran-jit/tomcat-cluster-redis-session-manager/releases/download/3.0/tomcat-cluster-redis-session-manager.zip
+   wget https://github.com/ran-jit/tomcat-cluster-redis-session-manager/releases/download/3.0.4/tomcat-cluster-redis-session-manager.zip
    ```
 
 2. 解压包并复制一些文件
@@ -49,8 +49,10 @@ Nginx 在默认情况下将以轮询的方式分发请求。如果一个 Kyligen
    - 将 lib 目录下的 jar 包拷贝到 `$KYLIN_HOME/tomcat/lib/`
    - 将 `redis-data-cache.properties` 拷贝到 `$KYLIN_HOME/tomcat/conf/`
 
-3. 在查询节点的 `$KYLIN_HOME/tomcat/conf/redis-data-cache.properties` 配置文件中，配置 Redis 节点或集群信息，如 `redis.hosts=127.0.0.1:6379`。
-
+3. 在查询节点的 `$KYLIN_HOME/tomcat/conf/redis-data-cache.properties` 配置文件中，配置 Redis 节点或集群信息，如 `redis.hosts=127.0.0.1:6379`,`redis.password=123456`。
+   
+   如果您需要对redis密码加密，需要配置`redis.password=${REDIS_PASSWORD}`,并在kylin.properties中配置`kylin.cache.redis.password`
+   
    如果您需要配置 Redis 集群，还需要进行如下配置：
 
    * `redis.hosts=host1:port,host2:port`
