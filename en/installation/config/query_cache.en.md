@@ -31,6 +31,9 @@ The default query cache cannot be shared among different nodes or processes beca
 | kylin.cache.redis.expire-time      | Valid cache period.                                           | 86400          |         |
 | kylin.cache.redis.reconnection.enabled | Whether to enable redis reconnection when cache degrades to ehcache | true | false |
 | kylin.cache.redis.reconnection.interval | Automatic reconnection interval, in minutes | 60 | |
+| kylin.cache.redis.password | Redis password | | |
+
+> **Caution:** Redis passwords can be encrypted, please refer to:[Use MySQL as Metastore](../rdbms_metastore/migrate_metastore_to_rdbms.en.md)
 
 ### Query Cache Criteria
 Kyligence Enterprise doesn't cache the query result of all SQL queries by default, because the memory resource might be limited. It only caches those queries which are slow and the result size is appropriate. The criterias are configured by the following parameters.

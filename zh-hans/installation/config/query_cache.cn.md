@@ -30,6 +30,9 @@ Kyligence Enterprise 系统自带查询缓存并默认开启，具体的缓存�
 | kylin.cache.redis.expire-time      | Redis 缓存保留时间                                           | 86400          |        |
 | kylin.cache.redis.reconnection.enabled | 当缓存降级时是否开启Redis自动重连 | true | false |
 | kylin.cache.redis.reconnection.interval | 自动重连Redis的时间间隔，单位是分钟 | 60 | |
+| kylin.cache.redis.password | Redis密码 | | |
+
+> **注意**：Redis密码可以加密，加密方法请参考[使用 MySQL 作为元数据存储](../rdbms_metastore/mysql_metastore.cn.md)。
 
 ###查询被缓存的条件
 Kyligence Enterprise 不会默认缓存每条查询的结果，因为内存资源可能是有限的。目前 Kyligence Enterprise 会有选择性的对那些性能较慢且结果集不是特别大的查询进行缓存。一条查询是否会被缓存，由以下几个参数影响：
