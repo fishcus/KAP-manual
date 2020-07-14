@@ -23,6 +23,21 @@
 		},
 		{
 			"pattern": "^https://mvnrepository.com/artifact/org.apache.httpcomponents/httpcore"
+		},
+		{
+			"pattern": "^https://en.wikipedia.org/wiki/Star_schema"
+		},
+		{
+			"pattern": "^https://en.wikipedia.org/wiki/Snowflake_schema"
+		},
+		{
+			"pattern": "^https://en.wikipedia.org/wiki/HyperLogLog"
+		},
+		{
+			"pattern": "^https://en.wikipedia.org/wiki/Zipf%27s_law"
+		},
+		{
+			"pattern": "^http://en.wikipedia.org/wiki/Basic_access_authentication"
 		}
 	],
 	"replacementPatterns": [],
