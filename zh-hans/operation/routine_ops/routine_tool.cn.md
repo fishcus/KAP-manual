@@ -27,7 +27,7 @@ $KYLIN_HOME/bin/kylin.sh io.kyligence.kap.tool.routine.RoutineTool
 >
 > - `-f， --force`: 强制删除 Hive 的**所有**的临时中间表，必须与 `-c` 一起使用。由于有可能干扰正在运行的任务，除非必要不建议使用 `-f`。
 > - `-r， --withRecovery`: 指定这个参数来检查并修复损坏的快照，必须与 `-c` 一起使用。
-> - `-o， --outdatedThreshold <arg>`: `<arg>` 为整数类型值， 指定清理时保留的构建任务以及历史记录的最大时间，默认为 30 天。
+> - `-o， --outdatedThreshold <arg>`: `<arg>` 为整数类型值， 指定清理时保留的构建任务以及历史记录的最大时间，默认为 30 天（但至少会保留一个容量历史数据）。
 > - `-dl，--dumpLocation <arg>`: `<arg>` 为系统路径， 指定清理时导出的元数据的位置，默认为系统的临时目录。
 > - `-fm，--fastMode`: 仅排查破损或不一致的元数据，跳过耗时较多的过期数据检查和清理。
 > - `-stb，--singleThreadBackup`: 指定这个参数在备份元数据时启用单线程， 默认为多线程。

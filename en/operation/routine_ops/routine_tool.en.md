@@ -28,7 +28,7 @@ This command supports short and long options:
 >
 > - `-f, --force`:  force delete **ALL** intermediate tables in Hive, only works together with the `-c` option. Don't use this unless necessary as it can impact running jobs.
 > - `-r, --withRecovery`: recover table snapshots after check operation, only works together with the `-c` option.
-> - `-o, --outdatedThreshold <arg>`: specify how many days of job history that will be ignored during cleaning. `<arg>` is an integer value and default value is 30.
+> - `-o, --outdatedThreshold <arg>`: specify how many days of job history that will be ignored during cleaning. `<arg>` is an integer value and default value is 30 (But at least one capacity historical data will be saved).
 > - `-dl, --dumpLocation <arg>`: specify the location for dumped metadata. `<arg>` indicates the file system path and default is the temporary folder of system.
 > - `-fm, --fastMode`: specify running as Fast-Mode, which only does the checking of inconsistent metadata. Checking of outdated data and metadata is ignored.
 > - `-stb, --singleThreadBackup`: run metadata backup in single thread, default is multi-thread.
