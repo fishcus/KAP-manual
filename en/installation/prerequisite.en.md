@@ -88,7 +88,7 @@ Verify if user have access to the Hadoop cluster assuming the account is `KyAdmi
 
 The following Hadoop distributions are verified to run Kyligence Enterprise. The bold are major test versions.
 
-- Cloudera CDH 5.7 / **5.8** / 5.11 ~ 5.13 / **6.0** / **6.1**
+- Cloudera CDH  5.4/5.8/5.14/6.0/6.2.1/6.3.1
 - Hortonworks HDP **2.4** / 2.6
 - MapR **6.0.1**/**6.1.0**
 - Huawei FusionInsight C60 / **C70**
