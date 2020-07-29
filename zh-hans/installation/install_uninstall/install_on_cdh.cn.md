@@ -12,7 +12,7 @@
 
 Kyligence Enterprise 支持的 Cloudera CDH 版本列表
 
-- Cloudera CDH 5.4/5.8/5.14/6.0/6.2.1/6.3.1
+- Cloudera CDH 5.4/5.8/5.14/6.0/6.1/6.2.1/6.3.1
 
 为了避免权限问题，我们推荐您使用 CDH 默认账户和密码`cloudera`访问 CDH 沙箱。本节中均以`cloudera`账户为例。
 

@@ -12,7 +12,7 @@ When configuring sandbox, we recommend that you use the Bridged Adapter model in
 
 Following Cloudera CDH versions are supported by Kyligence Enterprise:
 
-- Cloudera CDH  5.4/5.8/5.14/6.0/6.2.1/6.3.1
+- Cloudera CDH  5.4/5.8/5.14/6.0/6.1/6.2.1/6.3.1
 
 To avoid permission problems, we recommend that you use CDH default account and password `cloudera` to access CDH sandbox. In this section, the `cloudera` account is taken as an example.
 
