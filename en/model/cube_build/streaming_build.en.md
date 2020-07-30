@@ -90,4 +90,4 @@ You can change the properties in  `$KYLIN_HOME/conf/kylin.properties ` :
 kylin.engine.mr.tolerant-with-invalid-data=true
 ```
 
-The default value is false. After enable this parameter, the row which contains messy data, such as empty data, will be skipped to ensure the job building successfully.
+The default value has been set to true since v3.4.5.2107. After enable this parameter, the row which contains messy data, such as empty data, will be skipped to ensure the job building successfully.
