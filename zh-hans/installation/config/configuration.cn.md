@@ -30,7 +30,15 @@
 * **kylin.security.profile**
 
   该参数指定 Kyligence Enterprise 服务启用的安全授权方案，可以是 *ldap*、*testing*。默认值为 *testing*，即使用固定的测试账号进行登录。用户可以修改此参数以接入已有的企业级认证体系，如 *ldap*。具体设置可以参考[安全控制](../../security/README.md)章节。
+  
+* **kylin.security.job-list-visible-for-query-enabled**
+  
+  该参数指定 Kyligence Enterprise 的查询用户是否能看到任务列表，默认值为 *false*，即仅有项目的operation权限的用户才可以看到任务列表。当该参数设置为 *true* 时，具有当前项目查询权限的用户就可以看到任务列表了。该参数可在项目级别重写。
+  
+* **kylin.security.allow-non-admin-generate-job-diag-package**
 
+  该参数指定 Kyligence Enterprise 的查询用户是否可以生成任务诊断包，默认值为 *false*。当该参数和 *kylin.security.job-list-visible-for-query-enabled* 同时设置为 *true* 时, 当前项目的查询（或具有更高权限的，如当前项目的操作和管理员）用户就可以生成任务诊断包了。
+  
 * **kylin.web.timezone**
 
   该参数指定 Kyligence Enterprise 的 REST 服务所使用的时区。默认值为 *GMT+8*。用户可以根据具体应用的需要修改此参数。

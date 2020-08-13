@@ -36,7 +36,7 @@
 
   - `projectName` - `optional` `string`, project name
 
-  - `status` - `optional` `int`
+  - `status` - `optional` `int[]`, status-code relations are shown below, separated by comma
 
 | Job Status | Value |
 | ---------- | ----- |

@@ -31,6 +31,14 @@ User could put the customized config items into **kylin.properties.override**, t
 * **kylin.security.profile**
 
   Kyligence Enterprise instance security profile is specified by this property. Optional values include **ldap** and **testing**, among them **testing** is the default one which means testing account enabled. You can alter its value to plug into existing enterprise authentication systems, such as **ldap**. For more information, refer to section [Security and Access Control](../../security/README.md). 
+  
+* **kylin.security.job-list-visible-for-query-enabled**
+  
+  This property specifies whether query user could see the job list in current project. The default value is *false*, which means only operation user could see the job list in current project. When this property is set to *true* , query user could see the job list in the current project. This configuration can be overridden at **project** level.
+  
+* **kylin.security.allow-non-admin-generate-job-diag-package**
+
+  This property specifies Kyligence Enterprise's query user could generate job diagnostic package. The default value is *false*. When this property and *kylin.security.job-list-visible-for-query-enabled* set to *true* at the same time, query, operation, and project-admin user could generate job diagnostic package in the current project.
 
 * **kylin.web.timezone**
 
