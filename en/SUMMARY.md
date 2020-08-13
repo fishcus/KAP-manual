@@ -96,6 +96,7 @@
     * [Execute SQL Query in Web UI](query/insight.en.md)
     * [Asynchronous Query](query/async_query.en.md)  
     * [Specify Cube Priority for Queries](query/cube_priority.en.md)
+    * [Non Equal Join Query (Beta)](query/non_equal_join.en.md)
     * [SQL Specification](query/sql_spec.en.md)    
     * [Operators and Functions](query/operator_function/README.md)
         * [Operator](query/operator_function/operator/README.md)
