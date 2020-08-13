@@ -38,6 +38,9 @@
 		},
 		{
 			"pattern": "^http://en.wikipedia.org/wiki/Basic_access_authentication"
+		},
+		{
+			"pattern": "^https://kyligence.zendesk.com/hc/en-us/articles/115001690433-Modify-MicroStrategy-query-date-format-to-be-consitent-with-KAP"
 		}
 	],
 	"replacementPatterns": [],
