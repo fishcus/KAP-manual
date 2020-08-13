@@ -41,6 +41,9 @@
 		},
 		{
 			"pattern": "^https://kyligence.zendesk.com/hc/en-us/articles/115001690433-Modify-MicroStrategy-query-date-format-to-be-consitent-with-KAP"
+		},
+		{
+			"pattern": "^http://spark.apache.org"
 		}
 	],
 	"replacementPatterns": [],
