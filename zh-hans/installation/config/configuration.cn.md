@@ -169,6 +169,26 @@
 
 > wantedMapperCount和真实启动的mapper数量可能会有误差，仅供参考。
   
+* **kap.metric.diagnosis.graph-writer-type**
+
+  该参数指定了是否把Kyligence Enterprise的metric信息写入InfluxDB，默认值为`BLACK_HOLE`，即不写入。当配置为`INFLUX`时，会把metric信息写入InfluxDB。
+  
+* **kap.metric.diagnosis.influxDB-database**
+
+  该参数指定了保存metric信息的InfluxDB数据库名称，默认值为`KAP_METRIC`。
+
+* **kap.metric.diagnosis.influxDB-address**
+
+  该参数指定了Kyligence Enterprise连接的InfluxDB地址。
+  
+* **kap.metric.diagnosis.influxDB-username**
+
+  该参数指定了Kyligence Enterprise连接的InfluxDB用户名，默认值为`root`。
+  
+* **kap.metric.diagnosis.influxDB-password**
+
+  该参数指定了Kyligence Enterprise连接的InfluxDB密码，默认值为`root`. 注意，密码支持两种配置方式，第一种是明文密码，第二种是加密后的密码。目前不支持InfluxDB密码为空。
+  加密方法为，运行`$KYLIN_HOME/bin/kylin.sh io.kyligence.kap.tool.general.CryptTool AES your_password`得到加密后的密码，加密后的密码记作`encrypted_pass`, 然后配置`kap.metric.diagnosis.influxDB-password=${encrypted_pass}`即可。
 
 ### JVM 参数
 

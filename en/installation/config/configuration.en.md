@@ -168,6 +168,27 @@ User could put the customized config items into **kylin.properties.override**, t
 * **kylin.engine.mr.table-ext-col-divisor-for-mapper** 
 
   When `kylin.engine.mr.table-ext-col-divisor-for-mapper-enabled=true`, this property will take effect. It specifies the column divisor for mapper number of table sampling job, default value is `20`. The formula is **wantedMapperCount=`ceil((rowCount/1,000,000,000) * (columnCount/columnDivisor))`**, `rowCount` stands for row number of table, `columnCount` stands for column number of table. Please note that wantedMapperCount may not equal to the actual mapper number of table sampling job. This configuration can be overridden at **project** level.
+  
+* **kap.metric.diagnosis.graph-writer-type**
+
+  This property specifies whether to write Kyligence Enterprise metrics into InfluxDB. Default value is `BLACK_HOLE`, which means not written. When the value is set to `INFLUX`, metric info will be written to InfluxDB.
+  
+* **kap.metric.diagnosis.influxDB-database**
+
+  This property specifies database name for saving Kyligence Enterprise metric info in InfluxDB, default value is `KAP_METRIC`.
+
+* **kap.metric.diagnosis.influxDB-address**
+
+  This property specifies InfluxDB address which Kyligence Enterprise connected to.
+  
+* **kap.metric.diagnosis.influxDB-username**
+
+  This property specifies username of InfluxDB, default value is `root`.
+  
+* **kap.metric.diagnosis.influxDB-password**
+
+  This property specifies password of InfluxDB, default value is `root`. We support plaintext and encrypted password for this property, empty password is not supported.
+  Encryption method: run `$KYLIN_HOME/bin/kylin.sh io.kyligence.kap.tool.general.CryptTool AES your_password` to get encrypted password，we take the encrypted password as `encrypted_pass`, then configure `kap.metric.diagnosis.influxDB-password=${encrypted_pass}`.
 
 ### JVM Configuration Setting
 
