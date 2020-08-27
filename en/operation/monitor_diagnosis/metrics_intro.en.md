@@ -4,18 +4,17 @@ By default, the system collects metric data for every query request, including s
 > **Note**: Since metrics monitoring depends on InfluxDB and Grafana, please make sure that InfluxDB and Grafana are both correctly configured and started.
 
 ### InfluxDB
-After InfluxDB starts, you need to modify the configuration file to enable InfluxDB in KE, open `$KYLIN_HOME/conf/kylin.properties` and add the following properties:
+After InfluxDB starts, you need to modify the configuration of Kyligence Enterprise to enable InfluxDB and query metric (disabled by default), open `$KYLIN_HOME/conf/kylin.properties` and add the following properties:
 
 ```
 kap.metric.diagnosis.influxDB-address=ip:port
 kap.metric.diagnosis.graph-writer-type=INFLUX
 kap.metric.diagnosis.influxDB-database=KAP_METRIC
-kap.metric.diagnosis.influxDB-query-measurement=query_metric
 kap.metric.diagnosis.influxDB-username=username
 kap.metric.diagnosis.influxDB-password=password
 ```
 
-The password can be encrypted with AES. KE contains an encryption tool, you can use it via:
+The password can be encrypted with AES. Kyligence Enterprise contains an encryption tool, you can use it via:
 
 `bin/kylin.sh io.kyligence.kap.tool.general.CryptTool AES password`
 
@@ -37,7 +36,6 @@ In the database configuration interface, set data source name, URL, database nam
 
 #### Import default dashboard
 Select "Import" in the menu of Grafana, copy <a onclick="window.open('files/grafana_kap_metric.json', '_blank');">the default configuration</a> to the text box, click "Load" , then select the data source you set before.
-> **Note**: To use the default dashboard configuration, KE's property `kap.metric.diagnosis.influxDB-query-measurement` must be set to the dafult value `query_metric`.
 
 ![Dashboard Configuration](images/metrics/loadSetting.png)
 
@@ -47,9 +45,11 @@ The default configuration contains four metrics, the meaning of these metrics ar
 
 | Name       | Meaning    | Project related    |
 | :------------- | :---------- | :----------- |
-| queries_count_on_certain_time_range | total queries | Y |
+| queries_count | total queries | Y |
 | QPS | queries per second | Y |
 | avg_query_response_time | average response time for queries | Y |
 | number_of_parallel_user | number of parallel user | Y |
 
 ![dashboard](images/metrics/dashboard.png)
+
+In addition to the default metrics, you can also add custom metrics according to needs. For details, please refer to the default metrics.

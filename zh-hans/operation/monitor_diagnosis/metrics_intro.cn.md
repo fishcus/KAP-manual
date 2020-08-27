@@ -4,19 +4,18 @@
 > **注意**：由于指标监控服务依赖于 InfluxDB 和 Grafana，所以请确保您已经正确配置且正常启动 InfluxDB 和 Grafana。
 
 ### InfluxDB
-启动 InfluxDB 后，KE需要修改相应配置来指定 InfluxDB, 修改 `$KYLIN_HOME/conf/kylin.properties` 文件，添加如下配置：
+启动 InfluxDB 后，Kyligence Enterprise 需要修改相应配置来指定 InfluxDB 并且启动指标监控功能（默认关闭）, 修改 `$KYLIN_HOME/conf/kylin.properties` 文件，添加如下配置：
 
 ```
 kap.metric.diagnosis.influxDB-address=ip:port
 kap.metric.diagnosis.graph-writer-type=INFLUX
 kap.metric.diagnosis.influxDB-database=KAP_METRIC
-kap.metric.diagnosis.influxDB-query-measurement=query_metric
 kap.metric.diagnosis.query-metric-global-enabled=true
 kap.metric.diagnosis.influxDB-username=username
 kap.metric.diagnosis.influxDB-password=password
 ```
 
-其中密码支持 AES 加密后的密码，KE提供加密工具，使用方法为：
+其中密码支持 AES 加密后的密码，Kyligence Enterprise 提供加密工具，使用方法为：
 
 `bin/kylin.sh io.kyligence.kap.tool.general.CryptTool AES password`
 
@@ -38,7 +37,6 @@ Grafana 启动成功后打开浏览器访问，默认端口：3000，用户名�
 
 #### 加载默认数据面板
 在 Grafana 菜单中选择“Import”, 然后复制<a onclick="window.open('files/grafana_kap_metric.json', '_blank');">默认配置文件</a>至右侧的文本框中，点击“Load”, 并且选择之前添加的数据源即可。
-> **注意**：使用默认配置文件要求在KE的配置文件中 `kap.metric.diagnosis.influxDB-query-measurement`必须使用默认值`query_metric`
 
 ![数据面板配置](images/metrics/loadSetting.png)
 
@@ -48,11 +46,12 @@ Grafana 启动成功后打开浏览器访问，默认端口：3000，用户名�
 
 | 名称       | 含义    | 关联项目    |
 | :------------- | :---------- | :----------- |
-| queries_count_on_certain_time_range | 查询总次数 | Y |
+| queries_count | 查询总次数 | Y |
 | QPS | 平均每秒查询次数 | Y |
 | avg_query_response_time | 平均相应时间 | Y |
 | number_of_parallel_user | 并行用户数 | Y |
 
 ![数据面板](images/metrics/dashboard.png)
 
+除默认的四个指标之外，用户也可以根据需求添加自定义指标，具体用法可参考默认指标。
 

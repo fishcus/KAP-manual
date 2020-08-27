@@ -142,7 +142,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "queries_count_on_certain_time_range",
+      "title": "queries_count",
       "tooltip": {
         "shared": true,
         "sort": 0,
