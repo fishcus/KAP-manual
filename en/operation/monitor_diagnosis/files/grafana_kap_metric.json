@@ -46,7 +46,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1598264866611,
+  "iteration": 1598948453734,
   "links": [],
   "panels": [
     {
@@ -419,8 +419,8 @@
       },
       "yaxes": [
         {
-          "format": "short",
-          "label": null,
+          "format": "ms",
+          "label": "",
           "logBase": 1,
           "max": null,
           "min": null,
@@ -428,7 +428,7 @@
         },
         {
           "format": "short",
-          "label": null,
+          "label": "",
           "logBase": 1,
           "max": null,
           "min": null,
@@ -615,8 +615,8 @@
         "auto_count": 30,
         "auto_min": "10s",
         "current": {
-          "text": "10s",
-          "value": "10s"
+          "text": "30s",
+          "value": "30s"
         },
         "hide": 0,
         "label": "interval",
@@ -628,12 +628,12 @@
             "value": "1s"
           },
           {
-            "selected": true,
+            "selected": false,
             "text": "10s",
             "value": "10s"
           },
           {
-            "selected": false,
+            "selected": true,
             "text": "30s",
             "value": "30s"
           },
@@ -728,5 +728,5 @@
   "timezone": "",
   "title": "KAP_METRIC",
   "uid": "4i3wvONMz",
-  "version": 2
+  "version": 5
 }

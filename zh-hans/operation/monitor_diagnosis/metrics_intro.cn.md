@@ -48,10 +48,10 @@ Grafana 启动成功后打开浏览器访问，默认端口：3000，用户名�
 | :------------- | :---------- | :----------- |
 | queries_count | 查询总次数 | Y |
 | QPS | 平均每秒查询次数 | Y |
-| avg_query_response_time | 平均相应时间 | Y |
+| avg_query_response_time | 平均响应时间 | Y |
 | number_of_parallel_user | 并行用户数 | Y |
 
 ![数据面板](images/metrics/dashboard.png)
 
-除默认的四个指标之外，用户也可以根据需求添加自定义指标，具体用法可参考默认指标。
+除默认的四个指标之外，用户也可以根据需求在数据面板中添加自定义指标。
 

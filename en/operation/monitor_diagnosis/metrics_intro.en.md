@@ -10,6 +10,7 @@ After InfluxDB starts, you need to modify the configuration of Kyligence Enterpr
 kap.metric.diagnosis.influxDB-address=ip:port
 kap.metric.diagnosis.graph-writer-type=INFLUX
 kap.metric.diagnosis.influxDB-database=KAP_METRIC
+kap.metric.diagnosis.query-metric-global-enabled=true
 kap.metric.diagnosis.influxDB-username=username
 kap.metric.diagnosis.influxDB-password=password
 ```
@@ -52,4 +53,4 @@ The default configuration contains four metrics, the meaning of these metrics ar
 
 ![dashboard](images/metrics/dashboard.png)
 
-In addition to the default metrics, you can also add custom metrics according to needs. For details, please refer to the default metrics.
+In addition to the default metrics, you can also add custom metrics according to needs in databash. 
