@@ -65,7 +65,8 @@
           "partial":false,
           "sparderUsed":false,
           "timeout":false,
-          "pushDown":false
+          "pushDown":false,
+          "resultRowCount":1
       },
       "msg":""
   }
@@ -87,6 +88,7 @@
   - `sparderUsed` - whether Sparder engine is used
   - `timeout` - whether query is timeout
   - `pushDown` - whether query push down to other engine
+  - `resultRowCount` - result row count
 
 
 
