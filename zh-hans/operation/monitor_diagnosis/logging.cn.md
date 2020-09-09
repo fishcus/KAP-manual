@@ -74,6 +74,31 @@ Message: Something complex went wrong. null Please contact KAP technical support
 Kyligence Enterprise使用 log4j 对日志进行配置，用户可以编辑 `$KYLIN_HOME/conf/` 目录中的 `kylin-server-log4j.properties` 文件，对日志级别、路径等进行修改。
 修改后，需要重启Kyligence Enterprise使配置生效。
 
+#### 日志路径配置
+在 `kylin-server-log4j.properties` 文件中可以对日志路径进行配置。
+`kylin.log` 日志路径由参数 `log4j.appender.file.File` 控制，默认值为 `${catalina.home}/../logs/kylin.log`，代表日志所在目录为 `$KYLIN_HOME` 路径下的 logs 文件夹。
+如果需要修改路径，推荐使用绝对路径。如果使用相对路径，路径起点为 `$KYLIN_HOME` ，并且通过命令行导出诊断包时，必须在 `$KYLIN_HOME` 路径下执行，否则可能导致日志无法获取。
+如果路径中包含变量，则需要同时修改 `setenv.sh` 和 `setenv-tool.sh`，使用 `-D` 参数设置变量为 JVM 参数。举例说明：如果路径设置为 `${custom_dir}/kylin.log`, 则需要将 `setenv.sh` 文件中的 
+```
+export KYLIN_JVM_SETTINGS="-server -Xms1g -Xmx4g ..."
+```
+修改为
+```
+export KYLIN_JVM_SETTINGS="-server -Dcustom_dir=/path/to/custom/dir -Xms1g -Xmx4g ..."
+```
+将 `setenv-tool.sh` 文件中的
+```
+export KYLIN_EXTRA_START_OPTS="-Xms1g -Xmx8g"
+export KE_GUARDIAN_PROCESS_OPTS="-Xms128m -Xmx1g"
+```
+修改为
+```
+export KYLIN_EXTRA_START_OPTS="-Dcustom_dir=/path/to/custom/dir -Xms1g -Xmx8g"
+export KE_GUARDIAN_PROCESS_OPTS="-Dcustom_dir=/path/to/custom/dir -Xms128m -Xmx1g"
+```
+
+其他日志文件大多数也受 log4j 控制，如 `canary.log` 由 `log4j.appender.canary.File` 参数控制，路径修改方法与上面的一致。
+
 #### 日志输出类型配置
 在 `kylin-server-log4j.properties` 文件中可以对日志输出类型进行配置。<br />
 Kyligence Enterprise 默认的日志输出类型是`org.apache.log4j.RollingFileAppender`，即文件大小到达指定尺寸的时候产生一个新文件，日志的指定大小由 `log4j.appender.file.MaxFileSize` 控制，默认每个日志文件最大为268435456字节（即256M）；
