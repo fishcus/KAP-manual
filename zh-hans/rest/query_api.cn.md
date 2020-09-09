@@ -65,7 +65,8 @@
         "timeout":false,
         "lateDecodeEnabled":false,
         "pushDown":false,
-        "sparderUsed":true
+        "sparderUsed":true,
+        "resultRowCount":1
     },
     "msg":""
 }
@@ -87,7 +88,7 @@
   - `timeout` - 查询是否超时
   - `pushDown` - 查询是否下压到其他引擎
   - `sparderUsed` - 是否使用了 Sparder 查询引擎
-
+  - `resultRowCount` - 查询结果行数
 
 
 ### 列出可查询的表
