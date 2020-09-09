@@ -15,9 +15,7 @@ kap.metric.diagnosis.influxDB-username=username
 kap.metric.diagnosis.influxDB-password=password
 ```
 
-The password can be encrypted with AES. Kyligence Enterprise contains an encryption tool, you can use it via:
-
-`bin/kylin.sh io.kyligence.kap.tool.general.CryptTool AES password`
+The password can be encrypted with AES. Usage can be found at <a onclick="window.open('../../installation/config/configuration.en.html?h=influxDB-password', '_blank');">Configuration</a>
 
 ### Grafana
 After the startup is successful, you may access Grafana through web browser with default port: 3000, username: admin, password: admin 

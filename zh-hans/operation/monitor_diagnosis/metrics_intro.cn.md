@@ -15,9 +15,7 @@ kap.metric.diagnosis.influxDB-username=username
 kap.metric.diagnosis.influxDB-password=password
 ```
 
-其中密码支持 AES 加密后的密码，Kyligence Enterprise 提供加密工具，使用方法为：
-
-`bin/kylin.sh io.kyligence.kap.tool.general.CryptTool AES password`
+其中密码支持 AES 加密后的密码，使用方法参考 <a onclick="window.open('../../installation/config/configuration.cn.html?h=influxDB-password', '_blank');">参数配置</a>
 
 ### Grafana
 Grafana 启动成功后打开浏览器访问，默认端口：3000，用户名：admin，密码：admin 
