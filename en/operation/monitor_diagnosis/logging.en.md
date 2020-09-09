@@ -77,6 +77,31 @@ Message: Something complex went wrong. null Please contact Kyligence Enterprise 
 Kyligence Enterprise leverages log4j for logging configuration. Users can edit `$KYLIN_HOME/conf/kylin-server-log4j.properties` to modify logging level, log files and etc.
 > *Tips:* Restarting Kyligence Enterprise is necessary to make the configurations work.
 
+#### Log path
+Users can modify the path of logs in `kylin-server-log4j.properties`.
+The path of `kylin.log` is controled by property `log4j.appender.file.File`, the default value is `${catalina.home}/../logs/kylin.log`, which means the logs folder under `$KYLIN_HOME`.
+If users need to modify the path, it is recommended to use an absolute path. If users use a relative path, the path start point is KYLIN_HOME. The relative path may cause the log not to be obtained when exporting the diagnostic package through the command line. 
+If the path contains variables, users need to set the variable as a JVM parameter in  `setenv.sh` and `setenv-tool.sh`. For example, if users want to set path as `${custom_dir}/kylin.log`, they need to edit `setenv.sh`, change
+```
+export KYLIN_JVM_SETTINGS="-server -Xms1g -Xmx4g ..."
+```
+to
+```
+export KYLIN_JVM_SETTINGS="-server -Dcustom_dir=/path/to/custom/dir -Xms1g -Xmx4g ..."
+```
+and edit `setenv-tool.sh`, change
+```
+export KYLIN_EXTRA_START_OPTS="-Xms1g -Xmx8g"
+export KE_GUARDIAN_PROCESS_OPTS="-Xms128m -Xmx1g"
+```
+to
+```
+export KYLIN_EXTRA_START_OPTS="-Dcustom_dir=/path/to/custom/dir -Xms1g -Xmx8g"
+export KE_GUARDIAN_PROCESS_OPTS="-Dcustom_dir=/path/to/custom/dir -Xms128m -Xmx1g"
+```
+
+Most other log files are also controlled by log4j, such as `canary.log` which is controled by property `log4j.appender.canary.File` . Users can customize the path as above.
+
 #### Log output type 
 Log output type can be configured in `kylin-server-log4j.properties`.
 The default log output type is `org.apache.log4j.RollingFileAppender`, which means when the file size reaches a specified value, a new file is generated. The specified value can be set by `log4j.appender.file.MaxFileSize`,  which is 268435456 by default.
