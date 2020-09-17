@@ -123,11 +123,7 @@ cp $OLD_KYLIN_HOME/conf/kylin.properties.override $KYLIN_HOME/conf/
 
 - If Kerberos is enabled, please refer to [Integrate with Kerberos](../../security/kerberos.en.md).
 
-- Copy over the license file
-
-  ```sh
-  cp $OLD_KYLIN_HOME/LICENSE $KYLIN_HOME/
-  ```
+- Apply new license file[Apply License](../../appendix/apply_license.en.md).
 
   
 

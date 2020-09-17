@@ -128,11 +128,7 @@ export KYLIN_HOME={your-unpack-folder}
 
 - 如果您启用了 Kerberos 安全认证，请参考[与 Kerberos 集成](../../security/kerberos.cn.md)。
 
-- 复制 License 文件
-
-  ```sh
-  cp $OLD_KYLIN_HOME/LICENSE $KYLIN_HOME/
-  ```
+- 申请新的 License 文件[申请许可证](../../appendix/apply_license.cn.md)。
 
 
 

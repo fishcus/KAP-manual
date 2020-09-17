@@ -49,6 +49,8 @@
 
   > **注意：** **请勿**将此参数设置 > 10000, 否则将会在计算维度组合时耗用大量CPU与内存资源。易导致页面卡顿，严重或可致 Kyligence Enterprise崩溃。如 Cube 中有大量维度，建议分多个聚合组（AGG）进行优化。
 
+- `kylin.materialized-view.store-type`，默认值SEQUENCEFILE，其他有效值为RCFILE；
+
 - `kylin.source.hive.flat-table-storage-format`，默认值SEQUENCEFILE，其他有效值为TEXTFILE；
 
 - `kylin.source.hive.flat-table-field-delimiter`，默认值‘ \u001F’，其他有效值为‘\t’，‘\n’；
