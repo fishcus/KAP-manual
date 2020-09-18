@@ -63,6 +63,8 @@ The configurations in ``kylin.properties`` list below can be overridden at Cube 
 
   > **Note:** **DO NOT** set this parameter over 10000. Otherwise it will consume a lot of CPU and memory resources when calculating the dimension combination, may lead to browser unstable or Kyligence Enterprise Instance crash. If there exist a lot of dimensions in the Cube, it is recommended to set multiple Aggregation Groups (AGG).
 
+- `kylin.materialized-view.store-type`, default is SEQUENCEFILE, other valid value is RCFILE;
+
 - `kylin.source.hive.flat-table-storage-format`, default is SEQUENCEFILE, other valid value is TEXTFILE;
 
 - `kylin.source.hive.flat-table-field-delimiter`, default is ‘ \u001F’, other valid values are ‘\t’, ‘\n’;
