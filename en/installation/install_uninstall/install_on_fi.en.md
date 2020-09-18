@@ -43,11 +43,8 @@ After setting up the environment, please refer to [Quick Start](../../quickstart
    hdfs dfs -chown root /user/root
    ```
 
-2. Please copy **all the configuration items** from `hivemetastore-site.xml`  to `hive-site.xml` in FusionInsight Hive directory. Then copy the `hive-site.xml` file to `$KYLIN_HOME/conf/` by the following commands:
+2. Please copy **all the configuration items** from `hivemetastore-site.xml`  to the `hive-site.xml` file used by Kyligence Enterprise. Then copy the `hive-site.xml` file to `$KYLIN_HOME/spark/conf/`.
 
-      ```shell
-      cp $HIVE_HOME/../config/hive-site.xml $KYLIN_HOME/conf/
-      ```
 
 3. In the FI Manager page, click **Hive - configuration (all configuration) - Security-whitelist.**
 
@@ -91,3 +88,7 @@ Please create a new user in FI Manager and allocate the user in a user group nam
 ```sh
 hdfs dfs -chown -R <user_name> <working_directory>
 ```
+
+**Q: When building a Cube or query pushdown to SparkSQL, appear the following error: `Caused by: org.apache.thrift.transport.TTransportException` **
+
+Please confirm whether to implement the second point of special instructions above. Ensure that the `hive-site.xml` used by Kyligence Enterprise contains all configuration items from the `hivemetastore-site.xml` file of the hive directory in the FusionInsight client.

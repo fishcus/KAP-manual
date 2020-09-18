@@ -42,7 +42,7 @@ kinit <user_name>
    hdfs dfs -chown root /user/root
    ```
 
-2. 请您将 FusionInsight 客户端中 Hive 目录的`hivemetastore-site.xml`文件中的所有配置项拷贝至`hive-site.xml`文件中，并将`hive-site.xml`文件拷贝到 `$KYLIN_HOME/spark/conf`。
+2. 请您将 FusionInsight 客户端中 Hive 目录的`hivemetastore-site.xml`文件中的所有配置项拷贝至 Kyligence Enterprise 使用的`hive-site.xml`文件中，并将`hive-site.xml`文件拷贝到 `$KYLIN_HOME/spark/conf`。
 
 3. 在 FI Manager 页面中，依次点击 **Hive** - **配置（全部配置）**- **安全** - **白名单**，
 
@@ -87,3 +87,7 @@ kylin.storage.hbase.compression-codec=none
 ```shell
 hdfs dfs -chown -R <user_name> <working_directory>
 ```
+
+**Q: 在构建 Cube 或者查询下压至 SparkSQL 时，出现如下报错：`Caused by: org.apache.thrift.transport.TTransportException` **
+
+请您确认是否执行上文特别注意事项第二点。确保 Kyligence Enterprise 使用的`hive-site.xml`中包含 FusionInsight 客户端中 Hive 目录的`hivemetastore-site.xml`文件中的所有配置项。
