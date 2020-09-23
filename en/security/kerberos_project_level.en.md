@@ -1,6 +1,6 @@
 ## Integrate with Kerberos in Project Level
 
-Starting with version 3.4.5.2111, Kyligence supports project-level configuration of different Kerberos accounts when turned on Kerberos integration.
+Starting with version 3.4.5.2112, Kyligence supports project-level configuration of different Kerberos accounts when turned on Kerberos integration.
 
 This enables projects to have different permissions loading source tables, providing more refined management capabilities for enterprise-level customers.
 
