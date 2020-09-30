@@ -84,6 +84,10 @@ User could put the customized config items into **kylin.properties.override**, t
 * **kylin.query.pushdown.cache-enabled**
 
   This property specifies the function of cache enabled. The default value is true. If this setting is set to false, the function will be closed. 
+  
+* **kylin.query.pushdown.permissive-enabled**
+
+  This property specifies whether permissive mode is enabled. The default value is false. If this setting is set to true, pushdown engine will execute queries that were parsed failed in Calcite Parser. 
 
 * **kylin.query.max-result-rows**
 
