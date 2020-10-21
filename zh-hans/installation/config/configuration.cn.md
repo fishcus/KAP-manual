@@ -194,6 +194,12 @@
   该参数指定了Kyligence Enterprise连接的InfluxDB密码，默认值为`root`. 注意，密码支持两种配置方式，第一种是明文密码，第二种是加密后的密码。目前不支持InfluxDB密码为空。
   加密方法为，运行`$KYLIN_HOME/bin/kylin.sh io.kyligence.kap.tool.general.CryptTool AES your_password`得到加密后的密码，加密后的密码记作`encrypted_pass`, 然后配置`kap.metric.diagnosis.influxDB-password=${encrypted_pass}`即可。
 
+* **kylin.engine-yarn.application-name.hive.enabled**
+
+  该参数控制了是否在 `hive` 命令提交的 `yarn` 任务名上添加 `host_port` 后缀，默认值为 `false`。
+  
+  > 当 `Hive` 认证方式为 `SQLStdAuth` 时启用该参数会导致构建报错，需要在 `Hive` 的配置参数 `hive.security.authorization.sqlstd.confwhitelist` 上额外添加 `park.app.name|mapred.job.name|hive.session.id` 三项。
+
 ### JVM 参数
 
 在`$KYLIN_HOME/conf/setenv.sh` （如果版本低于2.4.0，`$KYLIN_HOME/bin/setenv.sh`) 中，为KYLIN_JVM_SETTINGS 给出了两种示例配置。默认配置使用的内存较少，用户可以根据自己的实际情况，注释掉默认配置并取消另一配置前的注释符号以启用另一配置，从而为 Kyligence Enterprise 示例分配更多的内存资源。
