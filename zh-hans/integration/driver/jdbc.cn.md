@@ -124,4 +124,10 @@ while (resultSet.next()) {
 
 **Q: 如何升级 JDBC 驱动?**   
 
-将 BI 或其它第三方应用的 Kyligence JDBC 驱动包移除，替换至新的 JDBC 驱动包即可。
+A: 将 BI 或其它第三方应用的 Kyligence JDBC 驱动包移除，替换至新的 JDBC 驱动包即可。
+
+**Q: 系统如何支持在函数中使用动态参数?**
+
+A: 当前的系统默认不支持在函数中使用动态参数，需要配置相应的参数开启该功能，开启之后所有的[算数函数](../../query/operator_function/function/arithmetic_function.cn.md)和[字符串函数](../../query/operator_function/function/string_function.cn.md)均可支持动态参数。
+
+- 修改相应的配置：若配置文件中已存在配置项 `kylin.query.system-transformers` ，请直接在参数值后面追加 `io.kyligence.kap.query.util.BindParameters`，以逗号间隔；若配置文件中不存在配置项 `kylin.query.system-transformers`，请添加该配置项，并设值为 `io.kyligence.kap.query.util.ConvertToComputedColumn,io.kyligence.kap.query.util.EscapeTransformer,org.apache.kylin.query.util.DefaultQueryTransformer,org.apache.kylin.query.util.KeywordDefaultDirtyHack,io.kyligence.kap.query.security.RowFilter,io.kyligence.kap.query.security.HackSelectStarWithColumnACL,io.kyligence.kap.query.util.ReplaceStringWithVarchar,io.kyligence.kap.query.util.BindParameters`
