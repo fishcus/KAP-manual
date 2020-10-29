@@ -196,7 +196,7 @@ User could put the customized config items into **kylin.properties.override**, t
 
 * **kylin.engine-yarn.application-name.hive.enabled**
 
-  This property specifies whether to use `host_port` as the suffix of `yarn` application name submitted by the `hive` command. The default value is `false`.
+  This property specifies whether to use `host_port` as the suffix of `yarn` application name submitted by the `hive` command. The default value is `false` and this property can only be set at **system** level.
 
   > When the `Hive` authorization method is `SQLStdAuth`, enabling this property will cause a build error. You need to add `park.app.name|mapredjob.name|hive.session.id` to the parameter `hive.security.authorization.sqlstd.confwhitelist` in hive-site.xml.
 

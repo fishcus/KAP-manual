@@ -196,9 +196,9 @@
 
 * **kylin.engine-yarn.application-name.hive.enabled**
 
-  该参数控制了是否在 `hive` 命令提交的 `yarn` 任务名上添加 `host_port` 后缀，默认值为 `false`。
+  该参数控制了是否在 `hive` 命令提交的 `yarn` 任务名上添加 `host_port` 后缀，默认值为 `false`，仅支持在**系统**级别配置。
   
-  > 当 `Hive` 认证方式为 `SQLStdAuth` 时启用该参数会导致构建报错，需要在 `Hive` 的配置参数 `hive.security.authorization.sqlstd.confwhitelist` 上额外添加 `park.app.name|mapred.job.name|hive.session.id` 三项。
+  > 当 `Hive` 认证方式为 `SQLStdAuth` 时启用该参数会导致构建报错，需要在 `Hive` 的配置参数 `hive.security.authorization.sqlstd.confwhitelist` 上额外添加 `spark.app.name|mapred.job.name|hive.session.id` 三项。
 
 ### JVM 参数
 
