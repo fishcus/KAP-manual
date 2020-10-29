@@ -20,6 +20,6 @@ kylin.source.jdbc.driver=com.microsoft.sqlserver.jdbc.SQLServerDriver
 kylin.source.jdbc.connection-url=jdbc:<sqlserver>://<host>:<port>;database=<database_name>
 kylin.source.jdbc.user=<username>
 kylin.source.jdbc.pass=<password>
-kylin.source.jdbc.dialect=mssql
-kylin.source.jdbc.adaptor=io.kyligence.kap.sdk.datasource.adaptor.MssqlAdaptor
+kylin.source.jdbc.dialect=mssql08
+kylin.source.jdbc.adaptor=io.kyligence.kap.sdk.datasource.adaptor.Mssql08Adaptor
 ```
