@@ -6,10 +6,12 @@ In the previous versions, some queries with non-equal join could not be answered
 
 ### How to Use
 
-This feature is on by default. To disable it, please set the configuration in `$KYLIN_HOME/conf/kylin.properties`.
+Since 3.4.5.2107 to 3.4.5.2113, the feature is enabled by default. From 3.4.5.2114 and above version, this feature is changed to be disabled by defualt.
+To enable it, please set the configuration in $KYLIN_HOME/conf/kylin.properties.
 
 ```properties
-kylin.query.non-equi-join-enabled=false
+kylin.query.revert-non-equi-join-support=false
+kylin.query.non-equi-join-enabled=true
 ```
 
 Currently, Kyligence Enterprise  supports >, <, etc. non-equal join queries.

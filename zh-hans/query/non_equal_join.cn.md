@@ -6,10 +6,12 @@
 
 ###  使用方法
 
-该功能默认为开启状态，如果想要关闭该功能，需在 `$KYLIN_HOME/conf/kylin.properties` 中配置参数关闭。
+在 v3.4.5.2107 - v3.4.5.2113 版本中，该功能默认为开启状态，在 v3.4.5.2114 及后续版本中，该功能默认为关闭状态。
+如果想要启用该功能，则需在 `$KYLIN_HOME/conf/kylin.properties` 中配置参数启用。
 
 ```properties
-kylin.query.non-equi-join-enabled=false
+kylin.query.revert-non-equi-join-support=false
+kylin.query.non-equi-join-enabled=true
 ```
 
 目前在 Kyligence Enterprise 中支持了>, <等 非等值连接的查询。
