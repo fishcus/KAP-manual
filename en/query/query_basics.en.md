@@ -14,7 +14,7 @@ Different from normal query engines, Kyligence Enterprise use precalculated resu
 
    The **matching** here means:
 
-   * The relationship of tables used in `FROM` clause must match the fact and dimension tables defined in cube and model. Please note that the relationship of `LEFT JOIN` does not match `INNER JOIN`.
+   * The join relationship of tables used in `FROM` clause must match the fact and dimension tables defined in cube and model. In some special cases, you can configure the `LEFT JOIN` model to answer part of the equivalent semantic `INNER JOIN` query, see [Use the Left Join model to answer Inner Join queries with equivalent semantics](query_enhanced.en.md).
    * For aggregate queries, the columns in `GROUP BY` clause must be defined as dimensions in cube. Meanwhile, the aggregate functions in `SELECT` clause must be defined as measures in cube. 
    * For non-aggregate queries, table index must be defined in cube and all columns appear in query must be contained in the table index.
 
