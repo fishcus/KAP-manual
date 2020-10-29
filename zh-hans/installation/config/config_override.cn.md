@@ -51,7 +51,9 @@
 
 - `kylin.materialized-view.store-type`，默认值SEQUENCEFILE，其他有效值为RCFILE；
 
-- `kylin.source.hive.flat-table-storage-format`，默认值SEQUENCEFILE，其他有效值为TEXTFILE；
+- `kylin.source.hive.flat-table-storage-format`，默认值SEQUENCEFILE，其他有效值为TEXTFILE，RCFILE；
+
+	> **注意： 使用kafka数据源时，只能设置为`SEQUENCEFILE`。
 
 - `kylin.source.hive.flat-table-field-delimiter`，默认值‘ \u001F’，其他有效值为‘\t’，‘\n’；
 

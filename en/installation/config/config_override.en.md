@@ -65,7 +65,9 @@ The configurations in ``kylin.properties`` list below can be overridden at Cube 
 
 - `kylin.materialized-view.store-type`, default is SEQUENCEFILE, other valid value is RCFILE;
 
-- `kylin.source.hive.flat-table-storage-format`, default is SEQUENCEFILE, other valid value is TEXTFILE;
+- `kylin.source.hive.flat-table-storage-format`, default is SEQUENCEFILE, other valid value is TEXTFILE, RCFILE;
+
+ > **Note: Only `SEQUENCEFILE` can be set when datasource is kafka
 
 - `kylin.source.hive.flat-table-field-delimiter`, default is ‘ \u001F’, other valid values are ‘\t’, ‘\n’;
 
