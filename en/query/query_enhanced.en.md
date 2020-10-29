@@ -4,11 +4,11 @@ By default in Kyligence Enterprise, the relationship between tables in the query
 
 But in some cases,  part of `Left Join` queries can be semantically equivalently transformed into `Inner Join` queries, so we provide configuration parameters that allow users to use `Left Join`  Cube/model to answer equivalent semantics `Inner Join` query.
 
-The configuration parameters starts to take effect from version of Kyligence Enterprise 3.4.5.2114, which is closed by default. And they supports project-level and query-level rewriting.
+The configuration parameters starts to take effect from version of Kyligence Enterprise 3.4.5.2114, which is disabled by default. And they supports project-level and query-level rewriting.
 
 
 
-### Scene one
+### Scenario one
 `[Table A] Left Join [Table B] Inner Join [Table C]` is semantically equivalent to `[Table A] Inner Join [Table B] Inner Join [Table C]`.
 
 The reason is that when `Inner Join` is performed after `Left Join`, the rows that do not match the last right table will be filtered out, so the above two expressions are semantically equivalent.
@@ -38,7 +38,7 @@ The above Cube/model can answer this SQL.
 
 
 
-### Scene Two
+### Scenario Two
 
 SQL has the following characteristics: `[Table A] Left Join [Table B]` and any column of `[Table B]` in the filter condition has a non-null constraint, then the SQL semantics is equivalent to `[Table A] Inner Join [Table B]`.
 
@@ -106,7 +106,7 @@ A left join B where B.col1 ='xx' and B.col2 is null
 
 
 
-### Scene Three
+### Scenario Three
 
 Now there is the model `[Table A] Left Join [Table B] left join [Table C]`.
 
@@ -121,11 +121,11 @@ The reason is that the columns in table C have non-null constraints, so the quer
 A LEFT_OR_INNER join B LEFT_OR_INNER join C where C.col ='abc'
 ```
 
-Scene three is a mixture of scene one and scene two, and the above two parameters need to be enabled at the same time.
+Scenario three is a mixture of scenario one and scenario two, and the above two parameters need to be enabled at the same time.
 
 
 
 ### Known limitations
 
-1. For Scene two, the equivalent conversion of filter conditions connected with `or`  is currently not supported, and the filter conditions on both sides of `or` will be automatically ignored.
-2. For  Scene two, judgment of non-null constraints don't include `NOT SIMILAR TO`, `IS TRUE`, `IS FALSE`, `IS NOT TRUE`, `IS NOT FALSE`, `NOT BETWEEN AND` , `IS DISTINCT FROM`, `IS NOT DISTINCT FROM` expressions.
+1. For Scenario two, the equivalent conversion of filter conditions connected with `or`  is currently not supported, and the filter conditions on both sides of `or` will be automatically ignored.
+2. For Scenario two, judgment of non-null constraints don't include `NOT SIMILAR TO`, `IS TRUE`, `IS FALSE`, `IS NOT TRUE`, `IS NOT FALSE`, `NOT BETWEEN AND` , `IS DISTINCT FROM`, `IS NOT DISTINCT FROM` expressions.
