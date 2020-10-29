@@ -194,6 +194,12 @@ User could put the customized config items into **kylin.properties.override**, t
   This property specifies password of InfluxDB, default value is `root`. We support plaintext and encrypted password for this property, empty password is not supported.
   Encryption method: run `$KYLIN_HOME/bin/kylin.sh io.kyligence.kap.tool.general.CryptTool AES your_password` to get encrypted password，we take the encrypted password as `encrypted_pass`, then configure `kap.metric.diagnosis.influxDB-password=${encrypted_pass}`.
 
+* **kylin.engine-yarn.application-name.hive.enabled**
+
+  This property specifies whether to use `host_port` as the suffix of `yarn` application name submitted by the `hive` command. The default value is `false` and this property can only be set at **system** level.
+
+  > When the `Hive` authorization method is `SQLStdAuth`, enabling this property will cause a build error. You need to add `park.app.name|mapredjob.name|hive.session.id` to the parameter `hive.security.authorization.sqlstd.confwhitelist` in hive-site.xml.
+
 ### JVM Configuration Setting
 
 In `$KYLIN_HOME/conf/setenv.sh` (for version lower than 2.4, `$KYLIN_HOME/bin/setenv.sh`), two sample settings for `KYLIN_JVM_SETTINGS` environment variable are given. The default setting use relatively less memory. You can comment it and then uncomment the next line to allocate more memory for Kyligence Enterprise. The default configuration is: 
