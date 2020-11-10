@@ -8,7 +8,7 @@ Kyligence Enterprise can connect RDBMS as data source through JDBC API.
 
 In order to connect RDBMS as data source, following requirements are necessary:
 
-- sqoop client installed
+- open source sqoop client installed
 - authorized to create files in `<sqoop_installation_dir>\lib` directory
 
 ### Preparation
@@ -18,6 +18,7 @@ Following steps are required before connecting to RDBMS:
 - Download official JDBC Driver for RDBMS, and copy to both `<sqoop_installation_dir>\lib` and `$KYLIN_HOME/ext` directories.
 - Download Data Source Adaptor from [Kyligence Download](http://download.kyligence.io/#/addons), and copy to `$KYLIN_HOME/ext` directory.
 - Configure `kylin.source.jdbc.sqoop-home=<sqoop_path>` in `kylin.properties` file, where *<sqoop_path>* is the directory where the sqoop command locates.
+- Ensure that each node in the Hadoop cluster has network port access to the RDBMS data source
 - Restart Kyligence Enterprise to take effect.
 
 > **Note:**  `kylin.source.jdbc.sqoop-home=<sqoop_path>` must be added in `kylin.properties` file, which cannot be applied in project configuration.

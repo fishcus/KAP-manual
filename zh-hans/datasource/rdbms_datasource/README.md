@@ -8,7 +8,7 @@ Kyligence Enterprise 可通过 JDBC 接口连接 RDBMS 数据源。
 
 连接 RDBMS 数据源，需要满足以下环境要求：
 
-- 安装有 sqoop client
+- 安装 **开源** sqoop client
 - 有权限在 sqoop 安装目录下的 lib 目录创建文件
 
 ### 准备工作
@@ -18,6 +18,7 @@ Kyligence Enterprise 可通过 JDBC 接口连接 RDBMS 数据源。
 - 下载数据源 JDBC Driver，同时放置在 sqoop 安装目录的 lib 目录和`$KYLIN_HOME/ext`目录下
 - 从[Kyligence Download](http://download.kyligence.io/#/addons)下载 Data Source Adaptor，并放置在`$KYLIN_HOME/ext`目录下
 - 在`kylin.properties`配置文件添加 `kylin.source.jdbc.sqoop-home=<sqoop_path>`，其中 sqoop_path 为 sqoop 命令所在的文件
+- 确保 Hadoop 集群中的每个节点都具有访问 RDBMS 数据源的网络端口权限
 - 重启 Kyligence Enterprise 生效
 
 > **注意：** 配置项 `kylin.source.jdbc.sqoop-home=<sqoop_path>` 必需配置在`kylin.properties`文件中，不支持项目级配置覆盖。
