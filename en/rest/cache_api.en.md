@@ -66,3 +66,9 @@
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8'
   ```
+
+### FAQ
+
+**Q: How to purge query cache？**
+
+A: While the parameter `entity` in the above api is one of "all", "project_schema", "project_data" and "project_acl", the query cache will be purged, and the parameter `event` does not affect the result. If you want to purge the query cache for all projects, you need to set `entity` as "all" and set `cacheKey` as any non-empty string, such as `http://host:port/kylin/api/cache/all/project/update `; If you want to purge the query cache of a specific project, you need to set `entity` as one of  "project_schema", "project_data" and "project_acl", and set `cacheKey` as the project name, such as `http://host:port/kylin/api/cache/project_data/project_1/update`.
