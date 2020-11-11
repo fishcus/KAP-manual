@@ -45,7 +45,7 @@ Modify `$KYLIN_HOME/conf/kylin.properties`, add Hive JDBC configuration.
 
 #### Verify Thrift
 
- - Start beeline: ``${HIVE_HOME}/bin/beeline or ${SPARK_HOME}/bin/beeline`` .The `${HIVE_HOME}` and `${SPARK_HOME}` are the envrionment variable path.
+ - Start beeline: ``${HIVE_HOME}/bin/beeline or ${SPARK_HOME}/bin/beeline`` .The `${HIVE_HOME}` and `${SPARK_HOME}` are the environment variable path.
 
  - Enter ``!connect ${kylin.query.pushdown.jdbc.url}``
 

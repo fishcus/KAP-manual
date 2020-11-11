@@ -55,7 +55,7 @@ kylin.query.pushdown.jdbc.password
 
 ### 验证 Thrift server
 
-- 在以下位置中寻找 beeline 并启动:``${HIVE_HOME}/bin/beeline 或者 ${SPARK_HOME}/bin/beeline``，其中，``Hive_HOME``和``SPARK_HOME``为环境变量地址。
+- 在以下位置中寻找 beeline 并启动:``${HIVE_HOME}/bin/beeline 或者 ${SPARK_HOME}/bin/beeline``，其中，``HIVE_HOME``和``SPARK_HOME``为环境变量地址。
 
 - 使用 beeline 连接 Spark Thrift ```!connect ${kylin.query.pushdown.jdbc.url}```，其中``kylin.query.pushdown.jdbc.url``为Kylin pushdown的JDBC URL地址。
 
