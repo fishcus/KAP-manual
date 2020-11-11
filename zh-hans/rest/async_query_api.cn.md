@@ -213,7 +213,7 @@
 
 > 提示：请确认查询状态为 SUCCESSFUL 之后再调用此接口
 
-- `GET http://host:port/kylin/api/async_query/{queryID}/result_download`?includeHeader=true
+- `GET http://host:port/kylin/api/async_query/{queryID}/result_download?includeHeader=true`
 
 
 - URL Parameters
