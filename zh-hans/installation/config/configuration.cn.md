@@ -79,7 +79,7 @@
   
 * **kylin.query.pushdown.permissive-enabled**
 
-  该参数决定在进行下压查询时是否开启容忍模式。该参数默认为关闭状态，将该参数设置为 `true` 时，被Calcite语法解析失败的查询也会被下压引擎执行。
+  该参数决定在进行下压查询时是否开启容忍模式。该参数默认为关闭状态，将该参数设置为 `true` 时，被Calcite语法解析失败的查询也会被下压引擎执行。这会允许您查询未加载到Kyligence Enterprise中的表。
   
 * **kylin.query.max-result-rows**
 
