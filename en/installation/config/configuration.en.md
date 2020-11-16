@@ -209,7 +209,13 @@ export KYLIN_JVM_SETTINGS="-server -Xms1g -Xmx4g -XX:+UseG1GC -XX:MaxGCPauseMill
 # export KYLIN_JVM_SETTINGS="-server -XX:+UseG1GC -Xms24g -Xmx24g -XX:MaxGCPauseMillis=200 -XX:G1HeapRegionSize=32m -XX:MetaspaceSize=256m -XX:+PrintFlagsFinal -XX:+PrintReferenceGC -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintGCDateStamps -XX:+PrintAdaptiveSizePolicy -XX:+UnlockDiagnosticVMOptions -XX:+G1SummarizeConcMark  -Xloggc:$KYLIN_HOME/logs/kylin.gc.$$  -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=64M"
 ```
 
+We recommend that the JVM heap memory parameters -Xmx and -Xms using the same configuration in the production environment and adjust them according to the physical memory of the Kyligence Enterprise node.
+The calculation rule reference formula is as follows, the horizontal axis (independent variable) is the physical memory of the node, and the vertical axis (dependent variable) is the recommended value of -Xmx, the unit of them is GB:
 
+![JVM Xmx parameter calculation reference example](./images/JVM_formula_sketch.png)
+![JVM Xmx parameter calculation reference formula](./images/JVM_formula.png)
+
+**Note:**  Generally, we strongly recommend that the physical memory of Kyligence Enterprise nodes is not less than 64GB. In some special cases evaluated by experts, the actual physical memory may be less than this value, so this type of calculation is also included in the calculation rules. At the same time, due to differences in the actual operating environment of the application, Kyligence experts may give more targeted adjustment suggestions. In this case, expert suggestions are preferred.
 
 ### Enable Email Notification
 
