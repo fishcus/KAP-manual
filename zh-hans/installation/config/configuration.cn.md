@@ -172,7 +172,7 @@
   该参数指定了表采样时把列数当作计算mapper数量的影响因子的除数，仅在`kylin.engine.mr.table-ext-col-divisor-for-mapper-enabled=true`时生效，默认值为20。计算表采样时mapper数量的公式为 **wantedMapperCount=`ceil((rowCount/1,000,000,000) * (columnCount/columnDivisor))`**, 其中rowCount为表的行数，columnCount为表的列数，ceil代表向上取整。 该参数可在**项目**级别重写。
 
 > wantedMapperCount和真实启动的mapper数量可能会有误差，仅供参考。
-  
+
 * **kap.metric.diagnosis.graph-writer-type**
 
   该参数指定了是否把Kyligence Enterprise的metric信息写入InfluxDB，默认值为`BLACK_HOLE`，即不写入。当配置为`INFLUX`时，会把metric信息写入InfluxDB。
@@ -210,6 +210,14 @@
 export KYLIN_JVM_SETTINGS="-server -Xms1g -Xmx4g -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -XX:G1HeapRegionSize=16m -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=512m -XX:+PrintFlagsFinal -XX:+PrintReferenceGC -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintGCDateStamps -XX:+PrintAdaptiveSizePolicy -XX:+UnlockDiagnosticVMOptions -XX:+G1SummarizeConcMark  -Xloggc:$KYLIN_HOME/logs/kylin.gc.$$  -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=64M"
 # export KYLIN_JVM_SETTINGS="-server -XX:+UseG1GC -Xms24g -Xmx24g -XX:MaxGCPauseMillis=200 -XX:G1HeapRegionSize=32m -XX:MetaspaceSize=256m -XX:+PrintFlagsFinal -XX:+PrintReferenceGC -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintGCDateStamps -XX:+PrintAdaptiveSizePolicy -XX:+UnlockDiagnosticVMOptions -XX:+G1SummarizeConcMark  -Xloggc:$KYLIN_HOME/logs/kylin.gc.$$  -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=64M"
 ```
+其中，我们建议 JVM 堆内存参数 -Xmx 和 -Xms 在生产环境中使用相同配置，并根据  Kyligence Enterprise 节点物理内存进行调整。
+计算规则参考公式如下，横轴（自变量）为节点物理内存，纵轴（因变量）为 -Xmx 建议值，单位都是 GB ：
+
+![JVM Xmx 参数计算参考示例](./images/JVM_formula_sketch.png)
+![JVM Xmx 参数计算参考公式](./images/JVM_formula.png)
+
+**注意：**  通常情况下，我们强烈建议 Kyligence Enterprise 节点的物理内存不小于 64GB，在一些经过专家评估的特殊情况下，实际物理内存可能小于此值，所以计算规则中也包含了此类情况。同时，因应用实际运行环境的差异，Kyligence 专家可能给出更针对性的调整建议，这种情况下以专家建议优先。
+
 
 ### 启用邮件通知
 
