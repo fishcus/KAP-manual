@@ -13,4 +13,8 @@
 | SUBSTRING(string FROM integer1 FOR integer2)                 | Returns a substring of a character string starting at a given point with a given length | ` SUBSTRING('Kyligence' from 5 for 2)`<br /> = ge            |
 | INITCAP(string)                                              | Returns *string* with the first letter of each word converter to upper case and the rest to lower case. Words are sequences of alphanumeric characters separated by non-alphanumeric characters. | ` INITCAP('kyligence')`<br /> = Kyligence                    |
 | REPLACE(string, search, replacement)                         | Returns a string in which all the occurrences of *search* in *string* are replaced with *replacement*; if *replacement* is the empty string, the occurrences of *search* are removed | ` REPLACE('Kyligence','Kyli','Kyliiiiiii')`<br /> = Kyliiiiiiigence |
+| ASCII(str)                                                   | Convert the first character of *str* to corresponding ascii code | `ASCII('ab')` = 97                                           |
+| CHR(ascii)                                                   | Convert ascii code to corresponding character                | `CHR(97)` = a                                                |
+| SPACE(len)                                                   | Generate *len* number of continuous space                    | `'>' + space(2) + '<'` = >  <                                |
+| SPLIT_PART(str, separator, index)                            | Split *str* with *separator* and return the *index*-th token. *index* counts from 1. when *index* is negative, tokens are counted starting from the right. | `split_part('a-b-c', '-', 1)` = a,   `split_part('a-b-c', '-', -1)` = c, |
 

@@ -13,4 +13,8 @@
 | SUBSTRING(string FROM integer1 FOR integer2) | 从第 integer1 位开始，取字符串（string）中的 integer2 个字符    | `SUBSTRING('Kyligence' from 5 for 2)`<br /> = ge |
 | INITCAP(string)                          | 将字符串（string）的首字母替换成大写                          | `INITCAP('kyligence')`<br /> = Kyligence |
 | REPLACE(string, search, replacement) | 将字符串（string）中的字符串（search） 替换为字符串（replacement） | ` REPLACE('Kyligence','Kyli','Kyliiiiiii')`<br /> = Kyliiiiiiigence |
+| ASCII(str) | 将字符串（str）中的第一位字符转换为 ascii code | `ASCII('a')` = 97 |
+| CHR(ascii) | 将 ascii code 转换为对应字符 | `CHR(97)` = a |
+| SPACE(len) | 生成 len 个连续空格 | `'>' + space(2) + '<'` = >  < |
+| SPLIT_PART(str, separator, index) | 将字符串（str）按`separator` 分割开，然后取第`index`个分割后的部分, `index`从 1 开始，可以为负数，负数代表从后往前数 | `split_part('a-b-c', '-', 1)` = a,   `split_part('a-b-c', '-', -1)` = c, |
 
