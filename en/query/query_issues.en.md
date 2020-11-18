@@ -67,3 +67,12 @@ A: The current system does not support the query divided by null. You need to co
 - Modify the corresponding configuration: If the configuration file has contained item `kylin.query.system-transformers`, please add `io.kyligence.kap.query.util.ConvertNullType` to the end of it's value and separate them with comma; If not, please add item `kylin.query.system-transformers` and set it's value to `io.kyligence.kap.query.util.ConvertToComputedColumn, io.kyligence.kap.query.util.EscapeTransformer, org.apache.kylin.query.util.DefaultQueryTransformer, org.apache.kylin. query.util.KeywordDefaultDirtyHack, io.kyligence.kap.query.security.RowFilter, io.kyligence.kap.query.security.HackSelectStarWithColumnACL, io.kyligence.kap.query.util.ReplaceStringWithVarchar, io.kyligence. kap.query.util.ConvertNullType`
 
 
+
+**Q: How does the system support queries without schema?**
+
+A: When query pushdown is used, the system will automatically try to complete the schema in sql. Which schema is used as default? If there is a schema named `default` in the project data source, use it; if not, The schema with most tables will be used as default. How to complete schema? Calcite is used as default parser for completion, if some exception occurs, try to use Spark parser.
+
+Related configuration items are:
+-`kylin.query.pushdown.permissive-enabled` whether to tolerate calcite parsing failures, the default value is `false`. when it is `false`, spark parser will not be used.
+-`kylin.query.pushdown.fix-schema-with-spark` whether to try spark parser when calcite parser fails, the default value is `true`. this parameter works only when `kylin.query.pushdown.permissive-enabled` is set to `true`.
+
