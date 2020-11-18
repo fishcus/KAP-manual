@@ -64,3 +64,9 @@
     -H 'Authorization: Basic QURNSU46S1lMSU4=' \
     -H 'Content-Type: application/json;charset=utf-8'
   ```
+
+### FAQ
+
+**Q: 如何清理查询缓存？**
+
+A: 当上述 api 中的参数 `entity` 为 "all"，"project_schema"，"project_data"，"project_acl" 中的任意值时都将触发查询缓存清理机制，参数`event`不影响结果。如果希望清理所有项目的查询缓存，需要设置 `entity` 为 "all", `cacheKey` 为任意非空字符串，如 `http://host:port/kylin/api/cache/all/project/update`; 如果希望清理特定项目的查询缓存，需要设置 `entity` 为 "project_schema"，"project_data" 或 "project_acl"，设置 `cacheKey` 为项目名，如 `http://host:port/kylin/api/cache/project_data/project_1/update`.
