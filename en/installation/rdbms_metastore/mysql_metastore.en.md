@@ -2,8 +2,9 @@
 
 ### Prerequisites
 
-1. Kyligence Enterprise  has prepared a 5.1.41 version of MySQL JDBC driver, which is contained in `$KYLIN_HOME/lib/kap-ext-{version}.jar `.
-2. If you are using a different version of the MySQL JDBC driver, please put the driver in `$KYLIN_HOME/ext/`.
+1. Check MySQL version, currently supported versions include 5.5, 5.6, 5.7.
+2. Kyligence Enterprise  has prepared a 5.1.41 version of MySQL JDBC driver, which is contained in `$KYLIN_HOME/lib/kap-ext-{version}.jar `.
+3. If you are using a different version of the MySQL JDBC driver, please put the driver in `$KYLIN_HOME/ext/`.
 
 ### Configuration Steps
 

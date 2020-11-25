@@ -2,8 +2,9 @@
 
 ### 准备工作
 
-1. Kyligence Enterprise 自带 MySQL 5.1.41 的 JDBC 驱动，该驱动包含在 `$KYLIN_HOME/lib/kap-ext-{version}.jar` 中 。
-2. 如果使用其他版本的 MySQL，请准备对应的 JDBC 驱动, 并放置到 `$KYLIN_HOME/ext` 目录下。
+1. 检查 MySQL 版本，目前支持的版本包括 5.5，5.6，5.7。
+2. Kyligence Enterprise 自带 MySQL 5.1.41 的 JDBC 驱动，该驱动包含在 `$KYLIN_HOME/lib/kap-ext-{version}.jar` 中 。
+3. 如果使用其他版本的 MySQL，请准备对应的 JDBC 驱动, 并放置到 `$KYLIN_HOME/ext` 目录下。
 
 ### 配置方法
 以下以 MySQL 5.1.41 为例说明配置步骤：
