@@ -98,6 +98,8 @@ The following Hadoop distributions are verified to run Kyligence Enterprise. The
 > The following Hadoop distributions used to be verified but the tests are not maintained any more:
 > - Hortonworks HDP 2.2
 > - MapR 5.2.1
+>
+> Pushdown to Embedded Spark SQL is supported for the Hortonworks HDP 3.1 distribution.
 
 ### Hadoop Cluster Resource Allocation
 

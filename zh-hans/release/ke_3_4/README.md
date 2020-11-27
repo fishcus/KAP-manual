@@ -54,6 +54,8 @@ Kyligence Enterprise 在 Hortonworks HDP 和华为 FusionInsight 平台上支持
 > 以下 Hadoop 版本曾经测试可用，但已不再维护测试：
 >
 > - MapR 6.0
+>
+> 对于 Hortonworks HDP 3.1 版本已支持下压至原生 Spark SQL。
 
 
 ### **产品下载**
