@@ -4,7 +4,7 @@
 | -------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | <                    | Less than                                | A<B                                      | Profit < Cost                            |
 | <=                   | Less than or equal                       | A<=B                                     | Profit <=Cost                            |
-| >                    | Greater than                             | A>=B                                     | Profit >Cost                             |
+| >                    | Greater than                             | A>B                                      | Profit >Cost                             |
 | >=                   | Greater than or equal                    | A>=B                                     | Profit >=Cost                            |
 | <>                   | Not Equal                                | A<>B                                     | Profit1<>Profit2                         |
 | IS NULL              | Whether *value* is null                  | value IS NULL                            | profit IS NULL                           |
