@@ -4,7 +4,7 @@
 | -------------------- | ---------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | <                    | 小于                                 | A<B                                      | Profit < Cost                            |
 | <=                   | 小于或等于                              | A<=B                                     | Profit <=Cost                            |
-| >                    | 大于                                 | A>=B                                     | Profit >Cost                             |
+| >                    | 大于                                 | A>B                                     | Profit >Cost                             |
 | >=                   | 大于或等于                              | A>=B                                     | Profit >=Cost                            |
 | <>                   | 不等于                                | A<>B                                     | Profit1<>Profit2                         |
 | IS NULL              | 判断值是否为 NULL                         | value IS NULL                            | profit IS NULL                           |
