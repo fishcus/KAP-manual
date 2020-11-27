@@ -97,6 +97,8 @@
 > 以下 Hadoop 版本曾经测试可用，但已不再维护测试：
 > - Hortonworks HDP 2.2
 > - MapR 5.2.1
+>
+> 对于 Hortonworks HDP 3.1 版本已支持下压至原生 Spark SQL。
 
 
 ### 集群资源分配

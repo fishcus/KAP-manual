@@ -54,6 +54,8 @@ The following enterprise-level data management platforms and their corresponding
 > The following Hadoop distributions used to be verified but the tests are not maintained any more:
 >
 > - MapR 6.0
+>
+> Pushdown to Embedded Spark SQL is supported for the Hortonworks HDP 3.1 distribution.
 
 ### Product Download
 
