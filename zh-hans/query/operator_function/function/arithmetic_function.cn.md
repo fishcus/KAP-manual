@@ -26,4 +26,4 @@
 | SIGN(numeric)                  | 返回数字（numeric）的符号                                    | ` SIGN(-5)`<br /> = -1 |
 | SIN(numeric)                   | 返回数字（numeric）的正弦                                    | ` SIN(5)`<br /> = -0.9589242746631385 |
 | TAN(numeric)                   | 返回数字（numeric）的正切                                    | ` TAN(5)`<br /> = -3.380515006246586 |
-| TRUNCATE(numeric1, numeric2)   | 将数字（numeric1）截断到数字（numeric2，默认为 0）              | ` TRUNCATE(5.55555,2)`<br /> = 5.55 |
+| TRUNCATE(numeric1, numeric2)   | 将数字（numeric1）按照小数位数截取保留数字（numeric2，默认为 0）位              | ` TRUNCATE(5.55555,2)`<br /> = 5.55 |
