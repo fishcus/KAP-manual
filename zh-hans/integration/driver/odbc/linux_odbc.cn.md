@@ -125,6 +125,7 @@
    ```
 
    **/etc/odbc.ini**
+
    ```
    [KyligenceDataSource]
    Driver = KyligenceODBCDriver
@@ -321,3 +322,20 @@ sudo yum remove unixODBC.x86_64
 请您运行以下命令：  
 
 `export LD_PRELOAD=/usr/lib/libodbcinst.so`
+
+
+
+**Q: 如何修改 ODBC 默认数据库类型.**
+
+ODBC 默认数据库类型是 MYSQL。若您需要修改，则要在 **/etc/odbc.ini** 文件内，在 DSN 配置添加 SQLDBMSName=Oracle
+
+```
+[KyligenceDataSource]
+Driver = KyligenceODBCDriver
+PORT = 80
+PROJECT = learn_kylin
+SERVER = http://kapdemo.chinaeast.cloudapp.chinacloudapi.cn
+SQLDBMSName = Oracle
+```
+
+> 注意：仅在 Cognos 自助式分析场景下，建议将默认数据库类型修改为 Oracle，且必须配合 Kyligence SQL Adapter 一起使用，其它情况下不推荐修改。

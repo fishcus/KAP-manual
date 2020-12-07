@@ -123,25 +123,28 @@
             * [Linux 版本](integration/driver/odbc/linux_odbc.cn.md)
             * [Mac 版本](integration/driver/odbc/mac_odbc.cn.md)
     * [与 BI 工具连接](integration/bi/README.md)
-        * [与 Tableau 集成](integration/bi/tableau/README.md)
+        * 与 Tableau 集成
             * [与 Tableau Desktop 集成](integration/bi/tableau/tableau_desktop.cn.md)
             * [与 Tableau Server 集成](integration/bi/tableau/tableau_server.cn.md)
-        * [与 Power BI 集成](integration/bi/powerbi/README.md)
+            * [启用 Tableau Server 用户委任](integration/bi/tableau/user_delegation_with_tableau_server.cn.md)
+        * 与 Power BI 集成
             * [与 Power BI Desktop 集成](integration/bi/powerbi/powerbi_desktop.cn.md)
             * [与 Power BI Service 集成](integration/bi/powerbi/powerbi_service.cn.md)
-        * [与 MicroStrategy 集成](integration/bi/microstrategy/README.md)
+        * 与 MicroStrategy 集成
             * [与 MicroStrategy Secure Enterprise 集成](integration/bi/microstrategy/microstrategy_enterprise.cn.md)
             * [与 MicroStrategy Workstation/Desktop 集成](integration/bi/microstrategy/microstrategy_desktop.cn.md)
         * [与 IBM Cognos 集成](integration/bi/cognos.cn.md)
-        * [与 Qlik 集成](integration/bi/qlik/README.md)
-            * [与 Qlik Sense 集成](integration/bi/qlik/qlik_sense.cn.md)
-            * [与 Qlik Sense Enterprise 集成](integration/bi/qlik/qlik_sense_enterprise.cn.md)
+        * 与 Qlik 集成
             * [与 QlikView Desktop 集成](integration/bi/qlik/qlik_view.cn.md)
             * [与 QlikView Server 集成](integration/bi/qlik/qlik_view_server.cn.md)
-        * [与 Oracle Business Intelligence/OBIEE 集成](integration/bi/obiee/README.md)
+        * 与 Oracle Business Intelligence/OBIEE 集成
             * [与 OBIEE 11g 集成](integration/bi/obiee/obiee_11g.cn.md)
             * [与 OBIEE 12c 集成](integration/bi/obiee/obiee_12c.cn.md)
-        * [与 SAP BusinessObjects/BO 集成](integration/bi/sap_bo.cn.md)
+            * [OBIEE 设置行级安全性](integration/bi/obiee/obiee_setting_up_row_level_security.cn.md)
+            * [与 Oracle BI Publisher 集成](integration/bi/obiee/obiee_bip.cn.md)
+        * 与 SAP BusinessObjects/BO 集成
+            * [与  BO Client 集成](integration/bi/sapbo/sap_bo_client.cn.md)
+            * [与  BO Server 集成](integration/bi/sapbo/sap_bo_server.cn.md)
         * [与 思迈特 SmartBI Insight 集成](integration/bi/smartbi.cn.md)
         * [与 帆软 FineBI 集成](integration/bi/finebi.cn.md)
         * [与 帆软 FineReport 集成](integration/bi/finereport.cn.md)

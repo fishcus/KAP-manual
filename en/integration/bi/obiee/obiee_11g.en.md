@@ -10,7 +10,7 @@ Oracle Business Intelligence Enterprise Edition (OBIEE) is Oracle's BI product t
 
 1. Configure OBIEE Client
 
-   You need to install the BI Administrator tool first, and add a connection DSN to the BIEE server in the ODBC Administrator after installation.    
+   You need to install the BI Administrator tool first and add a connection DSN to the BIEE server in the ODBC Administrator after installation.    
 
    ![New Datasource](../../images/OBIEE/new_datasource.png)
 
@@ -34,11 +34,11 @@ Oracle Business Intelligence Enterprise Edition (OBIEE) is Oracle's BI product t
    PORT = 7070
    PROJECT = learn_kylin
    SERVER = http://kapdemo.chinaeast.cloudapp.chinacloudapi.cn   
-   UID = ADMIN   #(Optional)
-   PWD = KYLIN
+   UID = KYLIN  
+   PWD = ADMIN
    ```
 
-### Creating a Data Model
+### Creating a data model
 
 1. Click **Import Metadata** in the BI Administrator tool to add a data source.
     ![Add Data](../../images/OBIEE/add_data.png)
@@ -46,7 +46,7 @@ Oracle Business Intelligence Enterprise Edition (OBIEE) is Oracle's BI product t
 2. Select ODBC 3.5 to import the tables in Kyligence Enterprise.
     ![ODBC35](../../images/OBIEE12/ODBC35.png)
 
-3. After the import is successful, find the data source you just created in the physical model, right click on the data source, choose **Properties** -> **General** ->**Data source definition**, and change **database type** to **Apache Hadoop**.
+3. After the import is successful, find the data source you just created in the physical model, right click on the data source and choose **Properties** -> **General** ->**Data source definition** then change **database type** to **Apache Hadoop**.
 
 4. Find the Kyligence Enterprise data source in the physical model and select the table you want to model, then right click and click **Physical Diagram** to create the model.
    ![](../../images/OBIEE/start_model.png)
@@ -67,11 +67,11 @@ Oracle Business Intelligence Enterprise Edition (OBIEE) is Oracle's BI product t
 
    ![Create Business Model](../../images/OBIEE/create_business.en.png)
 
-9. Drag the newly added physical model to the business model, and save.
+9. Drag the newly added physical model to the business model and save.
 
    ![Refresh Model](../../images/OBIEE/refresh_business.en.png)
 
-10. If you need outer join, you can edit the business model, set it as external connection here, and save it to the business model. 
+10. If you need outer join, you can edit the business model, set it as external connection here and save it to the business model. 
    Then drag the logical model you just added to the presentation layer and save it to the presentation layer.
 
    ![Refresh Presentation](../../images/OBIEE/refresh_show.en.png)
@@ -79,18 +79,18 @@ Oracle Business Intelligence Enterprise Edition (OBIEE) is Oracle's BI product t
 11. Click **File**->**Save** in the upper left corner of the BI Administrator tool to save the entire model.
     ![](../../images/OBIEE/save_model.png)
 
-12. Load BIEE Server, and restart BIEE server.
+12. Load BIEE Server and restart BIEE server.
 
-   ```sh
-   $ service obiee stop
-   - stop server
-   
-   $ service obiee start
-   - start server
-   ```
+```sh
+    $ service obiee stop
+    - stop server
+    
+    $ service obiee start
+    - start server
+```
 
 
-### Create an Analysis
+### Create An Analysis
 
 There are two ways to analyze using the data from the model you just created.
 
@@ -119,7 +119,7 @@ There are two ways to analyze using the data from the model you just created.
 
      ![](../../images/OBIEE/define_SQL.png)
 
-  2. Select the connection pool name of the data source created on the client side to connect, and enter the query SQL for analysis.
+  2. Select the connection pool name of the data source created on the client side to connect. Enter the query SQL for analysis.
 
      Connection pool name format：`"dsn_name"."connect_pool_name"`
 
@@ -131,7 +131,6 @@ There are two ways to analyze using the data from the model you just created.
 
      ![](../../images/OBIEE/query_result_2.png)
 
-### Notes
-1. According to the BIEE development specification, the model created on the client side needs **at least two** tables, >otherwise the upload model will cause BIEE failed to start the service.
-2. Since BIEE generates schema-less SQL statements, drag and drop queries require all tables belong to a database in the >project. Use **Create Direct Database Query** when connecting to a pool query to avoid this problem.
-
+> **Notes**：
+> 1. According to the BIEE development specification, the model created on the client side needs **at least two** tables, >otherwise the uploaded model will cause BIEE failed to start the service.
+> 2. Since BIEE generates schema-less SQL statements, drag and drop queries require all tables belong to a database in the >project. Use **Create Direct Database Query** when connecting to a pool query to avoid this problem.

@@ -3,23 +3,46 @@
 ### Prerequisite
 
 - Install Kyligence ODBC Driver. For installation information, please refer to [Kyligence ODBC Driver introduction](../../driver/odbc/README.md).
-
 - Install Tableau Server. For installation information, please refer to [Tableau Server Download](https://www.tableau.com/support/releases/server).
+
+### Configure connection to Kyligence
+
+If your Tableau version is 2019.4 and above, please configure Kyligence Connector:
+
+1. Download the Kyligence Connector file (.taco) file from [Kyligence Download](http://download.kyligence.io/#/download).
+
+2. Copy the .taco file to the Tableau Server directory. The Tableau installation directory is. If the directory does not exist, create a folder manually.
+
+   ```
+   Windows: My Documents/My Tableau Repository/Connectors
+   Linux: {custome path}/tableau_connectors
+   ```
+
+   > **Note**：In Tableau 2019.4 to 2020.3.1, Tableau cannot identify a .taco file if your "My Tableau Repository" is in non-English. As a walkaround, You need to place the .taco file in a full English directory and set native_api.connect_plugins_path in your Tableau shortcut to let Tableau be able to identify .taco file. Such walkaround is not needed if you are using Tableau 2020.3.2 and above as Tableau fixed this issue in Tableau 2020.3.2
+
+3. Set the native_api.connect_plugins_path option.
+
+   ```
+   tsm configuration set -k native_api.connect_plugins_path -v {custome path}/tableau_connectors
+   If you get a configuration error during this step, try adding the --force-keys option to the end of the command.
+   ```
+
+4. Restart Tableau Server
+
+   
+
+If your Tableau version is 2019.4 below, please configure the Tableau Datasource Customization (TDC) file, the steps are as follows:
 
 - Configure Tableau Datasource Customization (TDC). Similar to Desktop, the configuration steps are as follows:
 
-  1. Download file named Tableau Datasource Customization on [Kyligence Download](http://download.kyligence.io/#/addons).
+  1. Download file named Tableau Datasource Customization on [Kyligence Download](http://download.kyligence.io/#/download).
 
   2. Copy the file to the required Tableau directory. The default location is below:
 
      * Windows environment
-
-       `Program Files\Tableau\Tableau Server\<version>\bin` or
-
-       `ProgramData\Tableau\Tableau Server\data\tabsvc\vizqlserver\Datasources`
-       
-     * Linux environment  ​             `/var/opt/tableau/tableau_server/data/tabsvc/vizqlserver/Datasources/`
-     
+       `Program Files\Tableau\Tableau Server\<version>\bin` or `ProgramData\Tableau\Tableau Server\data\tabsvc\vizqlserver\Datasources`   
+     * Linux environment  
+       `/var/opt/tableau/tableau_server/data/tabsvc/vizqlserver/Datasources/`
 
 > **Note**：
 >
@@ -39,9 +62,9 @@ After successful login, please click **Publish Workbook**.
 
 ![Login to Tableau Server](../../images/tableau_server/2.png)
 
-Tableau supports two types of data source authentication: **Embedded in workbook** or **Prompt user**. When **Embedded in workbook** is selected, Tableau effectively embeds the connection rights of its publisher, and allows anyone who can view the workbook to view the data . When you select **Prompt user**, you will be prompted to enter the credentials of the Viewer who is allowed to use the ability to **connect** this data source. For more information, please refer to [Tableau Permission](https://onlinehelp.tableau.com/current/server/zh-cn/license_permissions.htm).
+Tableau supports two types of data source authentication: **Embedded in workbook** or **Prompt user** or **Impersonate via embedded password** When **Embedded in workbook** is selected, Tableau effectively embeds the connection rights of its publisher, and allows anyone who can view the workbook to view the data . When you select **Prompt user**, the user who views the workbook from Tableau Server will be prompted to enter his/her own credentials for Kyligence. For more information, please refer to [Tableau Permission](https://help.tableau.com/current/online/en-us/permissions.htm).
 
-For integration with Kyligence Enterprise, please select the **Prompt user** mode to publish.
+If you need to implement user delegation for Tableau Server and Kyligence Enterprise, should select **Impersonate via embedded password**, please refer to [User Delegation with Tableau Server](user_delegation_with_tableau_server.en.md).
 
 ![Login to Tableau Server](../../images/tableau_server/3.png)
 

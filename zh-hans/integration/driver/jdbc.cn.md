@@ -113,10 +113,71 @@ while (resultSet.next()) {
 
 - 不支持查询下压
 - 动态参数不支持与"-"放在一起，如`SUM(price - ?)`
-- 动态参数不支持出现在 **group by** 中，如 `group by trans_id/?`
 - 动态参数不支持出现在 **case when** 中，如`case when xxx then ? else ? end`
 
 此外，我们推荐您仅让动态参数出现在查询的过滤条件中，如 `where id = ?`
+
+
+
+## JDBC 驱动日志
+
+您可以启用驱动程序中的日志记录来跟踪活动和故障排除问题。
+
+**重要:** 启动详细的的日志记录用来捕获问题，但日志记录会降低性能并消耗大量磁盘空间。
+
+1. 在文本编辑器中打开 JDBC 驱动程序日志配置文件。
+
+   例如，您可打开 {JDBC安装路径}/kyligence-jdbc.properties 文件
+
+   > **注意**：kyligence-jdbc.properties 默认配置文件，需要与 JDBC jar 包放在同一路径。
+
+2. 设置日志级别。下面列出了所有日志级别的信息，TRACE 在大多数情况下是最佳的。
+
+   - **OFF** 禁用所有日志记录。
+   - **FATAL** 记录非常严重的错误事件，可能导致驱动程序中止。
+   - **ERROR** 记录错误事件，可能仍然允许驱动程序继续运行。
+   - **WARN** 记录潜在的有害情况。
+   - **INFO** 记录描述驱动程序进程的一般信息。
+   - **DEBUG** 记录对调试驱动程序有用的详细信息。
+   - **TRACE** 记录比日志DEBUG更详细的信息。
+
+   例如: **LogLevel=TRACE**
+
+3. 设置日志文件路径和名称。将 **LogPath** 属性设置为要保存日志文件的文件夹完整路径。这个路径确保存在，并且是可写的，包括如果使用驱动程序的应用程序作为特定用户运行，其他用户也可以写。
+
+   例如: **LogPath=/usr/local/KyligenceJDBC.log**
+
+4. 配置 **MaxBackupIndex** 属性以保留最大数量的日志文件。
+
+   例如: **MaxBackupIndex=10**
+
+   > **注意**: 在达到日志文件的最大数量之后，每次创建一个额外的文件，驱动程序都会删除最旧的文件。
+
+5. 配置 **MaxFileSize** 属性设置为每个日志文件的最大大小 (以字节为单位)。
+
+   例如: **MaxFileSize=268435456**
+
+   > **注意:** 在达到最大文件大小之后，驱动程序创建一个新文件并继续日志记录。
+
+6. 保存驱动程序配置文件。
+
+   示例如下：
+
+   ```
+   # 设置日志级别
+   LogLevel=TRACE
+   
+   # 设置日志路径
+   LogPath=/usr/local/KyligenceJDBC.log
+   
+   # 设置保留最大数量的日志文件
+   MaxBackupIndex=10
+   
+   # 设置每个日志文件的最大大小
+   MaxFileSize=268435456
+   ```
+
+7. 重新启动使用驱动程序的应用程序。在重新加载驱动程序之前，应用程序不会应用配置更改。
 
 
 
@@ -124,10 +185,5 @@ while (resultSet.next()) {
 
 **Q: 如何升级 JDBC 驱动?**   
 
-A: 将 BI 或其它第三方应用的 Kyligence JDBC 驱动包移除，替换至新的 JDBC 驱动包即可。
+将 BI 或其它第三方应用的 Kyligence JDBC 驱动包移除，替换至新的 JDBC 驱动包即可。
 
-**Q: 系统如何支持在函数中使用动态参数?**
-
-A: 当前的系统默认不支持在函数中使用动态参数，需要配置相应的参数开启该功能，开启之后所有的[算数函数](../../query/operator_function/function/arithmetic_function.cn.md)和[字符串函数](../../query/operator_function/function/string_function.cn.md)均可支持动态参数。
-
-- 修改相应的配置：若配置文件中已存在配置项 `kylin.query.transformers` ，请直接在参数值后面追加 `io.kyligence.kap.query.util.BindParameters`，以逗号间隔；若不存在，请添加该配置项，并设置为 `kylin.query.transformers=io.kyligence.kap.query.util.BindParameters`

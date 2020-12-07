@@ -117,14 +117,66 @@ It's recommended to use dynamic param in filters only, e.g. `where id = ?`.
 
 
 
+## JDBC Driver Logging
+
+You can enable logging in the driver to track activity and troubleshoot issues.
+
+**Important:** Only enable logging long enough to capture an issue. Logging decreases performance and can consume a large quantity of disk space.
+
+1. Open the driver logging configuration file in a text editor.
+   For example, you would open the  {JDBC installed path}/kyligence-jdbc.properties
+
+   > **Note**：kyligence-jdbc.properties is the default configuration file that needs to be placed in the same path as the JDBC jar package
+
+3. Set log level. Information on all of the Log Levels is listed below.Trace is best in most cases.
+
+   - **OFF** disables all logging.
+   - **FATAL** logs very severe error events that might lead the driver to abort.
+   - **ERROR**  logs error events that might still allow the driver to continue running.
+   - **WARN**  logs potentially harmful situations.
+   - **INFO**  logs general information that describes the progress of the driver.
+   - **DEBUG**  logs detailed information that is useful for debugging the driver.
+   - **TRACE** logs more detailed information than log level DEBUG.
+
+   For example: **LogLevel=TRACE**
+
+5. Set the Log Path and file name.Set the **LogPath** attribute to the full path to the folder where you want to save log files. This directory must exist and be writable, including being writable by other users if the application using the driver runs as a specific user.
+   For example: **LogPath=/usr/local/KyligenceJDBC.log**      
+
+6. Set the **MaxBackupIndex** attribute to the maximum number of log files to keep.
+   For example: **MaxBackupIndex=10**
+
+   > **Note**: After the maximum number of log files is reached, each time an additional file is created, the driver deletes the oldest file.
+
+7. Set the **MaxFileSize** attribute to the maximum size of each log file in bytes.
+   For example: **MaxFileSize=268435456**
+
+   > **Note:** After the maximum file size is reached, the driver creates a new file and continues logging.
+
+6. Save the driver configuration file.
+
+   ```
+   # Set log level
+   LogLevel=TRACE
+   
+   # Set log path and file name
+   LogPath=/usr/local/KyligenceJDBC.log
+   
+   # Set maximum number of log files to keep
+   MaxBackupIndex=10
+   
+   # Set maximum size of each log file in bytes
+   MaxFileSize=268435456
+   ```
+
+7. Restart the application you are using the driver with.Configuration changes will not be picked up by the application until it reloads the driver.
+
+   
+
+   
+
 ### FAQ
 
 **Q: How to upgrade the JDBC Driver?** 
 
-A: Remove the Kyligence JDBC Driver package for BI or other third-party applications，and replace it with a new JDBC driver package.
-
-**Q: How does the system support dynamic parameters in functions?**
-
-A: The current system does not support dynamic parameters in functions. You need to configure the corresponding parameters to enable this function. Then all the [arithmetic functions](../../query/operator_function/function/arithmetic_function.en.md) and [string functions](../../query/operator_function/function/string_function.en.md) can be used with dynamic parameters.
-
-- Modify the corresponding configuration: If the configuration file has contained item `kylin.query.transformers`, please add `io.kyligence.kap.query.util.BindParameters` to the end of it's value and separate them with comma; If not, please add item `kylin.query.transformers` and set it as `kylin.query.transformers=io.kyligence.kap.query.util.BindParameters`
+Remove the Kyligence JDBC Driver package for BI or other third-party applications，and replace it with a new JDBC driver package.

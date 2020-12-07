@@ -315,6 +315,8 @@ sudo yum remove unixODBC-devel.x86_64
 sudo yum remove unixODBC.x86_64
 ```
 
+
+
 **Q: Error message with (11560) Unable to locate SQLGetPrivateProfileString function.**
 
 Please run the following command to resolve this problem:   
@@ -322,3 +324,20 @@ Please run the following command to resolve this problem:   
 ```
 export LD_PRELOAD=/usr/lib/libodbcinst.so
 ```
+
+
+
+**Q: How to modify ODBC default database type.**
+
+The default database type of ODBC is MYSQL, to modify which you can change the configuration in the DSN in **/etc/odbc.ini** file: SQLDBMSName=Oracle
+
+```
+[KyligenceDataSource]
+Driver = KyligenceODBCDriver
+PORT = 80
+PROJECT = learn_kylin
+SERVER = http://kapdemo.chinaeast.cloudapp.chinacloudapi.cn
+SQLDBMSName = Oracle
+```
+
+> **Note**: Only in Cognos self-service analysis scenarios, it is recommended that the default database type be changed to Oracle, which must be used in conjunction with Kyligence SQL Adapter. Otherwise, modification is not recommended.

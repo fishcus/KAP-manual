@@ -7,18 +7,41 @@ Kyligence Enterprise supports integration with Tableau 8.X, 9.X, 10.X, 2018.X, 2
 ### Prerequisite
 
 - Install Kyligence ODBC Driver. For the installation information, please refer to [Kyligence ODBC Driver introduction](../../driver/odbc/README.md).
-
 - Install  Tableau Desktop. For the installation information, please refer to [Tableau Desktop Download](https://www.tableau.com/support/releases).
 
-- Configure Tableau Datasource Customization (TDC) 
+### Configure connection to Kyligence data source
 
-  Tableau supports configuring TDC files to customize ODBC connections. Therefore, Kyligence provides a TDC file to fit some special rules in Kyligence.
+If your Tableau version is 2019.4 and above, please configure Tableau Kyligence connector
 
-  The configuration steps are as below:
+1. Download the Kyligence Connector file (.taco) file from [Kyligence Download Center](http://download.kyligence.io/#/download)
 
-  1. Download the file named Tableau Datasource Customization on [Kyligence Download](http://download.kyligence.io/#/addons).
+2. Copy the .taco file to the Tableau Desktop installation directory, which is
 
-  2. Copy the file to the required Tableau directory. The default location is: `Documents\My Tableau Repository\Datasources`
+   ```
+   Windows: My Documents/My Tableau Repository/Connectors
+   macOS: ~/Documents/My Tableau Repository/Connectors 
+   ```
+
+    > **Note**：In Tableau 2019.4 to 2020.3.1, Tableau cannot identify a .taco file if your "My Tableau Repository" is in non-English. As a walkaround, You need to place the .taco file in a full English directory and set native_api.connect_plugins_path in your Tableau shortcut to let Tableau be able to identify .taco file. Such walkaround is not needed if you are using Tableau 2020.3.2 and above as Tableau fixed this issue in Tableau 2020.3.2
+
+3. Set the native_api.connect_plugins_path option.
+
+   ```
+   tsm configuration set -k native_api.connect_plugins_path -v {custome path}/tableau_connectors
+   If you get a configuration error during this step, try adding the --force-keys option to the end of the command.
+   ```
+
+4. Restart Tableau Desktop.
+
+
+
+If your Tableau version is 2019.4 below, please configure the Tableau Datasource Customization (TDC) file.
+
+> **Note**: Tableau supports configuring TDC files to customize and adjust ODBC connections. In response to this feature, Kyligence provides TDC files that meet Kyligence Enterprise's special query specifications to help Tableau connect with Kyligence better.
+> The configuration steps are as follows:
+
+    1. Download the file named Tableau Datasource Customization on [Kyligence Download](http://download.kyligence.io/#/download)
+    2. Copy the TDC file to the installation directory of Tableau Desktop. The default directory is `Documents\My Tableau Repository\Datasources`
 
 This section will introduce two methods available to connect Tableau with Kyligence Enterprise.
 
