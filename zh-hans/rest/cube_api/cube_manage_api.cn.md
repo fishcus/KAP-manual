@@ -1336,8 +1336,8 @@ curl -X PUT \
 
   - `cubeName` - `必选` `string`， Cube 名称
   - `windowUrl` - `必选` `string`，使用浏览器打开 Kyligence Enterprise 的 URL 前缀，如 `http://localhost:7070/kylin`
-  - `containTableIndex` - `可选` `boolean`，是否包含 table index 的列，默认值为 `false`
-
+  - `containsTableIndex` - `可选` `boolean`，是否包含 table index 的列，默认值为 `false`
+  - `connection` - `可选` `string`，选择导出 tds 的类型，可选值为 `odbc` 和 `connector`，分别表示通用 ODBC 格式和 tableau connector 格式，默认值为 `odbc`
 
 - HTTP Header
   - `Accept: application/vnd.apache.kylin-v2+json`
