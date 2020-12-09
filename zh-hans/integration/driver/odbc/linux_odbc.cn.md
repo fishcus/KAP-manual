@@ -325,13 +325,19 @@ sudo yum remove unixODBC.x86_64
 
 
 
+**Q: 如何升级 ODBC 驱动?**   
+
+将 BI 或其它第三方应用的 Kyligence ODBC 驱动包移除，替换至新的 ODBC 驱动包即可。
+
+
+
 **Q: 如何修改 ODBC 默认数据库类型.**
 
 ODBC 默认数据库类型是 MYSQL。若您需要修改，则要在 **/etc/odbc.ini** 文件内，在 DSN 配置添加 SQLDBMSName=Oracle
 
 ```
 [KyligenceDataSource]
-Driver = KyligenceODBCDriver
+Driver = <ODBC_HOME>/libKyligenceODBC64.so
 PORT = 80
 PROJECT = learn_kylin
 SERVER = http://kapdemo.chinaeast.cloudapp.chinacloudapi.cn

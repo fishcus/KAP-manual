@@ -327,13 +327,19 @@ export LD_PRELOAD=/usr/lib/libodbcinst.so
 
 
 
+**Q: How to upgrade the ODBC Driver?** 
+
+Remove the Kyligence ODBC Driver package for BI or other third-party applications，and replace it with a new ODBC driver package.
+
+
+
 **Q: How to modify ODBC default database type.**
 
 The default database type of ODBC is MYSQL, to modify which you can change the configuration in the DSN in **/etc/odbc.ini** file: SQLDBMSName=Oracle
 
 ```
 [KyligenceDataSource]
-Driver = KyligenceODBCDriver
+Driver = <ODBC_HOME>/libKyligenceODBC64.so
 PORT = 80
 PROJECT = learn_kylin
 SERVER = http://kapdemo.chinaeast.cloudapp.chinacloudapi.cn
