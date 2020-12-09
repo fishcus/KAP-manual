@@ -2,23 +2,36 @@
 
 Tableau is one of the most popular business intelligence applications. It is very easy for users to generate visualized diagrams, stories, and reports on huge amount of data via drag and drop.
 
-Kyligence Enterprise supports integration with Tableau 8.X, 9.X, 10.X, 2018.X, 2019.X, 2020.1 We will use Tableau 2019.2 as an example to introduce how to integrate Kyligence Enterprise with Tableau Desktop.
+Kyligence Enterprise supports integration with Tableau 8, 9, 10, 2018, 2019, 2020 and above. We will use Tableau 2019.4 as an example to introduce how to integrate Kyligence Enterprise with Tableau Desktop.
 
 ### Prerequisite
 
 - Install Kyligence ODBC Driver. For the installation information, please refer to [Kyligence ODBC Driver introduction](../../driver/odbc/README.md).
-
 - Install  Tableau Desktop. For the installation information, please refer to [Tableau Desktop Download](https://www.tableau.com/support/releases).
 
-- Configure Tableau Datasource Customization (TDC) 
+### Configure connection to Kyligence data source
 
-  Tableau supports configuring TDC files to customize ODBC connections. Therefore, Kyligence provides a TDC file to fit some special rules in Kyligence.
+If your Tableau version is 2019.4 and above, please configure Tableau Kyligence connector (Beta)
+  
+  1. Download the Kyligence Connector file (.taco) file from [Kyligence Download Center](http://download.kyligence.io/#/download)
+  2. Copy the .taco file to the Tableau Desktop installation directory, which is
 
-  The configuration steps are as below:
+    ```
+    Windows: My Documents/My Tableau Repository/Connectors
+    macOS: ~/Documents/My Tableau Repository/Connectors
+    Linux: ~/Documents/My Tableau Repository/Connectors
+    ```
+  3. Restart Tableau Desktop.
 
-  1. Download the file named Tableau Datasource Customization on [Kyligence Download](http://download.kyligence.io/#/addons).
+If your Tableau version is 2019.4 below, please configure the Tableau Datasource Customization (TDC) file.
 
-  2. Copy the file to the required Tableau directory. The default location is: `Documents\My Tableau Repository\Datasources`
+> Note: Tableau supports configuring TDC files to customize and adjust ODBC connections. In response to this feature, Kyligence provides TDC files that meet Kyligence Enterprise's special query specifications to help Tableau better connect Kyligence data.
+The configuration steps are as follows:
+
+  1. Download the file named Tableau Datasource Customization on [Kyligence Download](http://download.kyligence.io/#/download)
+  2. Copy the TDC file to the installation directory of Tableau Desktop. The default directory is `Documents\My Tableau Repository\Datasources`
+
+### Connect Kyligence
 
 This section will introduce two methods available to connect Tableau with Kyligence Enterprise.
 
@@ -29,7 +42,7 @@ This section will introduce two methods available to connect Tableau with Kylige
 
 After modeling and creating cube, you can export cube definition as Tableau model definition file in Kyligence Enterprise and import it in Tableau. 
 
-> **Note：** Only Kyligence Enterprise Version 3.0.1 or above supports this approach
+> **Note：** Only Kyligence Enterprise Version 3.4.5 or above supports this approach
 
 Please follow the steps below:
 
@@ -40,6 +53,14 @@ Please follow the steps below:
 - Click **More Action** icon and select **Export TDS** option, a pop-up page shows
 
 ![](../../images/tableau_desktop/1_Export_TDS.png)
+
+- And there some options for TDS export
+  1. Whether to include table index (if no table index is detected in the cube, it will not be displayed)
+  2. Data source connector: 
+  - Other ODBC Data Source（default）
+  - Tableau Kyligence Connector.
+
+![](../../images/tableau_desktop/1.5_export_tds_Connector.png)
 
 **Step 2:** Import TDS file into Tableau
 
@@ -59,15 +80,20 @@ Please follow the steps below:
 
 ### Method 2: Manually Build Mapping Model
 
-You can connect Kyligence Enterprise through ODBC Driver, and manually map Kyligence model in Tableau.
-
-### Connect to Kyligence Enterprise
+##### Use Other Database (ODBC) to connect Kyligence Enterprise
 
 Open Tableau Desktop, click **Other Database (ODBC)** in the left panel, enter connection authentication information (host port, project, username, password) in the pop-up window, or drop-down to select t the existing DSN, and click **Connection**. After verification, you can get the tables and data with access rights.
 
 > **Note：**When you use **DSN** on Tableau Desktop to connect to Kyligence Enterprise and need to publish the workbook to Tableau Server, you should create a DSN with the same name as the local one on Tableau Server. DSN type must be **System DSN**. If you use the  **Driver**  to connect, you do not need to create a DSN in Tableau Server.
 
 ![Connect to Kyligence Enterprise](../../images/tableau_desktop/5_ODBC.png)
+
+##### Use Tableau Kyligence Conncetor to connect Kyligence Enterprise
+
+If Kyligence connector is configured, click Kyligence Connector by Kyligence in the left panel, and enter the connection authentication information (server address, port, project, user name, password) in the pop-up window. Click **Login**, after the verification is passed, you can get all the tables and data that you have permission to access under the account.
+
+> Note: If you use the Kyligence connector in Tableau Desktop, when you publish the workbook to Tableau Server, Tableau Server also needs to configure the Kyligence connector to ensure the normal connection of the data source.
+![Connect Kyligence Enterprise](../../images/tableau_desktop/9_connector.png)
 
 ### Mapping Data Model
 
@@ -92,3 +118,6 @@ If you want to interact through custom SQL, they can click on **New Custom SQL**
 Now you can start to enjoy analyzing with Tableau Desktop.
 
 ![Visualization](../../images/tableau_desktop/4_Charts.png)
+
+### Limitation
+- The measure TopN, PERCENTILE_APRROX, CORR are not currently supported to be displayed in Tableau.
