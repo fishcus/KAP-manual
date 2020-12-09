@@ -107,13 +107,25 @@ Among them, Prepared Statement supports assignment for the following types:
 * setTimestamp
 
 
-**Prepared Statement Known Limitation**
+**Dynamic Parametes In Prepared Statement**
+By default, there are the following limitations on using dynamic parameters in Prepared Statement:
 
 - Query pushdown is not supported when using Prepared Statement.
+- Dynamic Param cannot be used in string functions, such as `substring`
 - Dynamic param cannot follow with <b>'-'</b>, e.g. `SUM(price - ?)`
-- Dynamic param cannot use in <b>case when</b>, e.g. `case when xxx then ? else ? end`
+- Dynamic param cannot be used in <b>case when</b>, e.g. `case when xxx then ? else ? end`
 
-It's recommended to use dynamic param in filters only, e.g. `where id = ?`.
+We provide a way to bind dynamic parameter values. You need to configure the corresponding parameters to enable this function. Then all the [arithmetic functions](../../query/operator_function/function/arithmetic_function.en.md) and [string functions](../../query/operator_function/function/string_function.en.md) can be used with dynamic parameters.
+
+The configuration method is: if the configuration file has contained item `kylin.query.transformers`, please add `io.kyligence.kap.query.util.BindParameters` to the end of it's value and separate them with comma; If not, please add item `kylin.query.transformers` and set it as `kylin.query.transformers=io.kyligence.kap.query.util.BindParameters`
+
+In addition, we also provide a property to bind all dynamic parameter values, `kap.query.enable-replace-dynamic-parameters`, `false` by default.
+
+It's recommended that you enable the above two configurations at the same time. After enabling, the dynamic parameter limit converges to
+
+- Column names and time units cannot be used as dynamic parameters.
+- Type conversion functions date and timestamp do not support dynamic parameters.
+- Some functions such as subtract_count support array parameter. The parameters in array also support dynamic parameters, such as `array['FP-GTC|FP-non GTC ', ?]`, but dynamic parameters are not supported in single quotes, such as `array['?|?', ?]`.
 
 
 
@@ -122,9 +134,3 @@ It's recommended to use dynamic param in filters only, e.g. `where id = ?`.
 **Q: How to upgrade the JDBC Driver?** 
 
 A: Remove the Kyligence JDBC Driver package for BI or other third-party applications，and replace it with a new JDBC driver package.
-
-**Q: How does the system support dynamic parameters in functions?**
-
-A: The current system does not support dynamic parameters in functions. You need to configure the corresponding parameters to enable this function. Then all the [arithmetic functions](../../query/operator_function/function/arithmetic_function.en.md) and [string functions](../../query/operator_function/function/string_function.en.md) can be used with dynamic parameters.
-
-- Modify the corresponding configuration: If the configuration file has contained item `kylin.query.transformers`, please add `io.kyligence.kap.query.util.BindParameters` to the end of it's value and separate them with comma; If not, please add item `kylin.query.transformers` and set it as `kylin.query.transformers=io.kyligence.kap.query.util.BindParameters`
