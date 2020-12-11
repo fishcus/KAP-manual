@@ -123,7 +123,7 @@ while (resultSet.next()) {
 
 配置方法为：若配置文件中已存在配置项 `kylin.query.transformers` ，请直接在参数值后面追加 `io.kyligence.kap.query.util.BindParameters`，以逗号间隔；若不存在，请添加该配置项，并设置为 `kylin.query.transformers=io.kyligence.kap.query.util.BindParameters`
 
-此外，我们也提供了参数用以绑定查询语句中的全部动态参数，`kap.query.enable-replace-dynamic-parameters`, 默认关闭。
+此外，我们也提供了参数用以绑定查询语句中的全部动态参数，`kap.query.replace-dynamic-parameters-enabled`, 默认关闭。
 
 我们建议您同时启用上述两项配置，开启之后，动态参数的限制收敛为
 
