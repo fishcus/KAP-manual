@@ -119,7 +119,7 @@ We provide a way to bind dynamic parameter values. You need to configure the cor
 
 The configuration method is: if the configuration file has contained item `kylin.query.transformers`, please add `io.kyligence.kap.query.util.BindParameters` to the end of it's value and separate them with comma; If not, please add item `kylin.query.transformers` and set it as `kylin.query.transformers=io.kyligence.kap.query.util.BindParameters`
 
-In addition, we also provide a property to bind all dynamic parameter values, `kap.query.enable-replace-dynamic-parameters`, `false` by default.
+In addition, we also provide a property to bind all dynamic parameter values, `kap.query.replace-dynamic-parameters-enabled`, `false` by default.
 
 It's recommended that you enable the above two configurations at the same time. After enabling, the dynamic parameter limit converges to
 
