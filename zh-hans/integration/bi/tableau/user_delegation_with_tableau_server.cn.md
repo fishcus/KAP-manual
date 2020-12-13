@@ -45,6 +45,6 @@
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | EXECUTE_AS_USER_ID cannot be empty, please check its value in the Kyligence ODBC connection string. | Tableau 没有将委任的用户账号正确的传给 Kyligence ODBC        | 请确认您是否在安装Tableau Server 的机器正确配置 Kyligence connector 。 |
 | value of EXECUTE_AS_USER_ID cannot exceed 1024 characters.   | Execute user id 参数的长度超过最大长度 1024 个字符时         | 请使用更加简短的用户ID。                                     |
-| KE-10024001(Access Denied): Access is denied"                | 当前的 Tableau 没有 Kyligence 数据源的访问权限               | 请为用户授权 Kyligence 访问权限                              |
-| User [xxx] does not have permissions for all tables, rows, and columns in the project [xxx] and cannot use the executeAs parameter | 上传 Tableau 工作簿的嵌入式账号在 Kyligence Enterprise 中没有足够的访问权限 | 使用在 Kyligence 中没有限制行级、列级、表级权限的用户作为嵌入式账号 |
+| Access is denied                                             | 当前的 Tableau 没有 Kyligence 数据源的访问权限               | 请为用户授权 Kyligence 访问权限                              |
+| User [xxx] does not have permissions in the project [xxx] and cannot use the executeAs parameter | 上传 Tableau 工作簿的嵌入式账号在 Kyligence Enterprise 中没有足够的访问权限 | 使用在 Kyligence 中没有限制行级、列级、表级权限的用户作为嵌入式账号 |
 | User [xxx] in the executeAs field does not exist             | 当前登录的 Tableau 用户在Kyligence Enterprise 中不存在       | 请为用户授权 Kyligence 访问权限                              |
