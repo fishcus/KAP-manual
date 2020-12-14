@@ -126,25 +126,28 @@
             * [Linux](integration/driver/odbc/linux_odbc.en.md)
             * [Mac](integration/driver/odbc/mac_odbc.en.md)
     * [Connect Kyligence from BI Tools](integration/bi/README.md)
-        * [Tableau](integration/bi/tableau/README.md)
+        * Tableau
             * [Tableau Desktop](integration/bi/tableau/tableau_desktop.en.md)
             * [Tableau Server](integration/bi/tableau/tableau_server.en.md)
-        * [Power BI](integration/bi/powerbi/README.md)
+            * [User Delegation with Tableau Server](integration/bi/tableau/user_delegation_with_tableau_server.en.md)
+        * Power BI
             * [Power BI Desktop](integration/bi/powerbi/powerbi_desktop.en.md)
             * [Power BI Service](integration/bi/powerbi/powerbi_service.en.md)
-        * [MicroStrategy](integration/bi/microstrategy/README.md)
+        * MicroStrategy
             * [MicroStrategy Secure Enterprise](integration/bi/microstrategy/microstrategy_enterprise.en.md)
             * [MicroStrategy Workstation/Desktop](integration/bi/microstrategy/microstrategy_desktop.en.md)
         * [IBM Cognos](integration/bi/cognos.en.md)
-        * [Qlik](integration/bi/qlik/README.md)
-            * [Qlik Sense](integration/bi/qlik/qlik_sense.en.md)
-            * [Qlik Sense Enterprise](integration/bi/qlik/qlik_sense_enterprise.en.md)
+        * Qlik
             * [QlikView Desktop](integration/bi/qlik/qlik_view.en.md)
             * [QlikView Server](integration/bi/qlik/qlik_view_server.en.md)
-        * [Oracle Business Intelligence/OBIEE](integration/bi/obiee/README.md)
+        * Oracle Business Intelligence/OBIEE
             * [OBIEE 11g](integration/bi/obiee/obiee_11g.en.md)
             * [OBIEE 12c](integration/bi/obiee/obiee_12c.en.md)
-        * [SAP BusinessObjects/BO](integration/bi/sap_bo.en.md)
+            * [OBIEE Setting Up Row-Level Security](integration/bi/obiee/obiee_setting_up_row_level_security.en.md)
+            * [Oracle BI Publisher](integration/bi/obiee/obiee_bip.en.md)
+        * SAP BusinessObjects/BO
+            * [BO Client](integration/bi/sapbo/sap_bo_client.en.md)
+            * [BO Server](integration/bi/sapbo/sap_bo_server.en.md)
         * [Apache Zeppelin](integration/bi/zeppelin.en.md)
     * [Using Excel](integration/excel.en.md)
     * [Using Python](integration/python.en.md)

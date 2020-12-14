@@ -5,26 +5,55 @@
 
 - 安装 Tableau Server。有关 Tableau Server 的安装说明，请访问 [Tableau Server下载页面](https://www.tableau.com/zh-cn/support/releases/server)。
 
-- 配置 Tableau Datasource Customization (TDC) 文件。与Desktop类似，步骤如下：
 
-  1. 在[Kyligence下载中心](http://download.kyligence.io/#/download)下载 **Tableau Datasource Customization (TDC)** 文件
+### 配置与 Kyligence 数据源连接
 
-  2. 将 TDC 文件拷贝至 Tableau Server 相关安装目录下即可，默认目录如下：
+如您的 Tableau 版本为 2019.4 及以上，请配置 Kyligence 数据源连接器
 
-     * Windows 环境：
+1. 在 [Kyligence下载中心](http://download.kyligence.io/#/download) 下载 Kyligence Connector 文件  (.taco) 文件
 
-       `Program Files\Tableau\Tableau Server\<version>\bin` 或者
+2. 将 .taco 文件拷贝至 Tableau Server 目录，Tableau 安装目录为，如目录不存在请手动创建
 
-       `ProgramData\Tableau\Tableau Server\data\tabsvc\vizqlserver\Datasources`
+   ```
+   Windows: My Documents/My Tableau Repository/Connectors
+   Linux：{自定义路径}/tableau_connectors
+   ```
 
-     * Linux 环境：
+   > **注意**：在 Tableau 2019.4 ~ 2020.3.2 版本，中文路径名会导致 Kyligence 连接器不生效，可通过自定义英文路径，并通过 TSM 配置 native_api.connect_plugins_path 解决。若您使用 Tableau 2020.3.2 及以上版本，不会遇到该问题。
 
-       `/var/opt/tableau/tableau_server/data/tabsvc/vizqlserver/Datasources/`
+3. 使用 TSM 配置 native_api.connect_plugins_path
 
-> **注意：**
->
-> 1. 当您使用 Tableau Linux Server 时，请确保ODBC配置 {DriverName} 为 **KyligenceODBCDriver**，配置参考 [Linux ODBC 章节](../../driver/odbc/linux_odbc.cn.md)。
-> 2. 当已发布的工作薄是以 **DSN** 方式连接至Kyligence Enterprise时，请确保在Tableau Server配置与本地同名的 **DSN**。
+   ```
+   tsm configuration set -k native_api.connect_plugins_path -v {自定义路径}/tableau_connectors
+   如果在此步骤中遇到配置错误，请尝试在命令末尾添加 --force-keys 选项
+   ```
+
+4. 重启 Tableau Server
+
+
+
+如您的 Tableau 版本为 2019.4 以下，请配置 Tableau Datasource Customization (TDC) 文件，步骤如下：
+
+1. 在 [Kyligence下载中心](http://download.kyligence.io/#/download)下载 **Tableau Datasource Customization (TDC)** 文件
+
+2. 将 TDC 文件拷贝至 Tableau Server 相关安装目录下即可，默认目录如下：
+
+   * Windows 环境：
+
+     `Program Files\Tableau\Tableau Server\<version>\bin` 或者
+
+     `ProgramData\Tableau\Tableau Server\data\tabsvc\vizqlserver\Datasources`
+
+   * Linux 环境：
+
+     `/var/opt/tableau/tableau_server/data/tabsvc/vizqlserver/Datasources/`
+
+   > **注意：**
+   >
+   > 1. 当您使用 Tableau Linux Server 时，请确保配置 ODBC {DriverName} 为 **KyligenceODBCDriver**，参考 [Linux ODBC 章节](../../driver/odbc/linux_odbc.cn.md)。
+   > 2. 当以 **DSN** 方式发布工作薄时，请确保在 Tableau Server 配置与本地同名的 **DSN**。
+
+
 
 ### 登录 Tableau Server
 

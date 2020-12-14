@@ -7,19 +7,44 @@ Kyligence Enterprise 支持与 Tableau 8.X，9.X，10.X，2018.X，2019.X ，202
 ### 前置条件
 
 - 安装 Kyligence ODBC 驱动程序。有关安装信息，请参考页面 [Kyligence ODBC 驱动程序介绍](../../driver/odbc/README.md)。
-
 - 安装 Tableau Desktop。有关 Tableau 的安装说明，请访问 [Tableau Desktop 下载页面](https://www.tableau.com/zh-cn/support/releases)。
 
-- 配置 Tableau Datasource Customization (TDC) 文件。
+### 配置与 Kyligence 数据源连接
 
-  Tableau 支持配置 TDC 文件，以达到自定义和调整 ODBC 连接。针对该特性，Kyligence 提供满足 Kyligence Enterprise 特殊的查询规范的 TDC 文件，以帮助 Tableau 更好的连接 Kyligence 数据。
+如您的 Tableau 版本为 2019.4 及以上，请配置 Kyligence 数据源连接器
 
-  配置步骤如下：
+1. 在 [Kyligence下载中心](http://download.kyligence.io/#/download) 下载 Kyligence Connector 文件  (.taco) 文件
 
-  1. 在 [Kyligence下载中心](http://download.kyligence.io/#/download) 下载 **Tableau Datasource Customization** (TDC) 文件
+2. 将 .taco 文件拷贝至 Tableau Desktop 安装目录，Tableau 安装目录为 
 
-  2. 将 TDC 文件拷贝至 Tableau Desktop 相关安装目录下即可，默认目录为 ` Documents\My Tableau Repository\Datasources`
-  
+   ```
+   Windows: My Documents/My Tableau Repository/Connectors
+   macOS: ~/Documents/My Tableau Repository/Connectors 
+   ```
+
+   > **注意**：在 Tableau 2019.4 ~ 2020.3.2 版本，中文路径名会导致 Kyligence 连接器不生效，可通过自定义英文路径，并通过 TSM 配置 native_api.connect_plugins_path 解决。若您使用 Tableau 2020.3.2 及以上版本，不会遇到该问题。
+
+3. 使用 TSM 配置 native_api.connect_plugins_path
+
+   ```
+   tsm configuration set -k native_api.connect_plugins_path -v {自定义路径}/tableau_connectors
+   如果在此步骤中遇到配置错误，请尝试在命令末尾添加 --force-keys 选项
+   ```
+
+4. 重启 Tableau Desktop
+
+
+
+如您的 Tableau 版本为 2019.4 以下，请配置 Tableau Datasource Customization (TDC) 文件。
+
+> **注意**: Tableau 支持配置 TDC 文件，以达到自定义和调整 ODBC 连接。针对该特性，Kyligence 提供满足 Kyligence Enterprise 特殊的查询规范的 TDC 文件，以帮助 Tableau 更好的连接 Kyligence 数据。
+
+配置步骤如下：
+
+1. 在 [Kyligence下载中心](http://download.kyligence.io/#/download) 下载 **Tableau Datasource Customization** (TDC) 文件
+2. 将 TDC 文件拷贝至 Tableau Desktop 相关安装目录下即可，默认目录为 Documents\My Tableau Repository\Datasources
+
+
 
 Kyligence Enterprise 与 Tableau Desktop 支持2种集成方式，下文将分别介绍具体集成步骤。
 

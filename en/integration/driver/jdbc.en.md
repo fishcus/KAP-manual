@@ -127,6 +127,59 @@ It's recommended that you enable the above two configurations at the same time. 
 - Type conversion functions date and timestamp do not support dynamic parameters.
 - Some functions such as subtract_count support array parameter. The parameters in array also support dynamic parameters, such as `array['FP-GTC|FP-non GTC ', ?]`, but dynamic parameters are not supported in single quotes, such as `array['?|?', ?]`.
 
+## JDBC Driver Logging
+
+You can enable logging in the driver to track activity and troubleshoot issues.
+
+**Important:** Only enable logging long enough to capture an issue. Logging decreases performance and can consume a large quantity of disk space.
+
+1. Open the driver logging configuration file in a text editor.
+   For example, you would open the  {JDBC installed path}/kyligence-jdbc.properties
+
+   > **Note**：kyligence-jdbc.properties is the default configuration file that needs to be placed in the same path as the JDBC jar package
+
+3. Set log level. Information on all of the Log Levels is listed below.Trace is best in most cases.
+
+   - **OFF** disables all logging.
+   - **FATAL** logs very severe error events that might lead the driver to abort.
+   - **ERROR**  logs error events that might still allow the driver to continue running.
+   - **WARN**  logs potentially harmful situations.
+   - **INFO**  logs general information that describes the progress of the driver.
+   - **DEBUG**  logs detailed information that is useful for debugging the driver.
+   - **TRACE** logs more detailed information than log level DEBUG.
+
+   For example: **LogLevel=TRACE**
+
+5. Set the Log Path and file name.Set the **LogPath** attribute to the full path to the folder where you want to save log files. This directory must exist and be writable, including being writable by other users if the application using the driver runs as a specific user.
+   For example: **LogPath=/usr/local/KyligenceJDBC.log**      
+
+6. Set the **MaxBackupIndex** attribute to the maximum number of log files to keep.
+   For example: **MaxBackupIndex=10**
+
+   > **Note**: After the maximum number of log files is reached, each time an additional file is created, the driver deletes the oldest file.
+
+7. Set the **MaxFileSize** attribute to the maximum size of each log file in bytes.
+   For example: **MaxFileSize=268435456**
+
+   > **Note:** After the maximum file size is reached, the driver creates a new file and continues logging.
+
+6. Save the driver configuration file.
+
+   ```
+   # Set log level
+   LogLevel=TRACE
+   
+   # Set log path and file name
+   LogPath=/usr/local/KyligenceJDBC.log
+   
+   # Set maximum number of log files to keep
+   MaxBackupIndex=10
+   
+   # Set maximum size of each log file in bytes
+   MaxFileSize=268435456
+   ```
+
+7. Restart the application you are using the driver with.Configuration changes will not be picked up by the application until it reloads the driver.
 
 
 ### FAQ
