@@ -109,15 +109,26 @@ while (resultSet.next()) {
 }
 ```
 
-**Prepared Statement 已知限制**
+**动态参数**
+
+默认情况下，在 Prepared Statement 中使用动态参数存在以下限制
 
 - 不支持查询下压
+- 不支持部分函数，如substring
 - 动态参数不支持与"-"放在一起，如`SUM(price - ?)`
 - 动态参数不支持出现在 **case when** 中，如`case when xxx then ? else ? end`
 
-此外，我们推荐您仅让动态参数出现在查询的过滤条件中，如 `where id = ?`
+我们提供了动态参数绑定功能，需要配置相应的参数开启该功能，开启之后所有的[算数函数](../../query/operator_function/function/arithmetic_function.cn.md)和[字符串函数](../../query/operator_function/function/string_function.cn.md)均可支持动态参数。
 
+配置方法为：若配置文件中已存在配置项 `kylin.query.transformers` ，请直接在参数值后面追加 `io.kyligence.kap.query.util.BindParameters`，以逗号间隔；若不存在，请添加该配置项，并设置为 `kylin.query.transformers=io.kyligence.kap.query.util.BindParameters`
 
+此外，我们也提供了参数用以绑定查询语句中的全部动态参数，`kap.query.replace-dynamic-parameters-enabled`, 默认关闭。
+
+我们建议您同时启用上述两项配置，开启之后，动态参数的限制收敛为
+
+- 动态参数的类型仅支持手册中提及到的类型，所以不支持**列名**和**时间单位**。
+- 类型转换函数包括有 `data`, `timestamp` 和 `cast`, 其中 `date` 和 `timestamp` 不支持动态参数。
+- 部分函数如 `subtract_count` 支持传 `array['FP-GTC,FP-non GTC', 'Others']` 类型的参数，array中的参数也支持使用动态参数，如 `array['FP-GTC|FP-non GTC', ?]`，但单引号内不支持动态参数，即不能使用 `array['?|?', ?]`
 
 ## JDBC 驱动日志
 
@@ -180,10 +191,8 @@ while (resultSet.next()) {
 7. 重新启动使用驱动程序的应用程序。在重新加载驱动程序之前，应用程序不会应用配置更改。
 
 
-
 ### FAQ
 
 **Q: 如何升级 JDBC 驱动?**   
 
-将 BI 或其它第三方应用的 Kyligence JDBC 驱动包移除，替换至新的 JDBC 驱动包即可。
-
+A: 将 BI 或其它第三方应用的 Kyligence JDBC 驱动包移除，替换至新的 JDBC 驱动包即可。
