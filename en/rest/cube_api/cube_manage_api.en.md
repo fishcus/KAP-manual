@@ -1335,9 +1335,8 @@ curl -X PUT \
 - URL Parameters
 
   - `cubeName` - `required` `string`,  cube name
-  - `windowUrl` - `required` `string`, url of Kyligence Enterprise windows, for example, `http://localhost:7070/kylin`
-  - `containsTableIndex` - `optional` `boolean`, whether includes the columns set to table index, the default value is `false`
-  - `connection` - `optional` `string`, Select how to connect data source, the optional values are `odbc` ( generic odbc ) and `connector` ( tableau connector ), the default value is `odbc` 
+  - `windowUrl` - `required` `string`, url of Kyligence Enterprise windows, for example, `http://localhost:7070/kylin`.
+  - `containTableIndex` - `optional` `boolean`, whether includes the columns set to table index, the default value is `false`
 
 - HTTP Header
   - `Accept: application/vnd.apache.kylin-v2+json`
