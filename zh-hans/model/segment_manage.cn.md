@@ -93,7 +93,7 @@ Segments 管理页面上，支持如下操作：
 
   > **注意：** 
   >
-  > 1. 当 Segment 不连续时也可以进行合并，合并任务会自动补全缺失部分。
+  > 1. 当 Segment 不连续时也可以进行合并，合并后缺失部分不会自动补齐。
   > 2. 合并 Segment 时，若被合并的 Segment 对应的维度表快照不同，将会弹出警告提示。当用户选择继续合并，可能会产生缓慢变化维处理的不一致，并会影响查询结果。关于更多缓慢变化维的信息，请参考 [缓慢变化维度](model_design/slowly_changing_dimension.cn.md)。
   > 3. 为了避免 Cube 中 Segment 过多，导致查询性能下降。我们建议在 Cube 设计时，在**刷新设置**步骤中按周或月对数据进行自动合并。
   > 4. 自动合并功能仅支持按日期/时间增量构建的 Cube，对于其他增量构建类型的 Cube，请根据您的业务情况进行自行调用 [Segment Rest API](../rest/segment_manage_api.cn.md) 进行持续的 Segment 合并。
