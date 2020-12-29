@@ -185,3 +185,64 @@
   100 277 100  161   100  116  712    513 --:--:-- --:--:-- --:--:--1282
   curl: Saved to filename '20190718102045980.result.csv'
   ```
+  
+### 获取正在运行的查询
+
+- 获取当前节点正在执行的查询 `GET http://host:port/kylin/api/query/running`
+- 获取集群中所有节点正在执行的查询 `GET http://host:port/kylin/api/query/all_running`
+
+- HTTP Header
+
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
+  
+- HTTP Body: JSON Object
+
+  - `start_time` - `必选` `long`，查询开始时间
+  - `execution_time` - `必选` `long`，查询耗时
+  - `user` - `必选` `String`， 提交查询的用户
+  - `query_id` - `必选` `String`，查询 ID
+  - `query_type` - `可选` `String`， 查询类别，CALCITE、SPARDER 或 PUSHDOWN
+  - `sql` - `必选` `String`，查询语句
+  - `project` - `必选` `String`，查询所属项目
+  
+- Curl 请求示例
+
+  ```sh
+  curl -X GET \
+  	'http://host:port/kylin/api/query/running' \
+  	-H 'Accept: application/vnd.apache.kylin-v2+json' \
+  	-H 'Accept-Language: en' \
+  	-H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  	-H 'Content-Type: application/json;charset=utf-8'
+  ```
+  
+  ```sh
+  curl -X GET \
+  	'http://host:port/kylin/api/query/all_running' \
+  	-H 'Accept: application/vnd.apache.kylin-v2+json' \
+  	-H 'Accept-Language: en' \
+  	-H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  	-H 'Content-Type: application/json;charset=utf-8'
+  ```
+  
+- 响应示例
+
+  ```json
+  {
+    "code": "000",
+    "data": [
+      {
+        "start_time": 1608546862451,
+        "execution_time": 78509,
+        "user": "ADMIN",
+        "query_id": "4cfa8db3-0865-4958-ba9a-4186e4786515",
+        "query_type": "CALCITE",
+        "sql": "select count(*) from TEST_KYLIN_FACT\nwhere CAL_DT > {fn convert({fn TIMESTAMPADD(SQL_TSI_DAY, -30, {fn current_date()})},   SQL_DATE)}",
+        "project": "default"
+      }
+    ],
+    "msg": ""
+  }
+  ```

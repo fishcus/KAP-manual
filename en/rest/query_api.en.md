@@ -187,3 +187,63 @@
   curl: Saved to filename '20190718102045980.result.csv'
   ```
 
+### Gets the running query
+
+- Gets the running query in current instance `GET http://host:port/kylin/api/query/running`
+- Gets the running query in all instance of the cluster `GET http://host:port/kylin/api/query/all_running`
+
+- HTTP Header
+
+  - `Accept: application/vnd.apache.kylin-v2+json`
+  - `Accept-Language: en`
+  - `Content-Type: application/json;charset=utf-8`
+  
+- HTTP Body: JSON Object
+
+  - `start_time` - `required` `long`，start time of the query
+  - `execution_time` - `required` `long`，execution time of the query
+  - `user` - `required` `String`， the user submitting the query
+  - `query_id` - `required` `String`，query ID
+  - `query_type` - `optional` `String`， query type，CALCITE、SPARDER 或 PUSHDOWN
+  - `sql` - `required` `String`，sql of the query
+  - `project` - `required` `String`，project of the query
+  
+- Curl Request Example
+
+  ```sh
+  curl -X GET \
+  	'http://host:port/kylin/api/query/running' \
+  	-H 'Accept: application/vnd.apache.kylin-v2+json' \
+  	-H 'Accept-Language: en' \
+  	-H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  	-H 'Content-Type: application/json;charset=utf-8'
+  ```
+  
+  ```sh
+  curl -X GET \
+  	'http://host:port/kylin/api/query/all_running' \
+  	-H 'Accept: application/vnd.apache.kylin-v2+json' \
+  	-H 'Accept-Language: en' \
+  	-H 'Authorization: Basic QURNSU46S1lMSU4=' \
+  	-H 'Content-Type: application/json;charset=utf-8'
+  ```
+  
+- Response Example
+
+  ```json
+  {
+    "code": "000",
+    "data": [
+      {
+        "start_time": 1608546862451,
+        "execution_time": 78509,
+        "user": "ADMIN",
+        "query_id": "4cfa8db3-0865-4958-ba9a-4186e4786515",
+        "query_type": "CALCITE",
+        "sql": "select count(*) from TEST_KYLIN_FACT\nwhere CAL_DT > {fn convert({fn TIMESTAMPADD(SQL_TSI_DAY, -30, {fn current_date()})},   SQL_DATE)}",
+        "project": "default"
+      }
+    ],
+    "msg": ""
+  }
+  ```
