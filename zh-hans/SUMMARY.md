@@ -222,7 +222,7 @@
         * [数据导入和查询](installation/deploy/import_data.cn.md)
 * [发行说明](release/README.md)          
     * [Kyligence Enterprise 3.4 发行说明](release/ke_3_4/README.md)
-        * [Kyligence Enterprise 3.4.5.2115 发行说明](release/ke_3_4/ke_3_4_5.cn.md)
+        * [Kyligence Enterprise 3.4.5 发行说明](release/ke_3_4/ke_3_4_5.cn.md)
     * [Kyligence Enterprise 历史版本发行说明](release/history_release/README.md)  
         * [Kyligence Enterprise 3.3 发行说明](release/history_release/ke_3_3.cn.md) 
         * [Kyligence Enterprise 3.2 发行说明](release/history_release/ke_3_2.cn.md)   
