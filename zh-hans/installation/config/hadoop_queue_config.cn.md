@@ -24,7 +24,7 @@ kylin.engine.spark-conf.spark.yarn.queue=YOUR_QUEUE_NAME
 kylin.engine.mr.config-override.mapreduce.job.queuename=YOUR_QUEUE_NAME
 # 指定Hive执行时的YARN队列
 kylin.source.hive.config-override.mapreduce.job.queuename=YOUR_QUEUE_NAME
-# HDP平台下需指定ez执行时的YARN队列
+# HDP平台下需指定Tez执行时的YARN队列
 kylin.source.hive.config-override.tez.queue.name=YOUR_QUEUE_NAME
 # 指定查询引擎的YARN队列
 kap.storage.columnar.spark-conf.spark.yarn.queue=YOUR_QUEUE_NAME

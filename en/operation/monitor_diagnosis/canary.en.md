@@ -63,15 +63,22 @@ Kyligence Enterprise provides *Email Notification* function, which will send ema
 Following configurations in `$KYLIN_HOME/conf/kylin.properties` is required
 
 ```
-kylin.job.notification-enabled=true|false  # set to true to enable the function
-kylin.job.notification-mail-enable-starttls=true|false    
-kylin.job.notification-mail-host=your-smtp-server  # address of SMTP server
-kylin.job.notification-mail-port=your-smtp-port  # port of SMTP server
-kylin.job.notification-mail-username=your-smtp-account  # SMTP account username
-kylin.job.notification-mail-password=your-smtp-pwd  # SMTP account password
-kylin.job.notification-mail-sender=your-sender-address  # sender address
+# set to true to enable the function
+kylin.job.notification-enabled=true|false
+kylin.job.notification-mail-enable-starttls=true|false  
+# address of SMTP server  
+kylin.job.notification-mail-host=your-smtp-server
+# port of SMTP server
+kylin.job.notification-mail-port=your-smtp-port  
+# SMTP account username
+kylin.job.notification-mail-username=your-smtp-account  
+# SMTP account password
+kylin.job.notification-mail-password=your-smtp-pwd  
+# sender address
+kylin.job.notification-mail-sender=your-sender-address  
 kylin.job.notification-admin-emails=adminstrator-address
-kylin.job.notification-alert-receiver-emails=alert-receiver-address # notification list
+# notification list
+kylin.job.notification-alert-receiver-emails=alert-receiver-address 
 ```
 
 Restart Kyligence Enterprise to make configurations work.

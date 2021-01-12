@@ -61,15 +61,21 @@ Kyligence Enterprise 提供了邮件通知的功能，可以将服务状态检�
 如果需要开启服务状态检测结果邮件报警，请在配置文件 `$KYLIN_HOME/conf/kylin.properties` 中进行如下设置:
 
 ```
-kylin.job.notification-enabled=true|false  # 设置为true将开启邮件通知功能
+# 设置为true将开启邮件通知功能
+kylin.job.notification-enabled=true|false  
 kylin.job.notification-mail-enable-starttls=true|false
-kylin.job.notification-mail-host=your-smtp-server  # 设置该项为邮件的SMTP服务器地址
+# 设置该项为邮件的SMTP服务器地址
+kylin.job.notification-mail-host=your-smtp-server  
 kylin.job.notification-mail-port=your-smtp-port
-kylin.job.notification-mail-username=your-smtp-account  # 设置该项为邮件的SMTP登录用户名
-kylin.job.notification-mail-password=your-smtp-pwd  # 设置该项为邮件的SMTP登录密码
-kylin.job.notification-mail-sender=your-sender-address  # 设置该项为邮件的发送邮箱地址
+# 设置该项为邮件的SMTP登录用户名
+kylin.job.notification-mail-username=your-smtp-account  
+# 设置该项为邮件的SMTP登录密码
+kylin.job.notification-mail-password=your-smtp-pwd  
+# 设置该项为邮件的发送邮箱地址
+kylin.job.notification-mail-sender=your-sender-address  
 kylin.job.notification-admin-emails=adminstrator-address
-kylin.job.notification-alert-receiver-emails=alert-receiver-address #设置该项为收件人通知列表
+#设置该项为收件人通知列表
+kylin.job.notification-alert-receiver-emails=alert-receiver-address 
 ```
 
 设置完毕后，请重新启动 Kyligence Enterprise 使配置生效。

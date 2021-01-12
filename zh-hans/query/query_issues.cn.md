@@ -71,5 +71,5 @@ A: 当前的系统默认不支持除以null的查询，需要配置相应的参�
 A: 在下压查询中，系统会自动尝试补全 schema. 补全的逻辑为：如果项目数据源中存在名为 `default` 的数据库，将直接使用 `default` 作为默认库名；如果不存在，将使用项目数据源中表数量最多的数据库作为默认库名。补全的方式为：首先尝试使用 calcite 解析 sql 进行补全，如果发生异常，尝试使用 spark 解析 sql 进行补全。
 
 相关的配置项有：
-- `kylin.query.pushdown.permissive-enabled` 是否容忍 calcite 解析失败，默认值为 `false` ,关闭的情况下不会尝试使用 saprk 解析 sql 语句。
+- `kylin.query.pushdown.permissive-enabled` 是否容忍 calcite 解析失败，默认值为 `false` ,关闭的情况下不会尝试使用 spark 解析 sql 语句。
 - `kylin.query.pushdown.fix-schema-with-spark` 是否在 calcite 解析失败的情况下尝试 spark 解析，默认值为 `true` ,该参数仅在开关 `kylin.query.pushdown.permissive-enabled` 打开时生效。
